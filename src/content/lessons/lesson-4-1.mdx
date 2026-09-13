@@ -1,0 +1,83 @@
+---
+id: lesson-4-1
+station: station-4
+number: "4.1"
+title: "بيئة العمل و Ergonomics"
+titleEn: "Workplace Ergonomics"
+minutes: 20
+order: 1
+objectives:
+  - "أن يطبق المتعلم فحصاً ذاتياً لعناصر بيئة العمل (شاشة، كرسي، إضاءة، معصمان)."
+  - "أن يربط بيئة العمل بالإنتاجية والغياب في حجة استثمارية ذكية."
+  - "أن يحول Ergonomics من حملة لمرة واحدة إلى برنامج تحسين مستمر."
+objectivesEn:
+  - "Conduct a workstation self-check (screen, chair, lighting, wrists)."
+  - "Link workplace ergonomics to productivity and absenteeism in the investment case."
+  - "Turn ergonomics into a continuous-improvement program, not a one-off campaign."
+hasTool: true
+toolName: "تقييم Ergonomics"
+toolNameEn: "Ergonomics Self-Check"
+quizId: quiz-4-1
+sources:
+  - osha
+---
+
+import Callout from '../../components/ui/Callout.astro';
+import GlossaryCard from '../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../components/islands/quiz/ScenarioQuiz.tsx';
+import ErgonomicsSelfCheck from '../../components/islands/tools/ErgonomicsSelfCheck.tsx';
+import { quiz41 } from '../../data/quiz/quiz-4-1';
+
+بيئة العمل تصميمٌ للجسم قبل أن تكون أثاثاً: الموظف الذي يجلس ساعات بوضعية خاطئة يدفع ثمنها جسده، وتدفع المنشأة ثمنها إنتاجية وغياباً.
+
+## 1. هندسة بيئة العمل (Ergonomics)
+
+علم تكييف بيئة العمل مع جسم الإنسان لا العكس. نقاط الفحص الكلاسيكية:
+
+- **الشاشة**: قمتها عند مستوى العين أو أقل بقليل، ومسافة 50–70 سم.
+- **الكرسي**: دعم للظهر، وتلامس القدمين الأرض أو مسند قدمين، وذراعان بزاوية مريحة.
+- **المعصم**: أيادٍ مسترخية فوق لوحة المفاتيح دون انحناء قسري.
+- **الإضاءة**: لا وهج مباشر ولا انعكاس نافذة على الشاشة.
+- **الحركة**: استراحات وقيام دوري كل 30–60 دقيقة.
+
+<Callout type="myth">
+**أسطورة:** "الكراسي الباهظة حل شامل."
+**الحقيقة:** البيئة ثقافة: وضعية، إضاءة، انعكاسات، وفترات حركة. أثاث ممتاز على وضعية خاطئة بلا استراحات تبقى معه الشكاوى.
+</Callout>
+
+## 2. قراءة الشكاوى: متى تتدخل؟
+
+- شكوى **متجمعة** (فريق كامل بنفس الأعراض) = مؤشر سبب بيئي مشترك يستحق فحصاً جماعياً.
+- شكوى فردية متكررة = فحص شخصي + تدخل وقائي (Ergonomic Assessment).
+- لا تُحوِّل الحل إلى «الطبيب» وحده؛ الجذر غالباً في بيئة العمل نفسها.
+
+## 3. حجة الميزانية المحترفة
+
+عند طلب تحسينات Ergonomics:
+
+- **التحليل الكامل**: تكلفة الترقية مقابل أثر الغياب (أيام العمل الضائعة) والإنتاجية والرضا.
+- **القياس**: سجلات الغياب والشكاوى قبل/بعد، واستبيانات بيئة العمل.
+- **البرنامج لا الحدث**: دورة فحص ← تدريب ← رصد ← تحديث، لا كتيب يوزع ثم يُنسى.
+
+## أداة اليوم: الفحص الذاتي
+
+قيّم ست نقاط أساسية في محطة عملك الحالية واحصل على قراءة فورية.
+
+<ErgonomicsSelfCheck client:load />
+
+## قاموس المصطلحات
+
+<GlossaryCard terms={['ergonomics', 'osha', 'kpi']} />
+
+## راجع ما تعلمته
+
+أسئلة على التشخيص أولاً والميزانية المتوازنة وبرنامج الاستمرارية.
+
+<ScenarioQuiz quizId="quiz-4-1" questions={quiz41.questions} client:load />
+
+## خلاصة
+
+- **بيئة العمل**: شاشة، كرسي، إضاءة، حركة — نظام متكامل لا قطعة واحدة.
+- **الشكوى المتجمعة** = سبب بيئي مشترك يُفحص جماعياً.
+- **بيئة العمل** حجة استثمارية مبنية على القياس والتحليل الكامل لا على العواطف.
+- **Ergonomics برنامج مستمر**: فحص ← تدريب ← رصد ← تحديث.

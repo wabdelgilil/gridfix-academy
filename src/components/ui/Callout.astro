@@ -1,0 +1,41 @@
+---
+interface Props {
+  type?: 'myth' | 'tip' | 'warn';
+  title?: string;
+}
+const { type = 'myth', title } = Astro.props;
+
+const styles = {
+  myth: {
+    box: 'border-amber-300 bg-amber-50',
+    icon: '❌',
+    heading: 'text-amber-800',
+  },
+  tip: {
+    box: 'border-brand-500 bg-brand-50',
+    icon: '💡',
+    heading: 'text-brand-700',
+  },
+  warn: {
+    box: 'border-rose-300 bg-rose-50',
+    icon: '⚠️',
+    heading: 'text-rose-700',
+  },
+}[type];
+
+const labels: Record<string, string> = {
+  myth: 'مفهوم خاطئ شائع',
+  tip: 'نصيحة مهنية',
+  warn: 'احذر',
+};
+---
+
+<div class={`my-6 rounded-xl border-r-4 p-4 ${styles.box}`}>
+  <div class={`flex items-center gap-2 font-semibold ${styles.heading}`}>
+    <span>{styles.icon}</span>
+    <span>{title ?? labels[type]}</span>
+  </div>
+  <div class="prose-lesson mt-1">
+    <slot />
+  </div>
+</div>

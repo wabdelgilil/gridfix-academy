@@ -1,0 +1,102 @@
+@import "tailwindcss";
+@import "@fontsource/ibm-plex-sans-arabic/400.css";
+@import "@fontsource/ibm-plex-sans-arabic/500.css";
+@import "@fontsource/ibm-plex-sans-arabic/600.css";
+@import "@fontsource/ibm-plex-sans-arabic/700.css";
+
+@theme {
+  --font-sans: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #ccfbf1;
+  --color-brand-200: #99f6e4;
+  --color-brand-500: #14b8a6;
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-brand-800: #115e59;
+  --color-ink-900: #0f172a;
+  --color-ink-600: #475569;
+  --color-ink-400: #94a3b8;
+  --color-ink-50: #f8fafc;
+}
+
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  @apply bg-ink-50 text-ink-900 antialiased;
+  line-height: 1.8;
+}
+
+/* ===== محتوى الدرس (prose custom) ===== */
+.prose-lesson {
+  font-size: 1.0625rem;
+}
+.prose-lesson h2 {
+  @apply mt-10 mb-4 text-2xl font-bold text-ink-900;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.prose-lesson h2::before {
+  content: "◆";
+  @apply text-brand-600 text-lg;
+}
+.prose-lesson h3 {
+  @apply mt-8 mb-3 text-xl font-semibold text-ink-900;
+}
+.prose-lesson p {
+  @apply my-4 text-ink-600;
+}
+.prose-lesson ul,
+.prose-lesson ol {
+  @apply my-4 space-y-2 pr-6 text-ink-600;
+}
+.prose-lesson ul {
+  list-style: disc;
+}
+.prose-lesson ol {
+  list-style: decimal;
+}
+.prose-lesson strong {
+  @apply font-semibold text-ink-900;
+}
+.prose-lesson em {
+  @apply text-brand-700;
+}
+.prose-lesson blockquote {
+  @apply my-6 border-r-4 border-brand-500 bg-brand-50 px-4 py-3 text-ink-600 rounded-l-lg;
+}
+.prose-lesson table {
+  @apply my-6 w-full text-sm;
+  border-collapse: collapse;
+}
+.prose-lesson th,
+.prose-lesson td {
+  @apply border border-ink-400/40 px-3 py-2 text-start;
+}
+.prose-lesson th {
+  @apply bg-brand-50 font-semibold text-ink-900;
+}
+.prose-lesson code {
+  @apply rounded bg-slate-100 px-1.5 py-0.5 text-sm text-brand-700;
+}
+
+/* أرقام عربية في القوائم المرتبة */
+.prose-lesson ol {
+  list-style: arabic-indic;
+}
+
+@media (min-width: 640px) {
+  html:lang(en) .prose-lesson ol {
+    list-style: decimal;
+  }
+}
+
+/* ===== عناصر عامة ===== */
+.card {
+  @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+}
+.chip {
+  @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium;
+}

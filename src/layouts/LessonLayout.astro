@@ -1,0 +1,58 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import ObjectivesList from '../components/ui/ObjectivesList.astro';
+import SourcesCard from '../components/ui/SourcesCard.astro';
+import LessonNav from '../components/ui/LessonNav.astro';
+import CompleteLessonButton from '../components/islands/progress/CompleteLessonButton.tsx';
+import { getStation } from '../data/curriculum';
+
+interface Props {
+  lesson: CollectionEntry<'lessons'>;
+}
+const { lesson } = Astro.props;
+const { data } = lesson;
+const station = getStation(data.station);
+---
+
+<BaseLayout title={`${data.number} ${data.title}`} description={`${data.title} — درس من محطة ${station?.title ?? ''}`}>
+  <div class="mx-auto max-w-3xl">
+    <nav class="mb-6 flex flex-wrap items-center gap-3 text-sm text-ink-400" aria-label="Breadcrumb">
+      <a href="/" class="transition hover:text-brand-700">الرئيسية</a>
+      <span>←</span>
+      <a href={`/stations/${data.station}`} class="transition hover:text-brand-700">
+        {station?.title ?? data.station}
+      </a>
+      <span>←</span>
+      <span class="text-ink-600">{data.title}</span>
+    </nav>
+
+    <header class="card overflow-hidden">
+      <div class="flex flex-wrap items-center gap-2 bg-gradient-to-l from-brand-700 to-brand-500 px-6 py-4">
+        <span class="chip bg-white/20 text-white">{station?.icon} {station?.badge}</span>
+        <span class="chip bg-white/20 text-white">{data.number}</span>
+        <span class="chip bg-white/20 text-white">⏱ {data.minutes} دقيقة</span>
+        {data.hasTool && <span class="chip bg-amber-400/90 text-amber-950">🛠 أداة تفاعلية</span>}
+        {data.quizId && <span class="chip bg-white/20 text-white">💬 كويز</span>}
+      </div>
+      <div class="px-6 py-5">
+        <h1 class="text-2xl font-bold leading-relaxed text-ink-900">{data.title}</h1>
+        <p dir="ltr" lang="en" class="mt-1 text-sm text-ink-400">{data.titleEn}</p>
+      </div>
+    </header>
+
+    <ObjectivesList objectives={data.objectives} />
+
+    <article class="prose-lesson mt-8">
+      <slot />
+    </article>
+
+    {data.sources && data.sources.length > 0 && <SourcesCard sourceIds={data.sources} />}
+
+    <div class="mt-8">
+      <CompleteLessonButton lessonId={data.id} client:load />
+    </div>
+
+    <LessonNav stationId={data.station} lessonId={data.id} />
+  </div>
+</BaseLayout>

@@ -1,0 +1,129 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { curriculum } from '../data/curriculum';
+
+const lessons = await getCollection('lessons');
+
+const stationCards = curriculum
+  .filter((s) => s.id !== 'station-0')
+  .sort((a, b) => a.number - b.number);
+
+const totalMinutes = lessons.reduce((sum, l) => sum + l.data.minutes, 0);
+const liveStations = curriculum.filter((s) => s.status === 'live' || s.lessons.every((l) => l.status === 'live')).length;
+const station0 = curriculum.find((s) => s.id === 'station-0')!;
+---
+
+<BaseLayout title="منصة CFM — تعلّم إدارة المنشآت وصولاً لشهادة CFM" description="مسار عملي عربي لشهادة CFM: محطات مبنية على مسار مدير المنشأة الحقيقي ووزن أركان امتحان IFMA.">
+  <!-- ===== Hero ===== -->
+  <section class="relative overflow-hidden rounded-3xl bg-gradient-to-l from-ink-900 via-brand-800 to-brand-600 px-6 py-14 text-white sm:px-12">
+    <div class="relative z-10 max-w-2xl">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="chip bg-amber-400 text-amber-950">🎯 {liveStations} محطات متاحة الآن</span>
+        <span class="chip bg-white/15 text-white">💚 منصة مجانية بالكامل</span>
+      </div>
+      <h1 class="mt-4 text-3xl font-bold leading-relaxed sm:text-4xl">
+        تعلّم إدارة المنشآت بالطريقة العملية
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-teal-50">
+        رحلة محطات مبنية على مسار مدير منشأة حقيقي ووزن أركان امتحان IFMA، مع شرح عربي ومصطلحات إنجليزية وتمارين تفاعلية — <strong>مجاناً بالكامل</strong>، مقدمة من منصة{' '}
+        <a href="https://gridfix.net" target="_blank" rel="noopener" class="font-bold text-amber-300 underline underline-offset-4 hover:text-amber-200">
+          GridFix
+        </a>.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href={`/stations/${station0.id}`} class="rounded-xl bg-amber-400 px-6 py-3 font-bold text-amber-950 transition hover:bg-amber-300">
+          ابدأ التعلم من المحطة 0 ←
+        </a>
+        <a href="/map" class="rounded-xl bg-white/15 px-6 py-3 font-bold text-white transition hover:bg-white/25">
+          خريطة المنهج
+        </a>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-6 text-sm text-teal-50">
+        <span class="flex items-center gap-2"><span class="font-bold text-amber-300">{lessons.length}</span> دروس متاحة</span>
+        <span class="flex items-center gap-2"><span class="font-bold text-amber-300">{totalMinutes}</span> دقيقة إجمالاً</span>
+        <span class="flex items-center gap-2"><span class="font-bold text-amber-300">{curriculum.length}</span> محطة</span>
+        <span class="flex items-center gap-2"><span class="font-bold text-amber-300">11</span> مجالاً معرفياً</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== طريقة الدرس ===== -->
+  <section class="mt-12">
+    <h2 class="text-xl font-bold text-ink-900">بنية موحّدة لكل درس</h2>
+    <p class="mt-1 text-sm text-ink-400">الوصفة نفسها في كل محطة — حتى تعرف دائماً ما الذي يتوقع أن تتعلمه.</p>
+    <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+      {['🎯 أهداف التعلم', '📖 شرح نظري', '⚠️ تصحيح المفاهيم', '📚 قاموس المصطلحات', '🛠 أداة تفاعلية', '💬 كويز سيناريو', '📎 مصادر موثوقة'].map((item) => (
+        <div class="flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white px-3 py-5 text-center text-sm font-medium text-ink-700 shadow-sm">
+          <span class="mb-2 block text-xl">{item.split(' ')[0]}</span>
+          <span>{item.split(' ').slice(1).join(' ')}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== خريطة المحطات ===== -->
+  <section class="mt-12">
+    <div class="flex items-end justify-between">
+      <div>
+        <h2 class="text-xl font-bold text-ink-900">خريطة المحطات</h2>
+        <p class="mt-1 text-sm text-ink-400">المسار الكامل من التأسيس حتى محاكي الامتحان.</p>
+      </div>
+    </div>
+
+    <!-- محطة التأسيس -->
+    <a href={`/stations/${station0.id}`} class="card mt-5 flex items-center justify-between gap-4 rounded-2xl p-5 transition hover:border-brand-500 hover:shadow-md">
+      <div class="flex items-center gap-4">
+        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-2xl">{station0.icon}</span>
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 class="font-bold text-ink-900">{station0.title}</h3>
+            <span class="chip bg-brand-100 text-brand-700">✅ متاح</span>
+          </div>
+          <p class="mt-0.5 text-sm text-ink-400">{station0.lessons.filter((l) => l.status === 'live').length} دروس متاحة • {station0.description}</p>
+        </div>
+      </div>
+      <span class="font-bold text-brand-600">←</span>
+    </a>
+
+    <!-- بقية المحطات -->
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {stationCards.map((s) => {
+        if (s.status === 'live') {
+          const live = s.lessons.filter((l) => l.status === 'live').length;
+          return (
+            <a href={`/stations/${s.id}`} class="card p-5 transition hover:border-brand-500 hover:shadow-md">
+              <div class="flex items-start justify-between">
+                <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-2xl">{s.icon}</span>
+                <span class="chip bg-brand-100 text-brand-700">✅ متاح</span>
+              </div>
+              <h3 class="mt-3 font-bold text-ink-900">{s.title}</h3>
+              <p dir="ltr" lang="en" class="text-xs text-ink-400">{s.titleEn}</p>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">{s.description}</p>
+              <div class="mt-3 flex items-center justify-between text-sm">
+                <span class="chip bg-slate-100 text-ink-600">📚 {live} دروس متاحة</span>
+                <span class="font-bold text-brand-600">←</span>
+              </div>
+            </a>
+          );
+        }
+        const planned = s.lessons.filter((l) => l.status === 'planned').length;
+        return (
+          <div class="card p-5 transition hover:shadow-md">
+            <div class="flex items-start justify-between">
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 text-2xl">{s.icon}</span>
+              <span class="chip bg-slate-100 text-ink-600">ركن {s.examWeight > 0 ? `◉ ${s.examWeight}%` : ''}</span>
+            </div>
+            <h3 class="mt-3 font-bold text-ink-900">{s.title}</h3>
+            <p dir="ltr" lang="en" class="text-xs text-ink-400">{s.titleEn}</p>
+            <p class="mt-2 text-sm leading-relaxed text-ink-500">{s.description}</p>
+            <div class="mt-3 flex items-center justify-between text-sm">
+              <span class="chip bg-slate-100 text-ink-600">📚 {planned} دروس مخططة</span>
+              <span class="chip bg-amber-100 text-amber-800">قريباً</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+</BaseLayout>
