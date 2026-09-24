@@ -1,0 +1,257 @@
+---
+id: lesson-cama-1-2
+course: cama
+station: station-cama-1
+number: "1.2"
+title: "نظام إدارة الأصول ISO 55001"
+titleEn: "Asset Management System – ISO 55001"
+minutes: 35
+order: 2
+objectives:
+  - "أن يشرح المتعلم نموذج PDCA وكيف يُطبّق على نظام إدارة الأصول."
+  - "أن يعدد متطلبات ISO 55001 من سياق المنظومة إلى التحسين."
+  - "أن يميز بين مراحل التخطيط والتنفيذ والتحقق في نموذج PDCA."
+  - "أن يشرح كيف تُدمج إدارة الأصول في نظام إدارة المنظومة الكلي."
+objectivesEn:
+  - "Explain the PDCA model and how it applies to the Asset Management System."
+  - "List the ten requirements of ISO 55001 from context to improvement."
+  - "Distinguish planning, doing, and checking requirements."
+  - "Explain how AM integrates into the organization's overall management system."
+hasTool: true
+toolName: "قائمة امتثال 55001"
+toolNameEn: "ISO 55001 Checklist"
+quizId: quiz-cama-1-2
+sources:
+  - iso55001
+  - gfmam_landscape
+  - iam_anatomy
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import Iso55001Checklist from '../../../components/islands/tools/cama/Iso55001Checklist.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama12 } from '../../../data/quiz/cama/quiz-cama-1-2';
+
+<LangSection lang="ar">
+
+الفكرة المحورية هنا أن ISO 55001 لا يطلب منك بناء نظام جديد معزول، بل يطلب دمج إدارة الأصول في نظام الإدارة الكلي للمؤسسة عبر نموذج PDCA المعروف. فهم هذا النهج هو المفتاح لتطبيق المعيار بنجاح.
+
+## 1. نموذج PDCA: الهيكل الفكري للنظام
+
+جميع معايير ISO الإدارية تتبنى نموذج الخطة-نفّذ-تحقق-حسّن (Plan-Do-Check-Act)، وISO 55001 ليس استثناء. لكن ما يميز تطبيقه على إدارة الأصول هو أن كل مرحلة لها محتوى خاص:
+
+- **Plan (التخطيط)**: تحديد السياق التنظيمي، سياسة إدارة الأصول، الأهداف الاستراتيجية، وتخطيط المخاطر والفرص. هذه المرحلة تجيب عن سؤال: لماذا نفعل ما نفعل؟
+- **Do (التنفيذ)**: دعم المنظومة بالموارد والكفاءات والاتصال الداخلي، وقيادة العمليات التشغيلية وادارتها. هذه المرحلة تجيب عن سؤال: كيف ننفّذ ما خططنا؟
+- **Check (التحقق)**: تقييم الأداء عبر مؤشرات قياس (KPIs)، ومراجعة المنظومة داخلياً وخارجيًا، وتحليل البيانات والأداء. هذه المرحلة تجيب عن سؤال: هل ننفّذ كما خططنا؟
+- **Act (التحسين)**: اتخاذ إجراءات التصحيح والتحسين المستمر بناءً على نتائج التقييم. هذه المرحلة تجيب عن سؤال: كيف نصبح أفضل؟
+
+## 2. سياق المنظومة (Context of the Organization) — البند 4
+
+هذه المرحلة الأساسية التي يجب أن تبدأ منها قبل أي خطوة أخرى:
+
+- **فهم المنظومة وبيئتها**: ما هي المؤسسة؟ ما قطاعها؟ ما أسواقها؟ ما التحديات الداخلية والخارجية المؤثرة فيها؟
+- **تحديد أصحاب المصلحة (Interested Parties)**: من يتأثر بقرارات إدارة الأصول؟ المساهمون، الزبائن، الكوادر، الجهات الرقابية، المجتمع المحلي.
+- **نطاق نظام إدارة الأصول**: تحديد ما يشمله النظام من الأصول والعمليات والأقسام، وما الذي يقع خارج نطاقه.
+- **نظام إدارة المنظومة الكلي**: كيف يتكامل نظام إدارة الأصول مع أنظمة الجودة (ISO 9001) والبيئة (ISO 14001) والسلامة (ISO 45001) الموجودة مسبقاً.
+
+<Callout type="myth">
+**مفهوم خاطئ:** "ISO 55001 يطلب بناء نظام إدارة أصول من الصفر."
+**الحقيقة:** المعيار يطلب دمج إدارة الأصول في النظام الإداري الكلي للمؤسسة. إذا كان لديك نظام جودة فعال، فأنت تبني عليه لا تبدأ من الصفر. التكامل هو المفتاح لا التعقيد.
+</Callout>
+
+## 3. القيادة والسياسة (Leadership) — البند 5
+
+بدون دعم القيادة العليا يستحيل نجاح أي نظام إدارة أصول:
+
+- **الالتزام الإداري**: يجب أن يُظهر كبار المسؤولين التزاماً واضحاً بإدارة الأصول ويوفرون الموارد اللازمة.
+- **سياسة إدارة الأصول**: وثيقة عليا تُحدد رؤية المؤسسة لإدارتها لأصولها، وتتواصل لجميع المستويات.
+- **تحديد الأدوار والمسؤوليات**: من المسؤول عن ماذا؟ من يتخذ القرار؟ من ينفّذ؟ من يراجع؟
+- **التكامل مع الخطط الاستراتيجية**: إدارة الأصول ليست نشاطاً تقنياً منفصلاً بل جزء لا يتجزأ من الخطة الاستراتيجية العليا.
+
+## 4. التخطيط (Planning) — البند 6
+
+هذه المرحلة تُترجم السياسة إلى خطط عملية:
+
+- **تحديد المخاطر والفرص**: ما المخاطر التي تواجه أصولنا؟ ما الفرص التي يمكن استغلالها؟
+- **أهداف إدارة الأصول**: يجب أن تكون محددة (Specific)، قابلة للقياس (Measurable)، قابلة للتحقيق (Achievable)، ذات صلة (Relevant)، ومحددة زمنياً (Time-bound) — أي معايير SMART.
+- **تخطيط التغيير**: كيف نتعامل مع التغييرات في البيئة أو التقنية أو الأنظمة؟
+
+## 5. الدعم والتشغيل (Support & Operation) — البندان 7 و 8
+
+- **الموارد البشرية**: تحديد الكفاءات المطلوبة والتدريب والتأهيل المستمر.
+- **المعلومات والبيانات**: إدارة البيانات الداعمة لقرارات إدارة الأصول — CMMS، CAFM، أنظمة الذكاء الصناعي.
+- **الاتصال**: ضمان وصول المعلومات لمن يحتاجها في الوقت المناسب.
+- **العمليات التشغيلية**: التخطيط والتحكم في العمليات اليومية التي تؤثر على الأصول.
+
+## 6. تقييم الأداء والتحسين (Performance Evaluation & Improvement) — البندان 9 و 10
+
+- **مراقبة القياس والتقييم**: تحديد مؤشرات الأداء الرئيسية (KPIs) المناسبة لمراقبة فعالية النظام.
+- **المراجعة الداخلية**: فحص دوري للنظام للتأكد من أنه يعمل كما هو مخطط.
+- **التحسين المستمر**: لا يوجد نظام مثالي — يجب أن يكون هناك آلية مستمرة لتحسين الأداء.
+
+<Callout type="example">
+**سيناريو تطبيقي:** مؤسسة صناعية كبيرة تريد تطبيق ISO 55001. الخطوة الأولى: تحليل السياق — تحدد أن لها 3 مصانع و2000 أصل و300 كادر صيانة ونظام CMMS موجود. الخطوة الثانية: تحديد نطاق النظام — تبدأ بالمصنع الأكبر والأصول الأكثر حرجية. الخطوة الثالثة: ربط سياسة إدارة الأصول بالخطة الاستراتيجية للمؤسسة. الخطوة الرابعة: تدريب الكوادر وبدء التطبيق التدريجي على مدى 18 شهراً مع مراجعات ربع سنوية.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+The core idea here is that ISO 55001 does not ask you to build a new isolated system; it asks you to integrate asset management into the organization's overall management system through the well-known PDCA model. Understanding this approach is the key to applying the standard successfully.
+
+## 1. The PDCA model: the conceptual backbone of the system
+
+All ISO management standards adopt the Plan-Do-Check-Act model, and ISO 55001 is no exception. What distinguishes its application to asset management is that each stage has specific content:
+
+- **Plan**: defining the organizational context, the asset management policy, the strategic objectives, and planning risks and opportunities. This stage answers the question: why do we do what we do?
+- **Do**: supporting the system with resources, competencies, and internal communication, and leading and managing the operational processes. This stage answers the question: how do we implement what we planned?
+- **Check**: evaluating performance through key performance indicators (KPIs), reviewing the system internally and externally, and analyzing data and performance. This stage answers the question: are we implementing as we planned?
+- **Act**: taking corrective action and driving continual improvement based on the evaluation results. This stage answers the question: how do we become better?
+
+## 2. Context of the organization — Clause 4
+
+This is the fundamental stage you must start from before any other step:
+
+- **Understanding the organization and its environment**: what is the organization? What is its sector? What are its markets? What internal and external challenges affect it?
+- **Identifying interested parties**: who is affected by asset management decisions? Shareholders, customers, staff, regulators, and the local community.
+- **Scope of the asset management system**: defining the assets, processes, and departments the system covers, and what falls outside its scope.
+- **The overall organizational management system**: how the asset management system integrates with the existing quality (ISO 9001), environment (ISO 14001), and safety (ISO 45001) systems.
+
+<Callout type="myth">
+**Myth:** "ISO 55001 requires building an asset management system from scratch."
+**Fact:** the standard asks you to integrate asset management into the organization's overall management system. If you have an effective quality system, you build on it rather than starting from zero. Integration is the key, not complexity.
+</Callout>
+
+## 3. Leadership and policy — Clause 5
+
+Without top management support, no asset management system can succeed:
+
+- **Management commitment**: senior officials must demonstrate a clear commitment to asset management and provide the necessary resources.
+- **Asset management policy**: a top-level document defining the organization's vision for managing its assets, communicated to all levels.
+- **Defining roles and responsibilities**: who is responsible for what? Who decides? Who implements? Who reviews?
+- **Integration with strategic plans**: asset management is not a separate technical activity but an integral part of the top-level strategic plan.
+
+## 4. Planning — Clause 6
+
+This stage translates the policy into practical plans:
+
+- **Identifying risks and opportunities**: what risks face our assets? What opportunities can be exploited?
+- **Asset management objectives**: they must be Specific, Measurable, Achievable, Relevant, and Time-bound — that is, the SMART criteria.
+- **Planning change**: how do we handle changes in the environment, technology, or systems?
+
+## 5. Support and operation — Clauses 7 and 8
+
+- **Human resources**: defining the required competencies and providing ongoing training and qualification.
+- **Information and data**: managing the data that supports asset management decisions — CMMS, CAFM, and artificial intelligence systems.
+- **Communication**: ensuring information reaches those who need it at the right time.
+- **Operational processes**: planning and controlling the day-to-day processes that affect assets.
+
+## 6. Performance evaluation and improvement — Clauses 9 and 10
+
+- **Monitoring, measurement, and evaluation**: selecting the appropriate key performance indicators (KPIs) to monitor the system's effectiveness.
+- **Internal audit**: periodically examining the system to confirm it works as planned.
+- **Continual improvement**: no system is perfect — there must be a continuous mechanism to improve performance.
+
+<Callout type="example">
+**Applied scenario:** a large industrial organization wants to implement ISO 55001. Step one: analyze the context — it determines that it has 3 plants, 2,000 assets, a maintenance staff of 300, and an existing CMMS. Step two: define the scope of the system — it starts with the largest plant and the most critical assets. Step three: link the asset management policy to the organization's strategic plan. Step four: train the staff and begin gradual implementation over 18 months with quarterly reviews.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: قائمة امتثال ISO 55001
+
+هذه الأداة تساعدك على فحص مدى استعداد مؤسستك لتطبيق متطلبات ISO 55001 عبر قائمة مراجعة تفاعلية مرتبطة بالبنود الأساسية للمعيار.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: ISO 55001 Checklist
+
+This tool helps you assess how ready your organization is to apply the ISO 55001 requirements through an interactive checklist tied to the standard's core clauses.
+
+</LangSection>
+
+<Iso55001Checklist client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-1-2-t1','cama-1-2-t2','cama-1-2-t3','cama-1-2-t4','cama-1-2-t5']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على نموذج PDCA، وترتيب متطلبات ISO 55001 من السياق إلى التحسين، وكيفية دمج إدارة الأصول في نظام الإدارة الكلي.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the PDCA model, the order of the ISO 55001 requirements from context to improvement, and how to integrate asset management into the overall management system.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-1-2" questions={quizCama12.questions} client:load />
+
+<LangSection lang="ar">
+
+## مصادر
+
+- ISO 55001:2024 — Asset Management Systems: Requirements
+- ISO 55002:2018 — Asset Management: Guidelines for the Application of ISO 55001
+- GFMAM Asset Management Landscape v3
+- Institute of Asset Management (IAM) — Anatomy of Asset Management
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Sources
+
+- ISO 55001:2024 — Asset Management Systems: Requirements
+- ISO 55002:2018 — Asset Management: Guidelines for the Application of ISO 55001
+- GFMAM Asset Management Landscape v3
+- Institute of Asset Management (IAM) — Anatomy of Asset Management
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **نموذج PDCA** هو الهيكل الفكري لكل معيار ISO، وتطبيقه على إدارة الأصول يمر بمرحلتين: التخطيط (السياق، السياسة، الأهداف) ثم التنفيذ (الموارد، العمليات) ثم التحقق (المراقبة، المراجعة) ثم التحسين.
+- **سياق المنظومة** هو نقطة البداية الحقيقية — فهم البيئة وأصحاب المصلحة والنطاق قبل أي خطوة عملية.
+- **القيادة والسياسة** هما الشرط الأساسي لنجاح النظام — بدون التزام تنفيذي أعلى مستويات يفشل النظام حتماً.
+- **التكامل** مع أنظمة الإدارة الموجودة هو المفتاح — إدارة الأصول ليست نظاماً منفصلاً بل جزءاً من المنظومة الإدارية الكلي.
+- **التحسين المستمر** وليست الكمال هو الهدف — المراجعة الدورية والتطوير المستمر هما سمة أي نظام فعّال.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The PDCA model** is the conceptual backbone of every ISO standard, and its application to asset management goes through planning (context, policy, objectives), then doing (resources, processes), then checking (monitoring, review), and then improving.
+- **The organizational context** is the true starting point — understanding the environment, interested parties, and scope before any practical step.
+- **Leadership and policy** are the essential precondition for the system's success — without the highest-level executive commitment, the system inevitably fails.
+- **Integration** with the existing management systems is the key — asset management is not a separate system but part of the overall management framework.
+- **Continual improvement**, not perfection, is the goal — periodic review and continuous development are the hallmark of any effective system.
+
+</LangSection>

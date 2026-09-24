@@ -1,0 +1,187 @@
+---
+id: lesson-12-1
+station: station-12
+number: "12.1"
+title: "دورة حياة المشروع والنطاق"
+titleEn: "Project Life Cycle & Scope"
+minutes: 25
+order: 1
+objectives:
+  - "أن يشرح المتعلم مراحل دورة حياة المشروع الأربع."
+  - "أن يكتب وثيقة نطاق تحدد ما يشمله المشروع وما لا يشمله."
+  - "أن يدير طلبات تغيير النطاق بأمر تغيير معتمد."
+objectivesEn:
+  - "Explain the four project life-cycle phases."
+  - "Write a Scope Statement defining what is and is not included."
+  - "Manage scope change requests through an approved change order."
+hasTool: false
+quizId: quiz-12-1
+sources:
+  - ifma
+---
+
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import Timeline from '../../../components/ui/figures/Timeline.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz121 } from '../../../data/quiz/cfm/quiz-12-1';
+
+<LangSection lang="ar">
+
+مشروع في إدارة المنشآت عمل مؤقت متجه لنتيجة محددة: تجديد أرضيته، تركيب نظام تبريد، نقل إدارة كاملة إلى مبنى آخر. ما يميز المشروع عن العمل اليومي تكراره: له بداية ونهاية ونطاق وموارد — وسر نجاحه تقسيم كل ذلك إلى مراحل ووثائق قبل أن يتحول الوضوح إلى فوضى.
+
+## 1. دورة حياة المشروع: أربع مراحل
+
+- **البدء (Initiation)**: الفكرة تتحول إلى تعريف: لماذا المشروع، وما نتيجته، وما ميزانيته التقريبية ومتى.
+- **التخطيط (Planning)**: تقسيم النطاق إلى أعمال، وجدولة زمنية، وتقدير ميزانية، وتحديد مخاطر، وخطة شراء.
+- **التنفيذ (Execution)**: تأدية الأعمال ومتابعة الجودة وسلامة الموقع وتكامل الأطراف.
+- **الإغلاق (Closeout)**: فحص القبول، نقل التشغيل، تسليم الوثائق، وإغلاق الحسابات.
+
+المراحل متعاقبة وإن تداخلت أحياناً؛ القوة في ترتيبها: تخطيط متقن يختصر أزمات تنفيذ باهظة.
+
+<Timeline
+  title="دورة حياة المشروع: أربع مراحل"
+  phases={[
+    { title: 'البدء (Initiation)', detail: 'الفكرة تتحول إلى تعريف: لماذا المشروع، وما نتيجته، وما ميزانيته التقريبية ومتى.', icon: '🧭' },
+    { title: 'التخطيط (Planning)', detail: 'تقسيم النطاق إلى أعمال، وجدولة زمنية، وتقدير ميزانية، وتحديد مخاطر، وخطة شراء.', icon: '📐' },
+    { title: 'التنفيذ (Execution)', detail: 'تأدية الأعمال ومتابعة الجودة وسلامة الموقع وتكامل الأطراف.', icon: '⚙️' },
+    { title: 'الإغلاق (Closeout)', detail: 'فحص القبول، نقل التشغيل، تسليم الوثائق، وإغلاق الحسابات.', icon: '📦' },
+  ]}
+  caption="المراحل متعاقبة وإن تداخلت أحياناً؛ التخطيط المتقن يختصر أزمات تنفيذ باهظة."
+/>
+
+## 2. النطاق: الحد الذي يمنع التوسع الجامح
+
+وثيقة النطاق (Scope Statement) تعريف مكتوب معتمد من أصحاب المصلحة، يحدد:
+
+- **المخرجات**: ماذا نسلّم بالضبط (متر مربع مجدد، نظام بوحدات ذي مواصفات).
+- **الحدود**: ما لا يشمله المشروع (لا يعنيني الأسقف، طابق واحد لا اثنان).
+- **المعايير**: مواصفات ولوائح ومرجعيات الإنجاز.
+
+النطاق المعلن صريح يمنع شجاراً فكرياً لاحقاً: قرار التوسع بدون وثيقة يفتح باب كل رغبة شفهية تتوسع بالتدرج. «التوسع غير المضبوط» (Scope Creep) أعنف قاتل جدول وميزانية في الواقع.
+
+## 3. التغيير المدار: أمر التغيير المعتمد
+
+التغيير شرعي في المشاريع — لكنه يُدار كعملية لا كطلبات عابرة:
+
+1. طلب التغيير يُكتب ويُقدَّر أثره بوضوح (كلفة، وقت، جودة).
+2. يُعتمد كتابياً من صاحب القرار قبل أي تنفيذ.
+3. يُحدَّث خط الأساس (الجدول والميزانية) بموافقة موثقة.
+4. يُرسل أثر التغيير لمن يمسهم كلهم.
+
+من نفّذ طلباً شفهياً ثم تفاجأ بالكلفة فقد خلق مشكلته؛ من قدّر واعتمد كتب حمايته. قاعدة ذهبية: لا نعم بدون رقم — التغيير بلا تقدير تأجيل للأزمة لا حلاً لها.
+
+## 4. حدود مدير المشروع وواقعية التوقعات
+
+المشروع الناجح يوازن مقايضة معروفة: النطاق والجدول والكلفة والجودة والمخاطر والموارد. اقتراحك ما بدأ أفضل مما لقيت:
+
+- إذا طلب العميل نطاقاً أكبر بلا زمن ولا ميزانية، فبالتأكيد ترتفع الكلفة أو يتأخر الموعد.
+- إذا تطلب الزمن يضغط، تعلن تخفيض النطاق أو زيادته.
+- التواصل الشفاف بهذه المقايضات جزء من خبرة إدارة المشروع — لا تعِد بما لا يمكن تحقيقه.
+
+</LangSection>
+
+<LangSection lang="en">
+
+A project in facility management is a temporary effort aimed at a specific result: renovating a lobby, installing a cooling system, or relocating an entire operation to another building. What distinguishes a project from daily work is its uniqueness: it has a start, an end, a scope, and resources — and the secret to its success is dividing all of that into phases and documents before clarity turns into chaos.
+
+## 1. The project life cycle: four phases
+
+- **Initiation**: the idea turns into a definition: why the project, what its result is, its approximate budget, and when.
+- **Planning**: breaking the scope into work, a time schedule, budget estimation, risk identification, and a procurement plan.
+- **Execution**: performing the work, tracking quality and site safety, and integrating the parties.
+- **Closeout**: acceptance inspection, operational handover, document delivery, and closing the accounts.
+
+The phases are sequential although they sometimes overlap; strength lies in their order: meticulous planning shortens costly execution crises.
+
+<Timeline
+  title="The project life cycle: four phases"
+  phases={[
+    { title: 'Initiation', detail: 'The idea turns into a definition: why the project, its result, its approximate budget, and when.', icon: '🧭' },
+    { title: 'Planning', detail: 'Breaking the scope into work, a time schedule, budget estimation, risk identification, and a procurement plan.', icon: '📐' },
+    { title: 'Execution', detail: 'Performing the work, tracking quality and site safety, and integrating the parties.', icon: '⚙️' },
+    { title: 'Closeout', detail: 'Acceptance inspection, operational handover, document delivery, and closing the accounts.', icon: '📦' },
+  ]}
+  caption="The phases are sequential although they sometimes overlap; meticulous planning shortens costly execution crises."
+/>
+
+## 2. Scope: the boundary that prevents runaway expansion
+
+A Scope Statement is a written definition approved by the stakeholders, specifying:
+
+- **Deliverables**: what exactly we hand over (renovated square meters, a system in units with specifications).
+- **Boundaries**: what the project does not include (ceilings are not our concern, one floor not two).
+- **Standards**: specifications, regulations, and acceptance references.
+
+A declared, explicit scope prevents later intellectual resistance: an expansion decision without a document opens the door to every verbal wish that grows incrementally. "Scope Creep" is the fiercest killer of schedule and budget in reality.
+
+## 3. Managed change: the approved change order
+
+Change is legitimate in projects — but it is managed as a process, not as passing requests:
+
+1. The change request is written and its impact clearly estimated (cost, time, quality).
+2. It is formally approved in writing by the decision maker before any execution.
+3. The baseline (the schedule and budget) is updated with documented approval.
+4. The change's impact is communicated to everyone it affects.
+
+Whoever executed a verbal request and was then surprised by the cost created their own problem; whoever estimated and approved wrote their own protection. A golden rule: no "yes" without a number — a change without an estimate is a deferral of the crisis, not a solution to it.
+
+## 4. The project manager's limits and realistic expectations
+
+A successful project balances a well-known trade-off: scope, schedule, cost, quality, risks, and resources. Your commitment cannot begin better than the reality you actually met:
+
+- If the client asks for a larger scope with no time and no budget, then the cost certainly rises or the date slips.
+- If the schedule pressure mounts, you declare a scope reduction or an increase.
+- Transparent communication about these trade-offs is part of project management experience — do not promise what cannot be delivered.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['project', 'scope', 'gantt']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-12-1" questions={quiz121.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- دورة حياة المشروع أربع مراحل: بدء، تخطيط، تنفيذ، إغلاق — والتخطيط المتقن يختصر أزمات التنفيذ.
+- وثيقة النطاق تحدد المخرجات والحدود والمعايير، وتمنع التوسع الجامح (Scope Creep) غير القابل للسيطرة.
+- كل تغيير يُدار بأمر تغيير: تقدير الأثر واعتماد كتابي وتحديث خط الأساس قبل التنفيذ.
+- المشروع موازنة مقايضة (نطاق/جدول/كلفة/جودة/مخاطر)؛ الشفافية بالحدود جزء من مهنية القائد.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- The project life cycle consists of four phases: initiation, planning, execution, closeout — and meticulous planning shortens execution crises.
+- The Scope Statement defines the deliverables, boundaries, and standards, and prevents uncontrollable Scope Creep.
+- Every change is managed through a change order: impact estimation, written approval, and a baseline update before execution.
+- A project is a trade-off balance (scope/schedule/cost/quality/risk); transparency about the limits is part of professional leadership.
+
+</LangSection>

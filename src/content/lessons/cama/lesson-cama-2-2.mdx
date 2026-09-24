@@ -1,0 +1,362 @@
+---
+id: lesson-cama-2-2
+course: cama
+station: station-cama-2
+number: "2.2"
+title: "تحليل الطلب والتخطيط الاستراتيجي"
+titleEn: "Demand Analysis & Strategic Planning"
+minutes: 30
+order: 2
+objectives:
+  - "أن يحلل المتعلم الطلب التشغيلي والاستراتيجي على الأصول."
+  - "أن يبني سيناريوهات طلب متعددة ويقارنها."
+  - "أن يربط تحليل الطلب بدورة التخطيط الاستراتيجي للمنظمة."
+objectivesEn:
+  - "Analyze operational and strategic demand on assets."
+  - "Build and compare multiple demand scenarios."
+  - "Link demand analysis to the strategic planning cycle."
+hasTool: true
+toolName: "محلل سيناريوهات الطلب"
+toolNameEn: "Demand Analyzer"
+quizId: quiz-cama-2-2
+sources:
+  - iso55000
+  - gfmam_landscape
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import DemandAnalyzer from '../../../components/islands/tools/cama/DemandAnalyzer.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama22 } from '../../../data/quiz/cama/quiz-cama-2-2';
+
+<LangSection lang="ar">
+
+الخطة الاستراتيجية بدون فهم واقعي للطلب عليها هي أمنية لا خطة. هذا الدرس يعلمك كيف تحلل الطلب على أصولك — كم تحتاج؟ متى تحتاج؟ وبأي جودة؟ — ثم كيف تربط هذا التحليل بالخطة الاستراتيجية لتنظيم إدارة الأصول.
+
+## 1. ما هو الطلب على الأصول؟
+
+الطلب على الأصول هو مجموعة الاحتياجات التي يجب أن تلبيها الأصول لتحقيق أهداف المنظمة. ينقسم إلى نوعين:
+
+### 1.1 الطلب التشغيلي (Operational Demand)
+
+الطلب اليومي الذي تواجهه الأصول أثناء التشغيل الطبيعي:
+
+- **حجم الإنتاج المطلوب**: كم وحدة يجب أن تنتج المعدات يومياً أو شهرياً؟
+- **جودة المنتج**: ما هي المواصفات المطلوبة؟ هل تتطلب ظروف تشغيل محددة؟
+- **التوافر المطلوب (Availability)**: كم ساعة في اليوم يجب أن تكون الأصول جاهزة؟ هل تتطلب عملية مستمرة 24/7 أم نوبة واحدة؟
+- **البيئة التشغيلية**: درجة الحرارة والرطوبة والأتربة — كلها تؤثر على أداء الأصول.
+
+### 1.2 الطلب الاستثماري (Capital Demand)
+
+الاحتياجات طويلة المدى التي تتجاوز التشغيل اليومي:
+
+- **استبدال الأصول المتقادمة**: متى يجب استبدال الأصول بدلاً من إصلاحها؟
+- **التوسع المستقبلي**: هل يتوقع زيادة في الإنتاج؟ هل تحتاج أصولاً جديدة؟
+- **الامتثال للمعايير الجديدة**: هل هناك تشريعات قادمة تفرض تحسينات؟
+- **التحسين المستمر**: كيف ترفع كفاءة الأصول مع مرور الوقت؟
+
+<Callout type="tip">
+**القاعدة:** الطلب ليس رقماً واحداً بل سيناريوهات: سيناريو محافظ (الحد الأدنى)، سيناريو متوسط (الأرجح)، وسيناريو طموح (النمو المتوقع). التخطيط الذكي يراعي السيناريوهات الثلاثة.
+</Callout>
+
+## 2. منهجية تحليل الطلب
+
+تحليل الطلب عملية من خمس خطوات:
+
+### الخطوة 1: جمع البيانات التاريخية
+
+- سجلات الإنتاج السابقة (آخر 3 إلى 5 سنوات).
+- سجلات التوقفات والأعطال والصيانة.
+- بيانات تكلفة الصيانة والاستبدال.
+- بيانات التوسع أو التقليص في الإنتاج.
+
+### الخطوة 2: تحديد م drivers الطلب
+
+ما الذي يحرك الطلب على أصولك؟
+
+- **المبيعات والطلب على المنتج**: زيادة المبيعات = زيادة الضغط على المعدات.
+- **النمو السكاني أو الحضري**: في قطاع المنشآت، زيادة السكان = زيادة الطلب على الخدمات.
+- **التغيرات التنظيمية**: اندماج أو استحواذ أو دخول سوق جديد.
+- **التغيرات التكنولوجية**: تطور التكنولوجيا قد يجعل أصولك قديمة أو يفتح فرصاً جديدة.
+
+### الخطوة 3: بناء سيناريوهات الطلب
+
+لكل سيناريوحدد:
+
+- **السيناريو المحافظ (Low)**: لا تغييرات كبيرة، الطلب يبقى عند المستوى الحالي أو ينخفض قليلاً.
+- **السيناريو الأساسي (Base)**: الطلب ينمو بمعدل متوسط معتدل (مثلاً 2% سنوياً).
+- **السيناريو الطموح (High)**: توسع كبير أو تغيير في السوق يرفع الطلب بشكل ملحوظ.
+
+### الخطوة 4: تحليل الفجوة (Gap Analysis)
+
+مقارنة الطلب المتوقع بالقدرة الحالية:
+
+- **الفجوة التشغيلية**: هل المعدات الحالية كافية لتلبية الطلب المتوقع؟
+- **الفجوة المالية**: هل الميزانية المتاحة كافية لسداد الفجوة التشغيلية؟
+- **الفجوة المهارية: هل الكوادر الحالية مؤهلة للتعامل مع الأصول الجديدة أو المتقدمة؟
+
+### الخطوة 5: تقييم المخاطر المرتبطة بكل سيناريو
+
+كل سيناريو يحمل مخاطر مختلفة:
+
+- **سيناريو النمو السريع**: خطر نقص الأصول وارتفاع تكاليف الشراء المتسارع.
+- **سيناريو الركود**: خطر تقادم الأصول وارتفاع تكاليف الصيانة على أصول قديمة.
+- **سيناريو التحول التكنولوجي**: خطر بقاء أصول حديثة عديمة الفائدة.
+
+## 3. دورة التخطيط الاستراتيجي (Strategic Planning Cycle)
+
+التخطيط الاستراتيجي لإدارة الأصول ليس حدثاً لمرة واحدة بل دورة مستمرة:
+
+1. **تحديد الرؤية والأهداف العامة**: أين تريد أن تكون المنظمة خلال 5 إلى 10 سنوات؟
+2. **تحليل السياق**: ما الذي تملكه وما الذي يواجهه؟ (الدرس السابق 2.1)
+3. **تحليل الطلب**: كم تحتاج من أصول وبأي جودة؟ (هذا الدرس)
+4. **صياغة الاستراتيجية**: كيف ستوصل الفجوة بين الطلب والقدرة الحالية؟
+5. **وضع الخطط التشغيلية**: تحويل الاستراتيجية إلى مشاريع وأفعال قابلة للقياس.
+6. **التنفيذ والمتابعة**: تنفيذ الخطط ومتابعة التقدم.
+7. **المراجعة والتحسين**: مراجعة دورية وتعديل الخطط حسب الواقع.
+
+## 4. ربط استراتيجية إدارة الأصول بالاستراتيجية العامة للمنظمة
+
+هذا هو جوهر CAMA: إدارة الأصول ليست جزءاً منعزلة بل هي خادمة للأهداف العامة للمنظمة. ربط الاستراتيجية يعني:
+
+- **ربط بالأهداف المالية**: كيف تساهم إدارة الأصول في خفض التكاليف أو زيادة الإيرادات؟
+- **ربط بأهداف السلامة**: كيف تمنع إدارة الأصول الحوادث والإصابات؟
+- **ربط بأهداف البيئة**: كيف تساهم في خفض البصمة الكربونية أو تحسين كفاءة الطاقة؟
+- **ربط بأهداف الجودة**: كيف تضمن إدارة الأصول جودة المنتج النهائي؟
+
+<Callout type="example">
+**سيناريو عملي:** منظمة تضع هدفاً عاماً "خفض تكاليف التشغيل بنسبة 15% خلال 3 سنوات". ربط هذا الهدف بأدارة الأصول يعني: تحليل الأصول ذات التكلفة العالية، تحديد فرص تحسين الكفاءة، ووضع خطة استبدال أو تحسين للأصول الأكثر استهلاكاً للطاقة. بدون هذا الربط، يصبح خفض التكاليف مجرد شعار بلا خطة تنفيذية.
+</Callout>
+
+## 5. التخطيط المبني على المخاطر (Risk-Based Planning)
+
+معيار ISO 55001 يؤكد أن التخطيط الاستراتيجي يجب أن يكون مبنياً على المخاطر. هذا يعني:
+
+- **تحديد المخاطر الكبرى**: ما التي تهدد تحقيق أهداف إدارة الأصول؟
+- **تقييم المخاطر**: احتمالية وقوعها × حجم الأثر.
+- **تحديد الاستجابة**: تجنب أو خفف أو تحويل أو قبول.
+- **ربط المخاطر بالموارد**: تخصيص الموارد للأصول والمخاطر الأكثر حرجية.
+
+الخطة الاستراتيجية التي لا تراعي المخاطر هي خطة مبنية على الفرضيات لا الواقع.
+
+<Callout type="myth">
+**أسطورة:** "التخطيط الاستراتيجي عمل مالي فقط يهم الإدارة العليا."
+**الحقيقة:** التخطيط الاستراتيجي يؤثر على كل مستوى: الفني يرى جدول الصيانة، والمدير يرى الميزانية، والإدارة العليا ترى المخاطر والأداء. كل دور له علاقة بالتخطيط الاستراتيجي.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+A strategic plan without a realistic understanding of the demand placed on it is a wish, not a plan. This lesson teaches you how to analyze the demand on your assets — how much do you need? When do you need it? And at what quality? — and then how to link this analysis to the strategic plan of your asset management organization.
+
+## 1. What is asset demand?
+
+Asset demand is the set of needs that assets must satisfy to achieve the organization's objectives. It divides into two types:
+
+### 1.1 Operational demand
+
+The daily demand that assets face during normal operation:
+
+- **Required production volume**: how many units must the equipment produce daily or monthly?
+- **Product quality**: what specifications are required? Do they demand specific operating conditions?
+- **Required availability**: how many hours per day must the assets be ready? Does the process run continuously 24/7, or in a single shift?
+- **The operating environment**: temperature, humidity, and dust — all affect asset performance.
+
+### 1.2 Capital demand
+
+The long-term needs that go beyond day-to-day operations:
+
+- **Replacing obsolete assets**: when must assets be replaced rather than repaired?
+- **Future expansion**: is an increase in production expected? Do you need new assets?
+- **Complying with new standards**: are there upcoming regulations imposing improvements?
+- **Continual improvement**: how do you raise asset efficiency over time?
+
+<Callout type="tip">
+**Rule:** demand is not a single number but scenarios: a conservative scenario (the minimum), a baseline scenario (the most likely), and an ambitious scenario (the expected growth). Smart planning accounts for all three scenarios.
+</Callout>
+
+## 2. Demand analysis methodology
+
+Demand analysis is a five-step process:
+
+### Step 1: Collect historical data
+
+- Previous production records (over the last 3 to 5 years).
+- Records of stoppages, failures, and maintenance.
+- Maintenance and replacement cost data.
+- Data on expansion or reduction in production.
+
+### Step 2: Identify the demand drivers
+
+What drives the demand on your assets?
+
+- **Sales and product demand**: higher sales mean more pressure on the equipment.
+- **Population or urban growth**: in the facilities sector, a growing population means greater demand for services.
+- **Organizational changes**: a merger, an acquisition, or entering a new market.
+- **Technological changes**: the evolution of technology may make your assets obsolete or open up new opportunities.
+
+### Step 3: Build demand scenarios
+
+For each scenario, define:
+
+- **The conservative scenario (Low)**: no major changes; demand remains at the current level or declines slightly.
+- **The baseline scenario (Base)**: demand grows at a moderate average rate (for example, 2% annually).
+- **The ambitious scenario (High)**: major expansion or a market shift that raises demand notably.
+
+### Step 4: Gap analysis
+
+Comparing expected demand with current capacity:
+
+- **The operational gap**: is the current equipment sufficient to meet the expected demand?
+- **The financial gap**: is the available budget enough to close the operational gap?
+- **The skills gap**: are the current teams qualified to handle new or advanced assets?
+
+### Step 5: Assess the risks associated with each scenario
+
+Each scenario carries different risks:
+
+- **Rapid growth scenario**: the risk of asset shortage and high accelerated purchasing costs.
+- **Recession scenario**: the risk of asset obsolescence and rising maintenance costs on aging assets.
+- **Technological shift scenario**: the risk of new assets becoming useless.
+
+## 3. The strategic planning cycle
+
+Strategic asset management planning is not a one-time event but a continuous cycle:
+
+1. **Define the vision and overall objectives**: where does the organization want to be in 5 to 10 years?
+2. **Context analysis**: what do you have, and what faces you? (previous lesson 2.1)
+3. **Demand analysis**: how many assets do you need, and at what quality? (this lesson)
+4. **Strategy formulation**: how will you close the gap between demand and current capacity?
+5. **Developing operational plans**: turning the strategy into measurable projects and actions.
+6. **Execution and monitoring**: implementing the plans and monitoring progress.
+7. **Review and improvement**: periodic review and adjusting plans according to reality.
+
+## 4. Linking the asset management strategy to the organization's overall strategy
+
+This is the essence of CAMA: asset management is not an isolated unit but a servant of the organization's overall objectives. Linking the strategy means:
+
+- **Linking to financial objectives**: how does asset management contribute to reducing costs or increasing revenue?
+- **Linking to safety objectives**: how does asset management prevent accidents and injuries?
+- **Linking to environmental objectives**: how does it contribute to reducing the carbon footprint or improving energy efficiency?
+- **Linking to quality objectives**: how does asset management ensure the quality of the final product?
+
+<Callout type="example">
+**Practical scenario:** an organization sets an overall objective of "reducing operating costs by 15% within 3 years". Linking this objective to asset management means: analyzing the high-cost assets, identifying efficiency-improvement opportunities, and developing a replacement or improvement plan for the most energy-intensive assets. Without this link, cost reduction becomes merely a slogan with no executive plan.
+</Callout>
+
+## 5. Risk-based planning
+
+ISO 55001 confirms that strategic planning must be risk-based. This means:
+
+- **Identifying major risks**: what threatens the achievement of the asset management objectives?
+- **Risk assessment**: their probability of occurrence × the magnitude of impact.
+- **Defining the response**: avoid, mitigate, transfer, or accept.
+- **Linking risks to resources**: allocating resources to the most critical assets and risks.
+
+A strategic plan that does not account for risks is a plan built on assumptions, not on reality.
+
+<Callout type="myth">
+**Myth:** "Strategic planning is purely financial work that concerns senior management only."
+**Fact:** strategic planning affects every level: the technician sees the maintenance schedule, the manager sees the budget, and senior management sees risks and performance. Every role is related to strategic planning.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: محلل سيناريوهات الطلب
+
+حدد الطلب التشغيلي والاستثمري لمنشأتك، واختر السيناريو المناسب، وشاهد كيف يؤثر على الفجوة والخطة الاستراتيجية المطلوبة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Demand Analyzer
+
+Define the operational and capital demand for your facility, choose the appropriate scenario, and see how it affects the gap and the required strategic plan.
+
+</LangSection>
+
+<DemandAnalyzer client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-2-2-t1', 'cama-2-2-t2', 'cama-2-2-t3', 'cama-2-2-t4', 'cama-2-2-t5']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على مفهوم الطلب على الأصول، ودورة التخطيط الاستراتيجي، وربط استراتيجية إدارة الأصول بأهداف المنظمة، والتخطيط المبني على المخاطر.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the concept of asset demand, the strategic planning cycle, linking the asset management strategy to the organization's objectives, and risk-based planning.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-2-2" questions={quizCama22.questions} client:load />
+
+<LangSection lang="ar">
+
+## مصادر
+
+- ISO 55001:2014 — إدارة الأصول: متطلبات نظام الإدارة.
+- ISO 31000:2018 — إدارة المخاطر: الإطار.
+- GFMAM AM Landscape v3 — إطار عمل إدارة الأصول الشامل.
+- The Institute of Asset Management — Strategic Asset Management Planning.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Sources
+
+- ISO 55001:2014 — Asset Management: Management System Requirements.
+- ISO 31000:2018 — Risk Management: Guidelines.
+- GFMAM AM Landscape v3 — The Comprehensive Asset Management Framework.
+- The Institute of Asset Management — Strategic Asset Management Planning.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **الطلب على الأصول** ينقسم تشغيلي (يومي) واستثماري (طويل المدى) — كلاهما يجب أن تراعيه الخطة.
+- **تحليل الطلب** خمس خطوات: جمع البيانات، تحديد مُحرِّكات الطلب، بناء سيناريوهات، تحليل الفجوات، تقييم المخاطر.
+- **السيناريوهات الثلاثة** (محافظ وأساسي وطموح) تضمن المرونة في التعامل مع المجهول.
+- **ربط الاستراتيجية** يحول إدارة الأصول من جزء منعزل إلى خادم لأهداف المنظمة العامة.
+- **التخطيط المبني على المخاطر** يضمن تخصيص الموارد للأكثر حرجية لا للأكثر ضجيجاً.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Asset demand** divides into operational (daily) and capital (long-term) — the plan must account for both.
+- **Demand analysis** has five steps: collecting data, identifying demand drivers, building scenarios, gap analysis, and risk assessment.
+- **The three scenarios** (conservative, baseline, and ambitious) ensure flexibility in dealing with uncertainty.
+- **Strategy linkage** turns asset management from an isolated unit into a servant of the organization's overall objectives.
+- **Risk-based planning** ensures resources are allocated to the most critical items, not the noisiest ones.
+
+</LangSection>

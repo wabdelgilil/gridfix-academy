@@ -1,0 +1,213 @@
+---
+id: lesson-cmrp-3-3
+course: cmrp
+station: station-cmrp-3
+number: "3.3"
+title: "التحسين المستمر والتحليل الجذري للأعطال"
+titleEn: "Continuous Improvement & Root Cause Analysis"
+minutes: 30
+order: 3
+objectives:
+  - "أن يفرق المتعلم بين المستويات الثلاثة للأسباب: المادي والبشري والكامن المؤسسي."
+  - "أن يطبق مخطط عظمة السمكة بفئاته الست وتقنية الأسئلة الخمسة في تحقيق عملي."
+  - "أن يحدد متى يستحق العطل إطلاق تحقيق جذري وفق معايير الإطلاق المعتمدة."
+  - "أن يغلق دائرة التحسين بمأسسة الدروس في الإجراءات وخطط الصيانة."
+objectivesEn:
+  - "Distinguish the three cause levels: physical, human, and latent organizational."
+  - "Apply the fishbone diagram with its six categories and the 5-Whys technique."
+  - "Decide when a failure warrants a formal investigation under trigger criteria."
+  - "Close the improvement loop by institutionalizing lessons into procedures and PM plans."
+hasTool: true
+toolName: "مستكشف عظمة السمكة"
+toolNameEn: "Fishbone Explorer"
+quizId: quiz-cmrp-3-3
+sources:
+  - okes_rca
+  - mobley_rcfa
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import FishboneExplorer from '../../../components/islands/tools/cmrp/FishboneExplorer.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp33 } from '../../../data/quiz/cmrp/quiz-cmrp-3-3';
+
+<LangSection lang="ar">
+
+استبدال القطعة المكسورة يعيد الماكينة للعمل اليوم، لكنه لا يمنع العطل التالي. **تحليل الأسباب الجذرية (Root Cause Analysis)** منهجية منظمة تخترق الأعراض السطحية حتى السبب الذي لو عولج لاختفى العطل من المصنع كله. وهذا الدرس يشرح مستويات الأسباب وأدوات التحقيق وقواعد إطلاقه ومأسسته.
+
+## 1. المستويات الثلاثة للأسباب: أين يكمن الجذر الحقيقي؟
+
+أكبر فخ في الصيانة هو التوقف عند علاج العرض. ينقسم أي عطل صناعي إلى ثلاثة مستويات متتالية:
+
+- **السبب المادي (Physical Cause):** ماذا حدث فيزيائياً للمعدن؟ مثال: انكسر عمود مضخة بالتواء عنيف، أو قفل محمل من الاحتكاك وجفاف الشحم. معرفته وحدها وعلاجه باستبدال القطعة يضمن تكرار العطل خلال أسابيع.
+- **السبب البشري (Human Cause):** ما التصرف الخاطئ الذي وقع؟ مثال: الفني لم يضبط المحاذاة بالليزر، أو وضع شحماً غير مطابق للمواصفات. تنبيه مهني: لوم الأفراد وتوبيخهم ممارسة مرفوضة تخفي الأسباب النظامية الحقيقية.
+- **السبب الكامن المؤسسي (Latent Cause):** لماذا وقع الخطأ البشري؟ مثال: جهاز المحاذاة بالليزر غير متوفر، ولا توجد **إجراءات عمل قياسية (Standard Operating Procedures)** مكتوبة، ولا تدريب للكادر. هذا هو الهدف الحقيقي للتحقيق، ومعالجته تمنع العطل في المنشأة بأكملها لا في الماكينة وحدها.
+
+## 2. أدوات التحقيق: عظمة السمكة والأسئلة الخمسة
+
+لجلسة عصف ذهني هندسية مع فريق متعدد التخصصات تستعمل أداتان متكاملتان:
+
+**مخطط إيشيكاوا (Ishikawa) / عظمة السمكة (Fishbone):** أداة بصرية تجمع كل الأسباب المحتملة تحت ست فئات شاملة **(6Ms)** تضمن عدم إغفال أي احتمال: الآلة (Machine) بعيوب التصميم والمكونات، والإنسان (Man) بالمهارات والتدريب والإجهاد، والمادة (Material) بجودة الزيوت وقطع الغيار والخامات، والطريقة (Method) بتعليمات العمل وبطاقات الصيانة، والقياس (Measurement) بمعايرة الحساسات وأجهزة الفحص، والبيئة (Milieu) بالحرارة والرطوبة والأتربة.
+
+<Infographic
+  cols={3}
+  title="فئات مخطط إيشيكاوا الست (6Ms)"
+  items={[
+    { title: 'الآلة (Machine)', detail: 'عيوب التصميم والمكونات.', icon: '🏭', color: 'brand' },
+    { title: 'الإنسان (Man)', detail: 'المهارات والتدريب والإجهاد.', icon: '🧑‍🔧', color: 'teal' },
+    { title: 'المادة (Material)', detail: 'جودة الزيوت وقطع الغيار والخامات.', icon: '🧱', color: 'amber' },
+    { title: 'الطريقة (Method)', detail: 'تعليمات العمل وبطاقات الصيانة.', icon: '📜', color: 'sky' },
+    { title: 'القياس (Measurement)', detail: 'معايرة الحساسات وأجهزة الفحص.', icon: '📏', color: 'rose' },
+    { title: 'البيئة (Milieu)', detail: 'الحرارة والرطوبة والأتربة.', icon: '🌡', color: 'ink' },
+  ]}
+  caption="الفئات الست تضمن عدم إغفال أي احتمال أثناء عصف الأسباب الجذرية."
+/>
+
+**تقنية الأسئلة الخمسة (5-Whys):** طريقة التعمق الشهيرة بتكرار السؤال «لماذا؟» حتى الوصول إلى النظام الإداري القابل للتصحيح. مثال مضخة كسر عمودها: لماذا توقفت؟ لأن المحمل قفل من الاحتكاك. لماذا؟ لعدم وجود شحم كافٍ. لماذا؟ لأن الفني لم يضخ الشحم في الجولة الوقائية. لماذا؟ لأن نقطة التشحيم مخفية خلف الغطاء ولا يوجد إجراء مكتوب. لماذا لا توجد إجراءات؟ لأن الإدارة لا تملك قسماً للتخطيط ولا سياسة **لبطاقات المهام (Job Packages)**. النتيجة الأخيرة سبب كامن مؤسسي، وحله يحمي المصنع كله.
+
+<Callout type="tip">
+**تذكر:** الرقم خمسة ليس مقدساً؛ توقف عن السؤال عندما تصل إلى سياسة أو نظام إداري يمكن تعديله لمنع المشكلة نهائياً، سواء احتاج ذلك ثلاثة أسئلة أو سبعة.
+</Callout>
+
+## 3. متى نحقق؟ وكيف نؤسس الدرس المستفاد؟
+
+إطلاق تحقيق جذري لكل مسمار ينكسر يصيب الفريق بالإرهاق و**الشلل التحليلي (Analysis Paralysis)** ويخرج تقارير سطحية. تشترط أفضل الممارسات **معايير إطلاق (Trigger Criteria)** معلنة، مثل: أي حادث يمس سلامة الأفراد أو يسبب مخالفة بيئية خطيرة، أو أي عطل تتجاوز خسائره حداً مالياً معلوماً (مثل 10,000 دولار)، أو أي عطل يتكرر 3 مرات خلال شهر على أصل حرج من الفئة الأولى.
+
+والتحقيق لا ينتهي بكتابة التقرير بل يبدأ بعده، عبر **المأسسة (Institutionalization)**: تحديث إجراءات العمل القياسية (SOPs)، وتعديل بطاقات الصيانة الوقائية في **نظام إدارة الصيانة (CMMS)**، ونشر **الدروس المستفادة (Lessons Learned)** وتطبيق الحلول على كل الماكينات المماثلة في المصنع. تحقيق حبيس الأدراج جهد ضائع بعائد صفر.
+
+ويتكامل ذلك مع **التحسين المستمر (Continuous Improvement)** ومنهج **الإنتاج الرشيق (Lean)** الذي يستهدف **الهدر (Waste)** بأنواعه: الإنتاج الزائد عن الحاجة، والانتظار، والمخزون المكدس، والعيوب المعيبة، والحركة والنقل غير الضروريين.
+
+<Callout type="myth">
+**أسطورة:** "توقيع مدير الصيانة على التقرير وأرشفته يعني إغلاق التحقيق بنجاح."
+**الحقيقة:** الإغلاق الحقيقي هو التعديل الفعلي: إجراء محدث، وبطاقة صيانة معدلة في النظام، وآلات مماثلة محمية — وإلا تكرر السيناريو نفسه في الوحدة المجاورة.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Replacing the broken part brings the machine back to work today, but it does not prevent the next failure. **Root Cause Analysis (RCA)** is a structured methodology that penetrates surface symptoms to the cause which, once treated, would eliminate the failure from the entire plant. This lesson explains the cause levels, investigation tools, launch rules, and institutionalization.
+
+## 1. The three cause levels: where does the real root lie?
+
+Maintenance's biggest trap is stopping at symptom treatment. Any industrial failure divides into three successive levels:
+
+- **Physical Cause:** what happened physically to the metal? Example: a pump shaft broke under violent torsion, or a bearing seized from friction and dried grease. Knowing it alone and treating it by replacing the part guarantees failure recurrence within weeks.
+- **Human Cause:** what wrong action occurred? Example: the technician did not perform laser alignment, or applied grease that does not meet specifications. Professional note: blaming and reprimanding individuals is a rejected practice that hides the real systemic causes.
+- **Latent Cause:** why did the human error happen? Example: the laser alignment device is unavailable, there are no written **Standard Operating Procedures (SOPs)**, and no crew training. This is the true target of the investigation; treating it prevents the failure across the entire facility, not just on one machine.
+
+## 2. Investigation tools: the fishbone and the five whys
+
+For an engineering brainstorming session with a multidisciplinary team, two complementary tools are used:
+
+**Ishikawa diagram / Fishbone:** a visual tool that collects all probable causes under six comprehensive categories **(6Ms)** that ensure no possibility is overlooked: Machine (design and component defects), Man (skills, training, and stress), Material (quality of oils, spare parts, and raw materials), Method (work instructions and maintenance cards), Measurement (sensor calibration and inspection instruments), and Milieu (heat, humidity, and dust).
+
+<Infographic
+  cols={3}
+  title="The six Ishikawa diagram categories (6Ms)"
+  items={[
+    { title: 'Machine', detail: 'Design and component defects.', icon: '🏭', color: 'brand' },
+    { title: 'Man', detail: 'Skills, training, and stress.', icon: '🧑‍🔧', color: 'teal' },
+    { title: 'Material', detail: 'Quality of oils, spare parts, and raw materials.', icon: '🧱', color: 'amber' },
+    { title: 'Method', detail: 'Work instructions and maintenance cards.', icon: '📜', color: 'sky' },
+    { title: 'Measurement', detail: 'Sensor calibration and inspection instruments.', icon: '📏', color: 'rose' },
+    { title: 'Milieu', detail: 'Heat, humidity, and dust.', icon: '🌡', color: 'ink' },
+  ]}
+  caption="The six categories ensure no possibility is overlooked during root-cause brainstorming."
+/>
+
+**The 5-Whys technique:** the famous deep-dive method of repeating the question «Why?» until reaching the administrative system that can be corrected. Example of a pump whose shaft broke: why did it stop? Because the bearing seized from friction. Why? Because of insufficient grease. Why? Because the technician did not pump grease on the preventive round. Why? Because the lubrication point is hidden behind the cover and no written procedure exists. Why are there no procedures? Because management has no planning department and no policy for **Job Packages**. The final result is a latent organizational cause, and solving it protects the entire plant.
+
+<Callout type="tip">
+**Remember:** the number five is not sacred; stop asking when you reach a policy or administrative system that can be modified to permanently prevent the problem, whether that needs three questions or seven.
+</Callout>
+
+## 3. When do we investigate? And how do we institutionalize the lesson?
+
+Launching a root-cause investigation for every broken bolt exhausts the team, causes **Analysis Paralysis**, and produces superficial reports. Best practice requires declared **Trigger Criteria**, such as: any incident affecting personnel safety or causing a serious environmental violation, any failure whose losses exceed a known financial threshold (such as $10,000), or any failure recurring 3 times within a month on a critical tier-1 asset.
+
+The investigation does not end with writing the report but begins after it, through **Institutionalization**: updating standard operating procedures (SOPs), modifying preventive maintenance cards in the **Computerized Maintenance Management System (CMMS)**, publishing **Lessons Learned**, and applying the solutions to all similar machines in the plant. An investigation locked in a drawer is wasted effort with zero return.
+
+This integrates with **Continuous Improvement** and the **Lean** approach, which targets **Waste** in its forms: overproduction beyond need, waiting, piled-up inventory, defective products, and unnecessary motion and transport.
+
+<Callout type="myth">
+**Myth:** "The maintenance manager's signature on the report and its archiving mean the investigation was closed successfully."
+**Fact:** real closure is actual change: an updated procedure, a modified maintenance card in the system, and protected similar machines — otherwise the same scenario repeats in the neighboring unit.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: مستكشف عظمة السمكة
+
+تصفح فئات التحقيق الست وافحص الأسباب المحتملة تحت كل عظمة مصنفة إلى مادي وبشري وكامن، ثم تتبع سلسلة الأسئلة الخمسة لحادث كسر عمود حقيقي حتى الجذر المؤسسي.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Fishbone Explorer
+
+Browse the six investigation categories and examine the probable causes under each bone, classified into physical, human, and latent, then follow the five-whys chain for a real shaft-breakage incident down to the organizational root.
+
+</LangSection>
+
+<FishboneExplorer client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-3-3-t1', 'cmrp-3-3-t2', 'cmrp-3-3-t3', 'cmrp-3-3-t4', 'cmrp-3-3-t5', 'cmrp-3-3-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على مستويات الأسباب الثلاثة وفئات العظمة الست ومعايير إطلاق التحقيق ومأسسته.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the three cause levels, the six fishbone categories, investigation trigger criteria, and institutionalization.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-3-3" questions={quizCmrp33.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **المستويات الثلاثة:** المادي يصف ما انكسر، والبشري يصف التصرف الخاطئ، والكامن المؤسسي يفسر لماذا وقع الخطأ وهو هدف التحقيق.
+- **عظمة السمكة (Ishikawa):** ست فئات للاحتمالات — الآلة والإنسان والمادة والطريقة والقياس والبيئة.
+- **الأسئلة الخمسة (5-Whys):** تعمق متتالٍ حتى سياسة أو نظام إداري قابل للتصحيح الدائم.
+- **الإطلاق والمأسسة:** حقق عند حوادث السلامة والخسائر الكبيرة والأعطال المتكررة فقط، وحوّل النتائج إلى إجراءات وخطط صيانة محدثة ودروس معممة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The three levels:** the physical level describes what broke, the human level describes the wrong action, and the latent organizational level explains why the error occurred and is the target of the investigation.
+- **The fishbone (Ishikawa):** six probability categories — machine, man, material, method, measurement, and milieu.
+- **The 5-Whys:** successive deep-diving until a policy or administrative system that can be permanently corrected.
+- **Launch and institutionalization:** investigate only safety incidents, major losses, and recurring failures, and convert the results into updated procedures, maintenance plans, and generalized lessons.
+
+</LangSection>

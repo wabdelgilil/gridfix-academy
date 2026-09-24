@@ -1,0 +1,205 @@
+---
+id: lesson-3-2
+station: station-3
+number: "3.2"
+title: "تحليل الانحرافات (Variance)"
+titleEn: "Variance Analysis"
+minutes: 20
+order: 2
+objectives:
+  - "أن يحسب المتعلم انحراف الميزانية بين المخطط والفعلي ويصنّفه موفراً/عاجزاً."
+  - "أن يفسر الانحرافات الشهرية بالمسببات والسياق قبل أي رد فعل."
+  - "أن يستخدم حدودا مرجعية (5-15%) لتصنيف شدة الاستجابة."
+objectivesEn:
+  - "Compute planned-vs-actual variance and classify it as favorable/adverse."
+  - "Interpret monthly variances by cause and context before reacting."
+  - "Use reference thresholds (5–15%) to grade response severity."
+hasTool: true
+toolName: "حاسبة Variance"
+toolNameEn: "Variance Calculator"
+quizId: quiz-3-2
+sources:
+  - ifma_handbook
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import BudgetVarianceTool from '../../../components/islands/tools/cfm/BudgetVarianceTool.tsx';
+import StatGrid from '../../../components/ui/figures/StatGrid.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz32 } from '../../../data/quiz/cfm/quiz-3-2';
+
+<LangSection lang="ar">
+
+الانحراف بين المخطط والفعلي ليس عيباً؛ إنه إشارة تُقرأ بسياقها لتحديد ما إذا كانت تستدعي تصحيحاً أم مجرد رصد.
+
+## 1. صيغة الانحراف
+
+```
+نسبة الانحراف % = (الفعلي − المخطط) ÷ المخطط × 100
+```
+
+- **موجب (Adverse)**: إنفاق زائد عن المخطط — ويتطلب تفسيراً.
+- **سالب (Favorable)**: إنفاق أقل — وهذا ليس خيراً دائماً؛ فقد يكون مؤجّلاً لمصاريف ضرورية.
+
+## 2. حدود الاستجابة المرجعية
+
+| النطاق | المعنى | الاستجابة |
+| --- | --- | --- |
+| ±5% | تذبذب طبيعي | رصد مستمر فقط |
+| 5–15% | يحتاج مراجعة | تحليل السبب وتصحيح المسار |
+| >15% | إنذار | إجراء تصحيحي فوري وتقرير للإدارة |
+
+<StatGrid
+  title="حدود الانحراف المرجعية لشدة الاستجابة"
+  stats={[
+    { value: '±5%', label: 'تذبذب طبيعي', note: 'رصد مستمر فقط', color: 'teal' },
+    { value: '5–15%', label: 'يحتاج مراجعة', note: 'تحليل السبب وتصحيح المسار', color: 'amber' },
+    { value: '>15%', label: 'إنذار', note: 'إجراء تصحيحي فوري وتقرير للإدارة', color: 'rose' },
+  ]}
+  caption="كل انحراف يُصنَّف وفق نطاقه المرجعي قبل تحديد شدة الاستجابة"
+/>
+
+## 3. خطوات التحليل العملي
+
+1. **احسب** انحراف كل بند شهرياً (لا سنوياً فقط).
+2. **افحص السياق**: طلبات تغيير؟ تضخم؟ خطأ تقدير؟ توقيت مصاريف؟
+3. **صنّف** الشدة حسب الحدود المرجعية.
+4. **اتخذ القرار**: تصحيح مسار، إعادة توزيع مصرح بها، أو استمرار رصد.
+5. **وثّق السبب** لتتراكم قاعدة بيانات تُحسّن تقديرات الأعوام القادمة.
+
+<Callout type="warn">
+**مفهوم خاطئ:** "التوفير دائماً خير."
+**الحقيقة:** توفير بند تدريب السلامة بتأجيله قرار مخاطر حقيقي مقنّع بمظهر «مطابقة». التوفير الصافي جيد، لكنه يُقرأ بسياقه قبل التصفيق.
+</Callout>
+
+<Callout type="myth">
+**أسطورة:** "الانحراف يعني دائماً فشل الموازنة."
+**الحقيقة:** بعض الانحرافات مؤشرات حكيمة (تأجيل مشروع وردت مواده لاحقاً، أو فصل هبوط أسعار). فكّ الترميز عن الرقم أولاً قبل الحكم.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+The variance between plan and actual is not a defect; it is a signal to be read within its context to decide whether it calls for a correction or mere monitoring.
+
+## 1. The variance formula
+
+```
+Variance % = (actual − planned) ÷ planned × 100
+```
+
+- **Positive (Adverse)**: spending above the plan — requiring an explanation.
+- **Negative (Favorable)**: lower spending — and this is not always good; it may be deferred necessary expenses.
+
+## 2. Reference response thresholds
+
+| Range | Meaning | Response |
+| --- | --- | --- |
+| ±5% | Natural fluctuation | Continuous monitoring only |
+| 5–15% | Needs review | Cause analysis and course correction |
+| >15% | Alarm | Immediate corrective action and a report to management |
+
+<StatGrid
+  title="Reference variance thresholds for response severity"
+  stats={[
+    { value: '±5%', label: 'Natural fluctuation', note: 'Continuous monitoring only', color: 'teal' },
+    { value: '5–15%', label: 'Needs review', note: 'Cause analysis and course correction', color: 'amber' },
+    { value: '>15%', label: 'Alarm', note: 'Immediate corrective action and a management report', color: 'rose' },
+  ]}
+  caption="Each variance is classified by its reference range before the response severity is set"
+/>
+
+## 3. Practical analysis steps
+
+1. **Calculate** the variance of each line monthly (not only annually).
+2. **Examine the context**: change requests? inflation? an estimation error? expense timing?
+3. **Classify** the severity against the reference thresholds.
+4. **Decide**: course correction, authorized reallocation, or continued monitoring.
+5. **Document the cause** so a database accumulates that improves the estimates of coming years.
+
+<Callout type="warn">
+**Misconception:** "Saving is always good."
+**Fact:** saving on the safety-training line by postponing it is a real risk decision disguised as "compliance." Net savings are good, but they are read in context before applause.
+</Callout>
+
+<Callout type="myth">
+**Myth:** "A variance always means the budget failed."
+**Fact:** some variances are wise indicators (deferring a project whose materials arrive later, or a season of falling prices). Decode the number first before judging.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: حاسبة الانحراف
+
+أدخل المخطط والفعلي شهرياً وراقب الإجمالي وتصنيف الاستجابة تلقائياً.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Variance Calculator
+
+Enter planned and actual figures monthly and watch the total and the response classification automatically.
+
+</LangSection>
+
+<BudgetVarianceTool client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['variance', 'opex', 'kpi']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على التفسير والسياق وتصنيف شدة الانحرافات.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on interpretation, context, and classifying variance severity.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-3-2" questions={quiz32.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **الانحراف إشارة بسياق**: الموجب إنفاق زائد، والسالب إنفاق أقل — ولكل منهما معنى مركب.
+- **الحدود المرجعية** (±5% / 5–15% / >15%) تضبط شدة الاستجابة دون مبالغة أو تجاهل.
+- **التوفير قد يكون قرار مخاطر خفي** — يُقرأ بالسياق لا بمظهر المطابقة.
+- **حلقة التحليل الدوري** تنضّج تقديرات السنوات التالية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Variance is a signal with context**: the positive means overspending, the negative means underspending — each carries a compound meaning.
+- **Reference thresholds** (±5% / 5–15% / >15%) calibrate response severity without exaggeration or neglect.
+- **Savings may be a hidden risk decision** — read in context, not by the appearance of compliance.
+- **The recurring analysis loop** matures the estimates of coming years.
+
+</LangSection>

@@ -1,0 +1,255 @@
+---
+id: lesson-cama-5-3
+course: cama
+station: station-cama-5
+number: "5.3"
+title: "تقييم الأداء والتحسين المستمر"
+titleEn: "Performance Evaluation and Continuous Improvement"
+minutes: 25
+order: 3
+objectives:
+  - "أن يشرح المتعلم بطاقة الأداء المتوازن (Balanced Scorecard) وأبعادها الأربعة في تقييم إدارة الأصول."
+  - "أن يميز بين المؤشرات القيادية والمؤشرات التأخيرية في قياس الأداء."
+  - "أن يصف منهجية تقييم النضج (Maturity Assessment) والمقارنة المرجعية (Benchmarking)."
+  - "أن يطبق دورة التحسين المستمر (Kaizen) لمعالجة فجوة أداء محددة."
+objectivesEn:
+  - "Explain the Balanced Scorecard and its four perspectives in asset management evaluation."
+  - "Distinguish between leading and lagging performance indicators."
+  - "Describe maturity assessment methodology and benchmarking."
+  - "Apply the continuous improvement (Kaizen) cycle to close a specific performance gap."
+hasTool: true
+toolName: "لوحة مؤشرات KPI"
+toolNameEn: "KPI Dashboard"
+quizId: quiz-cama-5-3
+sources:
+  - iso55000
+  - gfmam_landscape
+  - iam_guidelines
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import KpiDashboard from '../../../components/islands/tools/cama/KpiDashboard.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama53 } from '../../../data/quiz/cama/quiz-cama-5-3';
+
+<LangSection lang="ar">
+
+قياس الأداء ليس غرضاً بحد ذاته؛ إنه بوصلة التحسين. قسم الصيانة ينفذ مهامه كل يوم، لكن دون مؤشرات تقيس النتيجة والمخاطر والتكلفة معاً، لا يمكنك معرفة أنت تتحسن أم تتراجع. هذا الدرس يقدم إطاراً متكاملاً: كيف تقيس، بماذا تقارن، وكيف تحول النتائج إلى تحسين مستمر.
+
+## 1. بطاقة الأداء المتوازن في إدارة الأصول
+
+**بطاقة الأداء المتوازن (Balanced Scorecard)** إطار استراتيجي لقياس الأداء عبر أربعة محاور متوازنة، وتُعد من أدوات مجلد "تحقيق القيمة" في GFMAM:
+
+1. **المحور المالي**: تكلفة الصيانة إلى قيمة الاستبدال (ERV)، عائد الاستثمار في الأصول، نسبة التكاليف الطارئة.
+2. **محور أصحاب المصلحة**: رضا الإنتاج عن إتاحة الأصول، رضا الفريق عن بيئة العمل، التزام السلامة البيئية.
+3. **محور العمليات الداخلية**: الالتزام بالصيانة الوقائية، زمن الإصلاح (MTTR)، جودة أوامر العمل.
+4. **محور التعلم والنمو**: ساعات التدريب للفني، اكتمال خطط التطوير، تبني تقنيات المراقبة المشروطة.
+
+**الفائدة:** تمنع البطاقة التركيز المفرط على المحور المالي وحده، إذ تظهر الأداء المتوازن الذي يربط المال بالتشغيل بالتعلم بالمخاطر. محور واحد كالمال قد يبدو ممتازاً بينما التوقف يرتفع والمهارات تنهار.
+
+<Callout type="tip">
+**تطبيق فعلي:** عند بناء بطاقة لموقعك، اجعل لكل مؤشر: هدفاً رقماً، قياساً دورياً، مصدر بيانات موثقاً، ومسؤولاً واحداً. المؤشر بلا هدف عديم القيمة، والمؤشر بلا مسؤول لا يُقاد.
+</Callout>
+
+## 2. المؤشرات القيادية والتأخيرية
+
+المؤشرات تُقسم إلى نوعين بنظرتها الزمنية:
+
+- **المؤشرات القيادية (Leading Indicators)**: تقيس ما يمكن إدارته اليوم وتؤثر في النتائج مستقبلاً، مثل الالتزام بالصيانة الوقائية واكتمال جولات التفتيش وتدريب الفنيين.
+- **المؤشرات التأخيرية (Lagging Indicators)**: تقيس نتيجة حدثت بالفعل، مثل ساعات التوقف غير المخططة وتكلفة الصيانة الطارئة وعدد الحوادث.
+
+**العلاقة الذهبية:** التحسن في المؤشرات القيادية يقود لاحقاً إلى تحسن المؤشرات التأخيرية. لا يمكنك إدارة ساعات التوقف مباشرة (تجاهلها اللحظي) لكن يمكنك إدارة المهام الوقائية والتفتيش الذي يمنعها.
+
+**تحذير شائع:** مؤشر الالتزام بالصيانة الوقائية قد يكون 98% بينما التوقف في ارتفاع، ويكون ذلك بسبب تسجيل مهام وهمية أو مهام الوقاية التي لا تستهدف نمط الفشل الفعلي. عند تعارض مؤشر قيادي مع تأخيري يجب التحقق من جودة البيانات لا تجاهل المؤشر.
+
+## 3. تقييم النضج (Maturity Assessment)
+
+**تقييم النضج (Maturity Assessment)** أداة تقيس مدى تطور منظومة إدارة الأصول عبر مستويات متدرجة، وتحدد المكان الحالي والطريق إلى المستوى التالي. من أشهر النماذج نموذج IAM بأربعة مستويات: أساسي (Initial)، تطوير (Developing)، ممارسة جيدة (Good Practice)، تميز (Excellent).
+
+تقييم النضج يجيب عن سؤالين: **أين نحن الآن؟** و**ما الخطوة الواقعية التالية؟** فالقفز من المستوى الأساسي مباشرة إلى التميز يحبط الفريق، بينما القفز المتدرج يبني صروحاً ثابتة.
+
+## 4. المقارنة المرجعية (Benchmarking)
+
+**المقارنة المرجعية (Benchmarking)** مقارنة مؤشراتك وعملياتك ونتائجك بممارسين آخرين أو بمعايير معترف بها لتحديد الفجوات والفرص. في صيانة الأصول تُقارن عادة:
+
+- نسبة تكلفة الصيانة إلى قيمة الاستبدال (المعدل العالمي الجيد 2% إلى 3%).
+- الفعالية الكلية للمعدات (OEE) مقابل مصانع مماثلة.
+- التوقف غير المخطط لكل خط انتاج.
+
+**تنبيه منهجي:** أنت تقارن المنظومة ككل لا رقماً معزولاً؛ فرق ديموغرافيا الأصول وعمرها وتقنياتها يؤثر كلها في الرقم. المقارنة الحقيقية تتطلب التطبيع (Normalization) حسب القطاع وحجم الأصول.
+
+## 5. دورة التحسين المستمر (Kaizen)
+
+**التحسين المستمر (كايزن — Kaizen)** فلسفة تشاركية ترتقي بالأداء خطوة صغيرة متواصلة عوضاً عن قفزات نادرة. المنهجية العملية تتبع خاصة دورة **PDCA**:
+
+1. **خطط (Plan)**: حدد الفجوة وقم بقياسها (تقييم النضج ولوحة المؤشرات يمدانك بالبيانات).
+2. **نفذ (Do)**: طبق تحسيناً صغيراً واقعياً على عملية محددة.
+3. **تحقق (Check)**: أعد القياس بعد فترة، وافحص هل أغلقت الفجوة أم تحركت المؤشرات.
+4. **اعمل/صوّب (Act)**: ثبّت النجاح في إجراء قياسي ونشره، أو راجع الخطة إن لم يتحقق الهدف.
+
+**شرط النجاح:** تحسين بلا قياس يضيع، وقياس بلا إجراء يخيب. الدورة تنجح حين يكون لكل بند مؤشر ومسؤول وموعد مجدد.
+
+<Callout type="warn">
+**تشوه شائع:** معاقبة الفريق عند ارتفاع مؤشر ما دون توفير التدريب والأدوات والوقت يجعل الأرقام تتحسن على الورق فقط (Pencil Whipping). التحسين الحقيقي ثقافة قائمة على ثقة وبيانات نظيفة، لا ثقافة خوف وتجميل أرقام.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Performance measurement is not a goal in itself; it is the compass of improvement. The maintenance department executes its tasks every day, but without indicators that measure results, risk, and cost together, you cannot tell whether you are improving or declining. This lesson provides an integrated framework: how to measure, what to benchmark against, and how to turn results into continuous improvement.
+
+## 1. The Balanced Scorecard in asset management
+
+**The Balanced Scorecard** is a strategic framework for measuring performance across four balanced perspectives, and it is one of the tools of the "Delivering Value" volume in GFMAM:
+
+1. **Financial perspective**: maintenance cost to replacement value (ERV), return on asset investment, and the ratio of emergency costs.
+2. **Stakeholder perspective**: production satisfaction with asset availability, team satisfaction with the work environment, and environmental safety commitment.
+3. **Internal processes perspective**: preventive maintenance compliance, mean time to repair (MTTR), and work order quality.
+4. **Learning and growth perspective**: training hours per technician, completion of development plans, and adoption of condition-monitoring technologies.
+
+**The benefit:** the scorecard prevents excessive focus on the financial perspective alone, revealing balanced performance that links money to operations, learning, and risk. A single perspective such as finance may look excellent while downtime rises and skills collapse.
+
+<Callout type="tip">
+**Practical application:** when building a scorecard for your site, give every indicator a numeric target, a periodic measurement, a documented data source, and a single owner. An indicator without a target is worthless, and an indicator without an owner is not managed.
+</Callout>
+
+## 2. Leading and lagging indicators
+
+Indicators are divided into two types by their time perspective:
+
+- **Leading indicators**: measure what can be managed today and influence future results, such as preventive maintenance compliance, completion of inspection rounds, and technician training.
+- **Lagging indicators**: measure a result that has already occurred, such as unplanned downtime hours, emergency maintenance cost, and the number of incidents.
+
+**The golden relationship:** improvement in leading indicators later drives improvement in lagging indicators. You cannot manage downtime hours directly, but you can manage the preventive tasks and inspections that prevent them.
+
+**A common caution:** the preventive maintenance compliance indicator may be 98% while downtime is rising, caused by recording phantom tasks or prevention tasks that do not target the actual failure pattern. When a leading indicator conflicts with a lagging one, verify the data quality rather than ignore the indicator.
+
+## 3. Maturity Assessment
+
+**Maturity assessment** is a tool that measures how developed the asset management system is across graduated levels, identifying the current position and the path to the next level. One of the best-known models is the IAM model with four levels: Initial, Developing, Good Practice, and Excellent.
+
+Maturity assessment answers two questions: **where are we now?** and **what is the next realistic step?** Jumping directly from the initial level to excellence demoralizes the team, while a gradual climb builds solid foundations.
+
+## 4. Benchmarking
+
+**Benchmarking** is comparing your indicators, processes, and results with other practitioners or recognized standards to identify gaps and opportunities. In asset maintenance, typical comparisons include:
+
+- The maintenance cost to replacement value ratio (the good global rate is 2% to 3%).
+- Overall Equipment Effectiveness (OEE) against similar plants.
+- Unplanned downtime per production line.
+
+**A methodological caution:** you compare the system as a whole, not an isolated number; differences in asset demographics, age, and technologies all affect the number. A true comparison requires normalization by sector and asset size.
+
+## 5. The continuous improvement cycle (Kaizen)
+
+**Continuous improvement (Kaizen)** is a participatory philosophy that lifts performance in small, steady steps rather than rare leaps. The practical methodology follows the **PDCA** cycle:
+
+1. **Plan**: define the gap and measure it (maturity assessment and the indicator dashboard provide the data).
+2. **Do**: apply a small, realistic improvement to a specific process.
+3. **Check**: re-measure after a period and examine whether the gap closed or the indicators moved.
+4. **Act**: lock the success into a standard procedure and publish it, or revise the plan if the goal was not achieved.
+
+**The success condition:** improvement without measurement is lost, and measurement without action disappoints. The cycle succeeds when every item has an indicator, an owner, and a renewal date.
+
+<Callout type="warn">
+**A common distortion:** punishing the team when an indicator rises without providing training, tools, and time makes the numbers improve on paper only (pencil whipping). Real improvement is a culture built on trust and clean data, not a culture of fear and number polishing.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: لوحة مؤشرات KPI
+
+اختبر أي مؤشر من مؤشرات إدارة الأصول: أدخل الهدف والأداء الفعلي واحصل على حكم فوري (ضمن المستهدف / راقب الاتجاه / لزم تدخل) مع نصائح القراءة الصحيحة لكل مؤشر.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: KPI Dashboard
+
+Test any asset management indicator: enter the target and actual performance and get an instant verdict (within target / watch the trend / intervention needed) with correct-reading tips for each indicator.
+
+</LangSection>
+
+<KpiDashboard client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-5-3-t1', 'cama-5-3-t2', 'cama-5-3-t3', 'cama-5-3-t4']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على المؤشرات القيادية والتأخيرية، والمقارنة المرجعية، وتقييم النضج، ودورة التحسين المستمر (Kaizen).
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on leading and lagging indicators, benchmarking, maturity assessment, and the continuous improvement cycle (Kaizen).
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-5-3" questions={quizCama53.questions} client:load />
+
+<LangSection lang="ar">
+
+## مصادر
+
+- ISO 55000:2024 — Asset Management: Overview, Principles and Terminology
+- GFMAM Asset Management Landscape v3
+- IAM — Asset Management — An Anatomy
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Sources
+
+- ISO 55000:2024 — Asset Management: Overview, Principles and Terminology
+- GFMAM Asset Management Landscape v3
+- IAM — Asset Management — An Anatomy
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **بطاقة الأداء المتوازن** تقيس الأبعاد الأربعة (مالي، أصحاب مصلحة، عمليات، تعلم) كي لا تنحصر العين في الرقم المالي.
+- **المؤشرات القيادية** تدار اليوم وتقود النتائج مستقبلاً، بينما **التأخيرية** تعكس الماضي ولا تُدار مباشرة.
+- **تقييم النضج** يحدد موقعك الحالي والخطوة الواقعية التالية بدل القفز الخاطئ.
+- **المقارنة المرجعية** تكشف الفجوات بشرط التطبيع الصحيح للبيانات وليس مقارنة أرقام معزولة.
+- **دورة PDCA** تحول القياس إلى تحسين ملموس: خطط، نفذ، تحقق، صوّب.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The Balanced Scorecard** measures the four perspectives (financial, stakeholder, processes, learning) so the eye is not confined to the financial number.
+- **Leading indicators** are managed today and drive future results, while **lagging indicators** reflect the past and cannot be managed directly.
+- **Maturity assessment** identifies your current position and the next realistic step instead of a wrong leap.
+- **Benchmarking** reveals gaps provided the data is correctly normalized, not comparing isolated numbers.
+- **The PDCA cycle** turns measurement into tangible improvement: plan, do, check, act.
+
+</LangSection>

@@ -1,0 +1,283 @@
+---
+id: lesson-cama-1-3
+course: cama
+station: station-cama-1
+number: "1.3"
+title: "الحوكمة وإدارة أصحاب المصلحة"
+titleEn: "Governance & Stakeholder Management"
+minutes: 25
+order: 3
+objectives:
+  - "أن يشرح المتعلم مفهوم الحوكمة في سياق إدارة الأصول وأهميتها."
+  - "أن يُطبّق منهجية تحديد أصحاب المصلحة وتحليل قوتهم ومصلحتهم."
+  - "أن يُنشئ مصفوفة RACI لإدارة الأصول في منظومة معينة."
+  - "أن يشرح كيف تؤثر الهياكل التنظيمية على فعالية إدارة الأصول."
+objectivesEn:
+  - "Explain the concept of governance in asset management and its importance."
+  - "Apply stakeholder identification and power-interest analysis."
+  - "Construct a RACI matrix for asset management roles."
+  - "Explain how organizational structures affect AM effectiveness."
+hasTool: true
+toolName: "مصفوفة أصحاب المصلحة"
+toolNameEn: "Stakeholder Matrix"
+quizId: quiz-cama-1-3
+sources:
+  - iso55001
+  - gfmam_landscape
+  - ifma_bok
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import StakeholderMatrix from '../../../components/islands/tools/cama/StakeholderMatrix.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama13 } from '../../../data/quiz/cama/quiz-cama-1-3';
+
+<LangSection lang="ar">
+
+الفكرة المحورية في هذا الدرس أن إدارة الأصول لا تنجح بمعزل عن الناس. فالحوكمة الفعالة تضمن أن القرارات مبنية على أسس سليمة، وإدارة أصحاب المصلحة تضمن أن كل من يتأثر بالقرار أو يؤثر فيه يكون في المكان المناسب والتوقيت الصحيح.
+
+## 1. الحوكمة في إدارة الأصول: التعريف والأهمية
+
+الحوكمة (Governance) هي المنظومة التي تُحدد كيف تُتخذ القرارات، ومن يتخذها، وكيف يُحاسب على نتائجها. في سياق إدارة الأصول، تشمل الحوكمة:
+
+- **هيكل القرار**: من له صلاحية اتخاذ القرار بشأن الأصول؟ مدير المديرية؟ المدير التنفيذي؟ مجلس الإدارة؟
+- **الشفافية**: كيف تُسجَّل القرارات وتُتواصل لأصحاب المصلحة؟
+- **المساءلة**: من يتحمل المسؤولية عن نتائج القرارات؟ ما عقوبات الفشل؟
+- **النزاهة**: ضمان خلو القرارات من المصالح الشخصية أو التحيز.
+- **المعرفة**: هل يملك صانع القرار المعرفة الكافية لاتخاذ قرار صحيح؟
+
+<Callout type="myth">
+**مفهوم خاطئ:** "الحوكمة تعني البيروقراطية والتعقيد الإداري."
+**الحقيقة:** الحوكمة الفعالة تبسط القرارات لا تعقدها. هي تُحدد بوضوح من يقرر وماذا يقرر، فتقلل التضارب والتردّد وتسرّع أخذ القرارات الصحيحة.
+</Callout>
+
+## 2. تحديد أصحاب المصلحة (Stakeholder Identification)
+
+أصحاب المصلحة هم جميع الأفراد أو المجموعات الذين يتأثرون بقرارات إدارة الأصول أو يؤثرون فيها. منهجية التحديد تتطلب:
+
+- **البحث الشامل**: لا تقتصر على الإدارة العليا فقط — اشمل الفنيين، المشغّلين، المشترين، الزبائن، الجهات الرقابية، المجتمع المحلي، الموردين.
+- **التصنيف الداخلي والخارجي**: أصحاب المصلحة الداخليون (الموظفون، الإدارات) والخارجيون (الموردين، الزبائن، الجهات الحكومية).
+- **التصنيف الموجب والسالب**: من يدعم جهود إدارة الأصول ومن يقاومها أو يتأثر سلبياً.
+
+## 3. تحليل القوة والمصلحة (Power-Interest Analysis)
+
+لا يمكن التعامل مع جميع أصحاب المصلحة بنفس الطريقة. أداة مصفوفة القوة والمصلحة تُصنفهم إلى أربع فئات:
+
+- **قوة عالية ومصلحة عالية — أدرهم بإشراف كثيف**: المدير التنفيذي، مدير الصيانة. هؤلاء يحتاجون تقارير منتظمة ومشاركة مباشرة في القرارات.
+- **قوة عالية ومصلحة منخفضة — أرضهم بإرضاء**: مجلس الإدارة، مدير المالية. يكفي إطلاعهم على النتائج والمستجدات الرئيسية دون إ Loading في التفاصيل.
+- **قوة منخفضة ومصلحة عالية — أبلغهم بالمستجدات**: الفنيون، المشغّلون، مشرفو الخطوط. يحتاجون معلومات واضحة ومحددة تؤثر على عملهم.
+- **قوة منخفضة ومصلحة منخفضة — راقبهم فقط**: الجهات الرقابية البعيدة، المجتمع المحلي في بعض الأحيان. يكفي مراقبة أي تغيير في وضعهم.
+
+## 4. مصفوفة RACI: توزيع الأدوار والمسؤوليات
+
+RACI هي أداة فعالة لتحديد الأدوار في عمليات إدارة الأصول:
+
+- **R (Responsible) — المسؤول عن التنفيذ**: الشخص الذي ينفّذ المهمة فعلياً. قد يكون أكثر من واحد.
+- **A (Accountable) — المسؤولية النهائية والقرار**: الشخص الوحيد الذي يتحمل المسؤولية النهائية عن صحة التنفيذ ويملك حق القرار. واحد فقط لكل مهمة.
+- **C (Consulted) — المستشار**: الشخص الذي يُستشار قبل التنفيذ ويُعطي رأيه. الاتصال ثنائي الاتجاه.
+- **I (Informed) — المبلّغ**: الشخص الذي يُبلّغ بالنتيجة بعد التنفيذ. الاتصال أحادي الاتجاه.
+
+<Callout type="example">
+**مثال تطبيقي على مصفوفة RACI:** مهمة "اعتماد الجدول الأسبوعي للصيانة":
+- مشرف الصيانة: R (ينفذ إعداد الجدول)
+- مدير المصنع: A (يوافق على الجدول ويتحمل المسؤولية النهائية)
+- مشرف التشغيل: C (يُستشار بشأن احتياجات الإنتاج)
+- مخطط الصيانة: I (يُبلّغ بالجدول المعتمد)
+- الفنيون: I (يُبلّغون بالمهام المخصصة لهم)
+</Callout>
+
+## 5. الهيكل التنظيمي وإدارة الأصول
+
+يؤثر الهيكل التنظيمي بشكل مباشر على فعالية إدارة الأصول:
+
+- **الهيكل الشجري (Hierarchical)**: واضح المسؤوليات لكنه بطيء في اتخاذ القرارات، وقد يعزل إدارة الأصول عن القيادة العليا.
+- **الهيكل الشبكي (Matrix)**: يدمج إدارة الأصول عبر الأقسام المختلفة، لكنه قد يسبب تضارب في الولاءات.
+- **الهيكل المسطح (Flat)**: يسرّع القرارات لكنه قد يفتقر للتنسيق بين الأقسام.
+- **فريق إدارة الأصول المتعدد التخصصات (Cross-Functional AM Team)**: الفكرة الأفضل — فريق يضم ممثلين من التشغيل والصيانة والتخطيط والمالية، يقوده مدير تنفيذي معني.
+
+الهيكل الناجح هو الذي يضع إدارة الأصول في مستوى تنفيذي عالٍ ولا يُحصّرها في قسم الصيانة التقنية فقط.
+
+## 6. التأثير على أصحاب المصلحة
+
+بعد تحديد أصحاب المصلحة وتحليل قوتهم ومصلحتهم، يجب بناء خطة تواصل فعالة:
+
+- **المتابعة المستمرة**: لا تكتفِ بالتحديد مرة واحدة — المصلحة والقوة تتغيران مع الوقت.
+- **التواصل الواضح**: اشرح لأصحاب المصلحة كيف تؤثر القرارات على مصالحهم.
+- **إشراكهم في القرارات**: كلما كان أصحاب المصلحة أكثر مشاركة كان الالتزام بالتنفيذ أعلى.
+- **معالجة المقاومة**: افهم أسباب المقاومة وعالجها بالحجة لا بالأوامر.
+
+</LangSection>
+
+<LangSection lang="en">
+
+The core idea of this lesson is that asset management does not succeed in isolation from people. Effective governance ensures that decisions are built on sound foundations, and stakeholder management ensures that everyone affected by a decision or able to influence it is engaged at the right place and at the right time.
+
+## 1. Governance in asset management: definition and importance
+
+Governance is the system that defines how decisions are made, who makes them, and how people are held accountable for their outcomes. In the context of asset management, governance covers:
+
+- **Decision structure**: who has the authority to make decisions about assets? The department manager? The executive director? The board of directors?
+- **Transparency**: how are decisions recorded and communicated to stakeholders?
+- **Accountability**: who bears responsibility for the outcomes of decisions? What are the consequences of failure?
+- **Integrity**: ensuring decisions are free from personal interests or bias.
+- **Knowledge**: does the decision-maker possess sufficient knowledge to make a sound decision?
+
+<Callout type="myth">
+**Myth:** "Governance means bureaucracy and administrative complexity."
+**Fact:** effective governance simplifies decisions rather than complicating them. It clearly defines who decides and what they decide, reducing conflict and hesitation and speeding up sound decision-making.
+</Callout>
+
+## 2. Stakeholder identification
+
+Stakeholders are all individuals or groups who are affected by asset management decisions or who influence them. A sound identification methodology requires:
+
+- **A comprehensive search**: do not limit yourself to senior management only — include technicians, operators, buyers, customers, regulators, the local community, and suppliers.
+- **Internal and external classification**: internal stakeholders (employees, departments) and external ones (suppliers, customers, government bodies).
+- **Positive and negative classification**: who supports asset management efforts, and who resists them or is negatively affected.
+
+## 3. Power-interest analysis
+
+Not all stakeholders can be dealt with in the same way. The power-interest matrix classifies them into four categories:
+
+- **High power, high interest — manage closely**: the executive director, the maintenance manager. These need regular reports and direct involvement in decisions.
+- **High power, low interest — keep satisfied**: the board of directors, the finance manager. Informing them of the results and the key developments is enough, without overburdening them with details.
+- **Low power, high interest — keep informed**: technicians, operators, line supervisors. They need clear, specific information that affects their work.
+- **Low power, low interest — monitor only**: distant regulators, and sometimes the local community. Just monitoring any change in their status is enough.
+
+## 4. The RACI matrix: allocating roles and responsibilities
+
+RACI is an effective tool for defining roles in asset management processes:
+
+- **R (Responsible) — the doer**: the person who actually performs the task. There may be more than one.
+- **A (Accountable) — ultimate responsibility and decision**: the single person who holds final accountability for the correctness of execution and owns the decision authority. Only one per task.
+- **C (Consulted) — the consultant**: the person consulted before execution who gives their input. Two-way communication.
+- **I (Informed) — the informee**: the person informed of the outcome after execution. One-way communication.
+
+<Callout type="example">
+**Applied example of a RACI matrix:** the task "approving the weekly maintenance schedule":
+- Maintenance supervisor: R (prepares the schedule)
+- Plant manager: A (approves the schedule and holds final accountability)
+- Operations supervisor: C (consulted on production needs)
+- Maintenance planner: I (informed of the approved schedule)
+- Technicians: I (informed of the tasks assigned to them)
+</Callout>
+
+## 5. Organizational structure and asset management
+
+The organizational structure directly affects the effectiveness of asset management:
+
+- **Hierarchical structure**: clear responsibilities but slow in decision-making, and it may isolate asset management from top leadership.
+- **Matrix structure**: integrates asset management across the different departments, but it may cause conflicting loyalties.
+- **Flat structure**: speeds up decisions but may lack coordination between departments.
+- **Cross-functional asset management team**: the best approach — a team with representatives from operations, maintenance, planning, and finance, led by a dedicated executive manager.
+
+A successful structure places asset management at a high executive level and does not confine it to the technical maintenance department only.
+
+## 6. Engaging stakeholders
+
+After identifying stakeholders and analyzing their power and interest, an effective communication plan must be built:
+
+- **Continuous follow-up**: do not settle for a one-time identification — interest and power change over time.
+- **Clear communication**: explain to stakeholders how the decisions affect their interests.
+- **Involving them in decisions**: the more stakeholders participate, the higher their commitment to implementation.
+- **Managing resistance**: understand the reasons for resistance and address them with argument rather than orders.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: مصفوفة أصحاب المصلحة
+
+هذه الأداة تساعدك على تحديد أصحاب المصلحة في مؤسستك وتحليل قوتهم ومصلحتهم، ثم بناء خطة تواصل مناسبة لكل فئة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Stakeholder Matrix
+
+This tool helps you identify the stakeholders in your organization, analyze their power and interest, and then build an appropriate communication plan for each category.
+
+</LangSection>
+
+<StakeholderMatrix client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-1-3-t1','cama-1-3-t2','cama-1-3-t3','cama-1-3-t4']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على مفهوم الحوكمة، وتحديد أصحاب المصلحة وتحليل القوة والمصلحة، ومصفوفة RACI، وأثر الهيكل التنظيمي في فعالية إدارة الأصول.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the concept of governance, stakeholder identification and power-interest analysis, the RACI matrix, and the impact of the organizational structure on asset management effectiveness.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-1-3" questions={quizCama13.questions} client:load />
+
+<LangSection lang="ar">
+
+## مصادر
+
+- ISO 55001:2024 — متطلبات نظام إدارة الأصول (البند 5: القيادة)
+- GFMAM Asset Management Landscape v3 — Domain: Organization & Leadership
+- IFMA Body of Knowledge — Strategic Planning
+- Project Management Institute — Stakeholder Engagement Guide
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Sources
+
+- ISO 55001:2024 — Asset Management Systems: Requirements (Clause 5: Leadership)
+- GFMAM Asset Management Landscape v3 — Domain: Organization & Leadership
+- IFMA Body of Knowledge — Strategic Planning
+- Project Management Institute — Stakeholder Engagement Guide
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **الحوكمة** هي المنظومة التي تُحدد كيف تُتخذ القرارات ومن يتحمل المسؤولية عنها — وهي شرط أساسي لنجاح إدارة الأصول.
+- **أصحاب المصلحة** يجب تحديدهم بشكل شامل وتحليل قوتهم ومصلحتهم لبناء خطة تواصل مناسبة لكل فئة.
+- **مصفوفة RACI** أداة فعالة لتجنب التضارب في المسؤوليات — قاعدة ذهبية: حرف A واحد فقط لكل مهمة.
+- **الهيكل التنظيمي** يؤثر بشكل مباشر على فعالية إدارة الأصول — الأفضل هو فريق متعدد التخصصات على مستوى تنفيذي عالٍ.
+- **إدارة المقاومة والتواصل المستمر** مع أصحاب المصلحة هما مفتاح استدامة منظومة إدارة الأصول.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Governance** is the system that defines how decisions are made and who is accountable for them — it is a fundamental condition for the success of asset management.
+- **Stakeholders** must be identified comprehensively and their power and interest analyzed to build an appropriate communication plan for each category.
+- **The RACI matrix** is an effective tool for avoiding conflicts in responsibilities — a golden rule: only one A per task.
+- **The organizational structure** directly affects the effectiveness of asset management — the best approach is a cross-functional team at a high executive level.
+- **Managing resistance and continuous communication** with stakeholders are the key to sustaining an asset management system.
+
+</LangSection>

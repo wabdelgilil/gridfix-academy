@@ -44,7 +44,7 @@
 ## 2️⃣ هيكل المشروع المقترح
 
 ```
-cfm-course/
+gridfix-academy/
 ├── astro.config.mjs              # تكوين Astro + جزيرات React + sitemap
 ├── tsconfig.json
 ├── package.json

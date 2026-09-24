@@ -1,0 +1,182 @@
+---
+id: lesson-cmrp-4-4
+course: cmrp
+station: station-cmrp-4
+number: "4.4"
+title: "الجدولة والتنسيق الأسبوعي مع الإنتاج"
+titleEn: "Maintenance Scheduling & Operations Coordination"
+minutes: 30
+order: 4
+objectives:
+  - "أن يفرق المتعلم بين التخطيط (ماذا وكيف) والجدولة (متى ومن)."
+  - "أن يحسب صافي طاقة العمالة المتاحة بعد استبعاد الغياب والتدريب."
+  - "أن يطبق قاعدة جدولة 100% من الطاقة ويفسر قانون باركنسون."
+  - "أن يشرح آلية اجتماع الجدولة ومصافحة الالتزام ومعيار الالتزام بالجدول."
+objectivesEn:
+  - "Contrast planning (what and how) with scheduling (when and who)."
+  - "Compute net available labor capacity after deducting leave and training."
+  - "Apply the 100% scheduling rule and explain Parkinson's Law."
+  - "Describe the scheduling meeting, the handshake, and schedule compliance."
+hasTool: true
+toolName: "محاكي الجدولة الأسبوعية"
+toolNameEn: "Weekly Scheduler Simulator"
+quizId: quiz-cmrp-4-4
+sources:
+  - palmer
+  - smrp_metrics
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import WeeklyScheduler from '../../../components/islands/tools/cmrp/WeeklyScheduler.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp44 } from '../../../data/quiz/cmrp/quiz-cmrp-4-4';
+
+<LangSection lang="ar">
+
+إذا كان التخطيط يجيب عن ماذا سنفعل وكيف، فالجدولة (Scheduling) تجيب عن متى سنفعل ذلك بالتحديد ومن الفني المسؤول بالاسم. والجدول الأسبوعي ليس قائمة أمنيات للصيانة بل عقد ملزم ومصافحة رسمية بين الصيانة والإنتاج.
+
+## 1. الجدول الأسبوعي عقد بين إدارتين
+
+تلتزم إدارة الإنتاج بإيقاف المعدة وتنظيفها وتبريدها وتسليمها في النافذة المتفق عليها، وتلتزم الصيانة بالبدء فورا وتسليم المعدة جاهزة في الساعة الموعودة. لذلك يعتمد الجدول في اجتماع أسبوعي مشترك قبل نهاية الأسبوع الحالي (عادة ظهر الأربعاء أو الخميس) ليجد المستودع وقتا لتجميع القطع وتجد العمليات وقتا لتجهيز العزل المسبق.
+
+ورفض الإنتاج تسليم المعدة بحجة ضغط المبيعات حجة خاسرة: من لا يختار موعدا للصيانة المخططة تختار له المعدة موعدا للتوقف الكارثي، بتكلفة تفوق المنسقة بثلاثة إلى أربعة أضعاف.
+
+## 2. قاعدة جدولة 100% من صافي الطاقة
+
+من أشهر أسئلة الامتحان: هل نجدول كامل الطاقة أم نترك فراغا للطوارئ؟ إجابة SMRP قاطعة: نجدول 100% من صافي الطاقة المتاحة بأعمال مخططة جاهزة.
+
+**صافي الطاقة = إجمالي الساعات − (الإجازات + التدريب + الاجتماعات)**
+
+ففريق من 10 فنيين بعمل 40 ساعة (الإجمالي 400) مع إجازة 40 ساعة وتدريب 20 واجتماعات 10 يملك صافيا من 330 ساعة تجدول كلها. والسبب قانون باركنسون: العمل يتمدد تلقائيا ليملأ الوقت المتاح، فجدولة 70% فقط تعني تباطؤ الوتيرة لا شعوريا وضياع الساعات. وعند وقوع طارئ حقيقي نزيح عملا مجدولا منخفض الأولوية بدلا من التخطيط للفراغ مقدما.
+
+<Callout type="warn">
+**قانون باركنسون في الجدولة:** الفراغ المجدول عمدا لا يبقى احتياطا بل يتحول إلى تباطؤ. املأ الجدول كاملا بالأعمال الجاهزة، وأزح عند الطوارئ الحقيقية فقط.
+</Callout>
+
+## 3. الالتزام بالجدول والتخصيص بالاسم
+
+يقيس مؤشر الالتزام بالجدول (Schedule Compliance) انضباط المنشأة:
+
+**الالتزام بالجدول = ساعات الأعمال المجدولة المنجزة ÷ إجمالي الساعات المجدولة × 100%**
+
+والمعيار العالمي للنخبة من 80% إلى 85% فأعلى. كل ساعة طارئة دخيلة تزيح ساعة مجدولة وتخفض النسبة بنفس المقدار.
+
+ويشترط المعيار تخصيص كل عمل لفني محدد بالاسم لا لمجموعة مبهمة: المسؤولية الفردية ترفع جودة التنفيذ ودقة التسجيل، وتختصر وقت الصباح الضائع في انتظار التوجيهات.
+
+<Callout type="tip">
+**للامتحان:** احفظ المعادلات الثلاث: صافي الطاقة، ثم جدولة 100% من الصافي، ثم الالتزام بالجدول بمستهدف 80% إلى 85%.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+If planning answers what we will do and how, then scheduling answers exactly when we will do it and which technician is responsible, by name. The weekly schedule is not a wish list for maintenance but a binding contract and a formal handshake between maintenance and production.
+
+## 1. The weekly schedule: a contract between two departments
+
+The production department commits to stopping, cleaning, cooling, and handing over the asset within the agreed window, and maintenance commits to starting immediately and handing the asset back ready at the promised hour. Therefore the schedule is finalized in a joint weekly meeting before the end of the current week (usually Wednesday or Thursday noon) so the warehouse finds time to kit the parts and operations find time to prepare pre-isolation.
+
+Production's refusal to hand over the asset on the pretext of sales pressure is a losing argument: whoever does not choose a date for planned maintenance has the asset choose a date for a catastrophic stoppage, at three to four times the coordinated cost.
+
+## 2. The rule of scheduling 100% of net capacity
+
+One of the most famous exam questions: do we schedule full capacity or leave a void for emergencies? The SMRP answer is categorical: we schedule 100% of the available net capacity with ready planned work.
+
+**Net capacity = total hours − (leave + training + meetings)**
+
+A team of 10 technicians working 40 hours (total 400) with 40 hours of leave, 20 of training, and 10 of meetings owns a net 330 hours that are all scheduled. The reason is Parkinson's Law: work automatically expands to fill the available time, so scheduling only 70% means an unconscious slowdown and lost hours. When a true emergency occurs, we displace a scheduled low-priority job instead of planning the void in advance.
+
+<Callout type="warn">
+**Parkinson's Law in scheduling:** a deliberately scheduled void does not remain a reserve but turns into a slowdown. Fill the schedule completely with ready work, and displace only upon true emergencies.
+</Callout>
+
+## 3. Schedule compliance and assignment by name
+
+The Schedule Compliance index measures the facility's discipline:
+
+**Schedule compliance = completed scheduled work hours ÷ total scheduled hours × 100%**
+
+The world-class benchmark is from 80% to 85% or higher. Every intrusive emergency hour displaces a scheduled hour and lowers the ratio by the same amount.
+
+The standard also requires assigning every job to a specific technician by name, not to a vague group: individual responsibility raises execution quality and recording accuracy, and shortens the morning time wasted waiting for directions.
+
+<Callout type="tip">
+**For the exam:** memorize the three equations: net capacity, then scheduling 100% of the net, then schedule compliance with a target of 80% to 85%.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: محاكي الجدولة الأسبوعية
+
+غيّر عدد الفنيين والساعات المستقطعة ونسبة التحميل وساعات الطوارئ، وراقب صافي الطاقة ونسبة الالتزام لحظيا.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Weekly Scheduler Simulator
+
+Change the number of technicians, the deducted hours, the load percentage, and the emergency hours, and monitor the net capacity and the compliance ratio instantly.
+
+</LangSection>
+
+<WeeklyScheduler client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-4-4-t1', 'cmrp-4-4-t2', 'cmrp-4-4-t3', 'cmrp-4-4-t4', 'cmrp-4-4-t5', 'cmrp-4-4-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على قاعدة 100% وحساب صافي الطاقة وتوقيت الاجتماع والتخصيص بالاسم.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the 100% rule, net capacity calculation, meeting timing, and assignment by name.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-4-4" questions={quizCmrp44.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **الجدولة تجيب عن متى ومن** وهي عقد ملزم بين الصيانة والإنتاج يعتمد قبل نهاية الأسبوع الحالي.
+- **صافي الطاقة = الإجمالي − الإجازات والتدريب والاجتماعات** ثم يجدول الصافي كاملا بنسبة 100%.
+- **قانون باركنسون** يمنع ترك فراغات عمدا لأن العمل يتمدد ليملأ الوقت المتاح.
+- **الالتزام بالجدول = المنجز من المجدول ÷ المجدول** بمستهدف عالمي من 80% إلى 85%، والتخصيص بالاسم يرسخ المسؤولية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Scheduling answers when and who** and is a binding contract between maintenance and production, finalized before the end of the current week.
+- **Net capacity = total − leave, training, and meetings**, then the net is fully scheduled at 100%.
+- **Parkinson's Law** rules out deliberately leaving voids because work expands to fill the available time.
+- **Schedule compliance = completed scheduled ÷ scheduled** with a world target of 80% to 85%, and assignment by name anchors responsibility.
+
+</LangSection>

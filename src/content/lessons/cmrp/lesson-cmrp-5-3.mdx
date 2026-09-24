@@ -1,0 +1,218 @@
+---
+id: lesson-cmrp-5-3
+course: cmrp
+station: station-cmrp-5
+number: "5.3"
+title: "القيادة وإدارة التغيير الثقافي"
+titleEn: "Leadership & Change Management in Maintenance"
+minutes: 35
+order: 3
+objectives:
+  - "أن يشرح المتعلم خطوات نموذج كوتر (Kotter) الثماني للتحول المؤسسي."
+  - "أن يطبق نموذج أدكار (ADKAR) في تشخيص مقاومة الأفراد وعلاجها."
+  - "أن يشرح فلسفة الموثوقية بقيادة المشغل (ODR) ودور الحواس الخمس."
+  - "أن يشرح منطق المكاسب السريعة (Quick Wins) ومنحنى التحول المالي."
+objectivesEn:
+  - "Explain Kotter's 8-step model for organizational transformation."
+  - "Apply the ADKAR model to diagnose and treat individual resistance."
+  - "Explain Operator Driven Reliability (ODR) and the five-senses role."
+  - "Explain Quick Wins logic and the J-Curve of transformation."
+hasTool: true
+toolName: "مسار إدارة التغيير"
+toolNameEn: "Change Management Path"
+quizId: quiz-cmrp-5-3
+sources:
+  - kotter_change
+  - hiatt_adkar
+  - skf_odr
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import ChangeManagementFlow from '../../../components/islands/tools/cmrp/ChangeManagementFlow.tsx';
+import Timeline from '../../../components/ui/figures/Timeline.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp53 } from '../../../data/quiz/cmrp/quiz-cmrp-5-3';
+
+<LangSection lang="ar">
+
+فشل معظم مشاريع أنظمة الصيانة المحوسبة وبرامج الاعتمادية ليس عيباً في المعادلات أو البرمجيات، بل في **إدارة التغيير الثقافي (Change Management)** : لا تُفرض الموثوقية بالقرارات الفوقية، بل تُقاد عبر مراحل منهجية تغير سلوك الأفراد أولاً.
+
+## 1. نموذج كوتر للخطوات الثماني (Kotter Model)
+
+منهجية **جون كوتر (Kotter)** تقود التحول عبر ثماني مراحل متسلسلة:
+
+1. **خلق الإحساس بالإلحاح (Urgency)** : كسر الاطمئنان الكاذب بإظهار خسائر التوقف ومقارنة المنافسين وإثبات أن ثقافة رد الفعل تهدد الوظائف ذاتها — وهي الخطوة الأولى الإلزامية دائماً.
+2. **تشكيل التحالف القيادي الموجه (Guiding Coalition)** : فريق يضم قادة مؤثرين من الصيانة والتشغيل والسلامة والإمداد، لا مهندسي الصيانة وحدهم.
+3. **بناء الرؤية (Vision)** : صياغة هدف بسيط وجذاب يُشرح في دقائق، مثل مصنع بلا أعطال مفاجئة.
+4. **توصيل الرؤية (Communication)** : تكرارها عبر كل قناة — الطوابير الصباحية واللوحات البصرية والاجتماعات — أضعاف ما يظنه القائد كافياً.
+5. **تمكين العاملين وإزالة العقبات (Empowerment)** : توفير الأدوات الدقيقة والتمويل وتبسيط السياسات التي تعاقب المبلِّغ عن العيوب.
+6. **تحقيق المكاسب السريعة (Quick Wins)** : نتائج ملموسة خلال 60 إلى 90 يوماً على معدة حرجة بتكلفة منخفضة لإسكات المشككين وحماية دعم الإدارة.
+7. **ترسيخ المكتسبات (Consolidation)** : استغلال الزخم لتوسيع التخطيط والجدولة والتشحيم الدقيق على باقي الخطوط دون إعلان نصر مبكر.
+8. **تثبيت الثقافة الجديدة (Institutionalization)** : ربط الترقية والمكافآت والتوظيف بالسلوك الاستباقي حتى تصبح الموثوقية طريقة العمل الطبيعية.
+
+<Timeline
+  title="خطوات نموذج كوتر الثماني"
+  phases={[
+    { title: '1. خلق الإحساس بالإلحاح', detail: 'كسر الاطمئنان الكاذب بإظهار خسائر التوقف ومقارنة المنافسين (Urgency).', icon: '🔥' },
+    { title: '2. تشكيل التحالف القيادي الموجه', detail: 'فريق من قادة الصيانة والتشغيل والسلامة والإمداد (Guiding Coalition).', icon: '🤝' },
+    { title: '3. بناء الرؤية', detail: 'هدف بسيط وجذاب يُشرح في دقائق، كمصنع بلا أعطال مفاجئة (Vision).', icon: '🎯' },
+    { title: '4. توصيل الرؤية', detail: 'تكرارها عبر كل قناة أضعاف ما يظنه القائد كافياً (Communication).', icon: '📢' },
+    { title: '5. تمكين العاملين وإزالة العقبات', detail: 'توفير الأدوات الدقيقة والتمويل وتبسيط السياسات (Empowerment).', icon: '🛠' },
+    { title: '6. تحقيق المكاسب السريعة', detail: 'نتائج ملموسة على معدة حرجة بتكلفة منخفضة لإسكات المشككين (Quick Wins).', icon: '⚡', duration: '60 – 90 يوماً' },
+    { title: '7. ترسيخ المكتسبات', detail: 'استغلال الزخم لتوسيع التخطيط والجدولة والتشحيم على باقي الخطوط (Consolidation).', icon: '📈' },
+    { title: '8. تثبيت الثقافة الجديدة', detail: 'ربط الترقية والمكافآت والتوظيف بالسلوك الاستباقي (Institutionalization).', icon: '🏁' },
+  ]}
+  caption="ثماني مراحل متسلسلة تبدأ بخلق الإلحاح وتنتهي بجعل الموثوقية طريقة العمل الطبيعية."
+/>
+
+<Callout type="warn">
+**منحنى التحول المالي (J-Curve):** في البداية قد ترتفع التكاليف قليلاً لتطهير التراكمات المزمنة والتدريب، ولا يصح مطالبة البرنامج بخفض 20% من الميزانية في شهره الأول. المكاسب السريعة المحددة تشتري صبر الإدارة ريثما تنعكس الوفورات الكبرى.
+</Callout>
+
+## 2. نموذج أدكار للتغيير الفردي (ADKAR Model)
+
+بينما يقود كوتر المؤسسة، يعالج نموذج **أدكار (ADKAR)** رحلة كل موظف عبر خمس حلقات متسلسلة: **الوعي (Awareness)** بأسباب التغيير، و**الرغبة (Desire)** والمصلحة الشخصية منه، و**المعرفة (Knowledge)** بكيفية استخدام الأدوات الجديدة، و**القدرة (Ability)** على التطبيق العملي دون خوف، و**التعزيز (Reinforcement)** بالمكافأة المستمرة لمنع الانتكاس.
+
+<Callout type="tip">
+**تشخيص قيادي:** رفض الفني الخبير استخدام الحاسوب اللوحي سببه غالباً نقص القدرة أو المعرفة والخوف من الإحراج أمام الصغار، لا التمرد. العلاج تدريب فردي صبور يحفظ الكرامة وواجهات مبسطة — لا العقوبة ولا الاستغناء عن الخبرة النادرة.
+</Callout>
+
+## 3. الموثوقية بقيادة المشغل (ODR)
+
+فلسفة **الموثوقية بقيادة المشغل (Operator Driven Reliability)** تجعل المشغل خط الدفاع الأول عن الأصل على مدار الساعة: نظافة أساسية، وفحص **بالحواس الخمس** (رائحة الزيت المحترق، سخونة الغلاف، صوت غريب، تسريب مبكر)، وتزييت أولي بسيط، وإبلاغ مبكر عن أدق التغيرات. التشبيه المضيء هو مالك السيارة: لا يفكك المحرك لكنه يتفقد الزيت والإطارات والحرارة لحماية رحلته. وتُسهَّل المهمة **بالإدارة البصرية (Visual Controls)** : نطاقات خضراء وحمراء على العدادات وعلامات واضحة لمناسيب الزيت وقوائم تفتيش مبسطة.
+
+## 4. تضارب المؤشرات وجذر الصراع
+
+الجذر الهيكلي لحرب التشغيل والصيانة غالباً ليس شخصياً بل في **تضارب المؤشرات والحوافز** : مكافأة الإنتاج على الأطنان الفورية فقط تدفع مدير الإنتاج لإلغاء نوافذ الصيانة واستهلاك الماكينة حتى الانهيار. الحل توحيد المؤشرات الاستراتيجية مثل الفاعلية الشاملة (OEE) والتكلفة لكل طن سليم ومؤشر صحة الأصل، لتتحول الاعتمادية إلى مسؤولية مشتركة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Most computerized maintenance system projects and reliability programs fail not because of defective equations or software, but due to **cultural change management**: reliability cannot be imposed by top-down decisions; it must be led through systematic stages that change people's behavior first.
+
+## 1. Kotter's 8-step model
+
+The **Kotter** methodology leads transformation through eight sequential stages:
+
+1. **Create a sense of urgency**: break false complacency by showing downtime losses, comparing competitors, and proving that a reactive culture threatens the jobs themselves — this is always the mandatory first step.
+2. **Form the guiding coalition**: a team of influential leaders from maintenance, operations, safety, and supply — not maintenance engineers alone.
+3. **Build the vision**: craft a simple, compelling goal explainable in minutes, such as a plant with no sudden failures.
+4. **Communicate the vision**: repeat it through every channel — morning briefings, visual boards, and meetings — far more than the leader thinks is enough.
+5. **Empower employees and remove obstacles**: provide precision tools, funding, and simplify the policies that punish those who report defects.
+6. **Generate quick wins**: tangible results within 60 to 90 days on a critical asset at low cost, to silence skeptics and protect management support.
+7. **Consolidate gains**: use the momentum to expand planning, scheduling, and precision lubrication to the remaining lines without declaring early victory.
+8. **Institutionalize the new culture**: tie promotion, rewards, and hiring to proactive behavior so reliability becomes the natural way of working.
+
+<Timeline
+  title="The eight steps of Kotter's model"
+  phases={[
+    { title: '1. Create a sense of urgency', detail: 'Break false complacency by showing downtime losses and comparing competitors (Urgency).', icon: '🔥' },
+    { title: '2. Form the guiding coalition', detail: 'A team of maintenance, operations, safety, and supply leaders (Guiding Coalition).', icon: '🤝' },
+    { title: '3. Build the vision', detail: 'A simple, compelling goal explainable in minutes, like a plant with no sudden failures (Vision).', icon: '🎯' },
+    { title: '4. Communicate the vision', detail: 'Repeat it through every channel far more than the leader thinks is enough (Communication).', icon: '📢' },
+    { title: '5. Empower and remove obstacles', detail: 'Provide precision tools, funding, and simplify policies (Empowerment).', icon: '🛠' },
+    { title: '6. Generate quick wins', detail: 'Tangible results on a critical asset at low cost to silence skeptics (Quick Wins).', icon: '⚡', duration: '60 – 90 days' },
+    { title: '7. Consolidate gains', detail: 'Use the momentum to expand planning, scheduling, and lubrication to the remaining lines (Consolidation).', icon: '📈' },
+    { title: '8. Institutionalize the new culture', detail: 'Tie promotion, rewards, and hiring to proactive behavior (Institutionalization).', icon: '🏁' },
+  ]}
+  caption="Eight sequential stages that start with creating urgency and end by making reliability the natural way of working."
+/>
+
+<Callout type="warn">
+**The J-Curve of transformation:** at the start, costs may rise slightly to clear chronic backlogs and training, and it is wrong to demand a 20% budget cut in the first month. Targeted quick wins buy management patience until the major savings materialize.
+</Callout>
+
+## 2. The ADKAR model of individual change
+
+While Kotter leads the organization, the **ADKAR** model addresses each employee's journey across five sequential rings: **Awareness** of the reasons for change, **Desire** and personal interest in it, **Knowledge** of how to use the new tools, **Ability** to apply it practically without fear, and **Reinforcement** through continuous reward to prevent relapse.
+
+<Callout type="tip">
+**A leadership diagnosis:** an expert technician's refusal to use a tablet is usually caused by a lack of ability or knowledge and the fear of embarrassment in front of younger colleagues, not by rebellion. The remedy is patient one-on-one training that preserves dignity and simplified interfaces — not punishment or dispensing with rare expertise.
+</Callout>
+
+## 3. Operator Driven Reliability (ODR)
+
+The philosophy of **Operator Driven Reliability (ODR)** makes the operator the first line of defense for the asset around the clock: basic cleanliness, inspection with the **five senses** (the smell of burned oil, housing overheating, strange noise, early leaks), simple first-line lubrication, and early reporting of the slightest changes. The illuminating analogy is the car owner: they do not disassemble the engine but check the oil, tires, and temperature to protect their journey. The task is made easier by **visual controls**: green and red zones on gauges, clear markings for oil levels, and simplified inspection checklists.
+
+## 4. Conflicting indicators and the root of conflict
+
+The structural root of the operations-and-maintenance war is often not personal but lies in **conflicting KPIs and incentives**: rewarding production only on instantaneous tonnage pushes the production manager to cancel maintenance windows and run the machine until collapse. The solution is to unify strategic indicators such as Overall Equipment Effectiveness (OEE), cost per good shipped ton, and an asset health index, so that reliability becomes a shared responsibility.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: مسار إدارة التغيير
+
+تنقل عبر خطوات كوتر الثماني، ثم شخّص مقاومة فردية بأسئلة أدكار الخمسة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Change Management Path
+
+Move through Kotter's eight steps, then diagnose individual resistance with the five ADKAR questions.
+
+</LangSection>
+
+<ChangeManagementFlow client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-5-3-t1', 'cmrp-5-3-t2', 'cmrp-5-3-t3', 'cmrp-5-3-t4', 'cmrp-5-3-t5', 'cmrp-5-3-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على خطوة الإلحاح الأولى وفلسفة المشغل وتشخيص أدكار والمكاسب السريعة وتوحيد المؤشرات.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the first urgency step, the operator philosophy, the ADKAR diagnosis, quick wins, and unifying KPIs.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-5-3" questions={quizCmrp53.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **نموذج كوتر** ثماني مراحل تبدأ بخلق الإلحاح وتنتهي بتثبيت الثقافة الجديدة.
+- **نموذج أدكار** خمس حلقات فردية: الوعي والرغبة والمعرفة والقدرة والتعزيز.
+- **الموثوقية بقيادة المشغل (ODR)** تجعل المشغل حارس الأصل بالحواس الخمس والإدارة البصرية.
+- **المكاسب السريعة** خلال 60 إلى 90 يوماً تحمي دعم الإدارة عبر منحنى التحول.
+- **توحيد المؤشرات** مثل الفاعلية الشاملة ينهي حرب التشغيل والصيانة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Kotter's model**: eight stages that start with creating urgency and end with institutionalizing the new culture.
+- **The ADKAR model**: five individual rings — awareness, desire, knowledge, ability, and reinforcement.
+- **Operator Driven Reliability (ODR)** makes the operator the asset guardian through the five senses and visual controls.
+- **Quick wins** within 60 to 90 days protect management support across the J-curve.
+- **Unifying KPIs**, such as OEE, ends the operations-and-maintenance war.
+
+</LangSection>

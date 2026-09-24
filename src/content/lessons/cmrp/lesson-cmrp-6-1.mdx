@@ -1,0 +1,226 @@
+---
+id: lesson-cmrp-6-1
+course: cmrp
+station: station-cmrp-6
+number: "6.1"
+title: "خطة الصيانة الاستراتيجية وإدارة الأصول (ISO 55000)"
+titleEn: "Strategic Asset Management & Value Creation"
+minutes: 30
+order: 1
+objectives:
+  - "أن يشرح المتعلم خطة إدارة الأصول الاستراتيجية (SAMP) وعلاقتها بمعيار ISO 55000."
+  - "أن يحسب تكلفة دورة الحياة (LCC) ويميز بين النفقات الرأسمالية (CapEx) والتشغيلية (OpEx)."
+  - "أن يحسب مؤشر تكلفة الصيانة كنسبة من القيمة الاستبدالية (ERV) ويقارنه بالمعدل العالمي 2% إلى 3%."
+  - "أن يصيغ أهدافاً ذكية (SMART) ويدافع عن ميزانية الصيانة بلغة القيمة المالية."
+objectivesEn:
+  - "Explain the Strategic Asset Management Plan (SAMP) and its link to ISO 55000."
+  - "Calculate Life Cycle Cost (LCC) and distinguish CapEx from OpEx."
+  - "Compute maintenance cost as a percentage of ERV against the 2%-3% world-class benchmark."
+  - "Write SMART objectives and defend the maintenance budget in financial value language."
+hasTool: true
+toolName: "حاسبة تكلفة دورة الحياة"
+toolNameEn: "Life Cycle Cost Calculator"
+quizId: quiz-cmrp-6-1
+sources:
+  - iso_55000
+  - dhillon_lcc
+  - smrp_metrics
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LifeCycleCostCalculator from '../../../components/islands/tools/cmrp/LifeCycleCostCalculator.tsx';
+import StatGrid from '../../../components/ui/figures/StatGrid.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp61 } from '../../../data/quiz/cmrp/quiz-cmrp-6-1';
+
+<LangSection lang="ar">
+
+المدير المالي لا يشتري «موثوقية»، بل يشتري عائداً ومخاطرة أقل. هذا الدرس يعلمك لغة الإدارة العليا: كيف تترجم أهداف الشركة إلى خطة أصول، وكيف تثبت بالأرقام أن الصيانة الاستباقية استثمار يدر أرباحاً لا بند مصروفات يُخفض عند أول ضائقة.
+
+## 1. خطة إدارة الأصول الاستراتيجية (SAMP) ومعيار ISO 55000
+
+خطة إدارة الأصول الاستراتيجية (Strategic Asset Management Plan) هي الوثيقة التوجيهية العليا التي يحددها معيار ISO 55000، ووظيفتها ترجمة الأهداف التجارية الكبرى للشركة إلى أهداف صيانة واعتمادية محددة وقابلة للقياس عبر دورة حياة الأصول كاملة.
+
+- **من مركز تكلفة (Cost Center) إلى محرك قيمة (Value Driver):** النظرة المتأخرة ترى الصيانة بالوعة مصروفات، بينما ترى فلسفة SMRP أن كل ساعة إتاحة إضافية تتحول إلى أطنان منتجة وأرباح تفوق كلفة الصيانة أضعافاً.
+- **الخيط الذهبي:** يجب أن يتصل الهدف الأعلى للشركة بالخطة الاستراتيجية، ثم بوثيقة SAMP، ثم بخطط إدارة الأصول، نزولاً إلى مهام الصيانة الوقائية التي ينفذها الفني كل يوم — أي انقطاع في هذا الخيط يجعل العمل اليومي منفصلاً عن استراتيجية الشركة.
+
+<Callout type="tip">
+**للدفاع عن ميزانيتك أمام المدير المالي:** لا تتحدث عن عدد أوامر الشغل، بل عن حماية الطاقة الإنتاجية وتكلفة الفرصة البديلة للتوقف. خفض الميزانية 25% قد يرفع التوقفات غير المخططة 40%، فتخسر الشركة أضعاف ما وفرته ظاهرياً.
+</Callout>
+
+## 2. تكلفة دورة الحياة (LCC) وفخ السعر الأرخص
+
+تكلفة دورة الحياة (Life Cycle Cost) هي إجمالي ما يكلفه الأصل منذ الفكرة والتصميم والشراء والتركيب، مروراً بسنوات التشغيل والصيانة وقطع الغيار وخسائر التوقف والطاقة، وحتى التكهين النهائي مخصوماً منه القيمة التخريدية.
+
+- **النفقات الرأسمالية (CapEx):** مدفوعات الشراء والتجديدات الكبرى لمرة واحدة.
+- **النفقات التشغيلية (OpEx):** الإنفاق المستمر على التشغيل والصيانة والقطع والعمالة.
+- **القاعدة الذهبية:** سعر الشراء الأولي لا يمثل عادة سوى 10% إلى 20% فقط من إجمالي LCC، فاختيار العرض الأرخص شراءً هو الفخ الأشهر في المشتريات.
+
+المثال القياسي: خط تعبئة بعمر 10 سنوات. المورد (أ): شراء 500,000 دولار وصيانة سنوية 120,000 دولار، فالإجمالي 500,000 + (10 × 120,000) = 1,700,000 دولار. المورد (ب): شراء 800,000 دولار وصيانة سنوية 30,000 دولار، فالإجمالي 800,000 + (10 × 30,000) = 1,100,000 دولار. الخيار (ب) الأغلى شراءً يوفر صافي 600,000 دولار.
+
+## 3. مؤشر تكلفة الصيانة إلى القيمة الاستبدالية (ERV)
+
+قيمة الاستبدال التقديرية (Estimated Replacement Value) هي كلفة بناء مصنع أو أصل مطابق بالكامل بالأسعار الراهنة. وبما أن الأرقام المطلقة لا تقارن بين المصانع، اعتمد مقياس SMRP النسبة المعيارية:
+
+تكلفة الصيانة كنسبة من ERV = (إجمالي تكلفة الصيانة السنوية ÷ قيمة ERV) × 100
+
+- **2% إلى 3%:** المعدل العالمي للشركات الرائدة (World-Class).
+- **3.5% إلى 5%:** أداء متوسط يغلب عليه العمل التفاعلي.
+- **أكثر من 6%:** بيئة إطفاء حرائق وهدر فادح.
+
+مثال: مصنع قيمته 500 مليون دولار وينفق 40 مليون دولار صيانة سنوياً، فالنسبة (40 ÷ 500) × 100 = 8%، أي نحو ثلاثة إلى أربعة أضعاف المعدل العالمي، وهذا دليل ثقافة رد فعل مفرطة لا دليل اهتمام بالصيانة.
+
+<StatGrid
+  title="مؤشر تكلفة الصيانة نسبة إلى القيمة الاستبدالية (ERV)"
+  stats={[
+    { value: '2% – 3%', label: 'المعدل العالمي للريادة', note: 'الشركات الرائدة (World-Class).', color: 'teal' },
+    { value: '3.5% – 5%', label: 'أداء متوسط', note: 'يغلب عليه العمل التفاعلي.', color: 'amber' },
+    { value: '+6%', label: 'هدر فادح', note: 'بيئة إطفاء حرائق وإهدار للموارد.', color: 'rose' },
+    { value: '8%', label: 'مثال المصنع', note: 'مصنع 500 مليون ينفق 40 مليوناً سنوياً — ثلاثة إلى أربعة أضعاف المعدل.', color: 'brand' },
+  ]}
+  caption="مقياس SMRP المعياري للتقارب بين المصانع؛ الأرقام المطلقة لا تصلح للمقارنة."
+/>
+
+## 4. الأهداف الذكية (SMART) والدفاع عن الميزانية
+
+الأهداف الذكية (SMART Objectives) هي أهداف محددة (Specific) وقابلة للقياس (Measurable) وقابلة للتحقيق (Achievable) ومرتبطة باستراتيجية الشركة (Relevant) ومحددة بإطار زمني (Time-bound). قول «نسعى لتحسين الصيانة وإرضاء الإنتاج» هدف مرفوض لأنه فضفاض لا يُقاس ولا يُحاسب عليه أحد. الصياغة الصحيحة: «خفض التوقف غير المخطط لخط التعبئة 1 من 6% إلى أقل من 2.5% بنهاية الربع الرابع».
+
+<Callout type="warn">
+**مفهوم خاطئ:** «شراء التكنولوجيا أو خفض الميزانية قرار مالي بحت لا علاقة له بالهندسة.»
+**الحقيقة:** كل قرار مالي في الأصول قرار هندسي مؤجل الدفع: التوفير اليوم في الزيوت والتدريب والقطع يتحول إلى أعطال طارئة وعمل إضافي وقطع مستعجلة تكلف أضعافاً خلال أشهر.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+The CFO does not buy "reliability"; they buy a return and less risk. This lesson teaches you the language of senior management: how to translate company goals into an asset plan, and how to prove with numbers that proactive maintenance is a profit-generating investment rather than an expense line to be cut at the first squeeze.
+
+## 1. The Strategic Asset Management Plan (SAMP) and ISO 55000
+
+The Strategic Asset Management Plan (SAMP) is the top-level guiding document defined by ISO 55000; its function is to translate the company's major business goals into specific, measurable maintenance and reliability objectives across the full asset life cycle.
+
+- **From cost center to value driver**: the outdated view treats maintenance as an expense sink, while the SMRP philosophy sees every additional hour of availability turning into produced tons and profits that exceed the cost of maintenance many times over.
+- **The golden thread**: the company's top objective must connect to the strategic plan, then to the SAMP, then to asset management plans, down to the preventive maintenance tasks the technician performs every day — any break in this thread detaches daily work from company strategy.
+
+<Callout type="tip">
+**To defend your budget in front of the CFO:** do not talk about the number of work orders, but about protecting production capacity and the opportunity cost of downtime. Cutting the budget by 25% may raise unplanned downtime by 40%, and the company loses many times what it seemingly saved.
+</Callout>
+
+## 2. Life Cycle Cost (LCC) and the cheaper-price trap
+
+Life Cycle Cost (LCC) is the total cost of an asset from concept, design, purchase, and installation, through the years of operation, maintenance, spares, downtime losses, and energy, up to final disposal net of salvage value.
+
+- **Capital expenditures (CapEx)**: one-time purchase payments and major renewals.
+- **Operating expenditures (OpEx)**: the ongoing spending on operation, maintenance, parts, and labor.
+- **The golden rule**: the initial purchase price typically represents only 10% to 20% of the total LCC, so picking the cheapest purchase offer is the best-known procurement trap.
+
+The standard example: a packaging line with a 10-year life. Supplier (A): $500,000 purchase and $120,000 annual maintenance, so the total is 500,000 + (10 × 120,000) = $1,700,000. Supplier (B): $800,000 purchase and $30,000 annual maintenance, so the total is 800,000 + (10 × 30,000) = $1,100,000. Choice (B), the more expensive to buy, saves a net $600,000.
+
+## 3. Maintenance cost as a percentage of ERV
+
+Estimated Replacement Value (ERV) is the cost of building a fully equivalent plant or asset at current prices. Since absolute numbers cannot be compared between plants, the SMRP metric adopts the standard ratio:
+
+Maintenance cost as a % of ERV = (Total annual maintenance cost ÷ ERV value) × 100
+
+- **2% to 3%**: the world-class benchmark for leading companies.
+- **3.5% to 5%**: average performance dominated by reactive work.
+- **More than 6%**: a firefighting environment with serious waste.
+
+Example: a plant worth $500 million spends $40 million on maintenance each year, so the ratio is (40 ÷ 500) × 100 = 8%, roughly three to four times the world-class rate — evidence of an over-reactive culture, not of care for maintenance.
+
+<StatGrid
+  title="Maintenance cost as a percentage of ERV"
+  stats={[
+    { value: '2% – 3%', label: 'World-class benchmark', note: 'Leading companies (World-Class).', color: 'teal' },
+    { value: '3.5% – 5%', label: 'Average performance', note: 'Dominated by reactive work.', color: 'amber' },
+    { value: '+6%', label: 'Serious waste', note: 'A firefighting environment and resource waste.', color: 'rose' },
+    { value: '8%', label: 'The plant example', note: 'A $500M plant spending $40M a year — three to four times the benchmark.', color: 'brand' },
+  ]}
+  caption="The standard SMRP metric for comparing plants; absolute numbers are not suitable for comparison."
+/>
+
+## 4. SMART objectives and defending the budget
+
+SMART objectives are Specific, Measurable, Achievable, Relevant to the company's strategy, and Time-bound. Saying "we aim to improve maintenance and satisfy production" is a rejected goal because it is vague, unmeasurable, and unaccountable. The correct wording: "reduce unplanned downtime on packaging line 1 from 6% to below 2.5% by the end of Q4".
+
+<Callout type="warn">
+**Misconception:** "Buying technology or cutting the budget is a purely financial decision with no connection to engineering."
+**Fact:** every financial decision on assets is engineering debt deferred: today's savings on lubricants, training, and parts turn into emergency failures, overtime, and expedited parts costing many times over within months.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: حاسبة تكلفة دورة الحياة
+
+قارن بين خيارين: أدخل سعر الشراء والتكلفة السنوية لكل منهما وحرك العمر الافتراضي، ولاحظ كيف يبتلع الإنفاق التشغيلي المرتفع أي توفير أولي في الشراء.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Life Cycle Cost Calculator
+
+Compare two options: enter the purchase price and annual cost for each, move the service life slider, and watch how high operating spending swallows any initial purchase saving.
+
+</LangSection>
+
+<LifeCycleCostCalculator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-6-1-t1', 'cmrp-6-1-t2', 'cmrp-6-1-t3', 'cmrp-6-1-t4', 'cmrp-6-1-t5', 'cmrp-6-1-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على الدفاع عن الميزانية بلغة القيمة، وحساب LCC، ونسبة ERV، وصياغة الأهداف الذكية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on defending the budget in value terms, LCC calculations, the ERV ratio, and writing SMART objectives.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-6-1" questions={quizCmrp61.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **SAMP** وثيقة ISO 55000 التي تترجم أهداف الشركة إلى خطط أصول قابلة للقياس، وتحول الصيانة من مركز تكلفة إلى محرك قيمة.
+- **LCC** = الشراء + مجموع التكاليف السنوية عبر العمر، وسعر الشراء 10% إلى 20% فقط من الإجمالي — الأرخص شراءً هو الأغلى غالباً.
+- **نسبة الصيانة إلى ERV** هي المقياس العالمي للمقارنة، ومعدل الريادة 2% إلى 3%، و8% تعني هدراً تفاعلياً فادحاً.
+- **الأهداف الذكية** محددة وقابلة للقياس والتحقيق ومرتبطة بالاستراتيجية ومؤقتة، وهي لغة الدفاع عن الميزانية أمام الإدارة العليا.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **SAMP** is the ISO 55000 document that translates company goals into measurable asset plans and shifts maintenance from a cost center to a value driver.
+- **LCC** = purchase + the sum of annual costs over the life, and purchase price is only 10% to 20% of the total — the cheapest to buy is often the most expensive.
+- **The maintenance-to-ERV ratio** is the global comparison metric, with a world-class benchmark of 2% to 3%; 8% means critical reactive waste.
+- **SMART objectives** are specific, measurable, achievable, strategically relevant, and time-bound — the language for defending the budget in front of senior management.
+
+</LangSection>

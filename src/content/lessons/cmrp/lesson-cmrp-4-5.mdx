@@ -1,0 +1,195 @@
+---
+id: lesson-cmrp-4-5
+course: cmrp
+station: station-cmrp-4
+number: "4.5"
+title: "مؤشرات إدارة الأعمال (Backlog, Compliance, Wrench Time)"
+titleEn: "Work Management KPIs & Productivity"
+minutes: 35
+order: 5
+objectives:
+  - "أن يفسر المتعلم مؤشر زمن المفتاح والفرق بين المستوى المعتاد والعالمي."
+  - "أن يطبق قاعدة 10% للالتزام بالصيانة الوقائية على أي تردد."
+  - "أن يقيم نسب العمل الإضافي وانحراف التخطيط وتقادم أوامر الشغل."
+  - "أن يحفظ الحدود العالمية لمؤشرات الركن الخامس الأربعة."
+objectivesEn:
+  - "Interpret wrench time and contrast typical versus world-class levels."
+  - "Apply the 10% PM compliance rule to any task frequency."
+  - "Evaluate overtime rates, planning variance, and work order aging."
+  - "Recall the world-class limits of the four Pillar 5 indicators."
+hasTool: true
+toolName: "حاسبة زمن المفتاح"
+toolNameEn: "Wrench Time Calculator"
+quizId: quiz-cmrp-4-5
+sources:
+  - palmer
+  - smrp_metrics
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import WrenchTimeCalculator from '../../../components/islands/tools/cmrp/WrenchTimeCalculator.tsx';
+import StatGrid from '../../../components/ui/figures/StatGrid.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp45 } from '../../../data/quiz/cmrp/quiz-cmrp-4-5';
+
+<LangSection lang="ar">
+
+تقاس جودة إدارة الأعمال بالأرقام لا بالانطباعات. أربعة مؤشرات تحسم هل المنشأة مخططة أم تفاعلية: زمن المفتاح، والالتزام بالصيانة الوقائية، والالتزام بالجدول، والعمل الإضافي — ويحرسها مؤشرا انحراف التخطيط وتقادم الأوامر.
+
+## 1. زمن المفتاح: لغز الإنتاجية الأكبر
+
+زمن المفتاح (Wrench Time) هو نسبة وقت الفني التي يقضيها ويده على العدة يعمل مباشرة على الأصل، مستبعدا التنقل وانتظار القطع والتصاريح والاجتماعات. المفاجأة: الفني في المصنع غير المخطط يحقق 25% إلى 35% فقط (نحو ساعتين إلى ساعتين ونصف في وردية 8 ساعات)، بينما يحقق مصنع النخبة 55% إلى 65% بالتخطيط وتجميع القطع المسبق — أي ضعف الإنتاجية دون جهد بدني إضافي، بمجرد إزالة العوائق.
+
+<Callout type="tip">
+**الخلاصة الإدارية:** لا تطلب من الفنيين جهدا أكبر بل عوائق أقل. كل دقيقة انتظار قطع أو تصريح تُخصم مباشرة من زمن المفتاح.
+</Callout>
+
+## 2. قاعدة 10% للالتزام بالصيانة الوقائية
+
+لا يكفي تنفيذ الصيانة الوقائية (PM) بل يجب أن تقع داخل نافذة السماح:
+
+**نافذة السماح = تردد المهمة ± (10% × التردد)**
+
+فالمهمة الشهرية (30 يوما) نافذتها ±3 أيام: من اليوم 27 إلى اليوم 33. تنفيذها في اليوم 35 يسجلها النظام غير ملتزمة (Non-compliant). والمستهدف العالمي للالتزام الوقائي من 95% إلى 99%، لأن أي تأخير مزمن يعني تراكم مخاطر الأعطال.
+
+## 3. بقية المؤشرات الحارسة
+
+- **الالتزام بالجدول الأسبوعي:** المنجز من المجدول ÷ المجدول، والمستهدف من 80% إلى 85% فأعلى.
+- **نسبة العمل الإضافي:** الإضافي ÷ العادي، والحد الصحي من 5% إلى 10%. تجاوز 20% عرض صريح لسيادة الطوارئ وإرهاق الفريق وتضخم الحوادث.
+- **انحراف التخطيط (Planning Variance):** الفرق بين الساعات المقدرة والفعلية. أداة تعلم مستمر لتحديث مكتبة الأوقات المعيارية لا أداة عقاب للمخطط.
+- **تقادم أوامر الشغل (Aging):** أي أمر يتجاوز 90 يوما في التراكم دون حركة يراجع: إما إلغاء لانتفاء الحاجة، أو إعادة تقييم بالأولوية والتخطيط. التنقية الدورية تحمي صدق مؤشر التراكم.
+
+<StatGrid
+  title="حدود النخبة الأربعة لمؤشرات إدارة الأعمال"
+  stats={[
+    { value: '55% – 65%', label: 'زمن المفتاح', note: 'مستوى مصنع النخبة — المعتاد 25% إلى 35% فقط في المصنع غير المخطط.', color: 'brand' },
+    { value: '95% – 99%', label: 'الالتزام الوقائي', note: 'المستهدف العالمي للالتزام بالصيانة الوقائية.', color: 'teal' },
+    { value: '80% – 85%', label: 'الالتزام بالجدول', note: 'نسبة المنجز من المجدول إلى المجدول.', color: 'amber' },
+    { value: '5% – 10%', label: 'العمل الإضافي', note: 'الحد الصحي — تجاوز 20% عرض صريح لسيادة الطوارئ.', color: 'rose' },
+  ]}
+  caption="احفظ هذه الأرقام — الامتحان يسأل عنها مباشرة."
+/>
+
+<Callout type="warn">
+**حدود النخبة الأربعة معا:** زمن مفتاح 55% إلى 65%، والتزام وقائي 95% إلى 99%، والتزام بالجدول 80% إلى 85%، وعمل إضافي 5% إلى 10%. احفظها أرقاما فالامتحان يسأل عنها مباشرة.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+The quality of work management is measured in numbers, not impressions. Four indicators decide whether the facility is planned or reactive: wrench time, preventive maintenance compliance, schedule compliance, and overtime — guarded by the planning-variance and work order aging indicators.
+
+## 1. Wrench time: the greatest productivity puzzle
+
+Wrench time is the proportion of a technician's time spent with his hand on the tool working directly on the asset, excluding travel, waiting for parts and permits, and meetings. The surprise: a technician in an unplanned plant achieves only 25% to 35% (about two to two and a half hours in an 8-hour shift), while an elite plant achieves 55% to 65% through planning and advance parts kitting — double the productivity without extra physical effort, simply by removing obstacles.
+
+<Callout type="tip">
+**The management takeaway:** do not ask technicians for more effort but for fewer obstacles. Every minute of waiting for parts or a permit is deducted directly from wrench time.
+</Callout>
+
+## 2. The 10% rule for preventive maintenance compliance
+
+Performing preventive maintenance (PM) is not enough; it must fall inside the tolerance window:
+
+**Tolerance window = task frequency ± (10% × frequency)**
+
+The monthly task (30 days) has a window of ±3 days: from day 27 to day 33. Performing it on day 35 makes the system record it as non-compliant. The world target for PM compliance is 95% to 99%, because any chronic delay means an accumulation of failure risk.
+
+## 3. The remaining guard indicators
+
+- **Weekly schedule compliance:** completed scheduled ÷ scheduled, with a target of 80% to 85% or higher.
+- **Overtime ratio:** overtime ÷ regular, with a healthy limit of 5% to 10%. Exceeding 20% is a clear sign of emergency dominance, team exhaustion, and inflated incidents.
+- **Planning Variance:** the difference between the estimated and actual hours. A continuous-learning tool to update the standard time library, not a punishment tool for the planner.
+- **Work order Aging:** any order exceeding 90 days in backlog without movement is reviewed: either cancelled because the need has lapsed, or re-evaluated for priority and planning. Periodic scrubbing protects the credibility of the backlog index.
+
+<StatGrid
+  title="The four elite limits of work management indicators"
+  stats={[
+    { value: '55% – 65%', label: 'Wrench time', note: 'Elite plant level — typical is only 25% to 35% in an unplanned plant.', color: 'brand' },
+    { value: '95% – 99%', label: 'PM compliance', note: 'The world target for preventive maintenance compliance.', color: 'teal' },
+    { value: '80% – 85%', label: 'Schedule compliance', note: 'The ratio of completed scheduled hours to scheduled hours.', color: 'amber' },
+    { value: '5% – 10%', label: 'Overtime', note: 'The healthy limit — exceeding 20% is a clear sign of emergency dominance.', color: 'rose' },
+  ]}
+  caption="Memorize these numbers — the exam asks about them directly."
+/>
+
+<Callout type="warn">
+**The four elite limits together:** wrench time of 55% to 65%, PM compliance of 95% to 99%, schedule compliance of 80% to 85%, and overtime of 5% to 10%. Memorize them as numbers because the exam asks about them directly.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: حاسبة زمن المفتاح
+
+وزّع دقائق الوردية على العمل المباشر والتنقل والانتظار والاجتماعات، وشاهد النسبة والحكم عليها فورا.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Wrench Time Calculator
+
+Distribute the shift minutes across direct work, travel, waiting, and meetings, and watch the ratio and its judgment instantly.
+
+</LangSection>
+
+<WrenchTimeCalculator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-4-5-t1', 'cmrp-4-5-t2', 'cmrp-4-5-t3', 'cmrp-4-5-t4', 'cmrp-4-5-t5', 'cmrp-4-5-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على حساب زمن المفتاح وقاعدة 10% والعمل الإضافي وانحراف التخطيط وتنقية التراكم.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on wrench-time calculation, the 10% rule, overtime, planning variance, and backlog scrubbing.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-4-5" questions={quizCmrp45.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **زمن المفتاح المعتاد 25% إلى 35% والعالمي 55% إلى 65%** — والفرق عوائق مزالة لا جهد مضاعف.
+- **قاعدة 10%:** المهمة الشهرية (30 يوما) تقبل من اليوم 27 إلى 33، وما بعدها غير ملتزم.
+- **الحدود العالمية:** التزام وقائي 95% إلى 99%، والتزام بالجدول 80% إلى 85%، وعمل إضافي 5% إلى 10%.
+- **انحراف التخطيط أداة تعلم** وتنقية الأوامر المتجاوزة 90 يوما تحمي صدق التراكم.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Typical wrench time of 25% to 35% and world-class of 55% to 65%** — the difference is removed obstacles, not doubled effort.
+- **The 10% rule:** a monthly task (30 days) is accepted from day 27 to 33; beyond that it is non-compliant.
+- **The world limits:** PM compliance of 95% to 99%, schedule compliance of 80% to 85%, and overtime of 5% to 10%.
+- **Planning variance is a learning tool**, and scrubbing orders over 90 days protects the credibility of the backlog.
+
+</LangSection>

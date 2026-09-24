@@ -1,0 +1,433 @@
+---
+id: lesson-cama-2-3
+course: cama
+station: station-cama-2
+number: "2.3"
+title: "خطة إدارة الأصول والأهداف"
+titleEn: "Asset Management Plan & Objectives"
+minutes: 30
+order: 3
+objectives:
+  - "أن يشرح المتعلم مكونات سياسة إدارة الأصول."
+  - "أن يصوغ أهدافاً ذكية (SMART) لإدارة الأصول."
+  - "أن يبني خطة إدارة أصول تربط الأهداف بمؤشرات الأداء وخطط العمل."
+objectivesEn:
+  - "Explain the components of the asset management policy."
+  - "Formulate SMART asset management objectives."
+  - "Build an asset management plan linking objectives to KPIs and action plans."
+hasTool: true
+toolName: "باني الخطة الاستراتيجية"
+toolNameEn: "Strategy Plan Builder"
+quizId: quiz-cama-2-3
+sources:
+  - iso55000
+  - iso55001
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import StrategyPlanBuilder from '../../../components/islands/tools/cama/StrategyPlanBuilder.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import Hierarchy from '../../../components/ui/figures/Hierarchy.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama23 } from '../../../data/quiz/cama/quiz-cama-2-3';
+
+<LangSection lang="ar">
+
+الخطة الاستراتيجية وثيقة حية تترجم الرؤية إلى أفعال قابلة للقياس. هذا الدرس يعلمك كيف تبني خطة إدارة أصول شاملة: من السياسة إلى الأهداف إلى مؤشرات الأداء إلى خطط العمل إلى المراجعة. هنا يلتفي التحليل بالتنفيذ.
+
+## 1. سياسة إدارة الأصول (Asset Management Policy)
+
+السياسة هي الإعلان الرسمي لمبادئ إدارة الأصول في المنظمة. هي الأساس الذي تُبنى عليه كل الخطط والإجراءات. تتكون من أربعة عناصر:
+
+### 1.1 مبادئ سياسة إدارة الأصول
+
+- **الالتزام بالقيمة**: إدارة الأصول تهدف إلى تعظيم القيمة للمالكين وأصحاب المصلحة.
+- **المساءلة**: لكل دور مسؤولية واضحة ومحددة في إدارة الأصول.
+- **التكامل**: إدارة الأصول ليست جزءاً منعزلة بل متكاملة مع الاستراتيجية العامة.
+- **التحسين المستمر**: المنظمة تسعى دائماً لتحسين أدائها في إدارة الأصول.
+
+### 1.2 محتويات السياسة
+
+سياسة إدارة الأصول الواضحة تشمل:
+
+- **الغرض**: لماذا نمارس إدارة الأصول؟ (تعظيم القيمة، خفض المخاطر، الامتثال).
+- **النطاق**: على من تنطبق السياسة؟ (جميع الأصول، أو فئات محددة).
+- **الأدوار والمسؤوليات**: من المسؤول عن ماذا؟
+- **الالتزامات**: ما الذي تلتزم به المنظمة؟ (التحسين المستمر، الامتثال للمعايير).
+- **المراجعة**: كيف تتم مراجعة السياسة وتحديثها؟
+
+<Callout type="tip">
+**القاعدة:** السياسة يجب أن تكون مختصرة وواضحة ومعلنة لجميع العاملين. سياسة مكتوبة بـ 50 صفحة لا يقرأها أحد أفضل سياسة من صفحة واحدة يعرفها الجميع ويطبقها.
+</Callout>
+
+## 2. وضع أهداف إدارة الأصول (Setting AM Objectives)
+
+بعد السياسة (اللماذا)، تأتي الأهداف (ماذا نريد تحقيقه). الأهداف يجب أن تكون ذكية وفق معايير SMART:
+
+### 2.1 خصائص الأهداف الذكية
+
+- **محددة (Specific)**: "تحسين توفر خط الإنتاج A" بدلاً من "تحسين الأداء".
+- **قابلة للقياس (Measurable)**: "زيادة التوفر من 85% إلى 92%" بدلاً من "تحسين التوفر".
+- **قابلة للتحقيق (Achievable)**: هدف واقعي يراعي الموارد المتاحة.
+ذات صلة (Relevant)**: مرتبطة باستراتيجية المنظمة العامة.
+- **محددة زمنياً (Time-bound)**: "خلال 18 شهراً" بدلاً من "قريباً".
+
+### 2.2 مستويات الأهداف
+
+الأهداف تُضع على ثلاثة مستويات:
+
+- **الأهداف الاستراتيجية** (_LONG-TERM_): أهداف خمسية أو أكثر تتلاءم مع رؤية المنظمة. مثال: "خفض تكاليف دورة حياة الأصول بنسبة 20% خلال 5 سنوات".
+- **الأهداف التكتيكية** (MID-TERM): أهداف سنوية أو لسنتين تدعم الأهداف الاستراتيجية. مثال: "تحقيق نسبة توافر 95% لجميع الأصول الحرجة خلال السنة الحالية".
+- **الأهداف التشغيلية** (SHORT-TERM): أهداف شهرية أو ربع سنوية قابلة للقياس المباشر. مثال: "إتمام صيانة وقائية لجميع المضخات الحرجة قبل نهاية الربع الأول".
+
+<Hierarchy
+  title="مستويات الأهداف الثلاثة في إدارة الأصول"
+  direction="top-down"
+  levels={[
+    { label: 'الأهداف الاستراتيجية (Strategic)', detail: 'أهداف خمسية أو أكثر تتماشى مع رؤية المنظمة — مثال: خفض تكاليف دورة حياة الأصول 20% خلال 5 سنوات.', icon: '🎯' },
+    { label: 'الأهداف التكتيكية (Tactical)', detail: 'أهداف سنوية أو لسنتين تدعم الأهداف الاستراتيجية — مثال: تحقيق توافر 95% للأصول الحرجة خلال السنة الحالية.', icon: '🗂' },
+    { label: 'الأهداف التشغيلية (Operational)', detail: 'أهداف شهرية أو ربع سنوية قابلة للقياس المباشر — مثال: إتمام الصيانة الوقائية للمضخات الحرجة قبل نهاية الربع الأول.', icon: '🔧' },
+  ]}
+  caption="هرم تبعية: التكتيكي ينفّذ الاستراتيجي، والتشغيلي يُقاس مباشرة ويدعم التكتيكي حتى تتبلور رؤية المنظمة."
+/>
+
+## 3. مؤشرات الأداء (KPIs) لمحة على إدارة الأصول
+
+مؤشرات الأداء هي أرقام تقيس مدى تحقيق الأهداف. بدون مؤشرات، الأهداف مجرد كلام جميل:
+
+### 3.1 مؤشرات التوفر والأداء
+
+- **نسبة التوفر (Availability)**: الوقت الفعلي ÷ الوقت المطلوب × 100.
+- **معدل الأعطال (MTBF)**: متوسط الوقت بين أعطال متتالية.
+- **متوسط وقت الإصلاح (MTTR)**: متوسط الوقت اللازم لإعادة الأصل للخدمة.
+- **KPIs efficiency_ratio**: نسبة ساعات الصيانة الفعلية إلى ساعات العمل المتاحة.
+
+### 3.2 مؤشرات التكلفة
+
+- **تكلفة الصيانة لكل وحدة إنتاج**: إجمالي تكلفة الصيانة ÷ عدد الوحدات المنتجة.
+- **نسبة تكلفة الصيانة إلى القيمة الاستبدالية**: هل تكلفة الصيانة معقولة مقارنة بقيمة الأصل؟
+- **الانحراف عن الميزانية**: الفرق بين الميزانية المخططة والمصروفة فعلياً.
+
+### 3.3 مؤشرات السلامة والبيئة
+
+- **عدد الحوادث وال إصابات**: كل إصابة هي فشل في إدارة الأصول.
+- **عدد التسريبات البيئية**: كل تسريب هو فشل في الصيانة الوقائية.
+- **ال.dotations من الامتثال**: هل نمتثل للمعايير التشريعية؟
+
+<Callout type="example">
+**سيناريو عملي:** مصنع حديد وضع هدفاً "زيادة توفر خط السحب من 88% إلى 95% خلال 12 شهراً". مؤشرات الأداء: MTBF (من 200 ساعة إلى 350 ساعة)، MTTR (من 8 ساعات إلى 4 ساعات)، تكلفة الصيانة لكل طن (من 15 ريال إلى 12 ريال). بدون هذه المؤشرات، لا يمكن معرفة هل الهدف حقق أم لا.
+</Callout>
+
+## 4. تخطيط الموارد (Resource Planning)
+
+الخطة بدون موارد هي أمنية. تخطيط الموارد يشمل:
+
+### 4.1 الموارد البشرية
+
+- **عدد الفنيين المطلوبين**: حسب حجم الأصل والصيانة المطلوبة.
+- **المهارات المطلوبة**: هندسة ميكانيكية، كهرباء، إلكترونيات، برمجة.
+- **التدريب والتطوير**: كيف تسد الفجوة المهارية؟
+- **المقاولون الخارجيون**: متى تستعين بالخارج؟
+
+### 4.2 الموارد المالية
+
+- **ميزانية الصيانة التشغيلية (OPEX)**: تكاليف الصيانة اليومية.
+- **ميزانية الاستثمار (CAPEX)**: استبدال الأصول وشراء معدات جديدة.
+- **الاحتياطي الطارئ**: ميزانية غير مخطط لها للطوارئ.
+
+### 4.3 الموارد المادية
+
+- **قطع الغيار**: المخزون الأساسي والتأميني.
+- **الأدوات والمعدات**: جهاز قياس الاهتزاز، كاميرا حرارية، أدوات الفك.
+- **الأنظمة**: CMMS، CAFM، أنظمة المراقبة.
+
+## 5. خطط العمل (Action Plans)
+
+خطط العمل هي الوثيقة التي تترجم الأهداف إلى إجراءات عملية. لكل خطة عمل:
+
+- **الإجراء المحدد**: ماذا ستفعل بالضبط؟
+- **المسؤول**: من تنفيذ هذا الإجراء؟
+- **الجدول الزمني**: متى يبدأ ومتى ينتهي؟
+- **الموارد المطلوبة**: كم ميزانية وكم فني وكم ساعات؟
+- **مؤشر النجاح**: كيف تعرف أن الإجراء نجح؟
+
+## 6. المراجعة والتقييم (Monitoring & Review)
+
+الخطة الاستراتيجية يجب أن تُراجع دورياً لضمان فعاليتها:
+
+### 6.1 مراجعة أداء KPIs
+
+- **شهرياً**: مراجعة المؤشرات التشغيلية (MTBF, MTTR, التوفر).
+- **ربع سنوياً**: مراجعة المؤشرات المالية والميزانية.
+- **سنوياً**: مراجعة شاملة للأهداف الاستراتيجية.
+
+### 6.2 مراجعة خطة إدارة الأصول
+
+- **سنوياً**: تحديث السياسة والأهداف حسب التغيرات في السياق.
+- **عند تغير جوهري**: اندماج، استحواذ، تغيير في التشريعات.
+
+### 6.3 التحسين المستمر (PDCA)
+
+خطة إدارة الأصول تتبع دورة PDCA:
+
+1. **خطط (Plan)**: حدد الأهداف والطرق.
+2. **نفِّذ (Do)**: نفذ الخطط.
+3. **تحقق (Check)**: قِس النتائج مقابل الأهداف.
+4. **حسِّن (Act)**: عالج الانحرافات وحسِّن الأداء.
+
+<Callout type="myth">
+**أسطورة:** "خطة إدارة الأصول وثيقة تُكتب مرة واحدة وتُحفظ في الدرج."
+**الحقيقة:** خطة إدارة الأصول وثيقة حية تُراجع شهرياً على المستوى التشغيلي وسنوياً على المستوى الاستراتيجي. خطة لا تُراجع هي خطة ميتة.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+The strategic plan is a living document that translates vision into measurable actions. This lesson teaches you how to build a comprehensive asset management plan: from policy to objectives to performance indicators to action plans to review. This is where analysis meets execution.
+
+## 1. The asset management policy
+
+The policy is the formal statement of the principles of asset management in the organization. It is the foundation on which all plans and procedures are built. It consists of four elements:
+
+### 1.1 Principles of the asset management policy
+
+- **Commitment to value**: asset management aims to maximize value for owners and stakeholders.
+- **Accountability**: every role has a clear, defined responsibility in asset management.
+- **Integration**: asset management is not an isolated unit but integrated with the overall strategy.
+- **Continual improvement**: the organization always seeks to improve its asset management performance.
+
+### 1.2 Contents of the policy
+
+A clear asset management policy includes:
+
+- **Purpose**: why do we practice asset management? (maximizing value, reducing risk, compliance).
+- **Scope**: who does the policy apply to? (all assets, or specific categories).
+- **Roles and responsibilities**: who is responsible for what?
+- **Commitments**: what does the organization commit to? (continual improvement, compliance with standards).
+- **Review**: how is the policy reviewed and updated?
+
+<Callout type="tip">
+**Rule:** the policy must be concise, clear, and communicated to all employees. A policy written in 50 pages that nobody reads is not better than a one-page policy that everyone knows and applies.
+</Callout>
+
+## 2. Setting asset management objectives
+
+After the policy (the why), come the objectives (what we want to achieve). Objectives must be smart according to the SMART criteria:
+
+### 2.1 Characteristics of smart objectives
+
+- **Specific**: "improving the availability of production line A" instead of "improving performance".
+- **Measurable**: "increasing availability from 85% to 92%" instead of "improving availability".
+- **Achievable**: a realistic objective that accounts for the available resources.
+- **Relevant**: linked to the organization's overall strategy.
+- **Time-bound**: "within 18 months" instead of "soon".
+
+### 2.2 Levels of objectives
+
+Objectives are set at three levels:
+
+- **Strategic objectives** (long-term): five-year or longer objectives aligned with the organization's vision. Example: "reduce asset lifecycle costs by 20% within 5 years".
+- **Tactical objectives** (mid-term): annual or two-year objectives supporting the strategic objectives. Example: "achieve 95% availability for all critical assets during the current year".
+- **Operational objectives** (short-term): monthly or quarterly objectives that can be measured directly. Example: "complete preventive maintenance for all critical pumps before the end of the first quarter".
+
+<Hierarchy
+  title="The three levels of asset management objectives"
+  direction="top-down"
+  levels={[
+    { label: 'Strategic objectives', detail: 'Five-year or longer objectives aligned with the organization\u2019s vision — example: reduce asset lifecycle costs by 20% within 5 years.', icon: '🎯' },
+    { label: 'Tactical objectives', detail: 'Annual or two-year objectives supporting the strategic objectives — example: achieve 95% availability for critical assets during the current year.', icon: '🗂' },
+    { label: 'Operational objectives', detail: 'Directly measurable monthly or quarterly objectives — example: complete preventive maintenance for critical pumps before the end of the first quarter.', icon: '🔧' },
+  ]}
+  caption="A hierarchy of dependency: the tactical executes the strategic, and the operational is measured directly and supports the tactical until the organization\u2019s vision takes shape."
+/>
+
+## 3. Key performance indicators (KPIs): a glimpse into asset management
+
+Key performance indicators are numbers that measure how far objectives are achieved. Without indicators, objectives are just nice words:
+
+### 3.1 Availability and performance indicators
+
+- **Availability rate**: actual time ÷ required time × 100.
+- **MTBF**: mean time between successive failures.
+- **MTTR**: mean time to repair — the average time required to return an asset to service.
+- **Efficiency ratio KPI**: the ratio of actual maintenance hours to the available working hours.
+
+### 3.2 Cost indicators
+
+- **Maintenance cost per production unit**: total maintenance cost ÷ number of produced units.
+- **Maintenance cost ratio to replacement value**: is the maintenance cost reasonable compared with the asset's value?
+- **Budget variance**: the difference between the planned budget and the actual expenditure.
+
+### 3.3 Safety and environment indicators
+
+- **Number of accidents and injuries**: every injury is a failure in asset management.
+- **Number of environmental leaks**: every leak is a failure in preventive maintenance.
+- **Compliance deviations**: are we complying with the statutory standards?
+
+<Callout type="example">
+**Practical scenario:** a steel plant set an objective of "increasing the availability of the drawing line from 88% to 95% within 12 months". Performance indicators: MTBF (from 200 hours to 350 hours), MTTR (from 8 hours to 4 hours), and maintenance cost per ton (from 15 riyals to 12 riyals). Without these indicators, it is impossible to know whether the objective was achieved.
+</Callout>
+
+## 4. Resource planning
+
+A plan without resources is a wish. Resource planning includes:
+
+### 4.1 Human resources
+
+- **Required number of technicians**: based on the asset size and the maintenance required.
+- **Required skills**: mechanical engineering, electrical, electronics, programming.
+- **Training and development**: how do you close the skills gap?
+- **External contractors**: when do you outsource?
+
+### 4.2 Financial resources
+
+- **Operational maintenance budget (OPEX)**: day-to-day maintenance costs.
+- **Capital budget (CAPEX)**: replacing assets and purchasing new equipment.
+- **Emergency reserve**: an unplanned budget for emergencies.
+
+### 4.3 Physical resources
+
+- **Spare parts**: base and safety stock.
+- **Tools and equipment**: a vibration measurement device, a thermal camera, disassembly tools.
+- **Systems**: CMMS, CAFM, monitoring systems.
+
+## 5. Action plans
+
+Action plans are the document that translates objectives into practical actions. Each action plan has:
+
+- **The specific action**: what exactly will you do?
+- **The responsible party**: who implements this action?
+- **The timeline**: when does it start and when does it end?
+- **The required resources**: how much budget, how many technicians, and how many hours?
+- **The success indicator**: how do you know the action succeeded?
+
+## 6. Monitoring and review
+
+The strategic plan must be reviewed periodically to ensure its effectiveness:
+
+### 6.1 Reviewing KPI performance
+
+- **Monthly**: reviewing the operational indicators (MTBF, MTTR, availability).
+- **Quarterly**: reviewing the financial indicators and the budget.
+- **Annually**: a comprehensive review of the strategic objectives.
+
+### 6.2 Reviewing the asset management plan
+
+- **Annually**: updating the policy and objectives according to changes in the context.
+- **On a substantive change**: a merger, an acquisition, a change in legislation.
+
+### 6.3 Continual improvement (PDCA)
+
+The asset management plan follows the PDCA cycle:
+
+1. **Plan**: define the objectives and methods.
+2. **Do**: implement the plans.
+3. **Check**: measure the results against the objectives.
+4. **Act**: address the deviations and improve performance.
+
+<Callout type="myth">
+**Myth:** "The asset management plan is a document written once and kept in a drawer."
+**Fact:** the asset management plan is a living document reviewed monthly at the operational level and annually at the strategic level. A plan that is never reviewed is a dead plan.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: باني الخطة الاستراتيجية
+
+حدد السياسة والأهداف ومؤشرات الأداء والموارد المطلوبة لمنشأتك، وشاهد كيف تتكون خطة إدارة الأصول الكاملة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Strategy Plan Builder
+
+Define the policy, objectives, performance indicators, and required resources for your facility, and see how the complete asset management plan comes together.
+
+</LangSection>
+
+<StrategyPlanBuilder client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-2-3-t1', 'cama-2-3-t2', 'cama-2-3-t3', 'cama-2-3-t4', 'cama-2-3-t5']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على الفرق بين سياسة إدارة الأصول وأهدافها، وصياغة الأهداف الذكية (SMART)، واختيار مؤشرات الأداء المتوازنة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the difference between the asset management policy and its objectives, formulating SMART objectives, and selecting balanced performance indicators.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-2-3" questions={quizCama23.questions} client:load />
+
+<LangSection lang="ar">
+
+## مصادر
+
+- ISO 55001:2014 — إدارة الأصول: متطلبات نظام الإدارة.
+- ISO 55002:2018 — إدارة الأصول: إرشادات لتطبيق ISO 55001.
+- GFMAM AM Landscape v3 — إطار عمل إدارة الأصول الشامل.
+- The Institute of Asset Management — Asset Management Bodies of Knowledge.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Sources
+
+- ISO 55001:2014 — Asset Management: Management System Requirements.
+- ISO 55002:2018 — Asset Management: Guidelines for the Application of ISO 55001.
+- GFMAM AM Landscape v3 — The Comprehensive Asset Management Framework.
+- The Institute of Asset Management — Asset Management Bodies of Knowledge.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **سياسة إدارة الأصول** الإعلان الرسمي للمبادئ: القيمة والمساءلة والتكامل والتحسين المستمر.
+- **الأهداف الذكية (SMART)** محددة وقابلة للقياس والتحقيق وذات صلة ومحددة زمنياً على ثلاثة مستويات: استراتيجي وتكتيمي وتشغيلی.
+- **مؤشرات الأداء (KPIs)** تقيس التوفر والأداء والتكلفة والسلامة — بدونها الأهداف مجرد كلام.
+- **تخطيط الموارد** يشمل البشرية والمالية والمادية — خطة بلا موارد أمنية.
+- **خطط العمل** تترجم الأهداف إلى إجراءات عملية بمسؤول وجدول وموارد.
+- **المراجعة والتقييم** دورياً (شهري/ربع سنوي/سنوياً) وفق دورة PDCA للتحسين المستمر.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The asset management policy** is the formal statement of the principles: value, accountability, integration, and continual improvement.
+- **SMART objectives** are specific, measurable, achievable, relevant, and time-bound, across three levels: strategic, tactical, and operational.
+- **Key performance indicators (KPIs)** measure availability, performance, cost, and safety — without them, objectives are just words.
+- **Resource planning** covers human, financial, and physical resources — a plan without resources is a wish.
+- **Action plans** translate objectives into practical actions with a responsible party, a schedule, and resources.
+- **Periodic monitoring and review** (monthly/quarterly/annual) follows the PDCA cycle for continual improvement.
+
+</LangSection>

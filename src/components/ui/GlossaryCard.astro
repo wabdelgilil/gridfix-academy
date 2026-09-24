@@ -12,22 +12,71 @@ const items: GlossaryTerm[] = terms
 ---
 
 <div class="card mt-8 overflow-hidden">
-  <div class="border-b border-slate-200 bg-slate-50 px-5 py-3 text-sm font-semibold text-ink-900">
-    📖 قاموس المصطلحات
+  <div class="border-b border-slate-200 bg-slate-50 px-5 py-3 text-sm font-semibold text-ink-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+    <span data-lang="ar">📖 قاموس المصطلحات</span>
+    <span data-lang="en">📖 Glossary of terms</span>
   </div>
-  <div class="divide-y divide-slate-100">
+  <div class="divide-y divide-slate-100 dark:divide-slate-700">
     {items.map((item) => (
       <div class="px-5 py-4">
         <div class="flex flex-wrap items-center gap-2">
-          <span dir="ltr" lang="en" class="font-semibold text-brand-700">
+          <span dir="ltr" lang="en" class="font-semibold text-brand-700 dark:text-brand-400">
             {item.term}
           </span>
           {item.abbreviation && (
-            <span class="chip bg-brand-100 text-brand-700" dir="ltr">{item.abbreviation}</span>
+            <span class="chip bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300" dir="ltr">{item.abbreviation}</span>
           )}
+          <button
+            type="button"
+            class="speak-btn inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs text-ink-500 transition hover:bg-brand-100 hover:text-brand-600 dark:bg-slate-700 dark:text-slate-400 dark:hover:bg-brand-900/50 dark:hover:text-brand-300"
+            data-term={item.term}
+            aria-label={`Speak ${item.term}`}
+            title="سمع النطق الإنجليزي"
+          >
+            🔊
+          </button>
+          <button
+            type="button"
+            class="copy-btn inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs text-ink-500 transition hover:bg-brand-100 hover:text-brand-600 dark:bg-slate-700 dark:text-slate-400 dark:hover:bg-brand-900/50 dark:hover:text-brand-300"
+            data-term={item.term}
+            aria-label={`Copy ${item.term}`}
+            title="نسخ المصطلح"
+          >
+            📋
+          </button>
         </div>
-        <p class="mt-1 text-sm leading-relaxed text-ink-600">{item.ar}</p>
+        <p class="mt-1 text-sm leading-relaxed text-ink-600 dark:text-slate-300" dir="rtl" lang="ar" data-lang="ar">{item.ar}</p>
+        <p class="mt-1 text-sm leading-relaxed text-ink-600 dark:text-slate-300" dir="ltr" lang="en" data-lang="en">{item.en}</p>
       </div>
     ))}
   </div>
 </div>
+
+<script>
+  document.querySelectorAll('.speak-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const term = (btn as HTMLElement).dataset.term;
+      if (term && 'speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(term);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+      }
+    });
+  });
+
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const term = (btn as HTMLElement).dataset.term;
+      if (term) {
+        try {
+          await navigator.clipboard.writeText(term);
+          const original = btn.textContent;
+          btn.textContent = '✓';
+          setTimeout(() => { btn.textContent = original; }, 1500);
+        } catch {}
+      }
+    });
+  });
+</script>

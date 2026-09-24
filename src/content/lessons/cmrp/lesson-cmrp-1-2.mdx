@@ -1,0 +1,219 @@
+---
+id: lesson-cmrp-1-2
+course: cmrp
+station: station-cmrp-1
+number: "1.2"
+title: "منحنى P-F والفاصل الزمني وتقنيات CBM/PdM"
+titleEn: "The P-F Curve & Condition-Based Maintenance"
+minutes: 40
+order: 2
+objectives:
+  - "أن يعرف المتعلم بدقة نقطة الخلل المحتمل (P) ونقطة الفشل الوظيفي (F)."
+  - "أن يشرح الفاصل الزمني P-F وكيف يمنح مهلة التخطيط والجدولة الآمنة."
+  - "أن يطبق قاعدة نصف الفاصل في حساب تردد التفتيش الأمثل."
+  - "أن يرتب تقنيات الكشف من المبكر إلى المتأخر ويشرح تصاعد التكلفة مع التأخر."
+objectivesEn:
+  - "Define Potential Failure (Point P) and Functional Failure (Point F) precisely."
+  - "Explain the P-F interval as a safe planning and scheduling window."
+  - "Apply the half-interval rule to calculate the optimal inspection frequency."
+  - "Rank detection techniques from early to late and explain cost escalation."
+hasTool: true
+toolName: "محاكي منحنى P-F"
+toolNameEn: "P-F Curve Simulator"
+quizId: quiz-cmrp-1-2
+sources:
+  - gulati
+  - ron_moore
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import PFCurveSimulator from '../../../components/islands/tools/cmrp/PFCurveSimulator.tsx';
+import Hierarchy from '../../../components/ui/figures/Hierarchy.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp12 } from '../../../data/quiz/cmrp/quiz-cmrp-1-2';
+
+<LangSection lang="ar">
+
+الفكرة المحورية هنا أن كل عطل يعلن عن نفسه قبل وقوعه بمهلة زمنية، ومن يرصد الإنذار المبكر يشتري الوقت الكافي للتدخل المخطط الرخيص، ومن يتجاهله يدفع ثمن الإصلاح الطارئ مضاعفا عشرات المرات. هذا هو منطق منحنى P-F وجوهر الصيانة المشروطة بالحالة.
+
+## 1. النقطة P والنقطة F: أين يبدأ العطل وأين ينتهي؟
+
+- **نقطة العطل المحتمل (Potential Failure)**: هي اللحظة الأولى التي تصبح فيها أعراض العطل قابلة للرصد بأجهزة القياس، مع استمرار المعدة في أداء عملها الطبيعي دون أن يشعر المشغل بأي خلل ظاهري. مثالها عيب ميكروسكوبي في محمل ترصده الموجات فوق الصوتية والمضخة ما تزال تضخ بكامل طاقتها.
+- **نقطة الانهيار الوظيفي (Functional Failure)**: هي اللحظة التي تفقد فيها المعدة قدرتها على أداء وظيفتها بالمستوى المعياري المطلوب. وليس شرطا أن تتوقف تماما؛ فالمضخة المصممة لضخ 100 متر مكعب في الساعة إذا عجزت عن تجاوز 60 مترا فقد وصلت إلى النقطة F حتى لو كانت ما تزال تدور.
+- **الفاصل الزمني (P-F Interval)**: هو المدة بين النقطة P والنقطة F، ويسمى أيضا مهلة الفشل. وهو يختلف بشدة بين معدة وأخرى حسب السرعة والحمل ونمط الفشل: قد يكون شهورا في المحامل البطيئة، وأسابيع في المراوح، وساعات في المضخات الكاشطة.
+
+<Callout type="tip">
+**القيمة الحقيقية للفاصل الزمني:** الفاصل لا يوقف التدهور الفيزيائي بذاته، بل يشتري الوقت. يمنح المخطط والمجدول نافذة آمنة لطلب قطع الغيار وحجز الفنيين وتنسيق توقف مخطط مع الإنتاج، فيتحول العمل من طارئ مفاجئ إلى عمل مخطط هادئ.
+</Callout>
+
+## 2. قاعدة تردد التفتيش: لماذا نقسم على اثنين؟
+
+تنص القاعدة الهندسية المعتمدة على أن تردد الفحص يجب أن يساوي نصف الفاصل الزمني أو أقل. فإذا كان الفاصل 40 يوما وجب الفحص كل 20 يوما أو أقل، وهذا يضمن جولتين على الأقل داخل نافذة التدهور. والمنطق رياضي محض: حتى لو بدأ العطل في اليوم التالي للجولة الأولى، فإن الجولة الثانية سترصده حتما ويتبقى للمخطط فاصل صاف يقارب النصف لتنفيذ الإصلاح بأمان.
+
+مثال محلول: محمل مروحة سحب فاصل التدهور فيه 30 يوما من أول اهتزاز غير طبيعي حتى الانهيار. الفحص كل 15 يوما يكشف العطل ويترك 15 يوما كاملة للإصلاح المخطط. أما الفحص كل 30 أو 45 يوما فيعني أن العطل سيبدأ وينهار في الفراغ بين الجولتين دون أن يدري أحد. والفحص المفرط كل 5 أيام مجد نظريا لكنه تبذير غير مبرر لوقت الكادر. وإذا كان تردد الجولات المتاح (شهران مثلا) أطول من الفاصل (3 أسابيع مثلا) فالحل الهندسي هو تقصير التردد إلى أقل من نصف الفاصل أو تركيب مجسات مراقبة متصلة لحظيا.
+
+## 3. التسلسل الهرمي لتقنيات الكشف ومضاعف التكلفة
+
+تتدرج تقنيات المراقبة على المنحنى من الإنذار المبكر الرخيص إلى الكشف المتأخر الباهظ:
+
+- **الموجات فوق الصوتية (Ultrasound)**: أول من يرصد الاحتكاك الدقيق وعيوب التزييت. المهلة شهور إلى أسابيع، والتكلفة هي الأساس (1x): تزييت مضبوط أو تنظيف في توقف طبيعي.
+- **تحليل الاهتزازات (Vibration Analysis)**: المعيار الذهبي للآلات الدوارة، يكشف عدم المحاذاة وعدم الاتزان وعيوب المحامل. المهلة أسابيع إلى شهور، والتكلفة (2x إلى 3x): تبديل المحمل في توقف مجدول دون تلف العمود.
+- **تحليل الزيوت وبرادة التآكل (Oil Analysis)**: يفحص اللزوجة والتلوث والجسيمات المعدنية، ويكشف تآكل أسنان التروس قبل أن يتطور إلى اهتزاز واسع. المهلة أسابيع إلى أيام، والتكلفة (5x).
+- **التصوير الحراري (Thermography)**: يرصد النقاط الساخنة من الاحتكاك المعدني المتقدم بارتفاع 15 إلى 30 درجة فوق الطبيعي. المهلة أيام إلى ساعات، والتكلفة (10x) مع تلف محتمل في العمود أو العزل.
+- **الحواس البشرية والضجيج**: الصوت المسموع والحرارة الملموسة والدخان. آخر إنذار قبل الانهيار بساعات أو دقائق، والتكلفة (25x إلى 40x) مع خطر السلامة الوشيك.
+- **النقطة F**: التوقف الكامل وتدمير المعدة وتوقف الخط، والخسارة (40x إلى 100x) مع الغرامات والإصلاح الطارئ.
+
+<Hierarchy
+  title="التسلسل الهرمي لتقنيات الكشف ومضاعف التكلفة"
+  direction="bottom-up"
+  levels={[
+    { label: 'النقطة F — التوقف الكامل', detail: 'خسارة 40x إلى 100x مع الغرامات والإصلاح الطارئ.', icon: '💥' },
+    { label: 'الحواس البشرية والضجيج', detail: 'آخر إنذار قبل الانهيار بساعات أو دقائق، بتكلفة 25x إلى 40x وخطر سلامة وشيك.', icon: '👂' },
+    { label: 'التصوير الحراري (Thermography)', detail: 'رصد النقاط الساخنة قبل أيام إلى ساعات، بتكلفة 10x وتلف محتمل في العمود.', icon: '🌡' },
+    { label: 'تحليل الزيوت وبرادة التآكل (Oil Analysis)', detail: 'فحص اللزوجة والتلوث والجسيمات قبل أسابيع إلى أيام، بتكلفة 5x.', icon: '🛢' },
+    { label: 'تحليل الاهتزازات (Vibration Analysis)', detail: 'كشف عدم المحاذاة والاتزان وعيوب المحامل قبل أسابيع، بتكلفة 2x إلى 3x.', icon: '📳' },
+    { label: 'الموجات فوق الصوتية (Ultrasound)', detail: 'أول رصد للاحتكاك وعيوب التزييت قبل شهور، بتكلفة 1x — القاعدة.', icon: '🦻' },
+  ]}
+  caption="تتدرج التقنيات من الإنذار المبكر الرخيص (1x) إلى الكشف المتأخر الباهظ (40x – 100x عند النقطة F)."
+/>
+
+<Callout type="warn">
+**مفهوم خاطئ:** "شراء أجهزة القياس وحده يحمي المصنع."
+**الحقيقة:** الأجهزة بلا جولات بتردد أقصر من نصف الفاصل مجرد زينة. من ينتظر توقف المعدة ليبدأ التفتيش يشتري الأجهزة ثم يدفع ثمن الإصلاح الطارئ كاملا. القيمة كلها في الربط بين التقنية المبكرة وتردد الفحص الصحيح.
+</Callout>
+
+## 4. شراء الوقت: الفاصل الصافي والتخطيط
+
+الفاصل الصافي هو المدة المتبقية من لحظة اكتشاف العطل فعليا حتى الانهيار، وهي المهلة العملية المتاحة للمخطط والمجدول. كلما كان الكشف أبكر كان الفاصل الصافي أطول والتكلفة أدنى والخطر أصغر. ولهذا يتصرف مهندس الموثوقية مع تقرير تحليل الزيت الذي يظهر برادة حديد بينما الاهتزازات ما تزال طبيعية بوصفه إنذارا مبكرا عند النقطة P لا عطلا في جهاز الاهتزاز، فيطلب القطع ويجهز التوقف المخطط بدل تجاهل التقرير. تحليل الزيوت في صناديق التروس الكبيرة يسبق الاهتزاز، لأن البرادة المجهرية تنفصل قبل أن يتشوه سطح السن بما يكفي لإثارة الطيف الاهتزازي.
+
+</LangSection>
+
+<LangSection lang="en">
+
+The central idea here is that every failure announces itself before it occurs, with a time window; whoever detects the early warning buys enough time for cheap, planned intervention, and whoever ignores it pays tens of times more for emergency repair. This is the logic of the P-F curve and the essence of condition-based maintenance.
+
+## 1. Point P and Point F: where does failure begin and where does it end?
+
+- **Potential Failure (Point P)**: the first moment the failure symptoms become detectable by measuring instruments, while the equipment continues performing its normal work without the operator sensing any apparent defect. An example is a microscopic defect in a bearing detected by ultrasound while the pump is still delivering at full capacity.
+- **Functional Failure (Point F)**: the moment the equipment loses its ability to perform its function at the required standard level. It need not stop completely; a pump designed to deliver 100 cubic meters per hour that can no longer exceed 60 cubic meters has reached Point F even if it is still rotating.
+- **P-F Interval**: the duration between Point P and Point F, also called the failure development time. It varies sharply from one asset to another depending on speed, load, and failure pattern: it may be months in slow bearings, weeks in fans, and hours in abrasive pumps.
+
+<Callout type="tip">
+**The real value of the interval:** the interval does not stop the physical degradation by itself; it buys time. It gives the planner and scheduler a safe window to order spare parts, book technicians, and coordinate a planned shutdown with production, transforming the work from a sudden emergency into calm planned work.
+</Callout>
+
+## 2. The inspection frequency rule: why do we divide by two?
+
+The accepted engineering rule states that inspection frequency must equal half the interval or less. If the interval is 40 days, inspection must be every 20 days or less, guaranteeing at least two rounds inside the degradation window. The logic is pure mathematics: even if failure starts the day after the first round, the second round will catch it, and the planner still has a net interval close to half to execute the repair safely.
+
+Solved example: an exhaust fan bearing has a 30-day deterioration interval from the first abnormal vibration to collapse. Inspection every 15 days detects the fault and leaves a full 15 days for planned repair. Inspection every 30 or 45 days means the failure will start and collapse in the gap between rounds without anyone knowing. Excessive inspection every 5 days is theoretically useful but an unjustified waste of staff time. If the available round frequency (e.g., two months) is longer than the interval (e.g., three weeks), the engineering solution is to shorten the frequency to less than half the interval or install continuous online monitoring sensors.
+
+## 3. The detection technique hierarchy and the cost multiplier
+
+Monitoring techniques progress along the curve from cheap early warning to expensive late detection:
+
+- **Ultrasound**: the first to detect fine friction and lubrication defects. The lead time is months to weeks, and the cost is the baseline (1x): precise lubrication or cleaning during a scheduled stop.
+- **Vibration Analysis**: the gold standard for rotating machinery; it detects misalignment, unbalance, and bearing defects. The lead time is weeks to months, and the cost is (2x to 3x): replacing the bearing in a scheduled shutdown without shaft damage.
+- **Oil Analysis**: checks viscosity, contamination, and metallic particles, and detects gear tooth wear before it develops into broad vibration. The lead time is weeks to days, and the cost is (5x).
+- **Thermography**: detects hot spots from advanced metal friction at 15 to 30 degrees above normal. The lead time is days to hours, and the cost is (10x) with possible damage to the shaft or insulation.
+- **Human senses and noise**: audible sound, felt heat, and smoke. The last warning before collapse, hours or minutes away, at (25x to 40x) with imminent safety risk.
+- **Point F**: complete stoppage, destruction of the equipment, and line shutdown, with a loss of (40x to 100x) including penalties and emergency repair.
+
+<Hierarchy
+  title="Detection technique hierarchy and the cost multiplier"
+  direction="bottom-up"
+  levels={[
+    { label: 'Point F — complete stoppage', detail: '40x to 100x loss with penalties and emergency repair.', icon: '💥' },
+    { label: 'Human senses and noise', detail: 'Last warning before collapse, hours or minutes away, at 25x to 40x with an imminent safety risk.', icon: '👂' },
+    { label: 'Thermography', detail: 'Detects hot spots days to hours ahead, at 10x with possible shaft damage.', icon: '🌡' },
+    { label: 'Oil Analysis', detail: 'Checks viscosity, contamination, and particles weeks to days ahead, at 5x.', icon: '🛢' },
+    { label: 'Vibration Analysis', detail: 'Detects misalignment, unbalance, and bearing defects weeks ahead, at 2x to 3x.', icon: '📳' },
+    { label: 'Ultrasound', detail: 'First detection of friction and lubrication defects months ahead, at 1x — the baseline.', icon: '🦻' },
+  ]}
+  caption="Techniques progress from cheap early warning (1x) to expensive late detection (40x – 100x at Point F)."
+/>
+
+<Callout type="warn">
+**Misconception:** "Buying measuring instruments alone protects the plant."
+**Fact:** Instruments without rounds at a frequency shorter than half the interval are mere decoration. Whoever waits for the equipment to stop before starting inspections buys the instruments and then pays the full cost of emergency repair. All the value lies in linking the early technology with the correct inspection frequency.
+</Callout>
+
+## 4. Buying time: the net interval and planning
+
+The net interval is the time remaining from the moment the fault is actually detected until collapse — the practical window available to the planner and scheduler. The earlier the detection, the longer the net interval, the lower the cost, and the smaller the risk. That is why the reliability engineer treats an oil analysis report showing iron debris while vibration readings are still normal as an early warning at Point P, not a fault in the vibration instrument — ordering the parts and preparing the planned shutdown instead of ignoring the report. Oil analysis in large gearboxes precedes vibration, because microscopic debris separates before the tooth surface deforms enough to excite the vibration spectrum.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: محاكي منحنى P-F
+
+حرك مؤشر الفاصل الزمني وشاهد تردد التفتيش المطلوب والفاصل الصافي، وتنقل بين تقنيات الكشف الخمس وراقب تصاعد التكلفة كلما تأخر الكشف.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: P-F Curve Simulator
+
+Move the interval slider and see the required inspection frequency and the net interval; browse the five detection techniques and watch the cost escalate as detection gets later.
+
+</LangSection>
+
+<PFCurveSimulator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-1-2-t1','cmrp-1-2-t2','cmrp-1-2-t3','cmrp-1-2-t4','cmrp-1-2-t5','cmrp-1-2-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على قاعدة نصف الفاصل وترتيب تقنيات الكشف وموقع الحواس البشرية على المنحنى.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the half-interval rule, the ranking of detection techniques, and the position of human senses on the curve.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-1-2" questions={quizCmrp12.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **النقطة P أول عرض قابل للرصد** والمعدة ما تزال تعمل طبيعيا، والنقطة F فقدان الوظيفة بالمستوى المعياري المطلوب ولو دون توقف تام.
+- **قاعدة التفتيش: التردد يساوي نصف الفاصل أو أقل**، فيستحيل رياضيا أن يبدأ العطل وينهار بين جولتين متتاليتين.
+- **التقنيات تتدرج زمنيا**: الموجات فوق الصوتية ثم الاهتزازات ثم الزيوت ثم الحرارة ثم الحواس البشرية، وتتضاعف التكلفة من 1x إلى عشرات الأضعاف مع التأخر.
+- **الفاصل الزمني نافذة شراء وقت** للتخطيط والجدولة، والفاصل الصافي هو المهلة العملية من الاكتشاف الفعلي حتى الانهيار.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Point P is the first detectable condition** while the equipment still works normally, and Point F is the loss of function at the required standard level even without a total stop.
+- **The inspection rule: frequency equals half the interval or less**, making it mathematically impossible for a failure to start and collapse between two consecutive rounds.
+- **Techniques progress in time**: ultrasound, then vibration, then oils, then heat, then human senses — and the cost multiplies from 1x to tens of times with delay.
+- **The P-F interval is a time-buying window** for planning and scheduling, and the net interval is the practical window from actual detection to collapse.
+
+</LangSection>

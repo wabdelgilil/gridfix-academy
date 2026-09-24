@@ -1,0 +1,211 @@
+---
+id: lesson-cmrp-3-2
+course: cmrp
+station: station-cmrp-3
+number: "3.2"
+title: "الكفاءة الكلية للمعدات والخسائر الست الكبرى"
+titleEn: "Overall Equipment Effectiveness (OEE) & Six Big Losses"
+minutes: 40
+order: 2
+objectives:
+  - "أن يحسب المتعلم كفاءة المعدات الكلية من عواملها الثلاثة: الإتاحة والأداء والجودة."
+  - "أن يصنف الخسائر الست الكبرى ويربط كل خسارة بعاملها المؤثر في المعادلة."
+  - "أن يشخص العامل المتدهور من رقم OEE الإجمالي ويقترح المعالجة المناسبة."
+  - "أن يقارن نتيجة أي معدة بالمعيار العالمي للنخبة الصناعية."
+objectivesEn:
+  - "Calculate Overall Equipment Effectiveness from its three factors: Availability, Performance, and Quality."
+  - "Classify the Six Big Losses and map each loss to its OEE factor."
+  - "Diagnose the degraded factor from an overall OEE figure and propose the remedy."
+  - "Benchmark any asset against the world-class manufacturing standard."
+hasTool: true
+toolName: "حاسبة OEE"
+toolNameEn: "OEE Calculator"
+quizId: quiz-cmrp-3-2
+sources:
+  - nakajima_tpm
+  - smrp_metrics
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import OEECalculator from '../../../components/islands/tools/cmrp/OEECalculator.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp32 } from '../../../data/quiz/cmrp/quiz-cmrp-3-2';
+
+<LangSection lang="ar">
+
+رقم واحد يحكم الحوار بين الصيانة والإنتاج والجودة: **كفاءة المعدات الكلية (Overall Equipment Effectiveness)** التي ابتكرها سيئيتشي ناكاجيما (Seiichi Nakajima) ضمن **الصيانة الإنتاجية الشاملة (Total Productive Maintenance)**. هذا الدرس يفكك معادلتها، وخسائرها الست، ومعيار النخبة العالمية.
+
+## 1. المعادلة: الإتاحة × الأداء × الجودة
+
+تحسب كفاءة المعدات الكلية (OEE) حاصل ضرب ثلاثة عوامل كنسب عشرية ثم الضرب في 100:
+
+**OEE = الإتاحة (Availability) × الأداء (Performance) × الجودة (Quality)**
+
+- **الإتاحة (Availability):** وقت التشغيل الفعلي ÷ وقت الإنتاج المخطط. تلتهمها الأعطال المفاجئة وأزمنة الضبط والتبديل. ملاحظة: الاستراحات المجدولة كوجبة الغداء تستبعد من الوقت المخطط أصلاً.
+- **الأداء (Performance):** الإنتاج الفعلي ÷ الطاقة النظرية القصوى لوقت التشغيل. يلتهمه التوقف الدقيق العابر والتشغيل بسرعة أبطأ من الطاقة التصميمية.
+- **الجودة (Quality):** القطع السليمة المطابقة ÷ إجمالي القطع المنتجة. تلتهمها خردة بدء التشغيل وعيوب الإنتاج المستمرة.
+
+مثال محسوب بدقة: ماكينة تعبئة في وردية 8 ساعات (480 دقيقة)، والوقت المخطط 450 دقيقة بعد استبعاد 30 دقيقة للغداء. تعطلت 90 دقيقة أعطالاً وضبطاً، فبقي وقت التشغيل 360 دقيقة. الإتاحة = 360 ÷ 450 = 80%. والسرعة القياسية قطعتان/دقيقة، فالطاقة القصوى = 360 × 2 = 720 قطعة، والفعلي 600 قطعة، فالأداء = 600 ÷ 720 = 83.3%. ومن الـ 600 قطعة وجد 30 معيباً، فالسليم 570، والجودة = 570 ÷ 600 = 95%. إذن OEE = 0.80 × 0.833 × 0.95 = 63.3%.
+
+<Callout type="tip">
+**قاعدة الحساب:** كفاءة المعدات الكلية حاصل ضرب متتالٍ لا متوسط حسابي. عامل واحد متدهور يجر الناتج كله: معدة بإتاحة 95% وجودة 98% لكن OEE إجمالي 58% تعني أن الأداء منهار إلى نحو 62% (0.58 ÷ (0.95 × 0.98)) — ابحث عن التوقفات الدقيقة والسرعة البطيئة.
+</Callout>
+
+## 2. الخسائر الست الكبرى (Six Big Losses)
+
+يقسم معيار الصيانة الإنتاجية الشاملة (TPM) هدر طاقة المعدات إلى ست فئات تقترن مباشرة بعوامل المعادلة:
+
+- **خسائر الإتاحة:** 1. الأعطال المفاجئة غير المخططة (Breakdowns) كانكسار الأعمدة واحتراق المحركات، 2. أزمنة الضبط والتبديل (Setup & Adjustment) كتغيير قوالب الحقن الذي قد يستغرق 4 ساعات. والحل العالمي المعتمد لتقليص التبديل هو تقنية **التبديل السريع للقوالب (Single Minute Exchange of Die)** التي تنزل بزمن التغيير من ساعات إلى دقائق معدودة (أقل من 10 دقائق) بتحويل المهام الداخلية إلى تجهيز خارجي مسبق.
+- **خسائر الأداء:** 3. التوقفات الدقيقة والخمول العابر (Minor Stops / Idling) — انحشارات أقل من 5 دقائق، 4. انخفاض السرعة (Reduced Speed) — تشغيل الماكينة بأبطأ من طاقتها التصميمية خوفاً من تعطلها.
+- **خسائر الجودة:** 5. خردة بدء التشغيل والإحماء (Startup Scrap) — القطع التالفة قبل استقرار الماكينة حرارياً، 6. عيوب الإنتاج المستمرة (Production Defects) — القطع غير المطابقة أثناء التشغيل الطبيعي من قوالب متآكلة.
+
+<Infographic
+  cols={3}
+  title="الخسائر الست الكبرى موزعة على عوامل معادلة OEE"
+  items={[
+    { title: 'الأعطال المفاجئة (Breakdowns)', detail: 'عامل الإتاحة — أعطال غير مخططة ككسر الأعمدة واحتراق المحركات.', icon: '💥', color: 'brand' },
+    { title: 'أزمنة الضبط والتبديل (Setup & Adjustment)', detail: 'عامل الإتاحة — كتغيير قوالب الحقن حتى 4 ساعات، والعلاج تقنية SMED.', icon: '⚙️', color: 'brand' },
+    { title: 'التوقفات الدقيقة والخمول العابر', detail: 'عامل الأداء — انحشارات أقل من 5 دقائق لا يسجلها المشغل (Minor Stops).', icon: '⏸', color: 'amber' },
+    { title: 'انخفاض السرعة (Reduced Speed)', detail: 'عامل الأداء — تشغيل أبطأ من الطاقة التصميمية خوفاً من التعطل.', icon: '🐢', color: 'amber' },
+    { title: 'خردة بدء التشغيل والإحماء (Startup Scrap)', detail: 'عامل الجودة — قطع تالفة قبل استقرار الماكينة حرارياً.', icon: '🗑', color: 'rose' },
+    { title: 'عيوب الإنتاج المستمرة (Production Defects)', detail: 'عامل الجودة — قطع غير مطابقة أثناء التشغيل من قوالب متآكلة.', icon: '❌', color: 'rose' },
+  ]}
+  caption="كل خسارة تقترن بعاملها في المعادلة: الأعطال والتبديل يلتهمان الإتاحة، والتوقف الدقيق والسرعة البطيئة يلتهمان الأداء، وخردة الإحماء والعيوب تلتهمان الجودة."
+/>
+
+<Callout type="warn">
+**العدو الخفي:** التوقفات الدقيقة عدو الأداء الأول. انحشار كرتون 15 إلى 30 ثانية كل بضع دقائق يزيله المشغل بيده ولا يسجله في الدفاتر، لكن تكراره عشرات المرات يسرق ساعتين إلى ثلاث من طاقة اليوم. الرصد الآلي بحساسات خط الإنتاج والحلول الميكانيكية المانعة للانحشار هما العلاج.
+</Callout>
+
+## 3. المعيار العالمي للنخبة الصناعية (World-Class OEE)
+
+المعيار المعترف به دولياً لمنشآت النخبة، والمعتمد في اختبارات الكفاءة: إتاحة لا تقل عن 90%، وأداء لا يقل عن 95%، وجودة لا تقل عن 99.9% — وحاصل ضربها يعطي كفاءة إجمالية (OEE) لا تقل عن 85%. أي مصنع يحقق 85% فأكثر يدخل فئة **التصنيع العالمي المستوى (World-Class Manufacturing)**، وتحقيق 100% في العوامل الثلاثة مستحيل فيزيائياً على أرض الواقع.
+
+</LangSection>
+
+<LangSection lang="en">
+
+A single number governs the conversation between maintenance, production, and quality: **Overall Equipment Effectiveness (OEE)**, invented by Seiichi Nakajima within **Total Productive Maintenance (TPM)**. This lesson breaks down its equation, its six losses, and the world-class benchmark.
+
+## 1. The equation: Availability × Performance × Quality
+
+OEE is calculated as the product of three factors expressed as decimals, then multiplied by 100:
+
+**OEE = Availability × Performance × Quality**
+
+- **Availability:** actual operating time ÷ planned production time. It is consumed by sudden breakdowns and setup and adjustment times. Note: scheduled breaks such as lunch are already excluded from planned time.
+- **Performance:** actual output ÷ the theoretical maximum capacity of the operating time. It is consumed by brief transient stops and running slower than design capacity.
+- **Quality:** conforming good parts ÷ total parts produced. It is consumed by startup scrap and continuous production defects.
+
+A precisely calculated example: a packaging machine on an 8-hour shift (480 minutes), with planned time of 450 minutes after excluding 30 minutes for lunch. It was down for 90 minutes of breakdowns and adjustments, leaving 360 minutes of operating time. Availability = 360 ÷ 450 = 80%. Standard speed is 2 parts/minute, so maximum capacity = 360 × 2 = 720 parts, and actual output is 600 parts, so Performance = 600 ÷ 720 = 83.3%. Of the 600 parts, 30 were found defective, so good parts are 570, and Quality = 570 ÷ 600 = 95%. Therefore OEE = 0.80 × 0.833 × 0.95 = 63.3%.
+
+<Callout type="tip">
+**Calculation rule:** OEE is a serial product, not an arithmetic average. One degraded factor drags down the whole result: an asset with 95% availability and 98% quality but an overall OEE of 58% means performance has collapsed to about 62% (0.58 ÷ (0.95 × 0.98)) — look for minor stops and slow speed.
+</Callout>
+
+## 2. The Six Big Losses
+
+TPM standards divide equipment energy waste into six categories directly aligned with the equation factors:
+
+- **Availability losses:** 1. unplanned sudden breakdowns such as broken shafts and burned motors; 2. setup and adjustment times such as an injection mold change that can take 4 hours. The world-accepted solution for cutting changeover time is the **Single Minute Exchange of Die (SMED)** technique, which brings changeover time down from hours to a few minutes (under 10 minutes) by converting internal tasks into pre-prepared external setup.
+- **Performance losses:** 3. minor stops and transient idling — jams under 5 minutes; 4. reduced speed — running the machine slower than its design capacity for fear of failure.
+- **Quality losses:** 5. startup scrap and warm-up — parts damaged before the machine stabilizes thermally; 6. production defects — nonconforming parts during normal operation from worn molds.
+
+<Infographic
+  cols={3}
+  title="The Six Big Losses mapped across the OEE equation factors"
+  items={[
+    { title: 'Breakdowns', detail: 'Availability factor — unplanned failures such as broken shafts and burned motors.', icon: '💥', color: 'brand' },
+    { title: 'Setup & Adjustment', detail: 'Availability factor — such as injection mold changes up to 4 hours; the remedy is SMED.', icon: '⚙️', color: 'brand' },
+    { title: 'Minor stops and transient idling', detail: 'Performance factor — jams under 5 minutes operators do not record (minor stops).', icon: '⏸', color: 'amber' },
+    { title: 'Reduced speed', detail: 'Performance factor — running slower than design capacity for fear of failure.', icon: '🐢', color: 'amber' },
+    { title: 'Startup scrap', detail: 'Quality factor — parts damaged before the machine stabilizes thermally.', icon: '🗑', color: 'rose' },
+    { title: 'Production defects', detail: 'Quality factor — nonconforming parts during operation from worn molds.', icon: '❌', color: 'rose' },
+  ]}
+  caption="Each loss is tied to its factor in the equation: breakdowns and changeovers consume availability, minor stops and slow speed consume performance, and startup scrap and defects consume quality."
+/>
+
+<Callout type="warn">
+**The hidden enemy:** minor stops are the number one enemy of performance. A 15-to-30-second carton jam every few minutes is cleared by the operator by hand and never logged in the records, yet repeating it dozens of times steals two to three hours from the day's capacity. Automatic monitoring with production line sensors and mechanical anti-jam solutions are the cure.
+</Callout>
+
+## 3. The world-class benchmark
+
+The internationally recognized benchmark for elite facilities, also adopted in competence exams: availability of at least 90%, performance of at least 95%, and quality of at least 99.9% — their product yields an overall OEE (Overall Equipment Effectiveness) of at least 85%. Any plant achieving 85% or more enters the **World-Class Manufacturing** category, and achieving 100% in all three factors is physically impossible on the shop floor.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: حاسبة OEE
+
+حرك مؤشرات الإتاحة والأداء والجودة وشاهد كيف تتكون النسبة الإجمالية لحظياً، وأين تقع مع كل فئة من الخسائر الست، وهل بلغت المعيار العالمي.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: OEE Calculator
+
+Move the availability, performance, and quality sliders and watch the overall ratio form instantly, see where it falls against each of the six losses, and whether you have reached the world-class benchmark.
+
+</LangSection>
+
+<OEECalculator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-3-2-t1', 'cmrp-3-2-t2', 'cmrp-3-2-t3', 'cmrp-3-2-t4', 'cmrp-3-2-t5', 'cmrp-3-2-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على حسابات المعادلة وتشخيص العامل المتدهور وتصنيف الخسائر الست.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on equation calculations, diagnosing the degraded factor, and classifying the six losses.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-3-2" questions={quizCmrp32.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **المعادلة:** OEE = الإتاحة × الأداء × الجودة، كنسب عشرية مضروبة لا متوسط حسابي.
+- **الخسائر الست:** الأعطال والتبديل يلتهمان الإتاحة (والعلاج تقنية SMED)، والتوقف الدقيق والسرعة البطيئة يلتهمان الأداء، وخردة الإحماء وعيوب الإنتاج تلتهمان الجودة.
+- **التشخيص:** العامل الأقل قيمة هو بوابة التحسين؛ والتوقفات الدقيقة أقل من 5 دقائق هي القاتل الصامت للأداء.
+- **المعيار العالمي:** 90% إتاحة و95% أداء و99.9% جودة، أي OEE إجمالي 85% فأكثر.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The equation:** OEE = Availability × Performance × Quality, multiplied as decimals, not an arithmetic average.
+- **The six losses:** breakdowns and changeovers consume availability (the remedy being SMED), minor stops and slow speed consume performance, and startup scrap and production defects consume quality.
+- **Diagnosis:** the lowest factor is the gateway to improvement; minor stops under 5 minutes are the silent killer of performance.
+- **The world-class benchmark:** 90% availability, 95% performance, and 99.9% quality, giving an overall OEE of 85% or more.
+
+</LangSection>

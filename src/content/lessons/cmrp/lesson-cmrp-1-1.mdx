@@ -1,0 +1,225 @@
+---
+id: lesson-cmrp-1-1
+course: cmrp
+station: station-cmrp-1
+number: "1.1"
+title: "أنماط الأعطال ونظرية التقادم"
+titleEn: "Failure Patterns & The Six Curves"
+minutes: 30
+order: 1
+objectives:
+  - "أن يشرح المتعلم دراسة نولان وهيب التاريخية وأثرها على فكر إدارة الصيانة."
+  - "أن يفند أسطورة أن كل المعدات الصناعية تتبع منحنى حوض الاستحمام."
+  - "أن يميز بدقة بين الأعطال المرتبطة بالعمر الزمني (11%) والأعطال العشوائية (89%)."
+  - "أن يشرح كيف يسبب الاستبدال الزمني غير المدروس زيادة أعطال وفيات الرضع."
+objectivesEn:
+  - "Explain the Nowlan & Heap study and its impact on maintenance thinking."
+  - "Debunk the myth that all industrial equipment follows the bathtub curve."
+  - "Distinguish age-related failures (11%) from random failures (89%)."
+  - "Explain how unjustified time-based replacement drives infant mortality."
+hasTool: true
+toolName: "مستكشف المنحنيات الستة"
+toolNameEn: "Six Curves Explorer"
+quizId: quiz-cmrp-1-1
+sources:
+  - moubray_rcm
+  - smrp_bok
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import SixCurvesExplorer from '../../../components/islands/tools/cmrp/SixCurvesExplorer.tsx';
+import StatGrid from '../../../components/ui/figures/StatGrid.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp11 } from '../../../data/quiz/cmrp/quiz-cmrp-1-1';
+
+<LangSection lang="ar">
+
+الفكرة المحورية في هذا الدرس بسيطة وصادمة معا: معظم أعطال المعدات الحديثة لا علاقة لها بعمر المعدة، وأن الاستبدال الوقائي الدوري قد يضر المعدة بدلا من حمايتها. هذه الحقيقة أثبتتها دراسة الطيران المدني الشهيرة، وهي الأساس الذي بنيت عليه صيانة الاعتمادية الحديثة.
+
+## 1. دراسة نولان وهيب: الصدمة التي غيرت الصيانة
+
+حتى أواخر سبعينيات القرن الماضي كان الاعتقاد السائد بين المهندسين أن أي معدة كلما زاد عمرها وساعات تشغيلها زادت احتمالية تعطلها حتما. وبناء على هذه الفرضية كانت الشركات تنفق مبالغ ضخمة على تفكيك المعدات واستبدال القطع السليمة في مواعيد زمنية ثابتة.
+
+المفاجأة أن زيادة العمرات الوقائية كانت تترافق مع زيادة الأعطال والتوقفات المفاجئة. دفعت هذه المعضلة إدارة الطيران الفيدرالية الأمريكية عام 1978 إلى تكليف العالمين ستانلي نولان وتوماس هيب بدراسة آلاف المكونات في أساطيل الطائرات. النتيجة كانت ثورة في علم الموثوقية: احتمالية الفشل تقاس بالاحتمالية الشرطية للفشل (Conditional Probability of Failure)، أي احتمال أن تتعطل المعدة خلال الفترة القادمة بشرط أنها عملت بنجاح حتى هذه اللحظة، وهذه الاحتمالية لا تتبع نمطا واحدا بل ستة أنماط مختلفة.
+
+## 2. مجموعتا الأعطال: المرتبطة بالعمر والعشوائية
+
+قسّمت الدراسة المعدات إلى مجموعتين:
+
+- **الأعطال المرتبطة بالعمر الزمني (11%)**: وهي الأنماط A و C و B. تتميز بوجود منطقة تقادم (Wear-Out Zone) واضحة يمكن التنبؤ بها إحصائيا، وتظهر غالبا في الأجزاء الميكانيكية البسيطة المعرضة لاحتكاك مباشر مثل بطانات الفرامل وفلاتر الهواء وإطارات الشاحنات. مع هذه المجموعة تنجح الصيانة الوقائية بالزمن (Time-Based Preventive Maintenance).
+- **الأعطال العشوائية غير المرتبطة بالعمر (89%)**: وهي الأنماط D و E و F. احتمالية العطل فيها ثابتة في أي وقت، أو ترتفع بشدة بعد التركيب مباشرة. تظهر في الإلكترونيات والهيدروليك والتجميعات الدوارة المعقدة. مع هذه المجموعة تفشل الصيانة بالزمن بل تزيد التدهور، والحل هو الصيانة المشروطة بالحالة (Condition-Based Maintenance) أي التدخل فقط عند ظهور علامات تدهور مقاسة.
+
+<Callout type="myth">
+**أسطورة:** "كل المعدات تتبع منحنى حوض الاستحمام، فتبلى بالتقادم في نهاية عمرها."
+**الحقيقة:** منحنى حوض الاستحمام (النمط A) لا يمثل سوى 4% من المعدات. الغالبية الساحقة (89%) أعطالها عشوائية لا يصلح معها الاستبدال الدوري بالزمن.
+</Callout>
+
+## 3. المنحنيات الستة بالتفصيل
+
+- **النمط F — وفيات الرضع (68%)**: احتمالية فشل مرتفعة جدا بعد التركيب أو العمرة مباشرة، ثم تنخفض وتستقر عند مستوى منخفض. أمثلته المحركات الكهربائية والإلكترونيات والمضخات بعد الاستبدال. الاستبدال الدوري ضار جدا معه، والمراقبة المشروطة ممتازة.
+- **النمط E — العشوائي التام (14%)**: احتمالية ثابتة من أول يوم حتى آخر يوم دون أي تقادم. أمثلته الصمامات الكروية ولوحات الدوائر والسيور عند الصدمات. الصيانة بالزمن عديمة الجدوى، ويصلح معه التشغيل حتى العطل للمعدات غير الحرجة.
+- **النمط D — البداية المنخفضة ثم الاستقرار (7%)**: احتمالية منخفضة جدا والمعدة جديدة، ثم ترتفع قليلا وتستقر. أمثلته الأنابيب المعزولة والهياكل والخراطيم عالية الجودة. يكفي معه الفحص الدوري وضبط ظروف التشغيل.
+- **النمط C — التعب والإجهاد التدريجي (5%)**: الاحتمالية تبدأ منخفضة وتتزايد تدريجيا مع تراكم ساعات التشغيل ودورات الإجهاد. أمثلته التروس ونوابض الصمامات والهياكل المهتزة. الاستبدال الوقائي مجد إذا حسبت دورات الإجهاد بدقة.
+- **النمط A — حوض الاستحمام التقليدي (4%)**: وفيات رضع في البداية، ثم عمر مفيد مستقر، ثم ارتفاع سريع عند نهاية العمر. أمثلته بطانات الأفران والأجزاء القديمة البسيطة. الصيانة بالزمن مناسبة فقط عند عتبة نهاية العمر.
+- **النمط B — التآكل الصريح مع العمر (2%)**: ثبات منخفض ثم زيادة حادة ومفاجئة عند نقطة زمنية واضحة نتيجة استهلاك المادة. أمثلته الإطارات وشفرات التقطيع وبطانات الكسارات والفلاتر. مثالي للاستبدال الوقائي بالزمن أو بقياس السمك.
+
+<StatGrid
+  title="توزيع أنماط الأعطال الستة (نولان وهيب)"
+  stats={[
+    { value: '68%', label: 'وفيات الرضع', note: 'A / F — دخل بشري بعد التركيب', color: 'rose' },
+    { value: '14%', label: 'عشوائي تام', note: 'B / E — بلا تقادم', color: 'amber' },
+    { value: '7%', label: 'بداية منخفضة ثم استقرار', note: 'C / D', color: 'teal' },
+    { value: '5%', label: 'تعب وإجهاد تدريجي', note: 'D / C', color: 'brand' },
+    { value: '4%', label: 'حوض استحمام', note: 'E / A — النمط الكلاسيكي', color: 'ink' },
+    { value: '2%', label: 'تآكل صريح مع العمر', note: 'F / B', color: 'teal' },
+  ]}
+  caption="الغالبية الساحقة (89%) أعطال عشوائية لا يرتبط بها استبدال زمني مجدٍ — هذا هو جوهر قصة نولان وهيب."
+/>
+
+## 4. لغز وفيات الرضع والتدخل البشري
+
+لماذا يمثل النمط F وحده 68% من الأعطال؟ السبب أن التدخل البشري بالفك وإعادة التجميع يدخل عيوبا جديدة في المعدة السليمة، وتسمى الأعطال المستحثة بالصيانة. أشهر أسبابها ثلاثة: أخطاء المحاذاة وعدم اتزان الدوار أثناء التركيب، وأخطاء التزييت مثل زيادة كمية الشحم التي تخنق المحامل وترفع حرارتها، ودخول الأتربة والرطوبة داخل المحامل المفتوحة أثناء العمرة. لذلك كل تفكيك غير ضروري لمعدة سليمة هو مقامرة ترفع احتمالية الفشل بدلا من خفضها.
+
+<Callout type="warn">
+**مفهوم خاطئ:** "العمرة الشاملة الدورية تصفّر احتمالية الأعطال وتعيد المعدة كالجديدة."
+**الحقيقة:** في المحركات الكهربائية والمعدات المعقدة تسبب العمرات غير المبررة تلف العزل وكراسي التحميل، ويرتفع الفشل بعد العمرة مباشرة. راقب الحرارة والاهتزاز والعزل بدلا من التفكيك بالتقويم.
+</Callout>
+
+## 5. المعيار الهندسي لاختيار الصيانة الوقائية بالزمن
+
+المعيار الفاصل بين الصيانتين معيار فيزيائي واحد: وجود عمر تقادم محدد ومؤكد إحصائيا. لكي تنجح الصيانة الوقائية بالزمن يجب أن يكون للمعدة نقطة اهتراء متوقعة يرتفع عندها معدل الفشل بوضوح، وهذا متوفر فقط في الأنماط A و C و B. بدون هذه النقطة يصبح الاستبدال الدوري تخمينا عشوائيا غير مجد. أما السعر والحجم وسرعة الدوران وتوصيات كتالوج الصانع فلا تحدد نوع الصيانة، بل تحددها فيزياء الفشل فقط. وهذا المعيار هو حجر الزاوية الذي بنيت عليه صيانة الاعتمادية (Reliability-Centered Maintenance).
+
+</LangSection>
+
+<LangSection lang="en">
+
+The central idea of this lesson is simple and startling at once: most failures of modern equipment have nothing to do with the age of the asset, and periodic preventive replacement can harm the equipment instead of protecting it. This fact was proven by the famous civil aviation study, and it is the foundation on which modern reliability-centered maintenance is built.
+
+## 1. The Nowlan & Heap study: the shock that changed maintenance
+
+Until the late 1970s, the prevailing belief among engineers was that the older a piece of equipment and the more operating hours it accumulated, the higher its probability of failure would inevitably become. Based on this assumption, companies spent enormous sums dismantling equipment and replacing healthy components on fixed time schedules.
+
+The surprise was that more preventive overhauls went hand in hand with more failures and sudden shutdowns. This dilemma prompted the US Federal Aviation Administration in 1978 to commission scientists Stanley Nowlan and Thomas Heap to study thousands of components across aircraft fleets. The result was a revolution in reliability science: the probability of failure is measured by the conditional probability of failure — the probability that the equipment will fail in the coming period given that it has operated successfully until this moment — and this probability follows not a single pattern but six distinct patterns.
+
+## 2. The two failure groups: age-related and random
+
+The study divided equipment into two groups:
+
+- **Age-related failures (11%)**: patterns A, C, and B. They are characterized by a clear, statistically predictable wear-out zone, and appear mostly in simple mechanical parts subject to direct friction, such as brake linings, air filters, and truck tires. Time-based preventive maintenance succeeds with this group.
+- **Random, non-age-related failures (89%)**: patterns D, E, and F. Their failure probability is constant at any moment, or rises sharply immediately after installation. They appear in electronics, hydraulics, and complex rotating assemblies. Time-based maintenance fails with this group and even increases deterioration; the solution is condition-based maintenance (CBM) — intervening only when measured degradation signs appear.
+
+<Callout type="myth">
+**Myth:** "All equipment follows the bathtub curve, wearing out toward the end of its life."
+**Fact:** The bathtub curve (pattern A) represents only 4% of equipment. The vast majority (89%) fail randomly, for which periodic time-based replacement is unsuitable.
+</Callout>
+
+## 3. The six curves in detail
+
+- **Pattern F — Infant mortality (68%)**: a very high failure probability immediately after installation or overhaul, then declining and stabilizing at a low level. Examples: electric motors, electronics, pumps after replacement. Periodic replacement is very harmful here; condition monitoring excels.
+- **Pattern E — Purely random (14%)**: a constant probability from the first day to the last with no wear-out. Examples: ball valves, circuit boards, belts under shock loads. Time-based maintenance is useless here; run-to-failure suits non-critical equipment.
+- **Pattern D — Low start then stabilization (7%)**: a very low probability while the equipment is new, then a slight rise and stabilization. Examples: insulated piping, structures, high-quality hoses. Periodic inspection and controlling operating conditions suffice.
+- **Pattern C — Gradual fatigue and stress (5%)**: probability starts low and rises gradually with accumulated operating hours and stress cycles. Examples: gears, valve springs, vibrating structures. Preventive replacement is worthwhile if stress cycles are calculated accurately.
+- **Pattern A — Classical bathtub (4%)**: infant mortality at the start, then a stable useful life, then a rapid rise at end of life. Examples: furnace linings and old simple parts. Time-based maintenance is appropriate only at the end-of-life threshold.
+- **Pattern B — Explicit wear with age (2%)**: low stability then a sharp, sudden rise at a clear point in time due to material consumption. Examples: tires, shredder blades, crusher linings, and filters. Ideal for time-based or thickness-measured preventive replacement.
+
+<StatGrid
+  title="Distribution of the six failure patterns (Nowlan & Heap)"
+  stats={[
+    { value: '68%', label: 'Infant mortality', note: 'A / F — human intervention after installation', color: 'rose' },
+    { value: '14%', label: 'Purely random', note: 'B / E — no wear-out', color: 'amber' },
+    { value: '7%', label: 'Low start then stabilization', note: 'C / D', color: 'teal' },
+    { value: '5%', label: 'Gradual fatigue and stress', note: 'D / C', color: 'brand' },
+    { value: '4%', label: 'Bathtub', note: 'E / A — the classic pattern', color: 'ink' },
+    { value: '2%', label: 'Explicit wear with age', note: 'F / B', color: 'teal' },
+  ]}
+  caption="The vast majority (89%) are random failures with no worthwhile time-based replacement attached — this is the essence of the Nowlan & Heap story."
+/>
+
+## 4. The infant-mortality puzzle and human intervention
+
+Why does pattern F alone represent 68% of failures? The reason is that human intervention — disassembly and reassembly — introduces new defects into healthy equipment, which are called maintenance-induced failures. Its three most famous causes: alignment errors and rotor imbalance during installation; lubrication errors such as over-greasing that chokes the bearings and raises their temperature; and dirt and moisture entering open bearings during overhauls. Every unnecessary disassembly of healthy equipment is therefore a gamble that raises the probability of failure instead of lowering it.
+
+<Callout type="warn">
+**Misconception:** "Periodic comprehensive overhauls reset the failure probability and make equipment as good as new."
+**Fact:** In electric motors and complex equipment, unjustified overhauls damage the insulation and bearing housings, and failure rises immediately after the overhaul. Monitor temperature, vibration, and insulation instead of disassembling by the calendar.
+</Callout>
+
+## 5. The engineering criterion for choosing time-based preventive maintenance
+
+The dividing criterion between the two maintenance strategies is one physical criterion: the existence of a defined, statistically confirmed wear-out age. For time-based preventive maintenance to succeed, the equipment must have an expected wear-out point at which the failure rate clearly rises, which is available only in patterns A, C, and B. Without this point, periodic replacement becomes a useless random guess. Price, size, rotating speed, and OEM catalog recommendations do not determine the maintenance strategy — failure physics alone does. This criterion is the cornerstone on which Reliability-Centered Maintenance (RCM) is built.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: مستكشف المنحنيات الستة
+
+تنقل بين الأنماط الستة وشاهد نسبة كل نمط وشكل منحنيه وأمثلته في المصنع والقرار الهندسي المناسب له.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Six Curves Explorer
+
+Browse the six patterns and see each pattern's share, the shape of its curve, its examples in the plant, and the appropriate engineering decision for it.
+
+</LangSection>
+
+<SixCurvesExplorer client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-1-1-t1','cmrp-1-1-t2','cmrp-1-1-t3','cmrp-1-1-t4','cmrp-1-1-t5']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على دراسة نولان وهيب ونسب الأنماط الستة وخطر العمرات الدورية غير المبررة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the Nowlan & Heap study, the shares of the six patterns, and the risk of unjustified periodic overhauls.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-1-1" questions={quizCmrp11.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **89% من الأعطال عشوائية** غير مرتبطة بالعمر (الأنماط D بنسبة 7% و E بنسبة 14% و F بنسبة 68%)، و11% فقط مرتبطة بالعمر (A بنسبة 4% و C بنسبة 5% و B بنسبة 2%).
+- **النمط F (وفيات الرضع) هو الغالب**، وسببه الأول التدخل البشري بالفك والتركيب وأخطاء المحاذاة والتزييت والتلوث.
+- **الصيانة بالزمن تنجح فقط** مع وجود عمر تقادم مؤكد إحصائيا (الأنماط A و C و B)، وتضر المعدة أو تضيع الجهد مع الأنماط العشوائية.
+- **المعيار الفاصل فيزيائي** لا مالي: سلوك الفشل هو الذي يحدد التكتيك، والحل للأنماط العشوائية هو المراقبة المشروطة بالحالة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **89% of failures are random** and not age-related (patterns D at 7%, E at 14%, and F at 68%); only 11% are age-related (A at 4%, C at 5%, and B at 2%).
+- **Pattern F (infant mortality) dominates**, and its first cause is human intervention through disassembly and reassembly, along with alignment, lubrication, and contamination errors.
+- **Time-based maintenance only works** with a statistically confirmed wear-out age (patterns A, C, and B); it harms the equipment or wastes effort with random patterns.
+- **The dividing criterion is physical, not financial**: failure behavior determines the tactic, and the solution for random patterns is condition-based monitoring.
+
+</LangSection>

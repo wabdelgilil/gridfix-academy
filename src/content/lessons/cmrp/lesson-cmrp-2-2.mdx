@@ -1,0 +1,229 @@
+---
+id: lesson-cmrp-2-2
+course: cmrp
+station: station-cmrp-2
+number: "2.2"
+title: "تحليل أنماط وتأثيرات الأعطال (FMEA & FMECA)"
+titleEn: "Failure Modes and Effects Analysis"
+minutes: 35
+order: 2
+objectives:
+  - "أن يفرق المتعلم بدقة بين نمط الفشل وسببه وأثره."
+  - "أن يحسب رقم أولوية المخاطر (RPN = S × O × D) ويفسر كل متغير."
+  - "أن يكشف فخ رقم RPN ويطبق قاعدة معالجة الشدة العالية أولاً."
+  - "أن يفرق بين FMEA النوعي وFMECA الكمي ودور الفريق متعدد التخصصات."
+objectivesEn:
+  - "Distinguish precisely between failure mode, cause, and effect."
+  - "Compute the Risk Priority Number (RPN = S × O × D) and interpret each factor."
+  - "Expose the RPN fallacy and apply the high-severity-first rule."
+  - "Contrast qualitative FMEA with quantitative FMECA and the cross-functional team role."
+hasTool: true
+toolName: "جدول FMEA التفاعلي"
+toolNameEn: "Interactive FMEA Table"
+quizId: quiz-cmrp-2-2
+sources:
+  - aiag_fmea
+  - fitch
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import FMEATable from '../../../components/islands/tools/cmrp/FMEATable.tsx';
+import Comparison from '../../../components/ui/figures/Comparison.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp22 } from '../../../data/quiz/cmrp/quiz-cmrp-2-2';
+
+<LangSection lang="ar">
+
+تحليل أنماط وتأثيرات الأعطال (Failure Mode and Effects Analysis) هو الأداة الأكثر انتشاراً عالمياً لمنع الأعطال قبل وقوعها. لكن أكثر من 70% من التطبيقات الخاطئة تفشل بسبب الخلط بين ثلاثة مفاهيم، أو بسبب الاعتماد الأعمى على رقم واحد. هذا الدرس يبني المنهجية على أصولها.
+
+## 1. تشريح العطل: النمط والسبب والأثر
+
+كل بند في جدول FMEA يُفكك إلى ثلاثة عناصر متميزة:
+
+- **نمط الفشل (Failure Mode)**: كيف يتعطل المكون فيزيائياً؟ المظهر الخارجي المرصود — كسر في العمود، انسداد في الأنبوب، تسريب في الصمام، قصر في الملف الكهربائي.
+- **سبب الفشل (Failure Cause)**: لماذا حدث العطل؟ الجذر الفيزيائي أو الإنساني — عدم محاذاة العمود، تلوث الزيت بالأتربة، اهتزاز مفرط، استخدام شحم غير مطابق.
+- **أثر الفشل (Failure Effect)**: ماذا ترتب على العطل؟ على ثلاثة مستويات: محلي (سخونة المحمل)، نظامي (توقف المضخة)، نهائي (توقف خط الإنتاج بخسارة 50 ألف دولار في الساعة).
+
+كتابة "المحرك لا يعمل بسبب إهمال المشغل" في خانة النمط خطأ منهجي: "احتراق ملفات العضو الثابت" هو النمط، و"إهمال المشغل" سبب محتمل، و"المحرك لا يعمل" هو الأثر. الدمج العشوائي يمنع توجيه الإجراء التصحيحي نحو الجذر.
+
+## 2. حساب رقم أولوية المخاطر (RPN)
+
+لترتيب أنماط الفشل تُقيَّم ثلاثة متغيرات على مقياس من 1 إلى 10، ثم تُضرب:
+
+**RPN = الشدة (S) × الحدوث (O) × الكشف (D)** — والناتج من 1 (أقل خطر) إلى 1000 (كارثي متكرر مخفي).
+
+- **الشدة (Severity)**: خطورة الأثر على السلامة والبيئة والإنتاج — 1 تعني لا أثر، و10 تعني كارثة بشرية دون إنذار.
+- **معدل الحدوث (Occurrence)**: تكرار سبب العطل — 1 نادر للغاية، و10 مستمر وشبه حتمي.
+- **صعوبة الكشف (Detection)**: عجز وسائل الفحص الحالية عن الرصد المبكر — 1 كشف فوري مضمون، و10 عطل مخفي تماماً.
+
+أمثلة حقيقية من جدول مضخة ضغط عالٍ: محمل رئيسي (8 × 6 × 3 = 144) مع حساس اهتزاز وفحص برادة الزيت كل 15 يوماً؛ مانع تسرب ميكانيكي (10 × 2 × 4 = 80) يستلزم إعادة تصميم لنظام مزدوج بسائل حاجز؛ صمام أمان ملتصق (10 × 2 × 8 = 160) يستلزم اختبار معايرة كل 6 أشهر؛ فلتر هواء (3 × 7 × 2 = 42) يكفيه تنظيف أسبوعي واستبدال عند فرق ضغط 0.5 بار.
+
+## 3. فخ رقم RPN: متى يكون الرقم خادعاً؟
+
+قارن حالتين تتكرران في أسئلة الامتحان:
+
+- **الحالة الأولى: تسريب خفيف لزيت تزييت** — S = 3 وO = 10 وD = 6، أي RPN = 180. رقم مرتفع لكنه لا يهدد الأرواح ولا يوقف المصنع.
+- **الحالة الثانية: انسداد صمام أمان غلاية بخار** — S = 10 وO = 2 وD = 3، أي RPN = 60. رقم صغير لكنه انفجار قاتل يستلزم المعالجة الفورية القصوى!
+
+<Comparison
+  title="فخ رقم RPN: الرقم الإجمالي وحده كاذب"
+  sides={[
+    { label: 'تسريب خفيف لزيت تزييت', items: ['S = 3 و O = 10 و D = 6', 'RPN = 180 رقم مرتفع', 'لا يهدد الأرواح ولا يوقف المصنع'], color: 'teal' },
+    { label: 'انسداد صمام أمان غلاية بخار', items: ['S = 10 و O = 2 و D = 3', 'RPN = 60 رقم منخفض', 'انفجار قاتل يستلزم المعالجة الفورية القصوى'], color: 'rose' },
+  ]}
+  caption="الرقم الإجمالي خادع — يُفرز الجدول أولاً حسب أعلى شدة (9 أو 10) وتُعالَج هندسياً مهما بدا الرقم منخفضاً."
+/>
+
+<Callout type="warn">
+**القاعدة الصارمة:** ممنوع وضع حد رقمي اعتباطي (مثل معالجة ما فوق 100 فقط). يُفرز الجدول أولاً حسب أعلى شدة (Severity 9 أو 10) وتُعالج هندسياً مهما بدا الرقم الإجمالي منخفضاً، ثم تُعالج الأنماط عالية التكرار.
+</Callout>
+
+ولخفض الخطر بالترتيب الهندسي الصحيح: أولاً خفض الشدة بإعادة التصميم (Redesign) لأنه وحده يغير طبيعة العطل، ثم خفض الحدوث بتحسين التزييت والمواد والدقة الميكانيكية، وأخيراً تحسين الكشف بمجسات تنبؤية (CBM) التي تنذر مبكراً دون أن تمنع العطل بذاتها.
+
+## 4. الفريق متعدد التخصصات وFMECA الكمي
+
+تحليل FMEA ليس تمريناً مكتبياً فردياً. تشترط المعايير فريق عمل متعدد التخصصات (Cross-Functional Team): مشغلي المعدات (يعرفون السلوك الحقيقي)، وفنيي الصيانة (يفككون المكونات)، ومهندسي السلامة والعمليات، وخبير موثوقية يدير الجلسة (Facilitator). لا شخص واحد — مهما بلغت خبرته — يحيط بكل الأنماط والأسباب والظروف الميدانية.
+
+أما تحليل FMECA حيث يشير حرف C إلى تحليل الحرجية (Criticality Analysis) فهو التطور الكمي: يستخدم بيانات معدل الأعطال الفعلي (λ) ونسبة مساهمة كل نمط في توقف المنظومة، لإنتاج مصفوفة حرجية كمية دقيقة تخدم الصناعات الفضائية والنووية والنفطية — بينما يبقى FMEA الأساسي تقييماً نوعياً تقديرياً (Qualitative).
+
+<Callout type="tip">
+**للاختبار:** إذا رأيت شدة 9 أو 10 في أي خيار فهو الإجابة الأولى قبل أي حساب. وإذا رأيت مهندساً يكتب FMEA بمفرده في مكتبه فالحكم المهني: إجراء مرفوض ينتج تحليلاً نظرياً ناقصاً.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Failure Mode and Effects Analysis (FMEA) is the most widely used tool worldwide to prevent failures before they occur. Yet more than 70% of incorrect applications fail because of confusing three concepts, or because of blind reliance on a single number. This lesson builds the methodology from its foundations.
+
+## 1. Dissecting the failure: mode, cause, and effect
+
+Every item in an FMEA table is broken down into three distinct elements:
+
+- **Failure mode**: how does the component fail physically? The observed external appearance — shaft fracture, pipe blockage, valve leakage, electrical coil short circuit.
+- **Failure cause**: why did the failure happen? The physical or human root — shaft misalignment, oil contamination with dirt, excessive vibration, use of non-conforming grease.
+- **Failure effect**: what resulted from the failure? At three levels: local (bearing overheating), system (pump stoppage), and final (production line shutdown with a loss of $50,000 per hour).
+
+Writing "the motor does not work because of operator negligence" in the mode column is a methodological error: "burnout of the stator windings" is the mode, "operator negligence" is a possible cause, and "the motor does not work" is the effect. Randomly mixing them prevents directing the corrective action toward the root cause.
+
+## 2. Computing the Risk Priority Number (RPN)
+
+To rank failure modes, three variables are scored on a 1-to-10 scale and then multiplied:
+
+**RPN = Severity (S) × Occurrence (O) × Detection (D)** — the result ranges from 1 (lowest risk) to 1000 (repeated hidden catastrophe).
+
+- **Severity**: the gravity of the effect on safety, environment, and production — 1 means no effect, and 10 means a human catastrophe without warning.
+- **Occurrence**: how often the failure cause recurs — 1 is extremely rare, and 10 is continuous and almost inevitable.
+- **Detection**: the inability of current inspection means to detect early — 1 is guaranteed immediate detection, and 10 is a completely hidden failure.
+
+Real examples from a high-pressure pump table: a main bearing (8 × 6 × 3 = 144) with a vibration sensor and oil debris checks every 15 days; a mechanical seal (10 × 2 × 4 = 80) requiring redesign to a dual system with a barrier fluid; a stuck safety valve (10 × 2 × 8 = 160) requiring calibration testing every 6 months; an air filter (3 × 7 × 2 = 42) for which weekly cleaning and replacement at a 0.5 bar pressure differential suffice.
+
+## 3. The RPN trap: when is the number deceptive?
+
+Compare two cases that recur in exam questions:
+
+- **Case one: a light lubricating oil leak** — S = 3, O = 10, and D = 6, i.e., RPN = 180. A high number, but it threatens no lives and does not stop the plant.
+- **Case two: a blocked steam boiler safety valve** — S = 10, O = 2, and D = 3, i.e., RPN = 60. A small number, but a fatal explosion requiring maximum immediate treatment!
+
+<Comparison
+  title="The RPN trap: the total number alone is deceptive"
+  sides={[
+    { label: 'Light lubricating oil leak', items: ['S = 3, O = 10, D = 6', 'RPN = 180, a high number', 'Threatens no lives and does not stop the plant'], color: 'teal' },
+    { label: 'Blocked steam boiler safety valve', items: ['S = 10, O = 2, D = 3', 'RPN = 60, a low number', 'A fatal explosion requiring maximum immediate treatment'], color: 'rose' },
+  ]}
+  caption="The total number is deceptive — sort the table first by the highest severity (9 or 10) and treat those engineering-wise whatever the number looks like."
+/>
+
+<Callout type="warn">
+**The strict rule:** arbitrary numeric thresholds (such as treating only scores above 100) are forbidden. Sort the table first by the highest severity (Severity 9 or 10) and treat those engineering-wise no matter how low the total number looks, then treat the high-occurrence modes.
+</Callout>
+
+To lower risk in the correct engineering order: first reduce severity through redesign, because it alone changes the nature of the failure; then reduce occurrence by improving lubrication, materials, and mechanical precision; finally improve detection with predictive sensors (CBM), which warn early without preventing the failure by themselves.
+
+## 4. The cross-functional team and quantitative FMECA
+
+FMEA is not an individual office exercise. Standards require a cross-functional team: equipment operators (who know the real behavior), maintenance technicians (who disassemble the components), safety and operations engineers, and a reliability expert who facilitates the session. No single person — no matter how experienced — covers all modes, causes, and field conditions.
+
+FMECA, where the letter C stands for criticality analysis, is the quantitative development: it uses actual failure rate data (λ) and each mode's share of system downtime contributions to produce a precise quantitative criticality matrix serving the aerospace, nuclear, and oil industries — while basic FMEA remains a qualitative estimating assessment.
+
+<Callout type="tip">
+**For the exam:** if you see a severity of 9 or 10 in any option, it is the first answer before any calculation. And if you see an engineer writing an FMEA alone in their office, the professional judgment is: a rejected practice producing an incomplete theoretical analysis.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: جدول FMEA التفاعلي
+
+اختر نمط فشل حقيقياً (محمل، مانع تسرب، صمام أمان، فلتر هواء)، وحرّك مؤشرات الشدة والحدوث والكشف، وشاهد رقم RPN يتغير لحظياً مع تحذيرات الشدة الحرجة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Interactive FMEA Table
+
+Pick a real failure mode (bearing, mechanical seal, safety valve, air filter), move the severity, occurrence, and detection sliders, and watch the RPN change instantly alongside critical severity warnings.
+
+</LangSection>
+
+<FMEATable client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-2-2-t1', 'cmrp-2-2-t2', 'cmrp-2-2-t3', 'cmrp-2-2-t4', 'cmrp-2-2-t5', 'cmrp-2-2-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على أولوية الشدة العالية، وتصحيح صياغة النمط والسبب والأثر، والترتيب الهرمي لخفض الخطر، والفرق بين FMEA وFMECA، وشرط الفريق متعدد التخصصات.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on high-severity priority, correcting the mode-cause-effect wording, the hierarchy of risk reduction, the difference between FMEA and FMECA, and the cross-functional team requirement.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-2-2" questions={quizCmrp22.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **النمط** كيف ظهر العطل فيزيائياً، و**السبب** لماذا حدث، و**الأثر** ماذا ترتب عليه محلياً ونظامياً ونهائياً.
+- **RPN = S × O × D** من 1 إلى 1000 على مقياس 1–10 لكل متغير.
+- **الشدة 9 أو 10 أولاً دائماً** بغض النظر عن الرقم الإجمالي — هذا هو فخ RPN الأشهر.
+- **ترتيب الخفض**: إعادة تصميم للشدة، ثم تحسين المواد والتزييت للحدوث، ثم مجسات CBM للكشف.
+- **FMECA** يضيف الحرجية الكمية بمعدل الأعطال (λ)، و**الفريق متعدد التخصصات** شرط لصحة التحليل.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The mode** is how the failure appeared physically, **the cause** is why it happened, and **the effect** is what resulted locally, system-wide, and finally.
+- **RPN = S × O × D**, from 1 to 1000 on a 1–10 scale per variable.
+- **Severity 9 or 10 always comes first** regardless of the total number — this is the most famous RPN trap.
+- **The reduction order**: redesign for severity, then improving materials and lubrication for occurrence, then CBM sensors for detection.
+- **FMECA** adds quantitative criticality via the failure rate (λ), and the **cross-functional team** is a condition for a valid analysis.
+
+</LangSection>

@@ -1,0 +1,219 @@
+---
+id: lesson-cama-4-3
+course: cama
+station: station-cama-4
+number: "4.3"
+title: "سلسلة التوريد وإدارة المشتريات"
+titleEn: "Supply Chain & Procurement"
+minutes: 25
+order: 3
+objectives:
+  - "أن يشرح المتعلم دور سلسلة التوريد في دعم موثوقية الأصول."
+  - "أن يصنف استراتيجيات الشراء حسب أهمية القطعة وحرجية الأصل."
+  - "أن يقيم الموردين وفق معايير متعددة قبل التعاقد."
+objectivesEn:
+  - "Explain the role of the supply chain in supporting asset reliability."
+  - "Classify procurement strategies by part criticality."
+  - "Evaluate vendors against multiple criteria before contracting."
+hasTool: true
+toolName: "محلل الموردين"
+toolNameEn: "Vendor Analyzer"
+quizId: quiz-cama-4-3
+sources:
+  - iso55001
+  - gfmam_landscape
+  - ifma_best_practices
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import VendorAnalyzer from '../../../components/islands/tools/cama/VendorAnalyzer.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama43 } from '../../../data/quiz/cama/quiz-cama-4-3';
+
+<LangSection lang="ar">
+
+سلسلة التوريد في إدارة الأصول ليست مجرد عملية شراء قطع غيار. هي منظومة متكاملة تربط المورد بالمنشأة عبر مشتريات واستيراد وتخزين وتوزيع، وأي خلل فيها يعني توقف أصل مهم وفقدان إنتاجية.
+
+## 1. بنية سلسلة التوريد لإدارة الأصول
+
+سلسلة التوريد للصيانة تختلف عن سلسلة التوريد للإنتاج في خصائص جوهرية:
+
+- **الطلب غير المنتظم:** الأعطال لا تتبع نمطاً ثابتاً، لذا يجب أن يكون المخزون مرناً ومبنياً على البيانات.
+- **أولوية العطل:** قطعة غيار حرجة لمضخة رئيسية أهم من قطعة غيار لموتور مساعد.
+- **زمن التسليم الحرج:** قطعة تأخرت أسبوعاً قد تكلفت خسائر تفوق قيمتها مئات المرات.
+- **تعدد الموردين:** الاعتماد على مورد واحد لقطعة حرجة يعني مخاطرة استراتيجية.
+
+## 2. استراتيجيات المشتريات الذكية
+
+المشتريات الذكية لا تعني الأرخص، بل تعني الأفضل من حيث القيمة الإجمالية:
+
+- **المناقصات المفتوحة:** للمنتجات المعيارية الكبيرة حيث تنافس الموردون على السعر والجودة.
+- **المناقصات المحدودة:** للأصول المتخصصة حيث تقتصر على موردين معتمدين ولديهم خبرة مثبتة.
+- **العقود طويلة الأمد:** للموردين الاستراتيجيين حيث تثبت الأسعار وتضمن التزام المورد.
+- **الشراء المباشر:** للطوارئ الحرجة حيث لا يسمح الوقت بإجراءات المناقصة.
+
+<Callout type="myth">
+**خطأ شائع:** التخلص من الموردين الأقل سعراً دائماً يوفر المال. الحقيقة: المورد الأرخص قد يسبب خسائر بتأخير التسليم أو جودة رديئة. تكلفة المورد الحقيقية = السعر + تكلفة التأخير + تكلفة عدم الجودة + تكلفة إدارة العلاقة.
+</Callout>
+
+## 3. إدارة الموردين والتصنيف
+
+التصنيف الدوري للموردين يعتمد على مصفوفة أداء مزدوجة:
+
+- **جودة التسليم:** النسبة المئوية للتسليم في الوقت المحدد دون عيوب.
+- **الالتزام بالمواصفات:** التوافق مع المواصفات الفنية المطلوبة في العقد.
+- **الاستجابة:** سرعة الاستجابة للاستفسارات والدعم الفني بعد البيع.
+- **السعر التنافسي:** ليس الأرخص، بل الأفضل من حيث القيمة الإجمالية.
+
+الموردين يُصنّفون إلى أربعة فئات:
+
+1. **استراتيجيون:** موردون حاليون بكفاءة عالية وموردون محتملون لأصول حرجة.
+2. **مفضلون:** أداء عالي لكن ليست حرجين استراتيجياً.
+3. **مرشحون:** أداء مقبول ويمكن تطويرهم.
+4. **محازبون:** أداء منخفض أو غير موثوق ويجب استبدالهم.
+
+## 4. إدارة المخزون وقطع الغيار
+
+إدارة قطع الغيار ترتكز على ثلاثة مبادئ:
+
+- **تصنيف ABC:** التمييز بين القطع الحرجة (A) والأساسية (B) والروتينية (C) لتخصيص الميزانية والمساحة.
+- **مستويات الخدمة:** تحديد النسبة المئوية المطلوبة من الطلبات التي تُلبى من المخزون الحالي.
+- **نقاط إعادة الطلب:** تحديد متى يجب إعادة طلب القطعة بناءً على متوسط الاستهلاك وزمن التسليم.
+
+<Callout type="example">
+**سيناريو:** مصنع بترولي قرر تخزين محلي لـ 150 قطعة حرجة بقيمة 200,000 ريال بدلاً من الاعتماد على التسليم من الخارج. النتيجة: تقليل زمن التوقف من 72 ساعة إلى 8 ساعات في حالات الأعطال الحرجة، بتوفير سنوي يفوق 3 ملايين ريال من خسائر الإنتاج المتوقعة.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+The supply chain in asset management is not merely a process of buying spare parts. It is an integrated system linking the supplier to the facility through procurement, import, storage, and distribution, and any disruption in it means a critical asset stops and productivity is lost.
+
+## 1. The structure of the supply chain for asset management
+
+The maintenance supply chain differs from the production supply chain in essential characteristics:
+
+- **Irregular demand:** failures do not follow a fixed pattern, so inventory must be flexible and data-driven.
+- **Failure priority:** a critical spare part for a main pump matters more than a spare part for an auxiliary motor.
+- **Critical lead time:** a part that arrives a week late can cost losses hundreds of times its value.
+- **Multiple suppliers:** relying on a single supplier for a critical part means a strategic risk.
+
+## 2. Smart procurement strategies
+
+Smart procurement does not mean the cheapest; it means the best in terms of total value:
+
+- **Open tenders:** for large standard products where suppliers compete on price and quality.
+- **Limited tenders:** for specialized assets, restricted to approved suppliers with proven experience.
+- **Long-term contracts:** for strategic suppliers, where prices are stabilized and the supplier's commitment is ensured.
+- **Direct purchase:** for critical emergencies where there is no time for tender procedures.
+
+<Callout type="myth">
+**Common mistake:** eliminating less expensive suppliers always saves money. **Fact:** the cheapest supplier may cause losses through delivery delays or poor quality. The true cost of a supplier = price + cost of delay + cost of non-quality + cost of relationship management.
+</Callout>
+
+## 3. Supplier management and classification
+
+Periodic supplier classification relies on a dual performance matrix:
+
+- **Delivery quality:** the percentage of on-time deliveries without defects.
+- **Specification compliance:** conformity with the technical specifications required in the contract.
+- **Responsiveness:** speed of response to inquiries and after-sales technical support.
+- **Competitive price:** not the cheapest, but the best in terms of total value.
+
+Suppliers are classified into four categories:
+
+1. **Strategic:** current suppliers of high capability and potential suppliers for critical assets.
+2. **Preferred:** high performance but not strategically critical.
+3. **Candidates:** acceptable performance that can be developed.
+4. **Partisans:** low or unreliable performance, and they should be replaced.
+
+## 4. Inventory and spare parts management
+
+Spare parts management rests on three principles:
+
+- **ABC classification:** distinguishing between critical (A), essential (B), and routine (C) parts to allocate the budget and space.
+- **Service levels:** defining the required percentage of orders to be fulfilled from current inventory.
+- **Reorder points:** determining when a part should be reordered based on average consumption and lead time.
+
+<Callout type="example">
+**Scenario:** an oil plant decided to stock locally 150 critical parts worth 200,000 riyals instead of relying on external delivery. The result: reducing downtime from 72 hours to 8 hours in critical failure cases, with annual savings exceeding 3 million riyals in expected production losses.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: محلل الموردين
+
+أداة تفاعلية تقيس أداء الموردين بناءً على أربعة معايير وتنتج تصنيفاً تلقائياً. أضف موردينك وقارن بينهم.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Vendor Analyzer
+
+An interactive tool that measures supplier performance based on four criteria and produces an automatic rating. Add your suppliers and compare them.
+
+</LangSection>
+
+<VendorAnalyzer client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-4-3-t1', 'cama-4-3-t2', 'cama-4-3-t3', 'cama-4-3-t4']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على تصنيف الموردين، وإدارة المخزون وقطع الغيار بالتصنيف، واستراتيجيات المشتريات الذكية بالتكلفة الإجمالية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on supplier classification, inventory and spare parts management by classification, and smart procurement strategies on a total cost basis.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-4-3" questions={quizCama43.questions} client:load />
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **سلسلة توريد الصيانة** تختلف عن سلسلة التوريد للإنتاج في عدم انتظام الطلب وأولوية العطل.
+- **المشتريات الذكية** لا تعني الأرخص بل الأفضل من حيث القيمة الإجمالية (السعر + التأخير + الجودة + الإدارة).
+- **تصنيف الموردين الدوري** يكشف الاعتماد الاستراتيجي ويساعد في تطوير الشراكات الموثوقة.
+- **إدارة قطع الغيار** تتطلب تصنيف ABC ومستويات خدمة ونقاط إعادة طلب واضحة.
+- **القطع الحرجة المخزنة محلياً** قد توفر ملايين من خسائر الإنتاج مقارنة بالتكلفة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The maintenance supply chain** differs from the production supply chain in irregular demand and failure priority.
+- **Smart procurement** does not mean the cheapest but the best in terms of total value (price + delay + quality + management).
+- **Periodic supplier classification** reveals strategic dependence and helps develop reliable partnerships.
+- **Spare parts management** requires ABC classification, service levels, and clear reorder points.
+- **Critical parts stocked locally** can save millions in production losses compared with the cost.
+
+</LangSection>

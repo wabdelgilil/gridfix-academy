@@ -1,0 +1,164 @@
+---
+id: lesson-12-3
+station: station-12
+number: "12.3"
+title: "المقاولون والإغلاق"
+titleEn: "Procurement & Closeout"
+minutes: 20
+order: 3
+objectives:
+  - "أن يبني المتعلم عملية شراء شفافة: طلب معلومات وعروض ومقارنة وفق معايير معلنة."
+  - "أن يفهم أنواع العقود وأثر اختيارها على توزيع المخاطر."
+  - "أن يدير أوامر التغيير وإغلاق العقد بفحص قبول وتسليم الوثائق."
+  - "أن يحوّل المشروع المنجز إلى التشغيل بشكل منظم."
+objectivesEn:
+  - "Build a transparent procurement process: RFI/RFP and criteria-based comparison."
+  - "Understand contract types and their risk impact."
+  - "Manage change orders and close contracts with acceptance and documentation."
+  - "Transfer a delivered project into operations in an organized way."
+hasTool: false
+quizId: quiz-12-3
+sources:
+  - ifma
+---
+
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz123 } from '../../../data/quiz/cfm/quiz-12-3';
+
+<LangSection lang="ar">
+
+آخر فصل من لغة مشاريع المنشأة هو باب التعاقد: تُشترى به الأعمال بشفافية ومنافسة، وتُصاغ به العقود التي تقسم المخاطر، وتخرج به المشاريع من ورشة المقاول إلى تشغيل يشرف عليه مشرف المبنى. من أتقن هذه الحلقة سدّ ثغرات المال والمسؤولية تلقائياً.
+
+## 1. الشراء الشفاف: من طلب المعلومات إلى طلب العروض
+
+- **طلبات المعلومات (RFI)**: أسئلة مفتوحة لسبر السوق قبل القرار (مواصفات تقنية، ممارسات، نطاقات قيم تقريبية).
+- **طلب العروض (RFP)**: وثيقة رسمية بنطاق ومواصفات وجدول متوقع ومعايير تقييم وتواريخ تقديم — تُقارن عليها كل العروض.
+
+الشفافية شرط: معايير التقييم تُعلن قبل العروض (السعر منزوعاً مع الجودة وسجل الخبرة)، والمقارنة تتم على أساس موحد بين مرشحين حقيقيين. الشراء الصحيح لا يشتري «الأرخص سعراً» فقط، بل يوازن بين السعر والجودة والأثر في القيمة الفعلية على المدى الطويل.
+
+## 2. أنواع العقود وتوزيع المخاطر
+
+اختيار نوع العقد يحدد من يحمل مخاطر مالية:
+
+- **السعر المقطوع (Lump Sum)**: سعر ثابت للنطاق — المخاطرة على المقاول غالباً، والمالك واثق من سقف التكلفة.
+- **الكلفة زائداً الرسوم (Cost Plus)**: التكلفة الفعلية زائد رسوم ثابتة — مرن للنطاق الغامض لكنه أحوج للرقابة المحكمة على الإنفاق.
+- **السعر الموحّد للوحدة (Unit Price)**: سعر معياري للوحدة — يصلح الأعمال التي تتغير كمياتها.
+
+القاعدة: نطاق واضح محدد كاملاً يفضّل السعر المقطوع؛ نطاق متطور بلا صورة نهائية يستوجب عقوداً مفتوحة برقابة مالية تعويضية.
+
+## 3. تنفيذ العقد: أوامر التغيير والخلافات
+
+التغييرات تُدار كما تعلمت في المحطة: أمر تغيير مكتوب بتقدير أثر واعتماد قبل التنفيذ. وعند الخلاف:
+
+- توثيق الأدلة: مراسلات، محاضر اجتماعات، سجلات موقع، قياسات — كلها وثيقة الانحراف والتأجيل.
+- اتباع إجراءات الإبلاغ (Notice) المتفق عليها في العقد بصرامة حتى لا تسقط الحقوق بالصمت.
+- الحل الودّي المنظم في اجتماعات موثقة يقي من تحول الخلاف إلى نزاع مكلف.
+
+## 4. الإغلاق: فحص القبول والتسليم الكامل
+
+الانتهاء المادي لا يكفي — الإغلاق له أعباء منهجية:
+
+1. **قائمة النقص (Punch List)**: فحص شامل لبنود النطاق كلها، وتوثيق كل نقص، ومعالجته، ثم إعادة الفحص.
+2. **التوثيق التشغيلي**: مخططات «كما بُني»، ودليل الصيانة، وسجل قطع الغيار والبديلة.
+3. **الضمانات**: مستندات الضمان ونطاق تغطيتها ومواعيد مراجعاتها النهائية.
+4. **التحويل للتشغيل**: تدريب الفريق، تسليم المفاتيح والتجهيزات، وتسجيل أوامر العمل في نظام المنشأة.
+5. **إقفال الحسابات**: الاستحقاقات النهائية وسداد الديون وضمان متبقٍّ موثق في العقد.
+
+مشروع ما زال في قائمة النقص غير مُسلَّم؛ ولهذا تُمنح الأولوية لقائمة نقص صادقة كاملة، ولا يوقَّع الإغلاق النهائي قبل معالجة كل بند من ملاحظاتها.
+
+</LangSection>
+
+<LangSection lang="en">
+
+The last chapter of the facility-project language is the contracting door: work is bought through it with transparency and competition, the contracts that divide risk are drafted with it, and projects exit through it from the contractor's workshop into an operation overseen by the building supervisor. Whoever masters this loop automatically closes the money and responsibility gaps.
+
+## 1. Transparent procurement: from request for information to request for proposals
+
+- **Requests for information (RFI)**: open questions to sound out the market before the decision (technical specifications, practices, approximate value ranges).
+- **Request for proposals (RFP)**: a formal document with a scope, specifications, an expected schedule, evaluation criteria, and submission dates — all proposals are compared against it.
+
+Transparency is a condition: the evaluation criteria are announced before the proposals (price stripped together with quality and the experience record), and the comparison is made on a uniform basis among genuine candidates. Correct procurement does not only buy "the cheapest price", but balances price, quality, and the impact on actual value over the long term.
+
+## 2. Contract types and risk allocation
+
+Choosing the contract type determines who carries financial risk:
+
+- **Lump Sum**: a fixed price for the scope — the risk often lies with the contractor, and the owner is confident about the cost ceiling.
+- **Cost Plus**: the actual cost plus fixed fees — flexible for an ambiguous scope but most in need of tight control over spending.
+- **Unit Price**: a standard price per unit — suitable for work whose quantities change.
+
+The rule: a complete, clearly defined scope favors the lump sum; an evolving scope with no final picture requires open contracts with compensatory financial control.
+
+## 3. Contract execution: change orders and disputes
+
+Changes are managed as you learned in the station: a written change order with an impact estimate and approval before execution. And upon a dispute:
+
+- Documenting evidence: correspondence, meeting minutes, site records, measurements — all of them document the deviation and the delay.
+- Following the notice procedures agreed in the contract strictly so that rights are not lost through silence.
+- An organized amicable resolution in documented meetings prevents the dispute from turning into a costly conflict.
+
+## 4. Closeout: acceptance inspection and full delivery
+
+Physical completion is not enough — closeout has methodical duties:
+
+1. **Punch list**: a comprehensive inspection of all the scope items, documenting every deficiency, addressing it, then re-inspecting.
+2. **Operational documentation**: as-built drawings, a maintenance manual, and a spare-parts and replacement-parts record.
+3. **Warranties**: the warranty documents, their coverage scope, and the dates of their final reviews.
+4. **Handover to operations**: team training, delivering the keys and equipment, and registering work orders in the facility system.
+5. **Closing the accounts**: the final entitlements, settling debts, and a documented retained warranty in the contract.
+
+A project still on the punch list has not been delivered; therefore priority is given to an honest, complete punch list, and the final closeout is not signed before every item in its notes is addressed.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['rfp', 'project', 'scope']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-12-3" questions={quiz123.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- الشراء الشفاف يبدأ بطلبات المعلومات وطلبات العروض بمعايير معلنة، ويقارن العروض على أساس موحد بلا محاباة.
+- نوع العقد يحدد توزيع المخاطر: السعر المقطوع لنطاق واضح، والكلفة زائداً الرسوم لنطاق متطور مع رقابة مالية محكمة.
+- التغيير يُقدَّر ويعتمد كتابياً قبل التنفيذ، والخلاف يُحسم بأدلة موثقة وإجراءات إبلاغ صارمة لا بالصمت.
+- الإغلاق فحص قبول شامل وقائمة نقص صادقة وتوثيق تشغيلي كامل وتحويل منظم للتشغيل وإقفال للحسابات.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- Transparent procurement starts with requests for information and requests for proposals with announced criteria, and compares proposals on a uniform basis without favoritism.
+- The contract type determines the risk allocation: lump sum for a clear scope, and cost-plus for an evolving scope with tight financial control.
+- A change is estimated and approved in writing before execution, and a dispute is settled with documented evidence and strict notice procedures, not with silence.
+- Closeout is a comprehensive acceptance inspection, an honest punch list, complete operational documentation, an organized handover to operations, and closing the accounts.
+
+</LangSection>

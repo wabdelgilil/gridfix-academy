@@ -1,0 +1,203 @@
+---
+id: lesson-1-3
+station: station-1
+number: "1.3"
+title: "إدارة الطاقة"
+titleEn: "Energy Management"
+minutes: 25
+order: 3
+objectives:
+  - "أن يحسب المتعلم EUI ويستخدمه لقياس كفاءة الطاقة عبر الزمن."
+  - "أن يعدد فرص الترشيد الأعلى عائداً بأقل أثر على المستخدمين (تشغيلية، إضاءة، أجهزة)."
+  - "أن يستخدم البيانات والمقارنة المرجعية (Benchmarking) لتشخيص انحراف الاستهلاك."
+objectivesEn:
+  - "Compute EUI and use it to measure energy efficiency over time."
+  - "List high-payoff, low-disruption savings opportunities (operational, lighting, equipment)."
+  - "Use data and benchmarking to diagnose consumption deviations."
+hasTool: true
+toolName: "حاسبة EUI"
+toolNameEn: "EUI Calculator"
+quizId: quiz-1-3
+sources:
+  - energystar
+  - ashrae
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import EnergyUseCalculator from '../../../components/islands/tools/cfm/EnergyUseCalculator.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz13 } from '../../../data/quiz/cfm/quiz-1-3';
+
+<LangSection lang="ar">
+
+الطاقة مورد قابل للإدارة: بقياسها والمقارنة المرجعية والتشغيل الدقيق يمكن خفض الاستهلاك دون المساس بالراحة.
+
+## 1. المقياس الصحيح: شدة استخدام الطاقة (EUI)
+
+**Energy Use Intensity (EUI)**: استهلاك الطاقة السنوي مقسوماً على المساحة الصافية:
+
+```
+EUI = استهلاك الطاقة (كيلوواط-ساعة/سنة) ÷ المساحة (م²)
+```
+
+لماذا EUI بدل الفاتورة؟ لأن الفاتورة تقول **الحجم** وEUI يقول **الكفاءة** — فهو يسمح بالمقارنة العادلة بين مباني مماثلة (Benchmarking) وتتبع الاتجاه سنة بسنة.
+
+## 2. سلم أولويات الترشيد (الأعلى أثراً أولاً)
+
+1. **المستوى التشغيلي** — شبه مجاني وبلا مساس بالراحة:
+   - جداول تشغيل/إيقاف مطابقة لساعات الحضور الفعلية (التوقيت الخاطئ أكبر هدر).
+   - إعادة ضبط درجات الحرارة بين المواسم (Setpoint Optimization).
+   - مراجعة الأجهزة العاملة خارج الدوام (تسريبات معلنة، سخانات، لوحات إعلانية).
+
+2. **الإضاءة**: استبدال LED + حساسات حضور + استغلال ضوء النهار.
+
+3. **الأنظمة**: ترقية الطلمبات والمحركات والمبردات حسب تحليل العائد — ويُفتح هذا الباب على حساب دورة الحياة (LCC) في المحطة 3.
+
+<Callout type="myth">
+**أسطورة:** "توفير الطاقة يعني تقليل التكييف في الصيف حتى يشتكي الناس."
+**الحقيقة:** الترشيد الذكي صفر مساس بالراحة: جداول مضبوطة، بيانات مرصودة، وكفاءة أعلى. الراحة الأفضل للإنتاجية أقوى عائداً من أي حيلة رخيصة.
+</Callout>
+
+## 3. البيانات والمقارنة المرجعية
+
+- **القراءة الدورية**: عدّادات للكهرباء والمياه والغاز، والعدادات الذكية للقياس والتحليل لا للتسعير فقط.
+- **المقارنة المرجعية (Benchmarking)**: مقارنة EUI مبنىً مع نظائره في القطاع (ENERGY STAR / ASHRAE) لمعرفة ما إذا كان ضمن النطاق أم فوقه.
+- **الانحراف المفاجئ**: قفزة استهلاك بلا تغيير تشغيلي = إشارة تسريب أو تشغيل شاذ. رصده دوري لا سنوي.
+
+## 4. منهجية عملية لترشيد الطاقة
+
+1. **قياس** الوضع الحالي (EUI + عدادات فرعية).
+2. **تحليل** البيانات وتحديد الذروات والهدر.
+3. **تنفيذ** الإجراءات الأعلى عائداً (من التشغيلي إلى الرأسمالي).
+4. **قياس ثانية** ووثّق الأثر، ثم **استمر** (دورة تحسين مستمر).
+
+<Callout type="warn">
+**مفهوم خاطئ:** "انخفاض EUI هدفٌ دائماً."
+**الحقيقة:** EUI لا يُقرأ بمعزل عن الراحة وجودة البيئة. الهدف توازن: كفاءة عالية **مع** راحة مقبولة، لا شراء كفاءة على حساب الناس.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Energy is a manageable resource: by measuring it, benchmarking, and operating precisely, consumption can be reduced without compromising comfort.
+
+## 1. The right metric: Energy Use Intensity (EUI)
+
+**Energy Use Intensity (EUI)**: annual energy consumption divided by the net area:
+
+```
+EUI = energy consumption (kWh/year) ÷ area (m²)
+```
+
+Why EUI instead of the bill? Because the bill tells **volume** and EUI tells **efficiency** — it allows a fair comparison between similar buildings (benchmarking) and year-over-year trend tracking.
+
+## 2. The savings priority ladder (highest impact first)
+
+1. **The operational level** — nearly free and without compromising comfort:
+   - Start/stop schedules matching actual occupancy hours (wrong timing is the largest waste).
+   - Setpoint optimization between seasons.
+   - Reviewing equipment running outside working hours (announced leaks, water heaters, advertising signs).
+
+2. **Lighting**: LED replacement + occupancy sensors + daylight harvesting.
+
+3. **Systems**: upgrading pumps, motors, and chillers based on return analysis — this door opens onto lifecycle cost (LCC) in station 3.
+
+<Callout type="myth">
+**Myth:** "Saving energy means reducing cooling in summer until people complain."
+**Fact:** smart saving has zero impact on comfort: tuned schedules, monitored data, and higher efficiency. Better comfort for productivity yields a stronger return than any cheap trick.
+</Callout>
+
+## 3. Data and benchmarking
+
+- **Periodic reading**: meters for electricity, water, and gas; smart meters for measurement and analysis, not just for billing.
+- **Benchmarking**: comparing the building's EUI with its sector peers (ENERGY STAR / ASHRAE) to know whether it is within range or above it.
+- **Sudden deviation**: a consumption jump with no operational change = a sign of a leak or abnormal operation. Monitor it periodically, not annually.
+
+## 4. A practical methodology for energy saving
+
+1. **Measure** the current state (EUI + submeters).
+2. **Analyze** the data and identify peaks and waste.
+3. **Implement** the highest-return measures (from operational to capital).
+4. **Measure again** and document the impact, then **continue** (a continuous improvement cycle).
+
+<Callout type="warn">
+**Misconception:** "A lower EUI is always the goal."
+**Fact:** EUI must not be read in isolation from comfort and environmental quality. The goal is a balance: high efficiency **with** acceptable comfort, not buying efficiency at the expense of people.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: حاسبة EUI
+
+أدخل استهلاكك السنوي ومساحتك لتحسب EUI وتقارن بالنطاق المرجعي لنوع المبنى.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: EUI Calculator
+
+Enter your annual consumption and your area to compute the EUI and compare it with the reference range for the building type.
+
+</LangSection>
+
+<EnergyUseCalculator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['eui', 'bas', 'kpi']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على منطق الترشيد الصحيح والبيانات والتشخيص.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on correct savings logic, data, and diagnosis.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-1-3" questions={quiz13.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **EUI** مقياس كفاءة الطاقة وأداة المقارنة المرجعية عبر الزمن.
+- **ترتيب الترشيد**: تشغيلي بلا مساس أولاً، ثم الإضاءة، ثم الرأسمالي.
+- **الانحراف المفاجئ** دليل تسريب أو تشغيل شاذ — رصده دوري لا سنوي.
+- **الكفاءة والراحة** تتوازنان ولا تحل إحداهما مكان الأخرى.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **EUI** is the measure of energy efficiency and the benchmarking tool over time.
+- **Savings order**: disruption-free operational measures first, then lighting, then capital projects.
+- **A sudden deviation** is evidence of a leak or abnormal operation — monitor it periodically, not annually.
+- **Efficiency and comfort** are balanced by each other, and neither replaces the other.
+
+</LangSection>

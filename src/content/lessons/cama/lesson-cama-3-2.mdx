@@ -1,0 +1,289 @@
+---
+id: lesson-cama-3-2
+course: cama
+station: station-cama-3
+number: "3.2"
+title: "جودة البيانات وإدارتها"
+titleEn: "Data Quality & Governance"
+minutes: 25
+order: 2
+objectives:
+  - "أن يُعرّف المتعلم الأبعاد الخمسة لجودة البيانات ويُقيّم كل بُعد في سياق إدارة الأصول."
+  - "أن يشرح مبادئ حوكمة البيانات (Data Governance) والأدوار والسياسات المرتبطة بها."
+  - "أن يُميّز بين البيانات الرئيسية (Master Data) والبيانات المعاملاتية وأهمية توحيد الأولى."
+  - "أن يُصمم دورة حياة بيانات الأصول من الإنشاء إلى الحذف."
+objectivesEn:
+  - "Define the five dimensions of data quality and evaluate each in the AM context."
+  - "Explain data governance principles, roles, and associated policies."
+  - "Distinguish between Master Data and transactional data and the importance of unifying the former."
+  - "Design an asset data lifecycle from creation to deletion."
+hasTool: true
+toolName: "ماسح جودة البيانات"
+toolNameEn: "DataQualityScanner"
+status: live
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import DataQualityScanner from '../../../components/islands/tools/cama/DataQualityScanner.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama32 } from '../../../data/quiz/cama/quiz-cama-3-2';
+
+<LangSection lang="ar">
+
+بيانات رديئة تولد قرارات رديئة. معاملة 30% من سجل الأصول بلا تصنيف تعني أنك تتخذ قرارات صيانة بناءً على ثلث المعلومة فقط. هذا الدرس يفكك **أبعاد جودة البيانات** الخمسة، ويعلمك آليات **حوكمة البيانات (Data Governance)** و**البيانات الرئيسية (Master Data)** التي تضمن ثقة القرارات.
+
+## 1. الأبعاد الخمسة لجودة البيانات
+
+جودة البيانات ليست مفهوماً موحداً، بل تتكون من خمسة أبعاد مترابطة:
+
+### 1.1 الدقة (Accuracy)
+
+هل تعكس البيانات الواقع الفعلي؟ قراءة درجة حرارة كاشف تصلح 85°م والحرارة الحقيقية 92°م فرق في سبع درجات قد تغير قرار الصيانة تماماً. قياس الدقة يُقارن بين البيانات المسجلة والوقائع الموثقة في الموقع.
+
+### 1.2 الشمولية (Completeness)
+
+هل تغطي البيانات كل ما تحتاجه؟ سجل أصل يحتوي المعرّف والاسم لكنه يفتق تاريخ الشراء وقيمة الاستبدال وسجل الصيانة — هذا نقص يشلّل أي قرار تحليلي. الشمولية تُقاس بالنسبة المئوية للحقول المطلوبة المملوءة فعلياً.
+
+### 1.3 التوقيت المناسب (Timeliness)
+
+هل البيانات محدثة في لحظة القرار؟ بيانات صيانة من قبل شهرين لا تعكس حالة الأصل اليوم. التوقيت لا يعني تحديثاً لحظياً دائماً، بل أن تكون البيانات حديثة بما يكفي للقرار المطلوب.
+
+### 1.4 التناسق (Consistency)
+
+هل البيانات موحدة عبر الأنظمة؟ إذا كان نظام CMMS يسجل "مضخة حريق رقم 5" والنظام المالي يسجل "مضخة HWP-05" والنظام الميكانيكي يسجل "المضخة المركزية" — فقد فقدت التناسق والربط بين الأنظمة الثلاثة.
+
+### 1.5 الصلاحية (Validity)
+
+هل البيانات ضمن النطاق المقبول؟ سجل أصل عمره 50 سنة وقيمة الشراء 10 دولارات فقط — قد يكون خطأ إدخال أو بيانات اختبار لم تُحذف. الصلاحية تتحقق من أن القيم ضمن نطاق معقول ومتوقع.
+
+<Callout type="myth">
+**أسطورة:** "لدينا قاعدة بيانات فيها آلاف السجلات، إذن لدينا بيانات كافية."
+**الحقيقة:** الكمية لا تساوي الجودة. قاعدة بيانات فيها 10,000 سجل أصل لكن 4,000 منها بلا تصنيف و2,000 بلا تاريخ صيانة و1,500 بها تكرار — هي قاعدة بيانات غنية بالبيانات وفقيرة بالمعلومات المفيدة.
+</Callout>
+
+## 2. حوكمة البيانات (Data Governance)
+
+حوكمة البيانات هي الإطار التنظيمي الذي يحدد من المسؤول عن ماذا، وكيف تُخذ القرارات المتعلقة بالبيانات، وكيف تُفرض المعايير.
+
+### 2.1 الأدوار والمسؤوليات
+
+- **مالك البيانات (Data Owner):** مسؤول تنظيمي عن محتوى البيانات وصحتها وصلاحيات الوصول.
+- **مدير البيانات (Data Steward):** مسؤول تشغيلي عن جودة البيانات اليومية وتصحيح الأخطاء.
+- **محلل البيانات (Data Analyst):** مسؤول عن التحليل واكتشاف الأنماط والتنبؤات.
+- **مستخدمو البيانات (Data Users):** من يستهلك البيانات في قراراته ويُبلغ عن الأخطاء.
+
+### 2.2 السياسات والمعايير
+
+- سياسة إدخال البيانات: من يُدخل ماذا ومتى وبأي صيغة.
+- سياسة المراجعة: مراجعة دورية (شهرياً أو ربع سنوياً) لاكتشاف الأخطاء والفراغات.
+- سياسة الصلاحية: من يملك صلاحية التعديل والحذف.
+- سياسة النسخ الاحتياطي: كيف تُحفظ البيانات وكيف تُستعاد عند العطل.
+
+## 3. البيانات الرئيسية (Master Data)
+
+البيانات الرئيسية هي البيانات الأساسية الثابتة نسبياً التي تُستخدم عبر الأنظمة المختلفة: بيانات الأصول، وبيانات الموردين، وبيانات الموقع، وبيانات التصنيف.
+
+**الفرق بين البيانات الرئيسية والبيانات المعاملاتية:**
+- **البيانات الرئيسية:** ثابتة نسبياً (اسم الأصل، فئته، موقعه).
+- **بيانات المعاملات:** متغيرة باستمرار (أمر الشغل، قراءة المجس، تكلفة الصيانة).
+
+إدارة البيانات الرئيسية تتطلب قاعدة مركزية موحدة، وقواعد واضحة لمن يُدخل البيانات الجديدة، وآليات لمنع التكرار والتناقض.
+
+<Callout type="example">
+**سيناريو عملي:** شركة لديها خمس منشآت، كل منشأة تستخدم نظام CMMS مختلفاً. عند دمج البيانات في تقرير إجمالي، اكتشفوا أن المضخة ذاتها مسجّلة بأسماء مختلفة في كل منشأة وبتصنيفات مختلفة. النتيجة: لا يمكنهم معرفة كم مضخة يملكونها فعلاً، أو مقارنة أدائها، أو شراء قطع غيار موحدة. الحل: إنشاء بيانات رئيسية موحدة عبر المنظومة.
+</Callout>
+
+## 4. دورة حياة البيانات (Data Lifecycle)
+
+البيانات مثل الأصول لها دورة حياة:
+
+1. **الإنشاء:** إدخال البيانات الأولي بدقة وشمولية.
+2. **الاستخدام:** استهلاك البيانات في القرارات والتحليلات.
+3. **الصيانة:** تحديث البيانات وتصحيح الأخطاء وإثراءها.
+4. **الأرشفة:** نقل البيانات القديمة إلى أرشيف عند توقف استخدامها.
+5. **الحذف:** إزالة البيانات التي لا حاجة لها وبطريقة آمنة وقانونية.
+
+<Callout type="warn">
+**العدو الخفي:** البيانات المنسية أسوأ من البيانات المفقودة. قاعدة بيانات فيها سجلات من 2010 لم تُراجع ولم تُحذف تعطي انطباعاً زائفاً بالاكتمال وتمسح الخطأ في القرارات المبنية عليها.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Bad data generates bad decisions. Treating 30% of the asset register as unclassified means you are making maintenance decisions based on only a third of the information. This lesson breaks down the five **dimensions of data quality** and teaches you the mechanisms of **Data Governance** and **Master Data** that ensure decision confidence.
+
+## 1. The five dimensions of data quality
+
+Data quality is not a single concept; it consists of five interconnected dimensions:
+
+### 1.1 Accuracy
+
+Does the data reflect actual reality? A sensor temperature reading of 85°C when the real temperature is 92°C — a seven-degree difference — can completely change a maintenance decision. Accuracy is measured by comparing recorded data with documented facts on site.
+
+### 1.2 Completeness
+
+Does the data cover everything you need? An asset record containing the identifier and name but lacking the purchase date, replacement value, and maintenance history is a gap that cripples any analytical decision. Completeness is measured as the percentage of required fields actually filled.
+
+### 1.3 Timeliness
+
+Is the data current at the moment of the decision? Maintenance data from two months ago does not reflect the asset's condition today. Timeliness does not always mean real-time updates, but that the data is fresh enough for the decision required.
+
+### 1.4 Consistency
+
+Is the data standardized across systems? If the CMMS records "fire pump No. 5", the financial system records "pump HWP-05", and the mechanical system records "the central pump" — you have lost consistency and the linkage between the three systems.
+
+### 1.5 Validity
+
+Is the data within the acceptable range? An asset record with an age of 50 years and a purchase value of only $10 may be an entry error or test data that was never deleted. Validity verifies that the values fall within a reasonable, expected range.
+
+<Callout type="myth">
+**Myth:** "We have a database with thousands of records, so we have enough data."
+**Fact:** quantity does not equal quality. A database with 10,000 asset records — but 4,000 without a classification, 2,000 without a maintenance history, and 1,500 duplicates — is a database rich in data and poor in useful information.
+</Callout>
+
+## 2. Data Governance
+
+Data governance is the organizational framework that defines who is responsible for what, how data-related decisions are made, and how standards are enforced.
+
+### 2.1 Roles and responsibilities
+
+- **Data Owner:** the organizational role responsible for the data content, its correctness, and access rights.
+- **Data Steward:** the operational role responsible for day-to-day data quality and error correction.
+- **Data Analyst:** responsible for analysis, pattern discovery, and predictions.
+- **Data Users:** those who consume the data in their decisions and report errors.
+
+### 2.2 Policies and standards
+
+- Data entry policy: who enters what, when, and in what format.
+- Review policy: periodic review (monthly or quarterly) to detect errors and gaps.
+- Access policy: who holds the right to modify and delete.
+- Backup policy: how data is preserved and restored in the event of a failure.
+
+## 3. Master Data
+
+Master data is the relatively stable foundational data used across the different systems: asset data, supplier data, location data, and classification data.
+
+**The difference between master data and transactional data:**
+- **Master data:** relatively stable (asset name, its category, its location).
+- **Transactional data:** constantly changing (work order, sensor reading, maintenance cost).
+
+Managing master data requires a single unified base, clear rules for who enters new data, and mechanisms to prevent duplication and inconsistency.
+
+<Callout type="example">
+**Practical scenario:** a company with five facilities, each using a different CMMS. When consolidating the data into an overall report, they discovered that the same pump was recorded under different names in each facility and with different classifications. The result: they could not know how many pumps they actually own, compare their performance, or buy standardized spare parts. The solution: create unified master data across the portfolio.
+</Callout>
+
+## 4. The Data Lifecycle
+
+Like assets, data has a life cycle:
+
+1. **Creation:** initial entry of the data with accuracy and completeness.
+2. **Use:** consuming the data in decisions and analyses.
+3. **Maintenance:** updating the data, correcting errors, and enriching it.
+4. **Archiving:** moving old data to an archive once it is no longer used.
+5. **Deletion:** removing data that is no longer needed, in a safe and lawful manner.
+
+<Callout type="warn">
+**The hidden enemy:** forgotten data is worse than lost data. A database with records from 2010 that were never reviewed or deleted gives a false impression of completeness and erodes the reliability of the decisions built on it.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: ماسح جودة البيانات
+
+أدخل نسب بياناتك الحالية عبر الأبعاد الخمسة وشاهد تقييم جودة البيانات הכולل مع توصيات التحسين.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: DataQualityScanner
+
+Enter your current data percentages across the five dimensions and see the overall data quality assessment with improvement recommendations.
+
+</LangSection>
+
+<DataQualityScanner client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-3-2-t1', 'cama-3-2-t2', 'cama-3-2-t3', 'cama-3-2-t4', 'cama-3-2-t5']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على الأبعاد الخمسة لجودة البيانات، وحوكمة البيانات وتحديد المالكين والصلاحيات، والبيانات الرئيسية الموحدة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the five dimensions of data quality, data governance with owners and permissions, and unified master data.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-3-2" questions={quizCama32.questions} client:load />
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **الأبعاد الخمسة:** الدقة والشمولية والتوقيت والتناسق والصلاحية — كل بُعد له أثر مباشر على جودة القرار.
+- **البيانات الكثيرة ليست بالضرورة بيانات جيدة:** الكمية لا تساوي الجودة، وقاعدة بيانات 10,000 سجل فيها 40% نقص هي قاعدة بيانات فقيرة.
+- **حوكمة البيانات** إطار تنظيمي يحدد الأدوار والسياسات والمراجعة — بدونها تبقى البيانات عرضة للفوضى.
+- **البيانات الرئيسية** (Master Data) هي البيانات الأساسية الثابتة التي يجب توحيدتها عبر الأنظمة لمنع التشتت والتكرار.
+- **دورة حياة البيانات** من الإنشاء إلى الحذف — لا تنسَ الأرشفة والصيانة الدورية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The five dimensions:** accuracy, completeness, timeliness, consistency, and validity — each dimension directly affects decision quality.
+- **More data is not necessarily good data:** quantity does not equal quality; a database of 10,000 records with 40% missing is a poor database.
+- **Data governance** is an organizational framework defining roles, policies, and review — without it, data remains exposed to chaos.
+- **Master Data** is the stable foundational data that must be unified across systems to prevent fragmentation and duplication.
+- **The data lifecycle** runs from creation to deletion — do not forget archiving and periodic maintenance.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## مصادر
+
+- ISO 8000 — معيار جودة البيانات.
+- ISO 15489 — إدارة السجلات والوثائق.
+- DAMA International — دليل حوكمة البيانات (DMBOK).
+- IFMA — ممارسات إدارة البيانات في المنشآت.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Sources
+
+- ISO 8000 — Data Quality Standard.
+- ISO 15489 — Records and Document Management.
+- DAMA International — Data Management Body of Knowledge (DMBOK).
+- IFMA — Data Management Practices in Facilities.
+
+</LangSection>

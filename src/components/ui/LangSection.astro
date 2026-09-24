@@ -1,0 +1,12 @@
+---
+interface Props {
+  lang: 'ar' | 'en';
+  class?: string;
+}
+const { lang, class: className } = Astro.props;
+const dir = lang === 'ar' ? 'rtl' : 'ltr';
+---
+
+<div data-lang={lang} lang={lang} dir={dir} class:list={['lesson-lang', className]}>
+  <slot />
+</div>

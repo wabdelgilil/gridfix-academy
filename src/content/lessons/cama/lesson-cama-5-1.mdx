@@ -1,0 +1,273 @@
+---
+id: lesson-cama-5-1
+course: cama
+station: station-cama-5
+number: "5.1"
+title: "اتخاذ القرارات الاستثمارية"
+titleEn: "Capital Investment Decision-Making"
+minutes: 30
+order: 1
+objectives:
+  - "أن يشرح المتعلم الفرق بين صافي القيمة الحالية (NPV) ومعدل العائد الداخلي (IRR) وفترة الاسترداد (Payback Period)."
+  - "أن يطبق معادلة صافي القيمة الحالية على مشروع استثماري بسيط."
+  - "أن يحدد متى يُقبل مشروع ومتى يُرفض بناءً على معايير مالية مختلفة."
+  - "أن يشرح كيفية استخدام تحليل التكلفة والمنفعة في أولوية تخصيص الميزانيات."
+objectivesEn:
+  - "Explain the differences between NPV, IRR, and Payback Period."
+  - "Apply the NPV formula to a simple investment project."
+  - "Determine when to accept or reject a project based on financial criteria."
+  - "Explain how to use cost-benefit analysis to prioritize budget allocations."
+hasTool: true
+toolName: "محاسبة NPV وIRR"
+toolNameEn: "NPV & IRR Calculator"
+quizId: quiz-cama-5-1
+sources:
+  - iso55000
+  - gfmam_landscape
+  - ifma_bok
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import NpvIrrCalculator from '../../../components/islands/tools/cama/NpvIrrCalculator.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama51 } from '../../../data/quiz/cama/quiz-cama-5-1';
+
+<LangSection lang="ar">
+
+إدارة الأصول تُترجم إلى قرارات مالية يومية: شراء معدة جديدة أم تجديد القديمة؟ أي من خطوط الإنتاج يستحق الاستثمار؟ كيف توزّع ميزانية الصيانة بين الأصول المختلفة؟ هذا الدرس يزودك بالأدوات المالية لتتخذ قرارات مبنية على أرقام لا على حدس.
+
+## 1. لماذا تحتاج أدوات مالية في إدارة الأصول؟
+
+كثير من مديري الصيانة يعتمدون على الحدس أو التجربة الشخصية في اتخاذ القرارات الاستثمارية. لكن ISO 55000 يؤكد أن إدارة الأصول الحقيقية تتطلب **أساساً مالياً مقنعاً** لكل قرار. فالميزانيات محدودة والأصول كثيرة، والأولوية لمن يُثبت بالبيانات أن استثماره سيحقق أعلى قيمة.
+
+المشكلة الشائعة هي **التشبث بالسعر الأولي** — اختيار المعدة الأرخص في الشراء رغم أن تكلفة تشغيلها وصيانتها على مدى عمرها تفوق فروقات الشراء بكثير. أدوات التحليل المالي تمنع هذا الخطأ وتكشف الصورة الكاملة.
+
+## 2. صافي القيمة الحالية (NPV)
+
+**صافي القيمة الحالية (Net Present Value — NPV)** هو المقياس المالي الأهم في تقييم المشاريع الاستثمارية. يجمع التدفقات النقدية المستقبلية المخصومة بسعر الخصم الحالية ويطرح منها التكلفة الأولية.
+
+**المعادلة:**
+NPV = Σ (التدفق النقدي السنوي ÷ (1 + معدل الخصم) ^ السنة) − التكلفة الأولية
+
+- إذا كان **NPV موجباً**: المشروع يحقق عائداً أعلى من معدل الخصم المطلوب → **يُقبل**.
+- إذا كان **NPV سالباً**: العائد لا يتجاوز التكلفة الفرصة → **يُرفض**.
+- إذا كان **NPV صفراً**: المشروع يحقق العائد الدقيق المطلوب فقط → **محايد**.
+
+**مثال عملي:** مصنع يفكر في شراء وحدة تبريد بـ 500,000 ريال. التدفقات النقدية المتوقعة 150,000 سنوياً لمدة 5 سنوات ومعدل الخصم 10%. حساب NPV يكشف ما إذا كان الاستثمار يستحق.
+
+**معدل الخصم (Discount Rate)** يعكس تكلفة رأس المال وخطر المشروع. في بيئة صناعية يستخدم عادة من 8% إلى 15% حسب درجة الخطورة ومصدر التمويل.
+
+## 3. معدل العائد الداخلي (IRR)
+
+**معدل العائد الداخلي (Internal Rate of Return — IRR)** هو معدل الخصم الذي يجعل NPV صفراً. وهو ما يسميه رجال الأعمال "نقطة التعادل المالية للمشروع".
+
+**قاعدة القرار:** إذا كان **IRR أعلى من معدل الخصم المطلوب** (Hurdle Rate) يُقبل المشروع، وإذا كان أقل يُرفض. ميزة IRR أنها تعطيك نسبة مئوية سهلة المقارنة مع معدلات العائد المتوقعة أو تكلفة رأس المال.
+
+**العيب الرئيسي لـ IRR:** قد يعطي نتائج مضللة عند مقارنة مشاريع بأحجام مختلفة أو تدفقات نقدية غير منتظمة. لذا يُنصح دائماً بمراجعة NPV بجانب IRR.
+
+## 4. فترة الاسترداد (Payback Period)
+
+**فترة الاسترداد (Payback Period)** أبسط مقاييس التحليل المالي: كم من الوقت تستغرق لاسترداد تكلفة المشروع الأولية من التدفقات النقدية المتولدة.
+
+**مثال:** إذا كان المشروع يكلف 1,000,000 ريال وينتج 250,000 ريال سنوياً، ففترة الاسترداد = 4 سنوات.
+
+**الميزة:** سهولة الفهم والحساب.
+**العيب الجسيم:** لا تأخذ بعين الاعتبار القيمة الزمنية للنقود ولا التدفقات النقدية بعد فترة الاسترداد. فقد يُقبل مشروع برحلة استرداد قصيرة لكنه يحقق أرباحاً ضخمة بعد ذلك، أو يُرفض مشروع آخر يستغرق وقتاً أطول لكنه أكثر ربحية على المدى الطويل.
+
+<Callout type="warn">
+**تحذير:** الاعتماد على فترة الاسترداد فقط بدون مراجعة NPV وIRR قد يؤدي لرفض مشاريع ممتازة أو قبول مشاريع خاسرة. الاستخدام الصحيح: استخدمها كمؤشر أولي سريع، ثم ادعمها بالتحليل الشامل.
+</Callout>
+
+## 5. تحليل التكلفة والمنفعة (Cost-Benefit Analysis)
+
+**تحليل التكلفة والمنفعة (Cost-Benefit Analysis — CBA)** أداة أوسع من المقاييس المالية الثلاثة: يجمع جميع التكاليف (مادية وغير مادية) ويعارضها بجميع المنافع (مالية وتشغيلية واجتماعية وبيئية).
+
+في سياق إدارة الأصول، تشمل التكاليف: سعر الشراء، التركيب، التدريب، الصيانة السنوية، تكاليف الطاقة، التأمين، التخلص. والمنافع تشمل: زيادة الإنتاجية، تحسين الجودة، تقليل الأعطال، تحسين السلامة، الامتثال للأنظمة.
+
+**نسبة المنفعة إلى التكلفة (BCR):** تُحسب بقسمة القيمة الإجمالية للمنافع على إجمالي التكاليف. إذا كانت BCR أكبر من 1 يُقبل المشروع.
+
+<Callout type="tip">
+**تطبيق عملي:** قبل اعتماد أي مشروع استثماري في الأصول، اجمع التكاليف لمدة دورة حياة الأصل كاملة (لا سعر الشراء فقط) وقارنها بالمنافع المتوقعة. استخدم الأداة التفاعلية أدناه لحساب NPV وIRR لمشروعك.
+</Callout>
+
+## 6. أولوية تخصيص الميزانيات
+
+في بيئة الميزانيات المحدودة، لا يمكن تمويل جميع المشاريع. التحليل المالي يوفر أساساً موضوعياً لترتيب المشاريع:
+
+1. **المشاريع الإلزامية**: الامتثال للأنظمة والسلامة — تموّل أولاً بغض النظر عن NPV.
+2. **مشاريع العائد العالي**: NPV مرتفع وIRR يتجاوز Hurdle Rate بشكل كبير.
+3. **مشاريع التحسين التشغيلي**: عائد متوسط لكنه يحسن الأداء أو يخفض المخاطر.
+4. **المشاريع المعلقة**: عائد منخفض أو غير مؤكد — تُأجل أو تُلغى.
+
+**خطأ شائع:** تخصيص الميزانية بالتساوي بين الأقسام بدلاً من الترتيب حسب العائد المتوقع. النتيجة هي هدر في بعض المجالات ونقص في أخرى حرجة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Asset management translates into daily financial decisions: buy new equipment or renew the old? Which production line deserves the investment? How do you allocate the maintenance budget across different assets? This lesson equips you with the financial tools to make decisions based on numbers rather than intuition.
+
+## 1. Why do you need financial tools in asset management?
+
+Many maintenance managers rely on intuition or personal experience for investment decisions. But ISO 55000 stresses that real asset management requires a **convincing financial basis** for every decision. Budgets are limited and assets are many — priority goes to whoever proves with data that their investment will deliver the highest value.
+
+A common problem is **clinging to the initial price** — choosing the cheapest equipment to buy even though its operating and maintenance cost over its lifetime far exceeds the purchase-price difference. Financial analysis tools prevent this mistake and reveal the full picture.
+
+## 2. Net Present Value (NPV)
+
+**Net Present Value (NPV)** is the most important financial measure for evaluating investment projects. It sums the future cash flows discounted at the discount rate to their present value and subtracts the initial cost.
+
+**The formula:**
+NPV = Σ (annual cash flow ÷ (1 + discount rate)^year) − initial cost
+
+- If **NPV is positive**: the project earns a return higher than the required discount rate → **accept**.
+- If **NPV is negative**: the return does not exceed the opportunity cost → **reject**.
+- If **NPV is zero**: the project achieves exactly the required return → **neutral**.
+
+**Practical example:** a factory is considering buying a chiller for SAR 500,000. The expected cash flows are SAR 150,000 annually for 5 years and the discount rate is 10%. An NPV calculation reveals whether the investment is worthwhile.
+
+**The discount rate** reflects the cost of capital and the project's risk. In an industrial environment, 8% to 15% is typically used, depending on the risk level and the source of funding.
+
+## 3. Internal Rate of Return (IRR)
+
+**Internal Rate of Return (IRR)** is the discount rate that makes NPV equal zero. It is what business people call the project's financial break-even point.
+
+**Decision rule:** if **IRR is higher than the required discount rate (hurdle rate)**, the project is accepted; if lower, it is rejected. The advantage of IRR is that it gives you a percentage that is easy to compare with expected rates of return or the cost of capital.
+
+**The main drawback of IRR:** it can give misleading results when comparing projects of different sizes or with irregular cash flows. So it is always advisable to review NPV alongside IRR.
+
+## 4. Payback Period
+
+**The payback period** is the simplest financial analysis measure: how long it takes to recover the project's initial cost from the cash flows it generates.
+
+**Example:** if the project costs SAR 1,000,000 and generates SAR 250,000 annually, the payback period is 4 years.
+
+**Advantage:** easy to understand and calculate.
+**Serious drawback:** it does not consider the time value of money nor cash flows beyond the payback period. A project with a short payback may be accepted even though it generates huge profits later, or another project that takes longer may be rejected even though it is more profitable in the long run.
+
+<Callout type="warn">
+**Warning:** relying on the payback period alone without reviewing NPV and IRR may lead to rejecting excellent projects or accepting losing ones. Correct use: treat it as a quick preliminary indicator, then support it with a comprehensive analysis.
+</Callout>
+
+## 5. Cost-Benefit Analysis
+
+**Cost-Benefit Analysis (CBA)** is a broader tool than the three financial measures: it gathers all costs (tangible and intangible) and balances them against all benefits (financial, operational, social, and environmental).
+
+In the asset management context, costs include: purchase price, installation, training, annual maintenance, energy costs, insurance, and disposal. Benefits include: increased productivity, better quality, fewer breakdowns, improved safety, and regulatory compliance.
+
+**Benefit-Cost Ratio (BCR):** calculated by dividing the total value of benefits by total costs. If BCR is greater than 1, the project is accepted.
+
+<Callout type="tip">
+**Practical application:** before approving any asset investment project, collect costs over the entire asset life cycle (not just the purchase price) and compare them with the expected benefits. Use the interactive tool below to calculate NPV and IRR for your project.
+</Callout>
+
+## 6. Budget allocation priorities
+
+In an environment of limited budgets, not all projects can be funded. Financial analysis provides an objective basis for prioritizing projects:
+
+1. **Mandatory projects**: regulatory compliance and safety — funded first regardless of NPV.
+2. **High-return projects**: high NPV and an IRR well above the hurdle rate.
+3. **Operational improvement projects**: a moderate return but they improve performance or reduce risk.
+4. **Deferred projects**: a low or uncertain return — postponed or cancelled.
+
+**A common mistake:** allocating the budget equally between departments instead of ranking by expected return. The result is waste in some areas and shortfalls in other critical ones.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: محاسبة NPV وIRR
+
+أدخل التكاليف والتدفقات النقدية لمشروعك وشاهد حساب NPV وIRR وفترة الاسترداد تلقائياً. جرّب تغيير معدل الخصم لترى كيف يؤثر على قرار القبول أو الرفض.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: NPV & IRR Calculator
+
+Enter your project's costs and cash flows and watch NPV, IRR, and the payback period calculate automatically. Try changing the discount rate to see how it affects the accept or reject decision.
+
+</LangSection>
+
+<NpvIrrCalculator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-5-1-t1', 'cama-5-1-t2', 'cama-5-1-t3', 'cama-5-1-t4']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على صافي القيمة الحالية (NPV)، ومعدل العائد الداخلي (IRR)، وفترة الاسترداد، وتحليل التكلفة والمنفعة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on Net Present Value (NPV), the Internal Rate of Return (IRR), the payback period, and cost-benefit analysis.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-5-1" questions={quizCama51.questions} client:load />
+
+<LangSection lang="ar">
+
+## مصادر
+
+- ISO 55000:2024 — Asset Management: Overview, Principles and Terminology
+- GFMAM Asset Management Landscape v3
+- IFMA Body of Knowledge — Finance & Budgeting
+- SMRP Best Practice Guide — Asset Management Decision Making
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Sources
+
+- ISO 55000:2024 — Asset Management: Overview, Principles and Terminology
+- GFMAM Asset Management Landscape v3
+- IFMA Body of Knowledge — Finance & Budgeting
+- SMRP Best Practice Guide — Asset Management Decision Making
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **NPV** يجمع التدفقات النقدية المخصومة ويطرح التكلفة الأولية: موجب = قبول، سالب = رفض.
+- **IRR** معدل الخصم الذي يجعل NPV صفراً: أعلى من Hurdle Rate = قبول.
+- **فترة الاسترداد** أبسط مقياس لكنها تتجاهل القيمة الزمنية للنقود.
+- **تحليل التكلفة والمنفعة** أوسع شمولاً ويشمل الكمية والمالية والبيئية والاجتماعية.
+- **الميزانيات المحدودة** تتطلب ترتيباً بالأولوية عبر المعايير المالية لا التوزيع بالتساوي.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **NPV** sums the discounted cash flows and subtracts the initial cost: positive = accept, negative = reject.
+- **IRR** is the discount rate that makes NPV zero: higher than the hurdle rate = accept.
+- **The payback period** is the simplest measure but ignores the time value of money.
+- **Cost-benefit analysis** is broader, covering quantity, finance, the environment, and society.
+- **Limited budgets** require prioritization through financial criteria rather than equal distribution.
+
+</LangSection>

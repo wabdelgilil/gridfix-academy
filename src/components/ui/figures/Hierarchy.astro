@@ -1,0 +1,33 @@
+---
+interface Level {
+  label: string;
+  detail?: string;
+  icon?: string;
+}
+
+interface Props {
+  levels: Level[];
+  title?: string;
+  caption?: string;
+  direction?: 'bottom-up' | 'top-down';
+}
+
+const { levels, title, caption, direction = 'bottom-up' } = Astro.props;
+const ordered = direction === 'bottom-up' ? [...levels].reverse() : levels;
+---
+
+<div class="my-6">
+  {title && <p class="mb-3 text-sm font-bold text-ink-900">{title}</p>}
+  <div class="flex flex-col items-center gap-1">
+    {ordered.map((level, i) => (
+      <div
+        class={`w-full rounded-xl px-4 py-2.5 text-center ${i === 0 ? 'bg-brand-600 text-white' : 'bg-brand-50 text-ink-800'}`}
+        style={{ maxWidth: `${100 - i * 14}%` }}
+      >
+        <p class="text-sm font-bold">{level.icon && <span class="me-1">{level.icon}</span>}{level.label}</p>
+        {level.detail && <p class="mt-0.5 text-xs opacity-70">{level.detail}</p>}
+      </div>
+    ))}
+  </div>
+  {caption && <p class="mt-2 text-center text-xs text-ink-400">{caption}</p>}
+</div>

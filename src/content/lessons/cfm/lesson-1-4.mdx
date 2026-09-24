@@ -1,0 +1,286 @@
+---
+id: lesson-1-4
+station: station-1
+number: "1.4"
+title: "الاستعانة بالخارج وعقود الخدمة"
+titleEn: "Outsourcing & Service Contracts"
+minutes: 25
+order: 4
+objectives:
+  - "أن يشرح المتعلم متى يُستعان بالخارج ومتى يُدار التشغيل داخلياً (Make-vs-Buy)."
+  - "أن يحدد بنود اتفاقية مستوى الخدمة (SLA) القابلة للقياس والتحقّق."
+  - "أن يدير دورة حياة العقد: الطرح، التقييم، التشغيل، وأداء المقاول."
+objectivesEn:
+  - "Explain when to outsource versus insource (make-or-buy)."
+  - "Define measurable, verifiable SLA terms."
+  - "Manage the contract lifecycle: tendering, evaluation, operation, and performance."
+hasTool: true
+toolName: "مصفوفة Make-vs-Buy"
+toolNameEn: "Make-or-Buy Matrix"
+quizId: quiz-1-4
+sources:
+  - ifma
+  - osha
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import MakeOrBuyMatrix from '../../../components/islands/tools/cfm/MakeOrBuyMatrix.tsx';
+import Comparison from '../../../components/ui/figures/Comparison.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz14 } from '../../../data/quiz/cfm/quiz-1-4';
+
+<LangSection lang="ar">
+
+قرار كل خدمة في المنشأة سؤال واحد: «هل نديرها داخلياً أم نستعين بالخارج؟» والجواب الصحيح يُبنى على شروط الخدمة ذاتها — لا على موقف شامل يؤدى للكل.
+
+## 1. قرار الإنتاج أو الشراء (Make-vs-Buy)
+
+لكل خدمة (نظافة، أمن، صيانة، استقبال، إطفاء...) وزنّ قراراً واحداً: إدارتها داخلياً أو التعاقد بها. موجبات الإدارة الداخلية (Make):
+
+- الخدمة **استراتيجية** تمثل التميز أو قلب أعمال المنظمة.
+- توجد **خبرة داخلية** حقيقية وتوفير في تكلفة الإبقاء عليها.
+- **فقدان التحكم أو المخاطر** عالية (أمن، سجلات حساسة).
+
+وموجبات الاستعانة بالخارج (Buy):
+
+- السوق يوفر **اقتصاديات الحجم** وتوفيراً في الأجور.
+- الخدمة **داعمة** وليست استراتيجية (نظافة، حدائق).
+- التكاليف الإدارية معقولة والمخاطر قابلة للتعاقد.
+
+<Comparison
+  title="قرار الإنتاج أو الشراء (Make vs Buy)"
+  sides={[
+    {
+      label: 'الإدارة الداخلية (Make)',
+      items: [
+        'الخدمة استراتيجية تمثل التميز أو قلب الأعمال.',
+        'خبرة داخلية حقيقية وتوفير في تكلفة الإبقاء عليها.',
+        'فقدان التحكم أو المخاطر عالية (أمن، سجلات حساسة).',
+      ],
+      color: 'brand',
+    },
+    {
+      label: 'الاستعانة بالخارج (Buy)',
+      items: [
+        'اقتصاديات الحجم في السوق وتوفير في الأجور.',
+        'الخدمة داعمة وليست استراتيجية (نظافة، حدائق).',
+        'تكاليف إدارية معقولة ومخاطر قابلة للتعاقد.',
+      ],
+      color: 'teal',
+    },
+    {
+      label: 'النموذج الهجين',
+      items: [
+        'جوهر استراتيجي يُدار داخلياً.',
+        'خدمات داعمة عقدية بجرعة مدروسة.',
+      ],
+      color: 'amber',
+    },
+  ]}
+  caption="القرار يُبنى على شروط الخدمة ذاتها — نادراً ما يكون «كله أو لا شيء»."
+/>
+
+<Callout type="tip">
+**المنطق العملي:** نادراً ما يكون القرار «كله أو لا شيء» — أغلب المنشآت نموذج هجين: جوهر استراتيجي داخلي + خدمات داعمة عقدية بجرعة مدروسة.
+</Callout>
+
+## 2. اتفاقية مستوى الخدمة (SLA)
+
+عمود كل عقد خدمة ناجح هو **القياس**. اتفاقية مستوى الخدمة (Service Level Agreement) السليمة تحدد:
+
+- **النطاق والتردد**: ماذا يُنظف/يُصان، وكم مرة؟
+- **مؤشرات قابلة للتحقق**: زمن الاستجابة للبلاغ، نسبة التوافر، معايير الجودة.
+- **الآلية**: كيف تُقاس، من يسجل، ودورية التقارير.
+- **العقوبات والمكافآت**: ماذا يحدث عند الانحراف.
+
+<Callout type="myth">
+**أسطورة:** "العقد يفترض الثقة بين المقاول والمنشأة."
+**الحقيقة:** العقد يُكتب ليعمل حتى عند ضعف الثقة. قياس موثق + تقارير دورية + حافز/عقوبة = علاقة تدوم، لا ورقة تقاضي.
+</Callout>
+
+## 3. دورة حياة العقد
+
+1. **الطرح (RFP)**: طلب عروض بمواصفات قابلة للقياس، لا عبارات عامة.
+2. **التقييم**: مقارنة العروض بالتكلفة الإجمالية عبر العقد + الخبرة + الامتثال.
+3. **الإرساء والتوقيع**: توثيق النطاق وSLA وجدول المدفوعات المرتبط بالقياس.
+4. **التشغيل والمتابعة**: تقارير أداء دورية، مراجعات SLA، ولوحة مؤشرات للمقاول.
+5. **التقييم النهائي قبل التجديد**: قرار مبني على الأداء والسعر المسجل لا على العادة.
+
+## 4. مخاطر الاستعانة وضوابطها
+
+- **فقدان المعرفة الداخلية**: توثيق المعرفة التشغيلية داخلياً دائماً.
+- **تبعية المورد الواحد**: خطة بديلة وموردون مؤهلون في السوق.
+- **انجراف النطاق (Scope Creep)**: ضبط النطاق كتابياً قبل أي طلب إضافي.
+- **أمن المعلومات**: بنود سرية ومراجعة وصول واضحة.
+
+<Callout type="warn">
+**مفهوم خاطئ:** "السعر الأقل هو الأوفر."
+**الحقيقة:** التكلفة الأدنى قد تظهر في فقدان الجودة أو تغطية ناقصة. قارن بالتكلفة الكاملة (سعر + أداء + مخاطر + إدارة) عبر عمر العقد.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Every service in a facility comes down to one question: "Do we manage it in-house or outsource it?" The right answer is built on the service's own conditions — not on a blanket stance applied to everything.
+
+## 1. The make-or-buy decision
+
+For each service (cleaning, security, maintenance, reception, firefighting...) weigh one decision: managing it internally or contracting it out. Grounds for in-house management (Make):
+
+- The service is **strategic**, representing excellence or the core of the organization's business.
+- Real **in-house expertise** exists, with savings in the cost of keeping it.
+- **Loss of control or risks** are high (security, sensitive records).
+
+And grounds for outsourcing (Buy):
+
+- The market offers **economies of scale** and wage savings.
+- The service is **supporting**, not strategic (cleaning, landscaping).
+- Administrative costs are reasonable and the risks can be contracted.
+
+<Comparison
+  title="The make-or-buy decision"
+  sides={[
+    {
+      label: 'In-house (Make)',
+      items: [
+        'The service is strategic, representing excellence or the core of the business.',
+        'Real in-house expertise with savings in the cost of keeping it.',
+        'Loss of control or high risks (security, sensitive records).',
+      ],
+      color: 'brand',
+    },
+    {
+      label: 'Outsource (Buy)',
+      items: [
+        'Market economies of scale and wage savings.',
+        'The service is supporting, not strategic (cleaning, landscaping).',
+        'Reasonable administrative costs and contractable risks.',
+      ],
+      color: 'teal',
+    },
+    {
+      label: 'Hybrid model',
+      items: [
+        'A strategic core managed in-house.',
+        'Supporting services contracted with a measured dose.',
+      ],
+      color: 'amber',
+    },
+  ]}
+  caption="The decision is built on the service’s own conditions — rarely “all or nothing”."
+/>
+
+<Callout type="tip">
+**Practical logic:** the decision is rarely "all or nothing" — most facilities run a hybrid model: a strategic core in-house plus supporting services contracted with a measured dose.
+</Callout>
+
+## 2. The Service Level Agreement (SLA)
+
+The backbone of any successful service contract is **measurement**. A sound Service Level Agreement (SLA) defines:
+
+- **Scope and frequency**: what gets cleaned/maintained, and how often?
+- **Verifiable indicators**: response time to a report, availability ratio, quality standards.
+- **Mechanism**: how it is measured, who records it, and reporting periodicity.
+- **Penalties and rewards**: what happens on deviation.
+
+<Callout type="myth">
+**Myth:** "A contract assumes trust between the contractor and the facility."
+**Fact:** a contract is written to work even when trust is weak. Documented measurement + periodic reports + incentive/penalty = a lasting relationship, not a litigation paper.
+</Callout>
+
+## 3. The contract lifecycle
+
+1. **Tendering (RFP)**: a request for proposals with measurable specifications, not vague statements.
+2. **Evaluation**: comparing proposals by total cost across the contract + experience + compliance.
+3. **Award and signature**: documenting the scope, the SLA, and a payment schedule tied to measurement.
+4. **Operation and follow-up**: periodic performance reports, SLA reviews, and a contractor dashboard.
+5. **Final evaluation before renewal**: a decision based on recorded performance and price, not on habit.
+
+## 4. Outsourcing risks and their controls
+
+- **Loss of internal knowledge**: always document operating knowledge internally.
+- **Single-supplier dependency**: a backup plan and qualified suppliers in the market.
+- **Scope creep**: lock the scope down in writing before any additional request.
+- **Information security**: confidentiality clauses and clear access reviews.
+
+<Callout type="warn">
+**Misconception:** "The lowest price is the most economical."
+**Fact:** the lowest cost may show up as lost quality or incomplete coverage. Compare by the total cost (price + performance + risks + administration) across the contract's life.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: مصفوفة Make-vs-Buy
+
+قيّم خدمة بمقاييس المصفوفة (الاستراتيجية، الخبرة، التحكم، التكلفة) واحصل على التوجيه.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Make-or-Buy Matrix
+
+Assess a service with the matrix criteria (strategy, expertise, control, cost) and get the recommendation.
+
+</LangSection>
+
+<MakeOrBuyMatrix client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['oss', 'sla', 'kpi']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على منطق القرار التعاقدي وقياس أداء المقاولين.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on contractual decision logic and contractor performance measurement.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-1-4" questions={quiz14.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **قرار Make-vs-Buy** يُتخذ لكل خدمة على حدة حسب الاستراتيجية والخبرة والتحكم والتكلفة.
+- **SLA** بلا مقاييس قابلة للتحقق ورقة بلا قيمة — القياس أساس اتفاقية الخدمة.
+- **دورة العقد** تبدأ بطرح قابل للقياس وتنتهي بتقييم مبني على الأداء والسعر.
+- **مخاطر الاستعانة** تُدار بضوابط: معرفة داخلية، بدائل مورد، نطاق مكتوب، وأمن معلومات.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The make-or-buy decision** is made for each service separately based on strategy, expertise, control, and cost.
+- **An SLA without verifiable metrics** is a worthless document — measurement is the foundation of a service agreement.
+- **The contract lifecycle** starts with a measurable RFP and ends with an evaluation built on performance and price.
+- **Outsourcing risks** are managed with controls: internal knowledge, supplier alternatives, a written scope, and information security.
+
+</LangSection>

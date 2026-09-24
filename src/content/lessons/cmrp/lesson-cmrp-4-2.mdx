@@ -1,0 +1,205 @@
+---
+id: lesson-cmrp-4-2
+course: cmrp
+station: station-cmrp-4
+number: "4.2"
+title: "فرز الأعمال وتحديد الأولويات بمصفوفة RIME"
+titleEn: "Work Screening & Prioritization (RIME Index)"
+minutes: 25
+order: 2
+objectives:
+  - "أن يحسب المتعلم مؤشر RIME بضرب حرجية الأصل في فئة العمل ويفسر النتيجة."
+  - "أن يميز فئات الأولوية الأربع ومتى يجوز كسر الجدول الأسبوعي."
+  - "أن يحسب حجم الأعمال المتراكمة بالأسابيع ويقارنه بالمعدل العالمي."
+  - "أن يشرح خطر متلازمة الصوت الأعلى على عدالة توزيع موارد الصيانة."
+objectivesEn:
+  - "Calculate the RIME index and interpret the resulting priority tier."
+  - "Distinguish the four priority tiers and when breaking the weekly schedule is allowed."
+  - "Compute backlog in crew-weeks and compare it to the world-class benchmark."
+  - "Explain how the loudest-voice syndrome distorts maintenance resourcing."
+hasTool: true
+toolName: "حاسبة RIME"
+toolNameEn: "RIME Calculator"
+quizId: quiz-cmrp-4-2
+sources:
+  - nyman_smith
+  - smrp_metrics
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import RIMECalculator from '../../../components/islands/tools/cmrp/RIMECalculator.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp42 } from '../../../data/quiz/cmrp/quiz-cmrp-4-2';
+
+<LangSection lang="ar">
+
+في المصانع غير المنضبطة تسود متلازمة الصوت الأعلى (Loudest Voice Syndrome): المشرف الأعلى صوتا أو المدير الأكبر نفوذا يفرض صيانة معداته أولا ولو كانت مكيف مكتب، بينما تنتظر خطوط الإنتاج الحرجة في الطابور. الحل معيار رياضي موضوعي يحمي الجدول من الضغوط: مؤشر RIME.
+
+## 1. معادلة مؤشر RIME ومنطقها
+
+مؤشر ترتيب نفقات الصيانة (RIME) يساوي حرجية المعدة (ECR) مضروبة في فئة العمل وأهميته (WCR)، على مقياس من 1 إلى 100:
+
+**RIME = حرجية الأصل (ECR من 1 إلى 10) × فئة العمل (WCR من 1 إلى 10)**
+
+- **حرجية الأصل (ECR):** الأهمية الاستراتيجية للمعدة. نقطة الاختناق 10، والأصل الرئيسي من فئة A يساوي 8، والنظام المساعد 4، والملحق غير الحرج 1 أو 2.
+- **فئة العمل (WCR):** طبيعة المهمة الهندسية. خطر السلامة والبيئة الداهم 10، والصيانة الوقائية والتنبؤية 8 أو 9، والتصحيحية المخططة 6، والدهان والتجميل 1 أو 2.
+
+مثال يكشف قوة الأداة: طلمبة الغلاية الرئيسية (حرجية 9) مع صيانة وقائية (فئة 8) تحقق 72، بينما مكيف مكتب المدير (حرجية 2) مع إصلاح تجميلي (فئة 3) يحقق 6. لا مجال للجدل بعد الأرقام.
+
+## 2. فئات الأولوية الأربع وحوكمة كسر الجدول
+
+تترجم الدرجة إلى أربع فئات: الأولى (72 فأعلى) طوارئ حتمية يجوز معها كسر الجدول، والثانية (48 فأعلى) أولوية عليا تدخل خطة الأسبوع القادم، والثالثة (24 فأعلى) أولوية متوسطة تجدول خلال أسابيع، والرابعة ما دون ذلك أعمال تجميلية تؤجل للعمرات الكبرى.
+
+<Infographic
+  title="فئات أولوية RIME"
+  cols={4}
+  items={[
+    { title: '≥ 72', detail: 'طوارئ حتمية — يجوز كسر الجدول.', icon: '🚨', color: 'rose' },
+    { title: '48 – 71', detail: 'أولوية عليا — خطة الأسبوع القادم.', icon: '⚡', color: 'amber' },
+    { title: '24 – 47', detail: 'متوسطة — تُجدول خلال أسابيع.', icon: '📅', color: 'brand' },
+    { title: '< 24', detail: 'تجميلية — تُؤجل للعمرات الكبرى.', icon: '🪞', color: 'ink' },
+  ]}
+  caption="RIME = حرجية الأصل (ECR) × فئة العمل (WCR) — معيار موضوعي يحمي الجدول من متلازمة الصوت الأعلى."
+/>
+
+<Callout type="warn">
+**قاعدة كسر الجدول:** لا يزيح أي عمل دخيل (Break-in) عملا مجدولا إلا بمعايير الطوارئ الحقيقية: خطر وشيك على الأرواح، أو كارثة بيئية، أو توقف كامل للمصنع — وبموافقة كتابية مشتركة من مديري الإنتاج والصيانة.
+</Callout>
+
+## 3. قياس الأعمال المتراكمة بالأسابيع
+
+الأعمال المتراكمة (Backlog) هي أوامر الشغل المعتمدة والجاهزة التي تنتظر الجدولة، وتقاس بالأسابيع:
+
+**التراكم بالأسابيع = إجمالي ساعات الأعمال الجاهزة ÷ طاقة الفريق الأسبوعية**
+
+فـ 4000 ساعة جاهزة مع طاقة 1000 ساعة أسبوعيا تعني تراكما صحيا من 4 أسابيع. المعدل العالمي الصحي يتراوح من 2 إلى 6 أسابيع: أقل من أسبوعين يعني عمالة عاطلة بلا مخزون عمل، وأكثر من 6 أسابيع يعني تأخرا خطيرا في الصيانة.
+
+<Callout type="tip">
+**النسبة الاستباقية المستهدفة:** في مصانع النخبة تمثل الأعمال الاستباقية المخططة 80% إلى 85% من ساعات الصيانة، ولا تتجاوز الطوارئ التفاعلية 15% إلى 20%. انقلاب النسبة علامة انهيار إداري.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+In undisciplined plants the Loudest Voice Syndrome prevails: the loudest supervisor or the most influential manager forces maintenance of his equipment first even if it is an office AC unit, while critical production lines wait in the queue. The solution is an objective mathematical criterion that protects the schedule from pressure: the RIME index.
+
+## 1. The RIME index equation and its logic
+
+The Repair Importance Number (RIME) equals equipment criticality (ECR) multiplied by the work class and its importance (WCR), on a scale from 1 to 100:
+
+**RIME = Asset criticality (ECR, 1 to 10) × Work class (WCR, 1 to 10)**
+
+- **Equipment critical rating (ECR):** the strategic importance of the asset. A bottleneck is 10, a main tier-A asset equals 8, a support system 4, and a non-critical accessory 1 or 2.
+- **Work class rating (WCR):** the nature of the engineering task. An imminent safety and environmental hazard is 10, preventive and predictive maintenance 8 or 9, planned corrective 6, painting and cosmetics 1 or 2.
+
+An example reveals the tool's power: the main boiler pump (criticality 9) with preventive maintenance (class 8) scores 72, while the manager's office AC unit (criticality 2) with cosmetic repair (class 3) scores 6. There is no room for argument after the numbers.
+
+## 2. The four priority tiers and the governance of breaking the schedule
+
+The score translates into four tiers: tier one (72 and above) is a mandatory emergency that justifies breaking the schedule, tier two (48 and above) is a top priority entering next week's plan, tier three (24 and above) is a medium priority scheduled within weeks, and tier four and below is cosmetic work deferred to the major overhauls.
+
+<Infographic
+  title="RIME priority tiers"
+  cols={4}
+  items={[
+    { title: '≥ 72', detail: 'Mandatory emergency — breaking the schedule is allowed.', icon: '🚨', color: 'rose' },
+    { title: '48 – 71', detail: 'Top priority — next week\'s plan.', icon: '⚡', color: 'amber' },
+    { title: '24 – 47', detail: 'Medium — scheduled within weeks.', icon: '📅', color: 'brand' },
+    { title: '< 24', detail: 'Cosmetic — deferred to major overhauls.', icon: '🪞', color: 'ink' },
+  ]}
+  caption="RIME = asset criticality (ECR) × work class (WCR) — an objective criterion protecting the schedule from the loudest-voice syndrome."
+/>
+
+<Callout type="warn">
+**The break-in rule:** no intrusive work (Break-in) displaces scheduled work except under true emergency criteria: an imminent danger to lives, an environmental catastrophe, or a complete plant shutdown — and with the joint written approval of the production and maintenance managers.
+</Callout>
+
+## 3. Measuring backlog in weeks
+
+Backlog is the approved, ready work orders waiting for scheduling, and it is measured in weeks:
+
+**Backlog in weeks = total ready work hours ÷ the crew's weekly capacity**
+
+4000 ready hours with a weekly capacity of 1000 hours means a healthy backlog of 4 weeks. The healthy world rate ranges from 2 to 6 weeks: less than two weeks means idle labor with no work inventory, and more than 6 weeks means a serious delay in maintenance.
+
+<Callout type="tip">
+**The target proactive ratio:** in elite plants, planned proactive work represents 80% to 85% of maintenance hours, and reactive emergencies do not exceed 15% to 20%. A reversed ratio is a sign of administrative collapse.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: حاسبة RIME
+
+اختر حرجية الأصل وفئة العمل وشاهد الدرجة والفئة فورا، وقارن بين سيناريو طلمبة الغلاية ومكيف المدير.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: RIME Calculator
+
+Choose the asset criticality and the work class and watch the score and the tier instantly, and compare the boiler pump scenario with the manager's AC unit.
+
+</LangSection>
+
+<RIMECalculator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-4-2-t1', 'cmrp-4-2-t2', 'cmrp-4-2-t3', 'cmrp-4-2-t4', 'cmrp-4-2-t5', 'cmrp-4-2-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على حساب RIME وحوكمة الأعمال الدخيلة وحساب التراكم بالأسابيع.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on RIME calculation, the governance of break-in work, and backlog calculation in weeks.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-4-2" questions={quizCmrp42.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **RIME = حرجية الأصل × فئة العمل** على مقياس من 1 إلى 100، وهو الدرع الرياضي ضد متلازمة الصوت الأعلى.
+- **الفئة الأولى (72 فأعلى)** وحدها تجيز كسر الجدول الأسبوعي وبموافقة مشتركة موثقة.
+- **التراكم الصحي من 2 إلى 6 أسابيع عمالة** محسوبا بقسمة الساعات الجاهزة على الطاقة الأسبوعية.
+- **المستهدف العالمي:** أعمال استباقية بنسبة 80% إلى 85% وطوارئ دون 20%.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **RIME = asset criticality × work class** on a scale of 1 to 100, the mathematical shield against the loudest-voice syndrome.
+- **Tier one (72 and above)** alone allows breaking the weekly schedule, with documented joint approval.
+- **Healthy backlog is 2 to 6 crew-weeks**, calculated by dividing the ready hours by the weekly capacity.
+- **The world target:** proactive work at 80% to 85% and emergencies below 20%.
+
+</LangSection>

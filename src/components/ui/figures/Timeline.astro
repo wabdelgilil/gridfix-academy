@@ -1,0 +1,37 @@
+---
+interface Phase {
+  title: string;
+  detail?: string;
+  icon?: string;
+  duration?: string;
+}
+
+interface Props {
+  phases: Phase[];
+  title?: string;
+  caption?: string;
+}
+
+const { phases, title, caption } = Astro.props;
+---
+
+<div class="my-6">
+  {title && <p class="mb-3 text-sm font-bold text-ink-900">{title}</p>}
+  <ol class="relative space-y-5 border-s-2 border-brand-200 ps-5">
+    {phases.map((phase) => (
+      <li class="relative">
+        <span class="absolute -start-[27px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-brand-600 text-base text-white shadow-sm">
+          {phase.icon ?? '•'}
+        </span>
+        <div class="rounded-xl border border-slate-200 bg-white p-3">
+          <div class="flex flex-wrap items-center gap-2">
+            <p class="text-sm font-bold text-ink-900">{phase.title}</p>
+            {phase.duration && <span class="chip bg-slate-100 text-xs text-ink-500">{phase.duration}</span>}
+          </div>
+          {phase.detail && <p class="mt-1 text-xs leading-relaxed text-ink-600">{phase.detail}</p>}
+        </div>
+      </li>
+    ))}
+  </ol>
+  {caption && <p class="mt-2 text-center text-xs text-ink-400">{caption}</p>}
+</div>

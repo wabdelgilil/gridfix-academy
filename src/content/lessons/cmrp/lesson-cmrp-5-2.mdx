@@ -1,0 +1,192 @@
+---
+id: lesson-cmrp-5-2
+course: cmrp
+station: station-cmrp-5
+number: "5.2"
+title: "الفجوة المهارية وتطوير الكفاءات"
+titleEn: "Skills Gap Analysis & Technical Training"
+minutes: 25
+order: 2
+objectives:
+  - "أن يشرح المتعلم منهجية تحليل الفجوة المهارية (Skills Gap Analysis) لضبط الاحتياج التدريبي."
+  - "أن يبني مصفوفة الجدارات (Competency Matrix) بمستوياتها الأربعة ويوظفها في التكليف."
+  - "أن يطبق نموذج كيركباتريك (Kirkpatrick) بمستوياته الأربعة حتى النتائج والعائد."
+  - "أن يشرح برنامج تعدد المهارات (Multi-Skilling) وأثره في زمن المفتاح."
+objectivesEn:
+  - "Explain Skills Gap Analysis to target training needs precisely."
+  - "Build the 4-level Competency Matrix and use it for task assignment."
+  - "Apply the Kirkpatrick 4-level model up to results and ROI."
+  - "Explain Multi-Skilling and its impact on wrench time."
+hasTool: true
+toolName: "محلل الفجوة المهارية"
+toolNameEn: "Skills Gap Analyzer"
+quizId: quiz-cmrp-5-2
+sources:
+  - kirkpatrick_training
+  - smrp_workforce
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import SkillsGapAnalyzer from '../../../components/islands/tools/cmrp/SkillsGapAnalyzer.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp52 } from '../../../data/quiz/cmrp/quiz-cmrp-5-2';
+
+<LangSection lang="ar">
+
+إرسال الفنيين إلى دورات عشوائية دون تحديد الاحتياج هدر للمال والوقت. التدريب الاحترافي يبدأ بحصر المهارة المطلوبة، وقياس مستوى الفني الحالي، ثم سد الفجوة فقط — وهذا هو جوهر هذا الدرس.
+
+## 1. تحليل الفجوة المهارية (Skills Gap Analysis)
+
+**تحليل الفجوة المهارية (Skills Gap Analysis)** مقارنة منظمة بين الجدارات المطلوبة للتعامل مع أصول المصنع (المحاذاة بالليزر، تحليل الاهتزازات، الهيدروليكا، الاتزان الديناميكي، عزل الطاقة) والمستوى الفعلي للكادر الحالي، لتحديد الاحتياج التدريبي الدقيق. من دونه يتحول التدريب إلى نشاط شكلي لا يخفض الأعطال.
+
+<Callout type="tip">
+**حكمة القيادة:** السؤال الأخطر ليس «ماذا لو دربناهم ثم رحلوا؟» بل «ماذا لو لم ندربهم وبقوا؟» — فتكلفة الكادر غير المؤهل من وفيات الرضع وتلف المعدات والحوادث تفوق ميزانية التدريب بعشرات الأضعاف.
+</Callout>
+
+## 2. مصفوفة الجدارات (Competency Matrix)
+
+جدول بصري يعرض الفنيين مقابل المهارات المطلوبة على سلم من أربعة مستويات:
+
+- **المستوى 1: مبتدئ (Novice)** : معرفة نظرية عامة، لا يعمل بمفرده ويحتاج مرافقة دائمة.
+- **المستوى 2: تحت الإشراف (Supervised)** : ينفذ الخطوات الأساسية بيده بتوجيه مباشر من فني أقدم.
+- **المستوى 3: مستقل ومتمكن (Competent)** : الهدف التشغيلي؛ ينجز المهمة بأعلى جودة من أول مرة وفق إجراءات العمل القياسية (SOPs).
+- **المستوى 4: خبير ومدرب (Coach)** : مرجع استشاري يحل المشكلات المعقدة ويدرب الأجيال الجديدة على رأس العمل (OJT).
+
+تكليف فني دون المستوى الثالث بعمل حرج — كتركيب المحامل بجهاز التسخين الحثي — سبب مباشر لظاهرة **وفيات الرضع (Infant Mortality)** حيث تفشل المعدة في أسبوعها الأول. المصفوفة تمنع التكليف العشوائي وتوجه التدريب على رأس العمل (On-the-Job Training) بدقة.
+
+## 3. نموذج كيركباتريك (Kirkpatrick Model)
+
+المنهجية العالمية لتقييم أثر التدريب عبر أربعة مستويات متصاعدة:
+
+1. **رد الفعل (Reaction)** : استبيان رضا المتدربين عن القاعة والمدرب — مؤشر شكلي لا يضمن اكتساب أي مهارة.
+2. **التعلم (Learning)** : اختبار المعرفة والمفاهيم بعد الدورة مباشرة.
+3. **السلوك (Behavior)** : التطبيق الميداني الفعلي — هل يستخدم الفني جهاز الليزر على المضخات في الورشة؟
+4. **النتائج (Results)** : الأثر التشغيلي والمالي — انخفاض أعطال المحامل، وتراجع زمن الإصلاح (MTTR)، وتوفير قطع الغيار، ويمتد إلى **العائد على الاستثمار (ROI)**.
+
+<Callout type="warn">
+**فخ شائع:** الاكتفاء باستبيان السعادة في نهاية الدورة (المستوى الأول) خداع تدريبي؛ لا يثبت أن الفني اكتسب المهارة أو طبقها أو أنها خفضت الأعطال.
+</Callout>
+
+## 4. تعدد المهارات (Multi-Skilling)
+
+**تعدد المهارات (Cross-Skilling)** يعني تدريب الفني الميكانيكي على مهام كهربائية بسيطة معتمدة (فصل وعزل المحرك الصغير وتطبيق القفل والوسم) وتدريب الكهربائي على مهام ميكانيكية أساسية. يزيل ذلك حواجز التخصص الضيقة التي تعطل العمل — كانتظار الميكانيكي ساعتين لوصول كهربائي لفصل سلكين — ويرفع زمن العمل الفعلي (Wrench Time) مباشرة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Sending technicians to random courses without defining the need is a waste of money and time. Professional training starts by inventorying the required skill, measuring the current technician level, and then closing only the gap — and that is the essence of this lesson.
+
+## 1. Skills Gap Analysis
+
+Skills Gap Analysis is a systematic comparison between the competencies required to work on the plant's assets (laser alignment, vibration analysis, hydraulics, dynamic balancing, energy isolation) and the actual level of the current workforce, to define the precise training need. Without it, training degenerates into a formality that does not reduce failures.
+
+<Callout type="tip">
+**Leadership wisdom:** the most serious question is not "What if we train them and they leave?" but "What if we do not train them and they stay?" — because the cost of untrained staff, in infant mortality, equipment damage, and accidents, outweighs the training budget by tens of times.
+</Callout>
+
+## 2. Competency Matrix
+
+A visual table showing technicians against the required skills on a four-level ladder:
+
+- **Level 1: Novice**: general theoretical knowledge; does not work alone and needs constant accompaniment.
+- **Level 2: Supervised**: performs the basic steps by hand under the direct guidance of a senior technician.
+- **Level 3: Competent**: the operational target; completes the task at top quality on the first attempt per Standard Operating Procedures (SOPs).
+- **Level 4: Coach**: a consulting reference who solves complex problems and trains new generations on the job (OJT).
+
+Assigning a technician below level 3 to a critical task — such as installing bearings with an induction heater — is a direct cause of **infant mortality**, where the asset fails within its first week. The matrix prevents random assignment and targets On-the-Job Training precisely.
+
+## 3. The Kirkpatrick model
+
+The world-recognized methodology for evaluating training impact across four ascending levels:
+
+1. **Reaction**: a trainee satisfaction survey about the room and the trainer — a superficial indicator that guarantees no skill acquisition.
+2. **Learning**: a knowledge and concepts test right after the course.
+3. **Behavior**: actual field application — does the technician use the laser tool on the pumps in the workshop?
+4. **Results**: the operational and financial impact — lower bearing failures, shorter repair time (MTTR), spare parts savings, and extending to **Return on Investment (ROI)**.
+
+<Callout type="warn">
+**A common trap:** stopping at the happiness survey at the end of the course (level 1) is a training deception; it proves neither that the technician acquired the skill, nor that they applied it, nor that it reduced failures.
+</Callout>
+
+## 4. Multi-Skilling
+
+Multi-Skilling (Cross-Skilling) means training the mechanical technician on approved simple electrical tasks (disconnecting and isolating a small motor and applying lockout/tagout) and training the electrician on basic mechanical tasks. This removes the narrow trade barriers that stall work — such as a mechanic waiting two hours for an electrician to disconnect two wires — and directly raises the actual work time (Wrench Time).
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: محلل الفجوة المهارية
+
+قيّم مهارات الفريق على المهارات الخمس، واكتشف الفجوات الحرجة، واستعرض مستويات كيركباتريك الأربعة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Skills Gap Analyzer
+
+Assess the team's skills across the five skills, discover the critical gaps, and review the four Kirkpatrick levels.
+
+</LangSection>
+
+<SkillsGapAnalyzer client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-5-2-t1', 'cmrp-5-2-t2', 'cmrp-5-2-t3', 'cmrp-5-2-t4', 'cmrp-5-2-t5', 'cmrp-5-2-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على مستويات كيركباتريك ومصفوفة الجدارات وتعدد المهارات وفلسفة الاستثمار في التدريب.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the Kirkpatrick levels, the competency matrix, multi-skilling, and the philosophy of investing in training.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-5-2" questions={quizCmrp52.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **تحليل الفجوة المهارية** يقارن المطلوب بالفعلي لتوجيه التدريب بدقة بدل العشوائية.
+- **مصفوفة الجدارات** أربعة مستويات: مبتدئ، تحت الإشراف، مستقل ومتمكن، خبير ومدرب.
+- **نموذج كيركباتريك** أربعة مستويات: رد الفعل، التعلم، السلوك، النتائج والعائد.
+- **التدريب على رأس العمل (OJT)** ينقل المهارة العملية بإشراف خبير وإجراءات قياسية.
+- **تعدد المهارات** يزيل انتظار التخصصات ويرفع زمن المفتاح.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Skills Gap Analysis** compares the required against the actual to target training precisely instead of randomly.
+- **The Competency Matrix** has four levels: novice, supervised, competent, and coach.
+- **The Kirkpatrick model** has four levels: reaction, learning, behavior, and results with return.
+- **On-the-Job Training (OJT)** transfers practical skill under expert supervision and standard procedures.
+- **Multi-Skilling** removes cross-trade waiting and raises wrench time.
+
+</LangSection>

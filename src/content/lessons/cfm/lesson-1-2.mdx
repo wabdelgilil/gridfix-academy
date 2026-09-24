@@ -1,0 +1,255 @@
+---
+id: lesson-1-2
+station: station-1
+number: "1.2"
+title: "استراتيجيات الصيانة"
+titleEn: "Maintenance Strategies"
+minutes: 25
+order: 2
+objectives:
+  - "أن يقارن المتعلم استراتيجيات الصيانة الأربع: وقائية، تنبؤية، تصحيحية، وتشغيل حتى العطل."
+  - "أن يختار الاستراتيجية المناسبة حسب حرجية الأصل وتكلفة الفشل وقابلية القياس."
+  - "أن يشرح مفهوم تحليل السبب الجذري (RCA) للتعامل مع الأعطال المتكررة."
+objectivesEn:
+  - "Compare the four maintenance strategies: preventive, predictive, corrective, and run-to-failure."
+  - "Choose the right strategy based on asset criticality, failure cost, and measurability."
+  - "Explain root-cause analysis (RCA) for recurring failures."
+hasTool: true
+toolName: "معالج اختيار الاستراتيجية"
+toolNameEn: "Strategy Wizard"
+quizId: quiz-1-2
+sources:
+  - ashrae
+  - energystar
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import MaintenanceWizard from '../../../components/islands/tools/cfm/MaintenanceWizard.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz12 } from '../../../data/quiz/cfm/quiz-1-2';
+
+<LangSection lang="ar">
+
+«كيف أصون هذا الأصل؟» ليس له جواب واحد ينطبق على كل شيء؛ الصيانة قرار لكل أصل وفق شروطه: حرجيته، تكلفة فشله، وقابلية قياس حالته.
+
+## 1. الاستراتيجيات الأربع
+
+1. **الصيانة الوقائية (Preventive Maintenance, PM)**: مهام مجدولة بالزمن أو الاستخدام — تغيير الفلاتر، التشحيم، الفحص الربع سنوي.
+   - الميزة: تمنع نسبة كبيرة من الأعطال وتطيل العمر.
+   - التكلفة: مصروفات دائمة حتى في غياب العطل.
+
+2. **الصيانة التنبؤية (Predictive / Condition-Based)**: مراقبة حالة الأصل بحساسات (اهتزاز، حرارة، تحليل زيوت) والتدخل عند انحراف الحالة.
+   - الميزة: تدخل عند الحاجة الحقيقية، تطيل العمر وتوفر عن PM الزائد.
+   - التكلفة: استثمار في أجهزة وخبرة تحليل.
+
+3. **الصيانة التصحيحية (Corrective)**: الإصلاح عند العطل نفسه — حتمية وجودها لكنها مكلفة كاستراتيجية أساسية.
+
+4. **التشغيل حتى العطل (Run-to-Failure)**: قرار مُدار: يترك الأصل يخفق ثم يُستبدل. تصلح فقط لأصول منخفضة الحرجية وذات تكلفة فشل هينة.
+
+<Infographic
+  title="استراتيجيات الصيانة الأربع"
+  cols={4}
+  items={[
+    { title: 'الوقائية (PM)', detail: 'مهام مجدولة بالزمن أو الاستخدام تمنع الأعطال وتطيل العمر.', icon: '🗓' },
+    { title: 'التنبؤية (PdM)', detail: 'مراقبة الحالة بالحساسات والتدخل عند انحرافها.', icon: '📡' },
+    { title: 'التصحيحية (CM)', detail: 'الإصلاح عند العطل نفسه؛ حتمية لكنها مكلفة.', icon: '🔧' },
+    { title: 'حتى العطل (RTF)', detail: 'قرار مُدار لأصل منخفض الحرجة بتكلفة فشل هينة.', icon: '🧨' },
+  ]}
+  caption="لا استراتيجية واحدة تناسب كل الأصول — الاختيار قرار لكل أصل وفق شروطه."
+/>
+
+## 2. قاعدة الاختيار: ثلاثة أسئلة
+
+1. **الحرجية**: هل توقف الأصل يوقف العمل أو يهدد السلامة؟
+2. **تكلفة الفشل**: هل الفشل المفاجئ باهظ أم رخيص سريع؟
+3. **قابلية القياس**: هل توجد حساسات عملية لقياس حالة الأصل؟
+
+<FlowChart
+  title="شجرة قرار اختيار الاستراتيجية"
+  steps={[
+    { title: 'ما حرجية الأصل؟', detail: 'هل توقفه يوقف العمل أو يهدد السلامة؟', icon: '؟', type: 'decision' },
+    { title: 'حتى العطل (RTF)', detail: 'مثل قاعدة الإضاءة: منخفض الحرجة وتكلفة الفشل هينة.', icon: '🧨', type: 'end' },
+    { title: 'عالي الحرجة؟ قياس الحالة متاح؟', type: 'decision', icon: '؟' },
+    { title: 'تنبؤية (PdM)', detail: 'حساسات اهتزاز وحرارة وتحليل زيوت.', icon: '📡', type: 'end' },
+    { title: 'وقائية مجدولة (PM)', detail: 'عند عتبة زمن/استخدام متوقع وموثق.', icon: '🗓', type: 'end' },
+  ]}
+  caption="الترتيب: أجب عن الحرجة أولاً، ثم تكلفة الفشل، ثم قابلية القياس — والتصحيح فقط عند العطل نفسه."
+/>
+
+<Callout type="tip">
+**المنطق:** عالي الحرجة + باهظ الفشل + قابل للقياس → **تنبؤية**. عالي الحرجة + غير قابل للقياس → **وقائية مجدولة**. منخفض الحرجة + رخيص الفشل → **تشغيل حتى العطل**. لا استراتيجية واحدة تناسب الكل.
+</Callout>
+
+## 3. تحليل السبب الجذري (Root Cause Analysis, RCA)
+
+أكبر خطأ شائع: إصلاح **العرض** بدلاً من معالجة **السبب** فيتكرر العطل. منهج التحليل:
+
+- اجمع البيانات: متى يقع العطل؟ تحت أي حمل؟ ما حال الأجزاء قبله؟
+- ابحث عن **المحفز المشترك** (حمل ذروة، فلترة ضعيفة، تلوث زيوت).
+- لا تقفز إلى الاستنتاج بلا سند؛ العطل المتكرر الموثق دليل أن الجذر لم يُعالج.
+
+<Callout type="myth">
+**أسطورة:** "الوقائية تعني زيادة وتيرة الصيانة بلا توقف."
+**الحقيقة:** الوقائية الذكية تُضبط حسب عمر الأصل وسلوكه وبياناته؛ زيادة التكرار ليست هدفاً بل تعني مضيعة موارد.
+</Callout>
+
+## 4. من أوراق العمل إلى جدول PM في النظام
+
+نظام إدارة الصيانة المحوسب (CMMS) يحوّل الـ PM من أوراق مبعثرة إلى مشغّل يومي:
+
+- جدول مهام لكل أصل بالتردد المناسب (شهري/ربع سنوي/سنوي).
+- تنبيه بالأوامر المتأخرة والموارد والمقاولين.
+- تاريخ الأصول وسجلات التكلفة — وهي المدخلات التي تشغّل قرارات الماليات لاحقاً (المحطة 3).
+
+</LangSection>
+
+<LangSection lang="en">
+
+"How do I maintain this asset?" has no single answer that applies to everything; maintenance is a decision made for each asset according to its conditions: its criticality, its failure cost, and how measurable its condition is.
+
+## 1. The four strategies
+
+1. **Preventive Maintenance (PM)**: tasks scheduled by time or usage — filter changes, lubrication, quarterly inspection.
+   - Advantage: prevents a large share of failures and extends life.
+   - Cost: permanent expenditure even in the absence of a failure.
+
+2. **Predictive / Condition-Based Maintenance**: monitoring the asset's condition with sensors (vibration, temperature, oil analysis) and intervening when the condition deviates.
+   - Advantage: intervention at the real point of need, extends life, and saves on excessive PM.
+   - Cost: an investment in instruments and analysis expertise.
+
+3. **Corrective Maintenance**: repair at the moment of the failure itself — its presence is inevitable, but it is expensive as a primary strategy.
+
+4. **Run-to-Failure**: a managed decision — the asset is left to fail, then replaced. It suits only low-criticality assets with a negligible failure cost.
+
+<Infographic
+  title="The four maintenance strategies"
+  cols={4}
+  items={[
+    { title: 'Preventive (PM)', detail: 'Time- or usage-based scheduled tasks that prevent failures and extend life.', icon: '🗓' },
+    { title: 'Predictive (PdM)', detail: 'Condition monitoring with sensors and intervention when it deviates.', icon: '📡' },
+    { title: 'Corrective (CM)', detail: 'Repair at the moment of the failure; inevitable but costly.', icon: '🔧' },
+    { title: 'Run-to-Failure (RTF)', detail: 'A managed decision for a low-criticality asset with a negligible failure cost.', icon: '🧨' },
+  ]}
+  caption="No single strategy suits all assets — the choice is a per-asset decision based on its own conditions."
+/>
+
+## 2. The selection rule: three questions
+
+1. **Criticality**: does the asset stopping stop the work or threaten safety?
+2. **Failure cost**: is a sudden failure expensive, or cheap and fast?
+3. **Measurability**: are practical sensors available to measure the asset's condition?
+
+<FlowChart
+  title="Strategy selection decision tree"
+  steps={[
+    { title: 'What is the asset criticality?', detail: 'Does its stoppage stop the work or threaten safety?', icon: '؟', type: 'decision' },
+    { title: 'Run-to-Failure (RTF)', detail: 'Like the lighting circuit: low criticality and a negligible failure cost.', icon: '🧨', type: 'end' },
+    { title: 'High criticality? Is condition measurement available?', type: 'decision', icon: '؟' },
+    { title: 'Predictive (PdM)', detail: 'Vibration and temperature sensors and oil analysis.', icon: '📡', type: 'end' },
+    { title: 'Scheduled preventive (PM)', detail: 'At an expected, documented time/usage threshold.', icon: '🗓', type: 'end' },
+  ]}
+  caption="The order: answer criticality first, then failure cost, then measurability — and correction only at the moment of the failure itself."
+/>
+
+<Callout type="tip">
+**The logic:** high criticality + expensive failure + measurable → **predictive**. High criticality + not measurable → **scheduled preventive**. Low criticality + cheap failure → **run-to-failure**. No single strategy suits everything.
+</Callout>
+
+## 3. Root Cause Analysis (RCA)
+
+The biggest common mistake: repairing the **symptom** instead of addressing the **cause**, so the failure recurs. The analysis approach:
+
+- Gather data: when does the failure occur? Under what load? What was the state of the parts before it?
+- Look for the **shared trigger** (peak load, weak filtration, oil contamination).
+- Do not jump to a conclusion without evidence; a documented recurring failure is proof that the root was never addressed.
+
+<Callout type="myth">
+**Myth:** "Preventive means endlessly increasing the maintenance frequency."
+**Fact:** smart preventive maintenance is tuned to the asset's age, behavior, and data; increasing frequency is not a goal but a waste of resources.
+</Callout>
+
+## 4. From paper workflows to a PM schedule in the system
+
+A computerized maintenance management system (CMMS) turns PM from scattered paperwork into a daily operator:
+
+- A task schedule for each asset at the right frequency (monthly/quarterly/annual).
+- Alerts for overdue work orders, resources, and contractors.
+- Asset history and cost records — the inputs that later feed financial decisions (station 3).
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: معالج اختيار الاستراتيجية
+
+أجب عن الأسئلة الثلاثة عن أصل من أصولك وسيقترح الأداة الأنسب حسب شروطه.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Strategy Wizard
+
+Answer the three questions about one of your assets and the tool will suggest the most suitable strategy for its conditions.
+
+</LangSection>
+
+<MaintenanceWizard client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['preventive', 'predictive', 'rtf', 'pm', 'cmms']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+ضبط حدسك مع قرارات الصيانة الواقعية بنمط أسئلة CFM.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Tune your instincts against realistic maintenance decisions in CFM-question style.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-1-2" questions={quiz12.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **الاستراتيجيات**: الوقائية تمنع، التنبؤية تتنبأ، التصحيحية تصلح، والتشغيل حتى العطل قرار مُدار مقصود.
+- **قاعدة الاختيار**: حرجية الأصل + تكلفة الفشل + قابلية القياس تحدّد الاستراتيجية الصحيحة.
+- **العطل المتكرر** يتطلب إصلاح السبب الجذري لا إصلاح الأعراض.
+- **CMMS** يحوّل الصيانة الوقائية إلى عملية قابلة للضبط والقياس المحاسبي.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The strategies**: preventive prevents, predictive predicts, corrective repairs, and run-to-failure is a deliberate managed decision.
+- **The selection rule**: asset criticality + failure cost + measurability determine the right strategy.
+- **A recurring failure** requires fixing the root cause, not just the symptoms.
+- **CMMS** turns preventive maintenance into a process that can be tuned and cost-accounted.
+
+</LangSection>

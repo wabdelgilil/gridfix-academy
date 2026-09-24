@@ -1,0 +1,225 @@
+---
+id: lesson-6-2
+station: station-6
+number: "6.2"
+title: "الإخلاء والسلامة من الحريق"
+titleEn: "Evacuation & Fire Safety"
+minutes: 20
+order: 2
+objectives:
+  - "أن يفهم المتعلم مثلث الحريق ومبدأ منع الحرائق بكسر أحد أركانه."
+  - "أن يمارس سلوك الإخلاء الصحيح: المسار، الدرج دون المصاعد، ونقطة التجمع."
+  - "أن يستخدم الطفاية بالتقنية القياسية ويقرر متى يقاوم ومتى يهرب."
+  - "أن يقرأ نتائج تمرين الإخلاء ويصحح الجذور."
+objectivesEn:
+  - "Understand the fire triangle and fire prevention by breaking one of its sides."
+  - "Practice correct evacuation behavior: routes, stairs not elevators, assembly point."
+  - "Use an extinguisher with the standard technique and decide when to fight and when to flee."
+  - "Read drill results and fix root causes."
+hasTool: false
+quizId: quiz-6-2
+sources:
+  - osha
+  - ifma
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz62 } from '../../../data/quiz/cfm/quiz-6-2';
+
+<LangSection lang="ar">
+
+الحريق يبدأ صغيراً وينتهي كاملاً: خردة مشتعلة بجانب مأخذ كهربائي تكفي لبدء كارثة تُخلي فيها مبنى كاملاً. الوقايةُ تبدأ بفهم الفيزياء البسيطة للحريق، ثم يليها سلوك إخلاء مضبوط بالتدريب والتقييم.
+
+## 1. مثلث الحريق (Fire Triangle) ومبدأ الوقاية
+
+كل حريق يقوم على ثلاثة أركان لا يقوم الحريق إلا بها جميعاً:
+
+1. **الوقود**: أي مادة قابلة للاحتراق (ورق، خشب، سوائل، غبار).
+2. **الأكسجين**: الهواء المحيط الذي يغذي الاحتراق.
+3. **مصدر الإشعال**: حرارة كافية (شرارة، لهب، مأخذ ساخن).
+
+الوقاية تعني كسر أحد الأركان: إزالة الوقود (نظافة وترتيب وتخزين آمن)، أو عزل الأكسجين، أو منع مصادر الإشعال (صيانة المآخذ والأسلاك، ومنع التدخين في المواقع الخطرة).
+
+## 2. مسار الهروب (Means of Egress) وسلوك الإخلاء
+
+مسار الهروب هو الطريق المستمر غير المعوَّق من أي نقطة في المبنى إلى المكان الآمن خارجاً. وقواعد السلوك وقت الإخلاء (Evacuation):
+
+- **التوقف فوراً** عن العمل بسماع الإنذار — لا تأخير لإنهاء «مهمة لحظية».
+- **اتبع المسارات المعلنة إلى نقطة التجمع (Assembly Point)** وتجمع بها للتحقق من اكتمال الجميع.
+- **النزول عبر الدرج فقط** — المصعد ممنوع: قد ينقطع تياره أو يتحول إلى فخ حراري.
+- **لا عودة لجمع الممتلكات** مهما كانت قيمتها — الحياة أولاً، والعودة للمبنى بعد الخروج ممنوعة حتى يعلن فريق الطوارئ الأمان.
+
+## 3. الكشف والإنذار والاستجابة
+
+- **أنظمة الكشف**: أجهزة دخان وحرارة في المواقع الاستراتيجية، مرتبطة بإنذار مسموع.
+- **سلسلة الاستجابة**: كشف → إنذار → استجابة فورية (إخلاء أو مكافحة أولية حسب الموقف).
+- **متى تقاوم ومتى تهرب**: قاوم الحريق بالطفاية فقط إذا كان صغيراً وطريق الهروب خلفك ولا دخان يهدد— وإلا أغلق الباب واخرج وأبلغ.
+
+<FlowChart
+  title="متى تقاوم ومتى تهرب"
+  steps={[
+    { title: 'حريق أمامك', detail: 'قيّم الموقف فوراً قبل أي قرار.', icon: '🔥', type: 'start' },
+    { title: 'هل الحريق صغير؟', detail: 'في حدود ما تتحكم به طفاية؟', icon: '❓', type: 'decision' },
+    { title: 'هل طريق الهروب خلفك مفتوح؟', detail: 'لا تُحاصر نفسك أبداً.', icon: '🚪', type: 'decision' },
+    { title: 'هل لا يوجد دخان يهدد؟', detail: 'الدخان يعيق الرؤية والتنفس.', icon: '💨', type: 'decision' },
+    { title: 'نعم لكل الشروط — قاوم بالطفاية', detail: 'طبّق التقنية القياسية (PASS) عند قاعدة اللهب.', icon: '🧯' },
+    { title: 'وإلا — أغلق الباب واخرج وأبلغ', detail: 'أي شرط لم يكتمل يعني الهروب فوراً.', icon: '🏃', type: 'end' },
+  ]}
+  caption="قاوم فقط إذا كان الحريق صغيراً وطريق الهروب خلفك ولا دخان يهدد — وإلا أغلق الباب واخرج وأبلغ."
+/>
+
+## 4. الطفايات (Fire Extinguishers) والتقنية القياسية
+
+الطفاية أداة إطفاء البدايات، تُختار حسب نوع الحريق (مواد صلبة، سوائل، كهرباء) وتُفحص دورياً. والتقنية القياسية لاستخدامها اختصار **PASS**:
+
+- **اسحب** (Pull): أخرج مسمار الأمان.
+- **وجّه** (Aim): نحو قاعدة اللهب.
+- **اضغط** (Squeeze): المقبض لإطلاق المادة.
+- **امسح** (Sweep): من جانب إلى آخر عند القاعدة حتى الانطفاء.
+
+<Callout type="myth">
+**أسطورة:** «في الإخلاء، أعود إلى مكتبي لأخذ الحقيبة والوثائق المهمة».
+**الحقيقة:** العودة لجمع المتاع من أخطر أسباب الوفيات في الحرائق — قيمة المادة لا تزاحم الحياة، والعودة بعد الخروج ممنوعة.
+</Callout>
+
+## 5. تمرين الإخلاء (Fire Drill) وقراءة التقييم
+
+التمرين هو الاختبار العملي الحقيقي للخطة:
+
+- يُنفذ بجاهزية كاملة: إنذار حقيقي، خروج فعلي، وحصر عند نقطة التجمع.
+- **يُقاس الزمن** من الإنذار إلى اكتمال الحصر، ويُقارن بالهدف، فكل دقيقة فارق حاسمة.
+- **تُقرأ النتائج بحثاً عن الجذور**: ازدحام في ممر، باب مقفل، موظف تأخر، ونقطة تجمع غير واردة — ثم تُصحَّح الخطة نفسها.
+
+<Callout type="tip">
+**نصائح عملية:** فحص الطفايات شهرياً للضغط، ونُسخ خرائط الإخلاء عند نقطة التجمع، وتمارين بلا توقيت معلن حتى يحقق الجميع الواقعية لا مجرد المرور من التدريب.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Fire starts small and ends complete: burning debris next to a power outlet is enough to begin a catastrophe that evacuates an entire building. Prevention starts with understanding the simple physics of fire, followed by evacuation behavior disciplined by training and evaluation.
+
+## 1. The fire triangle and the prevention principle
+
+Every fire stands on three sides, and fire cannot occur unless all of them are present:
+
+1. **Fuel**: any combustible material (paper, wood, liquids, dust).
+2. **Oxygen**: the surrounding air that feeds the combustion.
+3. **Ignition source**: enough heat (a spark, flame, or hot outlet).
+
+Prevention means breaking one side: removing the fuel (cleanliness, order, and safe storage), isolating oxygen, or preventing ignition sources (maintenance of outlets and wiring, and banning smoking in hazardous locations).
+
+## 2. Means of egress and evacuation behavior
+
+The means of egress is the continuous, unobstructed path from any point in the building to a safe place outside. The behavioral rules during evacuation:
+
+- **Stop immediately** working upon hearing the alarm — no delay to finish a "quick task".
+- **Follow the announced routes to the assembly point** and gather there so the headcount can be verified.
+- **Descend via the stairs only** — the elevator is prohibited: its power may fail, or it may become a thermal trap.
+- **No returning to collect belongings** regardless of their value — life comes first, and re-entering the building after exit is prohibited until the emergency team declares it safe.
+
+## 3. Detection, alarm, and response
+
+- **Detection systems**: smoke and heat devices in strategic locations, tied to an audible alarm.
+- **Response chain**: detect → alarm → immediate response (evacuation or initial firefighting depending on the situation).
+- **When to fight and when to flee**: fight the fire with an extinguisher only if it is small, the escape route is behind you, and no smoke threatens you — otherwise close the door, exit, and report.
+
+<FlowChart
+  title="When to fight and when to flee"
+  steps={[
+    { title: 'A fire in front of you', detail: 'Assess the situation immediately before any decision.', icon: '🔥', type: 'start' },
+    { title: 'Is the fire small?', detail: 'Within what one extinguisher can control?', icon: '❓', type: 'decision' },
+    { title: 'Is the escape route behind you open?', detail: 'Never trap yourself.', icon: '🚪', type: 'decision' },
+    { title: 'Is there no threatening smoke?', detail: 'Smoke impairs vision and breathing.', icon: '💨', type: 'decision' },
+    { title: 'Yes to all conditions — fight with the extinguisher', detail: 'Apply the standard technique (PASS) at the base of the flames.', icon: '🧯' },
+    { title: 'Otherwise — close the door, exit, and report', detail: 'Any unmet condition means fleeing immediately.', icon: '🏃', type: 'end' },
+  ]}
+  caption="Fight only if the fire is small, the escape route is behind you, and no smoke threatens you — otherwise close the door, exit, and report."
+/>
+
+## 4. Fire extinguishers and the standard technique
+
+The extinguisher is the tool for fighting incipient fires; it is chosen according to the fire class (solids, liquids, electricity) and inspected periodically. The standard technique for using it is the **PASS** acronym:
+
+- **Pull** the safety pin.
+- **Aim** at the base of the flames.
+- **Squeeze** the handle to discharge the agent.
+- **Sweep** from side to side at the base until the fire is out.
+
+<Callout type="myth">
+**Myth:** "During evacuation, I return to my office to get my bag and important documents."
+**Fact:** Returning to collect belongings is among the most dangerous causes of death in fires — the value of objects does not compete with life, and re-entering after exit is prohibited.
+</Callout>
+
+## 5. The fire drill and reading the evaluation
+
+The drill is the real practical test of the plan:
+
+- It is executed in full readiness: a real alarm, actual exit, and headcount at the assembly point.
+- **Time is measured** from the alarm to completed headcount and compared with the target — every minute makes a critical difference.
+- **Results are read looking for roots**: crowding in a corridor, a locked door, a delayed employee, and an unreachable assembly point — then the plan itself is corrected.
+
+<Callout type="tip">
+**Practical tips:** monthly pressure checks of extinguishers, copies of evacuation maps at the assembly point, and unannounced drills so everyone achieves realism, not just a pass-through of training.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['egress', 'firedrill', 'evacuation', 'assembly']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على سلوك الإخلاء الصحيح، ومثلث الحريق، واستخدام الطفاية، وقراءة نتائج التمرين.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on correct evacuation behavior, the fire triangle, extinguisher use, and reading drill results.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-6-2" questions={quiz62.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **مثلث الحريق**: وقود + أكسجين + مصدر إشعال — والوقاية بكسر أحد الأركان.
+- **الإخلاء الصحيح**: توقف فوري، مسار معلن، درج بلا مصاعد، وحصر عند نقطة التجمع — بلا عودة للممتلكات.
+- **الطفاية بالتقنية القياسية (PASS)** تقاوم الحريق الصغير فقط، ويبقى خلف المقاوم طريق هروب مفتوحاً دائماً.
+- **تمرين الإخلاء اختبار عملي**: يُقاس زمنه وتُقرأ نتائجه لتُصحَّح جذور الخطأ لا لتُختبأ.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The fire triangle**: fuel + oxygen + ignition source — and prevention by breaking any one side.
+- **Correct evacuation**: immediate stop, announced routes, stairs without elevators, and headcount at the assembly point — no returning for belongings.
+- **The PASS standard technique** fights a small fire only, and an open escape route always remains behind the fighter.
+- **The evacuation drill is a practical test**: its time is measured and its results are read to fix the root causes of the error, not to hide them.
+
+</LangSection>

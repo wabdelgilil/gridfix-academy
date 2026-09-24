@@ -1,0 +1,259 @@
+---
+id: lesson-5-2
+station: station-5
+number: "5.2"
+title: "تقييم المخاطر والسيطرة"
+titleEn: "Risk Assessment & Control"
+minutes: 25
+order: 2
+objectives:
+  - "أن يفرّق بين الخطر والمخاطرة وبين خطوات التقييم المنهجية."
+  - "أن يستخدم حاصل «الاحتمال × الشدة» لترتيب الأولويات."
+  - "أن يختار أسلوب السيطرة من أعلى هرم التحكم المناسب للموقف."
+  - "أن يحدد متى يُعاد تقييم المخاطر."
+objectivesEn:
+  - "Distinguish hazard from risk and learn the systematic assessment steps."
+  - "Use likelihood multiplied by severity to prioritize actions."
+  - "Select the highest applicable control from the hierarchy of controls."
+  - "Determine when risk assessment must be repeated."
+hasTool: true
+toolName: "مصفوفة مخاطر 5×5"
+toolNameEn: "5x5 Risk Matrix"
+quizId: quiz-5-2
+sources:
+  - osha
+  - iso_41001
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import RiskMatrix from '../../../components/islands/tools/cfm/RiskMatrix.tsx';
+import Hierarchy from '../../../components/ui/figures/Hierarchy.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz52 } from '../../../data/quiz/cfm/quiz-5-2';
+
+<LangSection lang="ar">
+
+مشهد مشترك في كل مبنى: حفرة تخديم مفتوحة بجوار ممر يعبره الناس، وضوضاء مولد تتجاوز الحد المسموح صباح كل يوم. السؤال الذي يسبق أي إجراء: **أيهما أهم أولاً، وأي حل نختار؟** هذا الدرس يمنحك أداة الإجابة: طريقة منظمة لتسجيل المخاطر، وترتيبها، واختيار السيطرة.
+
+## 1. الخطر والمخاطرة — بابان يجب الفصل بينهما
+
+- **الخطر (Hazard)**: مصدر الضرر المحتمل — كابل مكشوف، أرضية زلقة، غاز قابل للاشتعال.
+- **المخاطرة (Risk)**: مقياس الضرر المحتمل من هذا الخطر، ويساوي **الاحتمال × الشدة**.
+
+الفرق العملي: الخطر قد يبقى موجوداً (الكابل مكشوف)، لكن المخاطرة يمكن خفضها — بتقليل احتمال التعرض (فصل الكهرباء قبل الصيانة) أو تقليل الأثر (درع وقاية، مسافة آمنة، تدريب).
+
+## 2. خطوات تقييم المخاطر
+
+1. **التحديد (Identification)**: حدد المخاطر في الموقع — جولة ميدانية، سجلات الحوادث السابقة، مقابلات مع العاملين، قوائم تحقق معيارية.
+2. **التحليل (Analysis)**: لكل خطر عيّن الاحتمال والشدة واحسب الدرجة.
+3. **التقييم والترتيب (Evaluation)**: عالج أولاً ما يحمل أعلى درجة.
+4. **السيطرة (Control)**: طبّق أسلوباً من هرم التحكم (القسم 4).
+5. **المراجعة (Review)**: أعد القياس بعد التغييرات، وبعد الحوادث، وسنوياً على الأقل.
+
+## 3. مصفوفة المخاطر 5×5 (Risk Matrix): الاحتمال × الشدة
+
+تُقيَّم الأبعاد بالأرقام من 1 إلى 5:
+
+- **الاحتمال (Likelihood)**: 1 نادر → 5 شبه مؤكد.
+- **الشدة (Severity)**: 1 تافهة → 5 كارثية.
+
+والدرجة = الاحتمال × الشدة، وتُصنَّف إلى نطاقات:
+
+| الدرجة | المستوى | التصرف |
+|---|---|---|
+| 1–4 | منخفض | رصد وتوثيق |
+| 5–9 | متوسط | إجراءات خلال فترة محددة |
+| 10–14 | مرتفع | إجراء فوري، هندسي غالباً |
+| 15–25 | حرج | إيقاف العمل في المنطقة حتى تُزال الخطورة |
+
+**مثال تطبيقي:**
+
+- حفرة بجوار ممر مشاة: احتمال التعرض (4)، الشدة (4) → الدرجة **16 — حرج**: لا تنتظر.
+- ضوضاء غرفة مولدات: احتمال التعرض (5)، الشدة (3) → الدرجة **15 — حرج**.
+- سلم مكسور في مخزن نادر الاستخدام: احتمال (2)، الشدة (3) → الدرجة **6 — متوسط**.
+
+<Callout type="warn">
+**مفهوم خاطئ:** «المخاطر النادرة لا تستحق الاهتمام».
+**الحقيقة:** التقييم حاصل ضرب، لا جمع. خطر نادر لكن شدته كارثية (انفجار، حريق كبير) قد يحمل درجة أعلى من خطر يومي تافه. لا تحكم من شيوعه وحده.
+</Callout>
+
+## 4. هرم السيطرة (Hierarchy of Controls): من الأقوى إلى الأضعف
+
+عندما تقرر «كيف نتدخل»، تسير من أعلى الهرم نحو الأسفل، وتختار أعلى وسيلة قابلة للتطبيق:
+
+1. **الإزالة (Elimination)**: أزل الخطر من الأساس. **مثال:** إلغاء مخزن مواد قابلة للاشتعال داخل المبنى.
+2. **الاستبدال (Substitution)**: بديل أقل خطراً. **مثال:** دهان مائي بدل دهان يطلق أبخرة سامة.
+3. **السيطرة الهندسية (Engineering)**: افصل الناس بالتصميم. **مثال:** عازل صوتي حول مولد، غطاء متين للحفرة، سور أمان.
+4. **السيطرة الإدارية (Administrative)**: نظّم السلوك. **مثال:** منع المرور مؤقتاً، لافتة، تدريب، تقصير زمن التعرض.
+5. **معدات الوقاية الشخصية (PPE)**: آخر خط دفاع. **مثال:** سدادات أذن خلال الدخول المؤقت للغرفة.
+
+السبب في هذا الترتيب أن الأبعد (PPE) يعتمد على سلوك الفرد، بينما الهندسة تحمي الجميع من دون اشتراك أحد.
+
+<Hierarchy
+  title="هرم السيطرة (Hierarchy of Controls)"
+  direction="bottom-up"
+  levels={[
+    { label: 'الإزالة (Elimination)', detail: 'أزل الخطر من الأساس — إلغاء مخزن مواد قابلة للاشتعال.', icon: '❌' },
+    { label: 'الاستبدال (Substitution)', detail: 'بديل أقل خطراً — دهان مائي بدل دهان يطلق أبخرة سامة.', icon: '🔁' },
+    { label: 'السيطرة الهندسية (Engineering)', detail: 'افصل الناس بالتصميم — عازل صوتي، غطاء متين، سور أمان.', icon: '🏗️' },
+    { label: 'السيطرة الإدارية (Administrative)', detail: 'نظّم السلوك — منع مرور مؤقت، لافتة، تدريب، تقصير زمن التعرض.', icon: '📋' },
+    { label: 'معدات الوقاية الشخصية (PPE)', detail: 'آخر خط دفاع — سدادات أذن خلال الدخول المؤقت للغرفة.', icon: '🛡️' },
+  ]}
+  caption="تُسير من قمة الهرم نحو قاعدته وتختار أعلى وسيلة قابلة للتطبيق: الأبعد (PPE) يعتمد على سلوك الفرد بينما الهندسة تحمي الجميع."
+/>
+
+## 5. متى يُعاد تقييم المخاطر؟
+
+لا يُجرى التقييم مرة واحدة ويُنسى؛ يُعاد:
+
+- **بعد أي تغيير** في المعدات أو العمليات أو المواد.
+- **بعد كل حادث أو شبه حادث (Near Miss)**.
+- **سنوياً على الأقل**، أو عند تغير المعايير القانونية.
+
+**مثال:** غطيت الحفرة من الشهر الماضي، فعادت الدرجة من 16 إلى 3 — التقييم يثبت أن القرار الهندسي فعّال، ولا يترك مجالاً للاعتماد على «النية».
+
+</LangSection>
+
+<LangSection lang="en">
+
+A common scene in every building: an open service pit beside a corridor people cross, and generator noise exceeding the allowed limit every morning. The question that precedes any action: **which matters first, and which solution do we choose?** This lesson gives you the answer tool: an organized method to record risks, rank them, and choose the control.
+
+## 1. Hazard and risk — two doors that must be kept apart
+
+- **Hazard**: the source of potential harm — an exposed cable, a slippery floor, a flammable gas.
+- **Risk**: the measure of potential harm from that hazard, equal to **likelihood × severity**.
+
+The practical difference: the hazard may remain present (the cable exposed), but the risk can be reduced — by lowering the likelihood of exposure (isolating power before maintenance) or by reducing the impact (a protective shield, a safe distance, training).
+
+## 2. The risk assessment steps
+
+1. **Identification**: identify the hazards on site — a field walk, past incident records, interviews with workers, standard checklists.
+2. **Analysis**: for each hazard assign likelihood and severity and compute the score.
+3. **Evaluation and ranking**: treat first what carries the highest score.
+4. **Control**: apply a method from the hierarchy of controls (section 4).
+5. **Review**: re-measure after changes, after incidents, and at least annually.
+
+## 3. The 5×5 Risk Matrix: likelihood × severity
+
+The dimensions are scored from 1 to 5:
+
+- **Likelihood**: 1 rare → 5 almost certain.
+- **Severity**: 1 trivial → 5 catastrophic.
+
+The score = likelihood × severity, classified into ranges:
+
+| Score | Level | Action |
+|---|---|---|
+| 1–4 | Low | Monitor and document |
+| 5–9 | Medium | Actions within a defined period |
+| 10–14 | High | Immediate action, often engineering |
+| 15–25 | Critical | Stop work in the area until the hazard is removed |
+
+**Worked example:**
+
+- A pit beside a pedestrian walkway: likelihood of exposure (4), severity (4) → score **16 — critical**: do not wait.
+- Generator room noise: likelihood of exposure (5), severity (3) → score **15 — critical**.
+- A broken ladder in a rarely used store: likelihood (2), severity (3) → score **6 — medium**.
+
+<Callout type="warn">
+**Misconception:** "Rare risks do not deserve attention."
+**Fact:** the assessment is a product, not a sum. A rare hazard whose severity is catastrophic (an explosion, a major fire) may carry a higher score than a trivial daily one. Do not judge from its frequency alone.
+</Callout>
+
+## 4. The Hierarchy of Controls: from strongest to weakest
+
+When you decide "how do we intervene", you move from the top of the hierarchy down, choosing the highest applicable measure:
+
+1. **Elimination**: remove the hazard at its root. **Example:** removing the flammable materials store inside the building.
+2. **Substitution**: a less hazardous alternative. **Example:** water-based paint instead of paint releasing toxic fumes.
+3. **Engineering**: separate people by design. **Example:** an acoustic enclosure around a generator, a sturdy pit cover, a safety railing.
+4. **Administrative**: organize behavior. **Example:** temporarily banning passage, a sign, training, shortening exposure time.
+5. **Personal Protective Equipment (PPE)**: the last line of defense. **Example:** earplugs during temporary entry into the room.
+
+The reason for this order is that the lowest (PPE) depends on individual behavior, while engineering protects everyone without anyone's participation.
+
+<Hierarchy
+  title="The Hierarchy of Controls"
+  direction="bottom-up"
+  levels={[
+    { label: 'Elimination', detail: 'Remove the hazard at its root — removing the flammable materials store.', icon: '❌' },
+    { label: 'Substitution', detail: 'A less hazardous alternative — water-based paint instead of paint releasing toxic fumes.', icon: '🔁' },
+    { label: 'Engineering', detail: 'Separate people by design — acoustic enclosure, sturdy cover, safety railing.', icon: '🏗️' },
+    { label: 'Administrative', detail: 'Organize behavior — temporary passage ban, a sign, training, shortening exposure time.', icon: '📋' },
+    { label: 'Personal Protective Equipment (PPE)', detail: 'The last line of defense — earplugs during temporary entry into the room.', icon: '🛡️' },
+  ]}
+  caption="You move from the top of the hierarchy toward its base and choose the highest applicable measure: the lowest (PPE) depends on individual behavior while engineering protects everyone."
+/>
+
+## 5. When is risk assessment repeated?
+
+The assessment is not done once and forgotten; it is repeated:
+
+- **After any change** in equipment, processes, or materials.
+- **After every incident or near miss**.
+- **At least annually**, or when legal standards change.
+
+**Example:** you covered the pit last month, so the score returned from 16 to 3 — the assessment proves that the engineering decision is effective and leaves no room for relying on "intention".
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## 6. أداة اليوم: مصفوفة مخاطر 5×5
+
+جرّب الخطر الواقعي من بيئتك: حرّك الاحتمال والشدة ولاحظ تغير اللون والدرجة، ثم جرّب «خفض» الدرجة بقرارات من هرم السيطرة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: 5x5 Risk Matrix
+
+Try a real hazard from your environment: move likelihood and severity and watch the color and score change, then try "lowering" the score with decisions from the hierarchy of controls.
+
+</LangSection>
+
+<RiskMatrix client:load />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+حاول فهم الجواب ثم اقرأ الشرح لأنه ينقل المفاهيم إلى قرارات امتحان فعلية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Try to understand the answer, then read the explanation because it moves the concepts into actual exam decisions.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-5-2" questions={quiz52.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **الخطر** مصدر ضرر محتمل، و**المخاطرة** = الاحتمال × الشدة.
+- **خطوات التقييم**: جرد ← تحليل ← ترتيب ← سيطرة ← مراجعة.
+- **مصفوفة المخاطر 5×5 (Risk Matrix)**: 15–25 حرج (إيقاف العمل)، 10–14 مرتفع، 5–9 متوسط، 1–4 منخفض.
+- **هرم السيطرة (Hierarchy of Controls)** من الأقوى: إزالة، استبدال، هندسة، إجراءات إدارية، وأخيراً PPE.
+- **إعادة التقييم** بعد كل تغيير، وبعد الحوادث، وسنوياً على الأقل.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **A hazard** is a source of potential harm, and **risk** = likelihood × severity.
+- **Assessment steps**: inventory ← analysis ← ranking ← control ← review.
+- **The 5×5 Risk Matrix**: 15–25 critical (stop work), 10–14 high, 5–9 medium, 1–4 low.
+- **The Hierarchy of Controls**, from strongest: elimination, substitution, engineering, administrative controls, and finally PPE.
+- **Reassessment** after every change, after incidents, and at least annually.
+
+</LangSection>

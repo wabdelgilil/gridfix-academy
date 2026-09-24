@@ -1,0 +1,197 @@
+---
+id: lesson-cmrp-6-2
+course: cmrp
+station: station-cmrp-6
+number: "6.2"
+title: "بطاقة الأداء المتوازن (BSC) ومؤشرات Leading vs Lagging"
+titleEn: "Balanced Scorecard & Reliability KPIs (MTBF, MTTR, Avail)"
+minutes: 40
+order: 2
+objectives:
+  - "أن يشرح المتعلم أبعاد بطاقة الأداء المتوازن (BSC) الأربعة لكابلان ونورتون."
+  - "أن يفرق بين المؤشرات القيادية (Leading) والمؤشرات التأخيرية (Lagging) ويوظف كلاً منهما."
+  - "أن يحسب متوسط الوقت بين الأعطال (MTBF) ومتوسط وقت الإصلاح (MTTR) والإتاحة التشغيلية."
+  - "أن يشخص التناقض بين الالتزام الوقائي المرتفع والأعطال المتزايدة (التأشير الشكلي)."
+objectivesEn:
+  - "Explain the four Balanced Scorecard (BSC) perspectives of Kaplan and Norton."
+  - "Distinguish leading from lagging indicators and use each correctly."
+  - "Calculate MTBF, MTTR, and operational availability."
+  - "Diagnose high PM compliance paired with rising failures (pencil whipping)."
+hasTool: true
+toolName: "محاكي بطاقة الأداء"
+toolNameEn: "Balanced Scorecard Simulator"
+quizId: quiz-cmrp-6-2
+sources:
+  - kaplan_norton_bsc
+  - smrp_metrics
+  - david_smith_rmr
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import BalancedScorecard from '../../../components/islands/tools/cmrp/BalancedScorecard.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp62 } from '../../../data/quiz/cmrp/quiz-cmrp-6-2';
+
+<LangSection lang="ar">
+
+من يقاس بعدسة مالية ضيقة واحدة — «كم أنفقت هذا الشهر؟» — سيخفض الزيوت والتدريب والوقائية ليظهر وفراً مؤقتاً، ثم يدفع الكلفة كوارث بعد أشهر. هذا الدرس يعلمك القياس المتوازن: أربعة أبعاد، ومؤشرات تقود المستقبل لا تكتفي برواية الماضي، وثلاثة أرقام تحسم موثوقية أي معدة.
+
+## 1. بطاقة الأداء المتوازن (BSC) وأبعادها الأربعة
+
+بطاقة الأداء المتوازن (Balanced Scorecard) إطار وضعه كابلان ونورتون (Kaplan and Norton) لمواءمة الصيانة مع استراتيجية الشركة عبر أربعة أبعاد تربطها علاقات سببية:
+
+- **البعد المالي (Financial):** كيف نبدو أمام المساهمين؟ مثل تكلفة الصيانة كنسبة من ERV، وتكلفة الصيانة لكل وحدة منتجة.
+- **بعد العملاء والشركاء (Customer):** كيف يرانا العميل الداخلي وهو الإنتاج؟ مثل الإتاحة التشغيلية ومعدل تلبية طلبات العمل في موعدها.
+- **بعد العمليات الداخلية (Internal Processes):** أين يجب أن نتفوق تشغيلياً؟ مثل الالتزام بالجدول الأسبوعي (90% فأكثر) ونسبة العمل الاستباقي.
+- **بعد التعلم والنمو (Learning and Growth):** كيف نبني قدرات الغد؟ مثل ساعات تدريب الفنيين وتغطية مصفوفة الجدارات.
+
+<Callout type="tip">
+**القاعدة الذهبية:** النتائج المالية والإنتاجية لا تدار مباشرة لأنها حدثت وانتهت؛ من يرد خفض التكلفة والتوقف فليحسن المؤشرات القيادية في الأسفل (التدريب، جودة التخطيط، الالتزام الوقائي)، فيتحسن التأخيري تلقائياً.
+</Callout>
+
+## 2. المؤشرات القيادية (Leading) مقابل التأخيرية (Lagging)
+
+المؤشرات القيادية (Leading Indicators) تقيس المدخلات والأنشطة التي نتحكم فيها اليوم للتنبؤ بالمستقبل والتأثير فيه: نسبة الالتزام بالصيانة الوقائية، إنجاز مسارات الفحص التنبؤي، ساعات التدريب، نسبة تجهيز القطع (Kitting). وهي كعداد السرعة ومستوى الوقود يوجهان حركتك للأمام.
+
+المؤشرات التأخيرية (Lagging Indicators) تقيس النتائج النهائية بعد وقوعها ولا يمكن تغييرها بأثر رجعي: ساعات التوقف غير المخططة، التكلفة الإجمالية، معدل الحوادث، متوسط وقت الإصلاح. وهي كمرآة الرؤية الخلفية توضح ما تجاوزته خلفك.
+
+اعتماد مؤشر تأخيري واحد — كساعات التوقف — لتقييم مدير الصيانة ومكافأته خطأ علمي: يدفع الفريق لإخفاء التوقفات أو تأجيل الوقائية الضرورية، ويتجاهل العوامل المشتركة كأخطاء التشغيل وجودة الخامات.
+
+## 3. حسابات الموثوقية: MTBF و MTTR والإتاحة
+
+متوسط الوقت بين الأعطال (Mean Time Between Failures) يقيس الموثوقية (Reliability): ‏MTBF = ساعات التشغيل الفعلية ÷ عدد الأعطال. وكلما ارتفع دل على متانة الأصل وجودة الوقائية.
+
+متوسط وقت الإصلاح (Mean Time to Repair) يقيس قابلية الصيانة (Maintainability) وسرعة الاستجابة: ‏MTTR = إجمالي ساعات الإصلاح ÷ عدد مرات الإصلاح. وانخفاضه يعكس توفر القطع وحزم العمل والمهارات.
+
+الإتاحة التشغيلية (Operational Availability) هي نسبة الجاهزية للإنتاج: ‏الإتاحة = MTBF ÷ (MTBF + MTTR). وتتحسن إما برفع MTBF (منع الأعطال) أو بخفض MTTR (تسريع الإصلاح).
+
+المثال القياسي: وحدة مجدولة 1000 ساعة، توقفت 4 مرات بإجمالي 20 ساعة. ساعات التشغيل الصافية = 1000 − 20 = 980 ساعة. ‏MTBF = 980 ÷ 4 = 245 ساعة. ‏MTTR = 20 ÷ 4 = 5 ساعات. الإتاحة = 245 ÷ (245 + 5) = 245 ÷ 250 = 98.0%.
+
+<Callout type="warn">
+**فخ الامتحان الأشهر:** التزام وقائي 98% (قيادي ممتاز) مع انفجار الأعطال (تأخيري سيئ) تشخيصه ظاهرة التأشير الشكلي (Pencil Whipping) — إغلاق ورقي دون فحص حقيقي — أو مهام وقائية غير مبنية على RCM تعالج أنماط فشل خاطئة وتسبب أعطالاً مبكرة. ومضاعفة مهام خاطئة تزيد التدخل البشري وتضاعف الأعطال.
+</Callout>
+
+## 4. تشخيص ارتفاع MTTR
+
+عندما يرتفع متوسط وقت الإصلاح وثبت تكرار الأعطال، فالمشكلة في سرعة الاستجابة لا في متانة الأصل: انتظار قطع غير متوفرة، غياب حزم العمل والإجراءات القياسية، صعوبة الوصول للمعدة، نقص الأدوات والتدريب. العلاج تجهيز القطع مسبقاً (Kitting) وتحسين حزم العمل وسهولة الوصول وتدريب الفنيين — لا شراء ماكينة جديدة ولا إلغاء إجراءات السلامة ولا معاقبة الورديات.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Whoever is measured by one narrow financial lens — "how much did you spend this month?" — will cut lubricants, training, and preventive work to show temporary savings, then pay the cost in disasters months later. This lesson teaches you balanced measurement: four perspectives, indicators that lead the future rather than merely narrate the past, and three numbers that decide the reliability of any asset.
+
+## 1. The Balanced Scorecard (BSC) and its four perspectives
+
+The Balanced Scorecard (BSC) is a framework developed by Kaplan and Norton to align maintenance with company strategy across four perspectives linked by causal relationships:
+
+- **Financial**: how do we appear to shareholders? Such as maintenance cost as a percentage of ERV and maintenance cost per produced unit.
+- **Customer**: how do we appear to our internal customer, production? Such as operational availability and the on-time rate for fulfilling work requests.
+- **Internal processes**: where must we excel operationally? Such as weekly schedule compliance (90% or more) and the proactive work ratio.
+- **Learning and growth**: how do we build tomorrow's capabilities? Such as technician training hours and competency matrix coverage.
+
+<Callout type="tip">
+**The golden rule:** financial and production results cannot be managed directly because they have already happened; whoever wants lower cost and downtime should improve the leading indicators at the bottom (training, planning quality, preventive compliance), and the lagging ones will improve automatically.
+</Callout>
+
+## 2. Leading versus lagging indicators
+
+Leading indicators measure the inputs and activities we control today to predict and influence the future: preventive maintenance compliance, completion of predictive inspection routes, training hours, and the kitting rate. They are like the speedometer and fuel gauge steering your movement forward.
+
+Lagging indicators measure final results after they occur and cannot be changed retroactively: unplanned downtime hours, total cost, accident rate, and mean time to repair. They are like the rear-view mirror showing what you have already passed.
+
+Basing the evaluation and reward of a maintenance manager on a single lagging indicator — such as downtime hours — is a scientific error: it pushes the team to hide downtime or postpone necessary preventive work, and ignores shared factors such as operating errors and raw material quality.
+
+## 3. Reliability calculations: MTBF, MTTR, and availability
+
+Mean Time Between Failures (MTBF) measures reliability: MTBF = actual operating hours ÷ number of failures. The higher it is, the more it indicates asset robustness and preventive quality.
+
+Mean Time to Repair (MTTR) measures maintainability and response speed: MTTR = total repair hours ÷ number of repairs. Its decrease reflects the availability of parts, job packages, and skills.
+
+Operational availability is the readiness ratio for production: Availability = MTBF ÷ (MTBF + MTTR). It improves either by raising MTBF (preventing failures) or by lowering MTTR (speeding up repair).
+
+The standard example: a unit scheduled for 1000 hours stopped 4 times for a total of 20 hours. Net operating hours = 1000 − 20 = 980 hours. MTBF = 980 ÷ 4 = 245 hours. MTTR = 20 ÷ 4 = 5 hours. Availability = 245 ÷ (245 + 5) = 245 ÷ 250 = 98.0%.
+
+<Callout type="warn">
+**The most famous exam trap:** 98% preventive compliance (excellent leading) with exploding failures (bad lagging) is diagnosed as pencil whipping — paper sign-off without a real inspection — or preventive tasks not built on RCM that address the wrong failure modes and cause early failures. Multiplying wrong tasks increases human intervention and multiplies the failures.
+</Callout>
+
+## 4. Diagnosing a rising MTTR
+
+When mean time to repair rises while the failure rate stays constant, the problem is in response speed, not asset robustness: waiting for unavailable parts, missing job packages and standard procedures, difficult access to the asset, and a lack of tools and training. The cure is pre-staging parts (Kitting), improving job packages, easier access, and technician training — not buying a new machine, not cancelling safety procedures, and not punishing shifts.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: محاكي بطاقة الأداء
+
+حرك منزلقات الأبعاد الأربعة ولاحظ متوسط التوازن والبعد الأضعف، وتذكر أن تحسين القيادي في الأسفل هو ما يرفع النتائج التأخيرية في الأعلى.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Balanced Scorecard Simulator
+
+Move the sliders of the four perspectives and watch the balance average and the weakest perspective, and remember that improving the leading floor is what lifts the lagging results above it.
+
+</LangSection>
+
+<BalancedScorecard client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-6-2-t1', 'cmrp-6-2-t2', 'cmrp-6-2-t3', 'cmrp-6-2-t4', 'cmrp-6-2-t5', 'cmrp-6-2-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على نقد المؤشر الواحد، وحساب MTBF و MTTR والإتاحة، وتوزيع أبعاد البطاقة، وتشخيص التأشير الشكلي وارتفاع زمن الإصلاح.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on critiquing the single indicator, calculating MTBF, MTTR, and availability, allocating the scorecard perspectives, and diagnosing pencil whipping and rising repair time.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-6-2" questions={quizCmrp62.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **BSC** أربعة أبعاد متوازنة: مالي، عملاء، عمليات داخلية، تعلم ونمو — تربطها علاقة سببية من القيادي إلى التأخيري.
+- **القيادي** مدخلات تُدار اليوم (الالتزام الوقائي، التدريب، التجهيز)؛ **التأخيري** نتائج حدثت ولا تتغير رجعياً (التوقف، التكلفة).
+- **MTBF** = التشغيل ÷ الأعطال، **MTTR** = الإصلاح ÷ مراته، **الإتاحة** = MTBF ÷ (MTBF + MTTR) — والمثال القياسي 245 ساعة و5 ساعات و98.0%.
+- **التأشير الشكلي** ومهام غير مبنية على RCM يفسران التزاماً مرتفعاً مع أعطال متزايدة؛ وارتفاع MTTR يعالج بالقطع والحزم والتدريب.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **BSC** balances four perspectives: financial, customer, internal processes, and learning and growth — linked by a causal chain from leading to lagging.
+- **Leading** indicators are inputs managed today (preventive compliance, training, kitting); **lagging** indicators are results that have occurred and cannot change retroactively (downtime, cost).
+- **MTBF** = operating hours ÷ failures, **MTTR** = repair hours ÷ repairs, **Availability** = MTBF ÷ (MTBF + MTTR) — the standard example: 245 hours, 5 hours, and 98.0%.
+- **Pencil whipping** and tasks not built on RCM explain high compliance with rising failures; a rising MTTR is treated with parts, job packages, and training.
+
+</LangSection>

@@ -1,0 +1,184 @@
+---
+id: lesson-2-2
+station: station-2
+number: "2.2"
+title: "العقارات: أصل أم التزام؟"
+titleEn: "Real Estate: Asset or Liability?"
+minutes: 25
+order: 2
+objectives:
+  - "أن يشرح المتعلم دور المبنى كأصل رأسمالي في الميزانية وقراراتها (إهلاك، ضمانات، تمويل)."
+  - "أن يفهم دورة حياة العقار: الاستحواذ، التشغيل، التجديد، ونهاية العمر."
+  - "أن يميز بين إدارة الأصول (Asset Management) وإدارة أملاك العقارات (Property Management)."
+objectivesEn:
+  - "Explain the building's role as a capital asset in balance-sheet decisions."
+  - "Understand the property lifecycle: acquisition, operation, renewal, end-of-life."
+  - "Distinguish asset management from property management."
+hasTool: false
+quizId: quiz-2-2
+sources:
+  - ifma
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import Timeline from '../../../components/ui/figures/Timeline.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz22 } from '../../../data/quiz/cfm/quiz-2-2';
+
+<LangSection lang="ar">
+
+المبنى أصل رأسمالي مسجل في ميزانية الشركة بحقوق وواجبات، حتى لو لم يُبَع قط. فهم هذا الدور هو أساس كل قرار عقاري طويل الأمد.
+
+## 1. المبنى أصلٌ في الميزانية (Balance Sheet)
+
+- **أصل ثابت (Fixed Asset)**: يُسجَّل بقيمته التاريخية ويُعامل بالإهلاك (Depreciation) على عمره المالي.
+- **قرارات رأسمالية**: قيمة الأصول تدعم قرارات التمويل (قروض، ضمانات) وقرار الاستئجار الخلفي.
+- **التقييم الدوري**: تحديث القيمة العادلة يعدّل حسابات الشركة ووثائقها المالية.
+
+<Callout type="tip">
+**لماذا نُسجّل مبنى لا ننوي بيعه؟** الإدراج ليس نية بيع؛ إنه وعاء لقرارات الإهلاك والتمويل والضمانات والتصرف المحتمل. الأصول تُدار بعين الاستراتيجي، لا بعين الحارس.
+</Callout>
+
+## 2. دورة حياة العقار (Property Lifecycle)
+
+1. **الاستحواذ (Acquisition)**: شراء أم إيجار (Buy vs Lease) — قرار NPV يتوافق مع الاستراتيجية.
+2. **التشغيل (Operations)**: صيانة ومرافق وتشغيل خدمات — كل ما غُطّي في المحطة 1.
+3. **التطوير والتجديد (Renewal)**: استثمارات تجديد دورية تُحكَم قيمتها بحساب دورة الحياة (LCC) من المحطة 3.
+4. **نهاية العمر (Disposition)**: تجديد شامل أو إعادة هيكلة أو بيع أو إيقاف — قرار يجب أن يسبق الأزمة لا أن ينتظرها.
+
+<Timeline
+  title="دورة حياة العقار (Property Lifecycle)"
+  phases={[
+    { title: 'الاستحواذ (Acquisition)', detail: 'شراء أم إيجار (Buy vs Lease) — قرار NPV يتوافق مع الاستراتيجية.', icon: '🏦' },
+    { title: 'التشغيل (Operations)', detail: 'صيانة ومرافق وتشغيل خدمات — ما غُطّي في المحطة 1.', icon: '⚙️' },
+    { title: 'التطوير والتجديد (Renewal)', detail: 'استثمارات تجديد دورية تُحكَم قيمتها بحساب دورة الحياة (LCC).', icon: '🏗️' },
+    { title: 'نهاية العمر (Disposition)', detail: 'تجديد شامل أو إعادة هيكلة أو بيع أو إيقاف — قرار يسبق الأزمة.', icon: '🏁' },
+  ]}
+  caption="قرار نهاية العمر يجب أن يسبق الأزمة لا أن ينتظرها."
+/>
+
+## 3. إدارة الأصول مقابل إدارة الأملاك
+
+- **إدارة الأصول (Asset Management)**: أفق طويل — القيمة والاستراتيجية والمحفظة العقارية وقرارات التصرف.
+- **إدارة الأملاك (Property Management)**: أفق تشغيلي — التشغيل اليومي، المستأجرون، الصيانة، تحصيل الإيجارات.
+
+<Callout type="warn">
+**مفهوم خاطئ:** "أحسن صيانة تمدّد العمر إلى الأبد."
+**الحقيقة:** كل أصل له دورة حياة اقتصادية؛ بعد نهايتها يصبح الاستثمار فيه أعلى من قيمة التحصيل. القائد يعرف متى يجرّد ويعيد الهيكلة بدلاً من الصرف بلا حساب.
+</Callout>
+
+## 4. خطة التجديد الرأسمالي (Capital Renewal Plan)
+
+- **جدول أعمار الأصول**: لكل أصل — سنة الشراء، العمر المتوقع، تكلفة الاستبدال المقدرة.
+- **نافذة الإحلال**: تحديد متى يدخل كل أصل نافذة إحلاله.
+- **توزيع الأعوام**: بدل صدمة أوامر في سنة واحدة، توزيع الاستثمارات على سنوات بأسبقية الحرجية.
+- **الربط بالميزانية العامة**: عرض المطلوب كل سنة ليقابله الممولون بتخطيط مسبق بدل المفاجآت.
+
+</LangSection>
+
+<LangSection lang="en">
+
+A building is a capital asset recorded on the company's balance sheet with rights and obligations, even if it is never sold. Understanding this role is the foundation of every long-term real-estate decision.
+
+## 1. The building as an asset on the balance sheet
+
+- **Fixed asset**: recorded at historical cost and treated with depreciation over its financial life.
+- **Capital decisions**: asset value supports financing decisions (loans, guarantees) and the sale-leaseback decision.
+- **Periodic valuation**: updating the fair value adjusts the company's accounts and financial documents.
+
+<Callout type="tip">
+**Why record a building we do not intend to sell?** Recording is not a sale intent; it is the vessel for decisions on depreciation, financing, guarantees, and possible disposal. Assets are managed with the strategist's eye, not the caretaker's.
+</Callout>
+
+## 2. The property lifecycle
+
+1. **Acquisition**: buy vs lease — an NPV decision aligned with strategy.
+2. **Operations**: maintenance, utilities, and service operations — everything covered in station 1.
+3. **Renewal**: periodic renewal investments whose value is judged by life-cycle cost (LCC) from station 3.
+4. **Disposition**: full renewal, restructuring, sale, or decommissioning — a decision that must precede the crisis, not wait for it.
+
+<Timeline
+  title="Property lifecycle"
+  phases={[
+    { title: 'Acquisition', detail: 'Buy vs lease — an NPV decision aligned with strategy.', icon: '🏦' },
+    { title: 'Operations', detail: 'Maintenance, utilities, and service operations — covered in station 1.', icon: '⚙️' },
+    { title: 'Renewal', detail: 'Periodic renewal investments judged by life-cycle cost (LCC).', icon: '🏗️' },
+    { title: 'Disposition', detail: 'Full renewal, restructuring, sale, or decommissioning — a decision that precedes the crisis.', icon: '🏁' },
+  ]}
+  caption="The end-of-life decision must precede the crisis, not wait for it."
+/>
+
+## 3. Asset management vs property management
+
+- **Asset management**: a long horizon — value, strategy, the real-estate portfolio, and disposition decisions.
+- **Property management**: an operational horizon — daily operations, tenants, maintenance, and rent collection.
+
+<Callout type="warn">
+**Misconception:** "The best maintenance extends life forever."
+**Fact:** every asset has an economic life cycle; after its end, investing in it costs more than the value it recovers. A leader knows when to dispose and restructure rather than spend without accountability.
+</Callout>
+
+## 4. The capital renewal plan
+
+- **Asset age register**: for each asset — purchase year, expected life, and estimated replacement cost.
+- **Replacement window**: determining when each asset enters its replacement window.
+- **Year distribution**: instead of a shock of orders in a single year, spread investments across years by criticality priority.
+- **Link to the general budget**: present the annual requirement so funders meet it with prior planning instead of surprises.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['lease', 'triplenet', 'capex']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على دور الأصول ودورة الحياة وقرار الاستدامة المالية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on the asset role, the lifecycle, and the financial sustainability decision.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-2-2" questions={quiz22.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **المبنى أصل رأسمالي** يقود قرارات الإهلاك والتمويل والتصرف — حتى دون نية بيع.
+- **دورة حياة العقار**: استحواذ ← تشغيل ← تجديد ← قرار نهاية العمر المخطط مسبقاً.
+- **إدارة الأصول** استراتيجية شاملة، و**إدارة الأملاك** تشغيلية يومية.
+- **Capital Renewal Plan** يحوّل قرارات التجديد إلى ميزانية متوقعة بدل الصدمات.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The building is a capital asset** driving depreciation, financing, and disposal decisions — even without an intent to sell.
+- **The property lifecycle**: acquisition → operations → renewal → a pre-planned end-of-life decision.
+- **Asset management** is comprehensive strategy, while **property management** is daily operations.
+- **The capital renewal plan** turns renewal decisions into an expected budget instead of shocks.
+
+</LangSection>

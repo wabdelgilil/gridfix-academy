@@ -2,10 +2,11 @@
 import { getStation, type PlanLesson } from '../../data/curriculum';
 
 interface Props {
+  course: string;
   stationId: string;
   lessonId: string;
 }
-const { stationId, lessonId } = Astro.props;
+const { course, stationId, lessonId } = Astro.props;
 const station = getStation(stationId);
 const lessons = station?.lessons ?? [];
 const currentIndex = lessons.findIndex((l) => l.id === lessonId);
@@ -15,22 +16,33 @@ const livePrev: PlanLesson | undefined = prev?.status === 'live' ? prev : undefi
 const liveNext: PlanLesson | undefined = next?.status === 'live' ? next : undefined;
 ---
 
-<div class="mt-10 flex items-center justify-between gap-3 border-t border-slate-200 pt-6">
-  <a
-    href={livePrev ? `/lessons/${livePrev.id}` : undefined}
-    class={`rounded-xl px-4 py-2 text-sm font-medium transition ${livePrev ? 'bg-white text-ink-900 ring-1 ring-slate-200 hover:bg-slate-50' : 'cursor-not-allowed text-ink-400 ring-1 ring-slate-100'}`}
-    aria-disabled={!livePrev}
-  >
-    → {livePrev ? livePrev.number : '—'} {livePrev?.title ?? 'قريباً'}
-  </a>
-  <a href={`/stations/${stationId}`} class="rounded-xl bg-ink-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-ink-600">
-    اكمال المحطة
-  </a>
-  <a
-    href={liveNext ? `/lessons/${liveNext.id}` : undefined}
-    class={`rounded-xl px-4 py-2 text-sm font-medium transition ${liveNext ? 'bg-white text-ink-900 ring-1 ring-slate-200 hover:bg-slate-50' : 'cursor-not-allowed text-ink-400 ring-1 ring-slate-100'}`}
-    aria-disabled={!liveNext}
-  >
-    {liveNext ? liveNext.number : '—'} {liveNext?.title ?? 'قريباً'} ←
-  </a>
+<div class="mt-10 border-t border-slate-200 pt-6">
+  <div class="flex items-center justify-between gap-3">
+    <a
+      href={livePrev ? `/${course}/lessons/${livePrev.id}` : undefined}
+      class={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition ${livePrev ? 'bg-white text-ink-900 ring-1 ring-slate-200 hover:bg-slate-50 hover:shadow-sm' : 'cursor-not-allowed text-ink-400 ring-1 ring-slate-100'}`}
+      aria-disabled={!livePrev}
+    >
+      <span class="text-lg">→</span>
+      <div class="text-right">
+        <div class="text-xs text-ink-400">السابق</div>
+        <div>{livePrev ? livePrev.number : '—'} {livePrev?.title ?? 'قريباً'}</div>
+      </div>
+    </a>
+    <a href={`/${course}/stations/${stationId}`} class="flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-ink-800 hover:shadow-md">
+      <span>📋</span>
+      <span>إكمال المحطة</span>
+    </a>
+    <a
+      href={liveNext ? `/${course}/lessons/${liveNext.id}` : undefined}
+      class={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition ${liveNext ? 'bg-white text-ink-900 ring-1 ring-slate-200 hover:bg-slate-50 hover:shadow-sm' : 'cursor-not-allowed text-ink-400 ring-1 ring-slate-100'}`}
+      aria-disabled={!liveNext}
+    >
+      <div class="text-left">
+        <div class="text-xs text-ink-400">التالي</div>
+        <div>{liveNext ? liveNext.number : '—'} {liveNext?.title ?? 'قريباً'}</div>
+      </div>
+      <span class="text-lg">←</span>
+    </a>
+  </div>
 </div>

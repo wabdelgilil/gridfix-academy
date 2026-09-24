@@ -1,0 +1,276 @@
+---
+id: lesson-0-1
+station: station-0
+number: "0.1"
+title: "مقدمة في إدارة المنشآت"
+titleEn: "Introduction to Facility Management"
+minutes: 20
+order: 1
+objectives:
+  - "أن يعرّف المتعلم إدارة المنشآت وأهم ركائزها الأربعة: المكان، الناس، الأعمال، والتقنية."
+  - "أن يفرّق بين مهام مدير المنشأة والأدوار الأخرى في المنظمة."
+  - "أن يعدد أنواع المنشآت ومجالات عمل الـ FM فيها."
+  - "أن يربط قيمة الـ FM بالنتائج المالية والتشغيلية للمنظمة."
+objectivesEn:
+  - "Define facility management and its four pillars: people, place, process, and technology."
+  - "Distinguish the facility manager's role from other organizational roles."
+  - "List facility types and where FM operates in each."
+  - "Link the value of FM to financial and operational outcomes."
+hasTool: true
+toolName: "دليل مهام مدير المنشأة"
+toolNameEn: "FM Duty Explorer"
+quizId: quiz-0-1
+sources:
+  - ifma
+  - iso_41001
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import FMScenarioGame from '../../../components/islands/tools/cfm/FMScenarioGame.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz01 } from '../../../data/quiz/cfm/quiz-0-1';
+
+<LangSection lang="ar">
+
+إدارة المنشآت (Facility Management) هي الوظيفة التي تربط البيئة المادية بالعمل الذي يقوم على أرضها؛ فكل منشأة — مستشفى أو بنك أو مطار أو مصنع — تحتاج إلى مكان يعمل بفاعلية وكفاءة لكي تعمل أعمالها.
+
+## 1. تعريف إدارة المنشآت (Facility Management)
+
+فنياً، إدارة المنشآت هي تنسيق **المكان** مع **الناس** و**أعمال** المنظمة بحيث تعمل جميعها معاً بفاعلية وكفاءة. التعريف الرسمي الصادر عن المنظمة الدولية للتقييس (ISO 41001) والرابطة الدولية لإدارة المنشآت (IFMA) يضيف بعداً مهماً: الـ FM وظيفة تنظيمية تدرّ منافع للخدمات والشركات والمجتمع والأفراد، من خلال بيئة عمل فعلية مخططة ومدارة.
+
+تقوم على أربع ركائز مترابطة:
+
+- **المكان (Place)**: المبنى والأرض والبنية التحتية والأنظمة.
+- **الناس (People)**: الموظفون والزوار والمستفيدون ورضاهم وسلامتهم.
+- **الأعمال (Process)**: دعم ما تنجزه المنظمة فعلياً — إنتاج، خدمات، تعليم، رعاية صحية.
+- **التقنية (Technology)**: الأنظمة الذكية وأنظمة إدارة الصيانة والبيانات التي تجعل الثلاثة تعمل بشكل أفضل.
+
+بمعنى واحد مختصر: الـ FM هو إدارة كل ما يخص المكان الذي تنجز فيه الأعمال، حتى تعمل الأعمال بأفضل شكل.
+
+<Infographic
+  title="ركائز إدارة المنشآت الأربعة"
+  caption="الركائز تعمل معاً بفاعلية وكفاءة بحيث يخدم بعضها بعضاً وفق تعريف IFMA وISO 41001"
+  cols={4}
+  items={[
+    { title: 'المكان (Place)', detail: 'المبنى والأرض والبنية التحتية والأنظمة', color: 'sky' },
+    { title: 'الناس (People)', detail: 'الموظفون والزوار والمستفيدون ورضاهم وسلامتهم', color: 'brand' },
+    { title: 'الأعمال (Process)', detail: 'دعم ما تنجزه المنظمة فعلياً: إنتاج أو خدمات أو تعليم أو رعاية صحية', color: 'amber' },
+    { title: 'التقنية (Technology)', detail: 'الأنظمة الذكية وأنظمة الصيانة والبيانات التي تجعل الثلاثة تعمل بشكل أفضل', color: 'teal' },
+  ]}
+/>
+
+## 2. نطاق عمل مدير المنشأة
+
+مهام مدير المنشأة لا تقتصر على الصيانة؛ فهي تنقسم إلى عائلات واضحة:
+
+- **التشغيل والصيانة**: الأنظمة الحرارية والكهربائية، الصيانة الوقائية والتصحيحية.
+- **عقود الخدمات**: النظافة والأمن والمقاولات المتنوعة وإدارة أدائهم.
+- **الماليات**: ميزانيات تشغيلية ورأسمالية، ومراقبة التكاليف (المحطة 3).
+- **المساحات**: تخطيط وتوزيع المساحات واستغلالها (المحطة 2).
+- **الطاقة والاستدامة**: ترشيد الاستهلاك وجودة البيئة (المحطة 1 و4).
+- **المخاطر والطوارئ**: السلامة والوقاية وخطط الاستمرارية (المحطتان 5 و6).
+
+**مثال:** مدير منشأة واحد قد يتلقى بلاغ مصعد متوقف، ويحضّر ميزانية تشغيلية، ويراجع تقرير استهلاك الطاقة، في يوم واحد — المهارة المشتركة هي منطق القرار، لا تنفيذ كل بند بيده.
+
+<Callout type="myth">
+**أسطورة:** "إدارة المنشآت تعني التنظيف والحراسة وإصلاح الأعطال فقط."
+**الحقيقة:** هذه «خدمات المنشأة» — شريحة صغيرة من العمل. الـ FM الحديث وظيفة استراتيجية بماليات وعقارات وطاقة وصحة وسلامة واستدامة وبيانات وقيادة.
+</Callout>
+
+## 3. أنواع المنشآت ومجالات عمل الـ FM فيها
+
+الـ FM موجود في أي مكان تُدار فيه أصول مادية أو خدمات لأشخاص:
+
+| نوع المنشأة | أمثلة على عمل الـ FM |
+| --- | --- |
+| **المباني الإدارية** | إدارة المكاتب والمساحات والإيجارات وخدمات الموظفين |
+| **المنشآت الصحية** | استمرارية الأنظمة الحرجة، وتكييف مناطق حساسة، وامتثال السلامة |
+| **المصانع والإنتاج** | صيانة الإنتاج والطاقة وأمن وسلامة خطوط العمل |
+| **التعليم والبحث** | دعم مختبرات وقاعات ومكتبات، وإدارة حرم جامعي |
+| **الفنادق والضيافة** | تجربة الزائر ومستوى الخدمة وتشغيل الأنظمة ليل نهار |
+| **المطارات والبنى التحتية** | استمرارية الخدمة بحساسية عالية وخطة استجابة صارمة |
+
+كل نوع له أولوياته الخاصة، لكن المبادئ واحدة: التشغيل، الصيانة، الماليات، المخاطر، والاستدامة.
+
+## 4. كيف تثبت قيمة الـ FM؟
+
+لا تُثبت القيمة بحجم النشاط المنفذ، بل بالنتائج القابلة للقياس:
+
+- **الموثوقية**: هل الأنظمة المهمة متاحة ومستقرة عندما يحتاجها العمل؟
+- **رضا الشاغلين**: هل الموظفون مرتاحون ومنتجون؟
+- **كفاءة التكلفة**: هل ننفق بكفاءة مقابل ما نحصل عليه؟
+- **إدارة المخاطر**: هل المنشأة مستعدة للطوارئ وممتثلة للأنظمة؟
+
+هذه هي **مؤشرات الأداء (KPIs)**، واللغة التي تُخاطب بها الإدارة العليا: الـ FM لغة النتائج، لا لغة النشاط.
+
+<Callout type="warn">
+**مفهوم خاطئ:** "أفضل مدير منشأة هو الذي يظهر دائماً بعمل مكثف."
+**الحقيقة:** عكس ذلك؛ نجاح انقطاع التكييف لا يُرى لأنه لم يحدث. أفضل مدير منشأة هو الذي يجعل عمله غير مرئي لأن كل شيء يعمل.
+</Callout>
+
+## 5. اتجاه المهنة: من مدير ممتلكات إلى مدير أداء
+
+المدن الذكية والبيانات والاستدامة تعيد تشكيل الدور: الـ FM أصبح مدير **أداء** يقرأ البيانات ويقرر بالتكلفة والعائد ويخطط استراتيجياً، وليس مجرد مدير ممتلكات يحافظ على الحالة الراهنة. هذه الاتجاهات تمر بكل محطات الكورس لاحقاً.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Facility Management (FM) is the function that connects the physical environment with the work performed within it; every facility — a hospital, bank, airport, or factory — needs a place that works effectively and efficiently for its business to operate.
+
+## 1. Defining Facility Management
+
+Technically, facility management is the coordination of **place** with the **people** and the **process** of an organization so that all of them work together effectively and efficiently. The official definition issued by the International Organization for Standardization (ISO 41001) and the International Facility Management Association (IFMA) adds an important dimension: FM is an organizational function that delivers benefits to services, companies, society, and individuals through a planned and managed physical work environment.
+
+It rests on four interconnected pillars:
+
+- **Place**: the building, land, infrastructure, and systems.
+- **People**: employees, visitors, and occupants — their satisfaction and safety.
+- **Process**: supporting what the organization actually delivers — production, services, education, healthcare.
+- **Technology**: the smart systems, maintenance management systems, and data that make the other three perform better.
+
+In one concise sense: FM is the management of everything related to the place where work gets done, so that the work performs at its best.
+
+<Infographic
+  title="The four pillars of Facility Management"
+  caption="The pillars work together effectively and efficiently, serving one another per the IFMA and ISO 41001 definition"
+  cols={4}
+  items={[
+    { title: 'Place', detail: 'The building, land, infrastructure, and systems', color: 'sky' },
+    { title: 'People', detail: 'Employees, visitors, occupants — satisfaction and safety', color: 'brand' },
+    { title: 'Process', detail: 'Supporting what the organization delivers: production, services, education, or healthcare', color: 'amber' },
+    { title: 'Technology', detail: 'Smart systems, maintenance systems, and data that make the other three perform better', color: 'teal' },
+  ]}
+/>
+
+## 2. The facility manager's scope of work
+
+The facility manager's duties are not limited to maintenance; they break down into clear families:
+
+- **Operations and maintenance**: HVAC and electrical systems, preventive and corrective maintenance.
+- **Service contracts**: cleaning, security, various contractors, and managing their performance.
+- **Finance**: operating and capital budgets, and cost control (station 3).
+- **Space**: space planning, allocation, and utilization (station 2).
+- **Energy and sustainability**: consumption optimization and environmental quality (stations 1 and 4).
+- **Risk and emergency**: safety, prevention, and continuity plans (stations 5 and 6).
+
+**Example:** A single facility manager may take a report of a stuck elevator, prepare an operating budget, and review an energy consumption report in one day — the shared skill is decision logic, not executing every item with their own hands.
+
+<Callout type="myth">
+**Myth:** "Facility management only means cleaning, guarding, and fixing breakdowns."
+**Fact:** Those are "facility services" — a small slice of the work. Modern FM is a strategic function covering finance, real estate, energy, health and safety, sustainability, data, and leadership.
+</Callout>
+
+## 3. Facility types and where FM operates in each
+
+FM exists wherever physical assets or services for people are managed:
+
+| Facility type | Examples of FM work |
+| --- | --- |
+| **Office buildings** | Managing offices, space, leases, and employee services |
+| **Healthcare facilities** | Continuity of critical systems, HVAC in sensitive areas, safety compliance |
+| **Factories and production** | Production maintenance, energy, and line safety and security |
+| **Education and research** | Supporting labs, halls, and libraries; campus management |
+| **Hotels and hospitality** | Guest experience, service levels, and round-the-clock systems operation |
+| **Airports and infrastructure** | Highly sensitive service continuity and a strict response plan |
+
+Each type has its own priorities, but the principles are the same: operations, maintenance, finance, risk, and sustainability.
+
+## 4. How do you prove the value of FM?
+
+Value is not proven by the volume of activity performed, but by measurable results:
+
+- **Reliability**: are critical systems available and stable when the business needs them?
+- **Occupant satisfaction**: are employees comfortable and productive?
+- **Cost efficiency**: are we spending efficiently relative to what we get?
+- **Risk management**: is the facility emergency-ready and compliant with regulations?
+
+These are the **Key Performance Indicators (KPIs)** — the language used to address senior management: FM is the language of results, not of activity.
+
+<Callout type="warn">
+**Misconception:** "The best facility manager is the one always visibly busy."
+**Fact:** The opposite is true; the success of an HVAC outage that never happened cannot be seen. The best facility manager makes their work invisible because everything keeps working.
+</Callout>
+
+## 5. The direction of the profession: from property manager to performance manager
+
+Smart cities, data, and sustainability are reshaping the role: FM has become a **performance** manager who reads data, decides by cost and return, and plans strategically — not merely a property manager preserving the status quo. These trends run through all the course stations later.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: دليل مهام مدير المنشأة
+
+استكشف مواقف من يوم عمل فعلي واختر المهمة المختصة بها، لتختبر حدسك قبل دخول التفاصيل.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: FM Duty Explorer
+
+Explore real workday scenarios and pick the responsible task to test your instincts before digging into the details.
+
+</LangSection>
+
+<FMScenarioGame client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['fm', 'ifma', 'competency', 'oandm', 'hvac', 'preventive', 'predictive']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+هذه الأسئلة بنمط امتحان CFM: سيناريو واقعي، وتبحث عن «الأصح» وليس «الصحيح الوحيد». اختر الإجابة ثم اقرأ الشرح بعناية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+These questions follow the CFM exam style: a realistic scenario, looking for the "best" answer rather than the "only right" one. Choose an answer, then read the explanation carefully.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-0-1" questions={quiz01.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **إدارة المنشآت**: تنسيق كل من **المكان والناس والأعمال والتقنية** لتعمل المنظمة بامتياز، وفق تعريف IFMA وISO 41001.
+- **نطاق المدير** يشمل التشغيل والصيانة والمقاولات والماليات والمساحات والطاقة والطوارئ.
+- **أنواع المنشآت** تختلف في الأولويات وتتشابه في مبادئ القرار.
+- **قيمة الـ FM** تُبرهن بمؤشرات قابلة للقياس (الموثوقية، الرضا، كفاءة التكلفة، المخاطر) لا بكثرة النشاط.
+- **اتجاه المهنة** من مدير ممتلكات إلى مدير أداء قائم على البيانات.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Facility management**: coordinating **place, people, process, and technology** so the organization performs with excellence, per the IFMA and ISO 41001 definition.
+- **The manager's scope** covers operations and maintenance, contracts, finance, space, energy, and emergencies.
+- **Facility types** differ in priorities yet share the same decision principles.
+- **The value of FM** is proven with measurable KPIs (reliability, satisfaction, cost efficiency, risk) rather than activity volume.
+- **The career direction** moves from property manager to data-driven performance manager.
+
+</LangSection>

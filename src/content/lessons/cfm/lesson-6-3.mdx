@@ -1,0 +1,288 @@
+---
+id: lesson-6-3
+station: station-6
+number: "6.3"
+title: "استمرارية الأعمال BCP"
+titleEn: "Business Continuity Planning"
+minutes: 25
+order: 3
+objectives:
+  - "أن يميز المتعلم بين الاستجابة للطوارئ واستمرارية الأعمال وأهداف كل منهما."
+  - "أن ينفذ تحليل أثر الأعمال (BIA) لتحديد الوظائف الحيوية والعواقب."
+  - "أن يحدد أهداف الاسترداد RTO وRPO وفق احتياج الأعمال لا التكلفة."
+  - "أن يصيغ استراتيجيات استرداد ويختبر الخطة دورياً."
+objectivesEn:
+  - "Distinguish emergency response from business continuity and their goals."
+  - "Run a Business Impact Analysis (BIA) identifying critical functions and consequences."
+  - "Set RTO and RPO recovery targets based on business need, not cost."
+  - "Define recovery strategies and test the plan periodically."
+hasTool: true
+toolName: "حاسبة BIA"
+toolNameEn: "BIA Calculator"
+quizId: quiz-6-3
+sources:
+  - readygov
+  - ifma
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import BIACalculator from '../../../components/islands/tools/cfm/BIACalculator.tsx';
+import Comparison from '../../../components/ui/figures/Comparison.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz63 } from '../../../data/quiz/cfm/quiz-6-3';
+
+<LangSection lang="ar">
+
+خطة الطوارئ تحمي الناس في لحظة الحدث، لكن من يضمن أن تتاح للشركة الأيام التالية؟ استمرارية الأعمال تُجيب: تُحدد الوظائف التي لا يحتمل توقفها، وتضع لها أهداف استرداد محسوبة، وتمتحن قدرتها قبل أن تأتي الكارثة.
+
+## 1. من الطوارئ إلى استمرارية الأعمال (Business Continuity Planning, BCP)
+
+استمرارية الأعمال هي التخطيط لاستمرار الخدمات الحيوية أثناء الاضطراب والتعافي منه، وتكمل خطة الطوارئ ولا تتعارض معها:
+
+- **خطة الطوارئ التشغيلية** تحمي الناس وتستجيب للحظة الحدث (إخلاء، سلامة).
+- **خطة الاستمرارية (BCP)** تركز على وظائف الأعمال: أي عملية يجب أن تستمر، وبأي زمن، وبأي آلية بديلة.
+
+مثال: حريق في مركز البيانات يطوي لحظة الحدث لخطة الإخلاء، لكن إعادة نظام البيع للعمل خلال ساعات هي مهمة الاستمرارية — والمنشأة التي بنت الاثنتين لا تكتفي بأن الجميع نجوا لتُفلت أعمالها.
+
+## 2. تحليل أثر الأعمال (Business Impact Analysis, BIA)
+
+الخطوة الأولى في أي خطة استمرارية: التحليل الذي يحدد ماذا لو توقفت كل وظيفة؟
+
+- **حدد الوظائف والعمليات**: ما الذي تقدمه المنشأة فعلاً (بيع، إنتاج، خدمات تكنولوجيا)؟
+- **قيّم الأثر المالي والتشغيلي**: خسارة الإيراد اليومي، الغرامات، فقدان ثقة العملاء، أضرار العلامة.
+- **حدد عتبة الحرجية**: ما الوظائف التي لا تحتمل التوقف، وكم تستطيع كل واحدة الصبر فعلاً؟
+
+النتيجة: قائمة بالوظائف مرتّبة بأثرها، يتبعها مباشرة تعيين أهداف الاسترداد.
+
+## 3. أهداف الاسترداد: MTD وRTO وRPO
+
+من مخرجات التحليل تُشتق ثلاثة أهداف دقيقة:
+
+- **أقصى وقت تعطل مقبول (MTD)**: أطول فترة تتحملها الوظيفة متوقفة قبل ضرر بالغ.
+- **هدف زمن الاسترداد (RTO)**: الزمن الذي تلتزم الخطة باستعادة الخدمة خلاله من لحظة الحادث.
+- **هدف نقطة الاسترداد (RPO)**: الحد الأقصى المسموح لفقد البيانات — يحدد تواتر النسخ الاحتياطي المطلوب.
+
+<Comparison
+  title="أهداف الاسترداد الثلاثة (MTD وRTO وRPO)"
+  sides={[
+    {
+      label: 'أقصى وقت تعطل مقبول (MTD)',
+      items: [
+        'أطول فترة تتحملها الوظيفة متوقفة قبل ضرر بالغ.',
+        'يحدد السقف الذي لا تتجاوزه الخطة.',
+      ],
+      color: 'rose',
+    },
+    {
+      label: 'هدف زمن الاسترداد (RTO)',
+      items: [
+        'الزمن الذي تلتزم الخطة باستعادة الخدمة خلاله من لحظة الحادث.',
+        'هدف عملي أصغر من MTD بهامش مقصود.',
+      ],
+      color: 'amber',
+    },
+    {
+      label: 'هدف نقطة الاسترداد (RPO)',
+      items: [
+        'الحد الأقصى المسموح لفقد البيانات.',
+        'يضبط تواتر النسخ الاحتياطي المطلوب.',
+      ],
+      color: 'teal',
+    },
+  ]}
+  caption="الأهداف تُشتق من احتياج الأعمال قبل اختيار التقنية: MTD يحدد السقف، وRTO يعطي هدفاً عملياً أصغر، وRPO يضبط تواتر النسخ."
+/>
+
+**مثال:** نظام البيع الإلكتروني لا يتحمل توقفاً فوق يوم (MTD يوم)؛ تُعد خطة استرداد بهدف RTO يقارب نصف اليوم، وبما أن العمل لا يقبل ضياع معاملات يوم كامل فلا بد من RPO قصير (في حدود ساعة) ونسخٍ احتياطي يحدث كل ساعة. الأهداف تُحدد بالاحتياج قبل اختيار التقنية، لا بالتقنية الرخيصة الأسهل.
+
+## 4. استراتيجيات الاسترداد: مواقع وأصول بديلة
+
+تُختار الوسائل بعد الأهداف:
+
+- **مواقع استرداد بديلة**: موقع ساخن جاهز بالأنظمة والبيانات فوراً، موقع دافئ مُجهز جزئياً، وموقع بارد للطوارئ الكبرى.
+- **النسخ الاحتياطي والحوسبة السحابية**: تُنسخ نظم وبيانات بحسب RPO، وتُفعل إجراؤها واستردادها في موقع بديل.
+- **تعدد الموارد**: مزود بديل للكهرباء أو الاتصالات أو الموقع لتحمل انقطاع المورد الأول.
+
+## 5. بناء الخطة واختبارها
+
+خطة استرداد الكوارث (Disaster Recovery, DR) هي الجزء التقني الذي يعيد الأنظمة والبيانات؛ وخلفها خطة أدوار واتصالات:
+
+- **الأدوار والموارد**: من ينفذ الاسترداد، وبأي مستندات إجراءات، ومن يقرر متى تُرفع الطوارئ.
+- **الاختبار**: تدريبات مكتبية ثم محاكاة موسعة ثم تحويل فعلي — وحده يشهد أن الخطة تعمل فعلاً.
+- **المراجعة الدورية**: تحديث مع كل تغيير (أنظمة، موظفين، مخاطر) وبعد كل حادث حقيقي.
+
+<Callout type="myth">
+**أسطورة:** «نسخة احتياطية أسبوعية في الصندوق تكفي ضماناً لاسترداد البيانات».
+**الحقيقة:** فقد البيانات المقبول يُقاس بـ RPO: من قبل خسارة أسبوع تناسب عملاً ما، لكن كثيراً من الأعمال لا تحتمله، ومقتضى RPO الصغير نسخ أكثر تواتراً واسترداداً مُجرَّباً فعلاً — لا نسخة في خزانة بلا تجربة استرداد.
+</Callout>
+
+<Callout type="tip">
+**عن التزامن:** علاقات ثلاثة لا تُنفصل: MTD يحدد السقف، وRTO يعطي هدفاً عملياً أصغر منه بهامش مقصود، وRPO يضبط تواتر النسخ. اختبار الخطة هو ما يكشف أن الأهداف «واقعية» لا «طموحة ورقة».
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+An emergency plan protects people at the moment of the incident, but who guarantees that the company survives the following days? Business continuity answers: it identifies the functions that cannot afford to stop, sets calculated recovery targets for them, and tests their capability before the disaster arrives.
+
+## 1. From emergency to business continuity planning (BCP)
+
+Business continuity is planning for the continuation of critical services during a disruption and for recovery from it; it complements the emergency plan and does not conflict with it:
+
+- **The emergency action plan** protects people and responds at the moment of the incident (evacuation, safety).
+- **The continuity plan (BCP)** focuses on business functions: which process must continue, within what time, and through what alternative mechanism.
+
+Example: a fire in the data center hands the moment of the incident to the evacuation plan, but bringing the sales system back online within hours is the continuity mission — the facility that built both does not content itself with everyone having survived while its business slips away.
+
+## 2. Business impact analysis (BIA)
+
+The first step of any continuity plan: the analysis that determines what would happen if each function stopped.
+
+- **Identify the functions and processes**: what the facility actually delivers (sales, production, technology services).
+- **Assess the financial and operational impact**: daily revenue loss, fines, loss of customer trust, brand damage.
+- **Determine the criticality threshold**: which functions cannot tolerate a stoppage, and how long each one can actually hold out?
+
+The result: a list of functions ranked by impact, followed directly by setting the recovery targets.
+
+## 3. Recovery targets: MTD, RTO, and RPO
+
+From the analysis outputs, three precise targets are derived:
+
+- **Maximum tolerable downtime (MTD)**: the longest period a function can remain down before severe harm.
+- **Recovery time objective (RTO)**: the time within which the plan commits to restoring the service, counted from the moment of the incident.
+- **Recovery point objective (RPO)**: the maximum allowable data loss — it sets the required backup frequency.
+
+<Comparison
+  title="The three recovery targets (MTD, RTO, and RPO)"
+  sides={[
+    {
+      label: 'Maximum tolerable downtime (MTD)',
+      items: [
+        'The longest period a function can remain down before severe harm.',
+        'It sets the ceiling the plan must not exceed.',
+      ],
+      color: 'rose',
+    },
+    {
+      label: 'Recovery time objective (RTO)',
+      items: [
+        'The time within which the plan commits to restoring the service from the moment of the incident.',
+        'A practical target smaller than MTD by an intentional margin.',
+      ],
+      color: 'amber',
+    },
+    {
+      label: 'Recovery point objective (RPO)',
+      items: [
+        'The maximum allowable data loss.',
+        'It sets the required backup frequency.',
+      ],
+      color: 'teal',
+    },
+  ]}
+  caption="The targets are derived from business need before choosing the technology: MTD sets the ceiling, RTO gives a smaller practical target, and RPO sets the backup frequency."
+/>
+
+**Example:** the e-commerce sales system cannot tolerate more than a day of downtime (an MTD of one day); a recovery plan is prepared with an RTO target of about half a day, and since the business cannot accept losing a full day of transactions, a short RPO (around one hour) is required, with a backup taken every hour. The targets are set by need before technology selection, not by the cheapest or easiest technology.
+
+## 4. Recovery strategies: alternative sites and assets
+
+The means are selected after the targets:
+
+- **Alternative recovery sites**: a hot site ready with the systems and data immediately, a warm site partially equipped, and a cold site for major emergencies.
+- **Backups and cloud computing**: systems and data are backed up according to the RPO, and their activation and recovery take place at an alternative site.
+- **Resource redundancy**: an alternative provider for electricity, communications, or the site to withstand the failure of the primary provider.
+
+## 5. Building and testing the plan
+
+A disaster recovery plan (DR) is the technical part that restores the systems and data; behind it is a plan of roles and communications:
+
+- **Roles and resources**: who executes the recovery, using which procedure documents, and who decides when the emergency is lifted.
+- **Testing**: tabletop exercises, then expanded simulations, then a full switch-over — only this proves that the plan actually works.
+- **Periodic review**: updating with every change (systems, people, risks) and after every real incident.
+
+<Callout type="myth">
+**Myth:** "A weekly backup in a safe box is enough to guarantee data recovery."
+**Fact:** The acceptable data loss is measured by RPO: a one-week loss may suit some businesses, but many cannot bear it, and a small RPO requires more frequent backups and recovery that has actually been tested — not a copy in a cabinet with no recovery drill.
+</Callout>
+
+<Callout type="tip">
+**On synchronization:** three relationships cannot be separated: MTD sets the ceiling, RTO gives a smaller practical target with an intentional margin, and RPO sets the backup frequency. Testing the plan is what reveals that the targets are "realistic" rather than "paper ambitions".
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## 6. أداة اليوم: حاسبة BIA
+
+أدخل عمليات منشأتك وأثرها وأقصى زمن تحمل لكل منها، لترتّبها من الأشد حرجية إلى الأقل وتستعد بحسب الأولوية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## 6. Today's tool: BIA Calculator
+
+Enter your facility's processes, their impact, and the maximum tolerable time for each to rank them from most to least critical and prepare accordingly.
+
+</LangSection>
+
+<BIACalculator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['bcp', 'bia', 'rto', 'rpo', 'mtd', 'dr']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على الفرق بين الطوارئ والاستمرارية، واشتقاق الأهداف، وتفعيل الاسترداد.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on the difference between emergency and continuity, deriving the targets, and activating recovery.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-6-3" questions={quiz63.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **استمرارية الأعمال (BCP)** تكمل خطة الطوارئ: حماية الناس في اللحظة، واسترداد الوظائف الحيوية بعدها.
+- **تحليل أثر الأعمال (BIA)** يحدد ما يتوقف عنه العمل وأثره المالي والتشغيلي ومرتبة الحرجية.
+- **الأهداف الثلاثة**: MTD يضع السقف، وRTO يحدد زمن الاسترداد، وRPO يضبط تواتر النسخ — تُشتق من احتياج الأعمال لا من التقنية الرخيصة.
+- **استراتيجيات الاسترداد** (مواقع بديلة، نسخ، تعدد موارد) تُختار بعد الأهداف، فالخطة الجيدة خطة مُختبَرَة ومُحدَّثة باستمرار.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Business continuity (BCP)** complements the emergency plan: protecting people at the moment, then recovering the critical functions afterward.
+- **Business impact analysis (BIA)** determines what the business stops doing, its financial and operational impact, and the criticality ranking.
+- **The three targets**: MTD sets the ceiling, RTO sets the recovery time, and RPO sets the backup frequency — derived from business need, not from cheap technology.
+- **Recovery strategies** (alternative sites, backups, resource redundancy) are selected after the targets — a good plan is a tested and continuously updated plan.
+
+</LangSection>

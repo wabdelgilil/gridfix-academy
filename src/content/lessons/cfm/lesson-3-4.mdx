@@ -1,0 +1,169 @@
+---
+id: lesson-3-4
+station: station-3
+number: "3.4"
+title: "مراقبة التكاليف وضبط التشغيل"
+titleEn: "Cost Control & Operations Oversight"
+minutes: 20
+order: 4
+objectives:
+  - "أن يربط المتعلم الصرف بالإنجاز المثبت في عقود التشغيل."
+  - "أن يكتشف التسربات الشائعة في الإنفاق (دفع غياب، نطاق زائد)."
+  - "أن يطبق إجراءات حوكمة تغييرات النطاق قبل صرف أي زيادات."
+objectivesEn:
+  - "Link payment to verified performance in operating contracts."
+  - "Detect common cost leaks (paying for non-delivery, scope creep)."
+  - "Enforce scope-change governance before releasing any increases."
+hasTool: false
+quizId: quiz-3-4
+sources:
+  - ifma_handbook
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz34 } from '../../../data/quiz/cfm/quiz-3-4';
+
+<LangSection lang="ar">
+
+بعد بناء الميزانية يأتي دور الإدارة تشغيلياً: نظام صرف مقابل **إنجاز مثبت**، لا شيكات تُحرر على قياس الغياب.
+
+## 1. قاعدة الصرف الأساسية: لا دفع بلا إنجاز
+
+قبل تحرير أي دفعة شهرية لعقد خدمة:
+
+1. **التقارير**: تقارير تشغيل موقعة (ورديات، إنجاز، مواد).
+2. **الرصد الميداني**: تدقيق متقطع مكتوب يُسجّل المخالفات إن وُجدت.
+3. **الربط بالعقد والـ SLA**: هل نطاق الدفعة مطابق لنطاق العقد؟
+4. **الموافقة المتدرجة**: مسار موافقات بمستويات حسب المبلغ.
+
+## 2. التسريبات الشائعة في الإنفاق
+
+- **الدفع مقابل غياب**: مقاول يُكلَّف طاقماً كاملاً ولا يحضره في المواسم الهادئة.
+- **نطاق زائد غير مصرح به (Scope Creep)**: خدمات تُنفذ وتُفوتر دون أمر تغيير.
+- **تصعيد مخفي**: مراجعة أسعار تلقائية بلا إشعار مسبق.
+- **فواتير مكررة**: نفس العمل بسندين مختلفين في نفس الشهر.
+
+<Callout type="myth">
+**أسطورة:** "المقاول القديم موثوق — الدفع الشهري شكليات."
+**الحقيقة:** أعظم المبالغ تتسرب من أصدق العلاقات. النظام يعمل في سلامة العلاقة كما يعمل عند عطلها — لا حذف للشكليات.
+</Callout>
+
+## 3. حوكمة تغيير النطاق
+
+تغيير النطاق قرار تعاقدي قبل أن يكون إنفاقاً:
+
+1. **أمر تغيير مكتوب (Change Order)**: يُدرس ويُقيّم سعراً وأثراً.
+2. **موافقة حسب المستوى**: تجاوز حد معين يتطلب موافقة أعلى رسمياً.
+3. **أثر الميزانية**: يُضاف رسمياً إلى الميزانية، لا تسريباً في بند مجاور.
+4. **مراجعة نهاية العام**: أي مبلغ لم يُصرح به يُحلَّل قبل تحميله على الميزانية.
+
+وبالمقابل، كل «توفير» يُدقق أيضاً — فقد يكون تأجيل تدريب إلزامياً (قرار مخاطر) لا إنجازاً.
+
+## 4. مؤشرات مراقبة جيدة
+
+- **درجة التزام البنود**: نسبة البنود المنفذة فعلياً مقابل المخطط.
+- **سرعة تحرير الدفعة**: متوسط زمن التحرير وتكرار الملاحظات على التقارير.
+- **الاكتشاف المبكر**: خريطة تنبؤية لإغلاق الميزانية بلا صدمات نهاية السنة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+After building the budget comes operational management: a payment system tied to **verified performance**, not checks released through absence-driven habit.
+
+## 1. The core payment rule: no payment without performance
+
+Before releasing any monthly payment for a service contract:
+
+1. **Reports**: signed operating reports (shifts, tasks completed, materials).
+2. **Field monitoring**: intermittent written audits recording violations whenever found.
+3. **Contract and SLA linkage**: does the payment scope match the contract scope?
+4. **Tiered approval**: an approval path with levels by amount.
+
+## 2. Common spending leaks
+
+- **Paying for absence**: a contractor billed for a full crew that does not appear in the quiet seasons.
+- **Unauthorized scope creep**: services performed and invoiced without a change order.
+- **Hidden escalation**: automatic price reviews without prior notice.
+- **Duplicate invoices**: the same work under two different documents in the same month.
+
+<Callout type="myth">
+**Myth:** "The old contractor is trusted — the monthly payment is a formality."
+**Fact:** the greatest amounts leak through the closest relationships. The system works in relationship health exactly as it works when it breaks — no skipping the formalities.
+</Callout>
+
+## 3. Scope-change governance
+
+A scope change is a contractual decision before it is spending:
+
+1. **A written change order**: studied and evaluated for price and impact.
+2. **Approval by level**: exceeding a certain limit requires higher formal approval.
+3. **Budget impact**: formally added to the budget, not leaked into a neighboring line.
+4. **Year-end review**: any amount not authorized is analyzed before charging it to the budget.
+
+Conversely, every "saving" is also audited — it may be deferring mandatory training (a risk decision), not an achievement.
+
+## 4. Good monitoring indicators
+
+- **Line completion score**: the ratio of lines actually performed versus planned.
+- **Payment issuance speed**: the average release time and the frequency of notes on reports.
+- **Early detection**: a predictive map to close the budget without year-end surprises.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['sla', 'opex', 'kpi']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على إجراءات الصرف واكتشاف التسريبات وحوكمة النطاق.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on payment procedures, leak detection, and scope governance.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-3-4" questions={quiz34.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **الصرف بإنجاز مثبت** بلا استثناء — حتى في علاقات الثقة.
+- **اكتشاف التسريبات** (دفع غياب، نطاق زائد، فواتير مكررة) بنظام رصد لا بالحدس.
+- **تغيير النطاق** يمر بأمر تغيير وموافقة رسمية قبل أي صرف.
+- **«التوفير» يُدقق كما يُدقق الإنفاق** — كلاهما يُقرأ بسياق الأعمال.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Payment against verified performance**, with no exceptions — even in trusting relationships.
+- **Leak detection** (paying for absence, scope creep, duplicate invoices) through a monitoring system, not intuition.
+- **A scope change** goes through a change order and formal approval before any release.
+- **"Savings" are audited like spending** — both are read in the business context.
+
+</LangSection>

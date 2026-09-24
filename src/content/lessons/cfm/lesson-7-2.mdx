@@ -1,0 +1,203 @@
+---
+id: lesson-7-2
+station: station-7
+number: "7.2"
+title: "إدارة النفايات"
+titleEn: "Waste Management"
+minutes: 20
+order: 2
+objectives:
+  - "أن يطبق المتعلم السلم التدرجي لإدارة النفايات من التقليل إلى التخلص الآمن."
+  - "أن يستخدم تفتيش النفايات ومؤشرات القياس لتحسين أداء البرنامج."
+  - "أن يفرز النفايات الخاصة والإلكترونية ويديرها بمسؤولية موثقة."
+  - "أن يربط إدارة النفايات بالاستدامة والمالية التشغيلية."
+objectivesEn:
+  - "Apply the waste hierarchy from reduction to safe disposal."
+  - "Use waste audits and metrics to improve program performance."
+  - "Segregate special and electronic waste with documented responsibility."
+  - "Link waste management to sustainability and operating finance."
+hasTool: false
+quizId: quiz-7-2
+sources:
+  - iso_14001
+  - ifma
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import Hierarchy from '../../../components/ui/figures/Hierarchy.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz72 } from '../../../data/quiz/cfm/quiz-7-2';
+
+<LangSection lang="ar">
+
+النفايات ليست «ما يُرمى»، بل نتيجة قرارات شراء وتشغيل تراكمت ثم اتخذت وجهة التخلص. الإدارة الرشيدة تبدأ من منابعها: تختار ما تدخله بدقة، فتخرج القليل، ويُعاد استخدام ما يصلح، ولا يصل إلى الردم إلا ما لا بد منه.
+
+## 1. السلم التدرجي لإدارة النفايات (Waste Hierarchy)
+
+هو الترتيب المعياري لأفضلية الاستراتيجيات بيئياً، من الأفضل إلى الأقل:
+
+1. **التقليل (Reduce)**: منع النفايات أصلاً — شراء بلا تغليف زائد، طباعة محسوبة.
+2. **إعادة الاستخدام (Reuse)**: إطالة عمر الأشياء — أثاث، حاويات، أوراق للوجهين.
+3. **إعادة التدوير (Recycle)**: تحويل المادة إلى منتج جديد (ورق، معادن، زجاج، بلاستيك).
+4. **استرداد الطاقة (Recover)**: تحويل ما لا يُعاد تدويره إلى طاقة بأسلوب مضبوط.
+5. **التخلص الآمن (Disposal)**: الردم المحكوم بما لا حل قبله — الخيار الأخير لا الأول.
+
+كل خطوة أعلى توفر مواد وتخفض التكاليف والتلوث — والتخلص أبغضها إطلاقاً.
+
+<Hierarchy
+  title="السلم التدرجي لإدارة النفايات (Waste Hierarchy)"
+  direction="bottom-up"
+  levels={[
+    { label: 'التقليل (Reduce)', detail: 'منع النفايات أصلاً — شراء بلا تغليف زائد، طباعة محسوبة.', icon: '🚫' },
+    { label: 'إعادة الاستخدام (Reuse)', detail: 'إطالة عمر الأشياء — أثاث، حاويات، أوراق للوجهين.', icon: '🔁' },
+    { label: 'إعادة التدوير (Recycle)', detail: 'تحويل المادة إلى منتج جديد — ورق، معادن، زجاج، بلاستيك.', icon: '♻️' },
+    { label: 'استرداد الطاقة (Recover)', detail: 'تحويل ما لا يُعاد تدويره إلى طاقة بأسلوب مضبوط.', icon: '⚡' },
+    { label: 'التخلص الآمن (Disposal)', detail: 'الردم المحكوم بما لا حل قبله — الخيار الأخير لا الأول.', icon: '🗑️' },
+  ]}
+  caption="ترتيب معياري لأفضلية الاستراتيجيات بيئياً من الأفضل إلى الأقل: كل درجة أعلى توفر مواد وتخفض التكاليف والتلوث."
+/>
+
+## 2. تفتيش النفايات (Waste Audit) ومؤشرات القياس
+
+لا يتحسن ما لا يُقاس: **تفتيش النفايات** يحلل المكونات والتوزيع عبر مناطق مفتاحية، ويقرأ النوع والكم والخطأ في الفصل، فيتجه الإصلاح إلى حيث يعيش الخطأ بدقة.
+
+مؤشرات كالمقارنة به:
+
+- **كمية النفايات لكل مقعد سنوياً** (كجم/مقعد/سنة).
+- **معدل تحويل إعادة الاستخدام والتدوير** كنسبة من إجمالي النفايات.
+- **نسبة الخطأ في شحنات التدوير** (ملوثات تتسلل للشحنة).
+
+## 3. الفصل والمنبع وسلوك الإشغال
+
+أنجح البرامج تفصل عند **المنبع** (أقرب نقطة ولادة للنفايات): سلة مميزة بجوار كل مكتب، وعلامات واضحة على كل حاوية، وتدريب للموظفين ونقل المسؤولية — لا معالجة مجمعة في محطة طرفية حيث يختلط كل شيء.
+
+## 4. النفايات الخاصة: خطرة وإلكترونية (E-Waste)
+
+النفايات الخطرة والإلكترونية لا تسلك مسار النفايات العامة:
+
+- **الخاصة الخطرة** (بطاريات، مصابيح، مواد كيميائية): عزل وملصقات، تسليم مقاول مرخص، وتوثيق نقل مسؤولية (راجع ربط النفايات الخطرة في درس 5.3).
+- **النفايات الإلكترونية (E-Waste)**: الأجهزة النهائية ومكوناتها — مقاولو إعادة تدوير معتمدون يستعيدون المعادن بأمان ويوثقون التخلص.
+- **مسؤولية المنتج الممتدة (EPR)**: في بعض الأنظمة تبقى مسؤولية المورد ممتدة حتى نهاية عمر المنتج — آلية تحفّز تصميم المسؤولية والمشتريات المراعية للبيئة.
+
+<Callout type="myth">
+**أسطورة:** «إعادة التدوير وحدها هي الاستدامة».
+**الحقيقة:** التدوير جزء من سلم أوسع أولويته التقليل ثم إعادة الاستخدام؛ النفاية التي لم تُولد أصلاً لا تحتاج إلى تدوير أصلاً.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Waste is not "what gets thrown away"; it is the result of purchasing and operating decisions that accumulated and then headed for disposal. Sound management starts at its sources: choose what enters carefully so that little exits, reuse what can be reused, and nothing reaches the landfill except what is unavoidable.
+
+## 1. The waste hierarchy
+
+It is the standard ordering of strategy preference by environmental merit, from best to least:
+
+1. **Reduce**: preventing waste in the first place — buying without excess packaging, measured printing.
+2. **Reuse**: extending the life of things — furniture, containers, double-sided paper.
+3. **Recycle**: converting the material into a new product (paper, metals, glass, plastic).
+4. **Recover**: converting what cannot be recycled into energy in a controlled manner.
+5. **Disposal**: controlled landfill for what has no solution before it — the last option, not the first.
+
+Each step up saves materials and lowers costs and pollution — and disposal is the least preferred of all.
+
+<Hierarchy
+  title="The waste hierarchy"
+  direction="bottom-up"
+  levels={[
+    { label: 'Reduce', detail: 'Preventing waste in the first place — buying without excess packaging, measured printing.', icon: '🚫' },
+    { label: 'Reuse', detail: 'Extending the life of things — furniture, containers, double-sided paper.', icon: '🔁' },
+    { label: 'Recycle', detail: 'Converting the material into a new product — paper, metals, glass, plastic.', icon: '♻️' },
+    { label: 'Recover', detail: 'Converting what cannot be recycled into energy in a controlled manner.', icon: '⚡' },
+    { label: 'Disposal', detail: 'Controlled landfill for what has no earlier solution — the last option, not the first.', icon: '🗑️' },
+  ]}
+  caption="A standard ordering of strategy preference by environmental merit, from best to least: each step up saves materials and lowers costs and pollution."
+/>
+
+## 2. Waste audit and measurement metrics
+
+What is not measured does not improve: a **waste audit** analyzes the composition and distribution across key areas and reads the type, quantity, and sorting errors, so the fix moves precisely to where the error lives.
+
+Metrics to benchmark against:
+
+- **Waste quantity per seat per year** (kg/seat/year).
+- **The reuse and recycling diversion rate** as a percentage of total waste.
+- **The error rate in recycling shipments** (contaminants slipping into the load).
+
+## 3. Segregation at the source and occupant behavior
+
+The most successful programs segregate at the **source** (the nearest point where waste is born): a distinctive bin next to every desk, clear signage on every container, employee training, and transfer of responsibility — not aggregated handling at a terminal station where everything mixes together.
+
+## 4. Special waste: hazardous and electronic (e-waste)
+
+Hazardous and electronic waste do not take the general waste path:
+
+- **Hazardous special waste** (batteries, lamps, chemicals): isolation and labeling, delivery to a licensed contractor, and documented transfer of responsibility (see the hazardous waste link in lesson 5.3).
+- **Electronic waste (e-waste)**: end-of-life devices and their components — certified recycling contractors who safely recover the metals and document the disposal.
+- **Extended producer responsibility (EPR)**: in some regimes, the supplier's responsibility extends until the end of the product's life — a mechanism that incentivizes responsible design and environmentally conscious purchasing.
+
+<Callout type="myth">
+**Myth:** "Recycling alone is sustainability."
+**Fact:** Recycling is part of a broader hierarchy whose priority is reduction first, then reuse; waste that was never generated needs no recycling at all.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['waste', 'sustainability', 'ghg']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على ترتيب السلم، وتشخيص برامج الفصل، ومسار النفايات الخاصة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on the hierarchy order, diagnosing segregation programs, and the path of special waste.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-7-2" questions={quiz72.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **السلم التدرجي**: تقليل، إعادة استخدام، إعادة تدوير، استرداد طاقة، ثم تخلص آمن — والتقليل أفضل من كل ما بعده.
+- **تفتيش النفايات ومؤشراتها** تحول البرنامج من «وجود سلات» إلى أداء يُقاس ويُحسَّن.
+- **الفصل الفعّال عند المنبع** يحمي نقاء شحنات التدوير ويدعم نقاط الاعتماد.
+- **الخاصة والإلكترونية مسار مستقل**: عزل، مقاول مرخص، وتوثيق؛ وقد تظل داخل مسؤولية المنتج الممتدة (EPR).
+- **إدارة النفايات قرار مالي وبيئي معاً**: كل كيلو لم يُولد توفير في الشراء والشحن والتخلص.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The waste hierarchy**: reduce, reuse, recycle, energy recovery, then safe disposal — and reduction is better than everything that follows it.
+- **Waste audits and their metrics** turn the program from "the existence of bins" into measured, improvable performance.
+- **Effective source segregation** protects the purity of recycling shipments and supports sustainability credit points.
+- **Special and electronic waste take an independent path**: isolation, a licensed contractor, and documentation; some of it may remain under extended producer responsibility (EPR).
+- **Waste management is a financial and environmental decision together**: every kilogram never generated is savings in purchasing, shipping, and disposal.
+
+</LangSection>

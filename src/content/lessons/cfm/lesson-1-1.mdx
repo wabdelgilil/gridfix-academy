@@ -1,0 +1,269 @@
+---
+id: lesson-1-1
+station: station-1
+number: "1.1"
+title: "أنظمة المباني: HVAC والكهرباء والحريق"
+titleEn: "Building Systems: HVAC, Electrical & Fire"
+minutes: 30
+order: 1
+objectives:
+  - "أن يشرح المتعلم الدور الوظيفي لكل نظام رئيسي في المبنى (HVAC، كهرباء، حريق، سباكة)."
+  - "أن يربط كل نظام بأنماط الفشل الشائعة وأولويات الصيانة الوقائية."
+  - "أن يشرح تسلسل الاستمرارية الكهربائية (UPS ← مولد)."
+  - "أن يفرق بين جاهزية أنظمة السلامة من الحريق وثقافة الاستجابة."
+objectivesEn:
+  - "Explain the functional role of each building system (HVAC, electrical, fire, plumbing)."
+  - "Link each system to common failure modes and preventive priorities."
+  - "Explain the electrical continuity chain (UPS → generator)."
+  - "Distinguish fire-system readiness from response culture."
+hasTool: true
+toolName: "خريطة مبنى تفاعلية"
+toolNameEn: "Interactive Building Map"
+quizId: quiz-1-1
+sources:
+  - ashrae
+  - osha
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import BuildingSystemsMap from '../../../components/islands/tools/cfm/BuildingSystemsMap.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
+import Hierarchy from '../../../components/ui/figures/Hierarchy.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz11 } from '../../../data/quiz/cfm/quiz-1-1';
+
+<LangSection lang="ar">
+
+المبنى نظام متكامل: التكييف والكهرباء والحريق والسباكة والنقل الرأسي تعمل معاً، ومقياس نجاح الجميع واحد — **التوافر**: أن تكون الأنظمة سليمة عند الحاجة، لا عند زيارة الجولة فقط.
+
+## 1. التكييف والتهوية (HVAC)
+
+HVAC تعني التدفئة والتهوية والتكييف، وهي عادة أكبر مستهلك للطاقة في المباني (نحو 35–45% من فاتورة الطاقة). مكوناتها الرئيسية:
+
+- **وحدات التبريد (Chiller)**: قلب النظام؛ تبرّد الماء ثم يوزّع على وحدات معالجة الهواء.
+- **وحدات معالجة الهواء (AHU)**: تسحب الهواء وترشحه وتكيّفه وتوزعه على المساحات.
+- **أنظمة التحكم (BAS)**: جداول التشغيل والحساسات التي تقرر متى تعمل المعدات فعلاً.
+
+يجب التمييز بين مفهومين أساسيين: **الراحة الحرارية (Thermal Comfort)** وليست مجرد درجة حرارة، و**جودة الهواء الداخلي (Indoor Air Quality)** وليست مجرد هواء بارد — سيتعمق فيهما درسا جودة البيئة (4.3).
+
+## 2. الأنظمة الكهربائية والاستمرارية
+
+- **التوزيع**: محولات ولوحات توصل التيار من شبكة الكهرباء إلى المبنى.
+- **المولدات (Generator)**: مصدر احتياطي للتغذية الممتدة عند انقطاع الشبكة.
+- **وحدات إمداد غير المنقطع (UPS)**: تغطي الثواني الحرجة فوراً حتى يقلع المولد.
+
+<Callout type="tip">
+**تسلسل الاستمرارية في المنشآت الحرجة** (غرف السيرفرات، المستشفيات): UPS يغطي اللحظة الأولى ← المولد يقلع ويستلم الحمل ← صيانة جاهزية شهرية بنظام أحمال اختبارية. غياب أي طبقة يجعل المنشأة عاجزة لحظة الكارثة.
+</Callout>
+
+<FlowChart
+  title="تسلسل استمرارية التغذية الكهربائية"
+  steps={[
+    { title: 'الشبكة الكهربائية الرئيسية', detail: 'المصدر الأساسي لتغذية المبنى.', icon: '⚡', type: 'start' },
+    { title: 'انقطاع الشبكة', detail: 'تفقد كل التجهيزات تغذيتها فوراً.', icon: '⛔', type: 'decision' },
+    { title: 'UPS يغطي الثواني الحرجة', detail: 'إمداد لحظي غير منقطع يفصل الحمل عن شبكة الشبكة.', icon: '🔋' },
+    { title: 'المولد يقلع ويستلم الحمل', detail: 'بدء التشغيل خلال ثوانٍ بعد الـ UPS.', icon: '🛢' },
+    { title: 'اختبار جاهزية شهري', detail: 'أحمال اختبارية دورية تضمن استجابة المولد وقت الحاجة.', icon: '✅', type: 'end' },
+  ]}
+  caption="غياب أي طبقة يترك المنشأة عاجزة لحظة انقطاع الشبكة — غرف السيرفرات والمستشفيات نموذج للتطبيق."
+/>
+
+## 3. الحماية من الحريق
+
+نظام متكامل من أربع طبقات:
+
+- **الكشف**: كاشفات دخان وحرارة ترسل إشارة إلى لوحة الإنذار.
+- **الإنذار**: أجهزة صوتية وإنارة طوارئ ومسارات إخلاء معلنة ومضيئة.
+- **الإخماد**: رشاشات (Sprinklers) وطفايات يدوية وأنظمة خاصة للمعدات الحساسة.
+- **الإدارة**: أبواب إغلاق، وتقسيم المنشأة لمقاطع حريق، وتدريب دوري على الإخلاء.
+
+<Hierarchy
+  title="البنية التصاعدية للحماية من الحريق"
+  direction="bottom-up"
+  levels={[
+    { label: 'الإدارة والتدريب', detail: 'أبواب إغلاق، مقاطع حريق، تدريب إخلاء دوري.', icon: '🧠' },
+    { label: 'الإخماد', detail: 'رشاشات وطفايات وأنظمة خاصة.', icon: '🧯' },
+    { label: 'الإنذار', detail: 'إنارة طوارئ ومسارات إخلاء معلنة.', icon: '🔔' },
+    { label: 'الكشف', detail: 'كاشفات دخان وحرارة تصل للوحة الإنذار.', icon: '🕵️' },
+  ]}
+  caption="طبقات متكاملة: الكشف يغذي الإنذار، والإنذار يوجه الإخلاء، والإخماد يروي ما لا ترويه اللافتات."
+/>
+
+<Callout type="myth">
+**أسطورة:** "جهاز إنذار مثبّت جاهز يكفي."
+**الحقيقة:** الخطر الثقافي أخطر من غياب الجهاز: إنذارات يُهملها الموظفون بسبب تكرارها دون تحريك — فالرشاشات تروي عما لا ترويه اللافتات.
+</Callout>
+
+## 4. السباكة والنقل الرأسي والأتمتة
+
+- **السباكة**: مياه باردة وساخنة، ضغط وتدفق، خزانات ومعالجة، ومراقبة جودة مياه الشرب.
+- **النقل الرأسي**: مصاعد وسلالم متحركة — أصل حساس يخضع لعقود صيانة متخصصة إلزامية.
+- **أتمتة المبنى (BAS)**: عقل المبنى الرقمي؛ يجمع الحساسات والإنذارات وجداول التشغيل، وهو مصدر أهم بيانات ترشيد الطاقة.
+
+## 5. المبدأ التشغيلي: التوافر عبر الوقاية والوثائق
+
+1. سوّق **الصيانة الوقائية (Preventive Maintenance, PM)** لكل أصل على جدول مناسب لعمره وسلوكه.
+2. احتفظ **بسجلات أداء** لكل نظام لترصد اتجاهات الأعطال قبل الأزمة.
+3. وثّق **معلومات التشغيل**: الأدلة ورسومات «كما بُنيت» (As-Built) — فلا شيء أعلى قيمة من معلومة صحيحة لحظة الطوارئ.
+
+<Callout type="warn">
+**مفهوم خاطئ:** "المبنى يعمل هنا والآن، فلا داعي لمهام وقائية تعطّل الإنتاج."
+**الحقيقة:** الوقائية تحمي الذروة غداً. الأعطال الأغلى تصادف دائماً أوقات الذروة وفي الأنظمة الأقل صيانة.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+A building is an integrated system: HVAC, electrical, fire, plumbing, and vertical transport all work together, and all of them share one measure of success — **availability**: systems being sound when needed, not just during an inspection visit.
+
+## 1. Heating, Ventilation, and Air Conditioning (HVAC)
+
+HVAC stands for heating, ventilation, and air conditioning, and it is typically the largest energy consumer in buildings (about 35–45% of the energy bill). Its main components:
+
+- **Chillers**: the heart of the system; they cool water that is then distributed to air handling units.
+- **Air Handling Units (AHU)**: draw in air, filter it, condition it, and distribute it across spaces.
+- **Building automation systems (BAS)**: operating schedules and sensors that decide when equipment actually runs.
+
+Two fundamental concepts must be distinguished: **thermal comfort**, which is not merely a temperature reading, and **indoor air quality (IAQ)**, which is not merely cool air — the environmental quality lessons (4.3) will go deeper into both.
+
+## 2. Electrical systems and continuity
+
+- **Distribution**: transformers and panels carry current from the grid into the building.
+- **Generators**: a backup source for extended supply when the grid fails.
+- **Uninterruptible Power Supply (UPS) units**: cover the critical seconds immediately until the generator starts.
+
+<Callout type="tip">
+**The continuity sequence in critical facilities** (server rooms, hospitals): the UPS covers the first moment ← the generator starts and takes the load ← monthly readiness maintenance with load-bank testing. The absence of any layer leaves the facility helpless at the moment of crisis.
+</Callout>
+
+<FlowChart
+  title="Power supply continuity sequence"
+  steps={[
+    { title: 'Main electrical grid', detail: 'The primary source feeding the building.', icon: '⚡', type: 'start' },
+    { title: 'Grid outage', detail: 'All equipment loses its feed immediately.', icon: '⛔', type: 'decision' },
+    { title: 'UPS covers the critical seconds', detail: 'Instantaneous uninterruptible supply that disconnects the load from the grid.', icon: '🔋' },
+    { title: 'The generator starts and takes the load', detail: 'Startup within seconds after the UPS.', icon: '🛢' },
+    { title: 'Monthly readiness testing', detail: 'Periodic load-bank tests ensure the generator responds when needed.', icon: '✅', type: 'end' },
+  ]}
+  caption="The absence of any layer leaves the facility helpless at the moment of a grid outage — server rooms and hospitals are the model application."
+/>
+
+## 3. Fire protection
+
+An integrated system of four layers:
+
+- **Detection**: smoke and heat detectors send a signal to the alarm panel.
+- **Alarm**: audible devices, emergency lighting, and announced, illuminated evacuation routes.
+- **Suppression**: sprinklers, portable extinguishers, and special systems for sensitive equipment.
+- **Management**: closing doors, compartmentalizing the facility into fire sections, and periodic evacuation training.
+
+<Hierarchy
+  title="The ascending structure of fire protection"
+  direction="bottom-up"
+  levels={[
+    { label: 'Management and training', detail: 'Closing doors, fire compartments, and periodic evacuation training.', icon: '🧠' },
+    { label: 'Suppression', detail: 'Sprinklers, extinguishers, and special systems.', icon: '🧯' },
+    { label: 'Alarm', detail: 'Emergency lighting and announced evacuation routes.', icon: '🔔' },
+    { label: 'Detection', detail: 'Smoke and heat detectors that reach the alarm panel.', icon: '🕵️' },
+  ]}
+  caption="Integrated layers: detection feeds the alarm, the alarm guides evacuation, and suppression handles what signage cannot."
+/>
+
+<Callout type="myth">
+**Myth:** "An installed, ready alarm system is enough."
+**Fact:** cultural risk is more dangerous than the absence of the device: alarms that employees ignore because they repeat without any response — the sprinklers handle what the signs do not.
+</Callout>
+
+## 4. Plumbing, vertical transport, and automation
+
+- **Plumbing**: hot and cold water, pressure and flow, tanks and treatment, and drinking-water quality monitoring.
+- **Vertical transport**: elevators and escalators — a sensitive asset subject to mandatory specialized maintenance contracts.
+- **Building automation (BAS)**: the building's digital brain; it gathers sensors, alarms, and operating schedules, and is the main source of energy-saving data.
+
+## 5. The operating principle: availability through prevention and documentation
+
+1. Schedule **preventive maintenance (PM)** for each asset on a schedule suited to its age and behavior.
+2. Keep **performance records** for each system to spot failure trends before a crisis.
+3. Document **operating information**: manuals and as-built drawings — nothing is more valuable than correct information at the moment of an emergency.
+
+<Callout type="warn">
+**Misconception:** "The building works here and now, so there is no need for preventive tasks that disrupt production."
+**Fact:** prevention protects tomorrow's peak. The most expensive failures always coincide with peak times and in the least-maintained systems.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: خريطة المبنى التفاعلية
+
+استكشف كل نظام: مكوناته، ما يراقبه مدير المنشأة، أنماط الفشل الشائعة، وأولويات الصيانة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Interactive Building Map
+
+Explore each system: its components, what a facility manager monitors, common failure modes, and maintenance priorities.
+
+</LangSection>
+
+<BuildingSystemsMap client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['hvac', 'chiller', 'bas', 'pm']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على منطق التشخيص والاستمرارية والحماية من الحريق.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on diagnostic logic, continuity, and fire protection.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-1-1" questions={quiz11.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **HVAC** أكبر مستهلك للطاقة ومحور الراحة الحرارية وجودة الهواء الداخلي.
+- **الاستمرارية الكهربائية الحرجة**: UPS ← مولد ← اختبار جاهزية دوري.
+- **الحماية من الحريق**: طبقات كشف وإنذار وإخماد وإدارة، وجودها بلا ثقافة استجابة نظامٌ ميت.
+- **مقياس النجاح**: التوافر عند الحاجة، يسنده جدول PM وسجلات الأداء ووثائق التشغيل.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **HVAC** is the largest energy consumer and the centerpiece of thermal comfort and indoor air quality.
+- **Critical electrical continuity**: UPS ← generator ← periodic readiness testing.
+- **Fire protection**: layers of detection, alarm, suppression, and management; their presence without a response culture is a dead system.
+- **The measure of success**: availability when needed, supported by a PM schedule, performance records, and operating documentation.
+
+</LangSection>

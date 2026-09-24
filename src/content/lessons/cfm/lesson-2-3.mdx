@@ -1,0 +1,206 @@
+---
+id: lesson-2-3
+station: station-2
+number: "2.3"
+title: "استغلال المساحات وإدارة المكاتب"
+titleEn: "Space Utilization & Workplace Management"
+minutes: 25
+order: 3
+objectives:
+  - "أن يحسب المتعلم مؤشرات استغلال المساحة (م²/موظف، نسبة الإشغال الوظيفي)."
+  - "أن يقرأ بيانات الاستخدام ليميز بين المساحة اللازمة والمساحة الزائدة."
+  - "أن يطبق مقاييس الكثافة المرجعية لأنماط العمل (مكاتب مغلقة/مفتوح/Hoteling)."
+objectivesEn:
+  - "Compute space utilization metrics (m²/employee, functional occupancy)."
+  - "Read usage data to distinguish needed space from surplus space."
+  - "Apply reference density benchmarks by workplace pattern."
+hasTool: true
+toolName: "حاسبة كثافة المساحة"
+toolNameEn: "Space Density Calculator"
+quizId: quiz-2-3
+sources:
+  - ifma
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import SpaceDensityTool from '../../../components/islands/tools/cfm/SpaceDensityTool.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz23 } from '../../../data/quiz/cfm/quiz-2-3';
+
+<LangSection lang="ar">
+
+المساحة ثاني بنود التكلفة بعد الطاقة، والاستغلال علمُ قياس قبل أن يكون قرار هدم أو انتقال.
+
+## 1. مؤشرات الاستغلال الأساسية
+
+**الكثافة (Density)**: متر مربع لكل موظف:
+
+```
+م² لكل موظف = المساحة الصافية ÷ عدد الموظفين
+```
+
+مقياس عام لنمط المساحة لكل شخص، يتفاوت بالنمط المرجعي:
+- مكاتب مغلقة: 15–25 م²/موظف.
+- مخطط مفتوح: 8–14 م²/موظف.
+- الحجز المشترك (Hoteling): 5–9 م²/موظف.
+
+**نسبة الإشغال الوظيفي (Occupancy Rate)**: نسبة المقاعد المشغولة فعلياً في لحظة القياس — تعكس سلوكيات الحضور (أيام، فصول، مواسم).
+
+<Callout type="tip">
+**القراءة الصحيحة:** كثافة منخفضة (مساحة كبيرة لكل موظف) قد تعني رفاهية — أو هدراً صامتاً. إشغال منخفض قد يعني مكاتب مهجورة نصف الأسبوع. الرقمان معاً يرسمان الصورة الواقعية.
+</Callout>
+
+## 2. أدوات القياس
+
+- **العدّادات الحاضرة (Occupancy Sensors)**: لقياس الحضور لحظياً.
+- **أنظمة الحجز الإلكتروني (Online Booking)**: لقياس الاستخدام الفعلي لغرف الاجتماعات.
+- **بيانات الحضور (Badge Systems)**: لربط الدخول بالموقع.
+
+## 3. تنبيهات قبل تقليص المساحة
+
+قرار «نقلل ونؤجر الفائض» مغري لكنه يشترط:
+
+1. **دراسة الأنماط**: متى تكون المساحة مشغولة فعلاً، وهل فترات الذروة تتطلب مرونة (Hoteling أو مساحات مشتركة) بدل مكاتب ثابتة؟
+2. **تحليل التكلفة الكاملة**: تقليص الإيجار مقابل تكلفة إعادة التوطين والتجديد والمعدات.
+3. **التزامات التعاقد**: هل يسمح العقد بالتأجير الفرعي أصلاً؟
+4. **التجربة والقياس**: تجربة نموذج مشاركة على منطقة محددة وقياس القبول قبل تعميمه.
+
+<Callout type="myth">
+**أسطورة:** "غرف الاجتماعات محجوزة دائماً، فاستغلالنا ممتاز."
+**الحقيقة:** «الحجز الموروث» غير المعتمد (يُحجز ويُهجر) يخدع القياس — الحضور الفعلي في الغرفة أهم من عدد حجوزات التقويم.
+</Callout>
+
+## 4. من البيانات إلى القرار
+
+1. **قِس** (الكثافة + الإشغال اللحظي).
+2. **حلّل** (أنماط أسبوع/فصل، وفجوات الذروة).
+3. **صمّم** (نموذج مناسب: تغيير التوزيع، مشاركة، عمل جزئي عن بعد).
+4. **طبق وقِس مجدداً** (دورة تحسين مستمرة).
+
+</LangSection>
+
+<LangSection lang="en">
+
+Space is the second-largest cost item after energy, and utilization is a science of measurement before it becomes a demolition or relocation decision.
+
+## 1. Core utilization metrics
+
+**Density**: square meters per employee:
+
+```
+m² per employee = net area ÷ number of employees
+```
+
+A general measure of the space pattern per person, varying by the reference pattern:
+- Closed offices: 15–25 m² per employee.
+- Open plan: 8–14 m² per employee.
+- Hoteling: 5–9 m² per employee.
+
+**Occupancy rate**: the share of seats actually occupied at the measurement moment — reflecting attendance behaviors (days, seasons, months).
+
+<Callout type="tip">
+**Reading correctly:** low density (a large area per employee) may mean comfort — or silent waste. Low occupancy may mean desks abandoned half the week. The two numbers together draw the realistic picture.
+</Callout>
+
+## 2. Measurement tools
+
+- **Occupancy sensors**: to measure presence in real time.
+- **Online booking systems**: to measure the actual use of meeting rooms.
+- **Badge systems**: to link entry with location.
+
+## 3. Alerts before down-sizing space
+
+The "reduce and rent out the surplus" decision is tempting, but it requires:
+
+1. **Pattern study**: when is the space actually occupied, and do peak periods require flexibility (hoteling or shared areas) instead of fixed desks?
+2. **Full cost analysis**: reducing rent versus the cost of relocation, renovation, and equipment.
+3. **Contract commitments**: does the lease even permit subleasing?
+4. **Pilot and measure**: try a sharing model on a specific zone and measure acceptance before rolling it out.
+
+<Callout type="myth">
+**Myth:** "Meeting rooms are always booked, so our utilization is excellent."
+**Fact:** uncontrolled "inherited bookings" (booked and abandoned) fool the measurement — the actual presence in the room matters more than the number of calendar bookings.
+</Callout>
+
+## 4. From data to decision
+
+1. **Measure** (density + instant occupancy).
+2. **Analyze** (weekly/seasonal patterns and peak gaps).
+3. **Design** (a suitable model: changing the layout, sharing, or partial remote work).
+4. **Apply and measure again** (a continuous improvement loop).
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: حاسبة كثافة المساحة
+
+أدخل مساحتك وعدد الموظفين واختر نمط العمل لحساب الكثافة ومقارنتها بالنطاق المرجعي.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Space Density Calculator
+
+Enter your area, number of employees, and workplace pattern to compute density and compare it with the reference range.
+
+</LangSection>
+
+<SpaceDensityTool client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['spaceutil', 'kpi', 'eui']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على تشخيص البيانات وأنماط الاستخدام وقرار التقليص.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on data diagnosis, usage patterns, and the down-sizing decision.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-2-3" questions={quiz23.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **الكثافة (م²/موظف) ونسبة الإشغال** مرآتا الاستغلال، ولا تكفيان وحدهما لاتخاذ قرار.
+- **قرار التقليص** يسبقه قياس أنماط الحضور وتحليل التكلفة والتزامات العقد.
+- **البيانات الأصدق** تأتي من العدّادات والحجز الفعلي، لا الحجز «الموروث».
+- **كل تحسين** يُدار كدورة: قِس ← حلّل ← صمّم ← قِس مجدداً.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Density (m²/employee) and occupancy rate** mirror utilization, and neither alone is enough to decide.
+- **A down-sizing decision** must be preceded by attendance-pattern measurement, cost analysis, and contract commitments.
+- **The truest data** comes from sensors and real bookings, not "inherited" bookings.
+- **Every improvement** is run as a loop: measure → analyze → design → measure again.
+
+</LangSection>

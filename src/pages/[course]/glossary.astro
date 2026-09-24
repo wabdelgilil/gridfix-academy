@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import { getGlossaryForCourse } from '../../data/glossary';
+import { getCourse, courses } from '../../data/courses';
+
+export async function getStaticPaths() {
+  return courses.map((courseEntry) => ({ params: { course: courseEntry.id } }));
+}
+
+interface Props {
+  course: string;
+}
+
+const { course } = Astro.params;
+const courseMeta = getCourse(course);
+const terms = getGlossaryForCourse(course ?? 'cfm');
+---
+
+<BaseLayout title={`قاموس المصطلحات — ${courseMeta?.code ?? ''} | صالة GridFix`} description="قاموس مركزي قابل للبحث لمصطلحات الكورس بالعربية والإنجليزية.">
+  <div class="mx-auto max-w-3xl">
+    <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: 'قاموس المصطلحات' }]} />
+    <header class="mb-6">
+      <h1 class="text-2xl font-bold text-ink-900 dark:text-white">📖 قاموس المصطلحات — {courseMeta?.code ?? ''}</h1>
+      <p class="mt-1 text-sm text-ink-400 dark:text-slate-400">المصطلحات بالعربية مع التعريف الإنجليزي — أساس النجاح في الامتحان.</p>
+    </header>
+
+    <div class="relative mb-6">
+      <span class="pointer-events-none absolute start-4 top-1/2 -translate-y-1/2 text-ink-400">🔍</span>
+      <input
+        id="glossary-search"
+        type="search"
+        placeholder="ابحث في القاموس..."
+        class="w-full rounded-xl border border-slate-200 bg-white px-11 py-3 text-sm text-ink-900 shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-brand-400"
+      />
+    </div>
+
+    <div id="glossary-list" class="grid gap-3">
+      {terms.map((term) => (
+        <div
+          class="card p-5 glossary-item"
+          data-search={`${term.term} ${term.abbreviation ?? ''} ${term.ar} ${term.en}`.toLowerCase()}
+        >
+          <div class="flex flex-wrap items-center gap-2">
+            <span dir="ltr" lang="en" class="font-bold text-brand-700 dark:text-brand-400">{term.term}</span>
+            {term.abbreviation && (
+              <span class="chip bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300" dir="ltr">{term.abbreviation}</span>
+            )}
+            <button
+              type="button"
+              class="speak-btn inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs text-ink-500 transition hover:bg-brand-100 hover:text-brand-600 dark:bg-slate-700 dark:text-slate-400 dark:hover:bg-brand-900/50 dark:hover:text-brand-300"
+              data-term={term.term}
+              aria-label={`نطق ${term.term}`}
+              title="سمع النطق الإنجليزي"
+            >
+              🔊
+            </button>
+            <button
+              type="button"
+              class="copy-btn inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs text-ink-500 transition hover:bg-brand-100 hover:text-brand-600 dark:bg-slate-700 dark:text-slate-400 dark:hover:bg-brand-900/50 dark:hover:text-brand-300"
+              data-term={term.term}
+              aria-label={`نسخ ${term.term}`}
+              title="نسخ المصطلح"
+            >
+              📋
+            </button>
+          </div>
+          <p class="mt-2 text-sm leading-relaxed text-ink-600 dark:text-slate-300">{term.ar}</p>
+          <p dir="ltr" lang="en" class="mt-2 text-xs leading-relaxed text-ink-400 dark:text-slate-500">{term.en}</p>
+        </div>
+      ))}
+    </div>
+
+    <p id="glossary-empty" class="mt-6 hidden text-center text-sm text-ink-400">لا توجد نتائج مطابقة لبحثك.</p>
+  </div>
+</BaseLayout>
+
+<script>
+  const input = document.getElementById('glossary-search') as HTMLInputElement | null;
+  const empty = document.getElementById('glossary-empty');
+  const items = Array.from(document.querySelectorAll('.glossary-item'));
+
+  input?.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let visible = 0;
+    for (const item of items) {
+      const match =
+        q === '' || (item.getAttribute('data-search') ?? '').includes(q);
+      item.classList.toggle('hidden', !match);
+      if (match) visible++;
+    }
+    empty?.classList.toggle('hidden', visible > 0);
+  });
+
+  document.querySelectorAll('.speak-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const term = (btn as HTMLElement).dataset.term;
+      if (term && 'speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(term);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+      }
+    });
+  });
+
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const term = (btn as HTMLElement).dataset.term;
+      if (term) {
+        try {
+          await navigator.clipboard.writeText(term);
+          const original = btn.textContent;
+          btn.textContent = '✓';
+          setTimeout(() => { btn.textContent = original; }, 1500);
+        } catch {}
+      }
+    });
+  });
+</script>

@@ -1,0 +1,197 @@
+---
+id: lesson-4-3
+station: station-4
+number: "4.3"
+title: "جودة البيئة الداخلية IEQ"
+titleEn: "Indoor Environmental Quality"
+minutes: 20
+order: 3
+objectives:
+  - "أن يقيس المتعلم المؤشرات الأساسية لـ IEQ (حرارة، رطوبة، CO₂) ويقارنها بالنطاقات."
+  - "أن يشخص على أساس البيانات أعراض ضعف التهوية والرطوبة الزائدة."
+  - "أن يبني حالة استثمارية لـ IEQ مربوطة برضا الموظفين وإنتاجيتهم."
+objectivesEn:
+  - "Measure core IEQ parameters (temperature, humidity, CO₂) and compare to ranges."
+  - "Diagnose poor ventilation and excess humidity from data."
+  - "Build the IEQ investment case tied to satisfaction and productivity."
+hasTool: true
+toolName: "ماسح IEQ"
+toolNameEn: "IEQ Scanner"
+quizId: quiz-4-3
+sources:
+  - ashrae
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import IEQScanner from '../../../components/islands/tools/cfm/IEQScanner.tsx';
+import StatGrid from '../../../components/ui/figures/StatGrid.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz43 } from '../../../data/quiz/cfm/quiz-4-3';
+
+<LangSection lang="ar">
+
+جودة البيئة الداخلية (Indoor Environmental Quality, IEQ) تُقرأ بالحساسات لا بالانطباع: الحرارة والرطوبة وتركيز ثاني أكسيد الكربون مؤشرات تحدد تركيز من بداخلها.
+
+## 1. المؤشرات الأساسية ونطاقاتها المرجعية
+
+| المؤشر | النطاق المرجعي | ماذا يخبرك |
+| --- | --- | --- |
+| **الحرارة** | 20–26°C موزعة بحسب المناخ | الراحة الحرارية والذروة الشتوية/الصيفية |
+| **الرطوبة النسبية** | 30–60% | فوق 60% بيئة عفن ورطوبة؛ تحت 30% جفافاً وتهيجاً |
+| **ثاني أكسيد الكربون (CO₂)** | أقل من 1000 ppm | مؤشر التهوية؛ فوقه نقص الهواء النقي |
+
+<StatGrid
+  title="النطاقات المرجعية لمؤشرات IEQ"
+  stats={[
+    { value: '20–26°C', label: 'الحرارة', note: 'مقياس الراحة الحرارية في الذروة الشتوية والصيفية', color: 'amber' },
+    { value: '30–60%', label: 'الرطوبة النسبية', note: 'فوق 60% رطوبة وعفن، وتحت 30% جفافاً وتهيجاً', color: 'teal' },
+    { value: '<1000 ppm', label: 'ثاني أكسيد الكربون (CO₂)', note: 'مؤشر التهوية؛ فوقه نقص الهواء النقي', color: 'rose' },
+  ]}
+  caption="قراءات الحساسات تُقارن بهذه النطاقات المرجعية قبل الحكم على جودة البيئة الداخلية"
+/>
+
+## 2. العلاقة بالصحة والتشغيل
+
+- **ضعف التهوية**: CO₂ مرتفع + شكاوى صداع وخمول — مؤشر متلازمة المبنى المريض (Sick Building Syndrome).
+- **الرطوبة العالية**: بقع رطوبة وعفن وتدهور مواد — تليها إصلاحات عالية التكلفة.
+- **الراحة الحرارية**: تُضبط بربط الجداول بكثافة الإشغال وجداول العمل لا بالحدس.
+
+<Callout type="myth">
+**أسطورة:** "متوسط حرارة المبنى 25 يعني أن الجميع مرتاح."
+**الحقيقة:** الراحة توزيعية لا متوسطة: المساحات القريبة من النوافذ المشمسة تعاني حرارة زائدة، والمناطق المعتمة تعاني برودة زائدة. قياس النقاط الحرجة أهم من المتوسط العام.
+</Callout>
+
+## 3. تشخيص مبني على البيانات
+
+1. **قِس** بالحساسات الموزعة وعدّادات CO₂ في الأوقات التمثيلية.
+2. **قارن** بالنطاقات المرجعية حسب نوع الفضاء.
+3. **حلل الأسباب** (تهوية، حمل حراري، تسربات).
+4. **عالج الجذر**: تهوية، ضبط حرارة، فتحات هواء، لوحة تحكم.
+5. **رصد مستمر** بعد الإصلاح — IEQ متغير حي لا تصحيح لمرة.
+
+## 4. بناء حالة الاستثمار
+
+عند تمويل تحسينات IEQ: اربط القياس **بالآثار** الموثقة — رضا الفريق، الغياب، الإنتاجية، وتقليل الشكاوى المتكررة. هذا يحوّل «بند رفاهية» إلى قرار استثماري محسوب.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Indoor Environmental Quality (IEQ) is read by sensors, not impressions: temperature, humidity, and carbon dioxide concentration are indicators that determine the focus of those inside.
+
+## 1. The core indicators and their reference ranges
+
+| Indicator | Reference range | What it tells you |
+| --- | --- | --- |
+| **Temperature** | 20–26°C distributed according to climate | Thermal comfort and winter/summer peaks |
+| **Relative humidity** | 30–60% | Above 60%: a mold and dampness environment; below 30%: dryness and irritation |
+| **Carbon dioxide (CO₂)** | Below 1000 ppm | The ventilation indicator; above it, a lack of fresh air |
+
+<StatGrid
+  title="Reference ranges for IEQ indicators"
+  stats={[
+    { value: '20–26°C', label: 'Temperature', note: 'The thermal comfort measure in winter and summer peaks', color: 'amber' },
+    { value: '30–60%', label: 'Relative humidity', note: 'Above 60% dampness and mold; below 30% dryness and irritation', color: 'teal' },
+    { value: '<1000 ppm', label: 'Carbon dioxide (CO₂)', note: 'The ventilation indicator; above it, a lack of fresh air', color: 'rose' },
+  ]}
+  caption="Sensor readings are compared to these reference ranges before judging indoor environmental quality"
+/>
+
+## 2. The link to health and operations
+
+- **Poor ventilation**: high CO₂ + headache and lethargy complaints — an indicator of Sick Building Syndrome.
+- **High humidity**: moisture stains, mold, and material deterioration — followed by high-cost repairs.
+- **Thermal comfort**: adjusted by linking schedules to occupancy density and work schedules, not by intuition.
+
+<Callout type="myth">
+**Myth:** "An average building temperature of 25 means everyone is comfortable."
+**Fact:** comfort is distributive, not average: areas near sunny windows suffer excess heat, and darker areas suffer excess cold. Measuring critical points matters more than the overall average.
+</Callout>
+
+## 3. Data-driven diagnosis
+
+1. **Measure** with distributed sensors and CO₂ meters at representative times.
+2. **Compare** against the reference ranges by space type.
+3. **Analyze the causes** (ventilation, thermal load, leaks).
+4. **Treat the root**: ventilation, temperature control, air vents, a control panel.
+5. **Continuous monitoring** after the fix — IEQ is a living variable, not a one-off correction.
+
+## 4. Building the investment case
+
+When funding IEQ improvements: link the measurement **to documented impacts** — team satisfaction, absenteeism, productivity, and fewer recurring complaints. This turns a "well-being line item" into a calculated investment decision.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: ماسح IEQ
+
+أدخل قراءات الحرارة والرطوبة وCO₂ وقارنها فوراً بالنطاقات المرجعية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: IEQ Scanner
+
+Enter temperature, humidity, and CO₂ readings and compare them instantly to the reference ranges.
+
+</LangSection>
+
+<IEQScanner client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['hvac', 'eui', 'sustainability']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على قراءة البيانات وتشخيص الجذر وتوثيق الأثر.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on reading data, diagnosing the root, and documenting impact.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-4-3" questions={quiz43.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **IEQ = حرارة + رطوبة + CO₂** — مؤشرات قابلة للقياس والمقارنة بالنطاقات المرجعية.
+- **ضعف التهوية والرطوبة الزائدة** يُعالجان من الجذر لا بالإخفاء الجمالي.
+- **الراحة توزيعية** — تُقاس بالنقاط الحرجة لا بالمتوسط.
+- **أثر IEQ يُثبت بالقياس** وبالربط بين البيئة والرضا والإنتاجية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **IEQ = temperature + humidity + CO₂** — indicators that are measurable and comparable against reference ranges.
+- **Poor ventilation and excess humidity** are treated at the root, not by cosmetic concealment.
+- **Comfort is distributive** — measured at critical points, not by the average.
+- **The impact of IEQ is proven by measurement** and by connecting the environment to satisfaction and productivity.
+
+</LangSection>

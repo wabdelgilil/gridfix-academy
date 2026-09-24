@@ -1,0 +1,232 @@
+---
+id: lesson-cama-4-4
+course: cama
+station: station-cama-4
+number: "4.4"
+title: "التخلص وإعادة التدوير"
+titleEn: "Disposal & Recycling"
+minutes: 20
+order: 4
+objectives:
+  - "أن يشرح المتعلم متى يُتخذ قرار التخلص من الأصل."
+  - "أن يقارن بين خيارات التخلص: البيع، الإيداع، إعادة التدوير، الإطالة."
+  - "أن يربط قرار التخلص بالالتزامات البيئية والتنظيمية."
+objectivesEn:
+  - "Explain when to make the asset disposal decision."
+  - "Compare disposal options: sale, decommissioning, recycling, extension."
+  - "Link disposal decisions to environmental and regulatory obligations."
+hasTool: true
+toolName: "قائمة قرار التخلص"
+toolNameEn: "Disposal Decision Checklist"
+quizId: quiz-cama-4-4
+sources:
+  - iso55001
+  - gfmam_landscape
+  - environmental_regulations
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import DisposalDecisionList from '../../../components/islands/tools/cama/DisposalDecisionList.tsx';
+import Comparison from '../../../components/ui/figures/Comparison.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama44 } from '../../../data/quiz/cama/quiz-cama-4-4';
+
+<LangSection lang="ar">
+
+آخر مرحلة في دورة حياة الأصل ليست نهاية بل بداية جديدة: إما إطالة عمره عبر التحديث أو التخلص منه بشكل يحترم البيئة ويسترجع أقصى قيمة ممكنة. القرار الخطأ هنا يعني خسارة مالية أو مخاطرة بيئية أو التزام قانوني.
+
+## 1. متى ينتهي عمر الأصل؟
+
+نهاية العمر الافتراضي (End-of-Life) ليست بالضرورة منتهية العمر الفيزيائي. الأصل ينتهي عمره الافتراضي حين:
+
+- **الانخفاض الاقتصادي:** تكلفة صيانته تفوق القيمة التي ينتجها.
+- **عدم الملاءمة التقنية:** التكنولوجيا تطورت والأصل لم يعد يلبي المتطلبات الحديثة.
+- **المخاطر البيئية:** الأصل يسبب تلوثاً أو يخالف معايير بيئية جديدة.
+- **عدم التوفر:** لا تتوفر قطع الغيار أو الدعم الفني.
+
+## 2. خيارات التعامل مع نهاية العمر
+
+لا يوجد خيار واحد صحيح. القرار يعتمد على تقييم شامل:
+
+- **الإطالة (Life Extension):** تحديث الأصل بتركيب مكونات جديدة أو إجراء عمرة شاملة. مناسب حين الهيكل الأساسي سليم والتكلفة أقل من شراء أصل جديد.
+- **البيع (Sale):** بيع الأصل في السوق الثانوي. مناسب حين لا يلبي احتياجاتك لكنه لا يزال صالحاً لمنشأة أخرى.
+- **إعادة التدوير (Recycling):** تفكيك الأصل واستخراج المواد القابلة لإعادة التدوير مثل المعادن والأسلاك. التزام بيئي في كثير من الدول.
+- **التهديف (Scrapping):** التخلص النهائي في المدافن المرخصة. آخر خيار حين لا تتوفر أي بديل آخر.
+
+<Comparison
+  title="مقارنة خيارات نهاية العمر"
+  sides={[
+    { label: 'الإطالة (Life Extension)', items: ['تحديث أو عمرة شاملة للمكونات', 'الهيكل الأساسي سليم والخيار أرخص من شراء جديد', 'يُحافظ على الاستثمار القائم'], color: 'brand' },
+    { label: 'البيع (Sale)', items: ['التصرف في السوق الثانوي', 'لا يلبي احتياجك لكنه صالح لمنشأة أخرى', 'يسترجع جزءاً من القيمة فوراً'], color: 'teal' },
+    { label: 'إعادة التدوير (Recycling)', items: ['تفكيك واستخراج المعادن والأسلاك', 'التزام بيئي قانوني في كثير من الدول', 'يدعم الاقتصاد الدائري والشهادات البيئية'], color: 'amber' },
+    { label: 'التهديف (Scrapping)', items: ['التخلص النهائي في مدافن مرخصة', 'آخر خيار عند غياب البدائل', 'أعلى مسؤولية بيئية وتنظيمية'], color: 'rose' },
+  ]}
+  caption="لا خيار واحد صحيح — القرار يُبنى على تقييم شامل: مالي، تقني، بيئي، وتنظيمي."
+/>
+
+<Callout type="warn">
+**احذر:** التخلص من الأصول بدون تقييم بيئي قد يعرض المنشأة لغرامات قانونية كبيرة ومسؤولية بيئية تتجاوز تكلفة الأصل نفسه. الامتثال البيئي ليس خياراً بل التزام قانوني.
+</Callout>
+
+## 3. القيمة المتبقية والتقييم المالي
+
+القيمة المتبقية (Residual Value) تلعب دوراً محورياً في قرار التخلص:
+
+- **القيمة السوقية:** ما يمكن بيعه للأصل في حالته الحالية في السوق المفتوح.
+- **قيمة إعادة التدوير:** القيمة النقدية للمعادن والمواد المستخرجة من التفكيك.
+- **التكلفة المخففة:** التكلفة التي تتجنبها بإطالة عمر الأصل بدلاً من شراء بديل جديد.
+
+المعادلة البسيطة: **قرار الإطالة مجدٍ اقتصادياً حين: تكلفة الإطالة < تكلفة الشراء الجديد - القيمة المتبقية للجديد + تكلفة التخلص من القديم.**
+
+## 4. إعادة التدوير والاستدامة البيئية
+
+إعادة التدوير لم تعد خياراً أنيقاً بل التزاماً استراتيجياً:
+
+- **قوانين إدارة النفايات:** كثير من الدول تفرض متطلبات صارمة لإدارة التخلص من الأصول الصناعية.
+- **الشهادات البيئية:** إعادة التدوير تعزز شهادات مثل ISO 14001 وشهادات المباني الخضراء (Green Building).
+- **المسؤولية الاجتماعية:** إعادة التدوير تعكس التزام المنشأة بالاستدامة وتحسن الصورة العامة.
+- **الاقتصاد الدائري:** تحويل نفايات الأصل إلى موارد لمنشأة أخرى يقلل الاعتماد على المواد الأولية.
+
+<Callout type="example">
+**سيناريو:** مبنى مكاتب عمره 30 سنة قررت إدارته تجديد الواجهة. بدلاً من التخلص من الألواح الخرسانية القديمة، أعادوا تدويرها كمواد بناء لمشاريع البنية التحتية. التكلفة: 120,000 ريال. القيمة المتزامنة: تجنب رسوم التخلص 80,000 ريال + بيع فائض 45,000 ريال = صافي توفير 5,000 ريال مع فائدة بيئية كبيرة.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+The final stage of an asset's life cycle is not an end but a new beginning: either extending its life through renewal, or disposing of it in a way that respects the environment and recovers the greatest possible value. A wrong decision here means financial loss, environmental risk, or a legal obligation.
+
+## 1. When does an asset reach the end of its life?
+
+End-of-life is not necessarily the end of physical life. An asset reaches the end of its service life when:
+
+- **Economic decline:** its maintenance cost exceeds the value it produces.
+- **Technical obsolescence:** technology has advanced and the asset no longer meets modern requirements.
+- **Environmental risk:** the asset causes pollution or violates new environmental standards.
+- **Unavailability:** spare parts or technical support are no longer available.
+
+## 2. End-of-life options
+
+There is no single right option. The decision depends on a comprehensive assessment:
+
+- **Life extension:** renewing the asset by installing new components or performing a complete overhaul. Suitable when the basic structure is sound and the cost is lower than buying a new asset.
+- **Sale:** selling the asset on the secondary market. Suitable when it no longer meets your needs but is still serviceable for another facility.
+- **Recycling:** dismantling the asset and recovering recyclable materials such as metals and wiring. An environmental obligation in many countries.
+- **Scrapping:** final disposal in licensed landfills. The last resort when no other alternative is available.
+
+<Comparison
+  title="Comparing end-of-life options"
+  sides={[
+    { label: 'Life Extension', items: ['Renewal or a complete component overhaul', 'The basic structure is sound and the option is cheaper than buying new', 'Preserves the existing investment'], color: 'brand' },
+    { label: 'Sale', items: ['Disposal on the secondary market', 'Does not meet your need but is serviceable for another facility', 'Recovers part of the value immediately'], color: 'teal' },
+    { label: 'Recycling', items: ['Dismantling and recovering metals and wiring', 'A legal environmental obligation in many countries', 'Supports the circular economy and environmental certifications'], color: 'amber' },
+    { label: 'Scrapping', items: ['Final disposal in licensed landfills', 'The last resort when no alternatives exist', 'The highest environmental and regulatory responsibility'], color: 'rose' },
+  ]}
+  caption="There is no single right option — the decision is built on a comprehensive assessment: financial, technical, environmental, and regulatory."
+/>
+
+<Callout type="warn">
+**Caution:** disposing of assets without an environmental assessment may expose the facility to large legal fines and environmental liability that exceeds the cost of the asset itself. Environmental compliance is not an option but a legal obligation.
+</Callout>
+
+## 3. Residual value and financial assessment
+
+Residual value plays a central role in the disposal decision:
+
+- **Market value:** what the asset can be sold for in its current condition on the open market.
+- **Recycling value:** the monetary value of the metals and materials recovered from dismantling.
+- **Avoided cost:** the cost you avoid by extending the asset's life instead of buying a new replacement.
+
+The simple equation: **life extension is economically viable when: extension cost < cost of new purchase - residual value of the new asset + disposal cost of the old one.**
+
+## 4. Recycling and environmental sustainability
+
+Recycling is no longer a nice-to-have option but a strategic obligation:
+
+- **Waste management laws:** many countries impose strict requirements for managing the disposal of industrial assets.
+- **Environmental certifications:** recycling strengthens certifications such as ISO 14001 and green building certifications.
+- **Social responsibility:** recycling reflects the facility's commitment to sustainability and improves its public image.
+- **Circular economy:** turning the asset's waste into resources for another facility reduces reliance on raw materials.
+
+<Callout type="example">
+**Scenario:** the management of a 30-year-old office building decided to renovate the facade. Instead of disposing of the old concrete panels, they recycled them as construction material for infrastructure projects. Cost: SAR 120,000. The combined value: avoiding SAR 80,000 in disposal fees + SAR 45,000 from surplus sales = a net saving of SAR 5,000 with a significant environmental benefit.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: قائمة قرار التخلص
+
+أداة تفاعلية تساعدك على تقييم خيارات التعامل مع أصل في نهاية عمره. استعرض العوامل المالية والتقنية والبيئية واتخذ قراراً مدروساً.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Disposal Decision Checklist
+
+An interactive tool that helps you evaluate the end-of-life options for an asset. Review the financial, technical, and environmental factors and make a well-considered decision.
+
+</LangSection>
+
+<DisposalDecisionList client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-4-4-t1', 'cama-4-4-t2', 'cama-4-4-t3', 'cama-4-4-t4']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على تحديد نهاية العمر الاقتصادي، وخيارات التعامل مع نهاية العمر، والقيمة المتبقية، والاستدامة وإعادة التدوير.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on determining economic end-of-life, end-of-life options, residual value, and sustainability and recycling.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-4-4" questions={quizCama44.questions} client:load />
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **نهاية العمر الافتراضي** قد تكون اقتصادية أو تقنية أو بيئية أو مفاهيمية، وليست بالضرورة منتهية العمر الفيزيائي.
+- **الخيارات الأربعة:** الإطالة أو البيع أو إعادة التدوير أو التهديف، وتُختار بناءً على تقييم شامل.
+- **القيمة المتبقية** تلعب دوراً محورياً في قرار التخلص، ومعادلة المجدوية المالية بسيطة وعملية.
+- **إعادة التدوير** لم تعد خياراً بل التزام قانوني واستراتيجية جوهرية في عصر الاقتصاد الدائري.
+- **عدم الامتثال البيئي** قد يعرض المنشأة لغرامات تفوق تكلفة الأصل بكثير.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **End-of-life** may be economic, technical, environmental, or functional, and is not necessarily the end of physical life.
+- **The four options:** life extension, sale, recycling, or scrapping — chosen based on a comprehensive assessment.
+- **Residual value** plays a central role in the disposal decision, and the financial viability equation is simple and practical.
+- **Recycling** is no longer an option but a legal obligation and a core strategy in the era of the circular economy.
+- **Environmental non-compliance** may expose the facility to fines far exceeding the cost of the asset.
+
+</LangSection>

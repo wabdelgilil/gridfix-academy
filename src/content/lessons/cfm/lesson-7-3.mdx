@@ -1,0 +1,166 @@
+---
+id: lesson-7-3
+station: station-7
+number: "7.3"
+title: "جودة الهواء الداخلي IAQ"
+titleEn: "Indoor Air Quality (IAQ)"
+minutes: 20
+order: 3
+objectives:
+  - "أن يميز المتعلم جودة الهواء الداخلي (IAQ) عن جودة البيئة الأوسع (IEQ)."
+  - "أن يحدد ملوثات الهواء ومصادرها داخل المبنى."
+  - "أن يطبق استراتيجيات الموارد بين التهوية واختيار المواد والقياس."
+  - "أن يقرأ دور ASHRAE 62.1 في معدلات التهوية."
+objectivesEn:
+  - "Distinguish Indoor Air Quality (IAQ) from the broader Indoor Environmental Quality (IEQ)."
+  - "Identify indoor air pollutants and their sources."
+  - "Apply ventilation, material-selection, and monitoring strategies."
+  - "Understand the role of ASHRAE 62.1 in ventilation rates."
+hasTool: false
+quizId: quiz-7-3
+sources:
+  - ashrae
+  - ifma
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz73 } from '../../../data/quiz/cfm/quiz-7-3';
+
+<LangSection lang="ar">
+
+المساحة التي لا تُرى فيها تدخيناً لا تعني هواءً نقياً: الجزيئات والمركبات تتسلل من مواد البناء والتشغيل بصمت، ويحملها الشاغلون في حنجرتهم. جودة الهواء الداخلي (IAQ) علمُ قياسٍ وتهويةٍ يقرر صحة المكان قبل مظهره.
+
+## 1. IAQ عندما تكون جزءاً من IEQ
+
+جودة البيئة الداخلية (Indoor Environmental Quality, IEQ) تشمل الحرارة والضوء والصوت والهواء معاً (الدرس 4.3). أما **جودة الهواء الداخلي (Indoor Air Quality, IAQ)** فهي النطاق المحدد: نقاء هواء المبنى من الملوثات الكيميائية والبيولوجية والجسيمات، وكفاية التهوية في تخفيفها. كل IEQ مشكلة أركانها، وIAQ مركز هواها الخامس.
+
+## 2. ملوثات الهواء الداخلي ومصادرها
+
+تنقسم الملوثات حسب مصدرها، والمحور الأهم هو الداخلي:
+
+- **المركبات العضوية المتطايرة (Volatile Organic Compounds, VOC)**: تتبخر من الطلاءات واللاصقات والمواد والأثاث الجديد؛ مركبات منها الفورمالديهايد تثير العيون والجهاز التنفسي.
+- **الجسيمات (Particulate Matter, PM)**: غبار وألياف وصغيرات من أجهزة وتشغيل ونشاط.
+- **ثاني أكسيد الكربون (CO₂)**: مؤشر كفاية التهوية مع الإشغال (راجع القياس في 4.3).
+- **الرطوبة والعفن**: من تسربات وتكثف؛ بويضات بيولوجية تؤذي كل الحساسيين.
+- **دخان التبغ ومخلفات السخانات**: محصورة بسيطرة صارمة داخل المبنى المحيط.
+
+<Callout type="tip">
+**عن الأصل:** الأفضل ممارسة مزدوجة دائماً: منع الملوث من قبيل المصدر (مواد منخفضة الانبعاث)، ثم تخفيف ما تبقى بالتهوية. لا أحدهما يكفي وحده.
+</Callout>
+
+## 3. التهوية والمعيار المرجعي ASHRAE 62.1
+
+التهوية تنقل الهواء النقي وتخفف تركيزات الملوثات، والمعيار المرجعي الأشهر لها هو **ASHRAE 62.1** الذي يحدد معدلات أدنى للهواء الخارجي حسب نوع الفضاء وإشغاله. تذكير عملي من درس 4.3: ارتفاع ثاني أكسيد الكربون (CO₂) أثناء اجتماع مزدحم في غرفة قليلة التهوية دليل نقص تدفق — والعلاج ضبط التدفق لا إخفاء العارض.
+
+## 4. استراتيجيات الوقاية: مواد، فلترة، وتفجير
+
+1. **المواد منخفضة الانبعاث (Low-VOC)**: طلاءات وأرضيات وأثاث بأقل انبعاثات عند الشراء — قرار يسبق الإشغال.
+2. **الفلترة والتشغيل**: فلاتر بمستويات مناسبة وتغيير مجدول وتهوية حسب جدول الإشغال.
+3. **تفجير المبنى (Flush-Out)**: تهوية مكثفة بالهواء الخارجي قبل إشغال مبنى أو جناح جديد لمطاوحة انبعاثات المواد الجديدة.
+4. **الرصد التشغيلي**: قياسات دورية CO₂ والرطوبة وعلاج الشكاوى عبر نظام تذاكرها، فالجودة تتحقق على الدوام لا في يوم فحص.
+
+<Callout type="myth">
+**أسطورة:** «معطّر صناعي ينجح في إخفاء مصدر الروائح».
+**الحقيقة:** المعطّر يضيف ملوثات إلى هواء ملوث؛ الإخفاء الحسي لا يعالج السبب، والتشخيص الهندسي للتهوية والمصدر هو العلاج الحقيقي.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+A space where you see no smoking does not mean clean air: particles and compounds leak silently from building materials and operations, and occupants carry them in their throats. Indoor air quality (IAQ) is a science of measurement and ventilation that decides the health of a place before its appearance.
+
+## 1. IAQ as part of IEQ
+
+Indoor environmental quality (IEQ) covers heat, light, sound, and air together (lesson 4.3). **Indoor air quality (IAQ)** is the specific scope: the purity of a building's air from chemical, biological, and particulate pollutants, and the sufficiency of ventilation in diluting them. IEQ is composed of its pillars, and IAQ is the air at its center.
+
+## 2. Indoor air pollutants and their sources
+
+The pollutants divide by their source, and the most important axis is the indoor one:
+
+- **Volatile organic compounds (VOC)**: they evaporate from paints, adhesives, materials, and new furniture; some compounds among them, such as formaldehyde, irritate the eyes and the respiratory system.
+- **Particulate matter (PM)**: dust, fibers, and fine particles from equipment, operations, and activity.
+- **Carbon dioxide (CO₂)**: an indicator of ventilation sufficiency under occupancy (see the measurement in 4.3).
+- **Humidity and mold**: from leaks and condensation; biological spores that harm everyone with sensitivities.
+- **Tobacco smoke and combustion byproducts**: kept out by strict control within the building envelope.
+
+<Callout type="tip">
+**On the source:** the best practice is always dual: prevent the pollutant at the source (low-emission materials), then dilute what remains with ventilation. Neither alone is sufficient.
+</Callout>
+
+## 3. Ventilation and the reference standard ASHRAE 62.1
+
+Ventilation brings in fresh air and dilutes pollutant concentrations, and the best-known reference standard for it is **ASHRAE 62.1**, which sets minimum outdoor-air rates according to the space type and its occupancy. A practical reminder from lesson 4.3: rising carbon dioxide (CO₂) during a crowded meeting in a poorly ventilated room is evidence of insufficient airflow — and the cure is to adjust the airflow, not to mask the symptom.
+
+## 4. Prevention strategies: materials, filtration, and flush-out
+
+1. **Low-emission (low-VOC) materials**: paints, flooring, and furniture with the lowest emissions at purchase — a decision that precedes occupancy.
+2. **Filtration and operation**: filters at appropriate levels, scheduled replacement, and ventilation on the occupancy schedule.
+3. **Building flush-out**: intensive ventilation with outdoor air before occupying a new building or wing to outgas the emissions of new materials.
+4. **Operational monitoring**: periodic CO₂ and humidity measurements and handling complaints through a ticketing system — quality is achieved continuously, not on an inspection day.
+
+<Callout type="myth">
+**Myth:** "An air freshener succeeds in hiding the source of odors."
+**Fact:** The freshener adds pollutants to already polluted air; sensory masking does not cure the cause — engineering diagnosis of the ventilation and the source is the real treatment.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['iaq', 'voc', 'hvac']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على مصادر الملوثات، وقراءة مؤشر التهوية، واختيار المواد، وتفجير المبنى.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on pollutant sources, reading the ventilation indicator, material selection, and building flush-out.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-7-3" questions={quiz73.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **IAQ** نطاق محدد داخل IEQ: نقاء الهواء وكفاية التهوية لصحة الشاغلين.
+- **الملوثات الرئيسية**: مواد منبعثة (VOC)، جسيمات (PM)، ثاني أكسيد الكربون، رطوبة وعفن، ودخان.
+- **المعالجة المزدوجة**: مواد منخفضة الانبعاث من المصدر + تهوية مخففة — لا يكفي أحدهما.
+- **ASHRAE 62.1** يحدد معدلات التهوية، ويُقرأ القياس (CO₂، رطوبة) في ضوئها.
+- **التفجير (Flush-Out) قبل الإشغال والرصد الدوري بعده** يثبت أن الجودة ممارسة مستمرة لا يوم فحص.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **IAQ** is a specific scope within IEQ: air purity and adequate ventilation for occupant health.
+- **The main pollutants**: emitting materials (VOCs), particulate matter (PM), carbon dioxide, humidity and mold, and smoke.
+- **The dual treatment**: low-emission materials at the source + diluting ventilation — neither alone suffices.
+- **ASHRAE 62.1** sets the ventilation rates, and measurements (CO₂, humidity) are read in its light.
+- **Flush-out before occupancy and periodic monitoring afterward** prove that quality is a continuous practice, not an inspection-day event.
+
+</LangSection>

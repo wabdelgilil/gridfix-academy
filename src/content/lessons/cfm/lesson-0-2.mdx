@@ -1,0 +1,279 @@
+---
+id: lesson-0-2
+station: station-0
+number: "0.2"
+title: "شهادة CFM: الشروط والامتحان"
+titleEn: "CFM Credential: Requirements & Exam"
+minutes: 25
+order: 2
+objectives:
+  - "أن يشرح المتعلم خطة الأهلية الرسمية لشهادة CFM (الخيار الأول والثاني)."
+  - "أن يعدد مجالات الامتحان الإحدى عشر الأساسية."
+  - "أن يلخص هيكل الامتحان وخطوات التقديم والشرط الأخلاقي."
+  - "أن يشرح متطلبات التجديد وأهم الشهادات البديلة مثل FMP."
+objectivesEn:
+  - "Explain the official CFM eligibility paths (Option 1 and Option 2)."
+  - "List the 11 core competency domains of the exam."
+  - "Summarize the exam structure, application steps, and the ethics requirement."
+  - "Explain renewal requirements and alternative credentials such as the FMP."
+hasTool: true
+toolName: "حاسبة الأهلية"
+toolNameEn: "Eligibility Calculator"
+quizId: quiz-0-2
+sources:
+  - ifma
+  - ifma_handbook
+  - ifma_prospectus
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import EligibilityCalculator from '../../../components/islands/tools/cfm/EligibilityCalculator.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz02 } from '../../../data/quiz/cfm/quiz-0-2';
+
+<LangSection lang="ar">
+
+شهادة Certified Facility Manager (CFM) هي الشهادة الاحترافية الأعلى عالمياً في إدارة المنشآت، وتمنحها الرابطة الدولية للمحترفين ذوي خبرة فعلية يجتازون امتحاناً شاملاً. هذا الدرس يضع الخريطة الرسمية الكاملة: الأهلية، الهيكل، الخطوات، والتجديد.
+
+## 1. الأهلية (Eligibility): طريقان رسميان فقط
+
+وفق كتيب مرشح IFMA الرسمي، يجب استيفاء **أحد** الطريقين:
+
+| الخيار | التعليم المطلوب | خبرة العمل في إدارة المنشآت |
+| --- | --- | --- |
+| **الخيار الأول** | بكالوريوس أو ماجستير **في إدارة المنشآت** تحديداً | 3 سنوات |
+| **الخيار الثاني** | أي مستوى تعليمي آخر | 5 سنوات |
+
+قواعد دقيقة تُقيَّم عند **وقت تقديم الطلب**:
+
+- **التدريب الداخلي (Internship) لا يُحتسب** ضمن خبرة العمل.
+- الخبرة تُقاس «في معظم مجالات» الـ FM لا في نشاط واحد.
+- **عضوية IFMA اختيارية** تماماً ولا تؤثر على الأهلية.
+- الخيار الأول يتطلب درجة في إدارة المنشآت تحديداً؛ فدرجة هندسية أخرى تُقيَّم خبرتك تحت الخيار الثاني.
+
+## 2. هيكل الامتحان (الأرقام الرسمية)
+
+- **العدد**: 120 سؤالاً من ثلاثة خيارات، منها **100 سؤال محسوب** و**20 سؤالاً تجريبياً (Pretest)** لا تحسب على النتيجة.
+- **الترتيب**: أسئلة عشوائية بدون أقسام ثابتة، وكل سؤال له إجابة واحدة صحيحة.
+- **النظام**: اختبار محوسب (CBT) في مراكز **Prometric** المعتمدة، ونتيجته نجاح/رسوب (Pass/Fail).
+- **المدة**: يُحددها كتيب المرشح حسب جولات التقديم.
+
+### المجالات الإحدى عشر (11 Competencies)
+
+1. الاتصال — Communication
+2. الاستعداد للطوارئ واستمرارية الأعمال — Emergency Preparedness & Business Continuity
+3. الاستدامة البيئية — Environmental Stewardship & Sustainability
+4. الماليات والأعمال — Finance & Business
+5. العوامل البشرية — Human Factors
+6. القيادة والاستراتيجية — Leadership & Strategy
+7. التشغيل والصيانة — Operations & Maintenance
+8. إدارة المشاريع — Project Management
+9. الجودة — Quality
+10. العقارات والممتلكات — Real Estate & Property Management
+11. التقنية — Technology
+
+الأثقل وزناً في مواصفات IFMA هما **Leadership & Strategy** ثم **Operations & Maintenance**، وهما المقابلات الأضخم في هذا المنهج.
+
+## 3. الخطوات الرسمية للتقديم
+
+1. **التحقق من الأهلية** — استيفاء أحد الخيارين أعلاه (التدريب الداخلي لا يُحتسب).
+2. **التجهيز** — التحضير اختياري: ورش إعداد، اختبارات تجريبية، وتقييم ذاتي من دليل الإعداد الرسمي.
+3. **تقديم الطلب** — عبر منصة CAMP الخاصة بـ IFMA مع دفع الرسوم.
+4. **الحجز والامتحان** — بعد الموافقة تُحجز الجلسة في مركز Prometric.
+
+<FlowChart
+  title="الخطوات الرسمية للتقديم على شهادة CFM"
+  steps={[
+    { title: 'التحقق من الأهلية', detail: 'استيفاء أحد الخيارين الرسميين: بكالوريوس FM مع 3 سنوات، أو أي تعليم مع 5 سنوات — والتدريب الداخلي لا يُحتسب', type: 'start' },
+    { title: 'التجهيز', detail: 'خطوة اختيارية: ورش إعداد واختبارات تجريبية وتقييم ذاتي من دليل الإعداد الرسمي' },
+    { title: 'تقديم الطلب', detail: 'عبر منصة CAMP الخاصة بـ IFMA مع دفع الرسوم' },
+    { title: 'الحجز والامتحان', detail: 'بعد الموافقة تُحجز الجلسة في مركز Prometric المعتمد', type: 'end' },
+  ]}
+  caption="بعد النجاح يتحرك عدّاد الالتزامات الأخلاقية؛ فقد الموافقة مهلة محددة لحجز الجلسة"
+/>
+
+بعد الموافقة هناك مهلة محددة لحجز الجلسة، وبعد النجاح يتحرك عدّاد الالتزامات الأخلاقية — لا تصحي عن أي خطوة.
+
+## 4. بعد النجاح: الشرط الأخلاقي والتجديد
+
+- **تقييم الأخلاقيات (Ethics)**: إلزامي — إتمام تقييم IFMA أو مقرر معتمد **خلال 30 يوماً** من النجاح.
+- **صلاحية الشهادة**: **3 سنوات**، تُجدَّد بأنشطة معتمدة (تعليم في FM، ممارسة مهنية، قيادة مهنية، وتطوير مهني).
+- **إعادة تقييم الأخلاقيات**: كل دورة تجديد ثانية، أي **كل 6 سنوات**.
+- **الشارة الرقمية (Digital Badge)**: أداة تحقق رسمية عند أصحاب العمل.
+
+<Callout type="myth">
+**أسطورة:** "شهادة CFM تُكتسب بإنهاء مقرر دراسي."
+**الحقيقة:** لا يُشترط أي مقرر إلزامي؛ الأهلية من **الخبرة + التعليم** ثم اجتياز الامتحان، ومقررات التحضير اختيارية.
+</Callout>
+
+## 5. الشهادات البديلة قبل CFM
+
+- **FMP**: مستوى تأسيسي في 4 مجالات، مناسب لمن يملك خبرة فعلية ويعيد بناء أساسه.
+- **SFP**: متخصص في الاستدامة لمن كان تركيزه بيئياً.
+
+مسار شائع لدى كثيرين: FMP أولاً ثم CFM لاحقاً.
+
+</LangSection>
+
+<LangSection lang="en">
+
+The Certified Facility Manager (CFM) credential is the highest professional certification in facility management worldwide, awarded by the international association to professionals with real experience who pass a comprehensive exam. This lesson lays out the complete official roadmap: eligibility, structure, steps, and renewal.
+
+## 1. Eligibility: two official paths only
+
+According to the official IFMA candidate handbook, **one** of the two paths must be satisfied:
+
+| Option | Required education | FM work experience |
+| --- | --- | --- |
+| **Option 1** | Bachelor's or master's degree **specifically in facility management** | 3 years |
+| **Option 2** | Any other education level | 5 years |
+
+Precise rules are assessed at the **time of application**:
+
+- **Internships do not count** toward work experience.
+- Experience is measured "across most areas" of FM, not within a single activity.
+- **IFMA membership is entirely optional** and does not affect eligibility.
+- Option 1 requires a facility management degree specifically; another engineering degree means your experience is assessed under Option 2.
+
+## 2. Exam structure (official figures)
+
+- **Count**: 120 questions with three choices each, of which **100 are scored** and **20 are pretest questions** that do not count toward the result.
+- **Order**: random question order with no fixed sections, and each question has one correct answer.
+- **Delivery**: computer-based testing (CBT) at authorized **Prometric** centers, with a pass/fail result.
+- **Duration**: set by the candidate handbook per application cycle.
+
+### The eleven competencies
+
+1. Communication
+2. Emergency Preparedness & Business Continuity
+3. Environmental Stewardship & Sustainability
+4. Finance & Business
+5. Human Factors
+6. Leadership & Strategy
+7. Operations & Maintenance
+8. Project Management
+9. Quality
+10. Real Estate & Property Management
+11. Technology
+
+The two heaviest in the IFMA specification are **Leadership & Strategy** followed by **Operations & Maintenance**, and they receive the largest coverage in this curriculum.
+
+## 3. Official application steps
+
+1. **Verify eligibility** — satisfy one of the two options above (internships are not counted).
+2. **Prepare** — optional preparation: prep workshops, practice exams, and a self-assessment from the official preparation guide.
+3. **Submit the application** — through the IFMA CAMP platform with the fee.
+4. **Schedule and take the exam** — after approval, the session is booked at a Prometric center.
+
+<FlowChart
+  title="Official application steps for the CFM credential"
+  steps={[
+    { title: 'Verify eligibility', detail: 'Meet one of the two official paths: an FM degree plus 3 years, or any education plus 5 years — internships are not counted', type: 'start' },
+    { title: 'Prepare', detail: 'An optional step: prep workshops, practice exams, and a self-assessment from the official preparation guide' },
+    { title: 'Submit the application', detail: 'Through the IFMA CAMP platform with the fee' },
+    { title: 'Schedule and take the exam', detail: 'After approval, the session is booked at an authorized Prometric center', type: 'end' },
+  ]}
+  caption="After passing, the ethics obligations counter starts; approval carries a limited window for booking the session"
+/>
+
+After approval there is a limited window to book the session, and after passing the ethics obligations counter starts — do not underestimate any step.
+
+## 4. After passing: the ethics requirement and renewal
+
+- **Ethics assessment**: mandatory — complete the IFMA assessment or an approved course **within 30 days** of passing.
+- **Credential validity**: **3 years**, renewed through approved activities (FM education, professional practice, professional leadership, and professional development).
+- **Ethics reassessment**: every second renewal cycle, that is, **every 6 years**.
+- **Digital Badge**: an official verification tool for employers.
+
+<Callout type="myth">
+**Myth:** "A CFM credential is earned by finishing a course."
+**Fact:** no course is mandatory; eligibility comes from **experience + education**, then passing the exam, and preparation courses are optional.
+</Callout>
+
+## 5. Alternative credentials before CFM
+
+- **FMP**: a foundation-level credential across 4 domains, suitable for those with real experience rebuilding their base.
+- **SFP**: a sustainability specialist for those with an environmental focus.
+
+A path common among many: FMP first, then CFM later.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: حاسبة الأهلية
+
+أدخل تعليمك الحالي وخبرتك بالأشهر لتتأكد من حالتك أمام متطلبات الخيارين الرسميين.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Eligibility Calculator
+
+Enter your current education and your experience in months to check where you stand against the two official eligibility paths.
+
+</LangSection>
+
+<EligibilityCalculator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cfm', 'ifma', 'fmp', 'eligibility', 'prometric', 'oandm']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة بنمط كتيب المرشح على الأهلية والهيكل والشرط الأخلاقي والتجديد.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions in the candidate handbook style covering eligibility, structure, the ethics requirement, and renewal.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-0-2" questions={quiz02.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **CFM** = خبرة + تعليم + امتحان شامل بتوقيت تقديم، وبدون مقرر إلزامي.
+- **الأهلية**: 3 سنوات بدرجة FM، أو **5 سنوات بأي تعليم** — والتدريب الداخلي لا يُحتسب.
+- **الامتحان**: 120 سؤالاً (100 محسوب + 20 تجريبياً) بثلاثة خيارات، محوسب في Prometric بنتيجة نجاح/رسوب.
+- **أثقل المجالات**: Leadership & Strategy، ثم Operations & Maintenance.
+- **بعد النجاح**: 30 يوماً للشرط الأخلاقي، تجديد كل 3 سنوات، وإعادة الأخلاقيات كل 6 سنوات.
+- **للبداية**: شهادة FMP التأسيسية ثم CFM.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **CFM** = experience + education + a comprehensive exam at application time, with no mandatory course.
+- **Eligibility**: 3 years with an FM degree, or **5 years with any education** — internships are not counted.
+- **The exam**: 120 questions (100 scored + 20 pretest) with three choices each, computer-based at Prometric, with a pass/fail result.
+- **Heaviest domains**: Leadership & Strategy, then Operations & Maintenance.
+- **After passing**: 30 days for the ethics requirement, renewal every 3 years, and ethics reassessment every 6 years.
+- **To start**: the foundation-level FMP credential, then CFM.
+
+</LangSection>

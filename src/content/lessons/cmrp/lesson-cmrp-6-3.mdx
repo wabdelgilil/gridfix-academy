@@ -1,0 +1,232 @@
+---
+id: lesson-cmrp-6-3
+course: cmrp
+station: station-cmrp-6
+number: "6.3"
+title: "إدارة مخاطر السلامة والصحة والبيئة ونظام إدارة التغيير MOC"
+titleEn: "EHS Risk Management & Management of Change"
+minutes: 30
+order: 3
+objectives:
+  - "أن يطبق المتعلم تسلسل السيطرة على المخاطر (Hierarchy of Controls) بمستوياته الخمسة."
+  - "أن يحسب درجة الخطر بمعادلة الاحتمال × الشدة ويصنفها وفق مبدأ ALARP."
+  - "أن يفرق بين الاستبدال المطابق (RIK) والتعديل المستلزم لدورة MOC كاملة."
+  - "أن يطبق قواعد عزل الطاقة (LOTO) وتصريح العمل (PTW) وتحليل سلامة العمل (JSA)."
+objectivesEn:
+  - "Apply the five-tier Hierarchy of Controls."
+  - "Compute risk as likelihood times severity and classify it under ALARP."
+  - "Distinguish Replacement in Kind from changes requiring full MOC."
+  - "Apply LOTO, Permit to Work, and Job Safety Analysis rules."
+hasTool: true
+toolName: "أداة تقييم مخاطر MOC"
+toolNameEn: "MOC Risk Assessment"
+quizId: quiz-cmrp-6-3
+sources:
+  - iso_45001_cmrp
+  - ccps_moc
+  - osha_psm
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import MocRiskTool from '../../../components/islands/tools/cmrp/MocRiskTool.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp63 } from '../../../data/quiz/cmrp/quiz-cmrp-6-3';
+
+<LangSection lang="ar">
+
+موثوقية الأصول هي خط الدفاع الأول عن الأرواح والبيئة: صمام أمان مهمل أو تعديل ميداني مستعجل قد يتحول إلى انفجار يدمر المصنع. هذا الدرس يضعك أمام مسؤوليتك الأخطر — كيف تسيطر على الخطر من قمته لا من قاعه، وكيف تحكم أي تغيير قبل أن يتحول إلى كارثة.
+
+## 1. تسلسل السيطرة على المخاطر (Hierarchy of Controls)
+
+تسلسل السيطرة على المخاطر (Hierarchy of Controls) هو الترتيب المعتمد في ISO 45001 من الأكثر فاعلية إلى الأقل، والخطأ الأشهر هو البدء من القاع بتوزيع مهمات الوقاية:
+
+- **الإزالة (Elimination):** إلغاء مصدر الخطر تماماً، كأتمتة تنظيف الخزانات بالروبوت لمنع دخول البشر للأماكن المغلقة — فاعلية كاملة.
+- **الاستبدال (Substitution):** استبدال المادة الخطرة ببديل آمن، كمذيب مائي حيوي بدل المذيب الكلوري السام — عالي الفاعلية.
+- **التحكم الهندسي (Engineering Controls):** عزل الخطر بحواجز فيزيائية، كحواجز السيور والمفاتيح المتشابكة وشفاطات التهوية الموضعية — حل مستدام.
+- **التحكم الإداري (Administrative Controls):** تغيير سلوك العمل، كتصاريح العمل والتدريب وتدوير الفنيين — يعتمد على الالتزام.
+- **مهمات الوقاية الشخصية (PPE):** الخوذة والنظارات وأقنعة التنفس — خط الدفاع الأخير الذي لا يلغي الخطر بل يخفف الإصابة فقط.
+
+<Callout type="warn">
+**مفهوم خاطئ:** «توزيع أقنعة التنفس هو الحل الأسرع والأرخص لأبخرة المذيبات.»
+**الحقيقة:** القناع قاع الهرم وأضعف خطوط الدفاع؛ ابدأ باستبدال المذيب السام بمنظف آمن أو تركيب كابينة شفط مغلقة، ولا تلجأ للوقاية الشخصية إلا حلاً مؤقتاً أو أخيراً.
+</Callout>
+
+## 2. مصفوفة تقييم المخاطر ومبدأ ALARP
+
+درجة الخطر = احتمالية الحدوث (Likelihood) × شدة العواقب (Severity). وحتى الاحتمالية المنخفضة مع عواقب كارثية — كتسرب غاز من مانع تسرب مضخة وقود يحدث مرة كل 5 سنوات لكنه يسبب انفجاراً — تصنف خطراً حرجاً أحمر لا يقبل التشغيل حتى الانهيار، بل يستلزم تحكماً هندسياً صارماً كمانع مزدوج ومراقبة آلية وتفتيش تنبؤي.
+
+مبدأ ALARP (أقل مستوى ممكن عملياً) يحكم إدارة الخطر المتوسط: تخفض الخطر إلى أدنى حد ممكن عملياً، ولا تقبل أبداً خطراً يهدد الأرواح. والنتيجة ثلاث مناطق: منخفض مقبول يدار بالإجراءات القياسية، ومتوسط يدار بالتفتيش التنبؤي وتحليل سلامة العمل وعزل الطاقة، وحرج يحظر التشغيل حتى التحكم الهندسي.
+
+## 3. نظام إدارة التغيير (MOC) وإدارة سلامة العمليات (PSM)
+
+إدارة التغيير (Management of Change) إجراء إلزامي بموجب OSHA 1910.119 لمنع كوارث نشأت تاريخياً عن تعديلات حسنة النية دون دراسة — ويفرق بين حالتين:
+
+- **الاستبدال المطابق للأصل (Replacement in Kind):** قطعة تطابق التصميم الأصلي 100% في الخامة والأبعاد والضغط والقدرة — لا يحتاج دورة MOC ويُغلق بأمر شغل عادي.
+- **التعديل الهندسي أو التشغيلي:** أي اختلاف في نوع الصمام أو الخامة أو سعة المحرك أو مسار المواسير أو منطق التحكم — محظور دون دورة MOC: مراجعة هندسية وتوافق المواد، وتقييم مخاطر السلامة، واعتماد الإدارات، وتحديث مخططات P&ID، وتدريب الطاقم.
+
+<FlowChart
+  title="شجرة قرار نظام إدارة التغيير (MOC)"
+  steps={[
+    { type: 'start', title: 'تغيير مقترح على الأصل', detail: 'قطعة جديدة، أو تعديل هندسي، أو تغيير تشغيلي.', icon: '🔧' },
+    { type: 'decision', title: 'هل يطابق التصميم الأصلي 100%؟', detail: 'استبدال مطابق في الخامة والأبعاد والضغط والقدرة (Replacement in Kind).', icon: '❓' },
+    { type: 'step', title: 'نعم — أمر عمل عادي', detail: 'استبدال مطابق لا يحتاج دورة MOC ويُغلق بأمر شغل عادي.', icon: '✅' },
+    { type: 'step', title: 'لا — دورة MOC كاملة', detail: 'مراجعة هندسية وتوافق المواد، تقييم مخاطر السلامة، اعتماد الإدارات، تحديث مخططات P&ID، وتدريب الطاقم.', icon: '📋' },
+    { type: 'end', title: 'التنفيذ دون الدورة محظور', detail: 'التعديلات الحسنة النية دون دراسة كانت مصدر كوارث تاريخية بموجب OSHA 1910.119.', icon: '⚠️' },
+  ]}
+  caption="أي اختلاف في النوع أو الخامة أو السعة أو المسار أو منطق التحكم يستلزم دورة MOC كاملة قبل التنفيذ."
+/>
+
+إدارة سلامة العمليات (Process Safety Management) هي الإطار الأشمل لمنع الانبعاثات الكارثية للمواد السامة وسريعة الاشتعال، ومهندس الموثوقية ركيزة فيه عبر سلامة الأوعية والمواسير وصمامات الأمان.
+
+<Callout type="tip">
+**قاعدة الصمام:** استبدال صمام كروي تالف بصمام فراشة متاح «بنفس القطر» ليس استبدالاً مطابقاً — النوع والتدفق ومقاومة الضغط والتسريب مختلفة، وأي تركيب تجريبي على خط أمونيا مخاطرة مميتة. افتح طلب MOC أولاً.
+</Callout>
+
+## 4. عزل الطاقة (LOTO) وتصريح العمل (PTW) وتحليل سلامة العمل (JSA)
+
+تحليل سلامة العمل (Job Safety Analysis) تفكيك المهمة إلى خطوات وتحديد مخاطر كل خطوة ووضع ضوابطها قبل البدء، ومن أهم ضوابطه عزل الطاقة. وقواعد عزل الطاقة (Lockout Tagout) صارمة بلا تهاون:
+
+- **قفل لكل فرد:** كل فني يضع قفله الشخصي بمفتاحه الخاص، ولا ينزع أحد قفل غيره إلا بإجراء طوارئ معتمد.
+- **تفريغ الطاقة الكامنة:** فصل الكهرباء لا يكفي — تنفيس الهيدروليك والهواء، وتفريغ المكثفات، وتثبيت الأوزان المرفوعة.
+- **التحقق والتجربة:** محاولة التشغيل للتأكد من عدم الاستجابة وقياس انعدام الجهد قبل اللمس (Test before Touch)، وربط إغلاق أمر الشغل بتصريح العمل المعتمد.
+
+الاعتماد على كلام شفهي بأن القاطع مفصول — كما في مأساة لوحة 11kV — مخالفة قاتلة؛ والعقاب الفردي دون إصلاح النظام يضمن تكرار الحادث.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Asset reliability is the first line of defense for lives and the environment: a neglected safety valve or a hasty field modification can turn into an explosion that destroys the plant. This lesson places you in front of your gravest responsibility — how you control a hazard from its summit rather than its base, and how you govern any change before it becomes a catastrophe.
+
+## 1. The Hierarchy of Controls
+
+The Hierarchy of Controls is the order adopted in ISO 45001, from most effective to least effective, and the most famous mistake is starting from the bottom by handing out protective equipment:
+
+- **Elimination**: removing the hazard source entirely, such as automating tank cleaning with robots to keep people out of confined spaces — full effectiveness.
+- **Substitution**: replacing the hazardous substance with a safe alternative, such as a bio water-based solvent instead of the toxic chlorinated one — high effectiveness.
+- **Engineering controls**: isolating the hazard with physical barriers, such as belt guards, interlocked switches, and local exhaust hoods — a sustainable solution.
+- **Administrative controls**: changing work behavior, such as work permits, training, and technician rotation — depends on compliance.
+- **Personal Protective Equipment (PPE)**: helmets, goggles, and respirators — the last line of defense, which does not eliminate the hazard but only reduces the injury.
+
+<Callout type="warn">
+**Misconception:** "Handing out respirators is the fastest and cheapest solution for solvent vapors."
+**Fact:** the mask is the base of the pyramid and the weakest line of defense; start by replacing the toxic solvent with a safe cleaner or installing an enclosed extraction booth, and resort to PPE only as a temporary or final solution.
+</Callout>
+
+## 2. The risk assessment matrix and the ALARP principle
+
+Risk score = Likelihood × Severity. Even low likelihood combined with catastrophic consequences — such as a gas leak from a fuel pump mechanical seal that happens once every 5 years but causes an explosion — is classified as a critical red risk that does not tolerate run-to-failure; it requires strict engineering control such as a double seal, automatic monitoring, and predictive inspection.
+
+The ALARP principle (As Low As Reasonably Practicable) governs medium-risk management: you lower the risk to the lowest level reasonably practicable, and you never accept a risk that threatens lives. The result is three zones: low and acceptable, managed with standard procedures; medium, managed with predictive inspection, job safety analysis, and energy isolation; and critical, where operation is prohibited until engineering control is in place.
+
+## 3. Management of Change (MOC) and Process Safety Management (PSM)
+
+Management of Change (MOC) is a mandatory procedure under OSHA 1910.119 to prevent disasters historically caused by well-intentioned modifications made without study — and it distinguishes two cases:
+
+- **Replacement in Kind**: a part that matches the original design 100% in material, dimensions, pressure, and capacity — it needs no MOC cycle and is closed with a normal work order.
+- **An engineering or operational modification**: any difference in valve type, material, motor capacity, piping route, or control logic — prohibited without a full MOC cycle: engineering review and materials compatibility, safety risk assessment, departmental approval, updating P&ID drawings, and staff training.
+
+<FlowChart
+  title="The Management of Change (MOC) decision tree"
+  steps={[
+    { type: 'start', title: 'Proposed change to the asset', detail: 'A new part, an engineering modification, or an operational change.', icon: '🔧' },
+    { type: 'decision', title: 'Does it match the original design 100%?', detail: 'A matching replacement in material, dimensions, pressure, and capacity (Replacement in Kind).', icon: '❓' },
+    { type: 'step', title: 'Yes — a normal work order', detail: 'A matching replacement needs no MOC cycle and is closed with a normal work order.', icon: '✅' },
+    { type: 'step', title: 'No — a full MOC cycle', detail: 'Engineering review and materials compatibility, safety risk assessment, departmental approval, updating P&ID drawings, and staff training.', icon: '📋' },
+    { type: 'end', title: 'Execution without the cycle is prohibited', detail: 'Well-intentioned modifications made without study were the source of historical disasters under OSHA 1910.119.', icon: '⚠️' },
+  ]}
+  caption="Any difference in type, material, capacity, route, or control logic requires a full MOC cycle before execution."
+/>
+
+Process Safety Management (PSM) is the broader framework for preventing catastrophic releases of toxic and highly flammable substances, and the reliability engineer is a pillar within it through the integrity of vessels, piping, and relief valves.
+
+<Callout type="tip">
+**The valve rule:** replacing a failed ball valve with an available butterfly valve "of the same diameter" is not a matching replacement — type, flow, pressure resistance, and leakage differ, and any trial installation on an ammonia line is a deadly risk. Open an MOC request first.
+</Callout>
+
+## 4. Lockout/Tagout (LOTO), Permit to Work (PTW), and Job Safety Analysis (JSA)
+
+Job Safety Analysis breaks the task into steps, identifies the hazards of each step, and sets their controls before starting; one of its most important controls is energy isolation. Lockout/Tagout (LOTO) rules are strict with zero tolerance:
+
+- **One lock per person**: every technician applies their personal lock with their own key, and no one removes another person's lock except through an approved emergency procedure.
+- **Draining residual energy**: disconnecting electricity is not enough — vent hydraulics and air, drain capacitors, and secure suspended loads.
+- **Verification and testing**: attempt a start to confirm no response, and verify zero voltage before touching (Test before Touch), tying work order closure to the approved work permit.
+
+Relying on a verbal assurance that the breaker is open — as in the 11kV panel tragedy — is a fatal violation; and punishing individuals without fixing the system guarantees the incident will recur.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: أداة تقييم مخاطر MOC
+
+اختر الشدة والاحتمال لترى درجة الخطر ومستواها، ثم ضع علامة على بنود التغيير لتعرف هل أمامك استبدال مطابق أم تعديل معتمد أم تغيير محظور التنفيذ.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: MOC Risk Assessment
+
+Pick the severity and likelihood to see the risk score and its level, then check the change items to know whether you face a match-in-kind replacement, an approved modification, or a change prohibited from execution.
+
+</LangSection>
+
+<MocRiskTool client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-6-3-t1', 'cmrp-6-3-t2', 'cmrp-6-3-t3', 'cmrp-6-3-t4', 'cmrp-6-3-t5', 'cmrp-6-3-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على استبدال الصمام، وترتيب هرم السيطرة، وتصنيف خطر التسرب الغازي، ودرس مأساة عزل الطاقة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on valve replacement, the hierarchy of controls, classifying gas-leak risk, and the lesson of the energy isolation tragedy.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-6-3" questions={quizCmrp63.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **هرم السيطرة** خمسة مستويات من القمة: إزالة، استبدال، تحكم هندسي، تحكم إداري، وقاية شخصية في القاع كخط أخير.
+- **الخطر** = الاحتمال × الشدة؛ والعواقب الكارثية حمراء حرجة مهما انخفض الاحتمال، والمتوسط يدار بمبدأ ALARP.
+- **MOC** يفرق بين المطابق للأصل (بلا دورة) وأي اختلاف في الخامة أو النوع أو البرمجة (دورة كاملة بمراجعة واعتماد وتوثيق وتدريب).
+- **LOTO** قفل لكل فرد وتفريغ الكامن والتحقق قبل اللمس، مسنوداً بتحليل سلامة العمل وتصريح معتمد — والشفهيات في الكهرباء قاتلة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The Hierarchy of Controls** has five levels from the top: elimination, substitution, engineering controls, administrative controls, and PPE at the base as the last line.
+- **Risk** = likelihood × severity; catastrophic consequences are critically red however low the likelihood, and medium risk is managed under the ALARP principle.
+- **MOC** distinguishes a match-in-kind replacement (no cycle) from any difference in material, type, or logic (a full cycle of review, approval, documentation, and training).
+- **LOTO**: one lock per person, draining residual energy, and verification before touch, supported by Job Safety Analysis and an approved permit — verbal assurances in electrical work are deadly.
+
+</LangSection>

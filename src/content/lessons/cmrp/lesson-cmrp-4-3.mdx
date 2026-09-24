@@ -1,0 +1,176 @@
+---
+id: lesson-cmrp-4-3
+course: cmrp
+station: station-cmrp-4
+number: "4.3"
+title: "التخطيط الاحترافي وإعداد حزمة العمل (Job Package)"
+titleEn: "Maintenance Planning & The Job Package"
+minutes: 35
+order: 3
+objectives:
+  - "أن يشرح المتعلم دور المخطط كمهندس للأعمال المستقبلية وحدود وقته."
+  - "أن يعدد المكونات الستة الإلزامية لحزمة العمل المخططة."
+  - "أن يبين دور تجميع قطع الغيار المسبق في حماية إنتاجية الفنيين."
+  - "أن يطبق قاعدة منع جدولة أي عمل غير مكتمل الجاهزية."
+objectivesEn:
+  - "Describe the planner role as architect of future work and its time boundaries."
+  - "List the six mandatory components of a planned job package."
+  - "Show how advance parts kitting protects technician productivity."
+  - "Apply the rule against scheduling work that is not fully ready."
+hasTool: true
+toolName: "باني حزمة العمل"
+toolNameEn: "Job Package Builder"
+quizId: quiz-cmrp-4-3
+sources:
+  - palmer
+  - smith_rules
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import JobPackageBuilder from '../../../components/islands/tools/cmrp/JobPackageBuilder.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp43 } from '../../../data/quiz/cmrp/quiz-cmrp-4-3';
+
+<LangSection lang="ar">
+
+تثبت دراسات SMRP أن الفني في بيئة غير مخططة يقضي 25% إلى 35% فقط من يومه في عمل مباشر على المعدة، والباقي يضيع في البحث عن الأدوات وانتظار القطع والتصاريح. التخطيط الاحترافي هو الرافعة التي ترفع هذه النسبة فوق 55% بإزالة كل عائق قبل نزول الفريق إلى الموقع.
+
+## 1. فلسفة التخطيط: المخطط مهندس المستقبل
+
+المخطط المحترف يخصص 80% إلى 90% من وقته لأعمال الأسبوع القادم وما بعده: ما المشكلة تحديدا، وكيف نحلها بأمان وبجودة من أول مرة. فإذا غرق المخطط في إطفاء حرائق اليوم وتوزيع العدد والرد على النداءات اللحظية، توقف تدفق الأعمال المخططة وعاد المصنع إلى التفاعلية المزمنة.
+
+<Callout type="warn">
+**القاعدة الذهبية للتخطيط:** لا ترسل فنيين إلى الموقع ليفكروا في طريقة الفك أو ليبحثوا عن القطع؛ كل ذلك يجب أن يكون محلولا ومكتوبا ومحجوزا مسبقا داخل حزمة العمل.
+</Callout>
+
+## 2. المكونات الستة لحزمة العمل المخططة
+
+لينال أمر الشغل صفة جاهز للجدولة (RTS) يجب أن تضم حزمة العمل (Job Package) ستة عناصر:
+
+1. **إجراءات العمل القياسية (SOPs):** خطوات دقيقة تشمل الخلوصات ومعايير القبول، فتقضي على التباين بين الفنيين وتمنع الأعطال المبكرة الناتجة عن أخطاء التركيب.
+2. **خطة السلامة والتصاريح (LOTO / PTW):** نقاط عزل الطاقة وتصاريح العمل الساخن والأماكن المغلقة معدة قبل تحرك الفريق.
+3. **تجميع قطع الغيار (Parts Kitting):** كل القطع محجوزة ومجمعة فعليا في صندوق المهمة بالمستودع ومحرزة فلا تصرف لعمل آخر بالخطأ.
+4. **الأدوات الخاصة ومعدات الرفع:** المحاذاة بالليزر ومفاتيح العزم المعايرة والأوناش محجوزة مسبقا فلا يتوقف العمل بانتظار معدة.
+5. **تقدير ساعات العمالة والتخصصات:** عدد الفنيين وساعات كل تخصص (ميكانيكا وكهرباء وأجهزة) بدقة لتوازن الجدول.
+6. **الرسومات والمخططات الهندسية:** رسومات التجميع المقطعية ومخططات التوصيل وجداول عزوم الربط مرفقة بالأمر.
+
+## 3. قاعدة الجاهزية قبل الجدولة
+
+القاعدة الحتمية: يحظر جدولة أي أمر شغل لم تكتمل حزمته ولم تصل قطعه إلى المستودع. إرسال فنيين إلى معدة مفتوحة ثم اكتشاف غياب القطع يعني معدات متوقفة دون جدوى وساعات مهدرة كان يمكن تجنبها بقرار مكتبي واحد.
+
+ودقة تقدير الساعات عمود الجدولة الفقري: تقدير خاطئ يعني إما تكدسا يربك تسليم المعدات للإنتاج، أو فراغا مقنعا يخفي بطالة الفنيين. لذا يراجع انحراف التخطيط دوريا لتحديث مكتبة الأوقات المعيارية في نظام CMMS.
+
+<Callout type="tip">
+**للامتحان:** حزمة العمل الكاملة تجيب عن كل ما قد يوقف الفني ميدانيا: ماذا أفعل، بأي خطوات، بأي قطع، بأي أدوات، بأي تصاريح، وكم ساعة أحتاج.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+SMRP studies prove that a technician in an unplanned environment spends only 25% to 35% of his day in direct work on the asset; the rest is lost searching for tools and waiting for parts and permits. Professional planning is the lever that raises this ratio above 55% by removing every obstacle before the team goes down to the site.
+
+## 1. The philosophy of planning: the planner as engineer of the future
+
+The professional planner allocates 80% to 90% of his time to next week's work and beyond: what the problem is exactly, and how to solve it safely and with quality the first time. If the planner drowns in putting out today's fires, distributing headcount, and answering momentary calls, the flow of planned work stops and the plant returns to chronic reactivity.
+
+<Callout type="warn">
+**The golden rule of planning:** do not send technicians to the site to figure out the disassembly method or to search for parts; all of that must be resolved, written, and reserved in advance inside the work package.
+</Callout>
+
+## 2. The six components of the planned job package
+
+For a work order to earn the Ready to Schedule (RTS) status, the work package (Job Package) must include six elements:
+
+1. **Standard Operating Procedures (SOPs):** precise steps including clearances and acceptance criteria, eliminating variation among technicians and preventing early failures caused by installation errors.
+2. **Safety plan and permits (LOTO / PTW):** energy isolation points and hot-work and confined-space permits prepared before the team moves.
+3. **Parts Kitting:** all parts reserved and actually gathered into the job's container in the warehouse and earmarked so they cannot be erroneously issued to another job.
+4. **Special tools and lifting equipment:** laser alignment, calibrated torque wrenches, and cranes reserved in advance so work does not stop waiting for equipment.
+5. **Labor hour and craft estimates:** the number of technicians and the hours of each craft (mechanics, electricians, and instruments) accurately, to balance the schedule.
+6. **Drawings and engineering diagrams:** cross-section assembly drawings, wiring diagrams, and bolt-torque charts attached to the order.
+
+## 3. The readiness-before-scheduling rule
+
+The mandatory rule: it is prohibited to schedule any work order whose package has not been completed and whose parts have not reached the warehouse. Sending technicians to an open asset and then discovering the parts are missing means needlessly stopped equipment and wasted hours that could have been avoided with a single office decision.
+
+Accurate hour estimation is the backbone of scheduling: a wrong estimate means either a pile-up that disrupts handing assets back to production, or a disguised void hiding technician idleness. Hence the planning variance is reviewed periodically to update the standard time library in the CMMS.
+
+<Callout type="tip">
+**For the exam:** the complete job package answers everything that might stop the technician in the field: what to do, with which steps, with which parts, with which tools, with which permits, and how many hours I need.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: باني حزمة العمل
+
+فعّل بنود القائمة الستة وشاهد نسبة الجاهزية تتغير وحالة أمر الشغل تتحول إلى جاهز للجدولة عند اكتمال 100%.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Job Package Builder
+
+Toggle the six list items and watch the readiness percentage change and the work order status turn to Ready to Schedule when 100% is complete.
+
+</LangSection>
+
+<JobPackageBuilder client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-4-3-t1', 'cmrp-4-3-t2', 'cmrp-4-3-t3', 'cmrp-4-3-t4', 'cmrp-4-3-t5', 'cmrp-4-3-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على عناصر الحزمة وتجميع القطع ودور المخطط ودقة تقدير الساعات.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the package components, parts kitting, the planner role, and hour-estimation accuracy.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-4-3" questions={quizCmrp43.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **المخطط مهندس المستقبل:** من 80% إلى 90% من وقته لأعمال الأسبوع القادم وما بعده لا لطوارئ اليوم.
+- **حزمة العمل ستة عناصر:** إجراءات قياسية، سلامة وتصاريح، قطع مجمعة، أدوات خاصة، تقدير ساعات، رسومات هندسية.
+- **لا جدولة قبل الجاهزية الكاملة:** القطع غير المحرزة في المستودع تعني عملا ممنوعا من الجدول.
+- **دقة تقدير الساعات** أساس الجدولة، ويراجع انحرافها دوريا لتحسين الخطط القادمة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The planner is the engineer of the future:** 80% to 90% of his time goes to next week's work and beyond, not today's emergencies.
+- **A six-element job package:** standard procedures, safety and permits, kitted parts, special tools, hour estimates, and engineering drawings.
+- **No scheduling before full readiness:** parts not earmarked in the warehouse mean work barred from the schedule.
+- **Hour-estimation accuracy** is the backbone of scheduling, and its variance is reviewed periodically to improve the coming plans.
+
+</LangSection>

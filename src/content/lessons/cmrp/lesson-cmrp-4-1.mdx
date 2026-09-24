@@ -1,0 +1,227 @@
+---
+id: lesson-cmrp-4-1
+course: cmrp
+station: station-cmrp-4
+number: "4.1"
+title: "دورة حياة أمر الشغل كاملة في الـ CMMS"
+titleEn: "Complete Work Order Lifecycle"
+minutes: 35
+order: 1
+objectives:
+  - "أن يتتبع المتعلم المراحل الست لدورة حياة أمر الشغل من الطلب حتى الإغلاق المالي."
+  - "أن يفرق بدقة بين دور المخطط (ماذا وكيف) ودور المجدول (متى ومن)."
+  - "أن يشرح وظيفة التصفية وحراسة البوابة في ضبط تدفق الأعمال."
+  - "أن يبين قيمة التغذية الراجعة للفني وسجل تاريخ الأصل في نظام CMMS."
+objectivesEn:
+  - "Trace the six stages of the work order lifecycle from request to financial closure."
+  - "Distinguish the Planner role (what and how) from the Scheduler role (when and who)."
+  - "Explain screening and gatekeeping in controlling work flow."
+  - "Show the value of craft feedback and asset history in a CMMS."
+hasTool: true
+toolName: "مخطط تدفق أمر الشغل"
+toolNameEn: "Work Order Flowchart"
+quizId: quiz-cmrp-4-1
+sources:
+  - palmer
+  - wireman_cmms
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import WorkOrderFlow from '../../../components/islands/tools/cmrp/WorkOrderFlow.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp41 } from '../../../data/quiz/cmrp/quiz-cmrp-4-1';
+
+<LangSection lang="ar">
+
+إدارة الأعمال (Work Management) هي الركن الخامس من أركان SMRP وأكبرها في امتحان CMRP بنحو 27% من الأسئلة. فمهما كانت استراتيجيات الموثوقية متقدمة، تظل حبرا على ورق دون محرك تنفيذ يومي منضبط يحول الخطط إلى أوامر شغل منجزة وموثقة.
+
+## 1. محرك التنفيذ اليومي ولماذا يهيمن على الامتحان
+
+الفرق بين المصنع المتطور والمصنع الغارق في إطفاء الحرائق ليس في جودة الخطط بل في جودة التنفيذ. لذلك يمنح الامتحان هذا الركن أكثر من ربع الأسئلة (نحو 30 سؤالا): لأنه يختبر هل تعمل المنشأة بنظام أم بردود فعل.
+
+القاعدة الذهبية هنا صارمة: أي عمل صيانة ينفذ في الميدان دون أمر شغل مسجل في نظام إدارة الصيانة المحوسب (CMMS) هو عمل لم يحدث في سجلات المنشأة. فبدون التسجيل يضيع تاريخ الأصل وتكلفته الحقيقية، ويستحيل حساب متوسط الوقت بين الأعطال (MTBF) ومتوسط زمن الإصلاح (MTTR).
+
+<Callout type="warn">
+**القاعدة الذهبية لنظام CMMS:** لا توجد صيانة خارج النظام. العمل غير المسجل يمحو ذاكرة المصنع، ويخفي التكلفة الحقيقية لكل معدة، ويجعل تحليل الأعطال المتكررة مستحيلا.
+</Callout>
+
+## 2. المراحل الست لدورة حياة أمر الشغل
+
+يسير كل عمل صيانة في المنشآت الاحترافية عبر ست مراحل متسلسلة:
+
+1. **اكتشاف العمل (Work Identification):** يرصد المشغل أو الفني الخلل ويسجل طلب عمل (Work Request) يصف الأعراض بدقة مع رقم الأصل.
+2. **التصفية وحراسة البوابة (Screening & Gatekeeping):** مراجعة يومية مشتركة بين الصيانة والتشغيل لاعتماد الطلبات الحقيقية ودمج المكررة ورفض غير المجدية قبل التخطيط.
+3. **التخطيط التفصيلي (Detailed Planning):** يجيب المخطط (Planner) عن ماذا وكيف: الخطوات، المهارات، الأدوات، التصاريح، وحجز قطع الغيار.
+4. **الجدولة والتنسيق (Scheduling):** يجيب المجدول (Scheduler) عن متى ومن: حجز نافذة تسليم المعدة مع الإنتاج وتسمية الفنيين في الجدول الأسبوعي.
+5. **التنفيذ والتغذية الراجعة (Execution & Feedback):** تنفيذ حزمة العمل ميدانيا وتسجيل الساعات الفعلية والقطع المستهلكة وملاحظات الفحص.
+6. **الإغلاق الفني والمالي (Closure):** ترحيل التكاليف إلى مركز تكلفة الأصل وتحليل الانحراف عن المخطط وتحديث سجل التاريخ.
+
+طلب العمل (Work Request) إشعار مبدئي غير معتمد، بينما أمر الشغل (Work Order) وثيقة رسمية معتمدة وممولة تخضع للجدولة والتنفيذ.
+
+<FlowChart
+  title="المراحل الست لدورة حياة أمر الشغل"
+  steps={[
+    { title: 'اكتشاف العمل', detail: 'رصد الخلل وتسجيل طلب عمل مع وصف الأعراض ورقم الأصل.', icon: '🔎', type: 'start' },
+    { title: 'تصفية وحراسة بوابة', detail: 'مراجعة يومية مشتركة تعتمد الحقيقي وترفض المجدي وتدمج المكرر.', icon: '🚧', type: 'decision' },
+    { title: 'تخطيط تفصيلي', detail: 'المخطط يجيب: ماذا وكيف — خطوات ومهارات وتصاريح وقطع غيار.', icon: '📐' },
+    { title: 'جدولة وتنسيق', detail: 'المجدول يجيب: متى ومن — نافذة تسليم مع الإنتاج وتسمية الفنيين.', icon: '🗓' },
+    { title: 'تنفيذ وتغذية راجعة', detail: 'تنفيذ حزمة العمل وتسجيل الساعات الفعلية والقطع المستهلكة.', icon: '🔧' },
+    { title: 'إغلاق فني ومالي', detail: 'ترحيل التكاليف وتحليل الانحراف وتحديث سجل تاريخ الأصل.', icon: '🏁', type: 'end' },
+  ]}
+  caption="العمل غير المسجل خارج النظام محوٌ لذاكرة المصنع — كل مرحلة تبني على ما سبقها وتُسدّد للتالية."
+/>
+
+## 3. الفصل الحاسم: المخطط مقابل المجدول
+
+من أكثر الأسئلة تكرارا في الامتحان التمييز بين الدورين:
+
+- **مخطط الصيانة (Planner):** يجيب عن ماذا وكيف. يركز على المستقبل الفني: يزور الموقع، يكتب الخطوات، يحدد التصاريح، ويحجز القطع. لا يطارد طوارئ اليوم ولا يسمي العمال.
+- **منسق الجدولة (Scheduler):** يجيب عن متى ومن. يركز على التوقيت والتنسيق: يجتمع أسبوعيا مع الإنتاج لحجز المعدة ويطابق ساعات الفنيين المتاحة مع الأعمال الجاهزة.
+
+<Callout type="tip">
+**للتذكر في الامتحان:** المخطط للمستقبل والتفاصيل الفنية، والمجدول للأسبوع الحالي والأسماء والمواعيد. أي خلط بينهما في الإجابة خطأ مؤكد.
+</Callout>
+
+## 4. التغذية الراجعة والإغلاق يغلقان دائرة التعلم
+
+التغذية الراجعة للفني (Craft Feedback) ليست عبارة إنشائية مثل تم الإصلاح بنجاح، بل بيانات: الساعات الفعلية، القطع المستبدلة وحالتها، السبب الظاهري للعطل، وأسباب تجاوز الوقت المخطط. بها يحسن المخطط خططه القادمة ويبني مهندس الموثوقية تحليله.
+
+وتأخير الإغلاق يترك أمر الشغل وعاء ماليا مفتوحا تتسرب إليه ساعات وقطع لا تخصه، ويشوه مؤشر الأعمال المتراكمة بأعمال انتهت فعلا لكنها تظهر كأنها قيد الانتظار.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Work Management is the fifth pillar of SMRP and the largest in the CMRP exam at about 27% of the questions. However advanced the reliability strategies may be, they remain ink on paper without a disciplined daily execution engine that turns plans into completed, documented work orders.
+
+## 1. The daily execution engine and why it dominates the exam
+
+The difference between an advanced plant and one drowning in firefighting is not the quality of the plans but the quality of execution. That is why the exam gives this pillar more than a quarter of the questions (about 30): it tests whether the facility works by system or by reactions.
+
+The golden rule here is strict: any maintenance work executed in the field without a work order recorded in the Computerized Maintenance Management System (CMMS) is work that never happened in the facility's records. Without recording, the asset's history and its true cost are lost, and calculating Mean Time Between Failures (MTBF) and Mean Time To Repair (MTTR) becomes impossible.
+
+<Callout type="warn">
+**The CMMS golden rule:** there is no maintenance outside the system. Unrecorded work erases the plant's memory, hides the true cost of each asset, and makes recurring failure analysis impossible.
+</Callout>
+
+## 2. The six stages of the work order lifecycle
+
+Every maintenance task in professional facilities travels through six sequential stages:
+
+1. **Work Identification:** the operator or technician spots the fault and logs a Work Request describing the symptoms accurately with the asset number.
+2. **Screening & Gatekeeping:** a joint daily review between maintenance and operations that approves genuine requests, merges duplicates, and rejects non-beneficial ones before planning.
+3. **Detailed Planning:** the planner (Planner) answers what and how: steps, skills, tools, permits, and reserving spare parts.
+4. **Scheduling:** the scheduler (Scheduler) answers when and who: reserving the machine-release window with production and naming technicians on the weekly schedule.
+5. **Execution & Feedback:** executing the work package in the field and recording actual hours, consumed parts, and inspection notes.
+6. **Closure:** posting costs to the asset's cost center, analyzing the variance from plan, and updating the history record.
+
+A Work Request is a preliminary, unapproved notice, while a Work Order is a formal, approved, funded document subject to scheduling and execution.
+
+<FlowChart
+  title="The six stages of the work order lifecycle"
+  steps={[
+    { title: 'Work identification', detail: 'Detecting the fault and logging a work request with symptom description and asset number.', icon: '🔎', type: 'start' },
+    { title: 'Screening & gatekeeping', detail: 'A joint daily review that approves genuine requests, rejects non-beneficial ones, and merges duplicates.', icon: '🚧', type: 'decision' },
+    { title: 'Detailed planning', detail: 'The planner answers: what and how — steps, skills, permits, and spare parts.', icon: '📐' },
+    { title: 'Scheduling', detail: 'The scheduler answers: when and who — a release window with production and technician assignment.', icon: '🗓' },
+    { title: 'Execution & feedback', detail: 'Executing the work package and recording actual hours and consumed parts.', icon: '🔧' },
+    { title: 'Closure', detail: 'Posting costs, variance analysis, and updating the asset history record.', icon: '🏁', type: 'end' },
+  ]}
+  caption="Unrecorded work outside the system erases the plant's memory — each stage builds on the previous one and feeds the next."
+/>
+
+## 3. The decisive separation: planner versus scheduler
+
+One of the most repeated exam questions is distinguishing the two roles:
+
+- **Planner:** answers what and how. Focuses on the technical future: visits the site, writes the steps, defines the permits, and reserves the parts. Does not chase today's emergencies or name the workers.
+- **Scheduler:** answers when and who. Focuses on timing and coordination: meets weekly with production to reserve the machine and matches the technicians' available hours with the ready work.
+
+<Callout type="tip">
+**For the exam:** the planner belongs to the future and the technical details, and the scheduler to the current week, the names, and the dates. Any confusion between them in an answer is a certain error.
+</Callout>
+
+## 4. Feedback and closure close the learning loop
+
+Craft feedback is not a boilerplate phrase such as "fixed successfully", but data: actual hours, the replaced parts and their condition, the apparent cause of failure, and the reasons for exceeding the planned time. Through it the planner improves his next plans and the reliability engineer builds his analysis.
+
+Delaying closure leaves the work order as an open financial vessel into which hours and parts that do not belong to it seep, and distorts the backlog indicator with work that actually finished yet still appears as if it were pending.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: مخطط تدفق أمر الشغل
+
+تتبع تحول طلب العمل عبر مراحله الست: انقر كل مرحلة لترى مسؤولها وحالة أمر الشغل في نظام CMMS والممارسة الفضلى فيها.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Work Order Flowchart
+
+Follow the transformation of a work request through its six stages: click each stage to see its owner, the work order status in the CMMS, and the best practice within it.
+
+</LangSection>
+
+<WorkOrderFlow client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-4-1-t1', 'cmrp-4-1-t2', 'cmrp-4-1-t3', 'cmrp-4-1-t4', 'cmrp-4-1-t5', 'cmrp-4-1-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على دورة الحياة والتصفية والتغذية الراجعة والفصل بين المخطط والمجدول.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the lifecycle, screening, feedback, and the separation between planner and scheduler.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-4-1" questions={quizCmrp41.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **دورة الحياة ست مراحل:** اكتشاف ثم تصفية ثم تخطيط ثم جدولة ثم تنفيذ ثم إغلاق فني ومالي.
+- **لا صيانة خارج نظام CMMS:** العمل غير المسجل يمحو تاريخ الأصل ويجعل حساب MTBF مستحيلا.
+- **المخطط يجيب عن ماذا وكيف، والمجدول يجيب عن متى ومن** — فصل صارم يختبره الامتحان دائما.
+- **التصفية اليومية** تحمي المخطط من الطلبات المكررة وغير المجدية قبل دخولها التخطيط.
+- **التغذية الراجعة الدقيقة والإغلاق السريع** يغلقان دائرة التحسين ويحميان دقة التكاليف والتراكم.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **A six-stage lifecycle:** identification, then screening, then planning, then scheduling, then execution, then technical and financial closure.
+- **No maintenance outside the CMMS:** unrecorded work erases the asset history and makes MTBF calculation impossible.
+- **The planner answers what and how, and the scheduler answers when and who** — a strict separation the exam always tests.
+- **Daily screening** protects the planner from duplicate and non-beneficial requests before they enter planning.
+- **Accurate feedback and fast closure** close the improvement loop and protect cost and backlog accuracy.
+
+</LangSection>

@@ -2,9 +2,10 @@ import type { Language } from './ui';
 
 export const translations = {
   ar: {
-    'site.name': 'منصة CFM',
-    'site.tagline': 'مسارك العملي لشهادة مدير المنشآت',
+    'site.name': 'GridFix Academy',
+    'site.tagline': 'منصة التعليم المهني لإدارة المنشآت والصيانة',
     'nav.home': 'الرئيسية',
+    'nav.courses': 'اختيار الكورس',
     'nav.stations': 'المحطات',
     'nav.glossary': 'القاموس',
     'nav.exam': 'محاكي الامتحان',
@@ -52,9 +53,10 @@ export const translations = {
     'quiz.reset': 'إعادة المحاولة',
   },
   en: {
-    'site.name': 'CFM Course',
-    'site.tagline': 'Your practical path to Certified Facility Manager',
+    'site.name': 'GridFix Academy',
+    'site.tagline': 'Professional education for FM & reliability',
     'nav.home': 'Home',
+    'nav.courses': 'Choose Course',
     'nav.stations': 'Stations',
     'nav.glossary': 'Glossary',
     'nav.exam': 'Exam Mock',

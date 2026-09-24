@@ -1,0 +1,207 @@
+---
+id: lesson-3-1
+station: station-3
+number: "3.1"
+title: "أنواع الميزانيات وإعدادها"
+titleEn: "Budget Types & Preparation"
+minutes: 25
+order: 1
+objectives:
+  - "أن يفرق المتعلم بين الميزانية التشغيلية (Opex) والرأسمالية (CapEx)."
+  - "أن يبني ميزانية متوازنة بتوزيع نسب البنود والاحتياطي."
+  - "أن يعد خطة CapEx مستندة لبيانات الأصول وديناميكية أعمارها."
+objectivesEn:
+  - "Differentiate Operating (Opex) and Capital (CapEx) budgets."
+  - "Build a balanced budget with proper item allocation and contingency."
+  - "Prepare a CapEx plan driven by asset data and aging dynamics."
+hasTool: true
+toolName: "محاكي ميزانية"
+toolNameEn: "Budget Simulator"
+quizId: quiz-3-1
+sources:
+  - ifma_handbook
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import BudgetSimulator from '../../../components/islands/tools/cfm/BudgetSimulator.tsx';
+import Comparison from '../../../components/ui/figures/Comparison.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz31 } from '../../../data/quiz/cfm/quiz-3-1';
+
+<LangSection lang="ar">
+
+الميزانية ليست ورقة مالية للأقسام المتخصصة فقط؛ إنها أداة إدارة تُبنى من البيانات، تُقرأ شهرياً، وتقود قرارات الصيانة والاستثمار.
+
+## 1. ميزانية التشغيل مقابل الرأسمالية
+
+**ميزانية التشغيل (Operating Budget, Opex)**: بند تتكرر سنوياً — مرافق، نظافة، عقود صيانة تشغيلية، تدريب، وقود، خدمات. قاعدتها سنة بسنة.
+
+**ميزانية رأس المال (Capital Budget, CapEx)**: استثمارات كبرى في أصول طويلة الأمد — استبدال مبرد، رفع كفاءة مبنى، ترقيات. تُجدد وفق خطة رأسمالية، وإنفاقها يُستهلك على سنوات.
+
+<Comparison
+  title="ميزانية التشغيل مقابل الميزانية الرأسمالية (Opex مقابل CapEx)"
+  sides={[
+    {
+      label: 'ميزانية التشغيل (Opex)',
+      color: 'teal',
+      items: ['بنود تتكرر سنوياً: مرافق، نظافة، عقود صيانة تشغيلية', 'تدريب ووقود وخدمات ضمنها', 'قاعدتها سنة بسنة — تتابع أداءً شهرياً'],
+    },
+    {
+      label: 'ميزانية رأس المال (CapEx)',
+      color: 'amber',
+      items: ['استثمارات كبرى في أصول طويلة الأمد: مبرد، رفع كفاءة، ترقيات', 'تُجدد وفق خطة رأسمالية مبنية على بيانات الأصول', 'إنفاقها يُستهلك على سنوات لا في سنة واحدة'],
+    },
+  ]}
+  caption="التفريق قرار مقصود: إحلال أصل رئيسي يُحسب CapEx حتى لو لم يُخطّط له"
+/>
+
+<Callout type="tip">
+**قاعدة الحدود الشائعة:** إحلال أصل رئيسي «مفاجئ» يُحسب خطأً على أنه تشغيلي فيغرّق ميزانية السنة. استبدال أصل = **CapEx** حتى لو لم يُخطط له؛ ومن هنا قيمة خطة التجديد الرأسمالية في استباق المفاجآت.
+</Callout>
+
+## 2. بناء ميزانية تشغيلية متوازنة
+
+1. **إسناد كل بند إلى واجهته**: خدمات، عقود، مرافق، تدريب، مواد.
+2. **الاستناد للماضي والبيانات**: مصروفات سابقة + تغييرات متوقعة (تضخم، توسعات).
+3. **احتياطي للطوارئ (10–15%)**: انقطاعات وأعطال لا تُتوقع بحكم تعريفها.
+4. **توثيق الافتراضات** في مذكرة يقرأها من يذهب لاحقاً ليفهم لماذا هذه الأرقام.
+
+## 3. خطة CapEx من بيانات الأصول
+
+- **جدول أعمار الأصول**: لكل أصل سنة الشراء والعمر المتوقع وتكلفة الاستبدال المقدرة.
+- **سنة الاستبدال المتوقعة**: متى يدخل الأصل «نافذة الإحلال»؟
+- **توزيع الأعوام**: بدل صدمة أوامر في سنة واحدة، وزّع بأسبقية الحرجية.
+- **الربط بالميزانية العامة**: اعرض المطلوب كل سنة ليقابله الممولون بتخطيط.
+
+<Callout type="myth">
+**أسطورة:** "الميزانية سنوية، والتفكير السنوي يكفي."
+**الحقيقة:** الميزانية أداة أداء مستمرة: تابع التنفيذ شهرياً، ونقّح التوقعات، ولا تنتظر نهاية السنة لتصدمك الفروق.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+The budget is not just a financial sheet for specialized departments; it is a management tool built from data, read monthly, and driving maintenance and investment decisions.
+
+## 1. Operating budget vs capital budget
+
+**Operating budget (Opex)**: items that recur annually — utilities, cleaning, operating maintenance contracts, training, fuel, and services. Its basis is year over year.
+
+**Capital budget (CapEx)**: major investments in long-lived assets — replacing a chiller, upgrading a building's efficiency, and system upgrades. It is renewed under a capital plan, and its spending is consumed over multiple years.
+
+<Comparison
+  title="Operating budget vs capital budget (Opex vs CapEx)"
+  sides={[
+    {
+      label: 'Operating budget (Opex)',
+      color: 'teal',
+      items: ['Items that recur annually: utilities, cleaning, operating maintenance contracts', 'Training, fuel, and services are included', 'Year-over-year basis — tracked monthly against performance'],
+    },
+    {
+      label: 'Capital budget (CapEx)',
+      color: 'amber',
+      items: ['Major investments in long-lived assets: a chiller, efficiency upgrades, and system upgrades', 'Renewed under a capital plan built on asset data', 'Spending is consumed over multiple years, not in a single year'],
+    },
+  ]}
+  caption="The distinction is a deliberate decision: replacing a major asset counts as CapEx even if it was not planned"
+/>
+
+<Callout type="tip">
+**Common borderline rule:** a "sudden" replacement of a major asset is mistakenly booked as operating and drowns the year's budget. Replacing an asset = **CapEx** even if it was not planned; hence the value of the capital renewal plan in anticipating surprises.
+</Callout>
+
+## 2. Building a balanced operating budget
+
+1. **Assign each item to its line**: services, contracts, utilities, training, materials.
+2. **Base it on history and data**: prior expenses + expected changes (inflation, expansions).
+3. **A contingency reserve (10–15%)**: outages and failures that by definition cannot be predicted.
+4. **Document the assumptions** in a memo that anyone later can read to understand why these numbers.
+
+## 3. A CapEx plan from asset data
+
+- **Asset age register**: for each asset, purchase year, expected life, and estimated replacement cost.
+- **Expected replacement year**: when does the asset enter its "replacement window"?
+- **Year distribution**: instead of a shock of orders in a single year, spread them by criticality priority.
+- **Link to the general budget**: present the annual requirement so funders meet it with planning.
+
+<Callout type="myth">
+**Myth:** "The budget is annual, so annual thinking is enough."
+**Fact:** the budget is a continuous performance tool: track execution monthly, revise forecasts, and do not wait until year-end to be surprised by variances.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: محاكي توزيع الميزانية
+
+حرّك نسب بنود التشغيل وتأكد من توازن التوزيع مع احتياطي واقعي.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Budget Simulator
+
+Adjust the operating line ratios and verify that the allocation balances with a realistic reserve.
+
+</LangSection>
+
+<BudgetSimulator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['opex', 'capex', 'variance', 'roi']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على تصنيف الأنواع والإعداد المتوازن وخطة CapEx.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on type classification, balanced preparation, and the CapEx plan.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-3-1" questions={quiz31.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **Opex** يتكرر سنوياً، و**CapEx** يستثمر في الأصول — والتفريق بينهما قرار مقصود لا صدفة.
+- **الميزانية المتوازنة**: بنود واقعية + افتراضات موثقة + احتياطي 10–15%.
+- **خطة CapEx** تُبنى من بيانات أعمار الأصول لا من ترتيب الحوادث.
+- **الميزانية أداة إدارة مستمرة** تُراقب شهرياً ولا تُكتب لتُنسى.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Opex** recurs annually, and **CapEx** invests in assets — distinguishing between them is a deliberate decision, not an accident.
+- **A balanced budget**: realistic line items + documented assumptions + a reserve of 10–15%.
+- **The CapEx plan** is built from asset-age data, not from the order of incidents.
+- **The budget is a continuous management tool** tracked monthly, not written to be forgotten.
+
+</LangSection>

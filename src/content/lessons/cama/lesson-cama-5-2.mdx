@@ -1,0 +1,322 @@
+---
+id: lesson-cama-5-2
+course: cama
+station: station-cama-5
+number: "5.2"
+title: "تحليل تكلفة دورة الحياة LCC"
+titleEn: "Life Cycle Costing (LCC)"
+minutes: 30
+order: 2
+objectives:
+  - "أن يشرح المتعلم منهجية تحليل تكلفة دورة الحياة (LCC) وأهميتها في اتخاذ القرارات."
+  - "أن يصنف تكاليف دورة حياة الأصل إلى فئاته الأربع: الاكتساب، التشغيل، الصيانة، التخلص."
+  - "أن يطبق خصم التدفقات النقدية لحساب القيمة الحالية لتكاليف مستقبلية."
+  - "أن يقارن بين خيارين باستخدام تكلفة الملكية الإجمالية (TCO) ويختار الأنسب."
+objectivesEn:
+  - "Explain Life Cycle Costing (LCC) methodology and its importance in decision-making."
+  - "Classify asset lifecycle costs into four categories: acquisition, operation, maintenance, and disposal."
+  - "Apply cash flow discounting to calculate present value of future costs."
+  - "Compare two alternatives using Total Cost of Ownership (TCO) and select the optimal one."
+hasTool: true
+toolName: "حاسبة LCC"
+toolNameEn: "LCC Calculator"
+quizId: quiz-cama-5-2
+sources:
+  - iso55000
+  - gfmam_landscape
+  - ifma_bok
+  - ashrae_lcc
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LccCalculator from '../../../components/islands/tools/cama/LccCalculator.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama52 } from '../../../data/quiz/cama/quiz-cama-5-2';
+
+<LangSection lang="ar">
+
+الشراء الأرخص غالباً هو الأكثر تكلفة على المدى الطويل. مكيف هواء يكلف 10,000 ريال لكنه يستهلك كهرباء ضعف غيره ويحتاج إصلاحات متكررة قد يتجاوز تكلفته الإجمالية 50,000 ريال في عشر سنوات. تحليل تكلفة دورة الحياة يمنعك من هذا الفخ ويُظهر الصورة الكاملة.
+
+## 1. لماذا تحليل تكلفة دورة الحياة؟
+
+**تحليل تكلفة دورة الحياة (Life Cycle Costing — LCC)** منهجية تحسب جميع التكاليف المرتبطة بأصل من لحظة تحديد الحاجة إليه حتى إعدامه. الهدف هو المقارنة الموضوعية بين البدائل بناءً على التكلفة الإجمالية لا السعر الأولي.
+
+ISO 55000 يؤكد أن **كل قرار اكتساب يجب أن يأخذ بعين الاعتبار تكلفة دورة الحياة الكاملة**. فالشراء الأرخص قد يكون الأغلى في المدى الطويل إذا كانت تكاليف التشغيل والصيانة مرتفعة.
+
+## 2. فئات تكاليف دورة حياة الأصل
+
+تكاليف أي أصل تنقسم إلى أربع فئات رئيسية:
+
+### أ. تكاليف الاكتساب (Acquisition Costs)
+التكاليف المرتبطة بالحصول على الأصل وتشغيله لأول مرة:
+- سعر الشراء أو التصنيع
+- التأمين أثناء النقل
+- التركيب والتشغيل الأولي
+- التدريب على الاستخدام
+- التكاليف الإدارية والمشتريات
+
+### ب. تكاليف التشغيل (Operating Costs)
+التكاليف المستمرة أثناء عمل الأصل:
+- الطاقة (كهرباء، وقود، بخار)
+- المواد الاستهلاكية (مواد تشحيم، فلاتر، أكياس ترشيح)
+- تكاليف العمالة التشغيلية
+- الرسوم والترخيصات الدورية
+
+### ج. تكاليف الصيانة (Maintenance Costs)
+التكاليف المرتبطة بالحفاظ على الأصل في حالة عمل:
+- الصيانة الوقائية (فحص، تشحيم، تنظيف)
+- الصيانة التصحيحية (إصلاح الأعطال)
+- قطع الغيار
+- تكاليف الفنية المتخصصة
+- التوقف عن الإنتاج أثناء الصيانة (التكلفة الفرصة)
+
+### د. تكاليف النهاية (End-of-Life Costs)
+تكاليف إتاحة الأصل في نهاية عمره:
+- تفكيك ونقل الأصل
+- معالجة التلوث البيئي
+- إعادة التدوير أو الإعدام
+- تكاليف الإغلاق والإخلاء
+- قد تكون موجبة إذا كان للأصل قيمة بيعية
+
+## 3. خصم التدفقات النقدية
+
+المشكلة في حساب تكاليف دورة الحياة هي أن التكاليف تقع في سنوات مختلفة. **100,000 ريال تُنفق اليوم تختلف قيمتها عن 100,000 ريال تُنفق بعد خمس سنوات** بسبب التضخم وتكلفة الفرصة. لذا نستخدم **خصم التدفقات** لتحويل جميع التكاليف إلى قيمتها الحالية.
+
+**المعادلة:** القيمة الحالية = القيمة المستقبلية ÷ (1 + معدل الخصم) ^ عدد السنوات
+
+**مثال عملي:** تكلفة صيانة متوقعة بعد 5 سنوات = 200,000 ريال. بمعدل خصم 10%، القيمة الحالية = 200,000 ÷ (1.10)^5 = 124,184 ريال تقريباً.
+
+**ملاحظة مهمة:** معدل الخصم يعكس تكلفة رأس المال ومعدل التضخم. في بيئات التضخم المرتفع، تتقلص القيمة الحالية للتكاليف المستقبلية بشكل كبير.
+
+## 4. تكلفة الملكية الإجمالية (TCO)
+
+**تكلفة الملكية الإجمالية (Total Cost of Ownership — TCO)** مقياس أوسع من LCC ويشمل التكاليف المباشرة وغير المباشرة:
+- التكاليف المباشرة: الشراء والتشغيل والصيانة (كما في LCC)
+- التكاليف غير المباشرة: تكاليف الفرصة، تأثير الإنتاج على الجودة، تكاليف التخزين، التأمين، تكاليف تدريب الكادر البديل
+
+TCO يُستخدم بشكل خاص في قرارات Make-or-Buy (تصنيع أم شراء) وقرارات توريد معدات معقدة.
+
+## 5. هندسة القيمة (Value Engineering)
+
+**هندسة القيمة (Value Engineering — VE)** منهجية مكملة لـ LCC: بدلاً من اختيار الأرخص بين البدائل الموجودة، تُحسّن التصميم نفسه لتقليل التكلفة الإجمالية دون المساس بالأداء.
+
+**الخطوات:**
+1. تحديد الوظائف الأساسية للأصل
+2. تحليل تكلفة كل وظيفة
+3. البحث عن بدائل أرخص تحقق نفس الوظيفة
+4. تقييم البدائل واختيار الأنسب
+
+**مثال:** بدل شراء مضخة فائقة الجودة (ومكلفة) لمهمة بسيطة، يمكن شراء مضخة متوسطة مع برنامج صيانة محسّن يحقق نفس الأداء بتكلفة إجمالية أقل.
+
+<Callout type="myth">
+**مفهوم خاطئ شائع:** "تكلفة دورة الحياة = سعر الشراء + الصيانة". هذا يتجاهل الطاقة والتدريب والتكاليف غير المباشرة وتكلفة التخلص. النموذج الكامل أشمل بكثير ويتطلب دراسة متأنية لجميع الفئات.
+</Callout>
+
+## 6. خطوات تطبيق LCC
+
+1. **تحديد النطاق**: حدد الأصل أو المشروع وعمره الافتراضي المتوقع.
+2. **جمع البيانات**: اجمع التكاليف التاريخية والمتوقعة من مصادر موثوقة.
+3. **تحديد معدل الخصم**: اختر معدل خصم مناسباً (عادة 8% إلى 12%).
+4. **حساب القيمة الحالية**: خصم جميع التكاليف المستقبلية.
+5. **المقارنة**: قارن البدائل باستخدام NPV أو TCO.
+6. **تحليل الحساسية**: غيّر المدخلات الرئيسية لترى تأثيرها على النتيجة.
+
+<Callout type="tip">
+**نصيحة عملية:** لا تتمسك بالدقة المطلقة في الأرقام — الهدف هو الكشف عن الاتجاه العام والفرق الجوهري بين البدائل. بيانات تقريبية في LCC أفضل من لا تحليل على الإطلاق.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+The cheapest purchase is often the most expensive in the long run. An air conditioner that costs SAR 10,000 but consumes twice the electricity of others and needs frequent repairs may exceed SAR 50,000 in total cost over ten years. Life cycle cost analysis prevents this trap and reveals the full picture.
+
+## 1. Why life cycle costing?
+
+**Life Cycle Costing (LCC)** is a methodology that calculates all the costs associated with an asset from the moment a need is identified until its disposal. The goal is to objectively compare alternatives based on total cost rather than the initial price.
+
+ISO 55000 affirms that **every acquisition decision must take the full life cycle cost into account**. The cheapest purchase may be the most expensive in the long run if operating and maintenance costs are high.
+
+## 2. Asset life cycle cost categories
+
+The costs of any asset fall into four main categories:
+
+### a. Acquisition costs
+Costs associated with obtaining the asset and bringing it into first operation:
+- Purchase or manufacturing price
+- Insurance during transport
+- Installation and initial commissioning
+- Operator training
+- Administrative and procurement costs
+
+### b. Operating costs
+Ongoing costs while the asset operates:
+- Energy (electricity, fuel, steam)
+- Consumables (lubricants, filters, filter bags)
+- Operational labor costs
+- Periodic fees and licenses
+
+### c. Maintenance costs
+Costs associated with keeping the asset in working condition:
+- Preventive maintenance (inspection, lubrication, cleaning)
+- Corrective maintenance (breakdown repairs)
+- Spare parts
+- Specialist technical costs
+- Production downtime during maintenance (opportunity cost)
+
+### d. End-of-life costs
+Costs of decommissioning the asset at the end of its life:
+- Dismantling and transporting the asset
+- Environmental contamination treatment
+- Recycling or scrapping
+- Closure and decommissioning costs
+- These may be positive if the asset has a resale value
+
+## 3. Discounting cash flows
+
+The problem with life cycle costing is that costs fall in different years. **SAR 100,000 spent today does not equal SAR 100,000 spent five years from now** because of inflation and opportunity cost. So we use **discounting** to convert all costs to their present value.
+
+**The formula:** present value = future value ÷ (1 + discount rate)^number of years
+
+**Practical example:** an expected maintenance cost in 5 years = SAR 200,000. At a 10% discount rate, the present value = 200,000 ÷ (1.10)^5 ≈ SAR 124,184.
+
+**Important note:** the discount rate reflects the cost of capital and the inflation rate. In high-inflation environments, the present value of future costs shrinks significantly.
+
+## 4. Total Cost of Ownership (TCO)
+
+**Total Cost of Ownership (TCO)** is a broader measure than LCC, covering direct and indirect costs:
+- Direct costs: purchase, operation, and maintenance (as in LCC)
+- Indirect costs: opportunity costs, the impact of production on quality, storage costs, insurance, and training costs for replacement staff
+
+TCO is used particularly in make-or-buy decisions and in decisions on supplying complex equipment.
+
+## 5. Value Engineering
+
+**Value Engineering (VE)** is a methodology that complements LCC: instead of choosing the cheapest among existing alternatives, it improves the design itself to reduce the total cost without compromising performance.
+
+**The steps:**
+1. Identify the asset's essential functions
+2. Analyze the cost of each function
+3. Look for cheaper alternatives that achieve the same function
+4. Evaluate the alternatives and select the most suitable
+
+**Example:** instead of buying an over-engineered (and expensive) pump for a simple duty, a mid-range pump with an improved maintenance program can deliver the same performance at a lower total cost.
+
+<Callout type="myth">
+**A common misconception:** "life cycle cost = purchase price + maintenance". This ignores energy, training, indirect costs, and disposal cost. The full model is much broader and requires careful study of all categories.
+</Callout>
+
+## 6. Steps to apply LCC
+
+1. **Define the scope**: identify the asset or project and its expected life.
+2. **Collect data**: gather historical and expected costs from reliable sources.
+3. **Set the discount rate**: choose an appropriate rate (typically 8% to 12%).
+4. **Calculate the present value**: discount all future costs.
+5. **Compare**: compare the alternatives using NPV or TCO.
+6. **Sensitivity analysis**: change the key inputs to see their impact on the result.
+
+<Callout type="tip">
+**Practical tip:** do not insist on absolute precision in the numbers — the goal is to reveal the general trend and the substantial difference between alternatives. Approximate LCC data is better than no analysis at all.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: حاسبة LCC
+
+أدخل تكاليف الشراء والتشغيل السنوية وتكلفة الصيانة وتكلفة التخلص وعمر الأصل ومعدل الخصم لحساب تكلفة دورة الحياة الكاملة لكل خيار. قارن بين الخيارين واكتشف أيهما الأوفر على المدى الطويل.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: LCC Calculator
+
+Enter the purchase costs, annual operating cost, maintenance cost, disposal cost, asset life, and discount rate to calculate the complete life cycle cost for each option. Compare the two options and find out which is the most economical in the long run.
+
+</LangSection>
+
+<LccCalculator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-5-2-t1', 'cama-5-2-t2', 'cama-5-2-t3', 'cama-5-2-t4']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على فئات تكاليف دورة الحياة، وخصم التدفقات النقدية، وتكلفة الملكية الإجمالية (TCO)، وهندسة القيمة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on life cycle cost categories, discounting cash flows, Total Cost of Ownership (TCO), and Value Engineering.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-5-2" questions={quizCama52.questions} client:load />
+
+<LangSection lang="ar">
+
+## مصادر
+
+- ISO 55000:2024 — Asset Management: Overview, Principles and Terminology
+- GFMAM Asset Management Landscape v3
+- IFMA Body of Knowledge — Finance & Budgeting
+- ASHRAE — Life Cycle Cost Analysis Handbook
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Sources
+
+- ISO 55000:2024 — Asset Management: Overview, Principles and Terminology
+- GFMAM Asset Management Landscape v3
+- IFMA Body of Knowledge — Finance & Budgeting
+- ASHRAE — Life Cycle Cost Analysis Handbook
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **LCC** تحسب جميع التكاليف من الشراء إلى الإعدام لمقارنة البدائل موضوعياً.
+- **فئات التكاليف الأربع**: الاكتساب، التشغيل، الصيانة، التخلص — والشراء الأرخص ليس الأوفر دائماً.
+- **خصم التدفقات** يُحوّل التكاليف المستقبلية إلى قيمتها الحالية لمقارنتها بشكل عادل.
+- **TCO** أوسع من LCC وتشمل التكاليف غير المباشرة وتكاليف الفرصة.
+- **هندسة القيمة** تُحسّن التصميم نفسه لتقليل التكلفة الإجمالية.
+- **تحليل الحساسية** يكشف مدى تأثير تغير المدخلات على قرار القبول.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **LCC** calculates all costs from purchase to disposal to compare alternatives objectively.
+- **The four cost categories**: acquisition, operation, maintenance, and disposal — and the cheapest purchase is not always the most economical.
+- **Discounting** converts future costs to their present value for a fair comparison.
+- **TCO** is broader than LCC and includes indirect costs and opportunity costs.
+- **Value Engineering** improves the design itself to reduce the total cost.
+- **Sensitivity analysis** reveals how much changes in inputs affect the accept decision.
+
+</LangSection>

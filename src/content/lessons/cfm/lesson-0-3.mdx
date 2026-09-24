@@ -1,0 +1,192 @@
+---
+id: lesson-0-3
+station: station-0
+number: "0.3"
+title: "أركان IFMA الإحدى عشر"
+titleEn: "The Eleven IFMA Competencies"
+minutes: 15
+order: 3
+objectives:
+  - "أن يتعرف المتعلم على الأركان الإحدى عشر لكفايات إدارة المنشآت."
+  - "أن يدرك الأوزان النسبية وتأثيرها على ترتيب التعلّم."
+  - "أن يبني خريطة أولويات دراسته على هذا التوزيع."
+objectivesEn:
+  - "Recognize the eleven FM competency areas."
+  - "Understand relative weights and how they shape learning priorities."
+  - "Build a study-priority map on this distribution."
+hasTool: true
+toolName: "مستكشف الأركان"
+toolNameEn: "Pillars Explorer"
+quizId: quiz-0-3
+sources:
+  - ifma
+  - ifma_prospectus
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import PillarsExplorer from '../../../components/islands/tools/cfm/PillarsExplorer.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz03 } from '../../../data/quiz/cfm/quiz-0-3';
+
+<LangSection lang="ar">
+
+امتحان CFM يقيس كفاءة مدير منشأة في **أحد عشر مجالاً** معتمدة من IFMA. هذه الأركان ليست إطاراً للامتحان فقط؛ بل خريطة اليوم العملي بعد الشهادة ومرجعاً لتوزيع جهد التعلّم.
+
+## 1. ما المقصود بالأركان الإحدى عشر؟
+
+هي مجالات الكفاءة (Competencies) المعتمدة من IFMA: من التشغيل والصيانة (الأثقل وزناً) إلى إدارة المشاريع، مروراً بالعقارات والماليات والاستدامة والمخاطر والتواصل والقيادة. كل ركن يصف عائلة مهارات يُختبر فيها مدير المنشأة.
+
+## 2. لماذا يهم الوزن؟
+
+- **توزيع أسئلة الامتحان**: كل ركن له ثقل متناسب في عدد الأسئلة، فينبغي أن يتناسب زمن المذاكرة مع هذا الثقل.
+- **توزيع المهام الفعلية**: الأركان الأعلى وزناً هي الأكثر تكراراً في العمل اليومي بعد الشهادة.
+
+<Callout type="tip">
+**قاعدة ترتيب التعلّم:** اسند أولوياتك **للوزن + الحرجية العملية**: التشغيل والصيانة أولاً، ثم العقارات والماليات، ثم الأركان الداعمة (سلامة، مخاطر، قيادة، بيانات). هذه الخريطة هي هيكل المنهج محطة بمحطة.
+</Callout>
+
+## 3. العلاقة بين الأركان وهيكل المنهج
+
+مسار هذا الكورس مبني مباشرة على الأركان:
+
+- **محطات 0–4**: التأسيس، التشغيل والصيانة، العقارات، الماليات، والعوامل البشرية.
+- **محطات 5–6**: السلامة والمخاطر والطوارئ.
+- **محطات 7–9**: الاستدامة والقيادة والتواصل والبيانات.
+- **محطات 10–11**: الجودة والتحسين ومحاكي الامتحان.
+
+<Infographic
+  title="أركان IFMA الإحدى عشر عبر محطات المنهج"
+  cols={4}
+  items={[
+    { title: 'محطات 0–4', detail: 'التأسيس، التشغيل والصيانة، العقارات، الماليات، والعوامل البشرية.', icon: '🏢', color: 'brand' },
+    { title: 'محطات 5–6', detail: 'السلامة، إدارة المخاطر، والتخطيط للطوارئ.', icon: '🛡', color: 'rose' },
+    { title: 'محطات 7–9', detail: 'الاستدامة، القيادة، التواصل، والبيانات والتقنية.', icon: '📊', color: 'teal' },
+    { title: 'محطات 10–11', detail: 'الجودة والتحسين المستمر، ومحاكي الامتحان الشامل.', icon: '🏆', color: 'amber' },
+  ]}
+  caption="كل محطة تقابل ركناً أو أكثر — المنهج كله مبنى على خريطة IFMA."
+/>
+
+## 4. استخدام الخريطة كدليل دائم
+
+كلما تقدمت في التعلّم أو الممارسة، ارجع إلى الخريطة لتصحيح المسار: ما الركن الذي تعثر فيه؟ وأين أثقل استثمار للوقت القادم؟ الأرقام الرسمية للأوزان موجودة في وثائق IFMA المحدثة، وستجدها داخل الأداة التالية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+The CFM exam measures a facility manager's competence in **eleven** IFMA-accredited domains. These pillars are not just an exam framework; they are the map of daily practice after certification and the reference for allocating learning effort.
+
+## 1. What is meant by the eleven pillars?
+
+They are the competency domains accredited by IFMA: from operations and maintenance (the heaviest in weight) to project management, passing through real estate, finance, sustainability, risk, communication, and leadership. Each pillar describes a family of skills in which the facility manager is tested.
+
+## 2. Why does weight matter?
+
+- **Exam question allocation**: each pillar has a proportional weight in the question count, so study time should match that weight.
+- **Allocation of actual tasks**: the highest-weight pillars are the most frequent in everyday work after certification.
+
+<Callout type="tip">
+**Learning-order rule:** base your priorities on **weight + operational criticality**: operations and maintenance first, then real estate and finance, then the supporting pillars (safety, risk, leadership, data). This map is the curriculum structure, station by station.
+</Callout>
+
+## 3. The relationship between the pillars and the curriculum structure
+
+The path of this course is built directly on the pillars:
+
+- **Stations 0–4**: foundations, operations and maintenance, real estate, finance, and human factors.
+- **Stations 5–6**: safety, risk, and emergency.
+- **Stations 7–9**: sustainability, leadership, communication, and data.
+- **Stations 10–11**: quality and improvement, and the exam simulator.
+
+<Infographic
+  title="The eleven IFMA pillars across the curriculum stations"
+  cols={4}
+  items={[
+    { title: 'Stations 0–4', detail: 'Foundations, operations and maintenance, real estate, finance, and human factors.', icon: '🏢', color: 'brand' },
+    { title: 'Stations 5–6', detail: 'Safety, risk management, and emergency planning.', icon: '🛡', color: 'rose' },
+    { title: 'Stations 7–9', detail: 'Sustainability, leadership, communication, and data and technology.', icon: '📊', color: 'teal' },
+    { title: 'Stations 10–11', detail: 'Quality and continuous improvement, and the comprehensive exam simulator.', icon: '🏆', color: 'amber' },
+  ]}
+  caption="Each station corresponds to one or more pillars — the entire curriculum is built on the IFMA map."
+/>
+
+## 4. Using the map as a permanent guide
+
+Whenever you advance in learning or practice, return to the map to correct course: which pillar are you struggling with? And where is the heaviest investment of your next time block? The official weight figures are in IFMA's updated documents, and you will find them inside the next tool.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: مستكشف الأركان
+
+استعرض الأركان الـ 11 بنقرات: مضمون كل ركن ووزنه النسبي.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Pillars Explorer
+
+Browse the 11 pillars with a few clicks: what each pillar covers and its relative weight.
+
+</LangSection>
+
+<PillarsExplorer client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['fm', 'ifma', 'competency']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على الأوزان والمصادر الرسمية وترتيب التعلم.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on weights, official sources, and the learning order.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-0-3" questions={quiz03.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **الكفاءة في إدارة المنشآت** = 11 ركناً معتمداً من IFMA — خريطة الامتحان والممارسة معاً.
+- **الوزن النسبي + الحرجية العملية** يقودان ترتيب استثمار الوقت.
+- **المنهج كله** مبنى على هذه الخريطة، محطة بمحطة تقابل ركناً أو أكثر.
+- **راجع الخريطة** كلما شككت في أولوياتك القادمة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **FM competency** = 11 IFMA-accredited pillars — the map of the exam and of practice together.
+- **Relative weight + operational criticality** drive the order of time investment.
+- **The entire curriculum** is built on this map, station by station corresponding to one or more pillars.
+- **Revisit the map** whenever you doubt your upcoming priorities.
+
+</LangSection>

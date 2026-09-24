@@ -1,0 +1,176 @@
+---
+id: lesson-9-3
+station: station-9
+number: "9.3"
+title: "تحليل البيانات واتخاذ القرار"
+titleEn: "Data Analytics & Decision-Making"
+minutes: 20
+order: 3
+objectives:
+  - "أن يستخدم المتعلم مستويات التحليل: الوصفي والتشخيصي والتنبؤي."
+  - "أن يطبق قاعدة باريتو وأدوات الترتيب في ترشيد الموارد."
+  - "أن يميز الترابط عن السببية ويتجنب القرارات المتسرعة."
+  - "أن يبني تقريراً مقنعاً للإدارة العليا مبني على الدليل."
+objectivesEn:
+  - "Apply descriptive, diagnostic, and predictive analytics."
+  - "Use the Pareto rule and prioritization tools to focus resources."
+  - "Distinguish correlation from causation and avoid hasty decisions."
+  - "Build evidence-based reports that persuade senior leadership."
+hasTool: false
+quizId: quiz-9-3
+sources:
+  - ifma
+---
+
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz93 } from '../../../data/quiz/cfm/quiz-9-3';
+
+<LangSection lang="ar">
+
+البيانات المتراكمة بلا تحليل كنزٌ مقفل، والتحليل بلا قرار ترفٌ فكري. هذا الدرس يربط الحلقة: من ترتيب الأرقام إلى قراءة السبب إلى القرار المحسوب إلى رسالة تقنع القيادة. مدير المنشأة الذي يتقنها يحسب أين يُنفق الملايين بدليل لا بحدس.
+
+## 1. مستويات التحليل: ثلاثة أسئلة تصاعدية
+
+البيانات تُقرأ على ثلاث درجات:
+
+- **وصفي (Descriptive)**: ماذا حدث؟ مبيعات شهرية، أوامر عمل، توافر. يصف الماضي كما هو.
+- **تشخيصي (Diagnostic)**: لماذا حدث؟ يبحث السبب الجذري في البيانات — أي أصل؟ أي جدول؟ أي مورد؟ أي شذوذ؟
+- **تنبؤي (Predictive)**: ماذا سيحدث؟ نماذج واتجاهات وقراءات مستمرة تتوقع الأعطال والاستهلاك وتمهد القرار الاستباقي.
+
+الأداة الأعظم لا تغني عن السابقة: الوصفي يعرض، والتشخيصي يفكك، والتنبؤي يستبق. المدير المتمرس يرتقي السلم الثلاثة بدلاً من التوقف عند «الرقم يرتفع».
+
+## 2. قاعدة باريتو: الأثر يتركز في قلة
+
+مبدأ باريتو (20/80) جوهر الترتيب: قسم صغير من الأسباب يحمل حصة كبيرة من النتائج — قلة الأصول تسبب معظم الأعطال، وقلة الزبائن تحمل معظم الشكاوى، وقلة الأنظمة تحمل معظم التوقف.
+
+التطبيق: أجرد التوقف أو التكاليف حسب الأصل، ورتب تنازلياً، وحاصر الأقل الذي يسبب الأغلب. القرار البسيط الصحيح بعد هذا الترتيب: وجّه فريق التحسين أولاً إلى القلة المحورية بدلاً من توزيع الجهد بالتساوي على كل الأصول.
+
+## 3. الترابط ليس سببية: وصية المدقق
+
+في تحليل السلاسل الزمنية يُرصد ترابطات (ارتفاع التبريد مع الحرارة، الصيانة الوقائية مع انخفاض الطوارئ). لكن التحليل الدقيق يتوقف قبل القفزة:
+
+- **الترابط (Correlation)**: يتحرك متغيران معاً — قد يشتركان في سبب ثالث، أو يكون توافقهما زمنياً فقط.
+- **السببية (Causation)**: يثبت أن تغيير أحدهما يولّد تغيّر الآخر باختبار وإقصاء متغيرات.
+
+القرار الحاسم يستند إلى السببية المدروسة: فرضية + بيانات + إقصاء العوامل الأخرى (إشغال، موسم، ساعات عمل) + تجربة مصغرة عند الإمكان. القفز من ترابط عابر إلى قرار جوهري طريق الأخطاء المكلفة.
+
+## 4. من التحليل إلى القرار: الخطوات الأربع
+
+- **تعرّف**: بيّن المشكلة بالأرقام لا بالوصف الانطباعي.
+- **حلل**: طبّق المستويات وقاعدة باريتو والسبب الجذري.
+- **اختر**: قيّم البدائل بأثرها وتكلفتها ومخاطرها، واختر بإطار القرار (تكلفة الأثر، العائد، أولوية المخاطر).
+- **نفذ وراقب**: القرار يصبح افتراضاً يُختبر بمؤشرات بعد التنفيذ، ويُعدَّل حسب النتيجة.
+
+## 5. التقرير الذي يقنع القيادة
+
+التقرير المقنع لا يشنق بالأرقام، بل يحكي قصة مصاغة:
+
+- ابدأ بتلخيص تنفيذي: الثغرة، والأثر، والتوصية.
+- اعرض الرقم الذي يفتح الباب: مؤشر واحد حاسم مدعوم ببيان بياني واضح.
+- اشرح السبب والاتجاه والمقارنة المرجعية (Benchmarking).
+- أنهِ بقرار مطلوب محدد (اعتماد ميزانية، تغيير عقد) مع أثر متوقع.
+
+القيادة تصدق حين يكون لكل رقم مصدر، ولكل توصية سبب، وللحل عائد ظاهر.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Accumulated data without analysis is a locked treasure, and analysis without a decision is intellectual luxury. This lesson closes the loop: from arranging numbers to reading the cause, to the calculated decision, to a message that persuades the leadership. The facility manager who masters it decides where millions are spent with evidence, not intuition.
+
+## 1. Levels of analysis: three escalating questions
+
+Data is read on three levels:
+
+- **Descriptive**: what happened? Monthly sales, work orders, availability. It describes the past as it is.
+- **Diagnostic**: why did it happen? It seeks the root cause in the data — which asset? which schedule? which supplier? which anomaly?
+- **Predictive**: what will happen? Models, trends, and continuous readings forecast failures and consumption and pave the proactive decision.
+
+The greatest tool does not replace the one before it: the descriptive presents, the diagnostic dissects, and the predictive anticipates. The seasoned manager climbs the three-rung ladder instead of stopping at "the number is rising".
+
+## 2. The Pareto rule: impact concentrates in the few
+
+The Pareto principle (80/20) is the essence of prioritization: a small portion of causes carries a large share of results — a few assets cause most failures, a few clients carry most complaints, and a few systems carry most downtime.
+
+Application: itemize downtime or costs by asset, sort descending, and isolate the few that cause the majority. The simple correct decision after this sort: direct the improvement team first to the pivotal few instead of spreading the effort equally across all assets.
+
+## 3. Correlation is not causation: the auditor's counsel
+
+In time-series analysis, correlations are observed (cooling rising with heat, preventive maintenance with fewer emergencies). But careful analysis stops before the leap:
+
+- **Correlation**: two variables move together — they may share a third cause, or their agreement may be temporal only.
+- **Causation**: it is established that changing one generates a change in the other through testing and excluding variables.
+
+The decisive decision rests on studied causation: a hypothesis + data + excluding other factors (occupancy, season, working hours) + a small experiment when possible. Leaping from a passing correlation to a material decision is the path of costly mistakes.
+
+## 4. From analysis to decision: the four steps
+
+- **Identify**: state the problem in numbers, not in impressionistic description.
+- **Analyze**: apply the levels, the Pareto rule, and the root cause.
+- **Choose**: evaluate alternatives by their impact, cost, and risk, and choose with a decision framework (impact cost, return, risk priority).
+- **Execute and monitor**: the decision becomes a hypothesis tested with indicators after implementation, and is adjusted according to the result.
+
+## 5. The report that persuades the leadership
+
+A persuasive report does not choke on numbers; it tells a crafted story:
+
+- Start with an executive summary: the gap, the impact, and the recommendation.
+- Present the number that opens the door: a single decisive indicator supported by a clear chart.
+- Explain the cause, the trend, and benchmarking.
+- End with a specific requested decision (budget approval, contract change) with an expected impact.
+
+The leadership believes when every number has a source, every recommendation has a reason, and the solution has a visible return.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['benchmark', 'kpi', 'cmms']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-9-3" questions={quiz93.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- التحليل ثلاث درجات: وصفي (ماذا حدث)، تشخيصي (لماذا)، وتنبؤي (ماذا سيحدث)، وكل درجة تبني على سابقتها.
+- قاعدة باريتو تتركز الجهد على القلة المحورية التي تحمل أغلب الأثر، فلا يضيع المورد على أركان هامشية.
+- الترابط لا يثبت السببية؛ القرار الجوهري يحتاج فرضية وبيانات وإقصاء متغيرات وتجربة مصغرة.
+- التقرير المقنع يبدأ بالتوصية ويبني عليها بالأدلة والبيان الاقتصادي وينتهي بقرار محدد.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- Analysis has three levels: descriptive (what happened), diagnostic (why), and predictive (what will happen), and each level builds on the one before it.
+- The Pareto rule focuses effort on the pivotal few that carry most of the impact, so resource is not wasted on marginal corners.
+- Correlation does not prove causation; a material decision needs a hypothesis, data, excluding variables, and a small experiment.
+- A persuasive report starts with the recommendation, builds on it with evidence and the economic statement, and ends with a specific decision.
+
+</LangSection>

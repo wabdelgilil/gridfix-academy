@@ -9,10 +9,13 @@
   --color-brand-50: #f0fdfa;
   --color-brand-100: #ccfbf1;
   --color-brand-200: #99f6e4;
+  --color-brand-300: #5eead4;
+  --color-brand-400: #2dd4bf;
   --color-brand-500: #14b8a6;
   --color-brand-600: #0d9488;
   --color-brand-700: #0f766e;
   --color-brand-800: #115e59;
+  --color-brand-900: #134e4a;
   --color-ink-900: #0f172a;
   --color-ink-600: #475569;
   --color-ink-400: #94a3b8;
@@ -21,11 +24,147 @@
 
 html {
   font-family: var(--font-sans);
+  scroll-behavior: smooth;
 }
 
 body {
   @apply bg-ink-50 text-ink-900 antialiased;
   line-height: 1.8;
+}
+
+.dark body,
+.dark {
+  @apply bg-slate-900 text-slate-100;
+}
+
+/* ===== Dark mode overrides ===== */
+.dark .card {
+  @apply border-slate-700 bg-slate-800;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
+}
+.dark .card:hover {
+  @apply border-brand-500/50;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.4);
+}
+
+.dark .prose-lesson h2 {
+  @apply text-slate-100;
+}
+.dark .prose-lesson h3 {
+  @apply text-slate-200;
+}
+.dark .prose-lesson p {
+  @apply text-slate-300;
+}
+.dark .prose-lesson ul,
+.dark .prose-lesson ol {
+  @apply text-slate-300;
+}
+.dark .prose-lesson strong {
+  @apply text-slate-100;
+}
+.dark .prose-lesson em {
+  @apply text-brand-400;
+}
+.dark .prose-lesson blockquote {
+  @apply border-brand-600 bg-brand-900/30 text-slate-300;
+}
+.dark .prose-lesson th {
+  @apply bg-slate-700 text-slate-100;
+}
+.dark .prose-lesson td {
+  @apply border-slate-600/50 text-slate-300;
+}
+.dark .prose-lesson code {
+  @apply bg-slate-700 text-brand-300;
+}
+
+.dark footer {
+  @apply border-slate-700 bg-slate-900;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-slate-600;
+}
+
+/* ===== Animations ===== */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.4); }
+  50% { box-shadow: 0 0 20px 4px rgba(20, 184, 166, 0.15); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out both;
+}
+
+.animate-slide-in {
+  animation: slide-in-right 0.4s ease-out both;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out both;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+
+/* ===== نظام اللغة المزدوجة (عربي/إنجليزي) =====
+   SiteHeader يضبط document.documentElement.lang سرورياً ثم على المتصفح،
+   وعبر هذا الشريك CSS يُعرض كتلة اللغة النشطة وتُخفى الأخرى بلا جافاسكربت. */
+html[lang="ar"] [data-lang="en"],
+html[lang="en"] [data-lang="ar"] {
+  display: none !important;
+}
+
+html[lang="en"] body,
+html[lang="en"] {
+  line-height: 1.75;
 }
 
 /* ===== محتوى الدرس (prose custom) ===== */
@@ -37,6 +176,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  scroll-margin-top: 5rem;
 }
 .prose-lesson h2::before {
   content: "◆";
@@ -44,6 +184,7 @@ body {
 }
 .prose-lesson h3 {
   @apply mt-8 mb-3 text-xl font-semibold text-ink-900;
+  scroll-margin-top: 5rem;
 }
 .prose-lesson p {
   @apply my-4 text-ink-600;
@@ -96,7 +237,117 @@ body {
 /* ===== عناصر عامة ===== */
 .card {
   @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card:hover {
+  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
 }
 .chip {
   @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium;
+}
+
+/* ===== Card hover lift ===== */
+.card-hover {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Focus ring ===== */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-brand-600;
+}
+
+/* ===== Selection ===== */
+::selection {
+  @apply bg-brand-100 text-brand-800;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-slate-300;
+}
+
+/* ===== Search palette ===== */
+.search-overlay {
+  @apply fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm;
+}
+.search-dialog {
+  @apply fixed top-[15%] left-1/2 z-[101] w-full max-w-lg -translate-x-1/2 rounded-2xl border border-slate-200 bg-white shadow-2xl;
+}
+.dark .search-dialog {
+  @apply border-slate-600 bg-slate-800;
+}
+.search-input {
+  @apply w-full border-b border-slate-200 bg-transparent px-5 py-4 text-sm text-ink-900 outline-none;
+}
+.dark .search-input {
+  @apply border-slate-600 text-slate-100;
+}
+.search-result {
+  @apply flex cursor-pointer items-center gap-3 px-5 py-3 text-sm text-ink-600 transition hover:bg-brand-50;
+}
+.dark .search-result {
+  @apply text-slate-300 hover:bg-slate-700;
+}
+.search-result.active {
+  @apply bg-brand-50 text-brand-700;
+}
+.dark .search-result.active {
+  @apply bg-slate-700 text-brand-400;
+}
+
+/* ===== Table improvements ===== */
+.prose-lesson table {
+  @apply rounded-xl overflow-hidden;
+}
+.prose-lesson tr {
+  @apply transition-colors;
+}
+.prose-lesson tr:not(:last-child) {
+  @apply border-b border-slate-200;
+}
+.prose-lesson tr:hover td {
+  @apply bg-brand-50/50;
+}
+
+/* ===== Print ===== */
+@media print {
+  .sr-only,
+  header,
+  footer,
+  nav,
+  [role="progressbar"],
+  button {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt !important;
+  }
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .prose-lesson {
+    font-size: 11pt !important;
+  }
+  .prose-lesson h2 {
+    page-break-after: avoid;
+  }
+  .card {
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
 }

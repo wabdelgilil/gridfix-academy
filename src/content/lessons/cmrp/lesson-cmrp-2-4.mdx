@@ -1,0 +1,182 @@
+---
+id: lesson-cmrp-2-4
+course: cmrp
+station: station-cmrp-2
+number: "2.4"
+title: "المزيج المثالي للتكتيكات وتحليل ويبول"
+titleEn: "Maintenance Mix & Weibull Analysis"
+minutes: 35
+order: 4
+objectives:
+  - "أن يفسر المتعلم معامل الشكل بيتا ويربط كل قيمة بالتكتيك الصحيح."
+  - "أن يشرح معامل المقياس إيتا والعمر المميز عند 63.2%."
+  - "أن يحسب MTBF وMTTR والإتاحة الذاتية من بيانات تشغيل حقيقية."
+  - "أن يوازن بين زيادة الموثوقية وتقليل زمن الإصلاح لرفع الإتاحة."
+objectivesEn:
+  - "Interpret the Weibull shape parameter beta and map each value to the right tactic."
+  - "Explain the scale parameter eta and the 63.2% characteristic life."
+  - "Compute MTBF, MTTR, and inherent availability from real operating data."
+  - "Balance reliability growth against repair-time reduction to raise availability."
+hasTool: true
+toolName: "مستكشف ويبول"
+toolNameEn: "Weibull Explorer"
+quizId: quiz-cmrp-2-4
+sources:
+  - abernethy_weibull
+  - oconnor_reliability
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import WeibullExplorer from '../../../components/islands/tools/cmrp/WeibullExplorer.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp24 } from '../../../data/quiz/cmrp/quiz-cmrp-2-4';
+
+<LangSection lang="ar">
+
+التوزيع الإحصائي الذي طوره العالم السويدي والودي ويبول (Waloddi Weibull) هو حجر أساس هندسة الموثوقية: بمعامل واحد — معامل الشكل بيتا (β) — تخبرك الرياضيات بطبيعة العطل وبالتكتيك الذي ينجح والذي يهدر المال. وهذا الدرس يربط الرقم بالقرار.
+
+## 1. معامل الشكل بيتا (β) يحدد التكتيك
+
+- **β أقل من 1 — وفيات الرضع (Infant Mortality)**: معدل الفشل ينخفض مع الزمن، والأسباب عيوب تركيب أو جودة قطع أو تلوث تجميع. التكتيك: مراقبة الجودة والتدشين الدقيق واختبار التشغيل التجريبي — والصيانة الوقائية بالزمن هنا **ضارة** لأنها تعيد المعدة لنقطة الخطر! مثال: بيتا 0.65 في مضخات هيدروليكية.
+- **β تساوي 1 — فشل عشوائي (Random Failure)**: معدل ثابت مستقل عن ساعات التشغيل (التوزيع الأسي Exponential) — إلكترونيات وأنظمة معقدة. الاستبدال المجدول كل 6 أشهر **لا يقلل** الاحتمال: الصمام الجديد قد يفشل بعد 3 أيام كالقديم. التكتيك: المراقبة المشروطة (CBM) أو التشغيل حتى العطل (RTF) لغير الحرجة.
+- **β أكبر من 1 — التقادم والتآكل (Wear-out)**: معدل يرتفع مع العمر، ويماثل التوزيع الطبيعي (Normal Distribution) عند β ≈ 3.5. **هنا فقط** تنجح الصيانة الوقائية بالزمن (Time-Based PM): استبدل قبل الجرف الحتمي. مثال: بطانات فرامل سيور فحم عند بيتا 3.8 وعمر مميز 5000 ساعة.
+
+ويقابله معامل المقياس إيتا (η) — العمر المميز (Characteristic Life): النقطة الزمنية التي يُتوقع أن يفشل عندها 63.2% من مجتمع المعدات.
+
+<Callout type="myth">
+**أسطورة:** "الاستبدال الدوري المبكر يرفع الموثوقية دائماً في كل المعدات."
+**الحقيقة:** في وفيات الرضع يزيد الأعطال، وفي الفشل العشوائي لا يغير شيئاً — وهو مجدٍ فقط في التآكل المرتبط بالعمر حيث يوجد جرف اهتراء متوقع.
+</Callout>
+
+## 2. مقاييس الجاهزية: MTBF وMTTR والإتاحة الذاتية
+
+ثلاث معادلات لا يخلو منها امتحان CMRP:
+
+- **متوسط الوقت بين الأعطال (MTBF) = إجمالي ساعات التشغيل ÷ عدد الأعطال** — مقياس الموثوقية (Reliability).
+- **متوسط وقت الإصلاح (MTTR) = إجمالي ساعات التوقف الإصلاحي ÷ عدد الأعطال** — مقياس قابلية الصيانة (Maintainability).
+- **الإتاحة الذاتية (Ai) = MTBF ÷ (MTBF + MTTR) × 100%** — نسبة الجاهزية باستبعاد توقفات الوقائية وتأخير قطع الغيار.
+
+مسألة محلولة: توربينة غازية عملت 6000 ساعة مع 3 أعطال و30 ساعة إصلاح — MTBF = 6000 ÷ 3 = 2000 ساعة، وMTTR = 30 ÷ 3 = 10 ساعات، والإتاحة = 2000 ÷ 2010 = 99.5% أي مستوى عالمي (World-Class) يتجاوز 98%.
+
+## 3. المزيج المثالي ورفع الإتاحة من الجهتين
+
+لا تكتيك واحد يصلح للجميع — المزيج الأمثل يوزع حسب بيتا والحرجية: ضمان الجودة والتدشين للرضع، والمراقبة المشروطة للعشوائي والحرج، والاستبدال المجدول للتآكل المؤكد، والتشغيل حتى العطل للبسيط غير المؤثر.
+
+<Callout type="tip">
+**لرفع الإتاحة اعمل على الشقين معاً:** زيادة MTBF بالموثوقية والصيانة الاستباقية التي تمنع تكرار العطل، وتقليل MTTR بقابلية الصيانة — التخطيط المسبق وحزم العمل المجهزة (Kitting) وتوفر قطع الغيار وتدريب الفنيين. إهمال أي شق ينهار بالإتاحة مهما تفوق الآخر.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+The statistical distribution developed by the Swedish scientist Waloddi Weibull is a cornerstone of reliability engineering: with a single parameter — the shape parameter beta (β) — mathematics tells you the nature of the failure and which tactic succeeds and which wastes money. This lesson connects the number to the decision.
+
+## 1. The shape parameter beta (β) determines the tactic
+
+- **β less than 1 — infant mortality**: the failure rate decreases with time; the causes are installation defects, part quality issues, or assembly contamination. Tactic: quality control, careful commissioning, and trial run testing — and time-based preventive maintenance here is **harmful** because it returns the equipment to the danger point! Example: beta 0.65 in hydraulic pumps.
+- **β equal to 1 — random failure**: a constant rate independent of operating hours (the exponential distribution) — electronics and complex systems. Scheduled replacement every 6 months **does not reduce** the probability: the new valve may fail after 3 days just like the old one. Tactic: condition-based monitoring (CBM) or run-to-failure (RTF) for non-critical assets.
+- **β greater than 1 — wear-out**: a rate that rises with age, resembling the normal distribution at β ≈ 3.5. **Only here** does time-based preventive maintenance (Time-Based PM) succeed: replace before the inevitable cliff. Example: coal conveyor brake linings at beta 3.8 with a characteristic life of 5000 hours.
+
+Opposite it stands the scale parameter eta (η) — the characteristic life: the point in time at which 63.2% of the equipment population is expected to have failed.
+
+<Callout type="myth">
+**Myth:** "Early periodic replacement always raises reliability in all equipment."
+**Fact:** in infant mortality it increases failures, and in random failure it changes nothing — it is only worthwhile in age-related wear-out where a predictable wear-at-out cliff exists.
+</Callout>
+
+## 2. Readiness measures: MTBF, MTTR, and inherent availability
+
+Three equations no CMRP exam is without:
+
+- **Mean Time Between Failures (MTBF) = total operating hours ÷ number of failures** — the measure of reliability.
+- **Mean Time To Repair (MTTR) = total repair downtime hours ÷ number of failures** — the measure of maintainability.
+- **Inherent availability (Ai) = MTBF ÷ (MTBF + MTTR) × 100%** — the readiness ratio excluding preventive stoppages and spare parts delays.
+
+Solved problem: a gas turbine operated 6000 hours with 3 failures and 30 repair hours — MTBF = 6000 ÷ 3 = 2000 hours, MTTR = 30 ÷ 3 = 10 hours, and availability = 2000 ÷ 2010 = 99.5%, a world-class level exceeding 98%.
+
+## 3. The ideal mix and raising availability from both sides
+
+No single tactic fits everything — the optimal mix distributes by beta and criticality: quality assurance and commissioning for infant mortality, condition monitoring for random and critical failures, scheduled replacement for confirmed wear-out, and run-to-failure for simple assets with little impact.
+
+<Callout type="tip">
+**To raise availability, work on both sides together:** increase MTBF through reliability and proactive maintenance that prevents failure recurrence, and reduce MTTR through maintainability — advance planning, pre-kitted work packages (Kitting), spare parts availability, and technician training. Neglecting either side collapses availability no matter how strong the other is.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: مستكشف ويبول
+
+حرّك مؤشر بيتا من 0.4 إلى 4.5 وشاهد منطقة السلوك (رضع / عشوائي / تآكل) مع التكتيك الموصى به، ثم جرّب حاسبة الإتاحة الذاتية بإدخال MTBF وMTTR حقيقيين.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Weibull Explorer
+
+Move the beta slider from 0.4 to 4.5 and see the behavior zone (infant / random / wear-out) with the recommended tactic, then try the inherent availability calculator by entering real MTBF and MTTR values.
+
+</LangSection>
+
+<WeibullExplorer client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-2-4-t1', 'cmrp-2-4-t2', 'cmrp-2-4-t3', 'cmrp-2-4-t4', 'cmrp-2-4-t5', 'cmrp-2-4-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على تفسير بيتا 0.65 و1.05 و3.8، وحساب MTBF وMTTR والإتاحة، والموازنة بين الشقين.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on interpreting beta 0.65, 1.05, and 3.8, computing MTBF, MTTR, and availability, and balancing the two sides.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-2-4" questions={quizCmrp24.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **β أقل من 1** وفيات رضع: جودة وتدشين وتجربة تشغيل، لا صيانة بالزمن.
+- **β تساوي 1** فشل عشوائي ثابت: CBM أو تشغيل حتى العطل، والاستبدال المجدول هدر.
+- **β أكبر من 1** تآكل متزايد (≈ 3.5 توزيع طبيعي): استبدال مجدول قبل الجرف — وهنا فقط ينجح.
+- **إيتا (η)** العمر المميز الذي يفشل عنده 63.2% من المجتمع.
+- **Ai = MTBF ÷ (MTBF + MTTR)**: ارفع البسط بالموثوقية واخفض المقام بسرعة الإصلاح المجهزة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **β less than 1** is infant mortality: quality, commissioning, and trial runs, not time-based maintenance.
+- **β equal to 1** is constant random failure: CBM or run-to-failure, and scheduled replacement is waste.
+- **β greater than 1** is increasing wear-out (≈ 3.5 normal distribution): scheduled replacement before the cliff — and only here it succeeds.
+- **Eta (η)** is the characteristic life at which 63.2% of the population fails.
+- **Ai = MTBF ÷ (MTBF + MTTR)**: raise the numerator with reliability and lower the denominator with prepared repair speed.
+
+</LangSection>

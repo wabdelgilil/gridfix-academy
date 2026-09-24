@@ -1,0 +1,217 @@
+---
+id: lesson-9-2
+station: station-9
+number: "9.2"
+title: "CMMS / CAFM / IoT"
+titleEn: "CMMS / CAFM / IoT"
+minutes: 25
+order: 2
+objectives:
+  - "أن يشرح المتعلم المكونات الأساسية لنظام إدارة الصيانة المحوسب (CMMS) ودوره في توحيد البيانات."
+  - "أن يحدد الفروق بين CMMS وCAFM ومتى يناسب كل نظام."
+  - "أن يربط مستشعرات إنترنت الأشياء (IoT) بالعمليات الحية للمبنى."
+  - "أن يدرك مخاطر البيانات الرديئة وكيف تُعالج قبل النشر."
+objectivesEn:
+  - "Explain core components of a CMMS and its role in consolidating data."
+  - "Distinguish CMMS from CAFM and when each fits."
+  - "Link IoT sensors to live building operations."
+  - "Understand poor-data risks and remediate them before rollout."
+hasTool: false
+quizId: quiz-9-2
+sources:
+  - ifma
+---
+
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import Comparison from '../../../components/ui/figures/Comparison.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz92 } from '../../../data/quiz/cfm/quiz-9-2';
+
+<LangSection lang="ar">
+
+نظام إدارة الصيانة المحوسب (CMMS) هو العمود الفقري للبيانات التشغيلية: كل أمر عمل، كل قطعة غيار، كل جدول وقائي، وبداية كل تقرير تأخذ مسارها من هذا النظام. لكنه وحده لا يكفي — الشبكة المتكاملة (CAFM للمخططات والمساحات، وإنترنت الأشياء للقراءات اللحظية) هي التي تحوّل النظام من دفتر تسجيل إلى عين حقيقية ترى المبنى.
+
+## 1. جوهر CMMS: مصدر واحد للحقيقة
+
+نظام CMMS (Computerized Maintenance Management System) منصة رقمية تجمع في مكان واحد:
+
+- **سجلات الأصول**: أعمار الأصول وحالتها ومواصفات الصيانة ومستندات الضمان.
+- **أوامر العمل**: أوامر وقائية (Preventive) وعلاجية (Corrective) كل بحالته وكلفته.
+- **الجداول**: جداول الصيانة الدورية والتذكيرات التلقائية.
+- **قطع الغيار والمخزون**: صرفيات وكميات وموردون.
+- **التكاليف والمؤشرات**: كلفة كل أصل ومؤشرات التوافر والإنجاز.
+
+الفائدة الحاسمة: نظام واحد محدده يميز كل كلمة: لماذا ارتفعت التكاليف؟ لماذا انخفض التوافر؟ لكل سؤال سجل يلجأ إليه، فيصدر القرار من السجل لا من الانطباع والحدس.
+
+## 2. CMMS مقابل CAFM: ذكاء الأصول مقابل ذكاء المكان
+
+- **CMMS** يدور حول الصيانة: طلب عمل ← جدولة ← إنجاز ← تكلفة ← مؤشر. يجيب على «ماذا أنجزنا وبأي ثمن».
+- **CAFM** (Computer-Aided Facility Management) يضيف طبقة المكان: مخططات المبنى، تخصيص المساحات، حركة الإشغال، وسجلات كل مساحة ومواردها.
+
+استخدامات التداخل: إذا كانت المساحات والمخططات ثروتك (مبانٍ متعددة، إدارة إشغال وانتقالات)، فإن CAFM هو الأداء الأمثل؛ أما إن كان همك تشغيل أصول معدات، فـ CMMS قوي يكفي. التكامل بينهما أفضل من استبعاد أحدهما — البيانات تمتد من نظام الصيانة إلى خرائط المكان في وحدة واحدة.
+
+<Comparison
+  title="CMMS مقابل CAFM: ذكاء الأصول مقابل ذكاء المكان"
+  sides={[
+    {
+      label: 'CMMS — نظام إدارة الصيانة المحوسب',
+      color: 'brand',
+      items: ['يدور حول الصيانة: طلب عمل، جدولة، إنجاز، تكلفة، مؤشر', 'يجيب عن: ماذا أنجزنا وبأي ثمن', 'يقوي الأنسب لتشغيل أصول المعدات'],
+    },
+    {
+      label: 'CAFM — إدارة المنشآت بمساعدة الحاسوب',
+      color: 'teal',
+      items: ['يضيف طبقة المكان: مخططات المبنى والمساحات', 'تخصيص المساحات وحركة الإشغال وسجلات كل مساحة', 'الأنسب حين تكون المساحات والمخططات ثروة المنظمة'],
+    },
+  ]}
+  caption="التكامل بين النظامين أقوى من استبعاد أحدهما: تمتد البيانات من نظام الصيانة إلى خرائط المكان في وحدة واحدة"
+/>
+
+## 3. إنترنت الأشياء (IoT): من قراءة لحظية إلى قرار فوري
+
+المستشعرات الذكية تربط المبنى بالعالم الحي:
+
+- مستشعرات الحرارة والرطوبة → إعدادات التكييف الموفرة.
+- عدادات المياه والكهرباء → اكتشاف تسرب أو استهلاك شاذ حين حدوثه.
+- مستشعرات الاهتزاز على المحركات → إنذار مبكر قبل تعطل معدات.
+
+القيمة الأعمق: قراءات لحظية متصلة تغذي التحليلات والتنبؤات، وتُطعم نظام الصيانة بأوامر وقائية ذكية. إنترنت الأشياء يرفع الأداء من «سجل ما مضى» إلى «اكتشف ما يحدث الآن وتصرف قبل الغد».
+
+## 4. جودة البيانات: الخطر الأعلى في أي نظام
+
+النظام الجيد لا يصلح بيانات رديئة؛ بل ينقل عيوبها ويضاعف أثرها:
+
+- إدخال خاطئ في البداية يمرر أخطاء طوال عمر النظام.
+- تكرار السجل الواحد تحت بيانات مزدوجة يشوش المؤشرات والجداول.
+- سجلات ناقصة (مواصفات، نهاية ضمان) تجعل المؤشرات تخدع القرار.
+
+القاعدة: تُعرف البيانات قواعد واضحة (لا تكرار، حقول إلزامية، مالك لكل سجل)، ويراجع الترحيل قبل النشر، وتُدرَّب الفرق المُدخِلة للبيانات على قواعد الجودة.
+
+## 5. نشر النظام: خطوة بخطوة مع البيانات النظيفة
+
+- **الترحيل المخطط**: مسح شامل للأصول والبيانات، حذف المكرر، ومعايرة القيم قبل النقل.
+- **التمكين التدريجي**: انطلاق بموقع أو قسم واحد، وتعلم الفريق من التجربة الأولى ثم التوسع.
+- **قياس التبني**: عدد الأوامر داخل النظام مقابل خارجه، وسرعة الاستجابة، ورضا المستخدم.
+- **إزالة العوائق**: صلاحيات واضحة، واجهة بسيطة، ودعم ميداني في الأسابيع الأولى.
+
+</LangSection>
+
+<LangSection lang="en">
+
+The computerized maintenance management system (CMMS) is the backbone of operational data: every work order, every spare part, every preventive schedule, and the start of every report takes its path from this system. But it alone is not enough — the integrated network (CAFM for drawings and spaces, and the Internet of Things for live readings) is what turns the system from a logbook into a real eye that sees the building.
+
+## 1. The essence of CMMS: a single source of truth
+
+A CMMS (Computerized Maintenance Management System) is a digital platform that brings together in one place:
+
+- **Asset records**: asset ages and condition, maintenance specifications, and warranty documents.
+- **Work orders**: preventive and corrective orders, each with its status and cost.
+- **Schedules**: periodic maintenance schedules and automatic reminders.
+- **Spare parts and inventory**: withdrawals, quantities, and suppliers.
+- **Costs and indicators**: the cost of each asset and the availability and completion indicators.
+
+The decisive benefit: one defined system answers every word: why did costs rise? Why did availability drop? Every question has a record to turn to, so the decision is issued from the record, not from impression and intuition.
+
+## 2. CMMS vs CAFM: asset intelligence versus place intelligence
+
+- **CMMS** revolves around maintenance: work request ← scheduling ← completion ← cost ← indicator. It answers "what did we complete and at what price".
+- **CAFM** (Computer-Aided Facility Management) adds the place layer: building drawings, space allocation, occupancy movement, and the records of each space and its resources.
+
+Overlap uses: if spaces and drawings are your wealth (multiple buildings, occupancy and move management), then CAFM is the optimal performer; but if your concern is operating equipment assets, a robust CMMS suffices. Integrating both is better than excluding one — the data extends from the maintenance system to the place maps in a single unit.
+
+<Comparison
+  title="CMMS vs CAFM: asset intelligence versus place intelligence"
+  sides={[
+    {
+      label: 'CMMS — Computerized Maintenance Management System',
+      color: 'brand',
+      items: ['Revolves around maintenance: work request, scheduling, completion, cost, indicator', 'Answers: what we completed and at what price', 'Best suited for operating equipment assets'],
+    },
+    {
+      label: 'CAFM — Computer-Aided Facility Management',
+      color: 'teal',
+      items: ['Adds the place layer: building drawings and spaces', 'Space allocation, occupancy movement, and records of each space', 'Best when spaces and drawings are the organization\u2019s wealth'],
+    },
+  ]}
+  caption="Integrating the two systems is stronger than excluding one: data extends from the maintenance system to the place maps in a single unit"
+/>
+
+## 3. Internet of Things (IoT): from live reading to an instant decision
+
+Smart sensors connect the building to the living world:
+
+- Temperature and humidity sensors → efficient HVAC settings.
+- Water and electricity meters → detecting a leak or abnormal consumption the moment it happens.
+- Vibration sensors on motors → early warning before equipment fails.
+
+The deeper value: connected live readings feed analytics and predictions, and feed the maintenance system with smart preventive orders. The Internet of Things raises performance from "a record of the past" to "detect what is happening now and act before tomorrow".
+
+## 4. Data quality: the highest risk in any system
+
+A good system does not fix poor data; rather, it passes on its flaws and multiplies their impact:
+
+- A wrong entry at the start passes errors throughout the system's life.
+- Duplicating a single record under double data confuses the indicators and schedules.
+- Incomplete records (specifications, warranty end) make indicators deceive the decision.
+
+The rule: data receives clear rules (no duplication, mandatory fields, an owner for every record), migration is reviewed before rollout, and data-entry teams are trained on quality rules.
+
+## 5. System rollout: step by step with clean data
+
+- **Planned migration**: a comprehensive scan of assets and data, deleting duplicates, and calibrating values before transfer.
+- **Gradual enablement**: starting with one site or one department, learning from the first experience, then expanding.
+- **Adoption measurement**: the number of orders inside the system versus outside it, response speed, and user satisfaction.
+- **Removing obstacles**: clear permissions, a simple interface, and field support in the first weeks.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmms', 'cafm', 'iot']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-9-2" questions={quiz92.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- CMMS يوحد الأصول وأوامر العمل والجداول والتكاليف في مصدر واحد للحقيقة يجيب عن كل انحراف بسجل موثق.
+- CAFM يضيف طبقة المكان (المخططات والمساحات والإشغال)، والتكامل بين النظامين أقوى من استبدال أحدهما بالآخر.
+- المستشعرات الذكية (IoT) تقدم قراءات لحظية تغذي التنبيه والتحليل وأوامر الصيانة الوقائية الذكية.
+- البيانات الرديئة تسمم أي نظام؛ قواعد الجودة والترحيل المخطط والتمكين التدريجي شرطا نجاح النشر.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- CMMS unifies assets, work orders, schedules, and costs into a single source of truth that answers every deviation with a documented record.
+- CAFM adds the place layer (drawings, spaces, and occupancy), and integrating the two systems is stronger than replacing one with the other.
+- Smart sensors (IoT) provide live readings that feed alerts, analytics, and smart preventive maintenance orders.
+- Poor data poisons any system; quality rules, planned migration, and gradual enablement are the conditions for rollout success.
+
+</LangSection>

@@ -1,0 +1,286 @@
+---
+id: lesson-cama-1-1
+course: cama
+station: station-cama-1
+number: "1.1"
+title: "مبادئ إدارة الأصول ISO 55000"
+titleEn: "Asset Management Principles – ISO 55000"
+minutes: 30
+order: 1
+objectives:
+  - "أن يشرح المتعلم الفارق الجوهرى بين إدارة الأصول وإدارة المعدات."
+  - "أن يحدد مفهوم القيمة في سياق إدارة الأصول وثلاثة أبعاد لها."
+  - "أن يعدد المبادئ العشرة لإدارة الأصول وفق ISO 55000."
+  - "أن يشرح دور دورة حياة الأصل (Lifecycle) في اتخاذ القرارات."
+objectivesEn:
+  - "Explain the fundamental difference between Asset Management and Managing Assets."
+  - "Define the concept of Value in asset management with its three dimensions."
+  - "List the ten principles of Asset Management per ISO 55000."
+  - "Explain the role of the Asset Lifecycle in decision-making."
+hasTool: true
+toolName: "أداة تقييم النضج"
+toolNameEn: "Maturity Assessment"
+quizId: quiz-cama-1-1
+sources:
+  - iso55000
+  - gfmam_landscape
+  - ifma_bok
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import MaturityAssessment from '../../../components/islands/tools/cama/MaturityAssessment.tsx';
+import Timeline from '../../../components/ui/figures/Timeline.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama11 } from '../../../data/quiz/cama/quiz-cama-1-1';
+
+<LangSection lang="ar">
+
+الفكرة المحورية في هذا الدرس أن إدارة الأصول (Asset Management) ليست مجرد صيانة أو إصلاح، بل هي منظومة استراتيجية شاملة تربط كل قرار يتعلق بأصل مادي بالقيمة التي يحققها للمؤسسة. فهم هذا الفارق هو بوابة الدخول إلى عالم CAMA والمعايير الدولية.
+
+## 1. إدارة الأصول مقابل إدارة المعدات: فارق جوهري
+
+كثير من المهندسين يخلطون بين مصطلحين مختلفين تماماً:
+
+- **إدارة المعدات (Managing Assets)**: هي التعامل اليومي مع الأصل — صيانته، تشغيله، وإصلاحه عند أعطاله. وهي مهمة وضرورية لكنها تشغيلية بحتة وتركّز على الأصل الفردي.
+- **إدارة الأصول (Asset Management)**: هي المنظومة الاستراتيجية التي تحدد كيف تُدار مجموعة الأصول ككل لتحقيق أهداف المؤسسة. تشمل التخطيط الاستراتيجي، تخصيص الموارد، تقييم المخاطر، وقياس القيمة على مستوى المنظومة بأكملها.
+
+الفرق كالفرق بين قيادة سيارة وقيادة أسطول نقل: الأول يركز على المهمة الحالية، والثاني يخطط لسنوات ويوازن بين الموارد والمخاطر والأهداف.
+
+## 2. مفهوم القيمة في إدارة الأصول
+
+ISO 55000 يعرّف إدارة الأصول بأنها "النشاط المتوازن لتحقيق القيمة من الأصول". والقيمة هنا ليست مفهوماً مالياً بحتاً بل لها ثلاثة أبعاد:
+
+- **القيمة المالية**: العائد الاقتصادي المباشر — الربحية، تخفيض التكاليف، العائد على الاستثمار (ROI).
+- **قيمة الأداء**: مستوى الأداء التشغيلي — الإتاحة، الجودة، السرعة، الكفاءة.
+- **قيمة المخاطر**: التوازن بين العوائد والمخاطر — تقليل احتمالية الأعطال، الامتثال للأنظمة، حماية البيئة والسلامة.
+
+المدير الناجح هو من يوازن بين هذه الأبعاد الثلاثة ولا يتمسك بأحدها على حساب البقية. فالتركيز المفرط على التكلفة قد يُجدي تكلفة صيانة أقل لكنه يرفع المخاطر بشكل غير مقبول.
+
+## 3. المبادئ الأساسية لإدارة الأصول
+
+يُحدد ISO 55000 مبادئ أساسية يجب أن تستند إليها أي منظومة إدارة أصول فعالة، ومن أبرزها:
+
+1. **القيمة**: كل القرارات يجب أن تُقاس بتأثيرها على القيمة الإجمالية للمؤسسة.
+2. **الرؤية والهدف الاستراتيجي**: إدارة الأصول يجب أن ترتبط مباشرة بالرؤية الاستراتيجية العليا.
+3. **القيادة**: يجب أن يكون هناك قائد معني مسؤول عن إدارة الأصول على مستوى تنفيذي.
+4. **النظام المتكامل**: إدارة الأصول ليست نشاطاً معزولاً بل نظام يربط كل أقسام المؤسسة.
+5. **النهج العلمي**: الاعتماد على أساليب موثوقة ومدروسة لا القرارات العشوائية.
+6. **السياق التنظيمي**: فهم البيئة الداخلية والخارجية التي تعمل فيها المؤسسة.
+7. **المشاركة**: إشراك جميع الأطراف ذوي المصلحة في عمليات اتخاذ القرار.
+8. **البيانات المعلوماتية**: اتخاذ القرارات مبنية على بيانات حقيقية لا تخمينات.
+9. **التحسين المستمر**: المراجعة والتطوير الدائم لأداء المنظومة.
+10. **التكامل التنسيقي**: التوائم بين التخطيط والتنفيذ والتقييم والمراجعة.
+
+## 4. ستة رؤوس الأصول (Six Capitals)
+
+فهم إدارة الأصول يتطلب توسيع نظرتنا فضلاً عن الأصول المادية الملموسة إلى ستة أنواع من رؤوس الأصول التي تديرها المؤسسة:
+
+- **رأس المال المادي (Physical)**: المباني، المعدات، البنية التحتية — وهو محور عملنا الأساسي.
+- **رأس المال المالي (Financial)**: الاستثمارات، السيولة، الأصول المالية.
+- **رأس المال الفكري (Intellectual)**: براءات الاختراع، حقوق الملكية، البراءات، المعرفة التقنية.
+- **رأس المال البشري (Human)**: الكوادر البشرية، خبراتهم، شهاداتهم، بحثهم.
+- **رأس المال الاجتماعي (Social and Relationship)**: السمعة، علاقات العملاء، الشراكات.
+- **رأس المال الطبيعي (Natural)**: الموارد الطبيعية، الترخيصات البيئية، الإذن بالتشغيل.
+
+إدارة الأصول الحقيقية توازن بين هذه الأنواع الستة ولا تكتفِ بالمادي على حساب البقية.
+
+## 5. دورة حياة الأصل (Asset Lifecycle)
+
+دورة حياة الأصل هي المحور الذي تدور حوله كل قرارات إدارة الأصول. تتكون من مراحل متعاقبة:
+
+1. **التحديد والتخطيط (Identify & Plan)**: تحديد الحاجة للأصل ومتطلباته وجدوى اقتصاديه.
+2. **الاقتناء والتصميم (Acquire & Design)**: التصميم، الشراء، التصنيع، التركيب.
+3. **التشغيل والصيانة (Operate & Maintain)**: التشغيل الفعلي والصيانة الوقائية والتصحيحية.
+4. **التغيير والتحسين (Improve)**: التحديثات، التعديلات، تحسين الأداء.
+5. **النهاية وإعادة التدوير (End of Life)**: التخلي، البيع، الإعدام، إعادة التدوير.
+
+كل قرار في أي مرحلة يجب أن يُنظر فيه من منظور دورة الحياة الكاملة. فالشراء الأرخص قد يكون الأكثر تكلفة على المدى الطويل إذا كانت تكاليف الصيانة والتشغيل عالية جداً.
+
+<Timeline
+  title="مراحل دورة حياة الأصل"
+  phases={[
+    { label: 'التحديد والتخطيط', detail: 'تحديد الحاجة والجدوى الاقتصادية (Identify & Plan).', icon: '🧭' },
+    { label: 'الاقتناء والتصميم', detail: 'التصميم والشراء والتصنيع والتركيب (Acquire & Design).', icon: '🏗' },
+    { label: 'التشغيل والصيانة', detail: 'التشغيل الفعلي والصيانة الوقائية والتصحيحية (Operate & Maintain).', icon: '⚙️' },
+    { label: 'التغيير والتحسين', detail: 'التحديثات والتعديلات وتحسين الأداء (Improve).', icon: '🚀' },
+    { label: 'النهاية وإعادة التدوير', detail: 'التخلي والبيع والإعدام وإعادة التدوير (End of Life).', icon: '♻️' },
+  ]}
+  caption="كل قرار في أي مرحلة يُنظر إليه من منظور الدورة الكاملة — الشراء الأرخص قد يكون الأغلى مدى الحياة."
+/>
+
+</LangSection>
+
+<LangSection lang="en">
+
+The core idea of this lesson is that Asset Management is not merely maintenance or repair; it is a comprehensive strategic system that ties every decision about a physical asset to the value it delivers to the organization. Understanding this difference is the gateway into the world of CAMA and international standards.
+
+## 1. Asset Management vs. Managing Assets: a fundamental difference
+
+Many engineers confuse two entirely different terms:
+
+- **Managing Assets**: the day-to-day handling of an asset — maintaining it, operating it, and repairing it when it breaks down. This is important and necessary but purely operational, focusing on the individual asset.
+- **Asset Management**: the strategic system that determines how the asset portfolio as a whole is managed to achieve the organization's objectives. It includes strategic planning, resource allocation, risk assessment, and value measurement at the level of the entire system.
+
+The difference is like driving a single car versus managing a transport fleet: the first focuses on the current task, while the second plans for years and balances resources, risks, and objectives.
+
+## 2. The concept of value in asset management
+
+ISO 55000 defines asset management as "the coordinated activity to realize value from assets". Value here is not a purely financial concept; it has three dimensions:
+
+- **Financial value**: the direct economic return — profitability, cost reduction, return on investment (ROI).
+- **Performance value**: the level of operational performance — availability, quality, speed, and efficiency.
+- **Risk value**: the balance between returns and risks — reducing the likelihood of failures, regulatory compliance, and protecting the environment and safety.
+
+A successful manager balances these three dimensions and does not cling to one at the expense of the rest. Excessive focus on cost may yield lower maintenance spending but raises risk to unacceptable levels.
+
+## 3. The fundamental principles of asset management
+
+ISO 55000 defines fundamental principles that any effective asset management system must rest on, the most prominent of which are:
+
+1. **Value**: every decision must be measured by its impact on the organization's total value.
+2. **Vision and strategic objectives**: asset management must be directly linked to the top-level strategic vision.
+3. **Leadership**: there must be a designated leader accountable for asset management at an executive level.
+4. **Integrated system**: asset management is not an isolated activity but a system that links all parts of the organization.
+5. **Scientific approach**: relying on reliable, well-established methods rather than arbitrary decisions.
+6. **Organizational context**: understanding the internal and external environment in which the organization operates.
+7. **Participation**: involving all interested parties in decision-making processes.
+8. **Data and information**: making decisions based on real data rather than guesswork.
+9. **Continual improvement**: constantly reviewing and developing the system's performance.
+10. **Coordinative integration**: aligning planning, execution, evaluation, and review.
+
+## 4. The six capitals
+
+Understanding asset management requires widening our view beyond tangible physical assets to the six types of capital managed by the organization:
+
+- **Physical capital**: buildings, equipment, and infrastructure — the core focus of our work.
+- **Financial capital**: investments, liquidity, and financial assets.
+- **Intellectual capital**: patents, intellectual property rights, and technical knowledge.
+- **Human capital**: people, their expertise, qualifications, and research.
+- **Social and relationship capital**: reputation, customer relationships, and partnerships.
+- **Natural capital**: natural resources, environmental permits, and the license to operate.
+
+Real asset management balances these six types of capital and does not settle for the physical at the expense of the rest.
+
+## 5. The asset lifecycle
+
+The asset lifecycle is the axis around which all asset management decisions revolve. It consists of successive stages:
+
+1. **Identify & Plan**: defining the need for the asset, its requirements, and its economic feasibility.
+2. **Acquire & Design**: design, purchase, manufacture, and installation.
+3. **Operate & Maintain**: actual operation and preventive and corrective maintenance.
+4. **Improve**: upgrades, modifications, and performance improvement.
+5. **End of Life**: disposal, sale, decommissioning, and recycling.
+
+Every decision at any stage must be viewed from the perspective of the complete lifecycle. The cheapest purchase may be the most costly in the long run if maintenance and operating costs are very high.
+
+<Timeline
+  title="Stages of the asset lifecycle"
+  phases={[
+    { label: 'Identify & Plan', detail: 'Defining the need and economic feasibility.', icon: '🧭' },
+    { label: 'Acquire & Design', detail: 'Design, purchase, manufacture, and installation.', icon: '🏗' },
+    { label: 'Operate & Maintain', detail: 'Actual operation and preventive and corrective maintenance.', icon: '⚙️' },
+    { label: 'Improve', detail: 'Upgrades, modifications, and performance improvement.', icon: '🚀' },
+    { label: 'End of Life', detail: 'Disposal, sale, decommissioning, and recycling.', icon: '♻️' },
+  ]}
+  caption="Every decision at any stage is viewed from the perspective of the complete cycle — the cheapest purchase may be the most expensive over its life."
+/>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: أداة تقييم النضج
+
+هذه الأداة تساعدك على تقييم مدى نضج منظومة إدارة الأصول في مؤسستك عبر خمسة محاور: الاستراتيجية، النظام، الأداء، التحسين، والموارد. أجب عن الأسئلة بصدق وشاهد النتيجة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Maturity Assessment
+
+This tool helps you evaluate how mature the asset management system in your organization is across five dimensions: strategy, system, performance, improvement, and resources. Answer the questions honestly and see the result.
+
+</LangSection>
+
+<MaturityAssessment client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-1-1-t1','cama-1-1-t2','cama-1-1-t3','cama-1-1-t4','cama-1-1-t5']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على الفارق بين إدارة الأصول وإدارة المعدات، وأبعاد القيمة الثلاثة، ومبادئ إدارة الأصول، ودورة حياة الأصل من منظور القيمة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the difference between asset management and managing assets, the three value dimensions, the principles of asset management, and the asset lifecycle from a value perspective.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-1-1" questions={quizCama11.questions} client:load />
+
+<LangSection lang="ar">
+
+## مصادر
+
+- ISO 55000:2024 — Asset Management: Overview, Principles and Terminology
+- GFMAM Asset Management Landscape v3
+- IFMA Body of Knowledge — Asset Management
+- IAM Anatomy of Asset Management
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Sources
+
+- ISO 55000:2024 — Asset Management: Overview, Principles and Terminology
+- GFMAM Asset Management Landscape v3
+- IFMA Body of Knowledge — Asset Management
+- IAM Anatomy of Asset Management
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **إدارة الأصول ≠ إدارة المعدات**: الأولى استراتيجية شاملة تربط القرارات بالقيمة، والثانية تشغيلية تركّز على الأصل الفردي.
+- **القيمة لها ثلاثة أبعاد**: مالي، أداء، مخاطر — والنجاح في التوازن بينها.
+- **المبادئ الأساسية** تُشكّل الإطار المرجعي لبناء منظومة إدارة أصول متكاملة.
+- **ستة رؤوس الأصول** تتعدى المادي إلى الفكري والبشري والاجتماعي والطبيعي والمالي.
+- **دورة حياة الأصل** هي المحور الذي تدور حوله القرارات، وكل قرار يجب أن يُنظر فيه من منظور الدورة الكاملة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Asset management ≠ managing assets**: the former is a comprehensive strategy linking decisions to value, while the latter is operational and focuses on the individual asset.
+- **Value has three dimensions**: financial, performance, and risk — and success lies in balancing them.
+- **The fundamental principles** form the reference framework for building an integrated asset management system.
+- **The six capitals** go beyond the physical to include intellectual, human, social, natural, and financial capital.
+- **The asset lifecycle** is the axis around which decisions revolve, and every decision must be viewed from the perspective of the complete cycle.
+
+</LangSection>

@@ -1,0 +1,204 @@
+---
+id: lesson-3-3
+station: station-3
+number: "3.3"
+title: "تكلفة دورة الحياة وROI"
+titleEn: "LCC & ROI"
+minutes: 25
+order: 3
+objectives:
+  - "أن يحسب المتعلم تكلفة دورة الحياة (LCC) لأصل أو مشروع على أفق ثابت."
+  - "أن يستنتج Payback و RO من مدخلات الاستثمار والتوفير."
+  - "أن يتخذ قراراً مالياً يقارن خيارات أصل رأس المال بالأرقام لا بالسعر لحظياً."
+objectivesEn:
+  - "Compute Life-Cycle Cost (LCC) over a fixed horizon."
+  - "Derive payback period and ROI from investment and savings inputs."
+  - "Make capital decisions by numbers over the full horizon, not purchase price alone."
+hasTool: true
+toolName: "حاسبة دورة الحياة"
+toolNameEn: "Life-Cycle Cost Calculator"
+quizId: quiz-3-3
+sources:
+  - ifma_handbook
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LifeCycleCostTool from '../../../components/islands/tools/cfm/LifeCycleCostTool.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz33 } from '../../../data/quiz/cfm/quiz-3-3';
+
+<LangSection lang="ar">
+
+أرخص سعر شراء هو «الوهم الشهير» في قرارات الأصول. القرارات المالية الرصينة تُحسب على المسار الكامل لعمر الأصل، لا على لحظة الشراء.
+
+## 1. تكلفة دورة الحياة (LCC)
+
+**Life-Cycle Cost** تجميع كل التكاليف على أفق زمني ثابت:
+
+```
+LCC = الاستثمار الأولي
+      + مجموع تكلفة التشغيل السنوية (بالتصعيد، مخصومة للقيمة الحالية)
+      + مجموع تكاليف الاستبدال عند نهاية كل عمر مفيد
+```
+
+شرط المقارنة العادلة: **أفق واحد مشترك** لكلا الخيارين — إذا اختلف عمراهما يُستخدم مضاعف مشترك (مثل 12 سنة = 2×6 أو 3×4).
+
+## 2. مؤشرات تكميلية: فترة الاسترداد والعائد
+
+**فترة الاسترداد (Payback)**:
+
+```
+Payback = الاستثمار ÷ الوفورات السنوية
+```
+
+مؤشر أولي سريع: كم سنة يعود رأس المال المستثمر (بلا خصم زمني — تبسيط يُكمّل بمقارنة القيم الحالية).
+
+**العائد على الاستثمار (ROI)**:
+
+```
+ROI = (العائد − التكلفة) ÷ التكلفة
+```
+
+نسبة العائد الكلية على الاستثمار — مفيدة لكنها بلا بعد زمني إلا بتحليل سنة بسنة.
+
+<Callout type="myth">
+**أسطورة:** "الخيار الأرخص شراءً هو الأوفر مالاً."
+**الحقيقة:** أصل رخيص يعيش 4 سنوات بتشغيل سنوي مرتفع يخسر أمام أصل أغلى يعيش 6 سنوات بتشغيل أقل. LCC على أفق مشترك هو الحكم، لا سعر لحظة الشراء.
+</Callout>
+
+## 3. سيناريوهات تطبيقية في إدارة المنشآت
+
+- **استبدال مبرد**: مقارنة موارد التشغيل (الكهرباء) وعمر كل خيار مقابل الكفاءة الأعلى.
+- **ترقية إضاءة LED**: استثمار أولي مقابل وفورات الطاقة والصيانة على 10–15 سنة.
+- **أنظمة التحكم**: تكلفة تركيب مقابل توفير تشغيلي — هل يغطي الأفق الاستثمار؟
+
+## 4. قاعدة إثبات الوفور
+
+بعد التنفيذ **قِس** (عدادات فرعية، فواتير) لتثبت أن الوفور المتوقع تحقق فعلاً. «الوفور النظري» بلا رصد لاحق يضعف ثقة الممولين في الطلبات القادمة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+The lowest purchase price is the "famous illusion" in asset decisions. Sound financial decisions are calculated over the full path of the asset's life, not at the moment of purchase.
+
+## 1. Life-cycle cost (LCC)
+
+**Life-cycle cost** sums all costs over a fixed time horizon:
+
+```
+LCC = initial investment
+      + sum of annual operating cost (escalated, discounted to present value)
+      + sum of replacement costs at the end of each useful life
+```
+
+The fair-comparison requirement: **one shared horizon** for both options — if their lives differ, a common multiple is used (for example, 12 years = 2×6 or 3×4).
+
+## 2. Complementary indicators: payback and return
+
+**Payback period**:
+
+```
+Payback = investment ÷ annual savings
+```
+
+A quick preliminary indicator: how many years until the invested capital returns (without time discounting — a simplification completed by present-value comparisons).
+
+**Return on investment (ROI)**:
+
+```
+ROI = (return − cost) ÷ cost
+```
+
+The overall return ratio on the investment — useful, but without a time dimension unless analyzed year by year.
+
+<Callout type="myth">
+**Myth:** "The cheapest option to buy is the most economical."
+**Fact:** a cheap asset that lives 4 years with high annual operation loses to a costlier asset that lives 6 years with lower operation. LCC over a shared horizon is the judge, not the purchase-time price.
+</Callout>
+
+## 3. Application scenarios in facility management
+
+- **Chiller replacement**: comparing operating resources (electricity) and the life of each option against the higher efficiency.
+- **LED lighting upgrade**: an upfront investment versus energy and maintenance savings over 10–15 years.
+- **Control systems**: installation cost versus operating savings — does the horizon cover the investment?
+
+## 4. The rule of savings verification
+
+After implementation, **measure** (sub-meters, invoices) to prove that the expected savings were actually realized. "Theoretical savings" without later monitoring weaken funders' confidence in future requests.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: حاسبة دورة الحياة
+
+قارن خيارين لأصل (استثمار / تشغيل / عمر / تصعيد) على أفق 12 سنة بمعدل خصم من اختيارك.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Life-Cycle Cost Calculator
+
+Compare two asset options (investment / operation / life / escalation) over a 12-year horizon at a discount rate of your choice.
+
+</LangSection>
+
+<LifeCycleCostTool client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['lcc', 'roi', 'npv', 'capex']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على الحاسبة وأفق المقارنة وPayback.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on the calculator, the comparison horizon, and payback.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-3-3" questions={quiz33.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **LCC** يجمع كل تكاليف الأفق (شراء + تشغيل + استبدال) بالخصم الزمني.
+- **مقارنة عادلة** تتطلب أفقاً مشتركاً مهما اختلف عمرا الخيارين.
+- **Payback** مؤشر سريع و**ROI** نسبة كلية — وكلاهما يُكمل LCC ولا يغني عنه.
+- **أي وفور مُعلن** يُثبت بالقياس بعد التنفيذ.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **LCC** sums all horizon costs (purchase + operation + replacement) with time discounting.
+- **A fair comparison** requires a shared horizon however much the two options' lives differ.
+- **Payback** is a quick indicator and **ROI** is an overall ratio — both complement LCC and do not replace it.
+- **Any declared saving** is proven by measurement after implementation.
+
+</LangSection>

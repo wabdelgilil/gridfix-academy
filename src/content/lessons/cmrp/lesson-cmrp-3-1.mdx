@@ -1,0 +1,196 @@
+---
+id: lesson-cmrp-3-1
+course: cmrp
+station: station-cmrp-3
+number: "3.1"
+title: "تدفق العمليات ونظرية القيود ونقاط الاختناق"
+titleEn: "Process Flow & Theory of Constraints (TOC)"
+minutes: 25
+order: 1
+objectives:
+  - "أن يشرح المتعلم فلسفة نظرية القيود وكيف تحكم أضعف حلقة إنتاجية الخط بأكمله."
+  - "أن يطبق خطوات التركيز الخمس لتحديد نقطة الاختناق واستغلالها ورفع طاقتها."
+  - "أن يشرح آلية الطبلة والمخزن المؤقت والحبل لضبط إيقاع الإنتاج وحماية التدفق."
+  - "أن يوجه موارد الصيانة التنبؤية وقطع الغيار نحو معدة الاختناق أولاً لأثرها المالي المباشر."
+objectivesEn:
+  - "Explain the Theory of Constraints and how the weakest link governs total line throughput."
+  - "Apply the five focusing steps to identify, exploit, and elevate the bottleneck."
+  - "Explain the Drum-Buffer-Rope mechanism for pacing production and protecting flow."
+  - "Prioritize predictive maintenance and spares toward the bottleneck asset first."
+hasTool: true
+toolName: "محاكي الاختناق"
+toolNameEn: "Bottleneck Simulator"
+quizId: quiz-cmrp-3-1
+sources:
+  - goldratt_goal
+  - smrp_bok
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import BottleneckSimulator from '../../../components/islands/tools/cmrp/BottleneckSimulator.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp31 } from '../../../data/quiz/cmrp/quiz-cmrp-3-1';
+
+<LangSection lang="ar">
+
+المصنع سلسلة متتابعة من العمليات، وإنتاجيته لا تساوي مجموع سرعات ماكيناته بل سرعة أبطأ حلقة فيه. يشرح هذا الدرس **نظرية القيود (Theory of Constraints)** التي وضعها إلياهو جولدرات (Eliyahu Goldratt) في كتابه «الهدف» (The Goal)، وهي حجر أساس في موثوقية العمليات الصناعية (Manufacturing Process Reliability).
+
+## 1. فلسفة نظرية القيود: السلسلة بقوة أضعف حلقاتها
+
+تنص نظرية القيود (TOC) على أن أي خط إنتاج يتكون من عمليات مترابطة، وأن إنتاجية الخط يحكمها القيد الواحد الأضعف — **نقطة الاختناق (Bottleneck)** — لا مجموع الطاقات الفردية.
+
+خذ خط تعبئة من أربع محطات: الغسيل 120 زجاجة/دقيقة، والتعبئة 80 زجاجة/دقيقة، والتغطية 110 زجاجات/دقيقة، والتغليف 130 زجاجة/دقيقة. الإنتاج النهائي للمصنع هو 80 زجاجة/دقيقة حتماً. ولو اشترت الإدارة ماكينة غسيل جديدة ترفع المحطة الأولى إلى 160 زجاجة/دقيقة بتكلفة 200 ألف دولار، فلن تزيد المبيعات بزجاجة واحدة، بل سيتكدس **مخزون تحت التشغيل (Work-in-Process)** قبل محطة التعبئة ويتجمد رأس المال وتتعطل ممرات المصنع.
+
+<Callout type="tip">
+**القاعدة الذهبية:** ساعة توقف ضائعة في نقطة الاختناق هي ساعة ضائعة من إنتاج ومبيعات المصنع بالكامل ولا يمكن استردادها أبداً، بينما ساعة توقف في معدة غير خانقة تملك طاقة فائضة تعوض بسهولة بتشغيل إضافي قصير.
+</Callout>
+
+## 2. خطوات التركيز الخمس (Five Focusing Steps)
+
+تعتمد معايير الصيانة منهجية دورية من خمس خطوات لمعالجة الاختناق:
+
+1. **تحديد القيد (Identify):** ابحث عن أبطأ معدة، أو عن الموضع الذي يتكدس أمامه المخزون باستمرار — تلك هي نقطة الاختناق الحقيقية.
+2. **استغلال القيد (Exploit):** تأكد أن الماكينة الخانقة لا تتوقف أبداً في الاستراحات وتبديل الورديات، وزودها بأكفأ المشغلين وأفضل الخامات.
+3. **إخضاع كل شيء لسرعة القيد (Subordinate):** اضبط تدفق المحطات السابقة واللاحقة على إيقاع الاختناق بدقة، فلا يدخل الخط إلا ما تستطيع الخانقة معالجته.
+4. **رفع طاقة القيد (Elevate):** استثمر مالياً — معدة موازية، أو تعديل هندسي يزيل الاختناق، أو صيانة دقيقة ترفع الطاقة الاستيعابية.
+5. **التكرار والحذر من الجمود (Repeat):** كسر القيد ينقله فوراً إلى معدة أخرى؛ فلو ارتفعت طاقة التعبئة من 80 إلى 150 زجاجة/دقيقة أصبحت التغطية (110) هي الخانقة الجديدة، وتنتقل معها أولويات الصيانة والاستثمار. واحذر أن يصبح **القصور الذاتي (Inertia)** — التمسك بالسياسات القديمة — هو القيد التالي.
+
+## 3. إيقاع التشغيل: الطبلة والمخزن المؤقت والحبل (Drum-Buffer-Rope)
+
+ينسق مهندس الموثوقية بين جدول الصيانة وتدفق الإنتاج عبر آلية من ثلاثة عناصر:
+
+- **الطبلة (Drum):** إيقاع نقطة الاختناق؛ تدق بسرعتها ويسير المصنع كله على دقاتها دون تجاوز.
+- **المخزن المؤقت (Buffer):** مخزون زمني أو مادي يوضع قبل الخانقة مباشرة لحمايتها من **الجوع (Starvation)** إذا تعطلت ماكينة سابقة لفترة وجيزة.
+- **الحبل (Rope):** قناة اتصال تمنع إدخال خامات جديدة إلى بداية الخط إلا بالقدر الذي تستهلكه الخانقة، فيمنع تكدس المخزون.
+
+<Callout type="myth">
+**أسطورة:** "تشغيل كل محطة بأقصى سرعة وكفاءة فردية 100% يرفع أرباح المصنع."
+**الحقيقة:** تشغيل المحطات السابقة للاختناق بأسرع من طاقته خطأ كارثي: يكدس مخزون تحت التشغيل (WIP)، ويرفع تكاليف التخزين والتلف، ويجمد السيولة — دون زيادة المبيعات النهائية بريال واحد.
+</Callout>
+
+## 4. الأثر المالي: الصيانة تتوجه إلى الاختناق أولاً
+
+قيمة ساعة نقطة الاختناق تساوي قيمة مبيعات المصنع بأكمله. مثال: خط ينتج 80 زجاجة/دقيقة بربح 5 دولارات للزجاجة، فساعة التوقف في الخانقة تكلف 24,000 دولار (80 × 60 × 5). لهذا توجه ميزانية **المراقبة المشروطة (Condition-Based Monitoring)** والمجسات المتصلة وقطع الغيار التأمينية إلى معدة الاختناق أولاً.
+
+وفي المقابل، يمكن إيقاف المحطات غير الخانقة لأعمال الصيانة الوقائية المجدولة دون أن يتأثر إيراد المصنع، شريطة وجود مخزن مؤقت يحمي الخانقة من التوقف.
+
+</LangSection>
+
+<LangSection lang="en">
+
+The plant is a sequential chain of processes, and its output does not equal the sum of its machine speeds but the speed of its slowest link. This lesson explains the **Theory of Constraints (TOC)**, developed by Eliyahu Goldratt in his book "The Goal", and it is a cornerstone of manufacturing process reliability.
+
+## 1. The TOC philosophy: the chain is only as strong as its weakest link
+
+The Theory of Constraints (TOC) holds that any production line consists of interconnected processes, and that line throughput is governed by the single weakest constraint — the **bottleneck** — not by the sum of individual capacities.
+
+Take a filling line of four stations: washing at 120 bottles/minute, filling at 80 bottles/minute, capping at 110 bottles/minute, and packing at 130 bottles/minute. The plant's final output is inevitably 80 bottles/minute. Even if management bought a new washing machine raising the first station to 160 bottles/minute at a cost of $200,000, sales would not increase by a single bottle; instead, **work-in-process (WIP)** would pile up before the filling station, capital would freeze, and plant aisles would jam.
+
+<Callout type="tip">
+**The golden rule:** one lost hour at the bottleneck is one hour lost from the entire plant's production and sales and can never be recovered, while an hour at a non-constraining asset with surplus capacity is easily compensated by a short additional run.
+</Callout>
+
+## 2. The five focusing steps
+
+Maintenance standards adopt a cyclic five-step methodology to address the bottleneck:
+
+1. **Identify:** look for the slowest machine, or the position where inventory consistently piles up in front of it — that is the real bottleneck.
+2. **Exploit:** make sure the constraining machine never stops during breaks and shift changes, and staff it with the most efficient operators and the best materials.
+3. **Subordinate:** tune the flow of the upstream and downstream stations precisely to the bottleneck's rhythm, so only what the constraint can process enters the line.
+4. **Elevate:** invest financially — a parallel machine, an engineering modification that removes the bottleneck, or precise maintenance that raises capacity.
+5. **Repeat, and beware of inertia:** breaking a constraint immediately moves it to another machine; if the filling capacity rose from 80 to 150 bottles/minute, the capping station (110) becomes the new bottleneck, and maintenance and investment priorities move with it. Beware that **inertia** — clinging to old policies — becomes the next constraint.
+
+## 3. The operating rhythm: Drum-Buffer-Rope
+
+The reliability engineer coordinates the maintenance schedule with production flow through a mechanism of three elements:
+
+- **Drum:** the bottleneck's rhythm; it beats at its own speed and the whole plant runs to its beat without exceeding it.
+- **Buffer:** a time or material stock placed just before the bottleneck to protect it from **starvation** if an upstream machine fails for a short period.
+- **Rope:** a communication channel that prevents feeding new materials to the line's start except in the amount the bottleneck consumes, preventing stockpile buildup.
+
+<Callout type="myth">
+**Myth:** "Running every station at maximum speed and 100% individual efficiency raises plant profits."
+**Fact:** running the stations upstream of the bottleneck faster than its capacity is a catastrophic mistake: it piles up work-in-process (WIP), raises storage and damage costs, and freezes liquidity — without increasing final sales by a single riyal.
+</Callout>
+
+## 4. The financial impact: maintenance targets the bottleneck first
+
+The value of one hour at the bottleneck equals the value of the entire plant's sales. Example: a line producing 80 bottles/minute at $5 profit per bottle means one hour of downtime at the bottleneck costs $24,000 (80 × 60 × 5). That is why the **condition-based monitoring (CBM)** budget, connected sensors, and insurance spares are directed to the bottleneck asset first.
+
+Conversely, non-constraining stations can be stopped for scheduled preventive maintenance without affecting plant revenue, provided a buffer exists to protect the bottleneck from stoppage.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: محاكي الاختناق
+
+تحكم في سرعة محطات الخط الأربع ولاحظ كيف تحكم أبطأ محطة إنتاجية المصنع، ومتى ينتقل الاختناق، وكم تبلغ الخسارة المالية لساعة التوقف.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Bottleneck Simulator
+
+Control the speeds of the four line stations and observe how the slowest station governs plant output, when the bottleneck moves, and how much financial loss one hour of downtime amounts to.
+
+</LangSection>
+
+<BottleneckSimulator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-3-1-t1', 'cmrp-3-1-t2', 'cmrp-3-1-t3', 'cmrp-3-1-t4', 'cmrp-3-1-t5', 'cmrp-3-1-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على منطق نظرية القيود وتحديد الاختناق وآلية الطبلة والمخزن والحبل.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the Theory of Constraints logic, identifying the bottleneck, and the drum-buffer-rope mechanism.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-3-1" questions={quizCmrp31.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **نظرية القيود (TOC):** إنتاجية الخط يحكمها أضعف حلقة فيه، لا مجموع سرعات المعدات.
+- **خطوات التركيز الخمس:** حدد القيد، استغله لأقصى طاقة، أخضع الخط لإيقاعه، ارفع طاقته، ثم كرر — واحذر القصور الذاتي.
+- **الطبلة والمخزن والحبل (DBR):** إيقاع الخانقة يحكم المصنع، والمخزن يحميها من الجوع، والحبل يمنع تكدس المخزون.
+- **القاعدة المالية:** ساعة الاختناق الضائعة خسارة لا تعوض من مبيعات المصنع كله؛ فتوجه الصيانة التنبؤية والقطع التأمينية إليها أولاً.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The Theory of Constraints (TOC):** line throughput is governed by its weakest link, not the sum of equipment speeds.
+- **The five focusing steps:** identify the constraint, exploit it to maximum capacity, subordinate the line to its rhythm, elevate its capacity, then repeat — and beware of inertia.
+- **Drum-Buffer-Rope (DBR):** the bottleneck's rhythm governs the plant, the buffer protects it from starvation, and the rope prevents inventory build-up.
+- **The financial rule:** a lost bottleneck hour is an uncompensated loss from the whole plant's sales, so predictive maintenance and insurance spares go to it first.
+
+</LangSection>

@@ -4,55 +4,87 @@ import BaseLayout from './BaseLayout.astro';
 import ObjectivesList from '../components/ui/ObjectivesList.astro';
 import SourcesCard from '../components/ui/SourcesCard.astro';
 import LessonNav from '../components/ui/LessonNav.astro';
+import Breadcrumb from '../components/ui/Breadcrumb.astro';
 import CompleteLessonButton from '../components/islands/progress/CompleteLessonButton.tsx';
+import ReadingProgress from '../components/islands/progress/ReadingProgress.tsx';
+import LessonToc from '../components/islands/LessonToc.tsx';
+import LessonSidebar from '../components/islands/LessonSidebar.tsx';
 import { getStation } from '../data/curriculum';
+import { getCourse } from '../data/courses';
 
 interface Props {
   lesson: CollectionEntry<'lessons'>;
 }
 const { lesson } = Astro.props;
 const { data } = lesson;
+const course = data.course ?? 'cfm';
 const station = getStation(data.station);
+const courseMeta = getCourse(course);
+const courseImage = course === 'cmrp' ? '/og-cmrp.png' : course === 'cfm' ? '/og-cfm.png' : course === 'cama' ? '/og-cama.png' : undefined;
 ---
 
-<BaseLayout title={`${data.number} ${data.title}`} description={`${data.title} — درس من محطة ${station?.title ?? ''}`}>
-  <div class="mx-auto max-w-3xl">
-    <nav class="mb-6 flex flex-wrap items-center gap-3 text-sm text-ink-400" aria-label="Breadcrumb">
-      <a href="/" class="transition hover:text-brand-700">الرئيسية</a>
-      <span>←</span>
-      <a href={`/stations/${data.station}`} class="transition hover:text-brand-700">
-        {station?.title ?? data.station}
-      </a>
-      <span>←</span>
-      <span class="text-ink-600">{data.title}</span>
-    </nav>
+<BaseLayout title={`${data.number} ${data.title}`} description={`${data.title} — درس من محطة ${station?.title ?? ''}`} image={courseImage}>
+  <ReadingProgress client:load />
 
-    <header class="card overflow-hidden">
-      <div class="flex flex-wrap items-center gap-2 bg-gradient-to-l from-brand-700 to-brand-500 px-6 py-4">
-        <span class="chip bg-white/20 text-white">{station?.icon} {station?.badge}</span>
-        <span class="chip bg-white/20 text-white">{data.number}</span>
-        <span class="chip bg-white/20 text-white">⏱ {data.minutes} دقيقة</span>
-        {data.hasTool && <span class="chip bg-amber-400/90 text-amber-950">🛠 أداة تفاعلية</span>}
-        {data.quizId && <span class="chip bg-white/20 text-white">💬 كويز</span>}
+  <script is:inline define:vars={{ course, lessonId: data.id, lessonTitle: data.title, stationTitle: station?.title ?? data.station }}>
+    (function () {
+      try {
+        var at = new Date().toISOString();
+        var key = course + '-course-progress@v1';
+        var raw = localStorage.getItem(key);
+        var state = raw ? JSON.parse(raw) : {};
+        state.lastLesson = { courseId: course, lessonId: lessonId, title: lessonTitle, stationTitle: stationTitle, at: at };
+        localStorage.setItem(key, JSON.stringify(state));
+
+        localStorage.setItem('cfm-last-visited-lesson', JSON.stringify({ courseId: course, lessonId: lessonId, lessonTitle: lessonTitle, stationTitle: stationTitle, visitedAt: at }));
+      } catch (e) {}
+    })();
+  </script>
+
+  <div class="mx-auto max-w-6xl">
+    <div class="flex gap-6">
+      <aside class="hidden xl:block w-64 shrink-0">
+        <LessonSidebar course={course} currentStationId={data.station} currentLessonId={data.id} client:load />
+      </aside>
+
+      <div class="flex-1 min-w-0 max-w-3xl mx-auto xl:mx-0">
+        <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: station?.title ?? data.station, href: `/${course}/stations/${data.station}` }, { label: data.title }]} />
+
+        <header class="card overflow-hidden">
+          <div class="flex flex-wrap items-center gap-2 bg-gradient-to-l from-brand-700 to-brand-500 px-6 py-4">
+            <span class="chip bg-white/20 text-white">{station?.icon} {station?.badge}</span>
+            <span class="chip bg-white/20 text-white">{data.number}</span>
+            <span class="chip bg-white/20 text-white" data-lang="ar">⏱ {data.minutes} دقيقة</span>
+            <span class="chip bg-white/20 text-white" data-lang="en">⏱ {data.minutes} min</span>
+            {data.hasTool && <span class="chip bg-amber-400/90 text-amber-950" data-lang="ar">🛠 أداة تفاعلية</span>}
+            {data.hasTool && <span class="chip bg-amber-400/90 text-amber-950" data-lang="en">🛠 Interactive tool</span>}
+            {data.quizId && <span class="chip bg-white/20 text-white" data-lang="ar">💬 كويز</span>}
+            {data.quizId && <span class="chip bg-white/20 text-white" data-lang="en">💬 Quiz</span>}
+          </div>
+          <div class="px-6 py-5">
+            <h1 class="text-2xl font-bold leading-relaxed text-ink-900" data-lang="ar">{data.title}</h1>
+            <h1 class="text-2xl font-bold leading-relaxed text-ink-900" data-lang="en" lang="en" dir="ltr">{data.titleEn}</h1>
+          </div>
+        </header>
+
+        <ObjectivesList objectives={data.objectives} objectivesEn={data.objectivesEn} />
+
+        <article class="prose-lesson mt-8">
+          <slot />
+        </article>
+
+        {data.sources && data.sources.length > 0 && <SourcesCard sourceIds={data.sources} />}
+
+        <div class="mt-8">
+          <CompleteLessonButton course={course} lessonId={data.id} client:load />
+        </div>
+
+        <LessonNav course={course} stationId={data.station} lessonId={data.id} />
       </div>
-      <div class="px-6 py-5">
-        <h1 class="text-2xl font-bold leading-relaxed text-ink-900">{data.title}</h1>
-        <p dir="ltr" lang="en" class="mt-1 text-sm text-ink-400">{data.titleEn}</p>
-      </div>
-    </header>
 
-    <ObjectivesList objectives={data.objectives} />
-
-    <article class="prose-lesson mt-8">
-      <slot />
-    </article>
-
-    {data.sources && data.sources.length > 0 && <SourcesCard sourceIds={data.sources} />}
-
-    <div class="mt-8">
-      <CompleteLessonButton lessonId={data.id} client:load />
+      <aside class="hidden xl:block w-56 shrink-0">
+        <LessonToc client:load />
+      </aside>
     </div>
-
-    <LessonNav stationId={data.station} lessonId={data.id} />
   </div>
 </BaseLayout>

@@ -1,0 +1,195 @@
+---
+id: lesson-8-1
+station: station-8
+number: "8.1"
+title: "التخطيط الاستراتيجي"
+titleEn: "Strategic Planning"
+minutes: 25
+order: 1
+objectives:
+  - "أن يربط المتعلم خطط إدارة المنشأة برؤية المؤسسة ورسالتها وأهدافها البعيدة."
+  - "أن يطبق خطوات عملية التخطيط من جمع البيانات إلى تحليل SWOT وتخصيص الموارد."
+  - "أن يصوغ أهدافاً قابلة للقياس لها مؤشر وأفق وموارد ومسؤول."
+  - "أن يدرك دورة مراجعة الخطة الاستراتيجية وعلاقتها بالميزانية."
+objectivesEn:
+  - "Align facility plans with organizational vision, mission, and long-term goals."
+  - "Apply strategic planning steps from data gathering through SWOT to resource allocation."
+  - "Formulate measurable goals with KPI, horizon, resources, and owner."
+  - "Understand the review cycle and its link to budgeting."
+hasTool: true
+toolName: "لوحة تخطيط"
+toolNameEn: "Strategy Board"
+quizId: quiz-8-1
+sources:
+  - ifma
+  - iso_41001
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import StrategyBoard from '../../../components/islands/tools/cfm/StrategyBoard.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz81 } from '../../../data/quiz/cfm/quiz-8-1';
+
+<LangSection lang="ar">
+
+التخطيط الاستراتيجي هو ترجمة طموح المؤسسة إلى قرارات محسوبة في المنشأة: أي المباني نستثمر فيها، وأي الخدمات نرفع كفاءتها، وماذا نحسّن أولاً، وكيف نقيسه. من يبدأ من «مهام اليوم» دون «غايات الكيان» يُدار من فوضى الأحداث؛ ومن يبدأ من الرؤية يمتلك خريطة طريق وأولويات وموارد ومسؤوليات.
+
+## 1. نقطة الانطلاق: الرؤية والرسالة والأهداف
+
+لا تُكتب خطة إدارة المنشأة قبل استيعاب ثلاث طبقات عليا تصدر عن القيادة المؤسسية:
+
+- **الرؤية (Vision)**: صورة المستقبل — أين تريد المؤسسة أن تكون؟ مثال: «الريادة إقليمياً في خدمات المرافق خلال خمس سنوات».
+- **الرسالة (Mission)**: السبب اليومي للوجود — لماذا نعمل؟ مثال: «تقديم خدمات موثوقة تُمكّن نمو أعمال العملاء».
+- **الأهداف العامة (Goals/Objectives)**: النتائج المطلوبة خلال أفق محدد (إيرادات، حصة سوق، استمرارية تشغيل).
+
+من هذه الطبقات تُشتق مساهمة إدارة المنشأة: مبنى آمن ومتوفر بكلفة مناسبة يدعم النمو، أو انقطاعٌ متكرر يقتل الثقة. هذا الاشتقاق هو «الحساب الاستراتيجي» — كل خدمة تُعرض على سؤال: ماذا يضيف لحلقة المنشأة؟ وأثرها يقاس لا يوصف.
+
+## 2. خطوات عملية التخطيط
+
+العملية منظمة وتمر بمراحل متسلسلة:
+
+1. **جمع البيانات**: أعمار الأصول وحالتها، كلفة الطاقة والمياه، مؤشرات التوافر، ملفات العقود، توقعات نمو الكيان.
+2. **التحليل**: موقع المنشأة من أهداف المؤسسة، وقراءة البيئة (SWOT) — القوة والضعف داخليان، والفرص والتهديدات خارجيان.
+3. **تحديد الأولويات**: ليست كل الرغبات أهدافاً؛ تُنتقى مبادرات قليلة قابلة للتنفيذ ذات أثر وقيمة مؤكدة.
+4. **تخصيص الموارد**: ميزانية وساعات عمل ومقاولون لكل مبادرة، مع بيان مسؤوليات واضح (RACI).
+5. **القياس والمراجعة**: مؤشرات دورية وقسم مراجعة ينفذان التعديل حسب النتائج والظروف.
+
+> لا يوجد مخطط استراتيجي منزه عن التعديل: الدورة تنتهي بمراجعة سنوية تُعدّل الخطط والأهداف مع حركة السوق ونمو الكيان.
+
+## 3. الأهداف الذكية SMART والحساب بالأرقام
+
+الهدف القابل للقياس يصاغ بمعايير SMART — محددة (Specific)، قابلة للقياس (Measurable)، قابلة للتحقيق (Achievable)، ذات صلة (Relevant)، ومحددة الأفق (Time-bound):
+
+- ضعيف: «نحسّن أداء الطاقة».
+- قوي: «خفض كثافة الطاقة (EUI) من 180 إلى 150 kWh/m²/سنة خلال 24 شهراً، بميزانية 400 ألف ريال، مسؤول رئيس الطاقة، ومؤشر شهري».
+
+هكذا يدخل الهدف دورة الميزانية والمراجعة بلا غموض، ويُحتسب أثر كل خدمة على أهداف الكيان لا على عدد زيارات الموقع وحدها.
+
+## 4. الحوكمة والمتابعة والربط بالميزانية
+
+الخطة التي تُنشر ولا تُراقب تفقد قوتها. الحوكمة تعني:
+
+- مراجعة ربعية أمام الإدارة العليا لمؤشرات المبادئ الاستراتيجية (مؤشرات سلامة، توافر، تكلفة، امتثال).
+- ربط الإنفاق المخطط بالميزانية السنوية، وتعديل الخطة إذا تجاوز أحد البنود سقفه.
+- التقارير بوحدة قياس واحدة (تكلفة لكل متر مربع، نسبة توافر، مؤشر EUI) حتى تُفهم القرارات على مستوى الكيان.
+
+المتابعة تحوّل الخطة من وثيقة تُعلق إلى عجلة تدور، وهنا يظهر الفرق بين «خطة جميلة» و«خطة تحقق النتائج».
+
+</LangSection>
+
+<LangSection lang="en">
+
+Strategic planning is translating the organization's ambition into calculated facility decisions: which buildings we invest in, which services we improve in efficiency, what we improve first, and how we measure it. Whoever starts from "today's tasks" without the "entity's goals" is governed by the chaos of events; whoever starts from the vision holds a roadmap, priorities, resources, and responsibilities.
+
+## 1. The starting point: vision, mission, and objectives
+
+No facility management plan is written before absorbing three top layers issued by the organizational leadership:
+
+- **Vision**: a picture of the future — where does the organization want to be? Example: "regional leadership in facility services within five years."
+- **Mission**: the daily reason for existing — why do we operate? Example: "delivering reliable services that enable the growth of our clients' businesses."
+- **Goals/Objectives**: the required results within a defined horizon (revenue, market share, operational continuity).
+
+The facility management contribution is derived from these layers: a safe, available building at a suitable cost supports growth, while recurring downtime kills trust. This derivation is the "strategic calculus" — every service is held against one question: what does it add to the facility loop? And its impact is measured, not described.
+
+## 2. Steps of the planning process
+
+The process is organized and proceeds through sequential stages:
+
+1. **Data collection**: asset ages and condition, energy and water costs, availability indicators, contract files, and predictions of entity growth.
+2. **Analysis**: the facility's position relative to organizational objectives, and reading the environment (SWOT) — strengths and weaknesses are internal, while opportunities and threats are external.
+3. **Setting priorities**: not every wish is an objective; a few executable initiatives with a confirmed impact and value are selected.
+4. **Resource allocation**: a budget, working hours, and contractors for each initiative, with a clear responsibility statement (RACI).
+5. **Measurement and review**: periodic indicators and a review team apply adjustments based on results and circumstances.
+
+> No strategic plan is exempt from adjustment: the cycle ends with an annual review that revises plans and objectives as the market moves and the entity grows.
+
+## 3. SMART objectives and calculation with numbers
+
+A measurable objective is formulated with SMART criteria — Specific, Measurable, Achievable, Relevant, and Time-bound:
+
+- Weak: "we improve energy performance."
+- Strong: "reduce Energy Use Intensity (EUI) from 180 to 150 kWh/m²/year within 24 months, with a budget of 400,000 riyals, an energy lead as owner, and a monthly indicator."
+
+This is how an objective enters the budgeting and review cycle without ambiguity, and the impact of each service on entity objectives is calculated rather than the number of site visits alone.
+
+## 4. Governance, follow-up, and linking to the budget
+
+A plan that is published but not monitored loses its power. Governance means:
+
+- A quarterly review before senior management of the strategic-principle indicators (safety, availability, cost, and compliance indicators).
+- Linking planned spending to the annual budget, and adjusting the plan when any line item exceeds its cap.
+- Reporting in one unit of measure (cost per square meter, availability ratio, EUI indicator) so that decisions are understood at the entity level.
+
+Follow-up turns the plan from a document that is hung on a wall into a wheel that turns — and here the difference emerges between a "beautiful plan" and "a plan that delivers results".
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: لوحة تخطيط
+
+من أداة اليوم تحلل الرباعي (القوة والضعف والفرص والتهديدات) ثم تصوغ بيان استراتيجي أولي بهدف وأفق ومؤشر — وثيقة محكمة تبني بها ملفك أمام قيادة المؤسسة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Strategy Board
+
+With today's tool you analyze the four quadrants (strengths, weaknesses, opportunities, and threats), then draft an initial strategic statement with an objective, a horizon, and an indicator — a solid document with which you build your case before the organization's leadership.
+
+</LangSection>
+
+<StrategyBoard client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['strategicplan', 'swot', 'raci']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-8-1" questions={quiz81.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- التخطيط الاستراتيجي يشتق خططه من رؤية المؤسسة ورسالتها وأهدافها البعيدة، ويحاسَب على مساهمته في هذه الأهداف لا على عدد المهام.
+- العملية تمر بمراحل منظمة: جمع البيانات، تحليل SWOT، تحديد الأولويات، تخصيص الموارد، ثم القياس والمراجعة.
+- الأهداف تُصاغ بمعايير SMART مع مؤشر وأفق وميزانية ومسؤول، فتتصل بدورة الميزانية والتقارير القيادية.
+- الخطة الحوكمة تُراجع دورياً وتُعدَّل مع الظروف، وتتقاس بوحدات موحدة مفهومة على مستوى الكيان.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- Strategic planning derives its plans from the organization's vision, mission, and long-term objectives, and is held accountable for its contribution to those objectives rather than the number of tasks.
+- The process goes through organized stages: data collection, SWOT analysis, setting priorities, resource allocation, then measurement and review.
+- Objectives are formulated with SMART criteria plus an indicator, horizon, budget, and owner, so they connect to the budgeting cycle and leadership reporting.
+- A governed plan is reviewed periodically and adjusted to circumstances, and is measured in unified units understood at the entity level.
+
+</LangSection>

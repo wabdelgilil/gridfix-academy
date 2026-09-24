@@ -1,0 +1,181 @@
+---
+id: lesson-8-2
+station: station-8
+number: "8.2"
+title: "التواصل وأصحاب المصلحة"
+titleEn: "Communication & Stakeholders"
+minutes: 20
+order: 2
+objectives:
+  - "أن يحدد المتعلم أصحاب المصلحة ويصنفهم حسب القوة والاهتمام."
+  - "أن يطابق أسلوب التواصل بمتطلبات كل فئة من المصفوفة."
+  - "أن يبني خطة قنوات وتقارير دورية واضحة المسؤوليات."
+objectivesEn:
+  - "Identify and classify stakeholders by power and interest."
+  - "Match engagement style to each matrix quadrant."
+  - "Build a channels and reporting plan with clear ownership."
+hasTool: true
+toolName: "مصفوفة القوة/الاهتمام"
+toolNameEn: "Power/Interest Matrix"
+quizId: quiz-8-2
+sources:
+  - ifma
+---
+
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import PowerInterestMatrix from '../../../components/islands/tools/cfm/PowerInterestMatrix.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz82 } from '../../../data/quiz/cfm/quiz-8-2';
+
+<LangSection lang="ar">
+
+قرارات المنشأة لا تنجز في غرفة مدير المنشأة وحدها: مالِك المبنى يتخذ قرار الاستثمار، والموظفون يعيشون أثر التغيير، والجهات الرقابية تفرض لوائح، والمقاولون ينجزون — وكل طرف له قوة واهتمام مختلفان. إدارة أصحاب المصلحة فن تحديد من يمسهم قرارك وماذا يحتاج كل منهم، ليصلك الدعم ويغادرك سوء الفهم.
+
+## 1. لماذا يبدأ الشغل بهم: قيمة أصحاب المصلحة
+
+صاحب المصلحة (Stakeholder) أي طرف تتأثر مصالحه بقرارات المنشأة أو يؤثر فيها: الإدارة العليا، الموظفون، المستأجرون، العملاء، المقاولون، الجيران، الهيئات الرقابية، والمجتمع.
+
+الخطأ الشائع هو التواصل «عند الحاجة فقط». الحقيقة أن الدعم المبكر يسبق القرار: الإدارة العليا التي عُرضت عليها المبادرة قبل الجمهور تقر له، والرقابية التي أُبلِغت مبكراً تفتح مسارات ترخيص أيسر. إهمال طرف قوي يقلب مبنى القرار، وإهمال فريق متأثر يولّد مقاومة تبدأ شائعات وتنتهي فشلاً.
+
+## 2. التصنيف: مصفوفة القوة والاهتمام
+
+أشهر أداة تصنيف قسم أصحاب المصلحة أربع فئات ببعدين: **القوة** (قدرتهم على دعم أو تعطيل القرار) و**الاهتمام** (مدى تأثرهم بالمبادرة أو اهتمامهم بها):
+
+| القوة ↓ / الاهتمام → | اهتمام عالٍ | اهتمام منخفض |
+| --- | --- | --- |
+| **قوة عالية** | **إدارة وثيقة** — شركاء يُضمون للقرار ويتابعون بانتظام | **إرضاء** — لا يحتاجون تفاصيل، لكن لا مفاجآت سلبية |
+| **قوة منخفضة** | **إبقاء على اطلاع** — يتأثر يومياً ويحتاج تحديثات دورية | **مراقبة** — متابعة خفيفة دون جهد كبير |
+
+قاعدة ذهبية: الفئة الأولى تستحق قناة منتظمة مبنية باحتياجها (موجز للإدارة العليا)، والثانية تحميها من المفاجآت، والثالثة تُشرك بتحديثات لا تُغرقها، والرابعة تخضع للرصد المحدود. كل توجيه لم يمر بهذا التصنيف يبث المعلومات في غير محلها.
+
+## 3. خطة التواصل: القنوات والتوقيت والمسؤوليات
+
+بعد التصنيف تُبنى خطة تواصل تتضمن لكل فئة: القناة (اجتماع، بريد، نشرة، شاشات)، التواتر (يومي، أسبوعي، ربعي)، المحتوى (الموجز الذي تحتاجه)، والمالك (من ينفذ). أمثلة:
+
+- المالك/القيادة: موجز تنفيذي شهري بالمؤشرات والقرارات الجوهرية.
+- الموظفون: تحديثات مباشرة عند تغيير مساحات العمل أو ساعات التشغيل.
+- الرقابية: ملفات امتثال عند مواعيد تقديمها فقط.
+- المقاولون: جلسة تحويل أسبوعية بالأعمال والحوادث والمخاطر.
+
+التعريف بالأشخاص عبر مصفوفة الأدوار (RACI) يمنع الفوضى: لكل مهمة منفّذ (Responsible) وموافق نهائي (Accountable) ومستشار (Consulted) ومُطلَع (Informed). الازدواج والثغرة كلاهما مكلف؛ وهذه الخريطة تجعل «من يفعل ماذا» معلناً للجميع.
+
+## 4. جودة الرسالة: ابدأ بالجمهور لا بالنص
+
+أقوى الرسائل تُبنى بجواب سؤال واحد: «من يحتاج أن يعرف ماذا، وبماذا يتصرف؟». منه:
+
+- بلّغ كل متأثر قبل نقله للمعلومة عبر المصادر غير الرسمية.
+- ثبّت الرسالة الأساسية (المعنى والفائدة) على كل قناة دون تكرار التفاتاً.
+- قس الفهم لا وصول فقط: استطلاعات سريعة، أسئلة في الاجتماعات، وفريق مبعوث في الموقع.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Facility decisions are not accomplished in the facility manager's office alone: the building owner makes the investment decision, employees live the impact of change, regulators impose rules, and contractors deliver — and each party has different power and interest. Stakeholder management is the art of identifying whom your decision touches and what each of them needs, so that support reaches you and misunderstanding leaves you.
+
+## 1. Why work begins with them: the value of stakeholders
+
+A stakeholder is any party whose interests are affected by facility decisions or who affects them: senior management, employees, tenants, clients, contractors, neighbors, regulatory bodies, and the community.
+
+The common mistake is communicating "only when needed". The truth is that early support precedes the decision: senior management to whom the initiative was presented before the public approves it, and regulators informed early open easier licensing paths. Neglecting a strong party overturns the decision building, and neglecting an affected team breeds resistance that starts as rumors and ends in failure.
+
+## 2. Classification: the power/interest matrix
+
+The most famous classification tool splits stakeholders into four categories along two dimensions: **power** (their ability to support or block the decision) and **interest** (how much the initiative affects them or how interested they are):
+
+| Power ↓ / Interest → | High interest | Low interest |
+| --- | --- | --- |
+| **High power** | **Manage closely** — partners brought into the decision and followed up regularly | **Keep satisfied** — they need no details, but no negative surprises |
+| **Low power** | **Keep informed** — affected daily and needing periodic updates | **Monitor** — light follow-up without much effort |
+
+Golden rule: the first category deserves a regular channel built around its need (a brief for senior management), the second is protected from surprises, the third is engaged with updates that do not overwhelm it, and the fourth is subject to limited monitoring. Any message that has not passed through this classification broadcasts information to the wrong place.
+
+## 3. The communication plan: channels, timing, and responsibilities
+
+After classification, a communication plan is built that includes, for each category: the channel (meeting, email, newsletter, screens), the frequency (daily, weekly, quarterly), the content (the brief it needs), and the owner (who delivers). Examples:
+
+- Owner/leadership: a monthly executive brief on indicators and substantive decisions.
+- Employees: direct updates when work spaces or operating hours change.
+- Regulators: compliance files only at their submission dates.
+- Contractors: a weekly handover session on works, incidents, and risks.
+
+Defining people through the responsibility matrix (RACI) prevents chaos: each task has a deliverer (Responsible), a final approver (Accountable), a consultant (Consulted), and one kept informed (Informed). Both duplication and gaps are costly; this map makes "who does what" public to everyone.
+
+## 4. Message quality: start with the audience, not the text
+
+The strongest messages are built on the answer to one question: "who needs to know what, and what will they do with it?" From it:
+
+- Inform every affected party before the information reaches them through unofficial sources.
+- Anchor the core message (the meaning and benefit) on every channel without repetitive attention.
+- Measure understanding, not just delivery: quick surveys, questions in meetings, and a liaison team on site.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: مصفوفة القوة/الاهتمام
+
+بأداة اليوم تدخل أصحاب المصلحة بدرجتي قوتهم واهتمامهم فترى فئتهم ومسار تواصلهم فوراً — ثم تُبني عليها خطة القنوات والتقارير لملف تنسق.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Power/Interest Matrix
+
+With today's tool you enter stakeholders with their power and interest scores and immediately see their category and their communication path — then you build the channels and reporting plan on top of that for a coordinated file.
+
+</LangSection>
+
+<PowerInterestMatrix client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['stakeholder', 'powerinterest', 'raci']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-8-2" questions={quiz82.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- أصحاب المصلحة كل طرف تتأثر مصالحه بالقرارات أو يؤثر فيها، ويُصنفون بالمصفوفة إلى أربع فئات: إدارة وثيقة، إرضاء، إبقاء على اطلاع، ومراقبة.
+- أسلوب التواصل يُشتق من الفئة: القوي العالي يُرضى بلا مفاجآت دون إغراق معلوماتي، والمهتم يُبقى على اطلاع.
+- خطة التواصل تُخصص لكل فئة قناة وتواتراً ومحتوى ومالكاً، وتُجسم ملكيات الأدوار عبر مصفوفة RACI.
+- الرسالة القوية تنطلق من «من يحتاج أن يعرف ماذا وبماذا يتصرف»، وتُقاس بفهم المتلقين لا بوصول البريد فقط.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- Stakeholders are every party whose interests are affected by decisions or who affects them; the matrix classifies them into four categories: manage closely, keep satisfied, keep informed, and monitor.
+- The communication style is derived from the category: the high-power are kept satisfied with no surprises and no information overload, and the interested are kept informed.
+- The communication plan assigns each category a channel, frequency, content, and owner, and embodies role ownership through the RACI matrix.
+- A strong message starts from "who needs to know what and what they will do with it", and is measured by recipients' understanding, not by email delivery alone.
+
+</LangSection>

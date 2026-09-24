@@ -1,0 +1,229 @@
+---
+id: lesson-cama-4-1
+course: cama
+station: station-cama-4
+number: "4.1"
+title: "اكتساب الأصول وإنشائها"
+titleEn: "Asset Acquisition & Creation"
+minutes: 25
+order: 1
+objectives:
+  - "أن يشرح المتعلم مراحل اكتساب الأصل من التقييم إلى التسليم الرسمي."
+  - "أن يربط 70% من تكلفة دورة الحياة بقرارات التصميم والشراء المبكرة."
+  - "أن يطبّق مبادئ التصميم لقابلية الصيانة في اختيار الأصول."
+objectivesEn:
+  - "Explain asset acquisition stages from appraisal to formal handover."
+  - "Link 70% of life cycle cost to early design and procurement decisions."
+  - "Apply design-for-maintainability principles in asset selection."
+hasTool: true
+toolName: "قائمة تسليم الأصول"
+toolNameEn: "Asset Handover Checklist"
+quizId: quiz-cama-4-1
+sources:
+  - iso55000
+  - gfmam_landscape
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import AssetHandoverChecklist from '../../../components/islands/tools/cama/AssetHandoverChecklist.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama41 } from '../../../data/quiz/cama/quiz-cama-4-1';
+
+<LangSection lang="ar">
+
+اكتساب الأصول ليس مجرد عملية شراء بل هو بداية دورة حياة كاملة تحدد مصير الأصل من حيث التكلفة والموثوقية والأداء. شراء أصل أو التعامل معه بشكل خاطئ يعني تعويض هذا الخطأ بتكاليف صيانة مضاعفة طوال عمره التشغيلي.
+
+## 1. لماذا يبدأ التكلفة الحقيقية قبل الشراء؟
+
+الافتراض الخاطئ أن قرار الشراء هو الشراء فحسب. في الواقع، التكلفة الإجمالية لدورة حياة الأصل (Total Cost of Ownership) تُتخذ في لحظة اتخاذ القرار الاستشاري. دراسات تدل على أن 70% من تكاليف دورة حياة الأصل تُحدّد خلال 5% الأولى من عمره، أي في مرحلة التصميم واختيار المورد.
+
+الخيارات المتاحة للاكتساب تشمل:
+
+- **الشراء المباشر:** الأصل جاهز من المورد ومُختبر وله سجل أداء. مناسب للمعدات المعيارية.
+- **التصنيع حسب الطلب:** تصميم خاص يتطلب متابعة صارمة خلال الإنتاج ونطاق تجربة ميدانية.
+- **التشييد والمونتاج:** للمشروعات الكبرى حيث يتولى المقاول التشييد ثم يسلمه للمشغّل.
+
+## 2. مراحل التأسيس والتسليم
+
+قبل أن يعمل أي أصل في منشأتك، يجب أن يمر بخمس مراحل أساسية:
+
+1. **التقييم المالي والتقني:** دراسة الجدوى التي تقارن بين بدائل الشراء من حيث القيمة الحالية الصافية (NPV) ومعدل العائد الداخلي (IRR) والتكلفة الإجمالية.
+2. **اختيار المورد والتعاقد:** مناقصات مفتوحة أو محدودة مع تقييم الموردين بناءً على الخبرة والقدرة المالية والضمان (Warranty) وخدمة ما بعد البيع.
+3. **التصنيع أو التشييد مع المتابعة:** مراقبة جودة الإنتاج وفترات التصنيع والتقارير الدورية.
+4. **التشغيل الأولي (Commissioning):** التحقق من أن الأصل مثبت بشكل صحيح ويعمل وفق المواصفات. يشمل الاختبارات الوظيفية ومنحنيات الأداء (Performance Curves) الأولية.
+5. **التسليم الرسمي (Handover):** النقل الرسمي للمسؤولية من المقاول إلى فريق الصيانة والتشغيل الدائم.
+
+<FlowChart
+  title="مراحل اكتساب الأصل حتى التسليم"
+  steps={[
+    { title: 'التقييم المالي والتقني', detail: 'دراسة جدوى تقارن البدائل: NPV وIRR والتكلفة الإجمالية.', icon: '💹', type: 'start' },
+    { title: 'اختيار المورد والتعاقد', detail: 'مناقصات وتقييم: خبرة، قدرة مالية، ضمان، وخدمة ما بعد البيع.', icon: '🤝' },
+    { title: 'التصنيع أو التشييد مع المتابعة', detail: 'مراقبة جودة الإنتاج وفترات التصنيع والتقارير الدورية.', icon: '🏗' },
+    { title: 'التشغيل الأولي (Commissioning)', detail: 'اختبارات وظيفية ومنحنيات أداء أولية قبل التشغيل الفعلي.', icon: '🔬' },
+    { title: 'التسليم الرسمي (Handover)', detail: 'نقل المسؤولية مع الوثائق: مخططات التوصيلات وقوائم القطع.', icon: '📦', type: 'end' },
+  ]}
+  caption="70% من تكلفة الدورة تُحدَّد في أول 5% من العمر — التخطيط المبكر هو الذي يقرر مصير الأصل."
+/>
+
+<Callout type="myth">
+**خطأ شائع:** التسليم النهائي يعني انتهاء عمل المقاول. الحقيقة: التسليم الفعال يتطلب توثيقاً شاملاً: نوافذ الصيانة الدورية، ومخططات التوصيلات، وقوائم قطع الغيار، وخطوط الأداء المرجعية (Baselines)، وتدريب المشغّلين. بدونها يبدأ الأصل حياته بعائق معلوماتي.
+</Callout>
+
+## 3. التصميم لقابلية الصيانة
+
+المنهج (Approach) يبدأ التصميم الصالح للصيانة (Design for Maintainability) من أول رسم هندسي. هذا يعني:
+
+- **سهولة الوصول:** ترتيب المكونات القابلة للاستبدال في مواقع يمكن الوصول إليها دون تفكيك أجزاء مجاورة.
+- **التقسيم النمطي (Modularity):** تقسيم الأصل إلى وحدات مستقلة يمكن استبدالها دون توقف النظام كاملاً.
+- **المعايير الموحدة:** استخدام مكونات ومعايير شائعة تقلل الاعتماد على موردين محددين.
+- **التوثيق المبكر:** توثيق المتطلبات الصيانة أثناء التصميم لا بعد التركيب.
+
+<Callout type="example">
+**سيناريو:** مصنع جديد لتعبئة المشروبات. اختار المهندس مضخات مثبتة على قضبان انتقالية (slide rails) بدلاً من التثبيت الثابت. النتيجة: استبدال المضخة العالقة من 8 ساعات إلى 45 دقيقة، بتوفير تكلفة توقف الإنتاج بمعدل 15,000 ريال لكل ساعة توقف.
+</Callout>
+
+## 4. التحديات الشائعة في مرحلة التأسيس
+
+- **غياب فريق الصيانة من قرار الشراء:** حين يشتري المشتري وحده دون استشارة فريق الصيانة، يختار أصلاً صعب الصيانة ومرتفع التكلفة.
+- **تجاوز مرحلة التشغيل الأولي:** اختصار مرحلة Commissioning لضيق الوقت يؤدي إلى اكتشاف المشاكل بعد بدء التشغيل الحقيقي.
+- **عدم توثيق مخططات التوصيلات:** عدم الاحتفاظ بمخططات التوصيلات الكهربائية والميكانيكية يصعب أي صيانة مستقبلية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Asset acquisition is not just a purchasing process; it is the beginning of a complete life cycle that determines the asset's fate in terms of cost, reliability, and performance. Buying an asset or handling it wrongly means compensating for that mistake with multiplied maintenance costs throughout its operational life.
+
+## 1. Why does the real cost start before purchase?
+
+The wrong assumption is that the purchase decision is simply the purchase. In reality, the total cost of ownership of an asset is decided at the moment of the appraisal decision. Studies indicate that 70% of the asset life cycle costs are determined during the first 5% of its life, i.e. in the design and supplier selection stage.
+
+The available acquisition options include:
+
+- **Direct purchase:** the asset is ready from the supplier, tested, and has a performance record. Suitable for standard equipment.
+- **Custom manufacturing:** a custom design that requires strict follow-up during production and a field trial scope.
+- **Construction and assembly:** for major projects where the contractor carries out the construction and then hands it over to the operator.
+
+## 2. Commissioning and handover stages
+
+Before any asset operates in your facility, it must pass through five essential stages:
+
+1. **Financial and technical appraisal:** the feasibility study comparing purchase alternatives in terms of net present value (NPV), internal rate of return (IRR), and total cost.
+2. **Supplier selection and contracting:** open or limited tenders with supplier evaluation based on experience, financial capacity, warranty, and after-sales service.
+3. **Manufacturing or construction with follow-up:** monitoring production quality, manufacturing periods, and periodic reports.
+4. **Commissioning:** verifying that the asset is correctly installed and operates per the specifications. It includes functional tests and initial performance curves.
+5. **Handover:** the formal transfer of responsibility from the contractor to the permanent maintenance and operations team.
+
+<FlowChart
+  title="Asset acquisition stages up to handover"
+  steps={[
+    { title: 'Financial and technical appraisal', detail: 'Feasibility study comparing alternatives: NPV, IRR, and total cost.', icon: '💹', type: 'start' },
+    { title: 'Supplier selection and contracting', detail: 'Tenders and evaluation: experience, financial capacity, warranty, and after-sales service.', icon: '🤝' },
+    { title: 'Manufacturing or construction with follow-up', detail: 'Monitoring production quality, manufacturing periods, and periodic reports.', icon: '🏗' },
+    { title: 'Commissioning', detail: 'Functional tests and initial performance curves before actual operation.', icon: '🔬' },
+    { title: 'Formal handover', detail: 'Transfer of responsibility with documentation: connection diagrams and parts lists.', icon: '📦', type: 'end' },
+  ]}
+  caption="70% of the life cycle cost is determined in the first 5% of life — early planning is what decides the asset's fate."
+/>
+
+<Callout type="myth">
+**Common mistake:** final handover means the contractor's work is over. **Fact:** effective handover requires comprehensive documentation: periodic maintenance windows, connection diagrams, spare parts lists, reference baselines, and operator training. Without them, the asset starts its life with an information handicap.
+</Callout>
+
+## 3. Design for maintainability
+
+The Design for Maintainability approach starts from the first engineering drawing. This means:
+
+- **Accessibility:** arranging the replaceable components in locations that can be reached without dismantling adjacent parts.
+- **Modularity:** dividing the asset into independent units that can be replaced without stopping the whole system.
+- **Standardized specifications:** using common components and standards that reduce dependence on specific suppliers.
+- **Early documentation:** documenting the maintenance requirements during design, not after installation.
+
+<Callout type="example">
+**Scenario:** a new beverage bottling plant. The engineer chose pumps mounted on slide rails instead of fixed mounting. The result: replacing the failed pump dropped from 8 hours to 45 minutes, saving production downtime costs at a rate of 15,000 riyals per downtime hour.
+</Callout>
+
+## 4. Common challenges in the commissioning stage
+
+- **The maintenance team is absent from the purchase decision:** when the buyer purchases alone without consulting the maintenance team, they choose an asset that is hard to maintain and expensive.
+- **Skipping the commissioning stage:** shortening the commissioning stage due to time pressure leads to problems being discovered after real operation starts.
+- **Failure to document connection diagrams:** not keeping the electrical and mechanical connection diagrams complicates any future maintenance.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: قائمة تسليم الأصول
+
+أداة تفاعلية تقيس جاهزية الأصل للتسليم من المقاول إلى فريق التشغيل والصيانة. استعرض البنود وتقيّم الامتثال لكل بند.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Asset Handover Checklist
+
+An interactive tool that measures the asset's readiness for handover from the contractor to the operations and maintenance team. Review the items and rate compliance with each one.
+
+</LangSection>
+
+<AssetHandoverChecklist client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-4-1-t1', 'cama-4-1-t2', 'cama-4-1-t3', 'cama-4-1-t4']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على بداية التكلفة الحقيقية قبل الشراء، ومراحل التأسيس والتسليم، والتصميم لقابلية الصيانة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on where the real cost begins before purchase, the commissioning and handover stages, and design for maintainability.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-4-1" questions={quizCama41.questions} client:load />
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **70% من تكاليف دورة حياة الأصل تُحدّد في أول 5% من عمره**، لذلك يجب إشراك فريق الصيانة من بداية قرار الشراء.
+- **التسليم الفعال** يتطلب توثيقاً شاملاً: مخططات التوصيلات، ونوافذ الصيانة، وقوائم قطع الغيار.
+- **التصميم لقابلية الصيانة** يبدأ من أول رسم هندسي ويعتمد على سهولة الوصول والتقسيم النمطي.
+- **مرحلة التشغيل الأولي (Commissioning)** شرط أساسي لا يمكن التخلي عنه قبل التسليم الرسمي.
+- **إهمال مرحلة التأسيس** يعني ارتفاع تكاليف الصيانة طوال دورة حياة الأصل بالكامل.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **70% of an asset's life cycle costs are determined in the first 5% of its life**, so the maintenance team must be involved from the very beginning of the purchase decision.
+- **Effective handover** requires comprehensive documentation: connection diagrams, maintenance windows, and spare parts lists.
+- **Design for maintainability** starts from the first engineering drawing and relies on accessibility and modularity.
+- **The commissioning stage** is an essential requirement that cannot be waived before the formal handover.
+- **Neglecting the commissioning stage** means higher maintenance costs throughout the entire asset life cycle.
+
+</LangSection>

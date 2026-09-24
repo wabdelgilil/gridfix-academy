@@ -1,34 +1,78 @@
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { loadProgress, saveProgress, toggleLessonComplete, isLessonComplete } from '../../../lib/storage';
 import { translate } from '../../../i18n/translations';
 import type { Language } from '../../../i18n/ui';
 
 interface Props {
+  course: string;
   lessonId: string;
   lang?: Language;
 }
 
-export default function CompleteLessonButton({ lessonId, lang = 'ar' }: Props) {
-  const [done, setDone] = useState<boolean>(() => isLessonComplete(loadProgress(), lessonId));
+export default function CompleteLessonButton({ course, lessonId, lang = 'ar' }: Props) {
+  const [done, setDone] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
 
-  const toggle = () => {
-    setDone((d) => {
-      saveProgress(toggleLessonComplete(loadProgress(), lessonId));
-      return !d;
+  useEffect(() => {
+    setDone(isLessonComplete(loadProgress(course), lessonId));
+    setIsInitialized(true);
+  }, [course, lessonId]);
+
+  const toggle = useCallback(() => {
+    setDone((prev) => {
+      const newDone = !prev;
+      saveProgress(toggleLessonComplete(loadProgress(course), lessonId), course);
+      if (newDone) {
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 2000);
+      }
+      return newDone;
     });
-  };
+  }, [course, lessonId]);
+
+  if (!isInitialized) {
+    return (
+      <div className="w-full rounded-xl bg-slate-100 px-5 py-4 text-base font-bold text-slate-400 animate-pulse-soft">
+        <span className="flex items-center justify-center gap-2">
+          <span className="text-lg">📖</span>
+          جاري التحميل...
+        </span>
+      </div>
+    );
+  }
 
   return (
-    <button
-      type="button"
-      onClick={toggle}
-      className={`mt-8 w-full rounded-xl px-5 py-3.5 text-base font-bold transition ${
-        done
-          ? 'bg-brand-100 text-brand-700 ring-1 ring-brand-500'
-          : 'bg-brand-600 text-white hover:bg-brand-700 cursor-pointer'
-      }`}
-    >
-      {done ? translate(lang, 'lesson.completed') : translate(lang, 'lesson.complete')}
-    </button>
+    <div className="relative">
+      {showConfetti && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none animate-fade-in">
+          <div className="text-4xl animate-scale-in">🎉</div>
+        </div>
+      )}
+      <button
+        type="button"
+        onClick={toggle}
+        className={`w-full rounded-xl px-5 py-4 text-base font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 ${
+          done
+            ? 'bg-brand-100 text-brand-700 ring-2 ring-brand-500 hover:bg-brand-50 hover:shadow-md'
+            : 'bg-brand-600 text-white hover:bg-brand-700 hover:shadow-lg hover:shadow-brand-500/25 cursor-pointer active:scale-[0.98]'
+        }`}
+        aria-pressed={done}
+      >
+        <span className="flex items-center justify-center gap-2">
+          {done ? (
+            <>
+              <span className="text-lg animate-scale-in">✓</span>
+              {translate(lang, 'lesson.completed')}
+            </>
+          ) : (
+            <>
+              <span className="text-lg">📖</span>
+              {translate(lang, 'lesson.complete')}
+            </>
+          )}
+        </span>
+      </button>
+    </div>
   );
 }

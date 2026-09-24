@@ -1,0 +1,227 @@
+---
+id: lesson-cmrp-2-1
+course: cmrp
+station: station-cmrp-2
+number: "2.1"
+title: "تحليل الحرجية وتصنيف الأصول"
+titleEn: "Asset Criticality & Risk Matrix"
+minutes: 25
+order: 1
+objectives:
+  - "أن يطبق المتعلم معادلة الخطر (الاحتمالية × العواقب) لتقييم أي أصل صناعي."
+  - "أن يرتب عواقب الفشل الأربعة مع أولوية السلامة والبيئة غير القابلة للتفاوض."
+  - "أن يصنف الأصول إلى فئات (A / B / C) ويربط كل فئة بتكتيك الصيانة وسياسة قطع الغيار."
+  - "أن يفرق بين حرجية الأصل الثابتة وأولوية أمر الشغل الديناميكية."
+objectivesEn:
+  - "Apply the risk equation (probability × consequence) to rank any industrial asset."
+  - "Order the four failure consequence dimensions with non-negotiable EHS priority."
+  - "Classify assets into tiers (A / B / C) and link each tier to tactics and spares policy."
+  - "Distinguish static asset criticality from dynamic work order priority."
+hasTool: true
+toolName: "مصفوفة الحرجية"
+toolNameEn: "Criticality Matrix"
+quizId: quiz-cmrp-2-1
+sources:
+  - smrp_metrics
+  - iso_31000
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import CriticalityMatrix from '../../../components/islands/tools/cmrp/CriticalityMatrix.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp21 } from '../../../data/quiz/cmrp/quiz-cmrp-2-1';
+
+<LangSection lang="ar">
+
+أخطر أخطاء الصيانة التقليدية محاولة صيانة كل مسمار ومحرك ومضخة بنفس الدرجة. الموارد محدودة — الميزانية وساعات الفنيين وأجهزة القياس — بينما تتفاوت المعدات تفاوتاً هائلاً في تأثيرها على السلامة والإنتاج. لذلك يأتي تحليل حرجية الأصول (Asset Criticality Analysis) أولاً قبل أي خطة صيانة أو شراء قطع غيار: بوصلة تقرر أين تُنفق كل دقيقة وكل ريال.
+
+## 1. معادلة الخطر (Risk)
+
+مستوى الخطر لا تحدده فرصة التعطل وحدها، بل حاصل ضرب فرصة التعطل في حجم الخسارة الناتجة عنه:
+
+- **احتمالية الفشل (Probability of Failure)**: من 1 (نادر جداً: أقل من مرة كل 5 إلى 10 سنوات) إلى 5 (مستمر: يتكرر شهرياً أو أسبوعياً).
+- **شدة العواقب (Consequence)**: من 1 (ضئيل: لا توقف ولا أثر على السلامة) إلى 5 (كارثي: خسائر بشرية أو حريق كبير أو إغلاق المنشأة).
+- **درجة الخطر**: الاحتمالية × العواقب، من 1 إلى 25 على مصفوفة المخاطر (Risk Matrix) ذات الخلايا الخمس والعشرين.
+
+## 2. الأبعاد الأربعة لعواقب الفشل (Failure Consequences)
+
+عندما يتعطل أي أصل يتوزع أثر العطل على أربعة محاور متدرجة في الأهمية:
+
+- **السلامة والصحة والبيئة (EHS)**: المرتبة الأولى غير القابلة للتفاوض. هل يسبب العطل إصابة بشرية أو حريقاً أو تسرباً كيميائياً؟ أي معدة لها عواقب سلامة تُعد حرجة تلقائياً.
+- **الأثر التشغيلي والإنتاجي (Operations)**: هل يتوقف خط الإنتاج بالكامل؟ هل المعدة نقطة اختناق (Bottleneck)؟ هل يوجد بديل احتياطي مركب (Installed Standby) يمتص الصدمة فوراً؟
+- **تكلفة الصيانة المباشرة (Direct Repair Cost)**: قيمة قطع الغيار وأجور المقاولين وساعات العمل اللازمة لإعادة المعدة إلى حالتها المعيارية.
+- **أثر العملاء والسمعة (Reputation)**: هل يُخل العطل بعقود التوريد أو يدهور جودة المنتج النهائي؟
+
+<Callout type="tip">
+**قاعدة ذهبية:** إذا بلغت شدة العواقب المستوى 5 (كارثي على السلامة أو البيئة) صُنف الأصل فئة A تلقائياً، مهما كانت ندرة احتماله. السلامة ليست رقماً في متوسط حسابي.
+</Callout>
+
+## 3. التصنيف الثلاثي للأصول (A / B / C) وقاعدة باريتو
+
+توزع المنشآت العالمية أصولها وفق قاعدة باريتو (80/20) على ثلاث فئات، يرتبط بكل منها قرار هندسي ومخزني:
+
+- **فئة A: الأصول الحرجة (Critical Assets — نحو 10% إلى 15% من المعدات)**: نقاط فشل مفردة (Single Points of Failure) بلا بديل، وفشلها كارثة بيئية أو توقف تام. التكتيك: مراقبة مشروطة متقدمة (CBM) بمجسات اهتزاز مستمرة، وتخزين قطع غيار تأمينية مخصصة (Insurance Spares).
+- **فئة B: الأصول الأساسية (Essential Assets — نحو 30% إلى 40% من المعدات)**: تؤثر على سرعة الإنتاج دون توقف فوري، أو تمتلك بديلاً يخفف الصدمة. التكتيك: صيانة وقائية دورية (PM) مع فحص اهتزازات محمول شهرياً، ومخزون قياسي بنظام الحدين (Min/Max).
+- **فئة C: الأصول غير الحرجة (Non-Critical Assets — نحو 50% من المعدات)**: أثر ضئيل وتكلفة إصلاح بسيطة وتوفر فوري في السوق. التكتيك: التشغيل حتى العطل (Run to Failure) كقرار هندسي واعٍ، دون تجميد الأموال في التخزين.
+
+<Infographic
+  title="التصنيف الثلاثي للأصول (A / B / C) وقاعدة باريتو"
+  items={[
+    { title: 'فئة A — الأصول الحرجة', detail: 'نحو 10% إلى 15% من المعدات — نقاط فشل مفردة بلا بديل وفشلها كارثة. التكتيك: مراقبة مشروطة (CBM) بمجسات اهتزاز مستمرة، وقطع غيار تأمينية مخصصة (Insurance Spares).', icon: '🔴', color: 'rose' },
+    { title: 'فئة B — الأصول الأساسية', detail: 'نحو 30% إلى 40% — تؤثر على سرعة الإنتاج أو تملك بديلاً يخفف الصدمة. التكتيك: صيانة وقائية دورية (PM) ومخزون قياسي بنظام الحدين (Min/Max).', icon: '🟡', color: 'amber' },
+    { title: 'فئة C — الأصول غير الحرجة', detail: 'نحو 50% من المعدات — أثر ضئيل وتكلفة إصلاح بسيطة وتوفر فوري. التكتيك: التشغيل حتى العطل (Run to Failure) دون تجميد الأموال في التخزين.', icon: '🟢', color: 'teal' },
+  ]}
+  caption="يرتبط بكل فئة قرار هندسي ومخزني مختلف — الموارد المحدودة تُوجَّه للأعلى أثراً بدل المساواة في الصيانة."
+/>
+
+وجود معدة بديلة (Redundancy) يخفض العواقب التشغيلية بدرجة حاسمة: مضخة بخط بسترة حرج بلا بديل فئة A، ونفس المضخة الموديل بجوارها بديل جاهز تنزل إلى فئة أدنى — فالحرجية صفة الوظيفة وسياق التشغيل لا صفة الحديد.
+
+## 4. حرجية الأصل الثابتة مقابل أولوية أمر الشغل الديناميكية
+
+خلط شائع يجب حسمه لامتحان CMRP:
+
+- **حرجية الأصل (Asset Criticality)**: قيمة ثابتة تعبر عن أهمية المعدة التصميمية في خط الإنتاج، لا تتغير يومياً إلا بتعديل الخط أو إضافة بديل.
+- **أولوية أمر الشغل (Work Order Priority)**: قيمة ديناميكية = حرجية الأصل × درجة إلحاح العطل اللحظي (Urgency). أمر عمل على معدة فئة C قد يصبح عاجلاً جداً إذا تسرب منها زيت يهدد بانزلاق الفنيين!
+
+<Callout type="myth">
+**أسطورة:** "كل المعدات تستحق نفس الاهتمام الوقائي — والعدل يعني المساواة في الصيانة."
+**الحقيقة:** العدل الهندسي يعني التركيز على الأعلى أثراً: صيانة متساوية للجميع تُهدر الميزانية على الفئة C وتترك الفئة A مكشوفة للكارثة.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+The most dangerous mistake of traditional maintenance is trying to maintain every bolt, motor, and pump at the same level. Resources are limited — budget, technician hours, and measuring instruments — while equipment varies enormously in its impact on safety and production. That is why asset criticality analysis comes first, before any maintenance plan or spare parts purchase: a compass that decides where every minute and every riyal is spent.
+
+## 1. The risk equation
+
+Risk level is not determined by the chance of failure alone, but by the product of the failure chance and the resulting loss:
+
+- **Probability of Failure**: from 1 (very rare: less than once every 5 to 10 years) to 5 (continuous: recurring monthly or weekly).
+- **Consequence severity**: from 1 (minor: no downtime and no safety impact) to 5 (catastrophic: human losses, major fire, or facility shutdown).
+- **Risk score**: probability × consequence, from 1 to 25 on the 25-cell risk matrix.
+
+## 2. The four dimensions of failure consequences
+
+When any asset fails, the impact spreads across four axes ranked by importance:
+
+- **Environment, Health, and Safety (EHS)**: the first, non-negotiable rank. Does the failure cause personal injury, fire, or a chemical leak? Any asset with safety consequences is automatically critical.
+- **Operational and production impact**: does the whole production line stop? Is the asset a bottleneck? Is there installed standby that absorbs the shock immediately?
+- **Direct repair cost**: the value of spare parts, contractor fees, and labor hours needed to return the asset to its standard condition.
+- **Customer and reputation impact**: does the failure breach supply contracts or degrade final product quality?
+
+<Callout type="tip">
+**Golden rule:** if consequence severity reaches level 5 (catastrophic to safety or the environment), the asset is automatically classified tier A, no matter how rare its probability. Safety is not a number in an arithmetic average.
+</Callout>
+
+## 3. The three-tier asset classification (A / B / C) and the Pareto rule
+
+World-class facilities distribute their assets per the Pareto rule (80/20) across three tiers, each tied to an engineering and inventory decision:
+
+- **Tier A: Critical assets (about 10% to 15% of equipment)**: single points of failure with no backup, where failure is an environmental catastrophe or total shutdown. Tactic: advanced condition-based monitoring (CBM) with continuous vibration sensors and dedicated insurance spares.
+- **Tier B: Essential assets (about 30% to 40% of equipment)**: affect production speed without immediate stoppage, or have a backup that softens the shock. Tactic: periodic preventive maintenance (PM) with monthly portable vibration checks and a standard min/max inventory.
+- **Tier C: Non-critical assets (about 50% of equipment)**: minor impact, low repair cost, and immediate market availability. Tactic: run-to-failure as a conscious engineering decision, without freezing capital in storage.
+
+<Infographic
+  title="The three-tier asset classification (A / B / C) and the Pareto rule"
+  items={[
+    { title: 'Tier A — Critical assets', detail: 'About 10% to 15% of equipment — single points of failure with no backup, and failure is a catastrophe. Tactic: CBM with continuous vibration sensors and dedicated insurance spares.', icon: '🔴', color: 'rose' },
+    { title: 'Tier B — Essential assets', detail: 'About 30% to 40% — affect production speed or have a backup that softens the shock. Tactic: periodic PM and a standard min/max inventory.', icon: '🟡', color: 'amber' },
+    { title: 'Tier C — Non-critical assets', detail: 'About 50% of equipment — minor impact, simple repair cost, immediate availability. Tactic: run-to-failure without freezing capital in storage.', icon: '🟢', color: 'teal' },
+  ]}
+  caption="Each tier carries a different engineering and inventory decision — limited resources are directed to the highest impact rather than equal maintenance."
+/>
+
+Having a backup asset (Redundancy) lowers operational consequences decisively: a pump on a critical pasteurization line with no backup is tier A, while the same model with a ready backup beside it drops to a lower tier — criticality is a property of the function and operating context, not of the iron.
+
+## 4. Static asset criticality versus dynamic work order priority
+
+A common confusion that must be settled for the CMRP exam:
+
+- **Asset criticality**: a fixed value expressing the design importance of the asset in the production line; it does not change daily except through line modification or adding a backup.
+- **Work order priority**: a dynamic value = asset criticality × the momentary urgency of the failure. A work order on a tier C asset can become extremely urgent if oil leaking from it threatens to make technicians slip!
+
+<Callout type="myth">
+**Myth:** "All equipment deserves the same preventive attention — fairness means equal maintenance."
+**Fact:** engineering fairness means focusing on the highest impact: equal maintenance for everyone wastes the budget on tier C and leaves tier A exposed to catastrophe.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: مصفوفة الحرجية
+
+حدد احتمالية العطل وشدة العواقب لأي معدة، وشاهد تصنيفها الفوري (A / B / C) مع تكتيك الصيانة وسياسة قطع الغيار الموصى بهما.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Criticality Matrix
+
+Set the failure probability and consequence severity for any asset and see its immediate classification (A / B / C) along with the recommended maintenance tactic and spares policy.
+
+</LangSection>
+
+<CriticalityMatrix client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-2-1-t1', 'cmrp-2-1-t2', 'cmrp-2-1-t3', 'cmrp-2-1-t4', 'cmrp-2-1-t5', 'cmrp-2-1-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على معادلة الخطر وأولوية السلامة وأثر الازدواجية وسياسة قطع الغيار والتمييز بين الحرجية والأولوية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the risk equation, safety priority, the effect of redundancy, spares policy, and the distinction between criticality and priority.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-2-1" questions={quizCmrp21.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **الخطر = الاحتمالية × العواقب** على مصفوفة 5×5 بدرجة من 1 إلى 25.
+- **السلامة والبيئة أولاً دائماً**: عواقب من المستوى 5 تعني فئة A تلقائياً.
+- **التصنيف الثلاثي**: A نحو 10–15% بمراقبة مشروطة وقطع تأمينية، B نحو 30–40% بصيانة دورية ومخزون حدين، C نحو 50% بتشغيل حتى العطل.
+- **الازدواجية تخفض الحرجية** لأنها تمتص صدمة الفشل وتمنع التوقف.
+- **الحرجية ثابتة والأولوية ديناميكية**: أولوية أمر الشغل = الحرجية × الإلحاح اللحظي.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Risk = probability × consequence** on a 5×5 matrix scored from 1 to 25.
+- **Safety and environment always come first**: level 5 consequences mean tier A automatically.
+- **The three-tier classification**: A is about 10–15% with condition monitoring and insurance spares, B is about 30–40% with periodic maintenance and min/max stock, C is about 50% with run-to-failure.
+- **Redundancy lowers criticality** because it absorbs the failure shock and prevents downtime.
+- **Criticality is static and priority is dynamic**: work order priority = criticality × momentary urgency.
+
+</LangSection>

@@ -1,0 +1,227 @@
+---
+id: lesson-6-1
+station: station-6
+number: "6.1"
+title: "التخطيط للطوارئ"
+titleEn: "Emergency Preparedness Planning"
+minutes: 25
+order: 1
+objectives:
+  - "أن يحدد المتعلم سيناريوهات الطوارئ الواجب الاستعداد لها ويحلل طبيعة كل خطر."
+  - "أن يبني عناصر خطة الطوارئ التشغيلية كاملة: إنذار، أدوار، مسارات، وتنسيق خارجي."
+  - "أن يحوّل الخطة من وثيقة إلى سلوك عبر التدريب والتمارين والدروس المستفادة."
+  - "أن يضمن تواصلاً موحداً وموثوقاً أثناء الأزمة."
+objectivesEn:
+  - "Identify emergencies to prepare for and analyze the nature of each hazard."
+  - "Build complete emergency action plan elements: alarm, roles, routes, and external coordination."
+  - "Turn the plan from a document into behavior via training, drills, and lessons learned."
+  - "Ensure unified, trusted communication during a crisis."
+hasTool: true
+toolName: "باني خطة طوارئ"
+toolNameEn: "Emergency Plan Builder"
+quizId: quiz-6-1
+sources:
+  - osha
+  - readygov
+  - ifma
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import EmergencyPlanBuilder from '../../../components/islands/tools/cfm/EmergencyPlanBuilder.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz61 } from '../../../data/quiz/cfm/quiz-6-1';
+
+<LangSection lang="ar">
+
+الطوارئ لا تُعلن نفسها في ساعات العمل، بل تأتي في أشد الأوقات انشغالاً: إنذار حريق في الصباح، عاصفة تقطع الكهرباء مساءً، أو تهديد أمني يغلق الأبواب. الجاهزية ليست وثيقة معلقة، بل نظام متكامل يعرفه الجميع ويُمارس في التمرين حتى يصبح سلوكاً.
+
+## 1. الاستعداد للطوارئ (Emergency Preparedness) وخريطة المخاطر
+
+الاستعداد للطوارئ هو تنظيم الاستجابة للأزمات قبل وقوعها، ويبدأ بمعرفة ما الذي قد يحدث في منشأتك بالضبط:
+
+- **مخاطر طبيعية**: زلزال، عاصفة، فيضان، أو انقطاع كهرباء طويل.
+- **مخاطر بشرية**: حريق نتيجة خطأ أو إهمال، تسرب مواد، تهديد أمني.
+- **مخاطر تشغيلية**: انهيار شبكة مياه، انقطاع اتصالات، عطل نظم حرجة.
+
+**مثال:** مبنى ساحلي معرض للفيضانات يحتاج خطة احتماء ورفع معدات الطوابق السفلية، بينما مصنع يخزن المواد القابلة للاحتراق يحتاج نظام إخلاء سريعاً. الخطة تُبنى حسب خريطة النطاق: كل خطر له استجابته الخاصة (إخلاء، احتماء، إغلاق).
+
+## 2. عناصر خطة الطوارئ التشغيلية (Emergency Action Plan, EAP)
+
+خطة الطوارئ التشغيلية هي الوثيقة التي تجيب بوضوح عن: من يفعل ماذا ومتى وأين؟ وعناصرها الدنيا:
+
+1. **الاكتشاف والإنذار**: أجهزة كشف (دخان، حرارة) وإنذار مسموع يتلقاه الجميع ويُختبر دورياً.
+2. **القيادة والأدوار**: قائد حادثة موحد، ومنسق طوارئ (Warden) لكل طابق أو منطقة، مع بديل موثق لكل دور.
+3. **مسارات الإخلاء ونقاط التجمع (Assembly Points)**: مخارج مفتوحة مضاءة معلَّمة، ونقطة تجمع ظاهرة آمنة يُحاصر فيها الجميع للتحقق من اكتمال العدد.
+4. **إجراءات متعددة حسب الموقف**: إخلاء كامل للمبنى، أو احتماء في المكان (Shelter-in-Place) عند عاصفة أو تسرب، أو إغلاق (Lockdown) عند تهديد خارجي.
+5. **قوائم اتصال محدثة**: أرقام الموظفين وطوارئ وقنوات الإعلان، تُراجع دورياً.
+6. **ذوو الاحتياجات الخاصة**: قائمة بمن يحتاج مساعدة في الإخلاء ومُعينون لهم عن معرفة مسبقة.
+7. **التنسيق الخارجي**: أرقام الدفاع المدني والإسعاف ومزودي الكهرباء والاتصالات للاستجابة المنسقة.
+
+<Infographic
+  title="عناصر خطة الطوارئ التشغيلية (Emergency Action Plan, EAP) السبعة"
+  caption="الخطة تجيب عن: من يفعل ماذا ومتى وأين؟ وتُمارس بالتدريب حتى تصير سلوكاً"
+  cols={3}
+  items={[
+    { title: 'الاكتشاف والإنذار', detail: 'أجهزة كشف (دخان وحرارة) وإنذار مسموع يُختبر دورياً', color: 'brand' },
+    { title: 'القيادة والأدوار', detail: 'قائد حادثة موحد ومنسق طوارئ (Warden) لكل منطقة مع بديل موثق', color: 'teal' },
+    { title: 'مسارات الإخلاء ونقاط التجمع', detail: 'مخارج مفتوحة مضاءة معلَّمة ونقطة تجمع آمنة للتحقق من اكتمال العدد', color: 'amber' },
+    { title: 'إجراءات متعددة حسب الموقف', detail: 'إخلاء كامل أو احتماء في المكان (Shelter-in-Place) أو إغلاق (Lockdown)', color: 'sky' },
+    { title: 'قوائم اتصال محدثة', detail: 'أرقام الموظفين والطوارئ وقنوات الإعلان تُراجع دورياً', color: 'rose' },
+    { title: 'ذوو الاحتياجات الخاصة', detail: 'قائمة بمن يحتاج مساعدة في الإخلاء ومُعينون لهم عن معرفة مسبقة', color: 'ink' },
+    { title: 'التنسيق الخارجي', detail: 'أرقام الدفاع المدني والإسعاف ومزودي الكهرباء والاتصالات', color: 'brand' },
+  ]}
+/>
+
+## 3. من الورق إلى السلوك: التدريب والتمارين
+
+الخطة المجردة عن الإنسان بلا قيمة؛ الجاهزية تُبنى بالتكرار:
+
+- **تدريب عند التعيين** يشرح أدوار الخطة لكل موظف جديد وموقعه في نقاط التجمع.
+- **تمارين دورية** (إخلاء، احتماء) تُنفذ فعلياً لا على الورق، ويُقيَّم زمنها وأداؤها.
+- **دروس مستفادة**: كل تمرين أو حادث فعلي يقرأ نتائجه ويعدّل الخطة؛ فالخطة وثيقة حية تُحدَّث باستمرار، لا تُحفظ في الرف.
+
+## 4. التواصل أثناء الأزمات (Crisis Communication)
+
+عند الأزمة يتحول الاهتمام إلى المعلومة: قناة موحدة واحدة (لوحة إعلان رقمية أو رسائل جماعية رسمية) ومتحدث واحد مخوّل، ورسائل دقيقة ومحدّثة فور كل تطور — فالشائعة تموت بالمعلومة الصادقة السريعة، ولا تُبنى الأسئلة المعلقة أبداً حتى بعد انتهاء الأزمة.
+
+<Callout type="myth">
+**أسطورة:** «الخطة المكتوبة والمعلقة على اللوحات تصنع الجاهزية».
+**الحقيقة:** الجاهزية تُصنع بالتدريب والتمرين الذي يحوّل الخطة إلى سلوك، وتُثبَّت بالدرس المستفاد من كل تمرين وحادث.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Emergencies do not announce themselves during working hours; they arrive at the busiest times: a fire alarm in the morning, a storm cutting the electricity in the evening, or a security threat that locks the doors. Preparedness is not a document hanging on a wall; it is an integrated system that everyone knows and practices in drills until it becomes behavior.
+
+## 1. Emergency preparedness and the hazard map
+
+Emergency preparedness is organizing the response to crises before they occur, and it begins with knowing exactly what could happen in your facility:
+
+- **Natural hazards**: an earthquake, storm, flood, or a prolonged power outage.
+- **Human hazards**: fire from a mistake or negligence, a material spill, or a security threat.
+- **Operational hazards**: collapse of the water network, communication outage, or failure of critical systems.
+
+**Example:** a coastal building exposed to floods needs a shelter plan and raising of basement equipment, while a factory storing combustible materials needs a fast evacuation system. The plan is built on the scope map: every hazard has its own response (evacuation, sheltering, lockdown).
+
+## 2. Elements of the emergency action plan (EAP)
+
+The emergency action plan is the document that clearly answers: who does what, when, and where? Its minimum elements:
+
+1. **Detection and alarm**: detection devices (smoke, heat) and an audible alarm that everyone receives and that is tested periodically.
+2. **Leadership and roles**: a single incident commander and an emergency warden for each floor or area, with a documented alternate for every role.
+3. **Evacuation routes and assembly points**: open, lit, and marked exits, and a visible safe assembly point where everyone gathers to verify the headcount.
+4. **Multiple procedures depending on the situation**: full building evacuation, shelter-in-place during a storm or spill, or lockdown during an external threat.
+5. **Up-to-date contact lists**: employee and emergency numbers and announcement channels, reviewed periodically.
+6. **People with special needs**: a list of those who need help evacuating, with helpers assigned to them based on prior knowledge.
+7. **External coordination**: civil defense, ambulance, and utility provider numbers for a coordinated response.
+
+<Infographic
+  title="The seven elements of the emergency action plan (EAP)"
+  caption="The plan answers: who does what, when, and where? And it is practiced through training until it becomes behavior"
+  cols={3}
+  items={[
+    { title: 'Detection and alarm', detail: 'Smoke and heat detection devices and an audible alarm tested periodically', color: 'brand' },
+    { title: 'Leadership and roles', detail: 'A single incident commander and an area warden with a documented alternate', color: 'teal' },
+    { title: 'Evacuation routes and assembly points', detail: 'Open, lit, marked exits and a safe assembly point to verify the headcount', color: 'amber' },
+    { title: 'Multiple response procedures', detail: 'Full evacuation, shelter-in-place, or lockdown', color: 'sky' },
+    { title: 'Updated contact lists', detail: 'Employee, emergency, and announcement channels reviewed periodically', color: 'rose' },
+    { title: 'People with special needs', detail: 'A list of those needing evacuation assistance with helpers assigned in advance', color: 'ink' },
+    { title: 'External coordination', detail: 'Civil defense, ambulance, and utility provider numbers', color: 'brand' },
+  ]}
+/>
+
+## 3. From paper to behavior: training and drills
+
+A plan disconnected from people is worthless; preparedness is built by repetition:
+
+- **Training at hiring** explains the plan roles to every new employee and their place at the assembly points.
+- **Periodic drills** (evacuation, sheltering) are performed physically, not on paper, and their time and performance are evaluated.
+- **Lessons learned**: every drill or actual incident reviews its results and adjusts the plan; the plan is a living document, continuously updated, not filed away on a shelf.
+
+## 4. Crisis communication
+
+In a crisis, attention shifts to information: one unified channel (a digital bulletin board or official mass messaging) and one authorized spokesperson, with accurate messages updated immediately after every development — rumor dies from fast, truthful information, and open questions are never left hanging, not even after the crisis ends.
+
+<Callout type="myth">
+**Myth:** "A plan written and posted on boards creates preparedness."
+**Fact:** Preparedness is created by training and drills that turn the plan into behavior, and it is reinforced by the lesson learned from every drill and incident.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## 5. أداة اليوم: باني خطة طوارئ
+
+افحص خطة منشأتك أو ابنِ خطة جديدة عنصراً عنصراً، لترى أين تعيش فجوات الجاهزية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## 5. Today's tool: Emergency Plan Builder
+
+Examine your facility's plan or build a new one element by element to see where your preparedness gaps live.
+
+</LangSection>
+
+<EmergencyPlanBuilder client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['emergency', 'evacuation', 'assembly', 'crisiscomms']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على عناصر الخطة، والتدريب فوق الورق، وتوحيد التواصل أثناء الأزمة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on plan elements, training over paper, and unified communication during a crisis.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-6-1" questions={quiz61.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **الاستعداد للطوارئ (Emergency Preparedness)** يبدأ بخريطة مخاطر المنشأة، وكل خطر له استجابته الملائمة.
+- **خطة الطوارئ التشغيلية (EAP)** تجيب عن من يفعل ماذا ومتى وأين: إنذار، أدوار وقادة، مسارات إخلاء ونقاط تجمع، وقوائم اتصال وتنسيق خارجي.
+- **التمارين والدروس المستفادة** تحوّل الخطة من وثيقة إلى سلوك يُمارس ويُحدَّث باستمرار.
+- **التواصل أثناء الأزمات** قناة موحدة ومتحدث واحد ورسائل دقيقة محدثة — الشائعة تموت بالمعلومة السريعة الصادقة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Emergency preparedness** starts with the facility's hazard map, and every hazard has its proper response.
+- **The emergency action plan (EAP)** answers who does what, when, and where: alarm, roles and leaders, evacuation routes and assembly points, contact lists, and external coordination.
+- **Drills and lessons learned** turn the plan from a document into a behavior that is practiced and continuously updated.
+- **Crisis communication** is one unified channel, one spokesperson, and accurate, up-to-date messages — rumor dies from fast, truthful information.
+
+</LangSection>

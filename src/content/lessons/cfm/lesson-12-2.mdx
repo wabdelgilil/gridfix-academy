@@ -1,0 +1,170 @@
+---
+id: lesson-12-2
+station: station-12
+number: "12.2"
+title: "الجدولة والتكلفة والرقابة"
+titleEn: "Scheduling, Cost & Control"
+minutes: 25
+order: 2
+objectives:
+  - "أن يبني المتعلم جدولاً بعلاقات ومحطات وعيون رئيسية (Milestones)."
+  - "أن يفهم خط الأساس ويقارن الأداء به دورياً."
+  - "أن يربط الكلفة بالإنجاز المنجز لا بالمدة فقط."
+  - "أن يحدّث الخطة بأمر تغيير معتمد عند الانحراف."
+objectivesEn:
+  - "Build a schedule with dependencies, tasks, and milestones."
+  - "Understand the baseln and compare performance to it periodically."
+  - "Link cost to work performed, not just elapsed time."
+  - "Update the plan via approved change orders when deviating."
+hasTool: false
+quizId: quiz-12-2
+sources:
+  - ifma
+---
+
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz122 } from '../../../data/quiz/cfm/quiz-12-2';
+
+<LangSection lang="ar">
+
+الجدول بدون مرجع لا يُدار، والميزانية أقل من الكلفة المنجزة لا تكون لها صحة. هذا الدرس يجمع أداة الجدولة وعدّاد الكلفة في منظومة واحدة: كيف تبني جدولاً واضح العلاقات، وكيف تحدّد «خط الأساس» الذي تُقاس عليه كل الانحرافات، وكيف تربط الزيادة التكلفية بحجم العمل الفعلي لا بالشهور التي انقضت.
+
+## 1. بناء الجدول: مهام وعلاقات ومحطات
+
+الجدول الجيد يُبنى بثلاث طبقات:
+
+- **المهام (Tasks)**: تقسيم النطاق إلى وحدات عمل منفذة قابلة للتقدير (تحضير، تجهيز، تركيب، اختبار).
+- **العلاقات (Dependencies)**: ما يتقطع قبل غيره (لا تركيب قبل تجهيز) لتُرتّب التوالي الصحيح.
+- **المحطات الرئيسية (Milestones)**: نقاط فحص ثابتة (نهاية التصميم، بداية التركيب، تسليم تجريبي) تُقارن بها التقدم دون غموض.
+
+مخطط جانت (Gantt Chart) هو تمثيل مرئي للمهام والعلاقات على محور زمني؛ ويُستخدم لتتبع التنفيذ دورياً: حدّث ما يجري، وقِس التأخير في وقت حدوثه لا في اجتماع مفاجئ.
+
+## 2. خط الأساس (Baseline): مرجع الرقابة
+
+خط الأساس نسخة معتمدة وموثقة من الجدول والميزانية التخطيطية عند نقطة الاعتماد. هو الركيزة: كل ما بعده يُقارن به:
+
+- الانحراف يُقارن بمثيله المخطط: مدد الفترات الفعلية تُقابل المدد المخططة في خط الأساس.
+- أُغيّر نطاق؟ حدّث خط الأساس بأمر تغيير معتمد، لا بتوقع ذهني.
+
+المقارنة بلا مرجع تُبقي اجتماعاتك انطباعات: الرقم بمقابل رقم معتمد هو وحده الذي يمحو «يبدو جيداً» و»أظنه متقدماً».
+
+## 3. الكلفة بالإنجاز: لا بالمدة ولا بالمصروف
+
+خدعتان في قراءة الميزانية:
+
+- **المصروف وحده** يبدو مسيطراً لو أنفق في غير نطاق.
+- **المدة المحسوبة** موهمة إذا تقدم العمل أو تأخر عنه.
+
+الصياغة السليمة ترفق المال بالإنجاز: كم أنجزنا فعلاً مقابل كم كان مخططاً إنجازه بكلفة أولئك الإنجاز. مثال: صرف 25% من الميزانية مع 30% إنجاز صحة جيدة؛ مع 10% إنجاز مؤشر مبالغة يفتح تحقيقاً فورياً.
+
+## 4. الرقابة الدورية وتحديث الخطة بالانحراف
+
+- مراجعة دورية للجدول والميزانية مقابل خط الأساس (اسبوعية للمشاريع الحرجة، شهرية لذات الأمد الطويل).
+- أي انحراف يُفحص سببه: خطأ تقدير، ظروف سوق، تأخير مورّد، تغيّر نطاق؟
+- الانحراف الجوهري يستدعي تحديث خط الأساس المعنون بأمر تغيير موثق يوضح للأطراف الأثر على الموعد والكلفة.
+
+الرقابة ليست إحصاء عصا، بل منظومة: قياس، تحليل، قرار، وتوثيق — تعيد توقعات سليمة بدل مفاجآت نهاية المشروع.
+
+## 5. المخاطر: تأجيل الدفع ثم الرد
+
+المخاطر تعالج قبل وقوعها: جدول يحدد المخاطر المحتملة (طقس، نقص مواد، معدات) لكل منها احتمال وأثر وردّ مجهز (بديل مورد، تخزين مبكر، سلسلة عاجلة). المشروع الذي «يستمع للصدمات» يتأخر؛ والذي يؤسس مخاطر مسبقاً يمتص الصدمة ويستمر.
+
+</LangSection>
+
+<LangSection lang="en">
+
+A schedule without a reference cannot be managed, and a budget less than the performed cost has no validity. This lesson brings the scheduling tool and the cost counter into one system: how you build a schedule with clear dependencies, how you define the "baseline" against which all deviations are measured, and how you tie cost growth to the actual volume of work, not to the elapsed months.
+
+## 1. Building the schedule: tasks, dependencies, and milestones
+
+A good schedule is built in three layers:
+
+- **Tasks**: breaking the scope into executable, estimable work units (preparation, setup, installation, testing).
+- **Dependencies**: what must finish before the rest (no installation before setup) to arrange the correct sequence.
+- **Milestones**: fixed checkpoints (end of design, start of installation, pilot handover) against which progress is compared without ambiguity.
+
+A Gantt chart is a visual representation of tasks and dependencies on a time axis; it is used to track execution periodically: update what is running, and measure the delay at the moment it occurs, not in a sudden meeting.
+
+## 2. Baseline: the control reference
+
+The baseline is an approved, documented version of the planned schedule and budget at the approval point. It is the pillar: everything after it is compared against it:
+
+- A deviation is compared with its planned counterpart: the actual durations are matched against the planned durations in the baseline.
+- Scope changed? Update the baseline with an approved change order, not with a mental expectation.
+
+Without a reference, your meetings stay impressions: a number against an approved number is the only thing that erases "looks good" and "I think it is on track".
+
+## 3. Cost by accomplishment: not by duration nor by expenditure
+
+Two deceptions in reading a budget:
+
+- **Expenditure alone** looks under control if it was spent outside the scope.
+- **Elapsed duration** is misleading if the work ran ahead of or behind it.
+
+The sound formulation attaches the money to the accomplishment: how much we actually completed versus how much was planned to be completed at the cost of that accomplishment. Example: spending 25% of the budget with 30% completion is sound; with 10% completion it is an overspending indicator that opens an immediate investigation.
+
+## 4. Periodic control and updating the plan on deviation
+
+- A periodic review of the schedule and budget against the baseline (weekly for critical projects, monthly for long-horizon ones).
+- Any deviation's cause is examined: estimation error, market conditions, supplier delay, scope change?
+- A material deviation calls for updating the baseline under a documented change order stating to the parties the impact on the date and cost.
+
+Control is not a stick count, but a system: measure, analyze, decide, and document — restoring sound expectations instead of end-of-project surprises.
+
+## 5. Risk: deferring the blow, then responding
+
+Risks are treated before they occur: a register identifies the potential risks (weather, material shortage, equipment), each with a probability, an impact, and a prepared response (an alternative supplier, early storage, an urgent chain). A project that "listens for shocks" falls behind; one that establishes risks in advance absorbs the shock and continues.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['gantt', 'project', 'scope']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-12-2" questions={quiz122.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- الجدول الجيد مهام وعلاقات ومحطات رئيسية في مخطط زمني يبين التأخر لحظة حدوثه.
+- خط الأساس معتمد مرجعي؛ الأداء يُقارن به دورياً، ويتحدث بأمر تغيير موثق عند تغير النطاق.
+- الكلفة تحكم بالربط بالإنجاز الفعلي لا بالمدة ولا بالمصروف المجرد.
+- الرقابة منظومة قياس وتحليل وقرار وتوثيق، والمخاطر تُخطط لها مسبقاً بدل انتظار صدمات المفاجآت.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- A good schedule is tasks, dependencies, and milestones on a timeline that shows the delay the moment it occurs.
+- The baseline is the approved reference; performance is compared to it periodically, and it is updated through a documented change order when the scope changes.
+- Cost is governed by tying it to actual accomplishment, not to duration or bare expenditure.
+- Control is a system of measurement, analysis, decision, and documentation, and risks are planned in advance instead of awaiting the shocks of surprises.
+
+</LangSection>

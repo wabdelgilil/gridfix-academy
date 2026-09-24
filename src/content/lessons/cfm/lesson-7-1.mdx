@@ -1,0 +1,242 @@
+---
+id: lesson-7-1
+station: station-7
+number: "7.1"
+title: "المباني الخضراء LEED"
+titleEn: "Green Buildings & LEED"
+minutes: 25
+order: 1
+objectives:
+  - "أن يحدد المتعلم المقصود بالمبنى الأخضر وتمتد الاستدامة لكامل دورة الحياة."
+  - "أن يقرأ سجل نقاط LEED v4 وفئاته ومستويات الاعتماد."
+  - "أن يفرق بين المتطلبات الأساسية (Prerequisites) ونقاط الاعتمادات."
+  - "أن يربط شهادة الاعتماد بممارسات مدير المنشأة أثناء التشغيل."
+objectivesEn:
+  - "Define a green building and sustainability across the whole life cycle."
+  - "Read the LEED v4 scorecard, its categories, and certification levels."
+  - "Distinguish prerequisites from credit points."
+  - "Link certification to facility-manager practices during operation."
+hasTool: true
+toolName: "متتبع نقاط LEED"
+toolNameEn: "LEED Points Tracker"
+quizId: quiz-7-1
+sources:
+  - ifma
+  - iso_14001
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LEEDPointsTracker from '../../../components/islands/tools/cfm/LEEDPointsTracker.tsx';
+import StatGrid from '../../../components/ui/figures/StatGrid.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz71 } from '../../../data/quiz/cfm/quiz-7-1';
+
+<LangSection lang="ar">
+
+المبنى الأخضر ليس إضافة شرفة مزروعة، بل قرار هندسي تشغيلية منظم: مبنى يستهلك أقل طاقة وماء، بمواد تحمي شاغليه، وأثر بيئي محسوب عبر كامل عمره. نظام «لييد» (LEED) هو اللغة الرسمية لتحويل هذا القرار إلى نقاط قابلة للقياس وشهادة معترف بها.
+
+## 1. المبنى الأخضر (Green Building) وأثر دورة الحياة
+
+المبنى الأخضر هو المبنى الذي يُصمم ويُبنى ويُدار لخفض أثره البيئي، والاستدامة هنا لا تقف عند لحظة التسليم بل تمتد:
+
+- **الطاقة**: أداء عزل ومعدات هو ميزان التشغيل الشهري.
+- **المياه**: ترشيد الاستهلاك الداخلي والخارجي وكشف التسربات.
+- **المواد**: مواد منخفضة الأثر والانبعاث وأطول عمراً.
+- **جودة البيئة الداخلية**: هواء وإضاءة وصوت يحفظان صحة الشاغلين.
+
+دورة الحياة هي الإطار: قرار بسيط كاختيار وحدة تبريد ذات كفاءة أعلى يبدل الفاتورة الكربونية والتشغيلية لعقود، لا ليوم التسليم.
+
+## 2. نظام الاعتماد LEED والسجل النقطي
+
+LEED (Leadership in Energy and Environmental Design) نظام اعتماد من مجلس المباني الخضراء الأمريكي (USGBC)، وفئاته تتوزع على 110 نقاط في إصدار v4 لبناء الجديد (BD+C):
+
+| الفئة | النقاط |
+| --- | --- |
+| العملية التكاملية (IP) | 1 |
+| الموقع والنقل (LT) | 16 |
+| المواقع المستدامة (SS) | 10 |
+| كفاءة المياه (WE) | 11 |
+| الطاقة والغلاف الجوي (EA) | 33 |
+| المواد والمصادر (MR) | 13 |
+| جودة البيئة الداخلية (EQ) | 16 |
+| الابتكار (IN) | 6 |
+| الأولوية الإقليمية (RP) | 4 |
+| **المجموع** | **110** |
+
+والمستويات الأربعة بشروط تجميع النقاط:
+
+- معتمد (Certified) من 40 إلى 49، فضي (Silver) من 50 إلى 59، ذهبي (Gold) من 60 إلى 79، بلاتينيوم (Platinum) من 80 فأكثر.
+
+<StatGrid
+  title="توزيع نقاط سجل LEED v4 ومستويات الاعتماد"
+  stats={[
+    { value: '110', label: 'مجموع نقاط السجلّ', note: 'توزّع على 9 فئات في نسخة BD+C', color: 'ink' },
+    { value: '33', label: 'فئة الطاقة والغلاف الجوي (EA)', note: 'أكبر حصة في السجلّ', color: 'brand' },
+    { value: '40–49', label: 'معتمد (Certified)', note: 'الحد الأدنى للاعتماد', color: 'amber' },
+    { value: '50–59', label: 'فضي (Silver)', note: 'المستوى الثاني', color: 'teal' },
+    { value: '60–79', label: 'ذهبي (Gold)', note: 'المستوى الثالث', color: 'sky' },
+    { value: '80+', label: 'بلاتينيوم (Platinum)', note: 'أعلى مستوى في الاعتماد', color: 'rose' },
+  ]}
+  caption="تجميع النقاط هو ما يحدد المستوى: من 40 للشهادة إلى 80 فأكثر للبلاتيني"
+/>
+
+## 3. المتطلبات الأساسية (Prerequisites) قبل النقاط
+
+قبل احتساب أي نقطة يحب أن تتحقق **المتطلبات الأساسية** (Prerequisites) في فئات حرجة: أدنى أداء طاقي، قياس الماء، منع تدخين البيئة، وفرز المخلفات. هذه ركائز إلزامية لا تُحصى نقاطاً: فشل واحدة منها يسقط المشروع مهما بلغ مجموع نقاطه.
+
+<Callout type="myth">
+**أسطورة:** «مبنى حاصل على الشهادة يعني أنه أُنجز به الأمر، ولا تحتاج العمل معه بعد ذلك».
+**الحقيقة:** LEED يشمل تعهدات الأداء بعد التسليم: قياس طاقة وماء، والتشغيل والتوجيه (Commissioning)، وممارسات صيانة تماشي مع أهداف الاعتماد. الشهادة بداية نظام تشغيل، لا نهاية مسؤولية.
+</Callout>
+
+## 4. دور مدير المنشأة في الاعتماد والتشغيل
+
+1. **تغذية التصميم بالتشغيلية**: رأي الصيانة والتشغيل قبل البناء يوفر نقاطاً وأعماراً.
+2. **الفحص والتحقق التشغيلي (Commissioning)**: التحقق أن كل نظام يعمل كما صُمم قبل القبول.
+3. **القياس والمتابعة**: قراءات الطاقة والماء والمؤشرات تتخذ قرينات لشهادة (O+M) وتحسن استمراري.
+4. **توثيق الأداء**: التقارير والوثائق التي تثبت التزام مبنى آخذ بالتشغيل.
+
+</LangSection>
+
+<LangSection lang="en">
+
+A green building is not the addition of a planted balcony; it is an organized engineering and operational decision: a building that consumes less energy and water, with materials that protect its occupants, and a calculated environmental impact across its entire life. The LEED system is the official language for turning that decision into measurable points and a recognized certification.
+
+## 1. Green building and life-cycle impact
+
+A green building is one designed, constructed, and managed to reduce its environmental impact, and sustainability here does not stop at handover but extends:
+
+- **Energy**: the performance of the envelope and equipment is what swings the monthly operating bill.
+- **Water**: efficiency of indoor and outdoor consumption and leak detection.
+- **Materials**: low-impact, low-emission, and longer-lasting materials.
+- **Indoor environmental quality**: air, light, and sound that protect occupant health.
+
+The life cycle is the framework: a simple decision such as choosing a more efficient chiller changes the carbon and operating bill for decades, not just for the day of handover.
+
+## 2. The LEED certification system and the points scorecard
+
+LEED (Leadership in Energy and Environmental Design) is a certification system from the U.S. Green Building Council (USGBC), and its categories spread across 110 points in the v4 version for new construction (BD+C):
+
+| Category | Points |
+| --- | --- |
+| Integrative Process (IP) | 1 |
+| Location and Transportation (LT) | 16 |
+| Sustainable Sites (SS) | 10 |
+| Water Efficiency (WE) | 11 |
+| Energy and Atmosphere (EA) | 33 |
+| Materials and Resources (MR) | 13 |
+| Indoor Environmental Quality (EQ) | 16 |
+| Innovation (IN) | 6 |
+| Regional Priority (RP) | 4 |
+| **Total** | **110** |
+
+The four levels are set by point accumulation:
+
+- Certified from 40 to 49, Silver from 50 to 59, Gold from 60 to 79, Platinum from 80 and above.
+
+<StatGrid
+  title="LEED v4 scorecard point distribution and certification levels"
+  stats={[
+    { value: '110', label: 'Total scorecard points', note: 'Distributed across 9 categories in the BD+C version', color: 'ink' },
+    { value: '33', label: 'Energy and Atmosphere (EA) category', note: 'The largest share in the scorecard', color: 'brand' },
+    { value: '40–49', label: 'Certified', note: 'The minimum for certification', color: 'amber' },
+    { value: '50–59', label: 'Silver', note: 'The second level', color: 'teal' },
+    { value: '60–79', label: 'Gold', note: 'The third level', color: 'sky' },
+    { value: '80+', label: 'Platinum', note: 'The highest certification level', color: 'rose' },
+  ]}
+  caption="Point accumulation is what determines the level: from 40 for certification to 80 and above for platinum"
+/>
+
+## 3. Prerequisites before points
+
+Before any point is counted, the **prerequisites** in critical categories must be met: minimum energy performance, water metering, a no-smoking environment, and waste segregation. These are mandatory foundations that award no points: failing one of them fails the project no matter how high its total points.
+
+<Callout type="myth">
+**Myth:** "A certified building means the job is done and nothing more is needed afterward."
+**Fact:** LEED includes performance commitments after handover: energy and water metering, commissioning, and maintenance practices aligned with the certification goals. The certificate is the start of an operating system, not the end of responsibility.
+</Callout>
+
+## 4. The facility manager's role in certification and operation
+
+1. **Feeding design with operability**: maintenance and operations input before construction saves points and asset life.
+2. **Commissioning**: verifying that every system works as designed before acceptance.
+3. **Metering and monitoring**: energy and water readings and metrics that support an O+M certification and continuous improvement.
+4. **Performance documentation**: the reports and records that prove a building in ongoing operation lives up to its commitments.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## 5. أداة اليوم: متتبع نقاط LEED
+
+حرّك فئات السجل التسع بأهداف واقعية، وشاهد كيف يتحدد مستوى الاعتماد الذي يصبح عليه مشروعك.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## 5. Today's tool: LEED Points Tracker
+
+Move the nine scorecard categories with realistic goals and watch how your project's certification level is determined.
+
+</LangSection>
+
+<LEEDPointsTracker client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['greenbuilding', 'leed', 'sustainability']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على مستويات الاعتماد، وحجم فئة الطاقة، وفرق المتطلبات الأساسية عن النقاط.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on certification levels, the size of the energy category, and how prerequisites differ from points.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-7-1" questions={quiz71.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **المبنى الأخضر** يراعي الطاقة والماء والمواد وجودة البيئة عبر كامل دورة الحياة.
+- **سجل LEED v4** موزع على 9 فئات بمجموع 110 نقاط، وأكثرها حصةً فئة الطاقة والغلاف الجوي (EA، 33 نقطة) لأثرها البيئي والتشغيلي.
+- **مستويات الاعتماد** أربعة: معتمد 40–49، فضي 50–59، ذهبي 60–79، بلاتينيوم 80 فأكثر.
+- **المتطلبات الأساسية (Prerequisites)** إلزامية ولا لحظة نقاط؛ الركيزة قبل السرد.
+- **مدير المنشأة شريك الشهادة**: تغذية التشغيل بالتصميم والفحص التشغيلي (Commissioning) والقياس والتوثيق بعدها.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **A green building** considers energy, water, materials, and environmental quality across its entire life cycle.
+- **The LEED v4 scorecard** spans 9 categories totaling 110 points, with the largest share going to the Energy and Atmosphere (EA) category (33 points) for its environmental and operational impact.
+- **The four certification levels**: Certified 40–49, Silver 50–59, Gold 60–79, Platinum 80 and above.
+- **Prerequisites** are mandatory and earn no points; they are the foundation before the tally.
+- **The facility manager is a certification partner**: feeding operations into design, commissioning, metering, and documentation afterward.
+
+</LangSection>

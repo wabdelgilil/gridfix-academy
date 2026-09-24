@@ -1,129 +1,177 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ResumeLearningWidget from '../components/islands/progress/ResumeLearningWidget.tsx';
+import { courses } from '../data/courses';
 import { curriculum } from '../data/curriculum';
 
-const lessons = await getCollection('lessons');
+const liveCourses = courses.filter((c) => c.status === 'live');
+const plannedCourses = courses.filter((c) => c.status === 'planned');
 
-const stationCards = curriculum
-  .filter((s) => s.id !== 'station-0')
-  .sort((a, b) => a.number - b.number);
+const perCourse = liveCourses.map((c) => {
+  const stations = curriculum.filter((s) => (s.courseId ?? 'cfm') === c.id).length;
+  const lessons = curriculum
+    .filter((s) => (s.courseId ?? 'cfm') === c.id)
+    .reduce((acc, s) => acc + s.lessons.filter((l) => l.status === 'live').length, 0);
+  return { course: c, stations, lessons };
+});
 
-const totalMinutes = lessons.reduce((sum, l) => sum + l.data.minutes, 0);
-const liveStations = curriculum.filter((s) => s.status === 'live' || s.lessons.every((l) => l.status === 'live')).length;
-const station0 = curriculum.find((s) => s.id === 'station-0')!;
+const siteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: 'GridFix Academy',
+  url: 'https://academy.gridfix.net',
+  description: 'منصة تعليمية عربية مجانية لإدارة المنشآت والصيانة وإدارة الأصول.',
+  inLanguage: 'ar',
+  parentOrganization: { '@type': 'Organization', name: 'GridFix', url: 'https://gridfix.net' },
+};
 ---
 
-<BaseLayout title="منصة CFM — تعلّم إدارة المنشآت وصولاً لشهادة CFM" description="مسار عملي عربي لشهادة CFM: محطات مبنية على مسار مدير المنشأة الحقيقي ووزن أركان امتحان IFMA.">
-  <!-- ===== Hero ===== -->
-  <section class="relative overflow-hidden rounded-3xl bg-gradient-to-l from-ink-900 via-brand-800 to-brand-600 px-6 py-14 text-white sm:px-12">
-    <div class="relative z-10 max-w-2xl">
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="chip bg-amber-400 text-amber-950">🎯 {liveStations} محطات متاحة الآن</span>
-        <span class="chip bg-white/15 text-white">💚 منصة مجانية بالكامل</span>
-      </div>
-      <h1 class="mt-4 text-3xl font-bold leading-relaxed sm:text-4xl">
-        تعلّم إدارة المنشآت بالطريقة العملية
+<BaseLayout title="GridFix Academy — تعلم CFM وCMRP وCAMA مجاناً بالعربية" description="منصة تعليمية عربية مجانية مقدمة من GridFix: كورسات منظمة لشهادات CFM وCMRP وCAMA بالعربية مع المصطلحات الإنجليزية وأدوات تفاعلية.">
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(siteJsonLd)} />
+
+  <section class="relative overflow-hidden rounded-3xl bg-gradient-to-l from-ink-900 via-brand-800 to-brand-600 px-6 py-16 text-center text-white sm:px-12">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-24 -start-24 h-64 w-64 rounded-full bg-brand-400/10 blur-3xl"></div>
+      <div class="absolute -bottom-24 -end-24 h-64 w-64 rounded-full bg-amber-400/10 blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 mx-auto max-w-2xl">
+      <span class="chip bg-amber-400 text-amber-950">منصة تعليمية مجانية بالكامل</span>
+      <h1 class="mt-5 text-3xl font-bold leading-relaxed sm:text-4xl lg:text-5xl">
+        تعلّم إدارة المنشآت والصيانة <span class="text-amber-300">باحتراف</span>
       </h1>
       <p class="mt-4 text-lg leading-relaxed text-teal-50">
-        رحلة محطات مبنية على مسار مدير منشأة حقيقي ووزن أركان امتحان IFMA، مع شرح عربي ومصطلحات إنجليزية وتمارين تفاعلية — <strong>مجاناً بالكامل</strong>، مقدمة من منصة{' '}
-        <a href="https://gridfix.net" target="_blank" rel="noopener" class="font-bold text-amber-300 underline underline-offset-4 hover:text-amber-200">
-          GridFix
-        </a>.
+        أكاديمية <strong class="text-amber-300">GridFix Academy</strong> تقدّم كورسات عربية
+        عملية لأشهر شهادات المجال — مع شرح بالمصطلحات الإنجليزية، أدوات تفاعلية، وكويزات مواقف. اختر مسارك وابدأ الآن.
       </p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href={`/stations/${station0.id}`} class="rounded-xl bg-amber-400 px-6 py-3 font-bold text-amber-950 transition hover:bg-amber-300">
-          ابدأ التعلم من المحطة 0 ←
-        </a>
-        <a href="/map" class="rounded-xl bg-white/15 px-6 py-3 font-bold text-white transition hover:bg-white/25">
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-teal-50">
+        <span class="flex items-center gap-2">
+          <span class="font-bold text-amber-300">{liveCourses.length}</span> كورس متاح
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="font-bold text-amber-300">{perCourse.reduce((a, c) => a + c.stations, 0)}</span> محطة
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="font-bold text-amber-300">{perCourse.reduce((a, c) => a + c.lessons, 0)}</span> درساً
+        </span>
+      </div>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        {liveCourses[0] && (
+          <a href={`/${liveCourses[0].id}`} class="rounded-xl bg-amber-400 px-6 py-3 font-bold text-amber-950 transition hover:bg-amber-300">
+            ابدأ التعلم مجاناً ←
+          </a>
+        )}
+        <a href={`/${liveCourses[0]?.id ?? 'cfm'}/map`} class="rounded-xl border border-white/30 px-6 py-3 font-bold text-white transition hover:bg-white/10">
           خريطة المنهج
         </a>
-      </div>
-      <div class="mt-8 flex flex-wrap gap-6 text-sm text-teal-50">
-        <span class="flex items-center gap-2"><span class="font-bold text-amber-300">{lessons.length}</span> دروس متاحة</span>
-        <span class="flex items-center gap-2"><span class="font-bold text-amber-300">{totalMinutes}</span> دقيقة إجمالاً</span>
-        <span class="flex items-center gap-2"><span class="font-bold text-amber-300">{curriculum.length}</span> محطة</span>
-        <span class="flex items-center gap-2"><span class="font-bold text-amber-300">11</span> مجالاً معرفياً</span>
       </div>
     </div>
   </section>
 
-  <!-- ===== طريقة الدرس ===== -->
+  <div class="mt-8 mx-auto max-w-2xl">
+    <ResumeLearningWidget client:load />
+  </div>
+
   <section class="mt-12">
-    <h2 class="text-xl font-bold text-ink-900">بنية موحّدة لكل درس</h2>
-    <p class="mt-1 text-sm text-ink-400">الوصفة نفسها في كل محطة — حتى تعرف دائماً ما الذي يتوقع أن تتعلمه.</p>
-    <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
-      {['🎯 أهداف التعلم', '📖 شرح نظري', '⚠️ تصحيح المفاهيم', '📚 قاموس المصطلحات', '🛠 أداة تفاعلية', '💬 كويز سيناريو', '📎 مصادر موثوقة'].map((item) => (
-        <div class="flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white px-3 py-5 text-center text-sm font-medium text-ink-700 shadow-sm">
-          <span class="mb-2 block text-xl">{item.split(' ')[0]}</span>
-          <span>{item.split(' ').slice(1).join(' ')}</span>
+    <div class="flex items-end justify-between">
+      <div>
+        <h2 class="text-xl font-bold text-ink-900">اختر كورسك</h2>
+        <p class="mt-1 text-sm text-ink-400">كل كورس مسار مستقل: محطات، أدوات، وقاموس خاص به.</p>
+      </div>
+    </div>
+
+    <div class="mt-5 grid gap-5 md:grid-cols-2">
+      {liveCourses.map((c) => {
+        const stats = perCourse.find((p) => p.course.id === c.id);
+        return (
+          <a href={`/${c.id}`} class="card group overflow-hidden transition hover:border-brand-500 hover:shadow-md">
+            <div class="flex items-start justify-between bg-gradient-to-l from-ink-900 to-brand-700 px-6 py-5 text-white">
+              <div class="flex items-center gap-3">
+                <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl transition-transform duration-300 group-hover:scale-110">{c.icon}</span>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="text-lg font-bold">{c.title}</h3>
+                    <span class="chip bg-amber-400 text-amber-950" dir="ltr">{c.code}</span>
+                  </div>
+                  <p class="mt-0.5 text-xs text-teal-50">{c.titleEn}</p>
+                </div>
+              </div>
+              <span class="chip bg-emerald-400/20 text-emerald-200">متاح الآن</span>
+            </div>
+            <div class="px-6 py-5">
+              <p class="text-sm leading-relaxed text-ink-600">{c.description}</p>
+              <div class="mt-4 flex items-center justify-between text-sm">
+                <span class="flex flex-wrap gap-2">
+                  <span class="chip bg-slate-100 text-ink-600">🗺 {stats?.stations} محطات</span>
+                  <span class="chip bg-slate-100 text-ink-600">📚 {stats?.lessons} دروس</span>
+                </span>
+                <span class="font-bold text-brand-600 transition group-hover:-translate-x-1">← ابدأ التعلم</span>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+
+      {plannedCourses.map((c) => (
+        <div class="card overflow-hidden opacity-80">
+          <div class="flex items-start justify-between bg-gradient-to-l from-slate-500 to-slate-700 px-6 py-5 text-white">
+            <div class="flex items-center gap-3">
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl">{c.icon}</span>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg font-bold">{c.title}</h3>
+                  <span class="chip bg-slate-100 text-ink-700" dir="ltr">{c.code}</span>
+                </div>
+                <p class="mt-0.5 text-xs text-slate-200">{c.titleEn}</p>
+              </div>
+            </div>
+            <span class="chip bg-amber-400/20 text-amber-200">قريباً</span>
+          </div>
+          <div class="px-6 py-5">
+            <p class="text-sm leading-relaxed text-ink-600">{c.description}</p>
+            <div class="mt-4">
+              <span class="chip bg-slate-100 text-ink-600">سيُطلق قريباً — اشترك ليصلك التنبيه</span>
+            </div>
+          </div>
         </div>
       ))}
     </div>
   </section>
 
-  <!-- ===== خريطة المحطات ===== -->
-  <section class="mt-12">
-    <div class="flex items-end justify-between">
+  <section class="mt-12 grid gap-4 sm:grid-cols-3">
+    {[
+      { icon: '🎯', title: 'مسارات منظمة بالمحطات', desc: 'محطات متسلسلة من التأسيس للتمكين مع أوزان الامتحان' },
+      { icon: '🛠', title: 'أدوات تفاعلية تطبيقية', desc: 'أكثر من 40 أداة عملية لتطبيق المفاهيم فعلياً' },
+      { icon: '📝', title: 'كويزات محاكية للامتحان', desc: 'سيناريوهات حقيقية مع تقييم فوري وتشخيص' },
+    ].map((item) => (
+      <div class="card flex flex-col items-center gap-3 p-6 text-center">
+        <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-3xl transition-transform duration-300 hover:scale-110">
+          {item.icon}
+        </span>
+        <h3 class="font-bold text-ink-900">{item.title}</h3>
+        <p class="text-sm leading-relaxed text-ink-500">{item.desc}</p>
+      </div>
+    ))}
+  </section>
+
+  <section class="mt-12 rounded-3xl bg-gradient-to-l from-brand-50 to-brand-100/50 px-6 py-10 sm:px-12">
+    <div class="grid gap-6 text-center sm:grid-cols-4">
       <div>
-        <h2 class="text-xl font-bold text-ink-900">خريطة المحطات</h2>
-        <p class="mt-1 text-sm text-ink-400">المسار الكامل من التأسيس حتى محاكي الامتحان.</p>
+        <p class="text-3xl font-bold text-brand-700" dir="ltr">{liveCourses.length}+</p>
+        <p class="mt-1 text-sm text-ink-600">كورس متاح</p>
       </div>
-    </div>
-
-    <!-- محطة التأسيس -->
-    <a href={`/stations/${station0.id}`} class="card mt-5 flex items-center justify-between gap-4 rounded-2xl p-5 transition hover:border-brand-500 hover:shadow-md">
-      <div class="flex items-center gap-4">
-        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-2xl">{station0.icon}</span>
-        <div>
-          <div class="flex items-center gap-2">
-            <h3 class="font-bold text-ink-900">{station0.title}</h3>
-            <span class="chip bg-brand-100 text-brand-700">✅ متاح</span>
-          </div>
-          <p class="mt-0.5 text-sm text-ink-400">{station0.lessons.filter((l) => l.status === 'live').length} دروس متاحة • {station0.description}</p>
-        </div>
+      <div>
+        <p class="text-3xl font-bold text-brand-700" dir="ltr">40+</p>
+        <p class="mt-1 text-sm text-ink-600">أداة تفاعلية</p>
       </div>
-      <span class="font-bold text-brand-600">←</span>
-    </a>
-
-    <!-- بقية المحطات -->
-    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {stationCards.map((s) => {
-        if (s.status === 'live') {
-          const live = s.lessons.filter((l) => l.status === 'live').length;
-          return (
-            <a href={`/stations/${s.id}`} class="card p-5 transition hover:border-brand-500 hover:shadow-md">
-              <div class="flex items-start justify-between">
-                <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-2xl">{s.icon}</span>
-                <span class="chip bg-brand-100 text-brand-700">✅ متاح</span>
-              </div>
-              <h3 class="mt-3 font-bold text-ink-900">{s.title}</h3>
-              <p dir="ltr" lang="en" class="text-xs text-ink-400">{s.titleEn}</p>
-              <p class="mt-2 text-sm leading-relaxed text-ink-500">{s.description}</p>
-              <div class="mt-3 flex items-center justify-between text-sm">
-                <span class="chip bg-slate-100 text-ink-600">📚 {live} دروس متاحة</span>
-                <span class="font-bold text-brand-600">←</span>
-              </div>
-            </a>
-          );
-        }
-        const planned = s.lessons.filter((l) => l.status === 'planned').length;
-        return (
-          <div class="card p-5 transition hover:shadow-md">
-            <div class="flex items-start justify-between">
-              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 text-2xl">{s.icon}</span>
-              <span class="chip bg-slate-100 text-ink-600">ركن {s.examWeight > 0 ? `◉ ${s.examWeight}%` : ''}</span>
-            </div>
-            <h3 class="mt-3 font-bold text-ink-900">{s.title}</h3>
-            <p dir="ltr" lang="en" class="text-xs text-ink-400">{s.titleEn}</p>
-            <p class="mt-2 text-sm leading-relaxed text-ink-500">{s.description}</p>
-            <div class="mt-3 flex items-center justify-between text-sm">
-              <span class="chip bg-slate-100 text-ink-600">📚 {planned} دروس مخططة</span>
-              <span class="chip bg-amber-100 text-amber-800">قريباً</span>
-            </div>
-          </div>
-        );
-      })}
+      <div>
+        <p class="text-3xl font-bold text-brand-700" dir="ltr">100%</p>
+        <p class="mt-1 text-sm text-ink-600">مجاني بالكامل</p>
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-brand-700" dir="ltr">AR</p>
+        <p class="mt-1 text-sm text-ink-600">محتوى عربي أصيل</p>
+      </div>
     </div>
   </section>
 </BaseLayout>

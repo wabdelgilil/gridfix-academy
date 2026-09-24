@@ -1,0 +1,205 @@
+---
+id: lesson-cama-4-2
+course: cama
+station: station-cama-4
+number: "4.2"
+title: "الصيانة والتشغيل اليومي"
+titleEn: "Maintenance & Daily Operations"
+minutes: 30
+order: 2
+objectives:
+  - "أن يشرح المتعلم أنواع استراتيجيات الصيانة ومجالات تطبيقها."
+  - "أن يميز بين الأعمال الوقائية والتنبؤية والتفاعلية حسب خصائص الأصل."
+  - "أن يربط استراتيجية الصيانة بعواقب الأعطال المخفية والظاهرة."
+objectivesEn:
+  - "Explain maintenance strategy types and their application areas."
+  - "Distinguish preventive, predictive, and reactive work by asset characteristics."
+  - "Link maintenance strategy to hidden and evident failure consequences."
+hasTool: true
+toolName: "مصفوفة استراتيجيات الصيانة"
+toolNameEn: "Maintenance Strategy Matrix"
+quizId: quiz-cama-4-2
+sources:
+  - iso55001
+  - gfmam_landscape
+  - smrp_best_practices
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import MaintenanceStrategyMatrix from '../../../components/islands/tools/cama/MaintenanceStrategyMatrix.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama42 } from '../../../data/quiz/cama/quiz-cama-4-2';
+
+<LangSection lang="ar">
+
+الصيانة اليومية هي جهاز المناعة في جسم المنشأة. حين تختار الاستراتيجية الصحيحة لكل أصل بناءً على وظيفته وعواقب أنماط أعطاله، تحقق التوازن بين التكلفة والموثوقية. حين تختار عشوائياً، تدفع أكثر مما يجب أو تتأخر أكثر مما ينبغي.
+
+## 1. خريطة استراتيجيات الصيانة الأربع
+
+لا توجد استراتيجية صيانة واحدة تصلح لكل الأصول. المنهج الصحيح يعتمد على تحليل كل أصل وأنماط أعطاله:
+
+1. **الصيانة التفاعلية (Reactive Maintenance):** التعامل مع العطل بعد حدوثه. مجدية فقط حين تكلفة الوقاية تفوق تكلفة الإصلاح بغض النظر عن التوقف.
+2. **الصيانة الوقائية (Preventive Maintenance):** أعمال مجدولة على أساس الزمن أو الاستخدام. تقلل الأعطال المفاجئة لكنها قد تزيد من التكاليف إذا تم التوقيت بشكل خاطئ.
+3. **الصيانة التنبؤية (Predictive Maintenance):** استخدام تقنيات المراقبة مثل الاهتزاز والحرارة والصوت لتشخيص التدهور والتدخل في الوقت المناسب.
+4. **الصيانة المبنية على الموثوقية (RCM):** المنهج المنطقي الذي يحدد المهمة الصيانة المناسبة لكل فشل محتمل بناءً على وضوحه وتأثيره على السلامة والإنتاجية.
+
+<Callout type="tip">
+**القاعدة الذهبية:** لا توجد استراتيجية صيانة "أفضل" بشكل مطلق. المنهج الصحيح هو أن تختار الاستراتيجية المناسبة لكل أصل ووضع تشغيله، وغالباً ما يكون المزيج من استراتيجيات متعددة هو الحل الأفضل.
+</Callout>
+
+## 2. إدارة التوقفات المخططة
+
+التوقف المخطط ليس عطلاً، بل هو فرصة لتحويل أصل شبه متوقف إلى أصل يعمل بكامل طاقته. إدارة التوقفات المخططة (Shutdown/Outage Management) تتطلب:
+
+- **التخطيط المسبق:** تحديد نطاق العمل والأدوات والموارد المطلوبة.
+- **التنسيق مع الإنتاج:** ترتيب نافذة التوقف مع خط الإنتاج لتقليل الأثر على الإنتاجية.
+- **إدارة الموارد:** تسمية الفنيين والمقاولين وحجز معدات الرفع والنقل.
+- **قائمة الفحص والتسليم:** التحقق من اكتمال جميع البنود ثم التسليم الرسمي لفريق التشغيل.
+
+<Callout type="warn">
+**احذر:** تخطيط التوقفات المخططة سيء أسوأ من عدم التخطيط. حين تخطط بشكل سيئ، تتجاوز الميزانية والوقت وتتوقف بفعل التوقفات أكثر منكفئة التوقف المفاجئ الأصلي.
+</Callout>
+
+## 3. مهندس الموثوقية ودوره
+
+مهندس الموثوقية (Reliability Engineer) هو المحلل الذي يحول بيانات الصيانة إلى قرارات استراتيجية. مهامه تشمل:
+
+- **تحليل أسباب الجذر (RCA):** التحقيق في الأعطال المتكررة للكشف عن السبب الحقيقي لا الأعراض.
+- **تحليل FMEA:** تقييم أوضاع الفشل المحتملة واحتمالياتها وتأثيراتها وتحديد الأولويات.
+- **حساب مؤشرات الموثوقية:** MTBF، MTTR، MTBM، ومؤشر الكفاءة الكلية للمعدات (OEE).
+- **تحسين دورة الصيانة:** تعديل فترات الصيانة الوقائية بناءً على بيانات الأداء الفعلية.
+
+## 4. التشغيل اليومي والتكامل مع الإنتاج
+
+التكامل بين الصيانة والتشغيل اليومي يعني:
+
+- **اجتماعات اليوم الصباحي:** مراجعة أعمال الصيانة الجارية وأولويات اليوم مع فريق التشغيل.
+- **إدارة الأولويات:** التمييز بين الأعمال العاجلة (Iron Triangle: السلامة → البيئة → الإنتاج) والأعمال المهمة والأعمال الروتينية.
+- **التغذية الراجعة الفنية:** تسجيل ملاحظات الفنيين حول سبب العطل وحالة المكونات ومقترحات التحسين.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Daily maintenance is the immune system of the facility's body. When you choose the right strategy for each asset based on its function and the consequences of its failure modes, you achieve a balance between cost and reliability. When you choose randomly, you pay more than you should or take longer than you should.
+
+## 1. The map of the four maintenance strategies
+
+There is no single maintenance strategy that fits all assets. The correct approach depends on analyzing each asset and its failure modes:
+
+1. **Reactive Maintenance:** dealing with the failure after it occurs. It is only viable when the cost of prevention exceeds the cost of repair regardless of downtime.
+2. **Preventive Maintenance:** scheduled work based on time or usage. It reduces sudden failures but may increase costs if the timing is wrong.
+3. **Predictive Maintenance:** using monitoring techniques such as vibration, heat, and sound to diagnose deterioration and intervene at the right time.
+4. **Reliability-Centered Maintenance (RCM):** the logical approach that determines the appropriate maintenance task for each potential failure based on its visibility and its impact on safety and productivity.
+
+<Callout type="tip">
+**The golden rule:** there is no absolutely "best" maintenance strategy. The correct approach is to choose the strategy suited to each asset and its operating context, and often a mix of multiple strategies is the best solution.
+</Callout>
+
+## 2. Managing planned outages
+
+A planned outage is not a failure; it is an opportunity to turn a nearly idle asset into an asset working at full capacity. Managing planned outages (Shutdown/Outage Management) requires:
+
+- **Advance planning:** defining the work scope, tools, and required resources.
+- **Coordination with production:** arranging the outage window with the production line to minimize the impact on productivity.
+- **Resource management:** assigning the technicians and contractors and booking lifting and transport equipment.
+- **Inspection and handover checklist:** verifying that all items are complete, then the formal handover to the operations team.
+
+<Callout type="warn">
+**Beware:** poor planned outage planning is worse than no planning. When you plan poorly, you exceed the budget and the time, and you lose more to outages than the original sudden stoppage would have cost.
+</Callout>
+
+## 3. The reliability engineer and their role
+
+The reliability engineer (Reliability Engineer) is the analyst who turns maintenance data into strategic decisions. Their tasks include:
+
+- **Root Cause Analysis (RCA):** investigating recurring failures to uncover the real cause rather than the symptoms.
+- **FMEA analysis:** assessing the potential failure modes, their likelihoods, and their impacts, and setting priorities.
+- **Calculating the reliability indicators:** MTBF, MTTR, MTBM, and the Overall Equipment Effectiveness (OEE).
+- **Optimizing the maintenance cycle:** adjusting the preventive maintenance intervals based on actual performance data.
+
+## 4. Daily operations and integration with production
+
+Integration between maintenance and daily operations means:
+
+- **Daily morning meetings:** reviewing ongoing maintenance work and the day's priorities with the operations team.
+- **Priority management:** distinguishing urgent work (Iron Triangle: safety → environment → production) from important work and routine work.
+- **Technical feedback:** recording the technicians' observations on the cause of the failure, the condition of the components, and improvement suggestions.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: مصفوفة استراتيجيات الصيانة
+
+أداة تفاعلية تساعدك على اختيار الاستراتيجية المناسبة لكل أصل بناءً على نوع الفشل وتأثيره وقابلية الكشف. اختر سيناريوهات جاهزة أو أنشئ تحليلك الخاص.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Maintenance Strategy Matrix
+
+An interactive tool that helps you choose the right strategy for each asset based on the failure type, its impact, and detectability. Choose ready-made scenarios or create your own analysis.
+
+</LangSection>
+
+<MaintenanceStrategyMatrix client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-4-2-t1', 'cama-4-2-t2', 'cama-4-2-t3', 'cama-4-2-t4']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على اختيار استراتيجيات الصيانة الأربع حسب حرجية الأصل، وتوسيع التوقفات المخططة، ودور مهندس الموثوقية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on choosing among the four maintenance strategies according to asset criticality, optimizing planned outages, and the role of the reliability engineer.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-4-2" questions={quizCama42.questions} client:load />
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **لا توجد استراتيجية صيانة واحدة تصلح لكل الأصول** — الصحيح هو المزيج المناسب لكل حالة.
+- **الصيانة الوقائية** تقلل الأعطال المفاجئة لكنها قد تزيد التكاليف إذا كان التوقيت خاطئاً.
+- **الصيانة التنبؤية** تعتمد على بيانات المراقبة لتشخيص التدهور في الوقت المناسب.
+- **إدارة التوقفات المخططة** تتطلب تخطيطاً دقيقاً وتنسيقاً فعّالاً مع الإنتاج.
+- **مهندس الموثوقية** يحول بيانات الصيانة إلى قرارات استراتيجية باستخدام RCA وFMEA ومؤشرات الموثوقية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **No single maintenance strategy fits all assets** — the right answer is the mix suited to each case.
+- **Preventive maintenance** reduces sudden failures but may increase costs if the timing is wrong.
+- **Predictive maintenance** relies on monitoring data to diagnose deterioration at the right time.
+- **Managing planned outages** requires precise planning and effective coordination with production.
+- **The reliability engineer** turns maintenance data into strategic decisions using RCA, FMEA, and reliability indicators.
+
+</LangSection>

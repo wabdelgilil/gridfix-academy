@@ -1,0 +1,212 @@
+---
+id: lesson-5-3
+station: station-5
+number: "5.3"
+title: "الامتثال البيئي والقانوني"
+titleEn: "Environmental & Legal Compliance"
+minutes: 20
+order: 3
+objectives:
+  - "أن يعدد الالتزامات البيئية الرئيسية للمنشأة."
+  - "أن يشرح فكرة نظام الإدارة البيئية (ISO 14001)."
+  - "أن يصف التعامل الصحيح مع النفايات الخطرة من التوليد إلى التخلص."
+  - "أن يوجّه العلاقة مع الجهات الرقابية والتدقيق البيئي."
+objectivesEn:
+  - "List the main environmental obligations of a facility."
+  - "Explain the idea of an ISO 14001 environmental management system."
+  - "Describe the proper handling of hazardous waste from generation to disposal."
+  - "Manage relationships with regulators and environmental audits."
+hasTool: false
+quizId: quiz-5-3
+sources:
+  - iso_14001
+  - osha
+  - ifma
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import Timeline from '../../../components/ui/figures/Timeline.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz53 } from '../../../data/quiz/cfm/quiz-5-3';
+
+<LangSection lang="ar">
+
+الامتثال البيئي ليس عملاً إضافياً يُفتعل «عند الطلب»، بل نظام يومي في كل منشأة: حتى المكاتب تنتج نفايات ورقية وإلكترونية ومستلزمات تنظيف كيميائية وقطع صيانة ملوثة. الفرق بين منشأة ممتثلة وأخرى غير ممتثلة ليس «هل أنتجت نفايات»؟ بل **كيف أُديرت كل دفعة منها** — من لحظة توليدها حتى إثبات التخلص الآمن منها.
+
+## 1. ما المقصود بالامتثال البيئي (Environmental Compliance)؟
+
+الامتثال هو أن تكون عمليات المنشأة مطابقة للقوانين والأنظمة البيئية السارية، وأن يكون لديك **إثبات موثق** على ذلك عندما تأتي الجهة الرقابية. محاوره الرئيسية ثلاثة:
+
+- **النفايات والمياه**: النفايات الصلبة، النفايات الخطرة (Hazardous Waste)، وتصريف المياه.
+- **الانبعاثات**: الهواء (عادم، أتربة، غازات)، الضوضاء، والحرارة. **مثال:** مولد احتياطي يعمل صباحاً ويسمع لجاره — يخضع لحدود الضجيج.
+- **المواد الخطرة**: تخزين وتعامل ونقل آمن للكيماويات والمواد الحساسة.
+
+## 2. نظام الإدارة البيئية (ISO 14001)
+
+المعيار الأشهر عالمياً لا يفرض كمية محددة من الالتزام، بل يبني نظاماً حلقيّاً من أربعة أركان تحاكي منطق PDCA:
+
+1. **السياسة**: التزام رسمي من الإدارة العليا بتحسين الأداء البيئي.
+2. **التخطيط**: تحديد «الجوانب البيئية» (نقاط الأثر في منشأتك) ووضع أهداف وأدوار.
+3. **التطبيق**: إجراءات تشغيل، ووثائق، وتدريب وتوعية.
+4. **الفحص والمراجعة**: قياس، وتدقيق دوري، وتصحيح الانحرافات.
+
+الفكرة الجوهرية: **الامتثال عملية تُدار باستمرار، وليس مجموعة أوراق تُملأ مرة واحدة**.
+
+## 3. النفايات الخطرة (Hazardous Waste): من التوليد إلى التخلص
+
+النفايات الخطرة مواد قد تكون سامة أو قابلة للاشتعال أو التآكل، والواجب القانوني يبدأ من لحظة توليدها ولا ينتهي بالتخلص منها. سلسلة المسؤولية:
+
+1. **التحديد والتصنيف**: تسجيل نوع وكمية النفايات الخطرة في منشأتك.
+2. **التخزين الآمن**: أوعية خاصة، ووسوم واضحة، وبعد عن مصادر الحرارة.
+3. **النقل**: تسليمها لناقل مرخص يصدر «أوراق تحرير (Waste Manifest)» موثقة.
+4. **التخلص**: نقلها إلى جهة معالجة مرخصة.
+5. **حفظ السجلات**: إثبات كامل «من المهد إلى اللحد (Cradle to Grave)» لسنوات، لأن الجهة الرقابية قد تطلبه في أي وقت.
+
+<Timeline
+  title="رحلة النفايات الخطرة (Hazardous Waste) من التوليد إلى التخلص"
+  phases={[
+    { title: 'التحديد والتصنيف', detail: 'تسجيل نوع النفايات الخطرة وكميتها في المنشأة' },
+    { title: 'التخزين الآمن', detail: 'أوعية خاصة ووسوم واضحة وبعد عن مصادر الحرارة' },
+    { title: 'النقل', detail: 'تسليمها لناقل مرخص يصدر أوراق التحرير (Waste Manifest) موثقة' },
+    { title: 'التخلص', detail: 'نقلها إلى جهة معالجة مرخصة' },
+    { title: 'حفظ السجلات', detail: 'إثبات كامل من المهد إلى اللحد لسنوات — قد تطلبه الجهة الرقابية في أي وقت' },
+  ]}
+  caption="سلسلة المسؤولية تبدأ من لحظة التوليد ولا تنتهي بالتخلص منها"
+/>
+
+<Callout type="warn">
+**مفهوم خاطئ:** «منشأتنا مكاتب صغيرة، فالالتزام البيئي لا يعنينا».
+**الحقيقة:** حتى المكاتب تنتج فضلات إلكترونية، وورقاً حساساً، ومخلفات تنظيف كيميائية، وقطعاً ملوثة من الصيانة. الأخطار الشائعة — كمزج الخطرة بالعامة، أو صبها في مصارف المياه — انتهاكات صريحة أياً كان حجم المنشأة.
+</Callout>
+
+## 4. العلاقة مع الجهات الرقابية والتدقيق
+
+- **المعاينة**: للجهة الرقابية حق الدخول والمعاينة؛ استقبلها بسجل وثائق جاهز، ولا تُخفِ شيئاً.
+- **التصاريح**: بعض العمليات (مخازن وقود، أنظمة تبريد كبرى، تصريف مياه) تتطلب تصاريح تُجدد دورياً.
+- **البلاغات الفورية**: حوادث التسريب (وقود، انسكاب كيميائي) لها مهلة زمنية معينة للبلاغ — **التأخر نفسه مخالفة**.
+- **التدقيق البيئي (Environmental Audit)**: جولة منهجية مستقلة (داخلية أو خارجية) تقارن الوثائق بالواقع، وتصدر قائمة تصحيحات تُعالج بعد ذلك (CAPA).
+
+<Callout type="tip">
+**تذكّر:** لا تنتظر الجهة الرقابية لتكتشف الثغرات؛ شغّل تدقيقاً داخلياً بانتظام. الاكتشاف الداخلي دائماً أرخص وأفضل من الاكتشاف الخارجي، وترتيب الإصلاحات يتبع درجة الخطر (منطق الدرس 5.2).
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Environmental compliance is not extra work invented "on demand" but a daily system in every facility: even offices produce paper and electronic waste, chemical cleaning supplies, and contaminated maintenance parts. The difference between a compliant and a non-compliant facility is not "did it produce waste?" but **how each batch was managed** — from the moment of its generation to proving its safe disposal.
+
+## 1. What is meant by environmental compliance?
+
+Compliance means that the facility's operations conform to the applicable environmental laws and regulations, and that you hold **documented proof** of that when the regulator arrives. Its three main axes:
+
+- **Waste and water**: solid waste, hazardous waste, and water discharge.
+- **Emissions**: air (exhaust, dust, gases), noise, and heat. **Example:** a backup generator running in the morning and audible to its neighbor — it is subject to noise limits.
+- **Hazardous materials**: safe storage, handling, and transport of chemicals and sensitive materials.
+
+## 2. The environmental management system (ISO 14001)
+
+The world's best-known standard does not impose a fixed amount of commitment but builds a cyclical system of four pillars mirroring PDCA logic:
+
+1. **Policy**: a formal commitment from senior management to improve environmental performance.
+2. **Planning**: identifying the "environmental aspects" (impact points in your facility) and setting objectives and roles.
+3. **Implementation**: operational procedures, documents, and training and awareness.
+4. **Checking and review**: measurement, periodic audit, and correction of deviations.
+
+The core idea: **compliance is a continuously managed process, not a set of papers filled in once**.
+
+## 3. Hazardous waste: from generation to disposal
+
+Hazardous waste is material that may be toxic, flammable, or corrosive, and the legal duty begins at the moment of generation and does not end with disposal. The chain of responsibility:
+
+1. **Identification and classification**: recording the type and quantity of hazardous waste in your facility.
+2. **Safe storage**: dedicated containers, clear labels, and distance from heat sources.
+3. **Transport**: handing it to a licensed carrier who issues documented waste manifests.
+4. **Disposal**: moving it to a licensed treatment facility.
+5. **Record keeping**: complete "cradle to grave" proof for years, because the regulator may require it at any time.
+
+<Timeline
+  title="The hazardous waste journey from generation to disposal"
+  phases={[
+    { title: 'Identification and classification', detail: 'Recording the type and quantity of hazardous waste in the facility' },
+    { title: 'Safe storage', detail: 'Dedicated containers, clear labels, and distance from heat sources' },
+    { title: 'Transport', detail: 'Handing it to a licensed carrier who issues documented waste manifests' },
+    { title: 'Disposal', detail: 'Moving it to a licensed treatment facility' },
+    { title: 'Record keeping', detail: 'Complete cradle-to-grave proof for years — the regulator may require it at any time' },
+  ]}
+  caption="The chain of responsibility starts at the moment of generation and does not end with disposal"
+/>
+
+<Callout type="warn">
+**Misconception:** "Our facility is small offices, so environmental compliance does not concern us."
+**Fact:** even offices produce electronic waste, sensitive paper, chemical cleaning residues, and contaminated parts from maintenance. The common hazards — such as mixing hazardous waste with general waste, or pouring it into water drains — are explicit violations whatever the facility's size.
+</Callout>
+
+## 4. Relations with regulators and audit
+
+- **Inspection**: the regulator has the right of entry and inspection; receive it with a ready record of documents and hide nothing.
+- **Permits**: some operations (fuel stores, major cooling systems, water discharge) require permits renewed periodically.
+- **Immediate notifications**: leak incidents (fuel, chemical spill) have a set deadline for notification — **the lateness itself is a violation**.
+- **Environmental Audit**: a systematic independent round (internal or external) that compares documents against reality and issues a corrective list to be addressed afterward (CAPA).
+
+<Callout type="tip">
+**Remember:** do not wait for the regulator to discover the gaps; run an internal audit regularly. Internal discovery is always cheaper and better than external discovery, and fixing is ordered by the risk level (the logic of lesson 5.2).
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['sustainability', 'fm']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+حاول فهم الجواب ثم اقرأ الشرح لأنه ينقل المفاهيم إلى قرارات امتحان فعلية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Try to understand the answer, then read the explanation because it moves the concepts into actual exam decisions.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-5-3" questions={quiz53.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **الامتثال البيئي (Environmental Compliance)** نظام يومي لكل منشأة: مياه، نفايات، انبعاثات، ضوضاء، ومواد خطرة — مع إثبات موثق.
+- **ISO 14001** يبني حلقة إدارة بيئية: سياسة ← تخطيط ← تطبيق ← فحص، مثل منطق PDCA.
+- **النفايات الخطرة** تُوثَّق من التوليد إلى التخلص (تصنيف، تخزين، ناقل مرخص، سجلات).
+- **الجهات الرقابية**: معاينة وتصاريح وبلاغات فورية، والتدقيق الداخلي أفضل من الاكتفاء باكتشاف الخارجي.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Environmental compliance** is a daily system for every facility: water, waste, emissions, noise, and hazardous materials — with documented proof.
+- **ISO 14001** builds an environmental management loop: policy ← planning ← implementation ← checking, like PDCA logic.
+- **Hazardous waste** is documented from generation to disposal (classification, storage, licensed carrier, records).
+- **Regulators**: inspection, permits, and immediate notifications; and an internal audit is better than relying on external discovery.
+
+</LangSection>

@@ -1,25 +1,34 @@
 ---
 interface Props {
-  type?: 'myth' | 'tip' | 'warn';
+  type?: 'myth' | 'tip' | 'warn' | 'example';
   title?: string;
 }
 const { type = 'myth', title } = Astro.props;
 
 const styles = {
   myth: {
-    box: 'border-amber-300 bg-amber-50',
+    box: 'border-amber-300 bg-gradient-to-l from-amber-50 to-amber-50/50',
     icon: '❌',
     heading: 'text-amber-800',
+    badge: 'bg-amber-100 text-amber-700',
   },
   tip: {
-    box: 'border-brand-500 bg-brand-50',
+    box: 'border-brand-500 bg-gradient-to-l from-brand-50 to-brand-50/50',
     icon: '💡',
     heading: 'text-brand-700',
+    badge: 'bg-brand-100 text-brand-700',
   },
   warn: {
-    box: 'border-rose-300 bg-rose-50',
+    box: 'border-rose-300 bg-gradient-to-l from-rose-50 to-rose-50/50',
     icon: '⚠️',
     heading: 'text-rose-700',
+    badge: 'bg-rose-100 text-rose-700',
+  },
+  example: {
+    box: 'border-teal-300 bg-gradient-to-l from-teal-50 to-teal-50/50',
+    icon: '🧪',
+    heading: 'text-teal-700',
+    badge: 'bg-teal-100 text-teal-700',
   },
 }[type];
 
@@ -27,15 +36,16 @@ const labels: Record<string, string> = {
   myth: 'مفهوم خاطئ شائع',
   tip: 'نصيحة مهنية',
   warn: 'احذر',
+  example: 'مثال تطبيقي',
 };
 ---
 
-<div class={`my-6 rounded-xl border-r-4 p-4 ${styles.box}`}>
+<div class={`my-6 overflow-hidden rounded-xl border-r-4 p-5 ${styles.box}`}>
   <div class={`flex items-center gap-2 font-semibold ${styles.heading}`}>
-    <span>{styles.icon}</span>
+    <span class="text-lg">{styles.icon}</span>
     <span>{title ?? labels[type]}</span>
   </div>
-  <div class="prose-lesson mt-1">
+  <div class="prose-lesson mt-2">
     <slot />
   </div>
 </div>

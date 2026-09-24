@@ -12,8 +12,11 @@ const items: Source[] = sourceIds
 ---
 
 <div class="card mt-8 overflow-hidden">
-  <div class="border-b border-slate-200 bg-slate-50 px-5 py-3 text-sm font-semibold text-ink-900">
-    📚 مصادر معتمدة للمراجعة
+  <div class="flex items-center gap-2 border-b border-slate-200 bg-gradient-to-l from-slate-50 to-brand-50/30 px-5 py-3">
+    <span class="text-lg">📚</span>
+    <span class="text-sm font-semibold text-ink-900" data-lang="ar">مصادر معتمدة للمراجعة</span>
+    <span class="text-sm font-semibold text-ink-900" data-lang="en">Approved references</span>
+    <span class="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-medium text-brand-700">{items.length} {''}<span data-lang="ar">مصادر</span><span data-lang="en">sources</span></span>
   </div>
   <div class="divide-y divide-slate-100">
     {items.map((item) => (
@@ -21,16 +24,16 @@ const items: Source[] = sourceIds
         href={item.url}
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-start justify-between gap-3 px-5 py-4 transition hover:bg-slate-50"
+        class="flex items-start justify-between gap-3 px-5 py-4 transition-colors hover:bg-slate-50/50"
       >
-        <div>
+        <div class="flex-1">
           <div class="flex items-center gap-2">
             <span dir="ltr" lang="en" class="text-sm font-semibold text-ink-900">{item.name}</span>
-            <span class="chip bg-brand-100 text-brand-700">{item.kind}</span>
+            <span class="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-medium text-brand-700">{item.kind}</span>
           </div>
           <p class="mt-1 text-sm leading-relaxed text-ink-600">{item.ar}</p>
         </div>
-        <span class="mt-1 shrink-0 text-brand-600">↗</span>
+        <span class="mt-1 shrink-0 text-brand-600 transition-transform group-hover:translate-x-0 group-hover:-translate-x-1">↗</span>
       </a>
     ))}
   </div>

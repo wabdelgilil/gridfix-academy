@@ -1,0 +1,81 @@
+import type { Source } from './cfm';
+
+export const camaSources: Record<string, Source> = {
+  iso55000: {
+    id: 'iso55000',
+    name: 'ISO 55000 - Asset Management: Overview, Principles and Terminology',
+    kind: 'معيار',
+    url: 'https://www.iso.org/standard/69117.html',
+    ar: 'معيار ISO 55000: نظرة عامة على إدارة الأصول، مبادئها الثمانية، ومصطلحاتها الأساسية.',
+  },
+  iso_55000_2024: {
+    id: 'iso_55000_2024',
+    name: 'ISO 55000:2024 - Asset Management: Overview, Principles and Terminology',
+    kind: 'معيار',
+    url: 'https://www.iso.org/standard/83493.html',
+    ar: 'الإصدار المحدث 2024 من معيار ISO 55000: يحدد مفاهيم إدارة الأصول ومبادئها ومصطلحاتها.',
+  },
+  iso55001: {
+    id: 'iso55001',
+    name: 'ISO 55001 - Asset Management Systems: Requirements',
+    kind: 'معيار',
+    url: 'https://www.iso.org/standard/77389.html',
+    ar: 'معيار ISO 55001: متطلبات نظام إدارة الأصول وفق بنود التخطيط والدعم والتشغيل والتقييم والتحسين.',
+  },
+  gfmam_landscape: {
+    id: 'gfmam_landscape',
+    name: 'GFMAM Asset Management Landscape v3',
+    kind: 'مرجع',
+    url: 'https://www.gfmam.org/publications',
+    ar: 'مجلدات GFMAM الخمسة: مبادئ إدارة الأصول، السياق المؤسسي، أطر العمل، التنفيذ والتسليم، وتحقيق القيمة.',
+  },
+  ifma_bok: {
+    id: 'ifma_bok',
+    name: 'IFMA Body of Knowledge',
+    kind: 'مرجع',
+    url: 'https://www.ifma.org',
+    ar: 'مرجع المعرفة في إدارة المنشآت: يغطي التحليل المالي وتكلفة دورة الحياة والتشغيل والصيانة.',
+  },
+  ifma_best_practices: {
+    id: 'ifma_best_practices',
+    name: 'IFMA Best Practices',
+    kind: 'مرجع',
+    url: 'https://www.ifma.org',
+    ar: 'أفضل الممارسات في إدارة المنشآت وسلسلة التوريد والمشتريات وفق مراجع IFMA.',
+  },
+  smrp_best_practices: {
+    id: 'smrp_best_practices',
+    name: 'SMRP Best Practice Guides',
+    kind: 'مرجع',
+    url: 'https://smrp.org',
+    ar: 'أدلة الممارسات الجيدة في الصيانة والموثوقية الصادرة عن جمعية SMRP.',
+  },
+  environmental_regulations: {
+    id: 'environmental_regulations',
+    name: 'Environmental Regulations for Waste & Disposal',
+    kind: 'تنظيم',
+    url: 'https://www.epa.gov',
+    ar: 'اللوائح البيئية لإدارة النفايات والتخلص من الأصول: متطلبات إعادة التدوير والامتثال البيئي.',
+  },
+  ashrae_lcc: {
+    id: 'ashrae_lcc',
+    name: 'ASHRAE Life Cycle Cost Analysis',
+    kind: 'مرجع',
+    url: 'https://www.ashrae.org',
+    ar: 'منهجية تحليل تكلفة دورة الحياة (LCC) وفق أدلة ASHRAE لاتخاذ قرارات شراء المعدات.',
+  },
+  iam_guidelines: {
+    id: 'iam_guidelines',
+    name: 'IAM Guidelines for Asset Management',
+    kind: 'مرجع',
+    url: 'https://theiam.org',
+    ar: 'إرشادات معهد IAM في تطبيق إدارة الأصول وتخطيطها الاستراتيجي.',
+  },
+  iam_anatomy: {
+    id: 'iam_anatomy',
+    name: 'IAM Anatomy of Asset Management',
+    kind: 'مرجع',
+    url: 'https://theiam.org',
+    ar: 'تشريح إدارة الأصول: المواضيع المعرفية والأنشطة اللازمة لتحقيق القيمة من الأصول.',
+  },
+};

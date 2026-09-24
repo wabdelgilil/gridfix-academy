@@ -1,0 +1,214 @@
+---
+id: lesson-5-1
+station: station-5
+number: "5.1"
+title: "السلامة والصحة المهنية"
+titleEn: "Occupational Health & Safety"
+minutes: 25
+order: 1
+objectives:
+  - "أن يدرك قواعد السلامة كموضوع علمي منظم لا كمعلومات متناثرة."
+  - "أن يتعرف على ركائز نظام السلامة الأربع: القواعد، التدريب، التفتيش، والتوثيق."
+  - "أن يستخدم بنود الامتثال العملية: المخارج، الطفايات، بيانات المواد، ومعدات الوقاية."
+  - "أن يربط بين تكلفة الحوادث وقيمة الوقاية."
+objectivesEn:
+  - "Understand safety rules as an organized subject rather than scattered facts."
+  - "Recognize the four pillars of a safety system: rules, training, inspection, and documentation."
+  - "Use practical compliance items: exits, extinguishers, material data, and protective equipment."
+  - "Relate the cost of incidents to the value of prevention."
+hasTool: true
+toolName: "قائمة امتثال"
+toolNameEn: "Safety Compliance Checklist"
+quizId: quiz-5-1
+sources:
+  - osha
+  - ifma
+  - iso_41001
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import SafetyComplianceCheck from '../../../components/islands/tools/cfm/SafetyComplianceCheck.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz51 } from '../../../data/quiz/cfm/quiz-5-1';
+
+<LangSection lang="ar">
+
+مشهد يعرفه كل مدير منشأة جديد: مصعد معطل في الصباح، وباب طوارئ مسدود بكراتين خلف مصلى، وسائل بلا اسم يتعرّق على رف في المخزن. لا أحد يرى في هذه التفاصيل موضوعاً، حتى يتكرر الحادث نفسه في كل منشأة أخرى. هذا الدرس ينظم هذه التفاصيل في **نظام** واحد تعرفه وتديره — وهذا ما يسأل عنه امتحان CFM.
+
+## 1. ما المقصود بالسلامة والصحة المهنية؟
+
+**السلامة والصحة المهنية** هي النظام الذي يمنع إصابة الناس أو مرضهم داخل المنشأة، ويعني ذلك الجميع: الموظفين والزوار والمقاولين وعابري الطريق حول المبنى. وهي مسؤولية مزدوجة:
+
+- **أخلاقية وإنسانية**: توفير بيئة عمل لا تسبب ضرراً جسدياً أو نفسياً لأحد.
+- **قانونية ومالية**: القوانين (في أمريكا معيار OSHA الذي تحاكيه أنظمة كثير من الدول) تفرض التزامات بنتائج ملموسة، والغرامات والتعويضات تنهش الميزانية.
+
+من المهم أن تفهم الحدود بدقة: السلامة **باهتمام الجميع**، لكن مدير المنشأة هو صاحب **النظام والتحقق** — يحدد الأدوار، ويضع مؤشرات قابلة للقياس (مثل معدل بلاغات شبه الحوادث، ونسبة إنجاز التصحيحات)، ولا يتنازل عن أحدهما.
+
+## 2. ركائز نظام السلامة الأربع
+
+النظام لا يقوم على نية حسنة بل على أربع ركائز، ونقص واحدة يجعل الباقي بلا قيمة:
+
+1. **القواعد والإجراءات (Rules and Procedures)**: مسارات هروب، بيانات مواد، قواعد ارتداء المعدات، وقواعد منع إغلاق المخارج. **مثال:** قاعدة صارمة: لا تكديس أمام أبواب الطوارئ مهما كان السبب.
+2. **التدريب والتوعية (Training and Awareness)**: تدريب إلزامي عند التعيين، وتمارين دورية (إخلاء، استخدام طفاية، التعامل مع انسكاب). **مثال:** موظف لم يدرَّب على الإخلاء قد يقف في مكانه يوم الحريق لأنه لا يعرف الطريق.
+3. **التفتيش والتحقق (Inspection and Verification)**: جولات دورية بعين فاحصة، وفحص جاهزية الأجهزة. **مثال:** جولة شهرية تكشف طفاية ضغطها ناقص قبل أن تُطلب في حادث.
+4. **التوثيق (Documentation)**: سجلات تثبت أن التدريب والتفتيش أُنجزا فعلاً، لأنها الشاهد الوحيد أمام الجهة الرقابية. **مثال:** عقدت التدريب كما يجب، لكن لا قيمة له أمام الجهة الرقابية دون سجلات حضور موقّعة.
+
+<Infographic
+  title="ركائز نظام السلامة الأربع"
+  cols={4}
+  items={[
+    { title: 'القواعد والإجراءات (Rules and Procedures)', detail: 'مسارات هروب، بيانات مواد، قواعد ارتداء المعدات، ومنع إغلاق المخارج.', icon: '📜', color: 'brand' },
+    { title: 'التدريب والتوعية (Training and Awareness)', detail: 'تدريب إلزامي عند التعيين وتمارين دورية (إخلاء، طفاية، انسكاب).', icon: '🎓', color: 'teal' },
+    { title: 'التفتيش والتحقق (Inspection and Verification)', detail: 'جولات دورية بعين فاحصة وفحص جاهزية الأجهزة.', icon: '🔍', color: 'amber' },
+    { title: 'التوثيق (Documentation)', detail: 'سجلات تثبت أن التدريب والتفتيش أُنجزا فعلاً — الشاهد الوحيد أمام الجهة الرقابية.', icon: '📁', color: 'rose' },
+  ]}
+  caption="نقص ركيزة واحدة يجعل باقي الركائز بلا قيمة."
+/>
+
+## 3. بنود الامتثال العملية التي تبحث عنها الجولة
+
+هذه هي البنود التي تنظر إليها أثناء جولة التفتيش، وهي جوهر نظام السلامة العملي:
+
+- **مسارات الهروب (Means of Egress)**: تُبقى خالية من العوائق دائماً، غير مقفولة من الداخل، مضيئة، ومعلّمة بلافتات واضحة. **مثال:** كراتين أمام باب الطوارئ — انتهاك مباشر مهما كانت المدة «المؤقتة».
+- **طفايات الحريق (Fire Extinguishers)**: توزيع حسب المساحة، وفحص دوري للضغط وإعادة التعبئة. **مثال:** طفاية يبدو شكلها جديداً لكن مؤشر ضغطها في المنطقة الحمراء — وجودها لا يعني جاهزيتها.
+- **المواد الخطرة**: لكل مادة كيميائية **ورقة بيانات السلامة (SDS)** بجوارها توضح نوعها وخطورتها وطريقة تخزينها والتصرف عند انسكابها. **مثال:** سائل أصفر بلا اسم في مخزن النظافة — لا تُعرف خطورته حتى تُفحص ورقة بياناته.
+- **معدات الوقاية الشخصية (PPE)**: الخوذة والنظارة والقفاز وسماعات الأذن — آخر خط دفاع، ويجب توفرها بالمقاس الصحيح وجعل استخدامها إلزامياً. **مثال:** عامل ينشر الصاج بلا قفازات ونظارات — مسؤولية المدير التوفير والرقابة، لا التظاهر بأن الأمر «شأن العامل».
+- **اللافتات (Signage)**: التعليمات ظاهرة عند المخاطر (جهد عالٍ، أرضية زلقة، حظر دخول). **مثال:** لافتة باهتة مطموسة كلافتة «مخرج الطوارئ» تجعل علامات الطريق غير قابلة للقراءة لحظة الحاجة.
+- **شبه الحوادث (Near Miss)**: مواقف توشك أن تتحول إلى حادثة لكنها تنتهي دون إصابة، وهي كنز مؤشرات. **مثال:** عربة يد كادت تصطدم بموظف — بلاغها وتحليل سببها الجذري يمنع تحولها إلى حادثة حقيقية.
+
+<Callout type="myth">
+**أسطورة:** «السلامة نشاط ثانوي مكلف لا يحقق عائداً».
+**الحقيقة:** الحوادث أغلى بكثير من أي برنامج وقاية، وكلما أصغيت لشبه الحوادث مبكراً دفعت ثمن التنبيه المجاني بدل فاتورة الحادثة.
+</Callout>
+
+## 4. لماذا الوقاية أرخص من الحادث؟
+
+الحادث الواحد يدفع فاتورتين:
+
+- **التكلفة المباشرة (Direct Costs)**: العلاج والتعويضات والغرامات وإصلاح المعدات.
+- **التكلفة غير المباشرة (Indirect Costs)**: توقف العمل، تدريب بديل، ارتفاع أقساط التأمين، وفقدان ثقة الموظفين والعملاء — وتقديرات شائعة تجعلها تتراوح بين 4 إلى 10 أضعاف التكلفة المباشرة.
+
+لذلك تُدار السلامة **وقائياً**: كل قيمة تُنفق على منع الحادث أقل بكثير مما يدفعه الحادث نفسه، وهذا هو الأساس المالي الذي يقنع به مدير المنشأة الإدارةَ العليا بدعم برنامج السلامة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+A scene every new facility manager knows: a broken elevator in the morning, an emergency exit blocked by cartons behind a prayer room, and an unlabeled liquid sweating on a storeroom shelf. No one sees a subject in these details, until the same incident repeats in every other facility. This lesson organizes these details into a single **system** you know and manage — and this is what the CFM exam asks about.
+
+## 1. What is meant by occupational health and safety?
+
+**Occupational health and safety** is the system that prevents people from being injured or falling ill inside the facility, and that means everyone: employees, visitors, contractors, and passersby around the building. It is a dual responsibility:
+
+- **Ethical and humanitarian**: providing a work environment that causes no physical or psychological harm to anyone.
+- **Legal and financial**: laws (in America the OSHA standard, which the regulations of many countries emulate) impose obligations with tangible consequences, and fines and settlements eat into the budget.
+
+It is important to understand the boundaries precisely: safety is **everyone's concern**, but the facility manager owns the **system and verification** — defining roles, setting measurable indicators (such as the near-miss reporting rate and the ratio of completed corrections), and not giving up on either.
+
+## 2. The four pillars of a safety system
+
+The system does not rest on good intention but on four pillars, and the absence of one makes the rest worthless:
+
+1. **Rules and Procedures**: escape routes, material data, equipment-wearing rules, and rules preventing exit blockage. **Example:** a strict rule: no stacking in front of emergency doors for any reason.
+2. **Training and Awareness**: mandatory training at hiring and periodic drills (evacuation, extinguisher use, spill handling). **Example:** an employee untrained in evacuation may stand still on the day of a fire because they do not know the way.
+3. **Inspection and Verification**: periodic walk-throughs with a scrutinizing eye and checks of equipment readiness. **Example:** a monthly round discovers an extinguisher with low pressure before it is needed in an incident.
+4. **Documentation**: records proving that training and inspection were actually carried out, because they are the only witness before the regulator. **Example:** you held the training as required, but it has no value before the regulator without signed attendance records.
+
+<Infographic
+  title="The four pillars of a safety system"
+  cols={4}
+  items={[
+    { title: 'Rules and Procedures', detail: 'Escape routes, material data, equipment-wearing rules, and preventing exit blockage.', icon: '📜', color: 'brand' },
+    { title: 'Training and Awareness', detail: 'Mandatory training at hiring and periodic drills (evacuation, extinguisher, spill).', icon: '🎓', color: 'teal' },
+    { title: 'Inspection and Verification', detail: 'Periodic walk-throughs with a scrutinizing eye and checks of equipment readiness.', icon: '🔍', color: 'amber' },
+    { title: 'Documentation', detail: 'Records proving training and inspection were carried out — the only witness before the regulator.', icon: '📁', color: 'rose' },
+  ]}
+  caption="The absence of one pillar makes the rest worthless."
+/>
+
+## 3. The practical compliance items a walk-through looks for
+
+These are the items you look at during an inspection round, and they are the heart of the practical safety system:
+
+- **Means of Egress**: always kept free of obstructions, not locked from the inside, lit, and marked with clear signs. **Example:** cartons in front of an emergency door — a direct violation no matter how "temporary" the duration.
+- **Fire Extinguishers**: distribution by area and periodic pressure checks and refilling. **Example:** an extinguisher that looks new but whose pressure gauge is in the red zone — its presence does not mean readiness.
+- **Hazardous materials**: every chemical has a **Safety Data Sheet (SDS)** next to it stating its type, hazard, storage method, and what to do when spilled. **Example:** an unlabeled yellow liquid in the cleaning store — its hazard is unknown until its data sheet is checked.
+- **Personal Protective Equipment (PPE)**: helmet, goggles, gloves, and ear muffs — the last line of defense, and it must be available in the correct size with its use made mandatory. **Example:** a worker cutting sheet metal without gloves and goggles — provision and supervision are the manager's responsibility, not pretending it is "the worker's business".
+- **Signage**: instructions visible at hazards (high voltage, slippery floor, no entry). **Example:** a faded, smudged sign like "emergency exit" makes the route markings unreadable the moment they are needed.
+- **Near Miss**: situations that almost turn into an incident but end without injury, and they are a treasure of indicators. **Example:** a handcart that almost struck an employee — reporting it and analyzing its root cause prevents it from becoming a real incident.
+
+<Callout type="myth">
+**Myth:** "Safety is a costly secondary activity that yields no return."
+**Fact:** incidents cost far more than any prevention program, and the earlier you listen to near misses, the more you pay the price of free warning instead of the incident invoice.
+</Callout>
+
+## 4. Why is prevention cheaper than the incident?
+
+A single incident pays two invoices:
+
+- **Direct Costs**: medical treatment, compensation, fines, and equipment repair.
+- **Indirect Costs**: work stoppage, replacement training, higher insurance premiums, and loss of employee and client trust — common estimates put them between 4 and 10 times the direct costs.
+
+That is why safety is managed **preventively**: every value spent on preventing an incident is far less than what the incident itself pays, and this is the financial basis with which the facility manager convinces senior management to support the safety program.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## 5. أداة اليوم: قائمة امتثال
+
+استخدم هذه القائمة كجولة تفتيش مصغرة في أي مبنى: بنداً بنداً على أركان النظام والبنود العملية، لترى أين تعيش الثغرات.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Safety Compliance Checklist
+
+Use this list as a mini inspection round in any building: item by item across the system pillars and the practical items, to see where the gaps live.
+
+</LangSection>
+
+<SafetyComplianceCheck client:load />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+حاول فهم الجواب ثم اقرأ الشرح لأنه ينقل المفاهيم إلى قرارات امتحان فعلية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Try to understand the answer, then read the explanation because it moves the concepts into actual exam decisions.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-5-1" questions={quiz51.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **السلامة والصحة المهنية**: نظام يمنع إصابات الناس وأمراضهم داخل المنشأة، وهو مسؤولية أخلاقية وقانونية ومالية.
+- **ركائز النظام** أربع: قواعد وإجراءات، تدريب وتوعية، تفتيش دوري، وتوثيق كامل.
+- **بنود الامتثال**: مسارات هروب، طفايات، أوراق بيانات المواد (SDS)، معدات الوقاية (PPE)، اللافتات، وبلاغات شبه الحوادث (Near Miss).
+- **منطق اقتصادي**: تكلفة الحادث غير المباشرة تصل إلى 4-10 أضعاف المباشرة، والوقاية أرخص دائماً.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **Occupational health and safety**: a system that prevents people from being injured or falling ill inside the facility, and a moral, legal, and financial responsibility.
+- **Four system pillars**: rules and procedures, training and awareness, periodic inspection, and complete documentation.
+- **Compliance items**: means of egress, extinguishers, Safety Data Sheets (SDS), protective equipment (PPE), signage, and near-miss reports.
+- **Economic logic**: the indirect cost of an incident may reach 4–10 times the direct cost, and prevention is always cheaper.
+
+</LangSection>

@@ -1,0 +1,46 @@
+---
+interface GridItem {
+  title: string;
+  detail?: string;
+  icon?: string;
+  color?: 'brand' | 'teal' | 'amber' | 'sky' | 'rose' | 'ink';
+}
+
+interface Props {
+  items: GridItem[];
+  title?: string;
+  caption?: string;
+  cols?: 2 | 3 | 4;
+}
+
+const { items, title, caption, cols = 3 } = Astro.props;
+
+const colors: Record<string, string> = {
+  brand: 'border-brand-200 bg-brand-50',
+  teal: 'border-teal-200 bg-teal-50',
+  amber: 'border-amber-200 bg-amber-50',
+  sky: 'border-sky-200 bg-sky-50',
+  rose: 'border-rose-200 bg-rose-50',
+  ink: 'border-slate-200 bg-slate-50',
+};
+
+const gridCols: Record<number, string> = {
+  2: 'sm:grid-cols-2',
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+};
+---
+
+<div class="my-6">
+  {title && <p class="mb-3 text-sm font-bold text-ink-900">{title}</p>}
+  <div class={`grid grid-cols-1 gap-3 ${gridCols[cols]}`}>
+    {items.map((item) => (
+      <div class={`flex flex-col rounded-xl border p-4 ${colors[item.color ?? 'brand']}`}>
+        {item.icon && <span class="mb-2 text-2xl leading-none">{item.icon}</span>}
+        <p class="text-sm font-bold text-ink-900">{item.title}</p>
+        {item.detail && <p class="mt-1 text-xs leading-relaxed text-ink-600">{item.detail}</p>}
+      </div>
+    ))}
+  </div>
+  {caption && <p class="mt-2 text-center text-xs text-ink-400">{caption}</p>}
+</div>

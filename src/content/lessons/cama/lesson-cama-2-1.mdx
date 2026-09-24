@@ -1,0 +1,294 @@
+---
+id: lesson-cama-2-1
+course: cama
+station: station-cama-2
+number: "2.1"
+title: "السياق المؤسسي وأصحاب المصلحة"
+titleEn: "Organizational Context & Stakeholders"
+minutes: 25
+order: 1
+objectives:
+  - "أن يحلل المتعلم مكونات السياق الداخلي والخارجي للمنظمة."
+  - "أن يصنف أصحاب المصلحة حسب قوة الأثر ومستوى الاهتمام."
+  - "أن يربط نتائج تحليل السياق بقرارات إدارة الأصول."
+objectivesEn:
+  - "Analyze internal and external organizational context components."
+  - "Classify stakeholders by impact and interest."
+  - "Link context analysis outputs to asset management decisions."
+hasTool: true
+toolName: "باني السياق المؤسسي"
+toolNameEn: "Context Builder"
+quizId: quiz-cama-2-1
+sources:
+  - iso55000
+  - gfmam_landscape
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ContextBuilder from '../../../components/islands/tools/cama/ContextBuilder.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama21 } from '../../../data/quiz/cama/quiz-cama-2-1';
+
+<LangSection lang="ar">
+
+كل منظمة تعمل داخل سياق فريد: بيئتها الخارجية وظروفها الداخلية وطبيعة أصحاب المصلحة الذين يؤثرون فيها أو تؤثر عليهم. فهم هذا السياق ليس ترفاً بل شرط أساسي لأي نظام إدارة أصول فعّال، وهو ما يفرضه معيار ISO 55001 في بند التخطيط. هذا الدرس يعلمك كيف تحلل السياق المؤسسي وتربطه بقرارات إدارة الأصول.
+
+## 1. السياق الداخلي: ما الذي تملكه فعلاً؟
+
+السياق الداخلي يصف البيئة التي تعمل فيها كمدير أصول. يشمل خمسة محاور رئيسية:
+
+- **الهيكل التنظيمي**: من يقرر؟ من ينفذ؟ هل توجد إدارة مركزة لإدارة الأصول أم هي لامركزية؟ الهيكل يحدد سرعة اتخاذ القرارات وجودة التنفيذ.
+- **الموارد المالية**: ما هي الميزانية المتاحة لإدارة الأصول؟ هل هي ميزانية صيانة فقط أم تشمل الاستثمارات الجديدة؟ الميزانية تحدد نطاق الحركة.
+- **الكفاءات البشرية**: هل تملك فنيين مؤهلين؟ هل هناك فجوة مهارية؟ الكفاءات تحدد ما إذا كنت تستطيع تنفيذ ما تخطط له.
+- **الأنظمة والمعلومات**: هل تملك CMMS أو CAFM؟ هل البيانات موثوقة؟ نظم المعلومات هي العيون التي تراكم بها الواقع.
+- **الثقافة التنظيمية**: هل المنظمة تؤمن بالصيانة الاستباقية أم أنها تعيش في وضعية إصلاح الأعطال؟ الثقافة تحدد مدى قبول التغيير.
+
+<Callout type="tip">
+**القاعدة:** السياق الداخلي ليس قائمة بال_check boxes_ بل صورة حية لـ "القدرات المتاحة" و"الثغرات الموجودة". كل قرار استراتيجي يجب أن يراعي هذه القدرات، وإلا تصبح الخطة ورقة بلا سند تنفيذي.
+</Callout>
+
+## 2. السياق الخارجي: ما الذي تفرضه عليك البيئة؟
+
+السياق الخارجي هو ما لا تستطيع التحكم فيه لكنك تستطيع الاستجابة له:
+
+- **التشريعات والمعايير**: ISO 55000 و ISO 55001 و متطلبات السلامة المحلية والبيئية. هذه غير قابلة للتفاوض.
+- **السوق والمنافسة**: توقعات العملاء ومعايير الجودة في السوق التي تعمل فيه. إذا كان منافسوك يقدمون خدمة أفضل لأن أصولهم أكثر موثوقية، فأنت تحت ضغط للتحسين.
+- **التكنولوجيا**: ما الجديد في مجسات الاهتزاز والذكاء الاصطناعي والصيانة التنبؤية؟ التكنولوجيا تغير قواعد اللعبة باستمرار.
+- **الظروف الجيوسياسية والاقتصادية**: تقلبات أسعار الطاقة وسلاسل توريد المعادن (metals supply chain) وأثرها على تكلفة استبدال الأصول.
+- **المخاطر البيئية**: التغيرات المناخية والكوارث الطبيعية وأثرها على البنية التحتية.
+
+## 3. تحليل SWOT لإدارة الأصول
+
+تحليل SWOT هو الأداة الكلاسيكية لتلخيص السياق الداخلي والخارجي في صورة واحدة:
+
+- **نقاط القوة (Strengths)**: ما الذي تجيد فعله؟ (فريق فني متميز، نظام CMMS متكامل، تاريخ جيد في السلامة).
+- **نقاط الضعف (Weaknesses)**: أين ثغراتك؟ (بيانات غير موثوقة، ميزانية محدودة، فجوة مهارية في التكنولوجيا الحديثة).
+- **الفرص (Opportunities)**: ما الذي يمكنك الاستفادة منه؟ (تقنيات جديدة، تمويل متاح، تغيير تشريعي يدعم الصيانة الاستباقية).
+- **التهديدات (Threats)**: ما الذي يهددك؟ (تقادم الأصول، فقدان الكوادر، ارتفاع تكاليف قطع الغيار).
+
+<Callout type="example">
+**سيناريو عملي:** شركة بترول تكتشف أن 40% من مضخاتها عمرها يتجاوز 20 سنة (ضعف)، لكن تتوفر تقنية مراقبة اهتزاز جديدة (فرصة) يمكنها خفض التوقفات المفاجئة بنسبة 35%. السياق يقود القرار: الاستثمار في المراقبة أولاً ثم التخطيط للتبديل التدريجي.
+</Callout>
+
+## 4. تخطيط أصحاب المصلحة (Stakeholder Planning)
+
+أصحاب المصلحة هم كل من يؤثر في إدارة الأصول أو يتأثر بها. تخطيطهم يعني فهم احتياجاتهم وتوقعاتهم وتحديد كيفية إشراكهم:
+
+### 4.1 خريطة أصحاب المصلحة
+
+| صاحب المصلحة | المصلحة الرئيسية | أثره | طريقة التعامل |
+|---|---|---|---|
+| الإدارة العليا | العائد المالي والمخاطر | عالي | تقارير استراتيجية دورية |
+| التشغيل | توفر الأصول والأداء | عالي | اجتماعات أسبوعية مشتركة |
+| الهندسة | الجودة الفنية والسلامة | متوسط | فرق عمل متعددة التخصصات |
+| المالية | السيولة والتكاليف | متوسط | تقارير تحليل التكلفة |
+| الموردون | عقود التوريد والصيانة | منخفض | شراكات استراتيجية |
+| الجهات الرقابية | الامتثال والتوثيق | عالي | تقارير امتثال دورية |
+
+### 4.2 متطلبات وتوقعات أصحاب المصلحة
+
+فهم ما يحتاجه كل صاحب مصلحة يمنحك القدرة على تصميم خطة إدارة أصول تلبي هذه الاحتياجات:
+
+- **الإدارة العليا** تريد معرفة: هل أصولنا تحقق العائد المتوقع؟ ما المخاطر الكبرى؟
+- **التشغيل** يريد معرفة: متى ستكون الأصول جاهزة؟ هل هناك توقف قادم؟
+- **الهندسة** تريد معرفة: هل نمتثل للمعايير؟ ما حالة الأصول الفعلية؟
+- **المالية** تريد معرفة: كم ننفق؟ ما العائد على كل ريال؟
+
+## 5. نطاق نظام إدارة الأصول (Scope of AM System)
+
+بعد فهم السياق وأصحاب المصلحة، تحدد نطاق نظام إدارة الأصول:
+
+- **النطاق الجغرافي**: هل يشمل المنشأة واحدة أم عدة مواقع؟
+- **النطاق التنظيمي**: هل يشمل إدارة واحدة أم عدة إدارات؟
+- **نطاق الأصول**: هل يشمل جميع الأصول أم فئة محددة (مثلاً المعدات الحرجة فقط)؟
+- **النطاق الزمني**: هل الخطة لفترة قصيرة (سنة) أم متوسطة (3-5 سنوات) أم طويلة (10+ سنوات)؟
+
+النطاق يجب أن يكون واضحاً ومعلناً لأنه يحدد حدود مسؤولية نظام إدارة الأصول ويمنع التداخل مع الأنظمة الأخرى.
+
+<Callout type="myth">
+**أسطورة:** "تحليل السياق وأصحاب المصلحة عمل مكتبي بيروقراطي لا علاقة له بالواقع الميداني."
+**الحقيقة:** بدون فهم السياق، الخطة الاستراتيجية مبنية على افتراضات خاطئة. شركة فشلت في برنامج الصيانة التنبؤية لأنها لم تاخذ في الاعتبار أن الثقافة التنظيمية تعارض أي تغيير — السياق كان يجب أن يُعالج أولاً.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Every organization operates within a unique context: its external environment, its internal conditions, and the nature of the stakeholders who influence it or are influenced by it. Understanding this context is not a luxury but a fundamental condition for any effective asset management system — a requirement imposed by ISO 55001 in its planning clause. This lesson teaches you how to analyze the organizational context and link it to asset management decisions.
+
+## 1. The internal context: what do you actually have?
+
+The internal context describes the environment in which you work as an asset manager. It covers five main dimensions:
+
+- **Organizational structure**: who decides? Who implements? Is asset management centralized or decentralized? The structure determines the speed of decision-making and the quality of execution.
+- **Financial resources**: what budget is available for asset management? Is it a maintenance budget only, or does it include new investments? The budget defines the room to maneuver.
+- **Human competencies**: do you have qualified technicians? Is there a skills gap? Competencies determine whether you can implement what you plan.
+- **Systems and information**: do you have a CMMS or CAFM? Is the data reliable? Information systems are the eyes through which you track reality.
+- **Organizational culture**: does the organization believe in proactive maintenance, or does it live in a break-fix mode? Culture determines how much change will be accepted.
+
+<Callout type="tip">
+**Rule:** the internal context is not a list of check boxes but a living picture of the "available capabilities" and "existing gaps". Every strategic decision must take these capabilities into account; otherwise, the plan becomes a document with no implementation backing.
+</Callout>
+
+## 2. The external context: what does the environment impose on you?
+
+The external context is what you cannot control but can respond to:
+
+- **Legislation and standards**: ISO 55000, ISO 55001, and local safety and environmental requirements. These are non-negotiable.
+- **Market and competition**: customer expectations and the quality standards of the market in which you operate. If your competitors deliver a better service because their assets are more reliable, you are under pressure to improve.
+- **Technology**: what is new in vibration sensors, artificial intelligence, and predictive maintenance? Technology keeps changing the rules of the game.
+- **Geopolitical and economic conditions**: fluctuations in energy prices and metals supply chains, and their impact on the cost of replacing assets.
+- **Environmental risks**: climate change and natural disasters, and their impact on infrastructure.
+
+## 3. SWOT analysis for asset management
+
+SWOT analysis is the classic tool for summarizing the internal and external context in a single picture:
+
+- **Strengths**: what do you do well? (an outstanding technical team, an integrated CMMS, a good safety record).
+- **Weaknesses**: where are your gaps? (unreliable data, a limited budget, a skills gap in modern technology).
+- **Opportunities**: what can you benefit from? (new technologies, available funding, a legislative change supporting proactive maintenance).
+- **Threats**: what threatens you? (asset obsolescence, losing key staff, rising spare-part costs).
+
+<Callout type="example">
+**Practical scenario:** an oil company discovers that 40% of its pumps are over 20 years old (weakness), but a new vibration-monitoring technology is available (opportunity) that can cut sudden stoppages by 35%. The context drives the decision: invest in monitoring first, then plan for gradual replacement.
+</Callout>
+
+## 4. Stakeholder planning
+
+Stakeholders are everyone who influences asset management or is influenced by it. Planning for them means understanding their needs and expectations and determining how to engage them:
+
+### 4.1 Stakeholder map
+
+| Stakeholder | Main interest | Impact | Approach |
+|---|---|---|---|
+| Senior management | Financial return and risk | High | Periodic strategic reports |
+| Operations | Asset availability and performance | High | Joint weekly meetings |
+| Engineering | Technical quality and safety | Medium | Cross-functional work teams |
+| Finance | Liquidity and costs | Medium | Cost analysis reports |
+| Suppliers | Supply and maintenance contracts | Low | Strategic partnerships |
+| Regulators | Compliance and documentation | High | Periodic compliance reports |
+
+### 4.2 Stakeholder requirements and expectations
+
+Understanding what each stakeholder needs gives you the ability to design an asset management plan that meets these needs:
+
+- **Senior management** wants to know: are our assets delivering the expected return? What are the major risks?
+- **Operations** wants to know: when will the assets be ready? Is there upcoming downtime?
+- **Engineering** wants to know: are we compliant with the standards? What is the actual condition of the assets?
+- **Finance** wants to know: how much are we spending? What is the return on every riyal?
+
+## 5. Scope of the asset management system
+
+After understanding the context and the stakeholders, you define the scope of the asset management system:
+
+- **Geographical scope**: does it cover one facility or several sites?
+- **Organizational scope**: does it cover one department or several?
+- **Asset scope**: does it cover all assets or a specific category (for example, critical equipment only)?
+- **Time scope**: is the plan short-term (one year), medium-term (3–5 years), or long-term (10+ years)?
+
+The scope must be clear and public, because it defines the boundaries of responsibility of the asset management system and prevents overlap with the other systems.
+
+<Callout type="myth">
+**Myth:** "Context and stakeholder analysis is bureaucratic desk work with no relation to the field reality."
+**Fact:** without understanding the context, the strategic plan is built on wrong assumptions. A company failed in its predictive maintenance program because it did not take into account that the organizational culture opposes any change — the context should have been addressed first.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: باني السياق المؤسسي
+
+حدد السياق الداخلي والخارجي لمنشأتك، وحدد أصحاب المصلحة الرئيسيين، وشاهد كيف يتشكل نطاق نظام إدارة الأصول المطلوب.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Context Builder
+
+Define the internal and external context of your facility, identify the key stakeholders, and see how the required scope of the asset management system takes shape.
+
+</LangSection>
+
+<ContextBuilder client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-2-1-t1', 'cama-2-1-t2', 'cama-2-1-t3', 'cama-2-1-t4', 'cama-2-1-t5']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على السياق الداخلي والخارجي، وتصنيف عناصر تحليل SWOT، وتخطيط أصحاب المصلحة، وتحديد نطاق نظام إدارة الأصول.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the internal and external context, classifying the elements of SWOT analysis, stakeholder planning, and defining the scope of the asset management system.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-2-1" questions={quizCama21.questions} client:load />
+
+<LangSection lang="ar">
+
+## مصادر
+
+- ISO 55001:2014 — إدارة الأصول: متطلبات نظام الإدارة.
+- ISO 55000:2014 — إدارة الأصول: المبادئ والصيغ.
+- GFMAM AM Landscape v3 — إطار عمل إدارة الأصول الشامل.
+- IFMA — ممارسات إدارة المنشآت (Best Practices).
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Sources
+
+- ISO 55001:2014 — Asset Management: Management System Requirements.
+- ISO 55000:2014 — Asset Management: Overview, Principles and Terminology.
+- GFMAM AM Landscape v3 — The Comprehensive Asset Management Framework.
+- IFMA — Facility Management Best Practices.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **السياق الداخلي** يشمل الهيكل التنظيمي والموارد المالية والكفاءات والأنظمة والثقافة — كلها تحدد قدرتك على التنفيذ.
+- **السياق الخارجي** يشمل التشريعات والسوق والتكنولوجيا والمخاطر البيئية — ما لا تستطيع التحكم فيه لكنك تستطيع الاستجابة له.
+- **تحليل SWOT** يلخص النقاط القوية والضعيفة والفرص والتهديدات في صورة قرار واحدة.
+- **أصحاب المصلحة** يجب فهم احتياجاتهم وتوقعاتهم وتحديد طريقة إشراكهم قبل بناء الخطة.
+- **نطاق نظام إدارة الأصول** يُحدَّد بعد فهم السياق ويجب أن يكون واضحاً ومعلناً.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The internal context** covers the organizational structure, financial resources, competencies, systems, and culture — all of these determine your ability to execute.
+- **The external context** covers legislation, market, technology, and environmental risks — what you cannot control but can respond to.
+- **SWOT analysis** summarizes strengths, weaknesses, opportunities, and threats in a single decision picture.
+- **Stakeholders** must have their needs and expectations understood and their engagement defined before building the plan.
+- **The scope of the asset management system** is defined after understanding the context and must be clear and public.
+
+</LangSection>

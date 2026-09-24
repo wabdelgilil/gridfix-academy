@@ -1,0 +1,221 @@
+---
+id: lesson-8-3
+station: station-8
+number: "8.3"
+title: "إدارة التغيير"
+titleEn: "Change Management"
+minutes: 20
+order: 3
+objectives:
+  - "أن يشرح المتعلم لماذا تفشل معظم مبادرات التغيير رغم جودة الحل الفني."
+  - "أن يطبق خطوات نموذج كوتر الثمانية في سير المبادرة."
+  - "أن يستخدم سلسلة أديار (ADKAR) لدعم تبني الفرد."
+  - "أن يقيس التبني ويعلقه في الثقافة الناشئة ولا يكتفي بجداول النشر."
+objectivesEn:
+  - "Explain why most change initiatives fail despite sound technical solutions."
+  - "Apply Kotter 8-step model across the initiative."
+  - "Use ADKAR to support individual adoption."
+  - "Measure adoption and embed it in culture, not just rollout schedules."
+hasTool: false
+quizId: quiz-8-3
+sources:
+  - ifma
+---
+
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import Timeline from '../../../components/ui/figures/Timeline.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz83 } from '../../../data/quiz/cfm/quiz-8-3';
+
+<LangSection lang="ar">
+
+التغيير الحقيقي لا يحدث في الكود ولا في التقارير، بل في سلوك الناس اليومي. تجارب المؤسسات تؤكد أن أغلب مبادرات التغيير تموت بين الورق والواقع. إدارة التغيير هي الانضباط الذي يسد هذه الفجوة: فهي تفهم لماذا يقاوم الأفراد، وتقودهم خطوة بخطوة بأدوات مثبتة، وتقيس التبني لا النشر.
+
+## 1. لماذا تفشل التغييرات رغم جودة الحل
+
+الأخطاء المتكررة في مبادرات المنشآت (أنظمة CMMS جديدة، إعادة جدولة أعمال، نقل مكاتب، أتمتة طلبات) ليست تقنية بل بشرية:
+
+- إعلان القرار من القمة دون معنى مقنع: «لأنه إلزام» لا تبيع التغيير.
+- إهمال المتأثرين: يسمعون من زملائهم قبل إدارة التواصل.
+- غياب الدعم أثناء التشغيل: يتدربون مرة ثم يغرقون عند أول صعوبة.
+- عدم وجود أبطال محليين يعيشون القسط الميداني ويمثلونه داخلياً.
+- نسيان القياس والاستمرار: نجاح ظاهري يذوب بعد شهور في عادات قديمة.
+
+الرسالة المحورية: التغيير يمر بخبرة الفرد والأقسام قبل وليمة النظام، وأولوية المدير توزيع الطريق نفسه لا تسليم الحل فقط.
+
+## 2. نموذج كوتر: ثماني خطوات سلمية
+
+يوفر النموذج المعروف لخبير القيادة جون كوتر مساراً من 8 خطوات ترتيبها بالترتيب:
+
+1. **خلق الاستعجال**: إدراك واضح لماذا التغيير الآن — بدون إيمان بذلك لا تتحرك الجماعات.
+2. **فريق التوجيه**: تحالف نفوذ متعدد (قيادة + خط أمامي + خبراء) يقود المبادرة.
+3. **الرؤية والاستراتيجية**: اتجاه بسيط مقنع، لا قائمة غايات.
+4. **التواصل**: الرؤية تُكرر وتصدق وتطبق في رسائل كل القنوات.
+5. **إزالة المعوقات**: منح الصلاحيات لمن ينفذون — حذف سدود قضاء وقواعد.
+6. **الانتصارات السريعة**: إنجازات مرئية قريبة ترفع المصداقية.
+7. **التأكيد والمواصلة**: النجاحات تحفز السلم التالي بلا إعلان نصر مبكر.
+8. **التثبيت في الثقافة**: سلوك جديد يدخل معايير التوظيف والتقييم والتعيين.
+
+الخطوات الأخيرة هي التي تمنع «الارتداد» — التغيير الذي لا يُرسخ في ثقافة المنشأة يعود منها.
+
+<Timeline
+  title="نموذج كوتر: ثماني خطوات سلمية"
+  phases={[
+    { title: 'خلق الاستعجال', detail: 'إدراك واضح لماذا التغيير الآن — بدون إيمان بذلك لا تتحرك الجماعات.', icon: '1' },
+    { title: 'فريق التوجيه', detail: 'تحالف نفوذ متعدد (قيادة + خط أمامي + خبراء) يقود المبادرة.', icon: '2' },
+    { title: 'الرؤية والاستراتيجية', detail: 'اتجاه بسيط مقنع، لا قائمة غايات.', icon: '3' },
+    { title: 'التواصل', detail: 'الرؤية تُكرر وتصدق وتطبق في رسائل كل القنوات.', icon: '4' },
+    { title: 'إزالة المعوقات', detail: 'منح الصلاحيات لمن ينفذون — حذف سدود قضاء وقواعد.', icon: '5' },
+    { title: 'الانتصارات السريعة', detail: 'إنجازات مرئية قريبة ترفع المصداقية.', icon: '6' },
+    { title: 'التأكيد والمواصلة', detail: 'النجاحات تحفز السلم التالي بلا إعلان نصر مبكر.', icon: '7' },
+    { title: 'التثبيت في الثقافة', detail: 'سلوك جديد يدخل معايير التوظيف والتقييم والتعيين.', icon: '8' },
+  ]}
+  caption="الخطوات الأخيرة هي التي تمنع «الارتداد»: التغيير الذي لا يُرسخ في ثقافة المنشأة يعود منها."
+/>
+
+## 3. مستوى الفرد: سلسلة أديار (ADKAR)
+
+على مستوى كل موظف يمضي أديار خمس مراحل متتابعة:
+
+- **وعي (Awareness)**: يفهم لماذا التغيير مطلوب.
+- **رغبة (Desire)**: يختار المشاركة والدعم.
+- **معرفة (Knowledge)**: يعرف كيف يتصرف الجديد.
+- **قدرة (Ability)**: يمارس الكفاءة مع الوقت والدعم.
+- **تعزيز (Reinforcement)**: نجاحه واستمراريته تضمنه تغذية راجعة ومكافأة.
+
+عندما تعلق المبادرة عند فرد، التشخيص يحدد المرحلة العالقة: مشكلة «يعرف ولا يريد» تُعالج بالحوار لا بالتدريب، ومشكلة «يعمل ولا يستمر» تعالج بالتعزيز لا بورشة عمل جديدة.
+
+## 4. قياس التبني وترسيخ الثقافة
+
+القياس لا يتوقف عند «نشري النظام بنجاح». مؤشرات التبني:
+
+- نسبة الأوامر المنفذة داخل النظام الجديد بمرور الزمن (وتتبع التراجع عنها).
+- سرعة الاستجابة لحوادث جديدة المحددة بعد التغيير.
+- استطلاعات دورية للموظفين عن سلوكهم ورضاهم بعد الشهور الأولى.
+- حجم طلبات الدعم الفني في الفترة الحرجة ثم استقراره.
+
+الاستدامة تعني ربط السلوك الجديد بأنظمة المنشأة: مدخلات التقييم الأداة تدرج، ومؤشرات المحطة ترتبط بمكافأة، وقادة الوحدات يذاع نجاحهم كأبطال. بهذا يُرسم التغيير من إشارة على شاشة إلى عادة تُمارس بلا تذكير.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Real change does not happen in code or in reports; it happens in people's daily behavior. Organizational experience confirms that most change initiatives die between paper and reality. Change management is the discipline that closes this gap: it understands why individuals resist, leads them step by step with proven tools, and measures adoption rather than rollout.
+
+## 1. Why changes fail despite a sound solution
+
+The recurring mistakes in facility initiatives (new CMMS systems, rescheduling works, office moves, request automation) are not technical but human:
+
+- Announcing the decision from the top without a compelling meaning: "because it is mandatory" does not sell the change.
+- Neglecting the affected: they hear from their colleagues before the communication team does.
+- Missing support during operation: they train once, then drown at the first difficulty.
+- No local champions who live the field share and represent it internally.
+- Forgetting measurement and continuity: an apparent success melts into old habits after months.
+
+The core message: change passes through the individual and departmental experience before the system's feast, and the manager's priority is distributing the path itself, not just delivering the solution.
+
+## 2. Kotter's model: eight laddered steps
+
+The well-known model of leadership expert John Kotter provides a path of 8 steps in order:
+
+1. **Create urgency**: a clear awareness of why change now — without belief in that, groups do not move.
+2. **Form a guiding coalition**: a multi-influence alliance (leadership + front line + experts) leads the initiative.
+3. **Vision and strategy**: a simple convincing direction, not a list of goals.
+4. **Communicate**: the vision is repeated, believed, and applied in the messages of all channels.
+5. **Remove obstacles**: empowering those who execute — removing approval barriers and rules.
+6. **Quick wins**: visible near-term achievements raise credibility.
+7. **Consolidate and continue**: successes fuel the next rung without an early victory announcement.
+8. **Anchor in culture**: new behavior enters hiring, appraisal, and promotion criteria.
+
+The final steps are what prevent "backsliding" — change that is not anchored in the facility's culture returns from it.
+
+<Timeline
+  title="Kotter's model: eight laddered steps"
+  phases={[
+    { title: 'Create urgency', detail: 'A clear awareness of why change now — without belief in that, groups do not move.', icon: '1' },
+    { title: 'Form a guiding coalition', detail: 'A multi-influence alliance (leadership + front line + experts) leads the initiative.', icon: '2' },
+    { title: 'Vision and strategy', detail: 'A simple convincing direction, not a list of goals.', icon: '3' },
+    { title: 'Communicate', detail: 'The vision is repeated, believed, and applied in the messages of all channels.', icon: '4' },
+    { title: 'Remove obstacles', detail: 'Empowering those who execute — removing approval barriers and rules.', icon: '5' },
+    { title: 'Quick wins', detail: 'Visible near-term achievements raise credibility.', icon: '6' },
+    { title: 'Consolidate and continue', detail: 'Successes fuel the next rung without an early victory announcement.', icon: '7' },
+    { title: 'Anchor in culture', detail: 'New behavior enters hiring, appraisal, and promotion criteria.', icon: '8' },
+  ]}
+  caption="The final steps are what prevent \u201cbacksliding\u201d: change that is not anchored in the facility\u2019s culture returns from it."
+/>
+
+## 3. The individual level: the ADKAR sequence
+
+At the level of each employee, ADKAR goes through five successive stages:
+
+- **Awareness**: understanding why the change is required.
+- **Desire**: choosing to participate and support.
+- **Knowledge**: knowing how to behave under the new way.
+- **Ability**: practicing competence over time and with support.
+- **Reinforcement**: feedback and reward ensure his success and continuity.
+
+When an initiative gets stuck with an individual, diagnosis identifies the stuck stage: a "knows but does not want" problem is treated with dialogue, not training, and a "works but does not continue" problem is treated with reinforcement, not a new workshop.
+
+## 4. Measuring adoption and anchoring culture
+
+Measurement does not stop at "we have rolled out the system successfully". Adoption indicators:
+
+- The share of orders executed inside the new system over time (and tracking regression from it).
+- Response speed to new defined incidents after the change.
+- Periodic employee surveys on their behavior and satisfaction after the first months.
+- The volume of technical support requests in the critical period, then its stabilization.
+
+Sustainability means linking the new behavior to the facility's systems: evaluation inputs are added, station indicators are tied to rewards, and unit leaders are broadcast as champions. In this way, change is drawn from a signal on a screen into a habit practiced without a reminder.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['change', 'kotter', 'adkar']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-8-3" questions={quiz83.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- معظم المبادرات تفشل لخلل بشري لا تقني: قرار بلا معنى، إهمال المتأثرين، غياب الدعم أثناء التشغيل، ونسيان القياس.
+- نموذج كوتر الثماني يبدأ بخلق الاستعجال وفريق التوجيه وينتهي بتثبيت السلوك في الثقافة — والفشل شائع عند قطع الخطوات الأخيرة.
+- على مستوى الفرد تسلسل أديار (وعي، رغبة، معرفة، قدرة، تعزيز) يحدد مرحلة العلاج لكل حالة `المعلق`.
+- قياس التبني (استخدام حقيقي، تراجع، استطلاعات، دعم) وترسيخه في التقييم والمكافأة يحلّ دون عودة العادات القديمة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- Most initiatives fail due to a human, not technical, flaw: a decision without meaning, neglecting the affected, missing support during operation, and forgetting measurement.
+- Kotter's eight steps start with creating urgency and a guiding coalition and end with anchoring behavior in culture — and failure is common when the final steps are skipped.
+- At the individual level, the ADKAR sequence (Awareness, Desire, Knowledge, Ability, Reinforcement) identifies the treatment stage for each "stuck" case.
+- Measuring adoption (real usage, regression, surveys, support) and embedding it in appraisal and reward prevents the return of old habits.
+
+</LangSection>

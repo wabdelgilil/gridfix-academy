@@ -1,0 +1,215 @@
+---
+id: lesson-2-1
+station: station-2
+number: "2.1"
+title: "عقود الإيجار وإدارة الملكية"
+titleEn: "Leases & Property Management"
+minutes: 25
+order: 1
+objectives:
+  - "أن يفرق المتعلم بين أنواع عقود الإيجار (Gross، NN، NNN) وتوزيع التكاليف فيها."
+  - "أن يحسب NPV لمقارنة عروض الإيجار المختلفة بمعيار واحد."
+  - "أن يدير دورة حياة العقد: تفاوض، دوران، انتهاء/تجديد مع قرار Stay vs Move."
+objectivesEn:
+  - "Differentiate lease types (Gross, NN, NNN) and cost allocations."
+  - "Use NPV to compare competing lease offers."
+  - "Manage lease lifecycle: negotiation, operation, and stay-vs-move decisions."
+hasTool: true
+toolName: "حاسبة مقارنة عقود الإيجار (NPV)"
+toolNameEn: "Lease NPV Calculator"
+quizId: quiz-2-1
+sources:
+  - ifma
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LeaseNPVCalculator from '../../../components/islands/tools/cfm/LeaseNPVCalculator.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quiz21 } from '../../../data/quiz/cfm/quiz-2-1';
+
+<LangSection lang="ar">
+
+العقار أكبر بند تكلفة ثابتة في غالب المؤسسات، وفهم العقد الذي يُنظّمها يمنع المفاوض من التخمين ويُحوّله إلى قرار مبني على أرقام.
+
+## 1. أنواع عقود الإيجار الرئيسية
+
+**الإيجار الشامل (Gross Lease)**: الإيجار الأساسي يشمل كل الخدمات (مرافق، صيانة، تأمين). بساطة عالية، لكن التفاصيل في بند «يشمل» هي التي تصنع الفرق.
+
+**الإيجار الصافي الجزئي (Net Lease)**: الإيجار الأساسي + نصيب المستأجر من بنود معينة. أنواعه:
+- **NN**: يضاف لها الضرائب والتأمين.
+- **الإيجار الثلاثي الصافي (Triple Net, NNN)**: يضاف لها الضرائب والتأمين + **صيانة المناطق المشتركة (CAM)**.
+
+**البيع والاستئجار الخلفي (Sale-Leaseback)**: تبيع الجهة أصلها العقاري (تسيّل قيمته) ثم تبقى فيه مستأجرة. يفرّج السيولة لكن يفقد رقابة الامتلاك.
+
+<Infographic
+  title="أنواع عقود الإيجار الرئيسية"
+  caption="من يتحمل الخدمات والتأمين والضرائب وصيانة المناطق المشتركة (CAM) هو ما يصنع فرق التكلفة الفعلية بين العروض"
+  cols={2}
+  items={[
+    { title: 'الإيجار الشامل (Gross Lease)', detail: 'الإيجار الأساسي يشمل كل الخدمات: مرافق وصيانة وتأمين — بساطة عالية', color: 'sky' },
+    { title: 'الإيجار الصافي (Net Lease) — NN', detail: 'الإيجار الأساسي يضاف إليه نصيب المستأجر من الضرائب والتأمين', color: 'amber' },
+    { title: 'الإيجار الثلاثي الصافي (Triple Net, NNN)', detail: 'الضرائب والتأمين إضافةً إلى صيانة المناطق المشتركة (CAM)', color: 'rose' },
+    { title: 'البيع والاستئجار الخلفي (Sale-Leaseback)', detail: 'تسييل قيمة الأصل العقاري والبقاء فيه مستأجراً: سيولة مقابل فقدان رقابة الامتلاك', color: 'ink' },
+  ]}
+/>
+
+<Callout type="tip">
+**قاعدة القراءة:** عند مقارنة العروض، لا تقارن «الإيجار» وحده؛ اقرأ من يتحمل CAM والضرائب والتأمين والتصعيد السنوي — هذه البندان تصنع فرقاً يتراوح بين 20% إلى 40% من التكلفة الفعلية.
+</Callout>
+
+## 2. مقارنة العروض: لغة القيمة الحالية الصافية (NPV)
+
+التصعيد والمدة يخلّفان مقارنة بـ «الإيجار الشهري» خداعاً. الحل: خصم كل التدفقات المستقبلية إلى القيمة الحالية (NPV) بمعدل خصم يعكس تكلفة رأس المال، ثم اختيار العرض الأدنى:
+
+```
+NPV = مجموع ( التدفق السنوي ÷ (1 + معدل الخصم)^السنة )
+```
+
+## 3. نقاط التفاوض بعد الإيجار
+
+- **فترة حرية إيجار (Free Rent / Abatement)** في بداية العقد.
+- **خيارات تجديد مخطط (Renewal Option)** بسعر محدد مسبقاً.
+- **سقف تصعيد CAM (Cap)** لتحديد نسبة الزيادة السنوية المسموحة.
+- **مراجعة الحجم** بشروط محددة سلفاً (Expand/Renew).
+
+<Callout type="myth">
+**أسطورة:** "السعر الأدنى هو الفائز دائماً."
+**الحقيقة:** "السعر الأدنى" قد يُلِد بند تصعيد 8% أو خدمة غير مغطاة. مقارنة شاملة بالـ NPV لا تكملها إجابة واحدة.
+</Callout>
+
+## 4. قرار التجديد: Stay vs Move
+
+عند انتهاء العقد تتراوح الأرقام بين التمديد بشروطه مقابل الانتقال إلى مبنى أنسب (أصغر حجماً مثلاً مع تكلفة نقل وتأثيث واضطراب). مدخلات القرار: تكلفة التجديد مقارنة بأسعار السوق، المساحة الأنسب الفعلية، وتكلفة الانتقال نفسها.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Real estate is the largest fixed-cost line item in most organizations, and understanding the contract that governs it keeps the negotiator from guessing and turns them into a decision maker built on numbers.
+
+## 1. The main lease types
+
+**Gross Lease**: the base rent includes all services (utilities, maintenance, insurance). High simplicity, but the details in the "includes" clause are what make the difference.
+
+**Net Lease**: the base rent plus the tenant's share of specified items. Its types:
+- **NN**: taxes and insurance are added.
+- **Triple Net (NNN)**: taxes and insurance are added + **common area maintenance (CAM)**.
+
+**Sale-Leaseback**: an entity sells its real-estate asset (monetizing its value) and then stays in it as a tenant. It frees up liquidity but loses ownership control.
+
+<Infographic
+  title="The main lease types"
+  caption="Who bears services, insurance, taxes, and common area maintenance (CAM) is what creates the actual cost difference between offers"
+  cols={2}
+  items={[
+    { title: 'Gross Lease', detail: 'The base rent includes all services: utilities, maintenance, and insurance — high simplicity', color: 'sky' },
+    { title: 'Net Lease — NN', detail: 'The base rent plus the tenant\u2019s share of taxes and insurance', color: 'amber' },
+    { title: 'Triple Net (NNN)', detail: 'Taxes and insurance in addition to common area maintenance (CAM)', color: 'rose' },
+    { title: 'Sale-Leaseback', detail: 'Monetizing the property asset and staying as a tenant: liquidity in exchange for losing ownership control', color: 'ink' },
+  ]}
+/>
+
+<Callout type="tip">
+**Reading rule:** when comparing offers, do not compare "rent" alone; read who bears CAM, taxes, insurance, and annual escalation — these items create a difference ranging between 20% and 40% of the actual cost.
+</Callout>
+
+## 2. Comparing offers: the net present value (NPV) language
+
+Escalation and term make a "monthly rent" comparison deceptive. The solution: discount all future cash flows to present value (NPV) at a discount rate that reflects the cost of capital, then choose the lowest offer:
+
+```
+NPV = sum ( annual flow ÷ (1 + discount rate)^year )
+```
+
+## 3. Negotiation points after the lease
+
+- **Free rent / abatement** at the start of the lease.
+- **Planned renewal options** at a pre-set price.
+- **A CAM escalation cap** to set the allowed annual increase ratio.
+- **Space reviews** under pre-defined terms (expand/renew).
+
+<Callout type="myth">
+**Myth:** "The lowest price always wins."
+**Fact:** the "lowest price" may hide an 8% escalation clause or an uncovered service. A comprehensive NPV comparison is not completed by one answer.
+</Callout>
+
+## 4. The renewal decision: Stay vs Move
+
+At the end of the lease, the numbers weigh renewal on its terms versus moving to a more suitable building (smaller, for example, with a move, furnishing, and disruption cost). Decision inputs: the renewal cost compared with market rates, the actual most suitable space, and the cost of the move itself.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: حاسبة مقارنة عقود الإيجار
+
+أدخل شروط عقدين (إيجار/م²، مساحة، مدة، تصعيد) ومعدل خصم، واحسب NPV كاملاً بنفسك وقارنهما.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: Lease NPV Calculator
+
+Enter the terms of two leases (rent/m², area, term, escalation) and a discount rate, compute the full NPV yourself, and compare them.
+
+</LangSection>
+
+<LeaseNPVCalculator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['lease', 'triplenet', 'npv']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة على أنواع العقود ومنطق NPV وقرار التجديد.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Questions on lease types, NPV logic, and the renewal decision.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-2-1" questions={quiz21.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **الإيجار «الصافي» لا يعني الأقل تكلفة** — اقرأ من يتحمل ماذا (CAM، الضرائب، التأمين).
+- **NPV** معيار المقارنة العادل لأي عقدين على أفق مشترك.
+- **التفاوض** لا ينتهي عند التوقيع: إعفاء، خيارات تجديد، وسقف تصعيد.
+- **قرار Stay vs Move** قائم على تحليل مالي شامل لا على الانطباع أو التكلفة الظاهرية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **A "net" lease does not mean the lowest cost** — read who bears what (CAM, taxes, insurance).
+- **NPV** is the fair comparison standard for any two leases over a common horizon.
+- **Negotiation** does not end at signing: abatement, renewal options, and an escalation cap.
+- **The stay-vs-move decision** rests on a comprehensive financial analysis, not on impressions or apparent cost.
+
+</LangSection>

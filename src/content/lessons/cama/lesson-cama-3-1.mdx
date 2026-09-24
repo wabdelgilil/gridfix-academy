@@ -1,0 +1,263 @@
+---
+id: lesson-cama-3-1
+course: cama
+station: station-cama-3
+number: "3.1"
+title: "استراتيجية معلومات الأصول"
+titleEn: "Asset Information Strategy"
+minutes: 25
+order: 1
+objectives:
+  - "أن يشرح المتعلم مبادئ استراتيجية معلومات الأصول ودورها في دعم قرارات إدارة الأصول."
+  - "أن يصمم بنية معلومات (Asset Information Architecture) مبسطة لفئة أصول محددة."
+  - "أن يُحدد متطلبات المعلومات اللازمة لكل نوع من قرارات الصيانة."
+  - "أن يربط بين سجل الأصول ومعايير التصنيف الدولية (ISO 14224, GFMAM)."
+objectivesEn:
+  - "Explain the principles of asset information strategy and its role in AM decision-making."
+  - "Design a basic Asset Information Architecture for a specific asset category."
+  - "Identify information requirements for different maintenance decision types."
+  - "Link asset registers to international classification standards (ISO 14224, GFMAM)."
+hasTool: true
+toolName: "باني بنية المعلومات"
+toolNameEn: "InfoArchBuilder"
+status: live
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import InfoArchBuilder from '../../../components/islands/tools/cama/InfoArchBuilder.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama31 } from '../../../data/quiz/cama/quiz-cama-3-1';
+
+<LangSection lang="ar">
+
+المعلومات ليست سجلاً passively يُملأ، بل ركيزة استراتيجية تحدد قدرتك على اتخاذ قرارات صيانة مبنية على الأدلة. هذا الدرس يعلمك كيف تصمم **استراتيجية معلومات الأصول (Asset Information Strategy)** التي تربط بين احتياجات القرار وبنية البيانات (Asset Information Architecture) التي تنظّم كيف تُجمع وتُخزَّن وتُستخدم بيانات الأصول عبر دورة حياة المنظومة كاملة.
+
+## 1. لماذا تحتاج استراتيجية معلومات الأصول؟
+
+معيار **ISO 55001** يشترط وجود استراتيجية واضحة للمعلومات كجزء من نظام إدارة الأصول. السبب بسيط: قرارات الصيانة الاستباقية والتخطيط الاستراتيجي تحتاج بيانات موثوقة في الوقت المناسب — لا مزيداً من البيانات ولا أقلها.
+
+المشكلة الشائعة هي تشتت المعلومات عبر أنظمة متعددة: سجلات إكسيل، وبرامج CMMS، وملفات PDF، وبيانات في أنظمة SCADA. كل نظام يرى جزئية من الواقع، ولا أحد يرى الصورة الكاملة. النتيجة: قرارات مبنية على ناقص، وتكاليف تضخم البيانات المكررة.
+
+<Callout type="tip">
+**القاعدة:** استراتيجية المعلومات هي خريطة طريق تحدد: ماذا تحتاج من البيانات؟ لماذا تحتاجها؟ من يجمعها؟ كيف تتدفق؟ ومن يصلاححها؟ الإجابة على هذه الأسئلة قبل شراء أي نظام توفر عليك سنوات من الفوضى المعلوماتية.
+</Callout>
+
+## 2. بنية المعلومات (Asset Information Architecture)
+
+بنية المعلومات هي الهيكل المنطقي الذي ينظم الأصول وبياناتها وعلاقاتها. تتكون من أربعة طبقات:
+
+### 2.1 سجل الأصول (Asset Register)
+
+سجل الأصول هو اللبنة الأساسية: قائمة شاملة بجميع الأصول المملوكة أو المستخدمة، ولكل أصل معرّف فريد (Asset ID) وصف دقيق وموقع وفئة وتصنيف. يشمل على الأقل:
+
+- **المعرّف الفريد (Asset ID):** رقم أو كود يميّز الأصل عن كل ما حوله.
+- **الاسم والوصف:** وصف واضح يفهمه الجميع دون لبس.
+- **الفئة والتصنيف:** كود تصنيف يربط الأصل بنوع الصيانة المطلوبة.
+- **الموقع:** الموقع الفيزيائي والمنطقي للأصل في المنشأة.
+- **القيمة الدفترية والاستبدالية:** البيانات المالية اللازمة لقرارات التأمين والاستبدال.
+- **الحالة التشغيلية:** يعمل / متوقف / مخزون / خارج الخدمة.
+
+### 2.2 هيكل تصنيف الأصول (Asset Taxonomy)
+
+التصنيف يحول الفوضى إلى نظام. بدون تصنيف موحد لا يمكنك استخراج تقارير مفيدة أو مقارنة أداء أصول متشابهة. المعايير المعتمدة:
+
+- **ISO 14224:** تصنيف أنواع الأعطال وآلياتها للنفط والغاز.
+- **GFMAM AM Landscape v3:** إطار عمل شامل لإدارة الأصول يحدد 39 موضوعاً أساسياً.
+- **eCl@ss:** معيار دولي لتصنيف المنتجات والخدمات.
+
+### 2.3 متطلبات المعلومات (Information Requirements)
+
+لكل قرار صيانة متطلبات بيانات مختلفة:
+
+- **قرار الصيانة الوقائية:** يحتاج تاريخ آخر صيانة، ونوع الإجراء، والوقت المستغرق.
+- **قرار الاستبدال:** يحتاج تكلفة دورة الحياة (LCC)، وعمر الأصل، وتكلفة الإيقاف.
+- **قرار الاستثمار:** يحتاج أداء الأصل عبر الزمن، ومقارنته بأصول مشابهة.
+- **قرار السلامة:** يحتاج سجلات الفحوصات، والمخاطر المرتبطة، والتوثيق القانوني.
+
+<Callout type="example">
+**سيناريو عملي:** مصنع أدوية يحتاج لإعداد تقرير للجهة الرقابية عن حالة المعدات الحرجة. بدون سجل أصول موحد بتصنيف واضح، يقضي الفريق أسابيع في جمع البيانات من مصادر متعددة، وغالباً ما تكون غير مكتملة أو متناقضة. لو كان هناك سجل أصول مبني وفق ISO 14224 مع ربط مباشر ببيانات الصيانة، كان التقرير جاهزاً في ساعات.
+</Callout>
+
+## 3. تدفق المعلومات وتدويرها
+
+المعلومات في نظام إدارة الأصول لا تسير في اتجاه واحد. بل تدور في دورة مستمرة:
+
+1. **جمع البيانات:** من المجسات (SCADA/IoT)، وسجلات الصيانة، وأوامر الشغل، وفحوصات الفنية.
+2. **معالجة وتخزين:** تنظيف البيانات، وتوحيد الصيغ، وتخزينها في قاعدة بيانات مركزية.
+3. **تحليل وتصحيح:** مراجعة دورية لاكتشاف الأخطاء والتناقضات وملء الفراغات.
+4. **عرض واتخاذ القرار:** تقارير ولوحات معلومات (Dashboards) تدعم القرار.
+5. **تحديث وتحسين:** إثراء السجلات بالبيانات الجديدة وتصحيح الأخطاء المكتشفة.
+
+الحلقة الأضعف في هذا الحلقة عادةً هي خطوة التحليل والتصحيح، لأن معظم المنظمات تجمع البيانات بكفاءة لكنها لا تراجعها بانتظام.
+
+## 4. جودة البيانات: الثقة في الأرقام
+
+جودة البيانات مفهوم متعدد الأبعاد يُفصل في الدرس التالي (3.2)، لكن المبدأ التوجيهي هنا: **لا تتخذ قراراً لا تثق في بياناته**. إذا كان سجل الأصول يحتوي 30% من الأصول بلا تصنيف أو تاريخ صيانة، فالقرارات المبنية عليه مخاطرة لا قرار.
+
+</LangSection>
+
+<LangSection lang="en">
+
+Information is not a record to be filled passively; it is a strategic pillar that determines your ability to make evidence-based maintenance decisions. This lesson teaches you how to design an **Asset Information Strategy** that links decision needs to the information architecture (Asset Information Architecture) that organizes how asset data is collected, stored, and used across the entire life cycle of the portfolio.
+
+## 1. Why do you need an asset information strategy?
+
+**ISO 55001** requires a clear information strategy as part of the asset management system. The reason is simple: proactive maintenance decisions and strategic planning need reliable data at the right time — no more data and no less.
+
+The common problem is information scattered across multiple systems: Excel sheets, CMMS programs, PDF files, and data in SCADA systems. Each system sees a slice of reality, and no one sees the full picture. The result: decisions built on incomplete data, and costs inflated by duplicated records.
+
+<Callout type="tip">
+**Rule:** the information strategy is a roadmap that defines: what data do you need? Why do you need it? Who collects it? How does it flow? And who corrects it? Answering these questions before buying any system saves you years of information chaos.
+</Callout>
+
+## 2. The Asset Information Architecture
+
+The information architecture is the logical structure that organizes assets, their data, and their relationships. It consists of four layers:
+
+### 2.1 The Asset Register
+
+The asset register is the foundational building block: a comprehensive list of all assets owned or used, where each asset has a unique identifier (Asset ID), an accurate description, a location, a category, and a classification. It includes at least:
+
+- **Unique identifier (Asset ID):** a number or code that distinguishes the asset from everything around it.
+- **Name and description:** a clear description that everyone understands without ambiguity.
+- **Category and classification:** a classification code linking the asset to the required maintenance type.
+- **Location:** the physical and logical location of the asset within the facility.
+- **Book and replacement value:** the financial data needed for insurance and replacement decisions.
+- **Operational condition:** operating / stopped / in stock / out of service.
+
+### 2.2 The Asset Taxonomy
+
+Classification turns chaos into order. Without a unified classification you cannot extract useful reports or compare the performance of similar assets. The adopted standards:
+
+- **ISO 14224:** classification of failure types and mechanisms for oil and gas.
+- **GFMAM AM Landscape v3:** a comprehensive asset management framework defining 39 essential subjects.
+- **eCl@ss:** an international standard for the classification of products and services.
+
+### 2.3 Information Requirements
+
+Each maintenance decision has different data requirements:
+
+- **Preventive maintenance decision:** needs the last maintenance date, the procedure type, and the time taken.
+- **Replacement decision:** needs the life cycle cost (LCC), the asset age, and the cost of downtime.
+- **Investment decision:** needs asset performance over time and comparison with similar assets.
+- **Safety decision:** needs inspection records, associated risks, and legal documentation.
+
+<Callout type="example">
+**Practical scenario:** a pharmaceutical plant needs to prepare a report for the regulatory authority on the condition of critical equipment. Without a unified asset register with a clear classification, the team spends weeks collecting data from multiple sources, often incomplete or contradictory. Had there been an asset register built to ISO 14224 with a direct link to maintenance data, the report would have been ready in hours.
+</Callout>
+
+## 3. Information flow and its cycle
+
+Information in an asset management system does not move in one direction. It circulates in a continuous cycle:
+
+1. **Data collection:** from sensors (SCADA/IoT), maintenance records, work orders, and technical inspections.
+2. **Processing and storage:** cleaning the data, standardizing formats, and storing it in a central database.
+3. **Analysis and correction:** periodic review to detect errors and inconsistencies and fill the gaps.
+4. **Presentation and decision-making:** reports and dashboards that support the decision.
+5. **Update and improvement:** enriching the records with new data and correcting the detected errors.
+
+The weakest link in this cycle is usually the analysis and correction step, because most organizations collect data efficiently but rarely review it regularly.
+
+## 4. Data quality: trust in the numbers
+
+Data quality is a multi-dimensional concept detailed in the next lesson (3.2), but the guiding principle here is: **never make a decision whose data you do not trust.** If the asset register contains 30% of assets without a classification or maintenance history, then the decisions built on it are a risk, not a decision.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: باني بنية المعلومات
+
+حدد فئة الأصول التي تعمل عليها، واختر معايير التصنيف، وشاهد كيف تتكون بنية المعلومات المطلوبة لاتخاذ قرارات الصيانة المختلفة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: InfoArchBuilder
+
+Identify the asset category you work on, choose the classification standards, and see how the information architecture needed for the various maintenance decisions takes shape.
+
+</LangSection>
+
+<InfoArchBuilder client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-3-1-t1', 'cama-3-1-t2', 'cama-3-1-t3', 'cama-3-1-t4', 'cama-3-1-t5']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على بنية معلومات الأصول، وتوحيد المعرفات والتصنيف، وتدفق البيانات ومصدرها الموثوق، وأبعاد جودة البيانات.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the asset information architecture, standardizing identifiers and classification, data flow and its trusted source, and the dimensions of data quality.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-3-1" questions={quizCama31.questions} client:load />
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **استراتيجية المعلومات** خريطة طريق تحدد ماذا تحتاج من البيانات ولماذا ومن يجمعها وكيف تتدفق — قبل شراء أي نظام.
+- **سجل الأصول** اللبنة الأساسية: معرّف فريد ووصف وفئة وموقع وقيمة وحالة لكل أصل.
+- **التصنيف الموحد** (ISO 14224, GFMAM) يحول الفوضى إلى نظام قابل للمقارنة والتقارير.
+- **متطلبات المعلومات** تختلف حسب القرار: صيانة أو استبدال أو استثمار أو سلامة — لا حجم واحد يناسب الجميع.
+- **الدورة المستمرة** من جمع إلى معالجة إلى تحليل إلى قرار إلى تحديث — والحلقة الأضعف عادةً التحليل والتصحيح.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The information strategy** is a roadmap defining what data you need and why, who collects it, and how it flows — before buying any system.
+- **The asset register** is the foundational building block: a unique ID, description, category, location, value, and condition for every asset.
+- **Unified classification** (ISO 14224, GFMAM) turns chaos into a system that can be compared and reported.
+- **Information requirements** vary by decision: maintenance, replacement, investment, or safety — one size does not fit all.
+- **The continuous cycle** runs from collection to processing to analysis to decision to update — and the weakest link is usually analysis and correction.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## مصادر
+
+- ISO 55001:2014 — إدارة الأصول: متطلبات نظام الإدارة.
+- ISO 14224:2016 — تصنيف بيانات المعدات والموثوقية.
+- GFMAM AM Landscape v3 — إطار عمل إدارة الأصول الشامل.
+- IFMA — ممارسات إدارة المنشآت أفضل الممارسات.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Sources
+
+- ISO 55001:2014 — Asset Management: Management System Requirements.
+- ISO 14224:2016 — Petroleum, petrochemical and natural gas industries: collection and quality of reliability and maintenance data for equipment.
+- GFMAM AM Landscape v3 — The Comprehensive Asset Management Framework.
+- IFMA — Facility Management Best Practices.
+
+</LangSection>

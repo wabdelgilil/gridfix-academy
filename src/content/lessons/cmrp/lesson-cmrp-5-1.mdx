@@ -1,0 +1,186 @@
+---
+id: lesson-cmrp-5-1
+course: cmrp
+station: station-cmrp-5
+number: "5.1"
+title: "الهيكل التنظيمي ومصفوفة RACI"
+titleEn: "Organizational Structure & RACI Matrix"
+minutes: 30
+order: 1
+objectives:
+  - "أن يشرح المتعلم أدوار مصفوفة المسؤوليات (RACI) الأربعة ويطبق قاعدة المساءل الواحد."
+  - "أن يقارن بين الهيكل المركزي واللامركزي والهجين ويحدد الأنسب لمنشأته."
+  - "أن يشرح مفهوم ملكية الأصل المشتركة وعلاقتها بشراكة الصيانة والتشغيل."
+  - "أن يطبق معدل الإشراف الميداني الصحي (6 إلى 8 فنيين للمشرف الواحد)."
+objectivesEn:
+  - "Explain the four RACI roles and apply the single-accountable rule."
+  - "Compare centralized, decentralized, and hybrid maintenance structures."
+  - "Explain shared asset ownership and the Maintenance-Operations partnership."
+  - "Apply the healthy span of control (6 to 8 technicians per supervisor)."
+hasTool: true
+toolName: "أداة مصفوفة RACI"
+toolNameEn: "RACI Matrix Tool"
+quizId: quiz-cmrp-5-1
+sources:
+  - liker_toyota
+  - pmi_raci
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import RACIMatrix from '../../../components/islands/tools/cmrp/RACIMatrix.tsx';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp51 } from '../../../data/quiz/cmrp/quiz-cmrp-5-1';
+
+<LangSection lang="ar">
+
+المنشأة قد تشتري أحدث البرمجيات وأدق المجسات، لكن إذا سادت النزاعات بين الإدارات وغابت وضوح الأدوار وضعفت القيادة فستنهار برامج الموثوقية. هذا الدرس يبني الحوكمة: من يقرر، ومن ينفذ، ومن يُستشار، ومن يُبلَّغ.
+
+## 1. مصفوفة المسؤوليات (RACI)
+
+أقوى أداة لحسم تداخل الاختصاصات في المصانع هي مصفوفة المسؤوليات (RACI Matrix)، وتتكون من أربعة أدوار:
+
+- **المنفذ (Responsible)** : من يقوم بالعمل الميداني الفعلي بيده، ويجوز تعدد أصحاب هذا الدور في المهمة الواحدة.
+- **المساءل وصاحب القرار (Accountable)** : شخص واحد فقط يملك سلطة القبول أو الرفض النهائي ويتحمل المساءلة الإدارية.
+- **المستشار (Consulted)** : الخبير الفني الذي يؤخذ رأيه باتجاهين قبل اتخاذ القرار أو التنفيذ.
+- **المبلَّغ (Informed)** : من يُشعَر بالنتيجة باتجاه واحد بعد اكتمال المهمة.
+
+<Callout type="warn">
+**قاعدة المساءل الواحد (Single Accountable Rule):** لكل مهمة مساءل واحد فقط لا غير. عندما يكون الجميع مسؤولين فلا أحد مسؤول فعلياً. وجود حرفي (A) أو أكثر في سطر واحد خطأ فادح في الحوكمة.
+</Callout>
+
+أمثلة تطبيقية من منظومة الصيانة: اعتماد الجدول الأسبوعي مساءلُه الوحيد هو مدير الإنتاج بصفته مالك الأصل؛ وإعداد حزمة العمل (Job Package) منفذُها المخطط بينما مشرف الميدان مستشار (C) لخبرته بطاقات الفنيين وواقع الورشة؛ والتنفيذ الميداني منفذه الفني الحرفي ومساءله مشرف الصيانة.
+
+## 2. الهياكل التنظيمية: المركزية واللامركزية والهجينة
+
+- **الصيانة المركزية (Centralized Maintenance)** : كل الفنيين والورش تحت سلطة واحدة. الميزة توحيد المهارات والاستخدام الأمثل للعدد والأدوات، والعيب بطء الاستجابة للمواقع البعيدة.
+- **الصيانة اللامركزية (Decentralized Maintenance)** : فرق مناطق (Area Teams) متمركزة قرب خطوط الإنتاج. الميزة سرعة الاستجابة ومعرفة المعدة عن قرب، والعيب تكرار الأدوات وصعوبة توحيد المعايير.
+- **النموذج الهجين (Hybrid Structure)** : أفضل الممارسات؛ فرق مناطق سريعة للاستجابة اليومية مع تخطيط مركزي وهندسة موثوقية وورش تخصصية للعمرات الكبرى.
+
+## 3. شراكة الصيانة والتشغيل وملكية الأصل
+
+التحول المطلوب هو الانتقال من ثقافة «أنا أشغّل وأنت تصلح» إلى **ملكية الأصل المشتركة (Shared Asset Ownership)** حيث يتشارك التشغيل والصيانة صحة الأصل والطاقة والسلامة. تدعم ذلك **الفرق متعددة التخصصات (Cross-Functional Teams)** التي تجمع الفنيين والمشغلين ومهندسي الموثوقية ومسؤولي السلامة في دراسات تحليل الأنماط (FMEA) وتحليل الأسباب الجذرية (RCA).
+
+## 4. معدل الإشراف الميداني (Span of Control)
+
+المعدل الصحي في الصيانة الصناعية هو من 6 إلى 8 فنيين للمشرف الميداني الواحد، وبحد أقصى 10. تجاوز ذلك — كإشراف شخص واحد على 30 فنياً موزعين — يحول الإشراف إلى توقيع أوراق شكلية ويهبط بمعدل زمن المفتاح (Wrench Time) والسلامة معاً، لأن طبيعة العمل الحرجة تتطلب حضوراً ميدانياً وتحققاً من العزل ومراجعة جودة التركيب.
+
+<Callout type="tip">
+**تطبيق عملي:** قبل أي إعادة هيكلة، ارسم مصفوفة RACI لخمسة قرارات حرجة (اعتماد الجدول، كسر الجدول للطوارئ، إعداد حزمة العمل، التنفيذ الميداني، قيادة تحليل الأسباب الجذرية) وتحقق أن كل سطر يحمل (A) واحدة و(R) واحدة على الأقل.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+A facility may buy the most advanced software and the most precise sensors, but if departmental conflicts prevail, roles are unclear, and leadership is weak, reliability programs will collapse. This lesson builds governance: who decides, who executes, who is consulted, and who is informed.
+
+## 1. The RACI matrix
+
+The most powerful tool for settling overlapping authority in plants is the RACI matrix, built on four roles:
+
+- **Responsible**: the person who performs the actual field work with their own hands; several people may hold this role on a single task.
+- **Accountable**: only one person holds final approval or rejection authority and bears the managerial accountability.
+- **Consulted**: the technical expert whose opinion is sought two-way before a decision or execution.
+- **Informed**: the person notified one-way of the outcome after the task is completed.
+
+<Callout type="warn">
+**The Single Accountable rule:** each task has exactly one Accountable and only one. When everyone is accountable, no one actually is. Having two (A)s or more on a single row is a fatal governance error.
+</Callout>
+
+Worked examples from the maintenance system: the sole Accountable for approving the weekly schedule is the production manager as asset owner; preparing the job package is executed by the planner while the field supervisor is Consulted (C) for their knowledge of technician skill cards and workshop reality; field execution is performed by the craft technician with the maintenance supervisor as Accountable.
+
+## 2. Organizational structures: centralized, decentralized, and hybrid
+
+- **Centralized maintenance**: all technicians and workshops under a single authority. Advantage: unified skills and optimal use of headcount and tools; disadvantage: slow response to remote sites.
+- **Decentralized maintenance**: area teams stationed close to the production lines. Advantage: fast response and close familiarity with the equipment; disadvantage: duplicated tools and difficulty standardizing practices.
+- **Hybrid structure**: best practice; fast area teams for daily response combined with centralized planning, reliability engineering, and specialized workshops for major overhauls.
+
+## 3. The maintenance-operations partnership and asset ownership
+
+The required shift is from an "I operate, you fix" culture to **shared asset ownership**, where operations and maintenance share the asset's health, energy, and safety. This is supported by **cross-functional teams** that bring technicians, operators, reliability engineers, and safety officers together in Failure Mode and Effects Analysis (FMEA) and Root Cause Analysis (RCA) studies.
+
+## 4. Span of control
+
+The healthy ratio in industrial maintenance is 6 to 8 technicians per field supervisor, with an absolute maximum of 10. Exceeding that — such as one person supervising 30 technicians spread across sites — turns supervision into paper-signing and drops both wrench time and safety, because critical work demands field presence, isolation verification, and installation quality review.
+
+<Callout type="tip">
+**Practical application:** before any restructuring, draw an RACI matrix for five critical decisions (schedule approval, schedule break for emergencies, job package preparation, field execution, and leading root cause analysis) and verify that each row carries one (A) and at least one (R).
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: أداة مصفوفة RACI
+
+بدّل الأدوار بين المناصب لمهام الصيانة الرئيسية وشاهد فحص الحوكمة التلقائي لقاعدة المساءل الواحد.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: RACI Matrix Tool
+
+Swap the roles across positions for the main maintenance tasks and watch the automatic governance check of the Single Accountable rule.
+
+</LangSection>
+
+<RACIMatrix client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-5-1-t1', 'cmrp-5-1-t2', 'cmrp-5-1-t3', 'cmrp-5-1-t4', 'cmrp-5-1-t5', 'cmrp-5-1-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على قاعدة المساءل الواحد وشراكة التشغيل والصيانة ومعدل الإشراف والهيكل الهجين.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the Single Accountable rule, the operations-and-maintenance partnership, span of control, and the hybrid structure.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-5-1" questions={quizCmrp51.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **مصفوفة RACI** تحسم الأدوار: منفذ (R) ومساءل واحد (A) ومستشار (C) ومبلَّغ (I).
+- **قاعدة المساءل الواحد** صارمة: حرف (A) واحد لكل مهمة، وتعددها ضياع للمسؤولية.
+- **النموذج الهجين** يجمع سرعة فرق المناطق وكفاءة التخطيط والهندسة المركزيين.
+- **ملكية الأصل المشتركة** والفرق متعددة التخصصات أساس شراكة التشغيل والصيانة.
+- **معدل الإشراف الصحي** من 6 إلى 8 فنيين للمشرف الواحد وبحد أقصى 10.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **The RACI matrix** settles the roles: Responsible (R), a single Accountable (A), Consulted (C), and Informed (I).
+- **The Single Accountable rule** is strict: one (A) per task, and more than one is lost accountability.
+- **The hybrid model** combines the speed of area teams with the efficiency of centralized planning and engineering.
+- **Shared asset ownership** and cross-functional teams are the foundation of the operations-and-maintenance partnership.
+- **A healthy span of control** is 6 to 8 technicians per supervisor, up to a maximum of 10.
+
+</LangSection>

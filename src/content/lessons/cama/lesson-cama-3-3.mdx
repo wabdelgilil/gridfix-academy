@@ -1,0 +1,364 @@
+---
+id: lesson-cama-3-3
+course: cama
+station: station-cama-3
+number: "3.3"
+title: "نظم المعلومات المتكاملة CAFM/CMMS"
+titleEn: "Integrated Information Systems CAFM/CMMS"
+minutes: 30
+order: 3
+objectives:
+  - "أن يُميّز المتعلم بين CMMS و CAFM و EAM من حيث الفلسفة والنطاق والاستخدام."
+  - "أن يشرح متطلبات التكامل بين الأنظمة: التوحيد المرجعي، واجهات البيانات، التدفق المعلوماتي."
+  - "أن يُقيّم معايير اختيار نظام المعلومات المناسب حسب حجم المنظومة واحتياجاتها."
+  - "أن يشرح مراحل التحول الرقمي في إدارة الأصول من التفاعلي إلى الاستباقي."
+objectivesEn:
+  - "Distinguish between CMMS, CAFM, and EAM in philosophy, scope, and usage."
+  - "Explain integration requirements: master data alignment, data interfaces, and information flow."
+  - "Evaluate information system selection criteria based on organization size and needs."
+  - "Describe the stages of digital transformation in AM from reactive to prescriptive."
+hasTool: true
+toolName: "مقيّم نظم المعلومات"
+toolNameEn: "SystemEvaluator"
+status: live
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import SystemEvaluator from '../../../components/islands/tools/cama/SystemEvaluator.tsx';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import Comparison from '../../../components/ui/figures/Comparison.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCama33 } from '../../../data/quiz/cama/quiz-cama-3-3';
+
+<LangSection lang="ar">
+
+البرنامج لا يحل مشاكل إدارة الأصول، لكنه يمكّن حلها. هذا الدرس يُميّز بين CMMS و CAFM و EAM ويشرح كيف تُدمج هذه الأنظمة في منظومة معلوماتية واحدة تدعم قرارات الصيانة عبر دورة حياة الأصل.
+
+## 1. CMMS مقابل CAFM مقابل EAM: الفروقات الجوهرية
+
+ثلاثة مصطلحات تُستخدم بشكل متبادل في الميدان، لكنها تمثل فلسفيات مختلفة:
+
+### 1.1 نظام صيانة الأعمال المحوسب (CMMS - Computerized Maintenance Management System)
+
+الـ CMMS هو النظام الأساسي لإدارة الصيانة اليومية: أوامر الشغل، والجدول الزمني للصيانة الوقائية، وسجلات الأعطال، وقطع الغيار. يُركّز على **التنفيذ التشغيلي** — ماذا يُصان ومتى ومن يُنفّذ.
+
+**الميزات الأساسية:**
+- إنشاء وإدارة أوامر الشغل (Work Orders).
+- الجدولة الزمنية للصيانة الوقائية (Preventive Scheduling).
+- تتبع المخزون وقطع الغيار.
+- التقارير التشغيلية الأساسية.
+
+### 1.2 نظام إدارة المنشآت المحوسب (CAFM - Computer-Aided Facility Management)
+
+الـ CAFM أوسع من CMMS: يشمل إدارة المنشآت المادية والمساحات والمرافق. يربط بين الصيانة وإدارة المباني والمكاتب والمساحات.
+
+**الإضافة على CMMS:**
+- إدارة المساحات والمخططات المعمارية (Space Management).
+- إدارة المرافق والخدمات المساندة (FM Services).
+- ربط الصيانة بالمخططات الهندسية (CAD Integration).
+- إدارة المخاطر البيئية والسلامة.
+
+### 1.3 نظام إدارة الأصول المتكامل (EAM - Enterprise Asset Management)
+
+الـ EAM هو الأشمل: يربط إدارة الأصول بالأنظمة المؤسسية الأخرى (المالية، المشتريات، الموارد البشرية). يُنظر إلى الأصل من منظور **دورة الحياة الكاملة** وتأثيره على القيمة المؤسسية.
+
+**الإضافة على CAFM:**
+- ربط بالأنظمة المالية (ERP Integration).
+- إدارة الأصول المالية (الإهلاك، القيمة الدفترية).
+- التحليل المالي المتقدم (LCC, ROI).
+- إدارة العقود والموردين.
+
+<Comparison
+  title="CMMS مقابل CAFM مقابل EAM"
+  sides={[
+    { label: 'CMMS — إدارة الصيانة', items: ['نظام أساسي لإدارة الصيانة اليومية', 'التنفيذ التشغيلي: ماذا يُصان ومتى ومن يُنفّذ', 'أوامر الشغل، الجدولة الوقائية، المخزون، التقارير'], color: 'brand' },
+    { label: 'CAFM — إدارة المنشآت', items: ['أوسع من CMMS: يشمل المنشآت والمساحات والمرافق', 'يربط الصيانة بإدارة المباني والمكاتب والمساحات', 'إدارة المساحات، ربط الصيانة بمخططات CAD، خدمات FM'], color: 'teal' },
+    { label: 'EAM — الأصول المؤسسية', items: ['الأشمل: يربط الأصول بالأنظمة المؤسسية (مالية، مشتريات، موارد بشرية)', 'منظور دورة الحياة الكاملة وتأثير الأصل على القيمة المؤسسية', 'تكامل ERP، الإهلاك والقيمة الدفترية، LCC/ROI، العقود والموردون'], color: 'amber' },
+  ]}
+  caption="CMMS يُنفّذ الصيانة، وCAFM يُدير المنشآت، وEAM يربط الأصول بالقيمة المؤسسية — والاختيار يتبع حجم المنظومة وتعقيدها."
+/>
+
+<Callout type="tip">
+**القاعدة البسيطة:** CMMS يُنفّذ الصيانة، وCAFM يُدير المنشآت، وEAM يربط الأصول بالقيمة المؤسسية. الحجم يعتمد على حجم المنظومة وتعقيدها — لا داعي لشراء EAM لمصنع صغير بـ 50 أصل.
+</Callout>
+
+## 2. متطلبات التكامل بين الأنظمة
+
+التكامل لا يعني فقط شراء نظامين وربطهما بسلك. التكامل الحقيقي يتطلب:
+
+### 2.1 التوحيد المرجعي (Master Data Alignment)
+
+قاعدة واحدة للأصول تُستخدم عبر الأنظمة. لا يمكن لـ CMMS أن يُسمّي الأصل "M-001" وCAFM يُسمّيه "Pump-HW-5" وEAM يُسمّيه "Asset-3456".
+
+### 2.2 واجهات البيانات (Data Interfaces)
+
+تحديد بروتوكولات واضحة لتبادل البيانات: أي بيانات تنتقل من نظام إلى آخر، وبأي صيغة، وبأي تكرار.
+
+### 2.3 التدفق المعلوماتي (Information Flow)
+
+- **من CMMS إلى CAFM:** بيانات أوامر الشغل والصيانة.
+- **من CAFM إلى EAM:** بيانات المنشآت والمساحات والمرافق.
+- **من EAM إلى CMMS:** الأولويات المالية وسياسات الصيانة.
+- **من SCADA/IoT إلى CMMS:** قراءات المجسات والأعطال المكتشفة آلياً.
+
+## 3. معايير اختيار النظم
+
+اختيار النظام الخاطئ يكلف المنظومة سنوات من المعاناة. المعايير الرئيسية:
+
+| المعيار | التفاصيل |
+|---------|----------|
+| **قابلية التوسع** | هل يتقبل النظام نموًّا في عدد الأصول والمستخدمين؟ |
+| **سهولة الاستخدام** | هل يمكن للفنيين استخدامه بتدريب بسيط؟ |
+| **التكامل** | هل يتكامل مع الأنظمة الحالية (ERP, SCADA, IoT)؟ |
+| **التقارير والتحليل** | هل يوفر لوحات معلومات وتقارير قابلة للتخصيص؟ |
+| **التكلفة الإجمالية** | هل تكلفة الترخيص + التنفيذ + التدريب + الصيانة مقبولة؟ |
+| **التوثيق والدعم** | هل يوفر التوثيق والدعم الفني باللغة العربية؟ |
+| **الامتثال** | هل يتوافق مع المعايير الدولية (ISO 55000)؟ |
+
+<Callout type="example">
+**سيناريو عملي:** مصنع يختار نظام CMMS متطوراً لكنه لا يتكامل مع نظام ERP المالي الموجود. النتيجة: يجب إدخال تكاليف الصيانة يدوياً في النظام المالي شهرياً — خطأ بشري متكرر وتكلفة إضافية. الحل كان اختيار نظام بواجهة API تتكامل آلياً مع ERP.
+</Callout>
+
+## 4. التحول الرقمي في إدارة الأصول
+
+التحول الرقمي في إدارة الأصول ليس شراء نظاماً جديداً، بل تحول في طريقة التفكير:
+
+### 4.1 من التفاعلي إلى الاستباقي
+
+بدلاً من انتظار العطل والتفاعل معه، يُمكّن التحول الرقمي من:
+- **المراقبة المشروطة (Condition-Based Monitoring):** قراءات مجسات لحظية تكشف التدهور مبكراً.
+- **الصيانة التنبؤية (Predictive Maintenance):** نماذج ذكاء اصطناعي تتنبأ بالفشل قبل وقوعه.
+- **الصيانة الموجّهة (Prescriptive Maintenance):** نظام يقترح الإجراء العلاجي الأفضل.
+
+### 4.2 من العشوائي إلى المبني على الأدلة
+
+بدلاً من القرارات العشوائية أو المبنية على الخبرة الشخصية، يوفر التحول الرقمي:
+- **لوحات معلومات لحظية** لكل أصل وفئة.
+- **تحليل الأنماط** لاكتشاف أسباب الأعطال المتكررة.
+- **محاكاة سيناريوهات** قبل اتخاذ القرار.
+
+### 4.3 من المعزول إلى المترابط
+
+المجسات تتصل ببوابة IoT، والتي تُرسل البيانات إلى CMMS، والذي يحدث أوامر الشغل تلقائياً، والتي تُرسل التكاليف إلى ERP. هذه الحلقة المتصلة تُقلل التدخل البشري وتُسرّع الاستجابة.
+
+<Callout type="warn">
+**تحذير:** التحول الرقمي فشل في أكثر من 70% من المشاريع لا بسبب التكنولوجيا، بل بسبب نقص التغيير التنظيمي والتدريب والمشاركة البشرية. التقنية أداة، والتغيير الفعلي في الثقافة هو التحدي الحقيقي.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Software does not solve asset management problems, but it enables their solution. This lesson distinguishes between CMMS, CAFM, and EAM and explains how these systems are integrated into a single information environment that supports maintenance decisions across the asset life cycle.
+
+## 1. CMMS vs CAFM vs EAM: the fundamental differences
+
+Three terms used interchangeably in the field, yet they represent different philosophies:
+
+### 1.1 Computerized Maintenance Management System (CMMS)
+
+The CMMS is the core system for day-to-day maintenance management: work orders, preventive maintenance scheduling, failure records, and spare parts. It focuses on **operational execution** — what is maintained, when, and by whom.
+
+**Core features:**
+- Creating and managing Work Orders.
+- Preventive maintenance Scheduling.
+- Inventory and spare parts tracking.
+- Basic operational reports.
+
+### 1.2 Computer-Aided Facility Management (CAFM)
+
+CAFM is broader than CMMS: it covers physical facility, space, and services management. It links maintenance with the management of buildings, offices, and spaces.
+
+**The addition over CMMS:**
+- Space Management and architectural drawings.
+- Facility and supporting services management (FM Services).
+- Linking maintenance to engineering drawings (CAD Integration).
+- Environmental risk and safety management.
+
+### 1.3 Enterprise Asset Management (EAM)
+
+EAM is the most comprehensive: it links asset management to the other enterprise systems (finance, procurement, human resources). The asset is viewed from the **full life cycle** perspective and its impact on enterprise value.
+
+**The addition over CAFM:**
+- Linkage to financial systems (ERP Integration).
+- Financial asset management (depreciation, book value).
+- Advanced financial analysis (LCC, ROI).
+- Contracts and supplier management.
+
+<Comparison
+  title="CMMS vs CAFM vs EAM"
+  sides={[
+    { label: 'CMMS — Maintenance management', items: ['Core system for day-to-day maintenance management', 'Operational execution: what is maintained, when, and by whom', 'Work orders, preventive scheduling, inventory, reports'], color: 'brand' },
+    { label: 'CAFM — Facility management', items: ['Broader than CMMS: facilities, spaces, and services', 'Links maintenance with building, office, and space management', 'Space management, CAD-linked maintenance, FM services'], color: 'teal' },
+    { label: 'EAM — Enterprise assets', items: ['The most comprehensive: links assets to enterprise systems (finance, procurement, HR)', 'Full life cycle perspective and asset impact on enterprise value', 'ERP integration, depreciation and book value, LCC/ROI, contracts and suppliers'], color: 'amber' },
+  ]}
+  caption="CMMS executes maintenance, CAFM manages facilities, and EAM links assets to enterprise value — and the choice follows the size and complexity of the portfolio."
+/>
+
+<Callout type="tip">
+**The simple rule:** CMMS executes maintenance, CAFM manages facilities, and EAM links assets to enterprise value. The scale depends on the size and complexity of the portfolio — there is no need to buy an EAM for a small plant with 50 assets.
+</Callout>
+
+## 2. Integration requirements between systems
+
+Integration does not only mean buying two systems and connecting them with a wire. Real integration requires:
+
+### 2.1 Master Data Alignment
+
+One single asset base used across the systems. The CMMS cannot call the asset "M-001" while CAFM calls it "Pump-HW-5" and EAM calls it "Asset-3456".
+
+### 2.2 Data Interfaces
+
+Defining clear protocols for data exchange: which data moves from one system to another, in what format, and at what frequency.
+
+### 2.3 Information Flow
+
+- **From CMMS to CAFM:** work order and maintenance data.
+- **From CAFM to EAM:** facility, space, and services data.
+- **From EAM to CMMS:** financial priorities and maintenance policies.
+- **From SCADA/IoT to CMMS:** sensor readings and automatically detected failures.
+
+## 3. System selection criteria
+
+Choosing the wrong system costs the organization years of suffering. The main criteria:
+
+| Criterion | Details |
+|---------|----------|
+| **Scalability** | Can the system handle growth in the number of assets and users? |
+| **Ease of use** | Can technicians use it with simple training? |
+| **Integration** | Does it integrate with existing systems (ERP, SCADA, IoT)? |
+| **Reporting and analytics** | Does it provide customizable dashboards and reports? |
+| **Total cost** | Is the license + implementation + training + maintenance cost acceptable? |
+| **Documentation and support** | Does it provide documentation and technical support in Arabic? |
+| **Compliance** | Does it comply with international standards (ISO 55000)? |
+
+<Callout type="example">
+**Practical scenario:** a plant chooses an advanced CMMS that does not integrate with the existing financial ERP. The result: maintenance costs must be entered manually into the financial system every month — a recurring human error and additional cost. The solution was to choose a system with an API interface that integrates automatically with the ERP.
+</Callout>
+
+## 4. Digital transformation in asset management
+
+Digital transformation in asset management is not buying a new system, but a change in the way of thinking:
+
+### 4.1 From reactive to proactive
+
+Instead of waiting for the failure and reacting to it, digital transformation enables:
+- **Condition-Based Monitoring:** real-time sensor readings that reveal deterioration early.
+- **Predictive Maintenance:** AI models that predict failure before it occurs.
+- **Prescriptive Maintenance:** a system that suggests the best corrective action.
+
+### 4.2 From random to evidence-based
+
+Instead of random decisions or decisions based on personal experience, digital transformation provides:
+- **Real-time dashboards** for every asset and category.
+- **Pattern analysis** to discover the causes of recurring failures.
+- **Scenario simulation** before making the decision.
+
+### 4.3 From isolated to interconnected
+
+Sensors connect to an IoT gateway, which sends data to the CMMS, which triggers work orders automatically, which send the costs to the ERP. This connected loop reduces human intervention and speeds up response.
+
+<Callout type="warn">
+**Warning:** digital transformation fails in more than 70% of projects not because of technology, but because of a lack of organizational change, training, and human involvement. Technology is a tool; the real change lies in the culture, and that is the true challenge.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: مقيّم نظم المعلومات
+
+حدد احتياجاتك من النظم وميزانيتك، وشاهد تقييم كل نظام مع توصية الأنسب لحالتك.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: SystemEvaluator
+
+Define your system needs and budget, and see the assessment of each system with a recommendation of the best fit for your situation.
+
+</LangSection>
+
+<SystemEvaluator client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cama-3-3-t1', 'cama-3-3-t2', 'cama-3-3-t3', 'cama-3-3-t4', 'cama-3-3-t5']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على الفروق بين CMMS وCAFM وEAM، ومتطلبات التكامل بين الأنظمة، ومعايير اختيار النظم المنهجية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the differences between CMMS, CAFM, and EAM, inter-system integration requirements, and systematic system selection criteria.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cama-3-3" questions={quizCama33.questions} client:load />
+
+<LangSection lang="ar">
+
+## الخلاصة
+
+- **CMMS** للتنفيذ التشغيلي (أوامر الشغل، الجدولة، المخزون)، و**CAFM** لإدارة المنشآت والمساحات، و**EAM** لربط الأصول بالقيمة المؤسسية عبر دورة الحياة.
+- **التكامل الحقيقي** يبدأ من توحيد البيانات المرجعية، ثم واجهات واضحة، ثم تدفق معلوماتي مُهيكل — لا فقط ربط نظامين بسلك.
+- **معايير الاختيار** تشمل التوسعية والتكلفة الإجمالية والتكامل والتوثيق — لا تنخدع باللمعان التسويقي.
+- **التحول الرقمي** من التفاعلي إلى الاستباقي، ومن العشوائي إلى المبني على الأدلة، ومن المعزول إلى المترابط — لكن 70% من المشاريع تفشل بسبب الثقافة لا التقنية.
+- **لا تشتري ثروة تقنية:** ابدأ بالحاجة الأكبر وأضف التدريجياً — CMMS جيد يُنفّذ أفضل من EAM معقد لا يُستخدم.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **CMMS** is for operational execution (work orders, scheduling, inventory), **CAFM** for facility and space management, and **EAM** for linking assets to enterprise value across the life cycle.
+- **Real integration** starts with aligning reference data, then clear interfaces, then a structured information flow — not just connecting two systems with a wire.
+- **Selection criteria** include scalability, total cost, integration, and documentation — do not be fooled by marketing gloss.
+- **Digital transformation** moves from reactive to proactive, from random to evidence-based, and from isolated to interconnected — yet 70% of projects fail because of culture, not technology.
+- **Do not buy a technology fortune:** start with the biggest need and add gradually — a good CMMS that is used outperforms a complex EAM that is not used.
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## مصادر
+
+- ISO 55001:2014 — إدارة الأصول: متطلبات نظام الإدارة.
+- GFMAM AM Landscape v3 — إطار عمل إدارة الأصول.
+- IFMA — دليل إدارة المنشآت.
+- SMRP — أفضل ممارسات الصيانة (BOK v6).
+- IDC Research — تقارير سوق أنظمة EAM/CMMS.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Sources
+
+- ISO 55001:2014 — Asset Management: Management System Requirements.
+- GFMAM AM Landscape v3 — The Asset Management Framework.
+- IFMA — Facility Management Guide.
+- SMRP — Maintenance Best Practices (BOK v6).
+- IDC Research — EAM/CMMS Systems Market Reports.
+
+</LangSection>

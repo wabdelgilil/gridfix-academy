@@ -1,0 +1,235 @@
+---
+id: lesson-cmrp-2-3
+course: cmrp
+station: station-cmrp-2
+number: "2.3"
+title: "صيانة الاعتمادية RCM وشجرة القرار"
+titleEn: "Reliability-Centered Maintenance & Decision Logic"
+minutes: 45
+order: 3
+objectives:
+  - "أن يعدد المتعلم الأسئلة السبعة الإلزامية لمعيار SAE JA1011 بالترتيب."
+  - "أن يفسر سياق التشغيل ولماذا تختلف خطط المعدات المتطابقة."
+  - "أن يميز الأعطال المخفية ويحدد مهمة اكتشاف العطل المناسبة."
+  - "أن يطبق شجرة قرارات RCM للوصول إلى التكتيك الأمثل."
+objectivesEn:
+  - "List the seven mandatory SAE JA1011 RCM questions in order."
+  - "Explain operating context and why identical assets need different plans."
+  - "Identify hidden failures and specify the right failure-finding task."
+  - "Apply the RCM decision tree to reach the optimal tactic."
+hasTool: true
+toolName: "شجرة قرار RCM"
+toolNameEn: "RCM Decision Tree"
+quizId: quiz-cmrp-2-3
+sources:
+  - sae_ja1011
+  - smith_rcm
+---
+
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import RCMDecisionTree from '../../../components/islands/tools/cmrp/RCMDecisionTree.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import { quizCmrp23 } from '../../../data/quiz/cmrp/quiz-cmrp-2-3';
+
+<LangSection lang="ar">
+
+صيانة الاعتمادية (Reliability-Centered Maintenance) التي أسسها نولان وهيب وصاغها عالمياً جون موبراي (John Moubray) هي المنهجية الأم لإدارة الأصول. ولقطع الطريق على الدراسات المزيفة أصدرت جمعية مهندسي السيارات معيار SAE JA1011: لا يحق لأي عملية أن تُسمى RCM إلا إذا أجابت عن سبعة أسئلة بالترتيب.
+
+## 1. الأسئلة السبعة الإلزامية
+
+1. **الوظائف (Functions)**: ما وظائف الأصل ومعايير أدائه المطلوبة في سياق تشغيله الحالي؟
+2. **الأعطال الوظيفية (Functional Failures)**: بأي طريقة يمكن أن يفشل في تحقيق هذه الوظائف؟
+3. **أنماط الفشل (Failure Modes)**: ما الأسباب الجذرية الكامنة وراء كل عطل وظيفي؟
+4. **آثار الفشل (Failure Effects)**: ماذا يحدث فعلياً عند وقوع كل نمط — محلياً ونظامياً؟
+5. **عواقب الفشل (Failure Consequences)**: كيف يؤثر على السلامة والبيئة والإنتاج؟
+6. **المهام الاستباقية (Proactive Tasks)**: ما مهمة الصيانة المناسبة والمجدية لمنع كل عطل؟
+7. **الإجراءات الافتراضية (Default Actions)**: ما الإجراء الواجب إذا لم توجد مهمة مجدية؟
+
+من يقفز مباشرة إلى قوائم التزييت وتغيير القطع دون تعريف الوظائف والأعطال الوظيفية يقدم صيانة وقائية تقليدية (PM) لا دراسة RCM — ويفقد الاعتماد وفق المعيار.
+
+## 2. سياق التشغيل (Operating Context)
+
+سؤال الامتحان المتكرر: لماذا تختلف خطة مضخة تبريد في محطة نووية عن نفس المضخة والموديل تماماً إذا رُكبت لري حديقة المصنع؟
+
+لأن RCM لا تحمي الحديد بل تحمي **الوظيفة المطلوبة في بيئتها**. مضخة تبريد المفاعل عطلها كارثي ويستلزم مراقبة مشروطة متقدمة (CBM) ومضخات بديلة (Redundancy)، بينما مضخة الحديقة عطلها غير مؤثر (فئة C) فيُترك ليعمل حتى العطل (Run to Failure) — نفس المعدة، وسياقان يقلبان الخطة 180 درجة.
+
+## 3. الأعطال المخفية ومهام اكتشافها
+
+تنقسم الوظائف في شجرة القرار إلى نوعين:
+
+- **وظائف ظاهرة (Evident Functions)**: يلاحظ المشغل عطلها فوراً في عمله المعتاد — توقف مروحة، تسرب مرئي، انخفاض التدفق.
+- **وظائف مخفية (Hidden Functions)**: أنظمة حماية واحتياط ساكنة حتى الطارئ — صمامات تخفيف الضغط (PRV)، وحساسات الدخان، ومولدات الديزل الاحتياطية. إذا تعطلت لا يعلم أحد إلا عند الكارثة!
+
+<Callout type="warn">
+**الحل الإلزامي للمخفي:** مهمة اكتشاف العطل (Failure-Finding Task) — اختبار تجريبي دوري مجدول يشغّل جهاز الأمان للتأكد أنه حي وقادر على الاستجابة عند الطلب. ترك مولد طوارئ حتى العطل جريمة سلامة مهنية.
+</Callout>
+
+## 4. منطق شجرة القرار المتدرج
+
+يسير القرار في مسار صارم:
+
+1. **هل العطل ظاهر أم مخفي؟** لتحديد مسار السلامة المزدوج.
+2. **هل يمس السلامة أو البيئة؟** إن نعم وجب المنع حتماً عبر CBM أو مهمة دورية، وإن تعذر فإعادة التصميم الهندسي إلزامية (Mandatory Redesign) — لا مساومة على الأرواح.
+3. **هل يسبب خسائر إنتاجية؟** تُطبق الصيانة الاستباقية فقط إذا كانت تكلفتها أقل من تكلفة التوقف.
+4. **غير مؤثر ولا يمس السلامة؟** التشغيل حتى العطل (Run to Failure) قرار هندسي اقتصادي واعٍ.
+
+<FlowChart
+  title="منطق شجرة قرار RCM"
+  steps={[
+    { title: 'هل العطل ظاهر أم مخفي؟', detail: 'تحديد مسار السلامة المزدوج.', icon: '👁', type: 'start' },
+    { title: 'هل يمس السلامة أو البيئة؟', detail: 'إن نعم وجب المنع حتماً إلزامياً.', icon: '🛡', type: 'decision' },
+    { title: 'إعادة التصميم الإلزامية', detail: 'عند تعذر مهمة وقائية مجدية — لا مساومة.', icon: '✏️' },
+    { title: 'مراقبة مشروطة CBM أو مهمة دورية', detail: 'منع العطل قبل تصاعد عواقبه.', icon: '📡' },
+    { title: 'هل يسبب خسائر إنتاجية؟', detail: 'تطبيق استباقي فقط عندما يتفوق اقتصادياً.', icon: '🏭', type: 'decision' },
+    { title: 'تشغيل حتى العطل (RTF)', detail: 'قرار هندسي اقتصادي واعٍ عند قلّة الأثر.', icon: '🖖', type: 'end' },
+  ]}
+  caption="القائد الحقيقي لا يشتري صيانة أكثر — بل الصيانة الصحيحة الوحيدة لكل نمط عطل."
+/>
+
+الهدف الأسمى ليس زيادة الصيانة بل **الصيانة الصحيحة فقط**: مهام مجدية تقنياً لكل نمط، بأعلى اعتمادية وأقل تكلفة لدورة الحياة، دون المساس بالسلامة والبيئة. والقضاء على 100% من الأعطال مستحيل فيزيائياً ومكلف بلا سقف — فلا يعد به إلا جاهل.
+
+<Callout type="tip">
+**للاختبار:** عطل يمس السلامة بلا مهمة مجدية = إعادة تصميم إلزامية. مولد احتياطي ساكن 99% من وقته = وظيفة مخفية = مهمة اكتشاف دورية. مضختان متطابقتان بخطتين مختلفتين = اختلاف سياق التشغيل.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="en">
+
+Reliability-Centered Maintenance (RCM), founded by Nowlan and Heap and framed globally by John Moubray, is the master methodology of asset management. To close the door on fake studies, SAE published standard JA1011: no process may be called RCM unless it answers seven questions in order.
+
+## 1. The seven mandatory questions
+
+1. **Functions**: what functions does the asset perform and what are its required performance standards in its current operating context?
+2. **Functional Failures**: in what way can it fail to fulfill these functions?
+3. **Failure Modes**: what root causes lie behind each functional failure?
+4. **Failure Effects**: what actually happens when each mode occurs — locally and system-wide?
+5. **Failure Consequences**: how does it affect safety, environment, and production?
+6. **Proactive Tasks**: what appropriate and worthwhile maintenance task prevents each failure?
+7. **Default Actions**: what action is required if no worthwhile task exists?
+
+Whoever jumps straight to lubrication and part-replacement lists without defining functions and functional failures is delivering traditional preventive maintenance (PM), not an RCM study — and loses the RCM designation under the standard.
+
+## 2. Operating context
+
+The recurring exam question: why does the maintenance plan of a cooling pump in a nuclear station differ from the exact same pump and model installed to water the plant's garden?
+
+Because RCM does not protect the iron; it protects the **function required in its environment**. A failure of the reactor cooling pump is catastrophic and requires advanced condition-based monitoring (CBM) and redundant pumps, while the garden pump's failure is non-critical (tier C), so it is left to run to failure — the same equipment, with two contexts that flip the plan 180 degrees.
+
+## 3. Hidden failures and their detection tasks
+
+Functions in the decision tree fall into two types:
+
+- **Evident functions**: the operator notices their failure immediately in their normal work — a stopped fan, a visible leak, a drop in flow.
+- **Hidden functions**: protection and standby systems dormant until an emergency — pressure relief valves (PRV), smoke detectors, and standby diesel generators. If they fail, no one knows until the catastrophe!
+
+<Callout type="warn">
+**The mandatory solution for hidden functions:** a failure-finding task — a scheduled periodic functional test that operates the safety device to confirm it is alive and able to respond on demand. Leaving an emergency generator to run to failure is a professional safety crime.
+</Callout>
+
+## 4. The progressive decision tree logic
+
+The decision follows a strict path:
+
+1. **Is the failure evident or hidden?** to set the dual safety path.
+2. **Does it affect safety or the environment?** If yes, prevention is mandatory through CBM or a scheduled task; if that is not feasible, mandatory redesign (Mandatory Redesign) applies — no compromise on lives.
+3. **Does it cause production losses?** proactive maintenance is applied only if its cost is lower than the cost of the downtime.
+4. **Non-critical and does not affect safety?** run-to-failure is a conscious economic engineering decision.
+
+<FlowChart
+  title="The RCM decision tree logic"
+  steps={[
+    { title: 'Is the failure evident or hidden?', detail: 'Setting the dual safety path.', icon: '👁', type: 'start' },
+    { title: 'Does it affect safety or the environment?', detail: 'If yes, prevention is mandatory.', icon: '🛡', type: 'decision' },
+    { title: 'Mandatory redesign', detail: 'When no feasible preventive task exists — no compromise.', icon: '✏️' },
+    { title: 'CBM or a scheduled task', detail: 'Preventing the failure before its consequences escalate.', icon: '📡' },
+    { title: 'Does it cause production losses?', detail: 'Proactive application only when it wins economically.', icon: '🏭', type: 'decision' },
+    { title: 'Run to failure (RTF)', detail: 'A conscious economic engineering decision for low impact.', icon: '🖖', type: 'end' },
+  ]}
+  caption="A true leader does not buy more maintenance — but the one right maintenance for each failure pattern."
+/>
+
+The ultimate goal is not more maintenance but **the right maintenance only**: technically worthwhile tasks for each pattern, at the highest reliability and lowest lifecycle cost, without compromising safety and the environment. Eliminating 100% of failures is physically impossible and infinitely costly — only the ignorant promise it.
+
+<Callout type="tip">
+**For the exam:** a safety-relevant failure with no worthwhile task = mandatory redesign. A standby generator idle 99% of its time = hidden function = periodic failure-finding task. Two identical pumps with two different plans = different operating contexts.
+</Callout>
+
+</LangSection>
+
+<LangSection lang="ar">
+
+## أداة اليوم: شجرة قرار RCM
+
+أجب عن أربعة أسئلة (نعم / لا) لأي نمط عطل — الظهور، والسلامة، والإنتاج، وجدوى المراقبة — وشاهد التكتيك المعتمد: CBM أو PM مجدولة أو مهمة اكتشاف أو إعادة تصميم أو تشغيل حتى العطل.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Today's tool: RCM Decision Tree
+
+Answer four yes/no questions for any failure pattern — evidentness, safety, production, and monitoring feasibility — and see the adopted tactic: CBM, scheduled PM, a failure-finding task, redesign, or run-to-failure.
+
+</LangSection>
+
+<RCMDecisionTree client:load />
+
+<LangSection lang="ar">
+
+## قاموس المصطلحات
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Glossary
+
+</LangSection>
+
+<GlossaryCard terms={['cmrp-2-3-t1', 'cmrp-2-3-t2', 'cmrp-2-3-t3', 'cmrp-2-3-t4', 'cmrp-2-3-t5', 'cmrp-2-3-t6']} />
+
+<LangSection lang="ar">
+
+## راجع ما تعلمته
+
+أسئلة سيناريو على شرط الأسئلة السبعة، والوظائف المخفية ومهمة الاكتشاف، وسياق التشغيل، وإعادة التصميم الإلزامية، والهدف الأسمى للمنهجية.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Review what you learned
+
+Scenario questions on the seven-question requirement, hidden functions and the failure-finding task, operating context, mandatory redesign, and the methodology's ultimate goal.
+
+</LangSection>
+
+<ScenarioQuiz quizId="quiz-cmrp-2-3" questions={quizCmrp23.questions} client:load />
+
+<LangSection lang="ar">
+
+## خلاصة
+
+- **لا RCM دون الأسئلة السبعة** بالترتيب بدءاً بالوظائف — هذا شرط SAE JA1011.
+- **سياق التشغيل** يفسر اختلاف خطط المعدات المتطابقة ميكانيكياً.
+- **المخفي** (صمام أمان، مولد طوارئ) يُعالج بمهمة اكتشاف دورية (FFT).
+- **سلامة بلا مهمة مجدية = إعادة تصميم إلزامية** لا تقبل المساومة.
+- **الهدف**: المهام الصحيحة المجدية فقط بأقل تكلفة دورة حياة مع حماية الأرواح والبيئة.
+
+</LangSection>
+
+<LangSection lang="en">
+
+## Summary
+
+- **No RCM without the seven questions** in order, starting with functions — the SAE JA1011 requirement.
+- **Operating context** explains why mechanically identical assets need different plans.
+- **The hidden failure** (safety valve, emergency generator) is treated with a periodic failure-finding task (FFT).
+- **A safety-relevant failure with no worthwhile task = mandatory redesign** that accepts no compromise.
+- **The goal**: only the right, worthwhile tasks at the lowest lifecycle cost while protecting lives and the environment.
+
+</LangSection>
