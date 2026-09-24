@@ -37,7 +37,7 @@ const plannedLessons = (plan?.lessons ?? []).filter((l) => l.status === 'planned
 const courseMeta = getLiveCourses().find((c) => c.id === data.course);
 ---
 
-<BaseLayout title={`${data.title} — ${courseMeta?.code ?? ''}`} description={`${data.titleEn} — ${data.descriptionEn}`}>
+<BaseLayout title={`${data.title} — ${courseMeta?.code ?? ''}`} titleEn={`${data.titleEn} — ${courseMeta?.code ?? ''}`} description={`${data.titleEn} — ${data.descriptionEn}`}>
   <div class="mx-auto max-w-4xl">
     <Breadcrumb items={[{ label: courseMeta?.code ?? data.course, href: `/${data.course}` }, { label: data.title, labelEn: data.titleEn }]} />
 

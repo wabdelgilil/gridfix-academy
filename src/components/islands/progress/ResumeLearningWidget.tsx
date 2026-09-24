@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getLastVisitedLesson, type LastVisitedLesson } from '../../../lib/storage';
+import { resolveLessonEnglish } from '../../../data/curriculum';
 
 export default function ResumeLearningWidget() {
   const [last, setLast] = useState<LastVisitedLesson | null>(null);
@@ -22,8 +23,9 @@ export default function ResumeLearningWidget() {
   if (!isClient || !last) return null;
 
   const timeAgo = getTimeAgo(last.visitedAt ?? new Date().toISOString(), lang);
-  const lessonTitle = lang === 'en' ? last.lessonTitleEn ?? last.lessonTitle : last.lessonTitle;
-  const stationTitle = lang === 'en' ? last.stationTitleEn ?? last.stationTitle : last.stationTitle;
+  const resolved = resolveLessonEnglish(last.courseId, last.lessonId);
+  const lessonTitle = lang === 'en' ? (last.lessonTitleEn ?? resolved.lessonTitleEn ?? last.lessonTitle) : last.lessonTitle;
+  const stationTitle = lang === 'en' ? (last.stationTitleEn ?? resolved.stationTitleEn ?? last.stationTitle) : last.stationTitle;
 
   return (
     <a

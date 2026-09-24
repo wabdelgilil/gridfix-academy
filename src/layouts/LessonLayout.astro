@@ -24,7 +24,7 @@ const courseMeta = getCourse(course);
 const courseImage = course === 'cmrp' ? '/og-cmrp.png' : course === 'cfm' ? '/og-cfm.png' : course === 'cama' ? '/og-cama.png' : undefined;
 ---
 
-<BaseLayout title={`${data.number} ${data.title}`} description={`${data.title} — درس من محطة ${station?.title ?? ''}`} image={courseImage}>
+<BaseLayout title={`${data.number} ${data.title}`} titleEn={`${data.number} ${data.titleEn}`} description={`${data.title} — درس من محطة ${station?.title ?? ''}`} descriptionEn={`${data.titleEn} — a lesson from the ${station?.titleEn ?? ''} station`} image={courseImage}>
   <ReadingProgress client:load />
 
   <script is:inline define:vars={{ course, lessonId: data.id, lessonTitle: data.title, lessonTitleEn: data.titleEn, stationTitle: station?.title ?? data.station, stationTitleEn: station?.titleEn ?? station?.title ?? data.station }}>

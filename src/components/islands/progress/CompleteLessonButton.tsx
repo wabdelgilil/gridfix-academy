@@ -1,26 +1,16 @@
 import { useState, useCallback, useEffect } from 'react';
 import { loadProgress, saveProgress, toggleLessonComplete, isLessonComplete } from '../../../lib/storage';
 import { translate } from '../../../i18n/translations';
-import type { Language } from '../../../i18n/ui';
 
 interface Props {
   course: string;
   lessonId: string;
-  lang?: Language;
 }
 
-export default function CompleteLessonButton({ course, lessonId, lang = 'ar' }: Props) {
-  const [currentLang, setCurrentLang] = useState<Language>(lang);
+export default function CompleteLessonButton({ course, lessonId }: Props) {
   const [done, setDone] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
-
-  useEffect(() => {
-    setCurrentLang(document.documentElement.lang === 'en' ? 'en' : (lang as Language));
-    const onChange = () => setCurrentLang(document.documentElement.lang === 'en' ? 'en' : (lang as Language));
-    document.addEventListener('cfm-lang-changed', onChange);
-    return () => document.removeEventListener('cfm-lang-changed', onChange);
-  }, [lang]);
 
   useEffect(() => {
     setDone(isLessonComplete(loadProgress(course), lessonId));
@@ -44,7 +34,8 @@ export default function CompleteLessonButton({ course, lessonId, lang = 'ar' }: 
       <div className="w-full rounded-xl bg-slate-100 px-5 py-4 text-base font-bold text-slate-400 animate-pulse-soft">
         <span className="flex items-center justify-center gap-2">
           <span className="text-lg">📖</span>
-          {currentLang === 'en' ? 'Loading...' : 'جاري التحميل...'}
+          <span data-lang="ar">جاري التحميل...</span>
+          <span data-lang="en">Loading...</span>
         </span>
       </div>
     );
@@ -71,12 +62,14 @@ export default function CompleteLessonButton({ course, lessonId, lang = 'ar' }: 
           {done ? (
             <>
               <span className="text-lg animate-scale-in">✓</span>
-              {translate(currentLang, 'lesson.completed')}
+              <span data-lang="ar">{translate('ar', 'lesson.completed')}</span>
+              <span data-lang="en">{translate('en', 'lesson.completed')}</span>
             </>
           ) : (
             <>
               <span className="text-lg">📖</span>
-              {translate(currentLang, 'lesson.complete')}
+              <span data-lang="ar">{translate('ar', 'lesson.complete')}</span>
+              <span data-lang="en">{translate('en', 'lesson.complete')}</span>
             </>
           )}
         </span>

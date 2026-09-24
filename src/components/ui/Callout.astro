@@ -38,12 +38,20 @@ const labels: Record<string, string> = {
   warn: 'احذر',
   example: 'مثال تطبيقي',
 };
+
+const labelsEn: Record<string, string> = {
+  myth: 'Common misconception',
+  tip: 'Professional tip',
+  warn: 'Be careful',
+  example: 'Worked example',
+};
 ---
 
 <div class={`my-6 overflow-hidden rounded-xl border-r-4 p-5 ${styles.box}`}>
   <div class={`flex items-center gap-2 font-semibold ${styles.heading}`}>
     <span class="text-lg">{styles.icon}</span>
-    <span>{title ?? labels[type]}</span>
+    <span data-lang="ar">{title ?? labels[type]}</span>
+    <span data-lang="en">{title ?? labelsEn[type]}</span>
   </div>
   <div class="prose-lesson mt-2">
     <slot />

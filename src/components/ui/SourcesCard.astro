@@ -29,9 +29,11 @@ const items: Source[] = sourceIds
         <div class="flex-1">
           <div class="flex items-center gap-2">
             <span dir="ltr" lang="en" class="text-sm font-semibold text-ink-900">{item.name}</span>
-            <span class="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-medium text-brand-700">{item.kind}</span>
+            <span class="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-medium text-brand-700" data-lang="ar">{item.kind}</span>
+            <span class="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-medium text-brand-700" data-lang="en">{item.kindEn}</span>
           </div>
-          <p class="mt-1 text-sm leading-relaxed text-ink-600">{item.ar}</p>
+          <p class="mt-1 text-sm leading-relaxed text-ink-600" data-lang="ar">{item.ar}</p>
+          <p class="mt-1 text-sm leading-relaxed text-ink-600" data-lang="en" lang="en" dir="ltr">{item.en}</p>
         </div>
         <span class="mt-1 shrink-0 text-brand-600 transition-transform group-hover:translate-x-0 group-hover:-translate-x-1">↗</span>
       </a>

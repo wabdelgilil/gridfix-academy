@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getLastLesson } from '../../lib/storage';
+import { resolveLessonEnglish } from '../../data/curriculum';
 
 interface Props {
   course: string;
@@ -27,8 +28,9 @@ export default function ResumeLearning({ course }: Props) {
   if (!last) return null;
 
   const timeAgo = getTimeAgo(last.at, lang);
-  const lessonTitle = lang === 'en' ? last.titleEn ?? last.title : last.title;
-  const stationTitle = lang === 'en' ? last.stationTitleEn ?? last.stationTitle : last.stationTitle;
+  const resolved = resolveLessonEnglish(course, last.lessonId);
+  const lessonTitle = lang === 'en' ? (last.titleEn ?? resolved.lessonTitleEn ?? last.title) : last.title;
+  const stationTitle = lang === 'en' ? (last.stationTitleEn ?? resolved.stationTitleEn ?? last.stationTitle) : last.stationTitle;
 
   return (
     <a

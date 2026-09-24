@@ -18,7 +18,7 @@ const courseMeta = getCourse(course);
 const terms = getGlossaryForCourse(course ?? 'cfm');
 ---
 
-<BaseLayout title={`قاموس المصطلحات — ${courseMeta?.code ?? ''} | صالة GridFix`} description="قاموس مركزي قابل للبحث لمصطلحات الكورس بالعربية والإنجليزية.">
+<BaseLayout title={`قاموس المصطلحات — ${courseMeta?.code ?? ''} | صالة GridFix`} titleEn={`Glossary — ${courseMeta?.code ?? ''} | GridFix Academy`} description="قاموس مركزي قابل للبحث لمصطلحات الكورس بالعربية والإنجليزية." descriptionEn="A searchable central glossary of the course terms in Arabic and English.">
   <div class="mx-auto max-w-3xl">
     <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: 'قاموس المصطلحات', labelEn: 'Glossary' }]} />
     <header class="mb-6">
@@ -61,6 +61,8 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
               data-term={term.term}
               data-aria-ar={`نطق ${term.term}`}
               data-aria-en={`Pronounce ${term.term}`}
+              data-title-ar={`سمع النطق الإنجليزي لـ ${term.term}`}
+              data-title-en={`Hear the English pronunciation of ${term.term}`}
               title="سمع النطق الإنجليزي"
             >
               🔊
@@ -71,6 +73,8 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
               data-term={term.term}
               data-aria-ar={`نسخ ${term.term}`}
               data-aria-en={`Copy ${term.term}`}
+              data-title-ar={`نسخ المصطلح ${term.term}`}
+              data-title-en={`Copy the term ${term.term}`}
               title="نسخ المصطلح"
             >
               📋
@@ -99,6 +103,7 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
 
     document.querySelectorAll<HTMLButtonElement>('.speak-btn, .copy-btn').forEach((btn) => {
       btn.setAttribute('aria-label', lang === 'en' ? (btn.dataset.ariaEn ?? '') : (btn.dataset.ariaAr ?? ''));
+      btn.title = lang === 'en' ? (btn.dataset.titleEn ?? '') : (btn.dataset.titleAr ?? '');
     });
   };
 

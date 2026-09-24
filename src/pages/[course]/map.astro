@@ -22,7 +22,7 @@ const totalMinutes = stations.reduce((acc, s) => acc + s.lessons.reduce((t, l) =
 const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
 ---
 
-<BaseLayout title={`خريطة منهج ${courseMeta?.code ?? ''} — صالة GridFix`} description="الخريطة الكاملة لمسار المنصة: المحطات والدروس والأدوات ووزن كل ركن في الامتحان." noindex={isPlanned}>
+<BaseLayout title={`خريطة منهج ${courseMeta?.code ?? ''} — صالة GridFix`} titleEn={`${courseMeta?.code ?? ''} Curriculum Map | GridFix Academy`} description="الخريطة الكاملة لمسار المنصة: المحطات والدروس والأدوات ووزن كل ركن في الامتحان." descriptionEn="The complete platform path map: stations, lessons, tools, and the exam weight of every pillar." noindex={isPlanned}>
   <div class="mx-auto max-w-4xl">
     <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: 'خريطة المنهج', labelEn: 'Curriculum map' }]} />
     <header class="mb-6 flex flex-wrap items-end justify-between gap-4 animate-fade-in">

@@ -6,7 +6,9 @@ import type { Language } from '../i18n/ui';
 
 interface Props {
   title: string;
+  titleEn?: string;
   description?: string;
+  descriptionEn?: string;
   lang?: Language;
   dir?: 'rtl' | 'ltr';
   noindex?: boolean;
@@ -15,7 +17,9 @@ interface Props {
 
 const {
   title,
+  titleEn = title,
   description = 'GridFix Academy — منصة التعليم المهني لإدارة المنشآت والصيانة',
+  descriptionEn = description,
   lang = 'ar',
   dir = 'rtl',
   noindex = false,
@@ -32,12 +36,45 @@ const ogImage = new URL(image, Astro.site ?? 'https://academy.gridfix.net').toSt
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
+    <title id="page-title">{title}</title>
     <script is:inline>
       (function () {
         var t = localStorage.getItem('cfm-theme');
         var d = t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
         if (d) document.documentElement.classList.add('dark');
+      })();
+    </script>
+    <script is:inline>
+      (function () {
+        var lang = localStorage.getItem('cfm-lang');
+        if (lang === 'en' || lang === 'ar') {
+          document.documentElement.lang = lang;
+          document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        }
+      })();
+    </script>
+    <script is:inline define:vars={{ title, titleEn, description, descriptionEn }}>
+      (function () {
+        var apply = function (lang) {
+          var en = lang === 'en';
+          var t = document.getElementById('page-title');
+          if (t) t.textContent = en ? titleEn : title;
+          var swap = function (sel, val) {
+            var el = document.querySelector(sel);
+            if (el) el.setAttribute('content', val);
+          };
+          swap('meta[name="description"]', en ? descriptionEn : description);
+          swap('meta[property="og:title"]', en ? titleEn : title);
+          swap('meta[property="og:description"]', en ? descriptionEn : description);
+          swap('meta[name="twitter:title"]', en ? titleEn : title);
+          swap('meta[name="twitter:description"]', en ? descriptionEn : description);
+          swap('meta[property="og:locale"]', en ? 'en' : 'ar');
+        };
+        apply(localStorage.getItem('cfm-lang') === 'en' ? 'en' : 'ar');
+        document.addEventListener('cfm-lang-changed', function (e) {
+          var detail = e.detail || {};
+          apply(detail.lang === 'en' ? 'en' : 'ar');
+        });
       })();
     </script>
     <meta name="description" content={description} />

@@ -20,7 +20,7 @@ const courseMeta = getCourse(course);
 const isPlanned = !courseMeta || courseMeta.status !== 'live';
 ---
 
-<BaseLayout title={`محاكي الامتحان — ${courseMeta?.code ?? ''}`} description="محاكي حقيقي للامتحان: أسئلة مواقف، مؤقت زمني، وتقرير تشخيصي حسب أركان المنهج." noindex={isPlanned}>
+<BaseLayout title={`محاكي الامتحان — ${courseMeta?.code ?? ''}`} titleEn={`Exam Simulator — ${courseMeta?.code ?? ''}`} description="محاكي حقيقي للامتحان: أسئلة مواقف، مؤقت زمني، وتقرير تشخيصي حسب أركان المنهج." descriptionEn="A real exam simulator: scenario questions, a countdown timer, and a diagnostic report by competency pillar." noindex={isPlanned}>
   <div class="mx-auto max-w-3xl">
     <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: 'محاكي الامتحان', labelEn: 'Exam simulator' }]} />
     <header class="mb-6">

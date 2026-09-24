@@ -57,7 +57,7 @@ const courseJsonLd = !isPlanned && courseMeta
   : null;
 ---
 
-<BaseLayout title={`${courseMeta ? `${courseMeta.title} — ${courseMeta.titleEn}` : 'الكورس'} | صالة GridFix`} description={courseMeta?.description ?? 'منصة GridFix التعليمية'} noindex={isPlanned} image={courseImage}>
+<BaseLayout title={`${courseMeta ? `${courseMeta.title} — ${courseMeta.titleEn}` : 'الكورس'} | صالة GridFix`} titleEn={`${courseMeta?.titleEn ?? 'Course'} | GridFix Academy`} description={courseMeta?.description ?? 'منصة GridFix التعليمية'} descriptionEn={courseMeta?.descriptionEn ?? 'GridFix Academy educational platform'} noindex={isPlanned} image={courseImage}>
   {courseJsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(courseJsonLd)} />}
   <Breadcrumb items={[{ label: courseMeta?.code ?? course, labelEn: courseMeta?.code ?? course }]} />
   {isPlanned ? (
