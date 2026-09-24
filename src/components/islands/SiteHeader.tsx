@@ -96,9 +96,9 @@ export default function SiteHeader() {
             <a
               href="/"
               className="chip hidden cursor-pointer bg-ink-900 text-teal-100 transition hover:bg-ink-800 sm:inline-flex dark:bg-slate-700 dark:hover:bg-slate-600"
-              aria-label="اختيار الكورس"
+              aria-label={t('header.chooseCourse')}
             >
-              {COURSES.find((c) => c.id === course)?.icon} {COURSES.find((c) => c.id === course)?.label} ⋮ تغيير الكورس
+              {COURSES.find((c) => c.id === course)?.icon} {COURSES.find((c) => c.id === course)?.label} {t('header.switchCourse')}
             </a>
           )}
           <a
@@ -108,13 +108,13 @@ export default function SiteHeader() {
             className="chip hidden cursor-pointer bg-slate-100 text-ink-600 transition hover:bg-slate-200 sm:inline-flex dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
             aria-label="GridFix"
           >
-            ⚡ مدعوم من GridFix
+            {t('header.poweredBy')}
           </a>
           <button
             type="button"
             onClick={toggleTheme}
             className="chip cursor-pointer bg-slate-100 text-ink-600 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-            aria-label={theme === 'dark' ? 'الوضع النهاري' : 'الوضع الليلي'}
+            aria-label={theme === 'dark' ? t('header.themeLight') : t('header.themeDark')}
           >
             {theme === 'dark' ? '☀️' : '🌙'}
           </button>
@@ -122,7 +122,7 @@ export default function SiteHeader() {
             type="button"
             onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')}
             className="chip cursor-pointer bg-slate-100 text-ink-600 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-            aria-label="Change language"
+            aria-label={t('header.changeLang')}
           >
             {lang === 'ar' ? 'English' : 'العربية'}
           </button>

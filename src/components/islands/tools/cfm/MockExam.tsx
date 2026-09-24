@@ -36,17 +36,23 @@ import { quiz102 } from '../../../../data/quiz/cfm/quiz-10-2';
 import { quiz121 } from '../../../../data/quiz/cfm/quiz-12-1';
 import { quiz122 } from '../../../../data/quiz/cfm/quiz-12-2';
 import { quiz123 } from '../../../../data/quiz/cfm/quiz-12-3';
+import useLang from '../../../../lib/useLang';
+import { DIFFICULTY_EN } from '../../../../data/quiz/types';
 
 interface QuizOption {
   text: string;
+  textEn?: string;
   isCorrect: boolean;
   explanation: string;
+  explanationEn?: string;
 }
 
 interface QuizItem {
   scenario: string;
+  scenarioEn?: string;
   question: string;
-  difficulty: string;
+  questionEn?: string;
+  difficulty: 'سهل' | 'متوسط' | 'صعب';
   options: QuizOption[];
   station: number;
 }
@@ -73,7 +79,24 @@ const stationNames: Record<number, string> = {
   12: 'إدارة المشاريع',
 };
 
+const stationNamesEn: Record<number, string> = {
+  0: 'CFM Intro & Licensing',
+  1: 'Operations & Maintenance',
+  2: 'Real Estate & Space',
+  3: 'Financial Management',
+  4: 'Work Environment & HR',
+  5: 'Safety & Security',
+  6: 'Emergency & Continuity',
+  7: 'Sustainability',
+  8: 'Leadership & Strategy',
+  9: 'Data & Technology',
+  10: 'Quality',
+  12: 'Project Management',
+};
+
 export default function MockExam() {
+  const lang = useLang();
+  const isEn = lang === 'en';
   const [count, setCount] = useState(15);
   const [stage, setStage] = useState<'setup' | 'running' | 'done'>('setup');
   const [items, setItems] = useState<QuizItem[]>([]);
@@ -113,37 +136,38 @@ export default function MockExam() {
   const pct = count ? Math.round((score / count) * 100) : 0;
   const pass = pct >= 70;
 
-  const byStation = stationNames
-    ? Object.entries(
-        items.reduce<Record<number, { ok: number; total: number }>>((acc, q) => {
-          const st = q.station ?? 0;
-          acc[st] = acc[st] || { ok: 0, total: 0 };
-          return acc;
-        }, {}),
-      ).map(([st, v]) => ({ st: Number(st), ...v }))
-    : [];
+  const byStation = Object.entries(
+    items.reduce<Record<number, { ok: number; total: number }>>((acc, q) => {
+      const st = q.station ?? 0;
+      acc[st] = acc[st] || { ok: 0, total: 0 };
+      return acc;
+    }, {}),
+  ).map(([st, v]) => ({ st: Number(st), ...v }));
+
   items.forEach((q, i) => {
     const e = byStation.find((x) => x.st === q.station);
     if (e && answers[i] >= 0 && items[i].options[answers[i]].isCorrect) e.ok += 1;
     if (e) e.total += 1;
   });
 
-  const fmt = (s: number) => `${Math.floor(s / 3600)}س ${Math.floor((s % 3600) / 60)}د`;
+  const fmt = (s: number) => (isEn ? `${Math.floor(s / 3600)}h ${Math.floor((s % 3600) / 60)}m` : `${Math.floor(s / 3600)}س ${Math.floor((s % 3600) / 60)}د`);
 
   if (stage === 'setup') {
     return (
       <div className="card mt-6 overflow-hidden">
         <div className="border-b border-slate-200 bg-brand-50 px-5 py-3 text-sm font-semibold text-brand-800">
-          📝 محاكي امتحان CFM — اختر عدد الأسئلة وابدأ
+          {isEn ? '📝 CFM Mock Exam — choose the number of questions and start' : '📝 محاكي امتحان CFM — اختر عدد الأسئلة وابدأ'}
         </div>
         <div className="space-y-4 p-5">
           <p className="text-sm leading-relaxed text-ink-600">
-            أسئلة من مواقف حقيقية توزع على أركان المنهج، بمؤقت يحاكي إيقاع الامتحان (90 ثانية للسؤال). اجمع 70% أو أكثر لتهيئة جاهزة للاختبار الفعلي.
+            {isEn
+              ? 'Real scenario questions distributed across the CFM competencies with a timer mimicking the exam pace (90 seconds per question). Score 70% or more to be ready for the real test.'
+              : 'أسئلة من مواقف حقيقية توزع على أركان المنهج، بمؤقت يحاكي إيقاع الامتحان (90 ثانية للسؤال). اجمع 70% أو أكثر لتهيئة جاهزة للاختبار الفعلي.'}
           </p>
           <div className="flex flex-wrap gap-2">
             {[10, 15, 20].map((n) => (
               <button key={n} type="button" onClick={() => start(n)} className="cursor-pointer rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700">
-                {n} أسئلة
+                {n} {isEn ? 'questions' : 'أسئلة'}
               </button>
             ))}
           </div>
@@ -156,40 +180,46 @@ export default function MockExam() {
     return (
       <div className="card mt-6 overflow-hidden">
         <div className="border-b border-slate-200 bg-brand-50 px-5 py-3 text-sm font-semibold text-brand-800">
-          📋 تقرير المحاكاة
+          {isEn ? '📋 Simulation report' : '📋 تقرير المحاكاة'}
         </div>
         <div className="space-y-4 p-5">
           <div className={`rounded-xl p-4 text-center ${pass ? 'bg-teal-50 text-teal-800' : 'bg-rose-50 text-rose-800'}`}>
             <p className="text-3xl font-bold">{pct}%</p>
-            <p className="mt-1 text-sm font-semibold">{score} من {count}</p>
-            <p className="mt-1 text-sm">{pass ? 'ممتاز — أنت جاهز لوتيرة الامتحان الفعلي' : 'لا تيأس: راجع أضعف محطة ثم أعد المحاكاة'}</p>
+            <p className="mt-1 text-sm font-semibold">{score} {isEn ? 'of' : 'من'} {count}</p>
+            <p className="mt-1 text-sm">
+              {pass ? (isEn ? 'Excellent — you are ready for the real exam pace' : 'ممتاز — أنت جاهز لوتيرة الامتحان الفعلي') : isEn ? 'Do not give up: review your weakest station then retry' : 'لا تيأس: راجع أضعف محطة ثم أعد المحاكاة'}
+            </p>
           </div>
 
           <div className="grid gap-1.5 sm:grid-cols-2">
             {byStation.map((s) => (
               <div key={s.st} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-sm">
-                <span className="font-semibold text-ink-700">{stationNames[s.st]}</span>
+                <span className="font-semibold text-ink-700">{isEn ? stationNamesEn[s.st] : stationNames[s.st]}</span>
                 <span dir="ltr" className="font-mono text-xs text-ink-500">{s.ok}/{s.total}</span>
               </div>
             ))}
           </div>
 
           <div>
-            <p className="mb-1 text-sm font-bold text-ink-700">مراجعة الأخطاء:</p>
+            <p className="mb-1 text-sm font-bold text-ink-700">{isEn ? 'Review mistakes:' : 'مراجعة الأخطاء:'}</p>
             {items.map((q, i) =>
               answers[i] >= 0 && !q.options[answers[i]].isCorrect ? (
                 <details key={i} className="mb-1 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm">
-                  <summary className="cursor-pointer font-semibold text-rose-800">{q.question}</summary>
-                  <p className="mt-1 text-xs text-ink-600">{q.scenario}</p>
-                  <p className="mt-1 text-xs text-teal-700">الصحيح: {q.options.find((o) => o.isCorrect)?.text}</p>
-                  <p className="mt-1 text-xs text-ink-500">{q.options.find((o) => o.isCorrect)?.explanation}</p>
+                  <summary className="cursor-pointer font-semibold text-rose-800">{isEn ? q.questionEn ?? q.question : q.question}</summary>
+                  <p className="mt-1 text-xs text-ink-600">{isEn ? q.scenarioEn ?? q.scenario : q.scenario}</p>
+                  <p className="mt-1 text-xs text-teal-700">
+                    {isEn ? 'Correct: ' : 'الصحيح: '}{isEn ? q.options.find((o) => o.isCorrect)?.textEn ?? q.options.find((o) => o.isCorrect)?.text : q.options.find((o) => o.isCorrect)?.text}
+                  </p>
+                  <p className="mt-1 text-xs text-ink-500">
+                    {isEn ? q.options.find((o) => o.isCorrect)?.explanationEn ?? q.options.find((o) => o.isCorrect)?.explanation : q.options.find((o) => o.isCorrect)?.explanation}
+                  </p>
                 </details>
               ) : null,
             )}
           </div>
 
           <button type="button" onClick={() => setStage('setup')} className="cursor-pointer rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700">
-            إعادة المحاكاة
+            {isEn ? 'Retry simulation' : 'إعادة المحاكاة'}
           </button>
         </div>
       </div>
@@ -200,15 +230,15 @@ export default function MockExam() {
   return (
     <div className="card mt-6 overflow-hidden">
       <div className="border-b border-slate-200 bg-brand-50 px-5 py-3 text-sm font-semibold text-brand-800">
-        📝 محاكي امتحان CFM — سؤال {idx + 1} من {count}
+        {isEn ? `📝 CFM Mock Exam — question ${idx + 1} of ${count}` : `📝 محاكي امتحان CFM — سؤال ${idx + 1} من ${count}`}
       </div>
 
       <div className="space-y-4 p-5">
         <div className="flex items-center justify-between rounded-lg bg-ink-900 px-4 py-2 text-sm text-white">
-          <span className="font-semibold text-teal-300">المؤقت: {fmt(left)}</span>
-          <span className="text-xs opacity-80">{answered}/{count} مُجاب</span>
+          <span className="font-semibold text-teal-300">{isEn ? `Timer: ${fmt(left)}` : `المؤقت: ${fmt(left)}`}</span>
+          <span className="text-xs opacity-80">{answered}/{count} {isEn ? 'answered' : 'مُجاب'}</span>
           <button type="button" onClick={() => setStage('done')} disabled={answered < count} className="cursor-pointer rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-bold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-40">
-            إنهاء المراجعة
+            {isEn ? 'Finish review' : 'إنهاء المراجعة'}
           </button>
         </div>
 
@@ -217,9 +247,11 @@ export default function MockExam() {
         </div>
 
         <div>
-          <p className="text-xs font-semibold text-brand-600">{stationNames[q.station]} • {q.difficulty}</p>
-          <p className="mt-1 text-sm italic text-ink-500">{q.scenario}</p>
-          <p className="mt-1 text-base font-bold text-ink-900">{q.question}</p>
+          <p className="text-xs font-semibold text-brand-600">
+            {isEn ? stationNamesEn[q.station] : stationNames[q.station]} • {isEn ? DIFFICULTY_EN[q.difficulty] : q.difficulty}
+          </p>
+          <p className="mt-1 text-sm italic text-ink-500">{isEn ? q.scenarioEn ?? q.scenario : q.scenario}</p>
+          <p className="mt-1 text-base font-bold text-ink-900">{isEn ? q.questionEn ?? q.question : q.question}</p>
         </div>
 
         <div className="space-y-2">
@@ -232,22 +264,22 @@ export default function MockExam() {
                 answers[idx] === oi ? 'border-brand-500 bg-brand-50 font-semibold text-brand-900' : 'border-slate-200 bg-white text-ink-700 hover:bg-slate-50'
               }`}
             >
-              {o.text}
+              {isEn ? o.textEn ?? o.text : o.text}
             </button>
           ))}
         </div>
 
         <div className="flex gap-2">
           <button type="button" disabled={idx === 0} onClick={() => setIdx((i) => i - 1)} className="cursor-pointer rounded-lg bg-slate-200 px-4 py-2 text-sm font-semibold text-ink-700 hover:bg-slate-300 disabled:cursor-not-allowed disabled:opacity-40">
-            → السابق
+            {isEn ? '← Previous' : '→ السابق'}
           </button>
           {idx < count - 1 ? (
             <button type="button" onClick={() => setIdx((i) => i + 1)} className="cursor-pointer rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700">
-              ← التالي
+              {isEn ? 'Next →' : '← التالي'}
             </button>
           ) : (
             <button type="button" disabled={answered < count} onClick={() => setStage('done')} className="cursor-pointer rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-40">
-              إنهاء وعرض النتيجة
+              {isEn ? 'Finish & see result' : 'إنهاء وعرض النتيجة'}
             </button>
           )}
         </div>

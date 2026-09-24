@@ -27,8 +27,8 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
         <LangText lang="en">📖 Glossary — {courseMeta?.code ?? ''}</LangText>
       </h1>
       <p class="mt-1 text-sm text-ink-400 dark:text-slate-400">
-        <LangText lang="ar">المصطلحات بالعربية مع التعريف الإنجليزي — أساس النجاح في الامتحان.</LangText>
-        <LangText lang="en">Terms in Arabic with their English definitions — the foundation for exam success.</LangText>
+        <LangText lang="ar">المصطلحات بتعريف عربي مبسط مع الاسم الإنجليزي الأصلي — أساس النجاح في الامتحان.</LangText>
+        <LangText lang="en">Terms with a plain-Arabic definition alongside the original English name — the foundation for exam success.</LangText>
       </p>
     </header>
 
@@ -76,8 +76,8 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
               📋
             </button>
           </div>
-          <p class="mt-2 text-sm leading-relaxed text-ink-600 dark:text-slate-300">{term.ar}</p>
-          <p dir="ltr" lang="en" class="mt-2 text-xs leading-relaxed text-ink-400 dark:text-slate-500">{term.en}</p>
+          <p data-lang="ar" class="mt-2 text-sm leading-relaxed text-ink-600 dark:text-slate-300">{term.ar}</p>
+          <p data-lang="en" dir="ltr" lang="en" class="mt-2 text-xs leading-relaxed text-ink-400 dark:text-slate-500">{term.en}</p>
         </div>
       ))}
     </div>

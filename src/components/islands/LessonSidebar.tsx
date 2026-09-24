@@ -2,33 +2,12 @@ import { useEffect, useState } from 'react';
 import { curriculum, type PlanStation } from '../../data/curriculum';
 import { loadProgress } from '../../lib/storage';
 import type { Language } from '../../i18n/ui';
+import useLang from '../../lib/useLang';
 
 interface Props {
   course: string;
   currentStationId: string;
   currentLessonId: string;
-}
-
-function getInitialLang(): Language {
-  try {
-    const stored = localStorage.getItem('cfm-lang');
-    if (stored === 'en' || stored === 'ar') return stored;
-  } catch {}
-  return 'ar';
-}
-
-function useLang(): Language {
-  const [lang, setLang] = useState<Language>('ar');
-  useEffect(() => {
-    setLang(getInitialLang());
-    const onChange = (e: Event) => {
-      const detail = (e as CustomEvent<{ lang?: string }>).detail;
-      if (detail?.lang === 'en' || detail?.lang === 'ar') setLang(detail.lang);
-    };
-    window.addEventListener('cfm-lang-changed', onChange);
-    return () => window.removeEventListener('cfm-lang-changed', onChange);
-  }, []);
-  return lang;
 }
 
 function useProgress(course: string) {
