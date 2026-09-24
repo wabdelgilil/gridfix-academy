@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import LangText from '../../components/ui/LangText.astro';
 import MockExam from '../../components/islands/tools/cfm/MockExam.tsx';
 import CmrpMockExam from '../../components/islands/tools/cmrp/CmrpMockExam.tsx';
 import CamaMockExam from '../../components/islands/tools/cama/CamaMockExam.tsx';
@@ -21,25 +22,51 @@ const isPlanned = !courseMeta || courseMeta.status !== 'live';
 
 <BaseLayout title={`محاكي الامتحان — ${courseMeta?.code ?? ''}`} description="محاكي حقيقي للامتحان: أسئلة مواقف، مؤقت زمني، وتقرير تشخيصي حسب أركان المنهج." noindex={isPlanned}>
   <div class="mx-auto max-w-3xl">
-    <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: 'محاكي الامتحان' }]} />
+    <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: 'محاكي الامتحان', labelEn: 'Exam simulator' }]} />
     <header class="mb-6">
-      <span class="chip bg-brand-100 text-brand-700">🧪 تدريب فعلي</span>
-      <h1 class="mt-3 text-2xl font-bold text-ink-900">📝 محاكي امتحان {courseMeta?.code ?? ''}</h1>
+      <span class="chip bg-brand-100 text-brand-700">
+        <LangText lang="ar">🧪 تدريب فعلي</LangText>
+        <LangText lang="en">🧪 Real-world practice</LangText>
+      </span>
+      <h1 class="mt-3 text-2xl font-bold text-ink-900">
+        <LangText lang="ar">📝 محاكي امتحان {courseMeta?.code ?? ''}</LangText>
+        <LangText lang="en">📝 {courseMeta?.code ?? ''} Exam Simulator</LangText>
+      </h1>
       <p class="mt-2 text-sm leading-relaxed text-ink-500">
-        {course === 'cmrp'
-          ? 'أسئلة مواقف حقيقية من ركائز SMRP الخمس مع مؤقت يحاكي إيقاع الامتحان الفعلي (80 ثانية للسؤال) وتقرير يبين أضعف ركيزة لديك بعد كل محاولة. اجمع 70% فأكثر لتعتبر جاهزاً.'
-          : course === 'cama'
-            ? 'أسئلة مواقف موزعة على مجلدات GFMAM الخمسة مع مؤقت يحاكي إيقاع الامتحان الفعلي (80 ثانية للسؤال، والامتحان الحقيقي 110 أسئلة في 150 دقيقة) وتقرير يبين أضعف مجلد لديك بعد كل محاولة. اجمع 70% فأكثر لتعتبر جاهزاً.'
-            : 'أسئلة مواقف حقيقية من كل أركان المنهج مع مؤقت يحاكي إيقاع الامتحان الفعلي (90 ثانية للسؤال) وتقرير يبين أضعف ركن لديك بعد كل محاولة. اجمع 60% فأكثر لتعتبر جاهزاً، وكرر حتى تتجاوز 70%.'}
+        {course === 'cmrp' ? (
+          <>
+            <LangText lang="ar">أسئلة مواقف حقيقية من ركائز SMRP الخمس مع مؤقت يحاكي إيقاع الامتحان الفعلي (80 ثانية للسؤال) وتقرير يبين أضعف ركيزة لديك بعد كل محاولة. اجمع 70% فأكثر لتعتبر جاهزاً.</LangText>
+            <LangText lang="en">Real scenario questions from the five SMRP pillars with a timer mimicking the real exam pace (80 seconds per question) and a report showing your weakest pillar after each attempt. Score 70% or more to be considered ready.</LangText>
+          </>
+        ) : course === 'cama' ? (
+          <>
+            <LangText lang="ar">أسئلة مواقف موزعة على مجلدات GFMAM الخمسة مع مؤقت يحاكي إيقاع الامتحان الفعلي (80 ثانية للسؤال، والامتحان الحقيقي 110 أسئلة في 150 دقيقة) وتقرير يبين أضعف مجلد لديك بعد كل محاولة. اجمع 70% فأكثر لتعتبر جاهزاً.</LangText>
+            <LangText lang="en">Scenario questions spread across the five GFMAM Folders with a timer mimicking the real exam pace (80 seconds per question; the real exam is 110 questions in 150 minutes) and a report showing your weakest folder after each attempt. Score 70% or more to be considered ready.</LangText>
+          </>
+        ) : (
+          <>
+            <LangText lang="ar">أسئلة مواقف حقيقية من كل أركان المنهج مع مؤقت يحاكي إيقاع الامتحان الفعلي (90 ثانية للسؤال) وتقرير يبين أضعف ركن لديك بعد كل محاولة. اجمع 60% فأكثر لتعتبر جاهزاً، وكرر حتى تتجاوز 70%.</LangText>
+            <LangText lang="en">Real scenario questions from every competence area with a timer mimicking the real exam pace (90 seconds per question) and a report showing your weakest area after each attempt. Score 60% or more to be considered ready, and repeat until you pass 70%.</LangText>
+          </>
+        )}
       </p>
     </header>
 
     {isPlanned ? (
       <div class="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center">
         <span class="text-4xl">🚧</span>
-        <h2 class="mt-4 text-lg font-bold text-ink-900">محاكي الامتحان — قريباً</h2>
-        <p class="mt-2 text-sm text-ink-400">{courseMeta?.description}</p>
-        <a href="/" class="mt-4 inline-block font-semibold text-brand-700 hover:underline">← العودة لاختيار الكورس</a>
+        <h2 class="mt-4 text-lg font-bold text-ink-900">
+          <LangText lang="ar">محاكي الامتحان — قريباً</LangText>
+          <LangText lang="en">Exam simulator — coming soon</LangText>
+        </h2>
+        <p class="mt-2 text-sm text-ink-400">
+          <LangText lang="ar">{courseMeta?.description}</LangText>
+          <LangText lang="en">{courseMeta?.descriptionEn}</LangText>
+        </p>
+        <a href="/" class="mt-4 inline-block font-semibold text-brand-700 hover:underline">
+          <LangText lang="ar">← العودة لاختيار الكورس</LangText>
+          <LangText lang="en">← Back to course selection</LangText>
+        </a>
       </div>
     ) : course === 'cmrp' ? (
       <CmrpMockExam client:load />

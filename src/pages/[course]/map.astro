@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import LangText from '../../components/ui/LangText.astro';
 import { curriculum } from '../../data/curriculum';
 import { getCourse, courses } from '../../data/courses';
 
@@ -23,28 +24,57 @@ const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
 
 <BaseLayout title={`خريطة منهج ${courseMeta?.code ?? ''} — صالة GridFix`} description="الخريطة الكاملة لمسار المنصة: المحطات والدروس والأدوات ووزن كل ركن في الامتحان." noindex={isPlanned}>
   <div class="mx-auto max-w-4xl">
-    <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: 'خريطة المنهج' }]} />
+    <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: 'خريطة المنهج', labelEn: 'Curriculum map' }]} />
     <header class="mb-6 flex flex-wrap items-end justify-between gap-4 animate-fade-in">
       <div>
-        <span class="chip bg-brand-100 text-brand-700">🗺️ المسار الكامل</span>
-        <h1 class="mt-3 text-2xl font-bold text-ink-900">خريطة منهج {courseMeta?.code ?? ''}</h1>
+        <span class="chip bg-brand-100 text-brand-700">
+          <LangText lang="ar">🗺️ المسار الكامل</LangText>
+          <LangText lang="en">🗺️ The full path</LangText>
+        </span>
+        <h1 class="mt-3 text-2xl font-bold text-ink-900">
+          <LangText lang="ar">خريطة منهج {courseMeta?.code ?? ''}</LangText>
+          <LangText lang="en">{courseMeta?.code ?? ''} Curriculum Map</LangText>
+        </h1>
         <p class="mt-2 text-sm leading-relaxed text-ink-500">
-          {isPlanned ? (
-            'خريطة هذا الكورس ستظهر هنا فور إطلاقه.'
-          ) : (
-            `${stations.length} محطة • ${totalLessons} درساً • نحو ${Math.round(totalMinutes / 60)} ساعة تعلم. الأرقام على كل محطة تشير إلى وزن الركن التقريبي في الامتحان.`
-          )}
+          <LangText lang="ar">
+            {isPlanned ? (
+              'خريطة هذا الكورس ستظهر هنا فور إطلاقه.'
+            ) : (
+              `${stations.length} محطة • ${totalLessons} درساً • نحو ${Math.round(totalMinutes / 60)} ساعة تعلم. الأرقام على كل محطة تشير إلى وزن الركن التقريبي في الامتحان.`
+            )}
+          </LangText>
+          <LangText lang="en">
+            {isPlanned ? (
+              'This course map will appear as soon as the course launches.'
+            ) : (
+              `${stations.length} stations • ${totalLessons} lessons • about ${Math.round(totalMinutes / 60)} hours of study. The number on each station shows its approximate exam weight.`
+            )}
+          </LangText>
         </p>
       </div>
-      {!isPlanned && <span class="chip bg-amber-100 text-amber-800 animate-pulse-glow">✅ كل المحطات متاحة الآن</span>}
+      {!isPlanned && (
+        <span class="chip bg-amber-100 text-amber-800 animate-pulse-glow">
+          <LangText lang="ar">✅ كل المحطات متاحة الآن</LangText>
+          <LangText lang="en">✅ All stations are live</LangText>
+        </span>
+      )}
     </header>
 
     {isPlanned ? (
       <div class="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center">
         <span class="text-4xl">🚧</span>
-        <h2 class="mt-4 text-lg font-bold text-ink-900">قريباً</h2>
-        <p class="mt-2 text-sm text-ink-400">{courseMeta?.description}</p>
-        <a href="/" class="mt-4 inline-block font-semibold text-brand-700 hover:underline">← العودة لاختيار الكورس</a>
+        <h2 class="mt-4 text-lg font-bold text-ink-900">
+          <LangText lang="ar">قريباً</LangText>
+          <LangText lang="en">Coming soon</LangText>
+        </h2>
+        <p class="mt-2 text-sm text-ink-400">
+          <LangText lang="ar">{courseMeta?.description}</LangText>
+          <LangText lang="en">{courseMeta?.descriptionEn}</LangText>
+        </p>
+        <a href="/" class="mt-4 inline-block font-semibold text-brand-700 hover:underline">
+          <LangText lang="ar">← العودة لاختيار الكورس</LangText>
+          <LangText lang="en">← Back to course selection</LangText>
+        </a>
       </div>
     ) : (
       <ol class="relative space-y-6 border-s-2 border-slate-200 ps-6">
@@ -64,21 +94,33 @@ const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
                 <div class="flex flex-wrap items-center justify-between gap-3">
                   <div class="flex items-center gap-3">
                     <h2 class="font-bold text-ink-900">
-                      <span class="text-brand-600">محطة {s.number}</span> — {s.title}
+                      <span class="text-brand-600">
+                        <LangText lang="ar">محطة {s.number}</LangText>
+                        <LangText lang="en">Station {s.number}</LangText>
+                      </span> —{' '}
+                      <LangText lang="ar">{s.title}</LangText>
+                      <LangText lang="en">{s.titleEn}</LangText>
                     </h2>
-                    <span dir="ltr" lang="en" class="text-xs text-ink-400">{s.titleEn}</span>
                   </div>
                   <div class="flex flex-wrap items-center gap-2">
                     {s.examWeight > 0 && s.examWeight < 100 && (
-                      <span class="chip bg-amber-50 text-amber-800">◉ {s.examWeight}% من الامتحان</span>
+                      <span class="chip bg-amber-50 text-amber-800">
+                        ◉ {s.examWeight}%
+                        <LangText lang="ar"> من الامتحان</LangText>
+                        <LangText lang="en"> of the exam</LangText>
+                      </span>
                     )}
                     <span class={`chip ${live.length === total ? 'bg-brand-100 text-brand-700' : 'bg-amber-100 text-amber-800'}`}>
-                      {live.length === total ? '✅ مكتملة' : '⏳ قيد البناء'}
+                      <LangText lang="ar">{live.length === total ? '✅ مكتملة' : '⏳ قيد البناء'}</LangText>
+                      <LangText lang="en">{live.length === total ? '✅ Complete' : '⏳ In progress'}</LangText>
                     </span>
                   </div>
                 </div>
 
-                <p class="mt-2 text-sm leading-relaxed text-ink-500">{s.description}</p>
+                <p class="mt-2 text-sm leading-relaxed text-ink-500">
+                  <LangText lang="ar">{s.description}</LangText>
+                  <LangText lang="en">{s.descriptionEn}</LangText>
+                </p>
 
                 <ul class="mt-3 flex flex-wrap gap-1.5">
                   {s.lessons.map((l) => (
@@ -88,10 +130,14 @@ const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
                           href={`/${course}/lessons/${l.id}`}
                           class="rounded-lg bg-slate-50 px-2.5 py-1 text-xs font-semibold text-ink-600 transition hover:bg-brand-50 hover:text-brand-700"
                         >
-                          {l.number} {l.title} {l.toolName ? `🛠 ${l.toolName}` : ''}
+                          <LangText lang="ar">{l.number} {l.title} {l.toolName ? `🛠 ${l.toolName}` : ''}</LangText>
+                          <LangText lang="en">{l.number} {l.titleEn} {l.toolName ? `🛠 ${l.toolNameEn ?? l.toolName}` : ''}</LangText>
                         </a>
                       ) : (
-                        <span class="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-ink-400">{l.number} {l.title} • قريباً</span>
+                        <span class="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-ink-400">
+                          <LangText lang="ar">{l.number} {l.title} • قريباً</LangText>
+                          <LangText lang="en">{l.number} {l.titleEn} • coming soon</LangText>
+                        </span>
                       )}
                     </li>
                   ))}

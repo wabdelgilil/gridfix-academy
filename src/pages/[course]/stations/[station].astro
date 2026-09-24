@@ -3,6 +3,8 @@ import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
+import LangText from '../../../components/ui/LangText.astro';
 import StationProgress from '../../../components/islands/progress/StationProgress.tsx';
 import { getStation } from '../../../data/curriculum';
 import { getLiveCourses } from '../../../data/courses';
@@ -35,23 +37,42 @@ const plannedLessons = (plan?.lessons ?? []).filter((l) => l.status === 'planned
 const courseMeta = getLiveCourses().find((c) => c.id === data.course);
 ---
 
-<BaseLayout title={`${data.title} — ${courseMeta?.code ?? ''}`} description={data.description}>
+<BaseLayout title={`${data.title} — ${courseMeta?.code ?? ''}`} description={`${data.titleEn} — ${data.descriptionEn}`}>
   <div class="mx-auto max-w-4xl">
-    <Breadcrumb items={[{ label: courseMeta?.code ?? data.course, href: `/${data.course}` }, { label: data.title }]} />
+    <Breadcrumb items={[{ label: courseMeta?.code ?? data.course, href: `/${data.course}` }, { label: data.title, labelEn: data.titleEn }]} />
 
     <header class="card overflow-hidden animate-fade-in">
       <div class="flex flex-wrap items-center gap-2 bg-gradient-to-l from-ink-900 to-brand-700 px-6 py-4">
-        <span class="chip bg-white/20 text-white">{data.icon} {data.badge}</span>
-        <span class="chip bg-white/20 text-white">المحطة {data.number}</span>
-        {data.status === 'live' && <span class="chip bg-amber-400 text-amber-950">✅ بدأنا هنا</span>}
+        <span class="chip bg-white/20 text-white">
+          <LangText lang="ar">{data.icon} {data.badge}</LangText>
+          <LangText lang="en">{data.icon} {data.badgeEn}</LangText>
+        </span>
+        <span class="chip bg-white/20 text-white">
+          <LangText lang="ar">المحطة {data.number}</LangText>
+          <LangText lang="en">Station {data.number}</LangText>
+        </span>
+        {data.status === 'live' && (
+          <span class="chip bg-amber-400 text-amber-950">
+            <LangText lang="ar">✅ بدأنا هنا</LangText>
+            <LangText lang="en">✅ Live</LangText>
+          </span>
+        )}
       </div>
       <div class="px-6 py-6">
-        <h1 class="text-2xl font-bold leading-relaxed text-ink-900">{data.title}</h1>
-        <p dir="ltr" lang="en" class="mt-1 text-sm text-ink-400">{data.titleEn}</p>
-        <p class="mt-4 leading-relaxed text-ink-600"><Content /></p>
+        <h1 class="text-2xl font-bold leading-relaxed text-ink-900">
+          <LangText lang="ar">{data.title}</LangText>
+          <LangText lang="en">{data.titleEn}</LangText>
+        </h1>
+        <div class="mt-4 leading-relaxed text-ink-600">
+          <LangSection lang="ar"><Content /></LangSection>
+          <LangSection lang="en">{data.descriptionEn}</LangSection>
+        </div>
         {data.examWeight > 0 && (
           <div class="mt-4 flex items-center gap-2 text-sm text-ink-500">
-            <span>وزن الركن في الامتحان:</span>
+            <span>
+              <LangText lang="ar">وزن الركن في الامتحان:</LangText>
+              <LangText lang="en">Exam weight:</LangText>
+            </span>
             <span class="chip bg-brand-100 text-brand-700" dir="ltr">{data.examWeight}%</span>
           </div>
         )}
@@ -63,7 +84,10 @@ const courseMeta = getLiveCourses().find((c) => c.id === data.course);
     </div>
 
     <section class="mt-8">
-      <h2 class="text-lg font-bold text-ink-900">دروس المحطة</h2>
+      <h2 class="text-lg font-bold text-ink-900">
+        <LangText lang="ar">دروس المحطة</LangText>
+        <LangText lang="en">Station lessons</LangText>
+      </h2>
       <div class="mt-4 grid gap-3">
         {stationLessons.map((lesson, i) => (
           <a
@@ -75,11 +99,28 @@ const courseMeta = getLiveCourses().find((c) => c.id === data.course);
                 {lesson.data.number}
               </span>
               <div>
-                <h3 class="font-semibold text-ink-900">{lesson.data.title}</h3>
+                <h3 class="font-semibold text-ink-900">
+                  <LangText lang="ar">{lesson.data.title}</LangText>
+                  <LangText lang="en">{lesson.data.titleEn}</LangText>
+                </h3>
                 <p class="mt-0.5 flex flex-wrap items-center gap-1 text-xs text-ink-400">
-                  <span>⏱ {lesson.data.minutes} دقيقة</span>
-                  {lesson.data.hasTool && <span class="chip bg-brand-50 text-brand-700 text-[10px] py-0">🛠 أداة تفاعلية</span>}
-                  {lesson.data.quizId && <span class="chip bg-amber-50 text-amber-700 text-[10px] py-0">💬 كويز</span>}
+                  <span>
+                    ⏱ {lesson.data.minutes}
+                    <LangText lang="ar"> دقيقة</LangText>
+                    <LangText lang="en"> min</LangText>
+                  </span>
+                  {lesson.data.hasTool && (
+                    <span class="chip bg-brand-50 text-brand-700 text-[10px] py-0">
+                      <LangText lang="ar">🛠 أداة تفاعلية</LangText>
+                      <LangText lang="en">🛠 Interactive tool</LangText>
+                    </span>
+                  )}
+                  {lesson.data.quizId && (
+                    <span class="chip bg-amber-50 text-amber-700 text-[10px] py-0">
+                      <LangText lang="ar">💬 كويز</LangText>
+                      <LangText lang="en">💬 Quiz</LangText>
+                    </span>
+                  )}
                 </p>
               </div>
             </div>
@@ -94,11 +135,20 @@ const courseMeta = getLiveCourses().find((c) => c.id === data.course);
                 {p.number}
               </span>
               <div>
-                <h3 class="font-semibold text-ink-500">{p.title}</h3>
-                <p class="mt-0.5 text-xs text-ink-400">📚 {p.minutes} دقيقة مقترحة {p.toolName ? `• 🛠 ${p.toolName}` : ''}</p>
+                <h3 class="font-semibold text-ink-500">
+                  <LangText lang="ar">{p.title}</LangText>
+                  <LangText lang="en">{p.titleEn}</LangText>
+                </h3>
+                <p class="mt-0.5 text-xs text-ink-400">
+                  <LangText lang="ar">📚 {p.minutes} دقيقة مقترحة {p.toolName ? `• 🛠 ${p.toolName}` : ''}</LangText>
+                  <LangText lang="en">📚 {p.minutes} planned minutes {p.toolName ? `• 🛠 ${p.toolNameEn ?? p.toolName}` : ''}</LangText>
+                </p>
               </div>
             </div>
-            <span class="chip bg-amber-100 text-amber-800">قريباً</span>
+            <span class="chip bg-amber-100 text-amber-800">
+              <LangText lang="ar">قريباً</LangText>
+              <LangText lang="en">Coming soon</LangText>
+            </span>
           </div>
         ))}
       </div>

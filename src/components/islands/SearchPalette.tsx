@@ -5,9 +5,12 @@ import { curriculum } from '../../data/curriculum';
 interface SearchItem {
   kind: 'course' | 'station' | 'lesson';
   title: string;
+  titleEn: string;
   subtitle?: string;
+  subtitleEn?: string;
   href: string;
   category: string;
+  categoryEn?: string;
 }
 
 function buildIndex(): SearchItem[] {
@@ -17,7 +20,9 @@ function buildIndex(): SearchItem[] {
     items.push({
       kind: 'course',
       title: c.title,
+      titleEn: c.titleEn,
       subtitle: c.code,
+      subtitleEn: c.code,
       href: `/${c.id}`,
       category: c.code,
     });
@@ -29,18 +34,24 @@ function buildIndex(): SearchItem[] {
     items.push({
       kind: 'station',
       title: s.title,
+      titleEn: s.titleEn,
       subtitle: s.titleEn,
+      subtitleEn: s.title,
       href: `/${courseId}/stations/${s.id}`,
       category: 'المحطات',
+      categoryEn: 'Stations',
     });
     for (const l of s.lessons) {
       if (l.status !== 'live') continue;
       items.push({
         kind: 'lesson',
         title: l.title,
+        titleEn: l.titleEn,
         subtitle: `${s.title} • ${l.number} • ${l.minutes} دقيقة`,
+        subtitleEn: `${s.titleEn} • ${l.number} • ${l.minutes} min`,
         href: `/${courseId}/lessons/${l.id}`,
         category: s.title,
+        categoryEn: s.titleEn,
       });
     }
   }
@@ -49,19 +60,27 @@ function buildIndex(): SearchItem[] {
 }
 
 const KINDS = {
-  course: { icon: '🎓', label: 'كورس' },
-  station: { icon: '🗺', label: 'محطة' },
-  lesson: { icon: '📖', label: 'درس' },
+  course: { icon: '🎓', label: 'كورس', labelEn: 'Course' },
+  station: { icon: '🗺', label: 'محطة', labelEn: 'Station' },
+  lesson: { icon: '📖', label: 'درس', labelEn: 'Lesson' },
 } as const;
 
 export default function SearchPalette() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
+  const [lang, setLang] = useState<'ar' | 'en'>('ar');
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
   const items = useRef(buildIndex());
+
+  useEffect(() => {
+    setLang(document.documentElement.lang === 'en' ? 'en' : 'ar');
+    const onChange = () => setLang(document.documentElement.lang === 'en' ? 'en' : 'ar');
+    document.addEventListener('cfm-lang-changed', onChange);
+    return () => document.removeEventListener('cfm-lang-changed', onChange);
+  }, []);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -93,7 +112,7 @@ export default function SearchPalette() {
     .filter((item) => {
       const q = query.trim().toLowerCase();
       if (!q) return true;
-      return (item.title + ' ' + item.subtitle + ' ' + item.href).toLowerCase().includes(q);
+      return (item.title + ' ' + item.titleEn + ' ' + item.subtitle + ' ' + item.subtitleEn + ' ' + item.href).toLowerCase().includes(q);
     })
     .slice(0, 12);
 
@@ -142,16 +161,18 @@ export default function SearchPalette() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={onKeyDown}
-            placeholder="ابحث عن درس، محطة، أو كورس... (Ctrl+K)"
+            placeholder={lang === 'en' ? 'Search lessons, stations, or courses... (Ctrl+K)' : 'ابحث عن درس، محطة، أو كورس... (Ctrl+K)'}
             className="w-full bg-transparent text-base text-ink-900 outline-none placeholder:text-ink-400"
-            aria-label="بحث سريع"
+            aria-label={lang === 'en' ? 'Quick search' : 'بحث سريع'}
           />
           <kbd className="chip bg-slate-100 text-xs text-ink-400" dir="ltr">esc</kbd>
         </div>
 
         <div ref={listRef} className="max-h-[55vh] overflow-y-auto p-2">
           {filtered.length === 0 && (
-            <p className="px-4 py-8 text-center text-sm text-ink-400">لا توجد نتائج مطابقة لبحثك.</p>
+            <p className="px-4 py-8 text-center text-sm text-ink-400">
+              {lang === 'en' ? 'No results match your search.' : 'لا توجد نتائج مطابقة لبحثك.'}
+            </p>
           )}
           {filtered.map((item, idx) => (
             <a
@@ -166,18 +187,24 @@ export default function SearchPalette() {
                 {KINDS[item.kind].icon}
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-sm font-semibold text-ink-900">{item.title}</span>
-                <span className="mt-0.5 block truncate text-xs text-ink-400">{item.subtitle}</span>
+                <span className="block truncate text-sm font-semibold text-ink-900">
+                  {lang === 'en' ? item.titleEn : item.title}
+                </span>
+                <span className="mt-0.5 block truncate text-xs text-ink-400">
+                  {lang === 'en' ? item.subtitleEn ?? item.titleEn : item.subtitle}
+                </span>
               </span>
-              <span className="chip hidden bg-slate-100 text-[10px] text-ink-400 sm:inline-flex">{KINDS[item.kind].label}</span>
+              <span className="chip hidden bg-slate-100 text-[10px] text-ink-400 sm:inline-flex">
+                {lang === 'en' ? KINDS[item.kind].labelEn : KINDS[item.kind].label}
+              </span>
             </a>
           ))}
         </div>
 
         <div className="flex items-center gap-3 border-t border-slate-200 bg-slate-50 px-5 py-2 text-[10px] text-ink-400">
-          <span className="flex items-center gap-1"><kbd className="rounded bg-white px-1.5 py-0.5 ring-1 ring-slate-200" dir="ltr">↑↓</kbd> تنقل</span>
-          <span className="flex items-center gap-1"><kbd className="rounded bg-white px-1.5 py-0.5 ring-1 ring-slate-200" dir="ltr">↵</kbd> فتح</span>
-          <span className="ms-auto">بحث سريع في كل المنصة</span>
+          <span className="flex items-center gap-1"><kbd className="rounded bg-white px-1.5 py-0.5 ring-1 ring-slate-200" dir="ltr">↑↓</kbd> {lang === 'en' ? 'Navigate' : 'تنقل'}</span>
+          <span className="flex items-center gap-1"><kbd className="rounded bg-white px-1.5 py-0.5 ring-1 ring-slate-200" dir="ltr">↵</kbd> {lang === 'en' ? 'Open' : 'فتح'}</span>
+          <span className="ms-auto">{lang === 'en' ? 'Quick search across the whole platform' : 'بحث سريع في كل المنصة'}</span>
         </div>
       </div>
     </div>

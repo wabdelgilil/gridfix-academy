@@ -1,16 +1,20 @@
 ---
+import LangText from './LangText.astro';
+
 interface Crumb {
   label: string;
+  labelEn?: string;
   href?: string;
 }
 
 interface Props {
   items: Crumb[];
   homeLabel?: string;
+  homeLabelEn?: string;
 }
 
-const { items, homeLabel = 'GridFix Academy' } = Astro.props;
-const crumbs: Crumb[] = [{ label: homeLabel, href: '/' }, ...items];
+const { items, homeLabel = 'GridFix Academy', homeLabelEn } = Astro.props;
+const crumbs: Crumb[] = [{ label: homeLabel, labelEn: homeLabelEn, href: '/' }, ...items];
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -32,9 +36,15 @@ const jsonLd = {
         <li class="flex items-center gap-2">
           {i > 0 && <span aria-hidden="true">←</span>}
           {c.href && !last ? (
-            <a href={c.href} class="transition hover:text-brand-700 hover:underline">{c.label}</a>
+            <a href={c.href} class="transition hover:text-brand-700 hover:underline">
+              <LangText lang="ar">{c.label}</LangText>
+              {c.labelEn && <LangText lang="en">{c.labelEn}</LangText>}
+            </a>
           ) : (
-            <span class={last ? 'font-semibold text-ink-600' : ''}>{c.label}</span>
+            <span class={last ? 'font-semibold text-ink-600' : ''}>
+              <LangText lang="ar">{c.label}</LangText>
+              {c.labelEn && <LangText lang="en">{c.labelEn}</LangText>}
+            </span>
           )}
         </li>
       );

@@ -1,5 +1,6 @@
 ---
 import { getStation, type PlanLesson } from '../../data/curriculum';
+import LangText from './LangText.astro';
 
 interface Props {
   course: string;
@@ -25,13 +26,20 @@ const liveNext: PlanLesson | undefined = next?.status === 'live' ? next : undefi
     >
       <span class="text-lg">→</span>
       <div class="text-right">
-        <div class="text-xs text-ink-400">السابق</div>
-        <div>{livePrev ? livePrev.number : '—'} {livePrev?.title ?? 'قريباً'}</div>
+        <div class="text-xs text-ink-400">
+          <LangText lang="ar">السابق</LangText>
+          <LangText lang="en">Previous</LangText>
+        </div>
+        <div>
+          <LangText lang="ar">{livePrev ? `${livePrev.number} ${livePrev.title}` : 'قريباً'}</LangText>
+          <LangText lang="en">{livePrev ? `${livePrev.number} ${livePrev.titleEn}` : 'Coming soon'}</LangText>
+        </div>
       </div>
     </a>
     <a href={`/${course}/stations/${stationId}`} class="flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-ink-800 hover:shadow-md">
       <span>📋</span>
-      <span>إكمال المحطة</span>
+      <LangText lang="ar">إكمال المحطة</LangText>
+      <LangText lang="en">Back to station</LangText>
     </a>
     <a
       href={liveNext ? `/${course}/lessons/${liveNext.id}` : undefined}
@@ -39,8 +47,14 @@ const liveNext: PlanLesson | undefined = next?.status === 'live' ? next : undefi
       aria-disabled={!liveNext}
     >
       <div class="text-left">
-        <div class="text-xs text-ink-400">التالي</div>
-        <div>{liveNext ? liveNext.number : '—'} {liveNext?.title ?? 'قريباً'}</div>
+        <div class="text-xs text-ink-400">
+          <LangText lang="ar">التالي</LangText>
+          <LangText lang="en">Next</LangText>
+        </div>
+        <div>
+          <LangText lang="ar">{liveNext ? `${liveNext.number} ${liveNext.title}` : 'قريباً'}</LangText>
+          <LangText lang="en">{liveNext ? `${liveNext.number} ${liveNext.titleEn}` : 'Coming soon'}</LangText>
+        </div>
       </div>
       <span class="text-lg">←</span>
     </a>

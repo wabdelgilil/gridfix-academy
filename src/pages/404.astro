@@ -1,29 +1,52 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LangText from '../components/ui/LangText.astro';
 ---
 
 <BaseLayout title="الصفحة غير موجودة — GridFix Academy" description="الصفحة المطلوبة غير موجودة. عُد إلى مسارات التعلم في GridFix Academy." noindex={true}>
   <div class="mx-auto max-w-2xl py-16 text-center">
     <span class="text-7xl">🧭</span>
-    <h1 class="mt-6 text-4xl font-black text-ink-900">404 — خرجت عن المسار</h1>
+    <h1 class="mt-6 text-4xl font-black text-ink-900">
+      <LangText lang="ar">404 — خرجت عن المسار</LangText>
+      <LangText lang="en">404 — Off the path</LangText>
+    </h1>
     <p class="mt-3 leading-relaxed text-ink-500">
-      الصفحة التي تبحث عنها غير موجودة أو نُقلت. لا بأس — أفضل المهندسين يعيدون المعايرة ثم يكملون الطريق.
+      <LangText lang="ar">الصفحة التي تبحث عنها غير موجودة أو نُقلت. لا بأس — أفضل المهندسين يعيدون المعايرة ثم يكملون الطريق.</LangText>
+      <LangText lang="en">The page you're looking for doesn't exist or has moved. No worries — the best engineers recalibrate and continue the journey.</LangText>
     </p>
     <div class="mt-8 grid gap-3 sm:grid-cols-3">
       <a href="/cfm" class="card p-5 transition hover:border-brand-500 hover:shadow-md">
         <span class="text-3xl">🏗️</span>
-        <p class="mt-2 font-bold text-ink-900">مسار CFM</p>
-        <p class="mt-1 text-xs text-ink-400">إدارة المنشآت — متاح الآن</p>
+        <p class="mt-2 font-bold text-ink-900">
+          <LangText lang="ar">مسار CFM</LangText>
+          <LangText lang="en">CFM path</LangText>
+        </p>
+        <p class="mt-1 text-xs text-ink-400">
+          <LangText lang="ar">إدارة المنشآت — متاح الآن</LangText>
+          <LangText lang="en">Facility management — live now</LangText>
+        </p>
       </a>
       <a href="/cmrp" class="card p-5 transition hover:border-brand-500 hover:shadow-md">
         <span class="text-3xl">⚙️</span>
-        <p class="mt-2 font-bold text-ink-900">مسار CMRP</p>
-        <p class="mt-1 text-xs text-ink-400">الصيانة والموثوقية — متاح الآن</p>
+        <p class="mt-2 font-bold text-ink-900">
+          <LangText lang="ar">مسار CMRP</LangText>
+          <LangText lang="en">CMRP path</LangText>
+        </p>
+        <p class="mt-1 text-xs text-ink-400">
+          <LangText lang="ar">الصيانة والموثوقية — متاح الآن</LangText>
+          <LangText lang="en">Maintenance and reliability — live now</LangText>
+        </p>
       </a>
       <a href="/" class="card p-5 transition hover:border-brand-500 hover:shadow-md">
         <span class="text-3xl">🏠</span>
-        <p class="mt-2 font-bold text-ink-900">الرئيسية</p>
-        <p class="mt-1 text-xs text-ink-400">اختيار الكورس من البداية</p>
+        <p class="mt-2 font-bold text-ink-900">
+          <LangText lang="ar">الرئيسية</LangText>
+          <LangText lang="en">Home</LangText>
+        </p>
+        <p class="mt-1 text-xs text-ink-400">
+          <LangText lang="ar">اختيار الكورس من البداية</LangText>
+          <LangText lang="en">Choose your course from the start</LangText>
+        </p>
       </a>
     </div>
   </div>

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import LangText from '../../components/ui/LangText.astro';
 import ResumeLearning from '../../components/islands/ResumeLearning.tsx';
 import { curriculum } from '../../data/curriculum';
 import { getCourse, courses } from '../../data/courses';
@@ -58,15 +59,27 @@ const courseJsonLd = !isPlanned && courseMeta
 
 <BaseLayout title={`${courseMeta ? `${courseMeta.title} — ${courseMeta.titleEn}` : 'الكورس'} | صالة GridFix`} description={courseMeta?.description ?? 'منصة GridFix التعليمية'} noindex={isPlanned} image={courseImage}>
   {courseJsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(courseJsonLd)} />}
-  <Breadcrumb items={[{ label: courseMeta?.code ?? course }]} />
+  <Breadcrumb items={[{ label: courseMeta?.code ?? course, labelEn: courseMeta?.code ?? course }]} />
   {isPlanned ? (
     <div class="mx-auto max-w-2xl text-center animate-fade-in">
       <span class="text-6xl animate-float">{courseMeta?.icon ?? '⏳'}</span>
-      <h1 class="mt-6 text-3xl font-bold text-ink-900">{courseMeta?.code} — قريباً</h1>
-      <p class="mt-3 leading-relaxed text-ink-600">{courseMeta?.description}</p>
-      <span class="chip mt-6 bg-amber-100 text-amber-800">🚧 قيد البناء — سيُطلق قريباً</span>
+      <h1 class="mt-6 text-3xl font-bold text-ink-900">
+        <LangText lang="ar">{courseMeta?.code} — قريباً</LangText>
+        <LangText lang="en">{courseMeta?.code} — Coming soon</LangText>
+      </h1>
+      <p class="mt-3 leading-relaxed text-ink-600">
+        <LangText lang="ar">{courseMeta?.description}</LangText>
+        <LangText lang="en">{courseMeta?.descriptionEn}</LangText>
+      </p>
+      <span class="chip mt-6 bg-amber-100 text-amber-800">
+        <LangText lang="ar">🚧 قيد البناء — سيُطلق قريباً</LangText>
+        <LangText lang="en">🚧 Under construction — coming soon</LangText>
+      </span>
       <p class="mt-4 text-sm text-ink-400">
-        <a href="/" class="font-semibold text-brand-700 hover:underline">← العودة لاختيار الكورس</a>
+        <a href="/" class="font-semibold text-brand-700 hover:underline">
+          <LangText lang="ar">← العودة لاختيار الكورس</LangText>
+          <LangText lang="en">← Back to course selection</LangText>
+        </a>
       </p>
     </div>
   ) : (
@@ -78,33 +91,63 @@ const courseJsonLd = !isPlanned && courseMeta
         </div>
         <div class="relative z-10 max-w-2xl">
           <div class="flex flex-wrap items-center gap-2">
-            <span class="chip bg-amber-400 text-amber-950">🎯 {liveStations} محطات متاحة الآن</span>
-            <span class="chip bg-white/15 text-white">💚 منصة مجانية بالكامل</span>
+            <span class="chip bg-amber-400 text-amber-950">
+              <LangText lang="ar">🎯 {liveStations} محطات متاحة الآن</LangText>
+              <LangText lang="en">🎯 {liveStations} stations available now</LangText>
+            </span>
+            <span class="chip bg-white/15 text-white">
+              <LangText lang="ar">💚 منصة مجانية بالكامل</LangText>
+              <LangText lang="en">💚 100% free platform</LangText>
+            </span>
           </div>
           <h1 class="mt-4 text-3xl font-bold leading-relaxed sm:text-4xl">
-            {courseMeta!.title} بالطريقة العملية
+            <LangText lang="ar">{courseMeta!.title} بالطريقة العملية</LangText>
+            <LangText lang="en">{courseMeta!.titleEn} — the practical way</LangText>
           </h1>
           <p class="mt-4 text-lg leading-relaxed text-teal-50">
-            {courseMeta!.description} مع شرح عربي ومصطلحات إنجليزية وتمارين تفاعلية —{' '}
-            <strong>مجاناً بالكامل</strong>، مقدمة من منصة{' '}
-            <a href="https://gridfix.net" target="_blank" rel="noopener" class="font-bold text-amber-300 underline underline-offset-4 hover:text-amber-200">
-              GridFix Academy
-            </a>.
+            <LangText lang="ar">
+              {courseMeta!.description} مع شرح عربي ومصطلحات إنجليزية وتمارين تفاعلية —{' '}
+              <strong>مجاناً بالكامل</strong>، مقدمة من منصة{' '}
+              <a href="https://gridfix.net" target="_blank" rel="noopener" class="font-bold text-amber-300 underline underline-offset-4 hover:text-amber-200">
+                GridFix Academy
+              </a>.
+            </LangText>
+            <LangText lang="en">
+              {courseMeta!.descriptionEn} With Arabic explanations, English terminology, and interactive exercises —{' '}
+              <strong>completely free</strong>, offered by{' '}
+              <a href="https://gridfix.net" target="_blank" rel="noopener" class="font-bold text-amber-300 underline underline-offset-4 hover:text-amber-200">
+                GridFix Academy
+              </a>.
+            </LangText>
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
             {(station0 ?? stationCards[0]) && (
               <a href={`/${course}/stations/${(station0 ?? stationCards[0])!.id}`} class="btn-primary bg-amber-400 text-amber-950 hover:bg-amber-300">
-                {station0 ? 'ابدأ التعلم من المحطة 0 ←' : 'ابدأ التعلم من المحطة 1 ←'}
+                <LangText lang="ar">{station0 ? 'ابدأ التعلم من المحطة 0 ←' : 'ابدأ التعلم من المحطة 1 ←'}</LangText>
+                <LangText lang="en">{station0 ? 'Start learning at Station 0 →' : 'Start learning at Station 1 →'}</LangText>
               </a>
             )}
             <a href={`/${course}/map`} class="btn-outline border-white/30 text-white hover:bg-white/10">
-              خريطة المنهج
+              <LangText lang="ar">خريطة المنهج</LangText>
+              <LangText lang="en">Curriculum map</LangText>
             </a>
           </div>
           <div class="mt-8 flex flex-wrap gap-6 text-sm text-teal-50">
-            <span class="flex items-center gap-2"><span class="font-bold text-amber-300">{lessons.length}</span> دروس متاحة</span>
-            <span class="flex items-center gap-2"><span class="font-bold text-amber-300">{totalMinutes}</span> دقيقة إجمالاً</span>
-            <span class="flex items-center gap-2"><span class="font-bold text-amber-300">{liveStations}</span> محطة</span>
+            <span class="flex items-center gap-2">
+              <span class="font-bold text-amber-300">{lessons.length}</span>
+              <LangText lang="ar"> دروس متاحة</LangText>
+              <LangText lang="en"> lessons available</LangText>
+            </span>
+            <span class="flex items-center gap-2">
+              <span class="font-bold text-amber-300">{totalMinutes}</span>
+              <LangText lang="ar"> دقيقة إجمالاً</LangText>
+              <LangText lang="en"> minutes total</LangText>
+            </span>
+            <span class="flex items-center gap-2">
+              <span class="font-bold text-amber-300">{liveStations}</span>
+              <LangText lang="ar"> محطة</LangText>
+              <LangText lang="en"> stations</LangText>
+            </span>
           </div>
         </div>
       </section>
@@ -116,20 +159,26 @@ const courseJsonLd = !isPlanned && courseMeta
 
       <!-- بنية الدرس -->
       <section class="mt-12">
-        <h2 class="text-xl font-bold text-ink-900">بنية موحّدة لكل درس</h2>
+        <h2 class="text-xl font-bold text-ink-900">
+          <LangText lang="ar">بنية موحّدة لكل درس</LangText>
+          <LangText lang="en">A unified structure for every lesson</LangText>
+        </h2>
         <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
           {[
-            { icon: '🎯', label: 'أهداف التعلم' },
-            { icon: '📖', label: 'شرح نظري' },
-            { icon: '⚠️', label: 'تصحيح المفاهيم' },
-            { icon: '📚', label: 'قاموس المصطلحات' },
-            { icon: '🛠', label: 'أداة تفاعلية' },
-            { icon: '💬', label: 'كويز سيناريو' },
-            { icon: '📎', label: 'مصادر موثوقة' },
+            { icon: '🎯', ar: 'أهداف التعلم', en: 'Learning objectives' },
+            { icon: '📖', ar: 'شرح نظري', en: 'Theory' },
+            { icon: '⚠️', ar: 'تصحيح المفاهيم', en: 'Myth-busting' },
+            { icon: '📚', ar: 'قاموس المصطلحات', en: 'Glossary' },
+            { icon: '🛠', ar: 'أداة تفاعلية', en: 'Interactive tool' },
+            { icon: '💬', ar: 'كويز سيناريو', en: 'Scenario quiz' },
+            { icon: '📎', ar: 'مصادر موثوقة', en: 'Trusted sources' },
           ].map((item, i) => (
             <div class={`flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white px-3 py-5 text-center text-sm font-medium text-ink-700 shadow-sm transition-all duration-300 hover:border-brand-300 hover:shadow-md animate-fade-in stagger-${i + 1}`}>
               <span class="mb-2 block text-xl transition-transform duration-300 hover:scale-125">{item.icon}</span>
-              <span>{item.label}</span>
+              <span>
+                <LangText lang="ar">{item.ar}</LangText>
+                <LangText lang="en">{item.en}</LangText>
+              </span>
             </div>
           ))}
         </div>
@@ -137,8 +186,14 @@ const courseJsonLd = !isPlanned && courseMeta
 
       <!-- خريطة المحطات -->
       <section class="mt-12">
-        <h2 class="text-xl font-bold text-ink-900">خريطة المحطات</h2>
-        <p class="mt-1 text-sm text-ink-400">المسار الكامل من التأسيس حتى محاكي الامتحان.</p>
+        <h2 class="text-xl font-bold text-ink-900">
+          <LangText lang="ar">خريطة المحطات</LangText>
+          <LangText lang="en">Station map</LangText>
+        </h2>
+        <p class="mt-1 text-sm text-ink-400">
+          <LangText lang="ar">المسار الكامل من التأسيس حتى محاكي الامتحان.</LangText>
+          <LangText lang="en">The full path from the foundations to the exam simulator.</LangText>
+        </p>
 
         <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {stationCards.map((s, i) => {
@@ -152,13 +207,25 @@ const courseJsonLd = !isPlanned && courseMeta
                   <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-2xl transition-transform duration-300 hover:scale-110">
                     {s.icon}
                   </span>
-                  <span class="chip bg-brand-100 text-brand-700">✅ متاح</span>
+                  <span class="chip bg-brand-100 text-brand-700">
+                    <LangText lang="ar">✅ متاح</LangText>
+                    <LangText lang="en">✅ Live</LangText>
+                  </span>
                 </div>
-                <h3 class="mt-3 font-bold text-ink-900">{s.title}</h3>
-                <p dir="ltr" lang="en" class="text-xs text-ink-400">{s.titleEn}</p>
-                <p class="mt-2 text-sm leading-relaxed text-ink-500">{s.description}</p>
+                <h3 class="mt-3 font-bold text-ink-900">
+                  <LangText lang="ar">{s.title}</LangText>
+                  <LangText lang="en">{s.titleEn}</LangText>
+                </h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-500">
+                  <LangText lang="ar">{s.description}</LangText>
+                  <LangText lang="en">{s.descriptionEn}</LangText>
+                </p>
                 <div class="mt-3 flex items-center justify-between text-sm">
-                  <span class="chip bg-slate-100 text-ink-600">📚 {live} دروس متاحة</span>
+                  <span class="chip bg-slate-100 text-ink-600">
+                    📚 {live}
+                    <LangText lang="ar"> دروس متاحة</LangText>
+                    <LangText lang="en"> lessons</LangText>
+                  </span>
                   <span class="font-bold text-brand-600 transition-transform duration-300 group-hover:translate-x-[-4px]">←</span>
                 </div>
               </a>

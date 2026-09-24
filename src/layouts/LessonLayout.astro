@@ -8,6 +8,7 @@ import Breadcrumb from '../components/ui/Breadcrumb.astro';
 import CompleteLessonButton from '../components/islands/progress/CompleteLessonButton.tsx';
 import ReadingProgress from '../components/islands/progress/ReadingProgress.tsx';
 import LessonToc from '../components/islands/LessonToc.tsx';
+import LangText from '../components/ui/LangText.astro';
 import LessonSidebar from '../components/islands/LessonSidebar.tsx';
 import { getStation } from '../data/curriculum';
 import { getCourse } from '../data/courses';
@@ -26,17 +27,17 @@ const courseImage = course === 'cmrp' ? '/og-cmrp.png' : course === 'cfm' ? '/og
 <BaseLayout title={`${data.number} ${data.title}`} description={`${data.title} — درس من محطة ${station?.title ?? ''}`} image={courseImage}>
   <ReadingProgress client:load />
 
-  <script is:inline define:vars={{ course, lessonId: data.id, lessonTitle: data.title, stationTitle: station?.title ?? data.station }}>
+  <script is:inline define:vars={{ course, lessonId: data.id, lessonTitle: data.title, lessonTitleEn: data.titleEn, stationTitle: station?.title ?? data.station, stationTitleEn: station?.titleEn ?? station?.title ?? data.station }}>
     (function () {
       try {
         var at = new Date().toISOString();
         var key = course + '-course-progress@v1';
         var raw = localStorage.getItem(key);
         var state = raw ? JSON.parse(raw) : {};
-        state.lastLesson = { courseId: course, lessonId: lessonId, title: lessonTitle, stationTitle: stationTitle, at: at };
+        state.lastLesson = { courseId: course, lessonId: lessonId, title: lessonTitle, titleEn: lessonTitleEn, stationTitle: stationTitle, stationTitleEn: stationTitleEn, at: at };
         localStorage.setItem(key, JSON.stringify(state));
 
-        localStorage.setItem('cfm-last-visited-lesson', JSON.stringify({ courseId: course, lessonId: lessonId, lessonTitle: lessonTitle, stationTitle: stationTitle, visitedAt: at }));
+        localStorage.setItem('cfm-last-visited-lesson', JSON.stringify({ courseId: course, lessonId: lessonId, lessonTitle: lessonTitle, lessonTitleEn: lessonTitleEn, stationTitle: stationTitle, stationTitleEn: stationTitleEn, visitedAt: at }));
       } catch (e) {}
     })();
   </script>
@@ -48,11 +49,14 @@ const courseImage = course === 'cmrp' ? '/og-cmrp.png' : course === 'cfm' ? '/og
       </aside>
 
       <div class="flex-1 min-w-0 max-w-3xl mx-auto xl:mx-0">
-        <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: station?.title ?? data.station, href: `/${course}/stations/${data.station}` }, { label: data.title }]} />
+        <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: station?.title ?? data.station, labelEn: station?.titleEn, href: `/${course}/stations/${data.station}` }, { label: data.title, labelEn: data.titleEn }]} />
 
         <header class="card overflow-hidden">
           <div class="flex flex-wrap items-center gap-2 bg-gradient-to-l from-brand-700 to-brand-500 px-6 py-4">
-            <span class="chip bg-white/20 text-white">{station?.icon} {station?.badge}</span>
+            <span class="chip bg-white/20 text-white">
+              <LangText lang="ar">{station?.icon} {station?.badge}</LangText>
+              <LangText lang="en">{station?.icon} {station?.badgeEn}</LangText>
+            </span>
             <span class="chip bg-white/20 text-white">{data.number}</span>
             <span class="chip bg-white/20 text-white" data-lang="ar">⏱ {data.minutes} دقيقة</span>
             <span class="chip bg-white/20 text-white" data-lang="en">⏱ {data.minutes} min</span>

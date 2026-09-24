@@ -10,9 +10,17 @@ interface Props {
 }
 
 export default function CompleteLessonButton({ course, lessonId, lang = 'ar' }: Props) {
+  const [currentLang, setCurrentLang] = useState<Language>(lang);
   const [done, setDone] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    setCurrentLang(document.documentElement.lang === 'en' ? 'en' : (lang as Language));
+    const onChange = () => setCurrentLang(document.documentElement.lang === 'en' ? 'en' : (lang as Language));
+    document.addEventListener('cfm-lang-changed', onChange);
+    return () => document.removeEventListener('cfm-lang-changed', onChange);
+  }, [lang]);
 
   useEffect(() => {
     setDone(isLessonComplete(loadProgress(course), lessonId));
@@ -36,7 +44,7 @@ export default function CompleteLessonButton({ course, lessonId, lang = 'ar' }: 
       <div className="w-full rounded-xl bg-slate-100 px-5 py-4 text-base font-bold text-slate-400 animate-pulse-soft">
         <span className="flex items-center justify-center gap-2">
           <span className="text-lg">📖</span>
-          جاري التحميل...
+          {currentLang === 'en' ? 'Loading...' : 'جاري التحميل...'}
         </span>
       </div>
     );
@@ -63,12 +71,12 @@ export default function CompleteLessonButton({ course, lessonId, lang = 'ar' }: 
           {done ? (
             <>
               <span className="text-lg animate-scale-in">✓</span>
-              {translate(lang, 'lesson.completed')}
+              {translate(currentLang, 'lesson.completed')}
             </>
           ) : (
             <>
               <span className="text-lg">📖</span>
-              {translate(lang, 'lesson.complete')}
+              {translate(currentLang, 'lesson.complete')}
             </>
           )}
         </span>

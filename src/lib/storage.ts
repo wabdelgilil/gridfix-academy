@@ -2,7 +2,7 @@ export interface ProgressState {
   completedLessons: string[];
   quizScores: Record<string, { score: number; total: number; completedAt: string }>;
   bookmarks: string[];
-  lastLesson?: { courseId: string; lessonId: string; title: string; stationTitle: string; at: string };
+  lastLesson?: { courseId: string; lessonId: string; title: string; titleEn?: string; stationTitle: string; stationTitleEn?: string; at: string };
   mockExam?: { percentage: number; pillarBreakdown: Record<string, number>; passed: boolean; at: string };
 }
 
@@ -66,7 +66,9 @@ export interface LastVisitedLesson {
   courseId: string;
   lessonId: string;
   lessonTitle: string;
+  lessonTitleEn?: string;
   stationTitle: string;
+  stationTitleEn?: string;
   visitedAt: string;
 }
 

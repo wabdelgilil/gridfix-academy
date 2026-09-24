@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LangText from '../components/ui/LangText.astro';
 import ResumeLearningWidget from '../components/islands/progress/ResumeLearningWidget.tsx';
 import { courses } from '../data/courses';
 import { curriculum } from '../data/curriculum';
@@ -36,34 +37,48 @@ const siteJsonLd = {
     </div>
 
     <div class="relative z-10 mx-auto max-w-2xl">
-      <span class="chip bg-amber-400 text-amber-950">منصة تعليمية مجانية بالكامل</span>
+      <span class="chip bg-amber-400 text-amber-950">
+        <LangText lang="ar">منصة تعليمية مجانية بالكامل</LangText>
+        <LangText lang="en">100% free learning platform</LangText>
+      </span>
       <h1 class="mt-5 text-3xl font-bold leading-relaxed sm:text-4xl lg:text-5xl">
-        تعلّم إدارة المنشآت والصيانة <span class="text-amber-300">باحتراف</span>
+        <LangText lang="ar">تعلّم إدارة المنشآت والصيانة <span class="text-amber-300">باحتراف</span></LangText>
+        <LangText lang="en">Master Facility &amp; Asset Management <span class="text-amber-300">Professionally</span></LangText>
       </h1>
       <p class="mt-4 text-lg leading-relaxed text-teal-50">
-        أكاديمية <strong class="text-amber-300">GridFix Academy</strong> تقدّم كورسات عربية
-        عملية لأشهر شهادات المجال — مع شرح بالمصطلحات الإنجليزية، أدوات تفاعلية، وكويزات مواقف. اختر مسارك وابدأ الآن.
+        <LangText lang="ar">
+          أكاديمية <strong class="text-amber-300">GridFix Academy</strong> تقدّم كورسات عربية
+          عملية لأشهر شهادات المجال — مع شرح بالمصطلحات الإنجليزية، أدوات تفاعلية، وكويزات مواقف. اختر مسارك وابدأ الآن.
+        </LangText>
+        <LangText lang="en">
+          <strong class="text-amber-300">GridFix Academy</strong> offers practical courses in Arabic
+          for the field's leading certifications — with English terminology, interactive tools, and scenario quizzes. Pick your path and start now.
+        </LangText>
       </p>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-teal-50">
         <span class="flex items-center gap-2">
-          <span class="font-bold text-amber-300">{liveCourses.length}</span> كورس متاح
+          <span class="font-bold text-amber-300">{liveCourses.length}</span>
+          <LangText lang="ar">كورس متاح</LangText>
+          <LangText lang="en" class="hidden">live courses</LangText>
         </span>
         <span class="flex items-center gap-2">
-          <span class="font-bold text-amber-300">{perCourse.reduce((a, c) => a + c.stations, 0)}</span> محطة
+          <span class="font-bold text-amber-300">{perCourse.reduce((a, c) => a + c.stations, 0)}</span>
+          <LangText lang="ar">محطة</LangText>
+          <LangText lang="en" class="hidden">stations</LangText>
         </span>
         <span class="flex items-center gap-2">
-          <span class="font-bold text-amber-300">{perCourse.reduce((a, c) => a + c.lessons, 0)}</span> درساً
+          <span class="font-bold text-amber-300">{perCourse.reduce((a, c) => a + c.lessons, 0)}</span>
+          <LangText lang="ar">درساً</LangText>
+          <LangText lang="en" class="hidden">lessons</LangText>
         </span>
       </div>
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         {liveCourses[0] && (
           <a href={`/${liveCourses[0].id}`} class="rounded-xl bg-amber-400 px-6 py-3 font-bold text-amber-950 transition hover:bg-amber-300">
-            ابدأ التعلم مجاناً ←
+            <LangText lang="ar">ابدأ التعلم مجاناً ←</LangText>
+            <LangText lang="en">Start learning for free →</LangText>
           </a>
         )}
-        <a href={`/${liveCourses[0]?.id ?? 'cfm'}/map`} class="rounded-xl border border-white/30 px-6 py-3 font-bold text-white transition hover:bg-white/10">
-          خريطة المنهج
-        </a>
       </div>
     </div>
   </section>
@@ -72,11 +87,17 @@ const siteJsonLd = {
     <ResumeLearningWidget client:load />
   </div>
 
-  <section class="mt-12">
+  <section id="courses" class="mt-12">
     <div class="flex items-end justify-between">
       <div>
-        <h2 class="text-xl font-bold text-ink-900">اختر كورسك</h2>
-        <p class="mt-1 text-sm text-ink-400">كل كورس مسار مستقل: محطات، أدوات، وقاموس خاص به.</p>
+        <h2 class="text-xl font-bold text-ink-900">
+          <LangText lang="ar">اختر كورسك</LangText>
+          <LangText lang="en">Choose your course</LangText>
+        </h2>
+        <p class="mt-1 text-sm text-ink-400">
+          <LangText lang="ar">كل كورس مسار مستقل: محطات، أدوات، وقاموس خاص به.</LangText>
+          <LangText lang="en">Each course is an independent path: stations, tools, and its own glossary.</LangText>
+        </p>
       </div>
     </div>
 
@@ -90,22 +111,41 @@ const siteJsonLd = {
                 <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl transition-transform duration-300 group-hover:scale-110">{c.icon}</span>
                 <div>
                   <div class="flex items-center gap-2">
-                    <h3 class="text-lg font-bold">{c.title}</h3>
+                    <h3 class="text-lg font-bold">
+                      <LangText lang="ar">{c.title}</LangText>
+                      <LangText lang="en">{c.titleEn}</LangText>
+                    </h3>
                     <span class="chip bg-amber-400 text-amber-950" dir="ltr">{c.code}</span>
                   </div>
-                  <p class="mt-0.5 text-xs text-teal-50">{c.titleEn}</p>
                 </div>
               </div>
-              <span class="chip bg-emerald-400/20 text-emerald-200">متاح الآن</span>
+              <span class="chip bg-emerald-400/20 text-emerald-200">
+                <LangText lang="ar">متاح الآن</LangText>
+                <LangText lang="en">Available now</LangText>
+              </span>
             </div>
             <div class="px-6 py-5">
-              <p class="text-sm leading-relaxed text-ink-600">{c.description}</p>
+              <p class="text-sm leading-relaxed text-ink-600">
+                <LangText lang="ar">{c.description}</LangText>
+                <LangText lang="en">{c.descriptionEn}</LangText>
+              </p>
               <div class="mt-4 flex items-center justify-between text-sm">
                 <span class="flex flex-wrap gap-2">
-                  <span class="chip bg-slate-100 text-ink-600">🗺 {stats?.stations} محطات</span>
-                  <span class="chip bg-slate-100 text-ink-600">📚 {stats?.lessons} دروس</span>
+                  <span class="chip bg-slate-100 text-ink-600">
+                    🗺 {stats?.stations}
+                    <LangText lang="ar"> محطات</LangText>
+                    <LangText lang="en" class="hidden"> stations</LangText>
+                  </span>
+                  <span class="chip bg-slate-100 text-ink-600">
+                    📚 {stats?.lessons}
+                    <LangText lang="ar"> دروس</LangText>
+                    <LangText lang="en" class="hidden"> lessons</LangText>
+                  </span>
                 </span>
-                <span class="font-bold text-brand-600 transition group-hover:-translate-x-1">← ابدأ التعلم</span>
+                <span class="font-bold text-brand-600 transition group-hover:-translate-x-1">
+                  <LangText lang="ar">← ابدأ التعلم</LangText>
+                  <LangText lang="en">Start learning →</LangText>
+                </span>
               </div>
             </div>
           </a>
@@ -119,18 +159,29 @@ const siteJsonLd = {
               <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl">{c.icon}</span>
               <div>
                 <div class="flex items-center gap-2">
-                  <h3 class="text-lg font-bold">{c.title}</h3>
+                  <h3 class="text-lg font-bold">
+                    <LangText lang="ar">{c.title}</LangText>
+                    <LangText lang="en">{c.titleEn}</LangText>
+                  </h3>
                   <span class="chip bg-slate-100 text-ink-700" dir="ltr">{c.code}</span>
                 </div>
-                <p class="mt-0.5 text-xs text-slate-200">{c.titleEn}</p>
               </div>
             </div>
-            <span class="chip bg-amber-400/20 text-amber-200">قريباً</span>
+            <span class="chip bg-amber-400/20 text-amber-200">
+              <LangText lang="ar">قريباً</LangText>
+              <LangText lang="en">Coming soon</LangText>
+            </span>
           </div>
           <div class="px-6 py-5">
-            <p class="text-sm leading-relaxed text-ink-600">{c.description}</p>
+            <p class="text-sm leading-relaxed text-ink-600">
+              <LangText lang="ar">{c.description}</LangText>
+              <LangText lang="en">{c.descriptionEn}</LangText>
+            </p>
             <div class="mt-4">
-              <span class="chip bg-slate-100 text-ink-600">سيُطلق قريباً — اشترك ليصلك التنبيه</span>
+              <span class="chip bg-slate-100 text-ink-600">
+                <LangText lang="ar">سيُطلق قريباً — اشترك ليصلك التنبيه</LangText>
+                <LangText lang="en">Coming soon — subscribe for the launch alert</LangText>
+              </span>
             </div>
           </div>
         </div>
@@ -140,16 +191,22 @@ const siteJsonLd = {
 
   <section class="mt-12 grid gap-4 sm:grid-cols-3">
     {[
-      { icon: '🎯', title: 'مسارات منظمة بالمحطات', desc: 'محطات متسلسلة من التأسيس للتمكين مع أوزان الامتحان' },
-      { icon: '🛠', title: 'أدوات تفاعلية تطبيقية', desc: 'أكثر من 40 أداة عملية لتطبيق المفاهيم فعلياً' },
-      { icon: '📝', title: 'كويزات محاكية للامتحان', desc: 'سيناريوهات حقيقية مع تقييم فوري وتشخيص' },
+      { icon: '🎯', titleAr: 'مسارات منظمة بالمحطات', titleEn: 'Structured station paths', descAr: 'محطات متسلسلة من التأسيس للتمكين مع أوزان الامتحان', descEn: 'Sequential stations from foundation to mastery with exam weights' },
+      { icon: '🛠', titleAr: 'أدوات تفاعلية تطبيقية', titleEn: 'Hands-on interactive tools', descAr: 'أكثر من 40 أداة عملية لتطبيق المفاهيم فعلياً', descEn: 'More than 40 practical tools to truly apply the concepts' },
+      { icon: '📝', titleAr: 'كويزات محاكية للامتحان', titleEn: 'Exam-style quizzes', descAr: 'سيناريوهات حقيقية مع تقييم فوري وتشخيص', descEn: 'Real scenarios with instant scoring and diagnosis' },
     ].map((item) => (
       <div class="card flex flex-col items-center gap-3 p-6 text-center">
         <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-3xl transition-transform duration-300 hover:scale-110">
           {item.icon}
         </span>
-        <h3 class="font-bold text-ink-900">{item.title}</h3>
-        <p class="text-sm leading-relaxed text-ink-500">{item.desc}</p>
+        <h3 class="font-bold text-ink-900">
+          <LangText lang="ar">{item.titleAr}</LangText>
+          <LangText lang="en">{item.titleEn}</LangText>
+        </h3>
+        <p class="text-sm leading-relaxed text-ink-500">
+          <LangText lang="ar">{item.descAr}</LangText>
+          <LangText lang="en">{item.descEn}</LangText>
+        </p>
       </div>
     ))}
   </section>
@@ -158,19 +215,31 @@ const siteJsonLd = {
     <div class="grid gap-6 text-center sm:grid-cols-4">
       <div>
         <p class="text-3xl font-bold text-brand-700" dir="ltr">{liveCourses.length}+</p>
-        <p class="mt-1 text-sm text-ink-600">كورس متاح</p>
+        <p class="mt-1 text-sm text-ink-600">
+          <LangText lang="ar">كورس متاح</LangText>
+          <LangText lang="en">live courses</LangText>
+        </p>
       </div>
       <div>
         <p class="text-3xl font-bold text-brand-700" dir="ltr">40+</p>
-        <p class="mt-1 text-sm text-ink-600">أداة تفاعلية</p>
+        <p class="mt-1 text-sm text-ink-600">
+          <LangText lang="ar">أداة تفاعلية</LangText>
+          <LangText lang="en">interactive tools</LangText>
+        </p>
       </div>
       <div>
         <p class="text-3xl font-bold text-brand-700" dir="ltr">100%</p>
-        <p class="mt-1 text-sm text-ink-600">مجاني بالكامل</p>
+        <p class="mt-1 text-sm text-ink-600">
+          <LangText lang="ar">مجاني بالكامل</LangText>
+          <LangText lang="en">free forever</LangText>
+        </p>
       </div>
       <div>
         <p class="text-3xl font-bold text-brand-700" dir="ltr">AR</p>
-        <p class="mt-1 text-sm text-ink-600">محتوى عربي أصيل</p>
+        <p class="mt-1 text-sm text-ink-600">
+          <LangText lang="ar">محتوى عربي أصيل</LangText>
+          <LangText lang="en">authentic Arabic content</LangText>
+        </p>
       </div>
     </div>
   </section>

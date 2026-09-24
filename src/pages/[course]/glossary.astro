@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import LangText from '../../components/ui/LangText.astro';
 import { getGlossaryForCourse } from '../../data/glossary';
 import { getCourse, courses } from '../../data/courses';
 
@@ -19,10 +20,16 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
 
 <BaseLayout title={`قاموس المصطلحات — ${courseMeta?.code ?? ''} | صالة GridFix`} description="قاموس مركزي قابل للبحث لمصطلحات الكورس بالعربية والإنجليزية.">
   <div class="mx-auto max-w-3xl">
-    <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: 'قاموس المصطلحات' }]} />
+    <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: 'قاموس المصطلحات', labelEn: 'Glossary' }]} />
     <header class="mb-6">
-      <h1 class="text-2xl font-bold text-ink-900 dark:text-white">📖 قاموس المصطلحات — {courseMeta?.code ?? ''}</h1>
-      <p class="mt-1 text-sm text-ink-400 dark:text-slate-400">المصطلحات بالعربية مع التعريف الإنجليزي — أساس النجاح في الامتحان.</p>
+      <h1 class="text-2xl font-bold text-ink-900 dark:text-white">
+        <LangText lang="ar">📖 قاموس المصطلحات — {courseMeta?.code ?? ''}</LangText>
+        <LangText lang="en">📖 Glossary — {courseMeta?.code ?? ''}</LangText>
+      </h1>
+      <p class="mt-1 text-sm text-ink-400 dark:text-slate-400">
+        <LangText lang="ar">المصطلحات بالعربية مع التعريف الإنجليزي — أساس النجاح في الامتحان.</LangText>
+        <LangText lang="en">Terms in Arabic with their English definitions — the foundation for exam success.</LangText>
+      </p>
     </header>
 
     <div class="relative mb-6">
@@ -31,6 +38,8 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
         id="glossary-search"
         type="search"
         placeholder="ابحث في القاموس..."
+        data-placeholder-ar="ابحث في القاموس..."
+        data-placeholder-en="Search the glossary..."
         class="w-full rounded-xl border border-slate-200 bg-white px-11 py-3 text-sm text-ink-900 shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-brand-400"
       />
     </div>
@@ -50,7 +59,8 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
               type="button"
               class="speak-btn inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs text-ink-500 transition hover:bg-brand-100 hover:text-brand-600 dark:bg-slate-700 dark:text-slate-400 dark:hover:bg-brand-900/50 dark:hover:text-brand-300"
               data-term={term.term}
-              aria-label={`نطق ${term.term}`}
+              data-aria-ar={`نطق ${term.term}`}
+              data-aria-en={`Pronounce ${term.term}`}
               title="سمع النطق الإنجليزي"
             >
               🔊
@@ -59,7 +69,8 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
               type="button"
               class="copy-btn inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs text-ink-500 transition hover:bg-brand-100 hover:text-brand-600 dark:bg-slate-700 dark:text-slate-400 dark:hover:bg-brand-900/50 dark:hover:text-brand-300"
               data-term={term.term}
-              aria-label={`نسخ ${term.term}`}
+              data-aria-ar={`نسخ ${term.term}`}
+              data-aria-en={`Copy ${term.term}`}
               title="نسخ المصطلح"
             >
               📋
@@ -71,11 +82,26 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
       ))}
     </div>
 
-    <p id="glossary-empty" class="mt-6 hidden text-center text-sm text-ink-400">لا توجد نتائج مطابقة لبحثك.</p>
+    <p id="glossary-empty" class="mt-6 hidden text-center text-sm text-ink-400">
+      <span data-lang="ar">لا توجد نتائج مطابقة لبحثك.</span>
+      <span data-lang="en">No results match your search.</span>
+    </p>
   </div>
 </BaseLayout>
 
 <script>
+  const applyGlossaryLang = () => {
+    const lang = document.documentElement.lang === 'en' ? 'en' : 'ar';
+
+    input && lang === 'en'
+      ? input.setAttribute('placeholder', input.dataset.placeholderEn ?? 'Search the glossary...')
+      : input?.setAttribute('placeholder', input.dataset.placeholderAr ?? 'ابحث في القاموس...');
+
+    document.querySelectorAll<HTMLButtonElement>('.speak-btn, .copy-btn').forEach((btn) => {
+      btn.setAttribute('aria-label', lang === 'en' ? (btn.dataset.ariaEn ?? '') : (btn.dataset.ariaAr ?? ''));
+    });
+  };
+
   const input = document.getElementById('glossary-search') as HTMLInputElement | null;
   const empty = document.getElementById('glossary-empty');
   const items = Array.from(document.querySelectorAll('.glossary-item'));
@@ -118,4 +144,7 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
       }
     });
   });
+
+  document.addEventListener('cfm-lang-changed', applyGlossaryLang);
+  applyGlossaryLang();
 </script>
