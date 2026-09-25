@@ -9,6 +9,7 @@ badge: "طوارئ"
 badgeEn: "Emergency"
 icon: "🚨"
 examWeight: 10
+domain: "C"
 status: live
 ---
 

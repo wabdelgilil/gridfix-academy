@@ -15,6 +15,7 @@ const stations = defineCollection({
     badgeEn: z.string(),
     icon: z.string(),
     examWeight: z.number(),
+    domain: z.string().optional(),
     status: z.enum(['live', 'planned']).default('planned'),
   }),
 });

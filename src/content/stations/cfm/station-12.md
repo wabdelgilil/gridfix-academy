@@ -9,6 +9,7 @@ badge: "مشاريع"
 badgeEn: "Projects"
 icon: "🏗️"
 examWeight: 10
+domain: "J"
 status: live
 ---
 

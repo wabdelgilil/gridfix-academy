@@ -8,7 +8,8 @@ descriptionEn: "People first: ergonomics, wellbeing and productivity, and indoor
 badge: "بشري"
 badgeEn: "Human Factors"
 icon: "🪑"
-examWeight: 14
+examWeight: 10
+domain: "B"
 status: live
 ---
 

@@ -8,7 +8,8 @@ descriptionEn: "Managing property assets: leases, asset lifecycle, and space pla
 badge: "عقارات"
 badgeEn: "Real Estate"
 icon: "🏢"
-examWeight: 14
+examWeight: 10
+domain: "H"
 status: live
 ---
 

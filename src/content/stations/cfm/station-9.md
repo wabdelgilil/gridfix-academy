@@ -8,7 +8,8 @@ descriptionEn: "KPIs, CMMS/CAFM and IoT systems, and turning data into decisions
 badge: "تقنية"
 badgeEn: "Technology"
 icon: "📊"
-examWeight: 9
+examWeight: 10
+domain: "I"
 status: live
 ---
 

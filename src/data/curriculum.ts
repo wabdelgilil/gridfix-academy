@@ -21,6 +21,9 @@ export interface PlanStation {
   badge: string;
   badgeEn: string;
   examWeight: number;
+  domain?: string;
+  domainTitle?: string;
+  domainTitleEn?: string;
   status: 'live' | 'planned';
   description: string;
   descriptionEn: string;
@@ -42,7 +45,7 @@ export const curriculum: PlanStation[] = [
     lessons: [
       { id: 'lesson-0-1', station: 'station-0', number: '0.1', title: 'مقدمة في إدارة المنشآت', titleEn: 'Introduction to Facility Management', minutes: 20, order: 1, status: 'live', toolName: 'دليل مهام مدير المنشأة', toolNameEn: 'Facility Manager Duties Checklist' },
       { id: 'lesson-0-2', station: 'station-0', number: '0.2', title: 'شهادة CFM: الشروط والامتحان', titleEn: 'CFM Credential: Requirements & Exam', minutes: 25, order: 2, status: 'live', toolName: 'حاسبة الأهلية', toolNameEn: 'Eligibility Calculator' },
-      { id: 'lesson-0-3', station: 'station-0', number: '0.3', title: 'أركان IFMA الإحدى عشر', titleEn: 'The Eleven IFMA Competencies', minutes: 15, order: 3, status: 'live', toolName: 'مستكشف الأركان', toolNameEn: 'Competencies Explorer' },
+      { id: 'lesson-0-3', station: 'station-0', number: '0.3', title: 'المجالات العشرة في مواصفة CFM', titleEn: 'The Ten CFM FM Domains', minutes: 15, order: 3, status: 'live', toolName: 'مستكشف المجالات العشرة', toolNameEn: 'Domains Explorer' },
     ],
   },
   {
@@ -51,8 +54,9 @@ export const curriculum: PlanStation[] = [
     title: 'التشغيل والصيانة',
     titleEn: 'Operations & Maintenance',
     icon: '⚙️',
-    badge: 'أثقل محطة', badgeEn: 'Heaviest Station',
-    examWeight: 25,
+    badge: 'عمليات', badgeEn: 'Operations',
+    examWeight: 10,
+    domain: 'B', domainTitle: 'عمليات المنشأة', domainTitleEn: 'Facility Operations',
     status: 'live',
     description: 'أنظمة المباني، استراتيجيات الصيانة، الطاقة، والمقاولون.', descriptionEn: 'The daily heart of the FM role: building systems, maintenance strategies, energy, and contractors.',
     lessons: [
@@ -69,7 +73,8 @@ export const curriculum: PlanStation[] = [
     titleEn: 'Real Estate',
     icon: '🏢',
     badge: 'عقارات', badgeEn: 'Real Estate',
-    examWeight: 14,
+    examWeight: 10,
+    domain: 'H', domainTitle: 'العقارات', domainTitleEn: 'Real Estate',
     status: 'live',
     description: 'عقود الإيجار، دورة حياة العقار، وتخطيط المساحات.', descriptionEn: 'Managing property assets: leases, asset lifecycle, and space planning.',
     lessons: [
@@ -85,7 +90,8 @@ export const curriculum: PlanStation[] = [
     titleEn: 'Finance & Budgeting',
     icon: '💰',
     badge: 'ماليات', badgeEn: 'Finance',
-    examWeight: 18,
+    examWeight: 10,
+    domain: 'D', domainTitle: 'الماليات والأعمال', domainTitleEn: 'Finance & Business',
     status: 'live',
     description: 'أنواع الميزانيات، تحليل الانحرافات، LCC وROI.', descriptionEn: 'The language of numbers: budgets, variance analysis, life-cycle cost, and cost control.',
     lessons: [
@@ -102,7 +108,8 @@ export const curriculum: PlanStation[] = [
     titleEn: 'Occupancy & Human Factors',
     icon: '🪑',
     badge: 'بشري', badgeEn: 'Human Factors',
-    examWeight: 14,
+    examWeight: 10,
+    domain: 'B', domainTitle: 'عمليات المنشأة', domainTitleEn: 'Facility Operations',
     status: 'live',
     description: 'Ergonomics، رفاهية الموظفين، وجودة البيئة الداخلية.', descriptionEn: 'People first: ergonomics, wellbeing and productivity, and indoor environmental quality.',
     lessons: [
@@ -119,6 +126,7 @@ export const curriculum: PlanStation[] = [
     icon: '🛡️',
     badge: 'HSE', badgeEn: 'HSE',
     examWeight: 10,
+    domain: 'C', domainTitle: 'إدارة المخاطر', domainTitleEn: 'Risk Management',
     status: 'live',
     description: 'معايير OSHA/ISO 45001 وتقييم المخاطر.', descriptionEn: 'People\'s safety first: OSHA & ISO 45001 standards, risk assessment and control, and environmental/legal compliance.',
     lessons: [
@@ -135,6 +143,7 @@ export const curriculum: PlanStation[] = [
     icon: '🚨',
     badge: 'طوارئ', badgeEn: 'Emergency',
     examWeight: 10,
+    domain: 'C', domainTitle: 'إدارة المخاطر', domainTitleEn: 'Risk Management',
     status: 'live',
     description: 'الاستجابة للطوارئ، الإخلاء، والتعافي من الكوارث.', descriptionEn: 'Protect people, then resume business: emergency planning, evacuation and fire safety, and BCP with measurable recovery targets.',
     lessons: [
@@ -151,6 +160,7 @@ export const curriculum: PlanStation[] = [
     icon: '🌱',
     badge: 'استدامة', badgeEn: 'Sustainability',
     examWeight: 10,
+    domain: 'E', domainTitle: 'الاستدامة', domainTitleEn: 'Sustainability',
     status: 'live',
     description: 'المباني الخضراء، النفايات، وجودة الهواء الداخلي.', descriptionEn: 'Build with lasting impact: LEED certification, the waste-management hierarchy, and Indoor Air Quality (IAQ) for healthy buildings.',
     lessons: [
@@ -166,9 +176,10 @@ export const curriculum: PlanStation[] = [
     titleEn: 'Leadership & Strategy',
     icon: '🧭',
     badge: 'قيادة', badgeEn: 'Leadership',
-    examWeight: 28,
+    examWeight: 10,
+    domain: 'A', domainTitle: 'القيادة والاستراتيجية', domainTitleEn: 'Leadership & Strategy',
     status: 'live',
-    description: 'التخطيط الاستراتيجي، التواصل، وإدارة التغيير.', descriptionEn: 'The heaviest exam domain: strategic planning, stakeholder management and communication, and change management.',
+    description: 'التخطيط الاستراتيجي، التواصل، وإدارة التغيير.', descriptionEn: 'Leadership & Strategy (Domain A) with the communication material (F): strategic planning, stakeholders, and change management.',
     lessons: [
       { id: 'lesson-8-1', station: 'station-8', number: '8.1', title: 'التخطيط الاستراتيجي', titleEn: 'Strategic Planning', minutes: 25, order: 1, status: 'live', toolName: 'لوحة تخطيط', toolNameEn: 'Planning Board' },
       { id: 'lesson-8-2', station: 'station-8', number: '8.2', title: 'التواصل وأصحاب المصلحة', titleEn: 'Communication & Stakeholders', minutes: 20, order: 2, status: 'live', toolName: 'مصفوفة القوة/الاهتمام', toolNameEn: 'Power/Interest Matrix' },
@@ -182,7 +193,8 @@ export const curriculum: PlanStation[] = [
     titleEn: 'Data, Analytics & Technology',
     icon: '📊',
     badge: 'تقنية', badgeEn: 'Technology',
-    examWeight: 9,
+    examWeight: 10,
+    domain: 'I', domainTitle: 'تقنية المعلومات وإدارة البيانات', domainTitleEn: 'Facility Technology & Data Management',
     status: 'live',
     description: 'KPIs، أنظمة CMMS/CAFM، وتحليل البيانات.', descriptionEn: 'KPIs, CMMS/CAFM and IoT systems, and turning data into decisions.',
     lessons: [
@@ -198,7 +210,8 @@ export const curriculum: PlanStation[] = [
     titleEn: 'Quality',
     icon: '✅',
     badge: 'جودة', badgeEn: 'Quality',
-    examWeight: 8,
+    examWeight: 10,
+    domain: 'G', domainTitle: 'الجودة', domainTitleEn: 'Quality',
     status: 'live',
     description: 'التحسين المستمر، PDCA، والتدقيق.', descriptionEn: 'Continuous improvement via PDCA, quality culture, and auditing.',
     lessons: [
@@ -228,6 +241,7 @@ export const curriculum: PlanStation[] = [
     icon: '🏗️',
     badge: 'مشاريع', badgeEn: 'Projects',
     examWeight: 10,
+    domain: 'J', domainTitle: 'إدارة المشاريع', domainTitleEn: 'Project Management',
     status: 'live',
     description: 'دورة حياة المشروع، النطاق والجدول والميزانية، والتنفيذ والرقابة والإغلاق.', descriptionEn: 'Project life cycle, scope/schedule/budget, procurement, control, and closeout.',
     lessons: [

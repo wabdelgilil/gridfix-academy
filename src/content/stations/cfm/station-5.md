@@ -9,6 +9,7 @@ badge: "HSE"
 badgeEn: "HSE"
 icon: "🛡️"
 examWeight: 10
+domain: "C"
 status: live
 ---
 

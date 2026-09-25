@@ -8,7 +8,8 @@ descriptionEn: "The language of numbers: budgets, variance analysis, life-cycle 
 badge: "ماليات"
 badgeEn: "Finance"
 icon: "💰"
-examWeight: 18
+examWeight: 10
+domain: "D"
 status: live
 ---
 

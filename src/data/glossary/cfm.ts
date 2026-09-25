@@ -19,8 +19,8 @@ export const glossary: GlossaryTerm[] = [
     id: 'cfm',
     term: 'Certified Facility Manager',
     abbreviation: 'CFM',
-    ar: 'شهادة معتمدة من IFMA للأعلى مستوى في إدارة المنشآت، تثبت إتقان المجالات الإحدى عشر وتتطلب خبرة عملية وتجتاز امتحاناً شاملاً.',
-    en: 'IFMA credential for practicing FMs demonstrating mastery of the 11 FM competencies through experience, education, and a comprehensive exam.',
+    ar: 'شهادة معتمدة من IFMA للأعلى مستوى في إدارة المنشآت، تثبت إتقان المجالات العشرة (10 FM Domains) وتتطلب خبرة عملية وتجتاز امتحاناً شاملاً.',
+    en: 'IFMA credential for practicing FMs demonstrating mastery of the ten FM domains through experience, education, and a comprehensive exam.',
   },
   {
     id: 'ifma',
@@ -39,15 +39,15 @@ export const glossary: GlossaryTerm[] = [
   {
     id: 'competency',
     term: 'Competency / Domain',
-    ar: 'مجال معرفي يُقاس في الامتحان؛ شهادة CFM تغطي 11 مجالاً معرفياً.',
-    en: 'A knowledge area assessed by the exam; the CFM covers 11 competency domains.',
+    ar: 'مجال معرفي يُقاس في الامتحان؛ شهادة CFM تغطي 10 مجالات متساوية الوزن.',
+    en: 'A knowledge area assessed by the exam; the CFM covers 10 equally weighted domains.',
   },
   {
     id: 'oandm',
     term: 'Operations & Maintenance',
     abbreviation: 'O&M',
-    ar: 'التشغيل والصيانة: تشغيل أنظمة المبنى يومياً وصيانتها لضمان موثوقيتها وأدائها، أحد أكبر مجالات الامتحان.',
-    en: 'Day-to-day operation and repair of building systems; one of the largest exam domains.',
+    ar: 'التشغيل والصيانة: تشغيل أنظمة المبنى يومياً وصيانتها لضمان موثوقيتها وأدائها، أحد مجالات الامتحان العشرة.',
+    en: 'Day-to-day operation and repair of building systems; one of the ten exam domains.',
   },
   {
     id: 'hvac',

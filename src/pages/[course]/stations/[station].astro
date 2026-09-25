@@ -69,6 +69,13 @@ const courseMeta = getLiveCourses().find((c) => c.id === data.course);
         </div>
         {data.examWeight > 0 && (
           <div class="mt-4 flex items-center gap-2 text-sm text-ink-500">
+            {data.domain && (
+              <span>
+                <LangText lang="ar">المجال</LangText>
+                <LangText lang="en">Domain</LangText>
+                <span class="chip bg-teal-100 text-teal-700" dir="ltr">{data.domain}</span>
+              </span>
+            )}
             <span>
               <LangText lang="ar">وزن الركن في الامتحان:</LangText>
               <LangText lang="en">Exam weight:</LangText>

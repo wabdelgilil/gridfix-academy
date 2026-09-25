@@ -9,6 +9,7 @@ badge: "استدامة"
 badgeEn: "Sustainability"
 icon: "🌱"
 examWeight: 10
+domain: "E"
 status: live
 ---
 

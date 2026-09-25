@@ -8,7 +8,8 @@ descriptionEn: "Continuous improvement via PDCA, quality culture, and auditing."
 badge: "جودة"
 badgeEn: "Quality"
 icon: "✅"
-examWeight: 8
+examWeight: 10
+domain: "G"
 status: live
 ---
 
