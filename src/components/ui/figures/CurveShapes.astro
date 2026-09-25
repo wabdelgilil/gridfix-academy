@@ -1,0 +1,117 @@
+---
+type CurveGroup = 'age' | 'random';
+
+interface CurveItem {
+  letter: 'A' | 'B' | 'C' | 'D' | 'E' | 'F';
+  label: string;
+  percent: string;
+  group: CurveGroup;
+}
+
+interface Props {
+  curves: CurveItem[];
+  title?: string;
+  caption?: string;
+  axisLabel?: string;
+  ageLabel?: string;
+  randomLabel?: string;
+}
+
+const { curves, title, caption, axisLabel = 'time →', ageLabel = 'Age-related', randomLabel = 'Random' } = Astro.props;
+
+const shapePoints: Record<string, Array<[number, number]>> = {
+  A: [
+    [2, 48],
+    [10, 38],
+    [22, 14],
+    [55, 10],
+    [88, 12],
+    [99, 52],
+  ],
+  B: [
+    [2, 10],
+    [70, 10],
+    [88, 18],
+    [99, 52],
+  ],
+  C: [
+    [4, 12],
+    [55, 20],
+    [99, 46],
+  ],
+  D: [
+    [4, 8],
+    [22, 15],
+    [45, 17],
+    [99, 17],
+  ],
+  E: [
+    [2, 20],
+    [99, 20],
+  ],
+  F: [
+    [2, 50],
+    [14, 32],
+    [38, 15],
+    [60, 14],
+    [99, 14],
+  ],
+};
+
+const groupStyles: Record<CurveGroup, string> = {
+  age: 'border-teal-300 bg-teal-50/60',
+  random: 'border-rose-300 bg-rose-50/60',
+};
+
+const groupBadge: Record<CurveGroup, string> = {
+  age: 'bg-teal-100 text-teal-800',
+  random: 'bg-rose-100 text-rose-800',
+};
+
+function toSvg(px: number, h: number): string {
+  return `${((px / 100) * 120).toFixed(1)},${(58 - h * 0.8).toFixed(1)}`;
+}
+
+function smoothPath(points: Array<[number, number]>): string {
+  if (points.length < 2) return '';
+  const first = toSvg(points[0][0], points[0][1]).split(',');
+  let d = `M${first[0]},${first[1]}`;
+  for (let i = 0; i < points.length - 1; i++) {
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p3 = points[i + 2] ?? p2;
+    const mx = (p2[0] + p3[0]) / 2;
+    const my = (p2[1] + p3[1]) / 2;
+    d += ` Q${toSvg(p1[0], p1[1])} ${toSvg(mx, my)}`;
+  }
+  return d;
+}
+---
+
+<div class="my-6">
+  {title && <p class="mb-3 text-sm font-bold text-ink-900">{title}</p>}
+  <div class="grid grid-cols-2 gap-3 lg:grid-cols-3">
+    {curves.map((c) => (
+      <div class={`rounded-xl border p-3 ${groupStyles[c.group]}`}>
+        <div class="flex items-center justify-between gap-2">
+          <span class="flex items-center gap-1.5">
+            <span class="flex h-6 w-6 items-center justify-center rounded-md bg-ink-900 text-xs font-black text-white">{c.letter}</span>
+            <span class="text-xs font-bold text-ink-900">{c.label}</span>
+          </span>
+          <span class="rounded-full bg-white/70 px-1.5 py-0.5 text-[10px] font-bold" dir="ltr">{c.percent}</span>
+        </div>
+        <svg viewBox="0 0 120 70" class="mt-2 w-full" role="img" aria-label={`${c.label} ${c.percent}`}>
+          <line x1="4" y1="58" x2="116" y2="58" stroke="#cbd5e1" stroke-width="1" />
+          <line x1="4" y1="6" x2="4" y2="58" stroke="#cbd5e1" stroke-width="1" />
+          <path d={smoothPath(shapePoints[c.letter])} fill="none" stroke={c.group === 'age' ? '#0d9488' : '#e11d48'} stroke-width="2" stroke-linecap="round" />
+          <text x="108" y="70" font-size="6" fill="#94a3b8" text-anchor="end">{axisLabel}</text>
+          <text x="8" y="10" font-size="6" fill="#94a3b8">↑</text>
+        </svg>
+        <span class={`mt-1.5 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold ${groupBadge[c.group]}`}>
+          {c.group === 'age' ? ageLabel : randomLabel}
+        </span>
+      </div>
+    ))}
+  </div>
+  {caption && <p class="mt-2 text-center text-xs text-ink-400">{caption}</p>}
+</div>

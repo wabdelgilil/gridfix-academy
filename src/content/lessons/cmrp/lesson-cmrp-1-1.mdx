@@ -31,6 +31,7 @@ import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import SixCurvesExplorer from '../../../components/islands/tools/cmrp/SixCurvesExplorer.tsx';
 import StatGrid from '../../../components/ui/figures/StatGrid.astro';
+import CurveShapes from '../../../components/ui/figures/CurveShapes.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCmrp11 } from '../../../data/quiz/cmrp/quiz-cmrp-1-1';
 
@@ -64,6 +65,22 @@ import { quizCmrp11 } from '../../../data/quiz/cmrp/quiz-cmrp-1-1';
 - **النمط C — التعب والإجهاد التدريجي (5%)**: الاحتمالية تبدأ منخفضة وتتزايد تدريجيا مع تراكم ساعات التشغيل ودورات الإجهاد. أمثلته التروس ونوابض الصمامات والهياكل المهتزة. الاستبدال الوقائي مجد إذا حسبت دورات الإجهاد بدقة.
 - **النمط A — حوض الاستحمام التقليدي (4%)**: وفيات رضع في البداية، ثم عمر مفيد مستقر، ثم ارتفاع سريع عند نهاية العمر. أمثلته بطانات الأفران والأجزاء القديمة البسيطة. الصيانة بالزمن مناسبة فقط عند عتبة نهاية العمر.
 - **النمط B — التآكل الصريح مع العمر (2%)**: ثبات منخفض ثم زيادة حادة ومفاجئة عند نقطة زمنية واضحة نتيجة استهلاك المادة. أمثلته الإطارات وشفرات التقطيع وبطانات الكسارات والفلاتر. مثالي للاستبدال الوقائي بالزمن أو بقياس السمك.
+
+<CurveShapes
+  title="أشكال المنحنيات الستة — احتمالية الفشل مقابل العمر الزمني"
+  axisLabel="الوقت ←"
+  ageLabel="مرتبط بالعمر"
+  randomLabel="عشوائي غير مرتبط بالعمر"
+  curves={[
+    { letter: 'F', label: 'وفيات الرضع', percent: '68%', group: 'random' },
+    { letter: 'E', label: 'عشوائي تام', percent: '14%', group: 'random' },
+    { letter: 'D', label: 'بداية منخفضة ثم استقرار', percent: '7%', group: 'random' },
+    { letter: 'C', label: 'تعب وإجهاد تدريجي', percent: '5%', group: 'age' },
+    { letter: 'A', label: 'حوض الاستحمام', percent: '4%', group: 'age' },
+    { letter: 'B', label: 'تآكل صريح مع العمر', percent: '2%', group: 'age' },
+  ]}
+  caption="شكل المنحنى هو الذي يحدد استراتيجية الصيانة: كل منحنى مسطح أو متناقص (F و E و D) لا يناسبه استبدال زمني، وكل منحنى صاعد مع نهاية عمر واضحة (A و C و B) تنجح معه الصيانة الوقائية بالزمن."
+/>
 
 <StatGrid
   title="توزيع أنماط الأعطال الستة (نولان وهيب)"
@@ -123,6 +140,22 @@ The study divided equipment into two groups:
 - **Pattern C — Gradual fatigue and stress (5%)**: probability starts low and rises gradually with accumulated operating hours and stress cycles. Examples: gears, valve springs, vibrating structures. Preventive replacement is worthwhile if stress cycles are calculated accurately.
 - **Pattern A — Classical bathtub (4%)**: infant mortality at the start, then a stable useful life, then a rapid rise at end of life. Examples: furnace linings and old simple parts. Time-based maintenance is appropriate only at the end-of-life threshold.
 - **Pattern B — Explicit wear with age (2%)**: low stability then a sharp, sudden rise at a clear point in time due to material consumption. Examples: tires, shredder blades, crusher linings, and filters. Ideal for time-based or thickness-measured preventive replacement.
+
+<CurveShapes
+  title="The six curve shapes — failure probability vs. operating age"
+  axisLabel="time →"
+  ageLabel="Age-related"
+  randomLabel="Random, non-age-related"
+  curves={[
+    { letter: 'F', label: 'Infant mortality', percent: '68%', group: 'random' },
+    { letter: 'E', label: 'Purely random', percent: '14%', group: 'random' },
+    { letter: 'D', label: 'Low start, then stabilization', percent: '7%', group: 'random' },
+    { letter: 'C', label: 'Gradual fatigue & stress', percent: '5%', group: 'age' },
+    { letter: 'A', label: 'Bathtub', percent: '4%', group: 'age' },
+    { letter: 'B', label: 'Explicit wear with age', percent: '2%', group: 'age' },
+  ]}
+  caption="The curve shape is what determines the maintenance strategy: any flat or declining curve (F, E, D) does not suit time-based replacement, while rising curves with a clear end-of-life (A, C, B) make preventive time-based maintenance successful."
+/>
 
 <StatGrid
   title="Distribution of the six failure patterns (Nowlan & Heap)"
