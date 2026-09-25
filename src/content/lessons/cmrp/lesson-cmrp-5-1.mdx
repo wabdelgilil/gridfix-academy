@@ -30,6 +30,7 @@ import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import RACIMatrix from '../../../components/islands/tools/cmrp/RACIMatrix.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCmrp51 } from '../../../data/quiz/cmrp/quiz-cmrp-5-1';
 
@@ -45,6 +46,18 @@ import { quizCmrp51 } from '../../../data/quiz/cmrp/quiz-cmrp-5-1';
 - **المساءل وصاحب القرار (Accountable)** : شخص واحد فقط يملك سلطة القبول أو الرفض النهائي ويتحمل المساءلة الإدارية.
 - **المستشار (Consulted)** : الخبير الفني الذي يؤخذ رأيه باتجاهين قبل اتخاذ القرار أو التنفيذ.
 - **المبلَّغ (Informed)** : من يُشعَر بالنتيجة باتجاه واحد بعد اكتمال المهمة.
+
+<Infographic
+  title="أدوار مصفوفة المسؤوليات RACI"
+  cols={4}
+  items={[
+    { title: 'R — المنفذ', detail: 'من يقوم بالعمل الميداني بيده، ويجوز تعدد أصحابه في المهمة.', icon: '🛠️', color: 'brand' },
+    { title: 'A — المساءل', detail: 'شخص واحد فقط يملك القبول أو الرفض النهائي ويحمل المساءلة.', icon: '⚖️', color: 'rose' },
+    { title: 'C — المستشار', detail: 'خبير يؤخذ رأيه باتجاهين قبل القرار أو التنفيذ.', icon: '💡', color: 'sky' },
+    { title: 'I — المبلَّغ', detail: 'من تُشعره النتيجة باتجاه واحد بعد اكتمال المهمة.', icon: '📢', color: 'teal' },
+  ]}
+  caption="لكل مهمة مساءل واحد فقط (قاعدة المساءل الواحد)؛ حرفا A أو أكثر في سطر واحد خطأ فادح في الحوكمة."
+/>
 
 <Callout type="warn">
 **قاعدة المساءل الواحد (Single Accountable Rule):** لكل مهمة مساءل واحد فقط لا غير. عندما يكون الجميع مسؤولين فلا أحد مسؤول فعلياً. وجود حرفي (A) أو أكثر في سطر واحد خطأ فادح في الحوكمة.
@@ -84,6 +97,18 @@ The most powerful tool for settling overlapping authority in plants is the RACI 
 - **Accountable**: only one person holds final approval or rejection authority and bears the managerial accountability.
 - **Consulted**: the technical expert whose opinion is sought two-way before a decision or execution.
 - **Informed**: the person notified one-way of the outcome after the task is completed.
+
+<Infographic
+  title="The RACI roles"
+  cols={4}
+  items={[
+    { title: 'R — Responsible', detail: 'Performs the actual field work with their own hands; several may hold this role.', icon: '🛠️', color: 'brand' },
+    { title: 'A — Accountable', detail: 'Only one person holds final authority and bears the management accountability.', icon: '⚖️', color: 'rose' },
+    { title: 'C — Consulted', detail: 'A two-way expert whose opinion is sought before decisions or execution.', icon: '💡', color: 'sky' },
+    { title: 'I — Informed', detail: 'Notified one-way of the outcome after the task is completed.', icon: '📢', color: 'teal' },
+  ]}
+  caption="Each task has exactly one Accountable (the Single Accountable rule); two or more (A)s on one row is a fatal governance error."
+/>
 
 <Callout type="warn">
 **The Single Accountable rule:** each task has exactly one Accountable and only one. When everyone is accountable, no one actually is. Having two (A)s or more on a single row is a fatal governance error.

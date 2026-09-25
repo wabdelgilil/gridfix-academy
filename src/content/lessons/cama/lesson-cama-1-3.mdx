@@ -30,6 +30,7 @@ sources:
 import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import StakeholderMatrix from '../../../components/islands/tools/cama/StakeholderMatrix.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCama13 } from '../../../data/quiz/cama/quiz-cama-1-3';
@@ -69,6 +70,18 @@ import { quizCama13 } from '../../../data/quiz/cama/quiz-cama-1-3';
 - **قوة عالية ومصلحة منخفضة — أرضهم بإرضاء**: مجلس الإدارة، مدير المالية. يكفي إطلاعهم على النتائج والمستجدات الرئيسية دون إ Loading في التفاصيل.
 - **قوة منخفضة ومصلحة عالية — أبلغهم بالمستجدات**: الفنيون، المشغّلون، مشرفو الخطوط. يحتاجون معلومات واضحة ومحددة تؤثر على عملهم.
 - **قوة منخفضة ومصلحة منخفضة — راقبهم فقط**: الجهات الرقابية البعيدة، المجتمع المحلي في بعض الأحيان. يكفي مراقبة أي تغيير في وضعهم.
+
+<Infographic
+  title="فئات مصفوفة القوة والمصلحة في إدارة الأصول"
+  cols={4}
+  items={[
+    { title: 'قوة عالية / مصلحة عالية', detail: 'أدرهم بإشراف كثيف: تقارير منتظمة ومشاركة مباشرة في القرارات (المدير التنفيذي، مدير الصيانة).', icon: '🤝', color: 'rose' },
+    { title: 'قوة عالية / مصلحة منخفضة', detail: 'أرضهم بإرضاء: إطلاع على النتائج الرئيسية دون إغراق بالتفاصيل (مجلس الإدارة، مدير المالية).', icon: '🫥', color: 'amber' },
+    { title: 'قوة منخفضة / مصلحة عالية', detail: 'أبلغهم بالمستجدات: معلومات واضحة محددة تؤثر في عملهم (الفنيون، المشغّلون، مشرفو الخطوط).', icon: '📣', color: 'teal' },
+    { title: 'قوة منخفضة / مصلحة منخفضة', detail: 'راقبهم فقط: متابعة أي تغيير في وضعهم (جهات رقابية بعيدة، المجتمع المحلي أحياناً).', icon: '👁️', color: 'sky' },
+  ]}
+  caption="المصلحة والقوة تتغيران مع الوقت: التعامل مع كل فئة يتميز بأسلوب تواصل ووتيرة متابعة خاصين."
+/>
 
 ## 4. مصفوفة RACI: توزيع الأدوار والمسؤوليات
 
@@ -145,6 +158,18 @@ Not all stakeholders can be dealt with in the same way. The power-interest matri
 - **High power, low interest — keep satisfied**: the board of directors, the finance manager. Informing them of the results and the key developments is enough, without overburdening them with details.
 - **Low power, high interest — keep informed**: technicians, operators, line supervisors. They need clear, specific information that affects their work.
 - **Low power, low interest — monitor only**: distant regulators, and sometimes the local community. Just monitoring any change in their status is enough.
+
+<Infographic
+  title="The power-interest matrix categories in asset management"
+  cols={4}
+  items={[
+    { title: 'High power / High interest', detail: 'Manage closely: regular reports and direct involvement in decisions (the executive director, the maintenance manager).', icon: '🤝', color: 'rose' },
+    { title: 'High power / Low interest', detail: 'Keep satisfied: informed of the key results without being burdened with details (the board, the finance manager).', icon: '🫥', color: 'amber' },
+    { title: 'Low power / High interest', detail: 'Keep informed: clear, specific information that affects their work (technicians, operators, line supervisors).', icon: '📣', color: 'teal' },
+    { title: 'Low power / Low interest', detail: 'Monitor only: watch any change in their status (distant regulators, sometimes the local community).', icon: '👁️', color: 'sky' },
+  ]}
+  caption="Interest and power change over time: each category is reached with a distinct communication style and follow-up rhythm."
+/>
 
 ## 4. The RACI matrix: allocating roles and responsibilities
 

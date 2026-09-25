@@ -26,6 +26,7 @@ import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import SpaceDensityTool from '../../../components/islands/tools/cfm/SpaceDensityTool.tsx';
+import Comparison from '../../../components/ui/figures/Comparison.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quiz23 } from '../../../data/quiz/cfm/quiz-2-3';
 
@@ -47,6 +48,28 @@ import { quiz23 } from '../../../data/quiz/cfm/quiz-2-3';
 - الحجز المشترك (Hoteling): 5–9 م²/موظف.
 
 **نسبة الإشغال الوظيفي (Occupancy Rate)**: نسبة المقاعد المشغولة فعلياً في لحظة القياس — تعكس سلوكيات الحضور (أيام، فصول، مواسم).
+
+<Comparison
+  title="أنماط العمل المرجعية وتأثيرها على الكثافة"
+  sides={[
+    {
+      label: 'مكاتب مغلقة',
+      color: 'rose',
+      items: ['15–25 م² لكل موظف', 'خصوصية عالية وتركيز فردي', 'تكلفة أعلى لكل متر مربع', 'مناسب للوظائف السرية والمركزة', 'يستهلك مساحة حتى عند الغياب'],
+    },
+    {
+      label: 'مخطط مفتوح',
+      color: 'amber',
+      items: ['8–14 م² لكل موظف', 'تعاون واتصال سهل الفرق', 'كثافة أعلى وتكلفة منخفضة', 'مخاطرة ضوضاء وإزعاج الصوت', 'نموذج شائع مع تحكم بالضوضاء'],
+    },
+    {
+      label: 'حجز مشترك (Hoteling)',
+      color: 'teal',
+      items: ['5–9 م² لكل موظف', 'الأعلى كثافة وأدنى تكلفة', 'يفترض حضوراً غير كامل للفريق', 'يتطلب حجزاً وبيانات حضور صادقة', 'يجعل الإشغال الفعلي هو مصدر القياس'],
+    },
+  ]}
+  caption="النمط يحدد النطاق المرجعي: الكثافة المنخفضة قد تكون رفاهية أو هدراً — يقررها الإشغال الفعلي معاً."
+/>
 
 <Callout type="tip">
 **القراءة الصحيحة:** كثافة منخفضة (مساحة كبيرة لكل موظف) قد تعني رفاهية — أو هدراً صامتاً. إشغال منخفض قد يعني مكاتب مهجورة نصف الأسبوع. الرقمان معاً يرسمان الصورة الواقعية.
@@ -99,6 +122,28 @@ A general measure of the space pattern per person, varying by the reference patt
 - Hoteling: 5–9 m² per employee.
 
 **Occupancy rate**: the share of seats actually occupied at the measurement moment — reflecting attendance behaviors (days, seasons, months).
+
+<Comparison
+  title="Reference workplace patterns and their density impact"
+  sides={[
+    {
+      label: 'Closed offices',
+      color: 'rose',
+      items: ['15–25 m² per employee', 'High privacy and individual focus', 'Higher cost per usable area', 'Suitable for confidential and focused roles', 'Consumes space even during absence'],
+    },
+    {
+      label: 'Open plan',
+      color: 'amber',
+      items: ['8–14 m² per employee', 'Easy collaboration across teams', 'Higher density and lower cost', 'Noise and acoustic risk', 'Common model with acoustic control'],
+    },
+    {
+      label: 'Hoteling',
+      color: 'teal',
+      items: ['5–9 m² per employee', 'The highest density and lowest cost', 'Assumes partial team presence', 'Needs booking and honest attendance data', 'Makes actual occupancy the source of measurement'],
+    },
+  ]}
+  caption="The pattern sets the reference range: low density may be comfort or silent waste — the real occupancy decides it, together."
+/>
 
 <Callout type="tip">
 **Reading correctly:** low density (a large area per employee) may mean comfort — or silent waste. Low occupancy may mean desks abandoned half the week. The two numbers together draw the realistic picture.

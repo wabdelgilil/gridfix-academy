@@ -30,6 +30,7 @@ sources:
 import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import NpvIrrCalculator from '../../../components/islands/tools/cama/NpvIrrCalculator.tsx';
+import Comparison from '../../../components/ui/figures/Comparison.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCama51 } from '../../../data/quiz/cama/quiz-cama-5-1';
@@ -79,6 +80,28 @@ NPV = Σ (التدفق النقدي السنوي ÷ (1 + معدل الخصم) ^ 
 <Callout type="warn">
 **تحذير:** الاعتماد على فترة الاسترداد فقط بدون مراجعة NPV وIRR قد يؤدي لرفض مشاريع ممتازة أو قبول مشاريع خاسرة. الاستخدام الصحيح: استخدمها كمؤشر أولي سريع، ثم ادعمها بالتحليل الشامل.
 </Callout>
+
+<Comparison
+  title="المقاييس المالية الثلاثة: ماذا يجيب كل منها ومتى يقبل المشروع؟"
+  sides={[
+    {
+      label: 'صافي القيمة الحالية (NPV)',
+      color: 'teal',
+      items: ['يجيب: ما قيمة المشروع اليوم بعد خصم التدفقات؟', 'يجمع التدفقات المخصومة ويطرح التكلفة الأولية', 'موجب = قبول، سالب = رفض، صفر = محايد', 'الأشمل والأدق في تقييم المشاريع'],
+    },
+    {
+      label: 'معدل العائد الداخلي (IRR)',
+      color: 'amber',
+      items: ['يجيب: ما معدل العائد الذي يساوي NPV صفراً؟', 'يعطيك نسبة مئوية سهلة المقارنة', 'أعلى من معدل الخصم المطلوب (Hurdle) = قبول', 'مضلل عند مقارنة مشاريع مختلفة الأحجام'],
+    },
+    {
+      label: 'فترة الاسترداد',
+      color: 'rose',
+      items: ['يجيب: متى نستعيد التكلفة الأولية؟', 'أبسط المقاييس وأسهلها فهماً', 'قرار سريع مبدئي فقط', 'تتجاهل القيمة الزمنية والتدفقات بعد الاسترداد'],
+    },
+  ]}
+  caption="استخدم فترة الاسترداد مؤشراً سريعاً ثم ادعم القرار بـ NPV وIRR — فترة الاسترداد وحدها قد تقبل خاسراً أو ترفض رابحاً."
+/>
 
 ## 5. تحليل التكلفة والمنفعة (Cost-Benefit Analysis)
 
@@ -150,6 +173,28 @@ NPV = Σ (annual cash flow ÷ (1 + discount rate)^year) − initial cost
 <Callout type="warn">
 **Warning:** relying on the payback period alone without reviewing NPV and IRR may lead to rejecting excellent projects or accepting losing ones. Correct use: treat it as a quick preliminary indicator, then support it with a comprehensive analysis.
 </Callout>
+
+<Comparison
+  title="The three financial measures: what each answers, and when the project is accepted"
+  sides={[
+    {
+      label: 'Net Present Value (NPV)',
+      color: 'teal',
+      items: ['Answers: what is the project worth today after discounting flows?', 'Sums the discounted flows and subtracts the initial cost', 'Positive = accept, negative = reject, zero = neutral', 'The most comprehensive and accurate evaluator'],
+    },
+    {
+      label: 'Internal Rate of Return (IRR)',
+      color: 'amber',
+      items: ['Answers: what return rate makes NPV zero?', 'Gives you a percentage easy to compare', 'Higher than the hurdle rate = accept', 'Misleading when comparing projects of different sizes'],
+    },
+    {
+      label: 'Payback period',
+      color: 'rose',
+      items: ['Answers: when do we recover the initial cost?', 'The simplest and easiest measure to grasp', 'Only a quick preliminary indicator', 'Ignores the time value of money and flows after recovery'],
+    },
+  ]}
+  caption="Use the payback period as a quick indicator, then support the decision with NPV and IRR — payback alone may accept a loser or reject a winner."
+/>
 
 ## 5. Cost-Benefit Analysis
 

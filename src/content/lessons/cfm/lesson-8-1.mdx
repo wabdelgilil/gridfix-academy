@@ -29,6 +29,7 @@ import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import StrategyBoard from '../../../components/islands/tools/cfm/StrategyBoard.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quiz81 } from '../../../data/quiz/cfm/quiz-8-1';
 
@@ -57,6 +58,18 @@ import { quiz81 } from '../../../data/quiz/cfm/quiz-8-1';
 5. **القياس والمراجعة**: مؤشرات دورية وقسم مراجعة ينفذان التعديل حسب النتائج والظروف.
 
 > لا يوجد مخطط استراتيجي منزه عن التعديل: الدورة تنتهي بمراجعة سنوية تُعدّل الخطط والأهداف مع حركة السوق ونمو الكيان.
+
+<FlowChart
+  title="دورة التخطيط الاستراتيجي: من البيانات إلى المراجعة"
+  steps={[
+    { title: 'جمع البيانات', detail: 'أعمار الأصول وحالتها، كلفة الطاقة والمياه، مؤشرات التوافر، ملفات العقود.', icon: '🗂️', type: 'start' },
+    { title: 'التحليل (SWOT)', detail: 'القوة والضعف داخليان، والفرص والتهديدات خارجيان — انطلاقاً من أهداف المؤسسة.', icon: '🔍', type: 'step' },
+    { title: 'تحديد الأولويات', detail: 'ليست كل الرغبات أهدافاً؛ تُنتقى مبادرات قليلة ذات أثر وقيمة مؤكدة.', icon: '🎯', type: 'decision' },
+    { title: 'تخصيص الموارد', detail: 'ميزانية وساعات ومقاولون لكل مبادرة مع بيان مسؤوليات (RACI).', icon: '💼', type: 'step' },
+    { title: 'القياس والمراجعة', detail: 'مؤشرات دورية + مراجعة سنوية تعدّل الخطط مع حركة السوق.', icon: '🔄', type: 'end' },
+  ]}
+  caption="الدورة لا تنتهي بالتنفيذ: مراجعة سنوية تعيد ضبط الأهداف والميزانية مع الظروف المتغيرة."
+/>
 
 ## 3. الأهداف الذكية SMART والحساب بالأرقام
 
@@ -104,6 +117,18 @@ The process is organized and proceeds through sequential stages:
 5. **Measurement and review**: periodic indicators and a review team apply adjustments based on results and circumstances.
 
 > No strategic plan is exempt from adjustment: the cycle ends with an annual review that revises plans and objectives as the market moves and the entity grows.
+
+<FlowChart
+  title="The strategic planning cycle: from data to review"
+  steps={[
+    { title: 'Data collection', detail: 'Asset ages and condition, energy and water costs, availability indicators, contract files.', icon: '🗂️', type: 'start' },
+    { title: 'SWOT analysis', detail: 'Strengths and weaknesses are internal; opportunities and threats are external — driven by the entity goals.', icon: '🔍', type: 'step' },
+    { title: 'Setting priorities', detail: 'Not every wish is an objective; a few initiatives with confirmed impact and value are selected.', icon: '🎯', type: 'decision' },
+    { title: 'Resource allocation', detail: 'A budget, hours, and contractors for each initiative with a responsibility matrix (RACI).', icon: '💼', type: 'step' },
+    { title: 'Measurement and review', detail: 'Periodic indicators + an annual review that adjusts plans as the market moves.', icon: '🔄', type: 'end' },
+  ]}
+  caption="The cycle does not end with execution: an annual review resets objectives and budget with changing circumstances."
+/>
 
 ## 3. SMART objectives and calculation with numbers
 

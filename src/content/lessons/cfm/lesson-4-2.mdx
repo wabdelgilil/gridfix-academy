@@ -23,6 +23,7 @@ sources:
 import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quiz42 } from '../../../data/quiz/cfm/quiz-4-2';
 
@@ -51,6 +52,18 @@ import { quiz42 } from '../../../data/quiz/cfm/quiz-4-2';
 2. قِس الأثر **قبل/بعد** بأدوات قياس (مؤشرات + رضا).
 3. قرّر التوسيع **على البيانات** لا على حماس قسم واحد.
 4. القرار المعكوس (عدم التعميم رغم النجاح المثبت) أيضًا قرار — يُبنى على مبررات صريحة.
+
+<FlowChart
+  title="مسار التحسين البيئي: تجربة صغيرة ثم توسيع بالبيانات"
+  steps={[
+    { title: 'تجربة على نطاق صغير', detail: 'إضاءة أو عزل صوتي على منطقة محدودة فقط.', icon: '🧪', type: 'start' },
+    { title: 'قياس الأثر قبل/بعد', detail: 'مؤشرات موضوعية + استبيانات رضا للمستفيدين.', icon: '📊', type: 'step' },
+    { title: 'هل النجاح مثبت؟', detail: 'قرار مبني على البيانات لا على حماس قسم واحد.', icon: '🧭', type: 'decision' },
+    { title: 'نعم: التوسيع', detail: 'تعميم التحسين على المنشأة مع رصد مؤشرات دورية.', icon: '🚀', type: 'end' },
+    { title: 'لا: عدم التعميم', detail: 'قرار صريح بمبررات مكتوبة — هو أيضاً قرار.', icon: '⏸️', type: 'step' },
+  ]}
+  caption="القرار المعكوس (عدم التعميم رغم النجاح المثبت) قرار شرعي يُبنى على مبررات صريحة لا على الإهمال."
+/>
 
 ## 3. هل «الجمال» يحجب المشاكل؟
 
@@ -95,6 +108,18 @@ They connect to business indicators: team satisfaction, absenteeism rates, and p
 2. Measure the impact **before/after** with measurement tools (indicators + satisfaction).
 3. Decide the roll-out **on data**, not on the enthusiasm of one department.
 4. The reverse decision (not scaling despite proven success) is also a decision — built on explicit justifications.
+
+<FlowChart
+  title="The environmental improvement path: pilot first, then data-driven scaling"
+  steps={[
+    { title: 'Pilot on a small scale', detail: 'Lighting or soundproofing on a limited area only.', icon: '🧪', type: 'start' },
+    { title: 'Measure before/after', detail: 'Objective indicators + occupant satisfaction surveys.', icon: '📊', type: 'step' },
+    { title: 'Is success proven?', detail: 'A decision built on data, not on one department\'s enthusiasm.', icon: '🧭', type: 'decision' },
+    { title: 'Yes: scale up', detail: 'Roll the improvement out across the facility with periodic indicator monitoring.', icon: '🚀', type: 'end' },
+    { title: 'No: do not scale', detail: 'An explicit decision with written justifications — it is also a decision.', icon: '⏸️', type: 'step' },
+  ]}
+  caption="The reverse decision (not scaling despite proven success) is a legitimate one, built on explicit justifications, not on neglect."
+/>
 
 ## 3. Does "beauty" hide problems?
 

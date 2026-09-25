@@ -1,0 +1,83 @@
+---
+type CurveKey = 'infant' | 'random' | 'wearout';
+
+interface CurveData {
+  key: CurveKey;
+  label: string;
+  note: string;
+}
+
+interface Props {
+  curves: [CurveData, CurveData, CurveData];
+  title?: string;
+  caption?: string;
+  hazardLabel?: string;
+  timeLabel?: string;
+}
+
+const { curves, title, caption, hazardLabel = 'hazard rate', timeLabel = 'time' } = Astro.props;
+
+const styles: Record<CurveKey, Record<string, string>> = {
+  infant: { card: 'border-teal-300 bg-teal-50/50', chip: 'bg-teal-100 text-teal-800', color: '#0d9488' },
+  random: { card: 'border-amber-300 bg-amber-50/50', chip: 'bg-amber-100 text-amber-800', color: '#d97706' },
+  wearout: { card: 'border-rose-300 bg-rose-50/50', chip: 'bg-rose-100 text-rose-800', color: '#e11d48' },
+};
+
+const labels: Record<CurveKey, string> = {
+  infant: 'β < 1',
+  random: 'β = 1',
+  wearout: 'β > 1',
+};
+
+// hazard-rate functions sampled over t in [0.5, 10], normalized to fill the plot
+function hazard(key: CurveKey, t: number): number {
+  switch (key) {
+    case 'infant':
+      return Math.pow(t / 0.5, -1.6);
+    case 'random':
+      return 0.5;
+    case 'wearout':
+      return Math.pow(t / 10, 2.8);
+  }
+}
+
+const PLOT_LEFT = 10;
+const PLOT_RIGHT = 112;
+const PLOT_TOP = 6;
+const PLOT_BOTTOM = 62;
+const w = PLOT_RIGHT - PLOT_LEFT;
+
+function curvePath(key: CurveKey): string {
+  const px = (t: number) => PLOT_LEFT + (t / 10) * w;
+  const py = (h: number) => PLOT_BOTTOM - (h / 1) * (PLOT_BOTTOM - PLOT_TOP);
+  const points: string[] = [];
+  for (let i = 0; i <= 40; i++) {
+    const t = 0.5 + (i / 40) * 9.5;
+    points.push(`${px(t)},${py(hazard(key, t))}`);
+  }
+  return `M${points.join(' L')}`;
+}
+---
+
+<div class="my-6">
+  {title && <p class="mb-3 text-sm font-bold text-ink-900">{title}</p>}
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+    {curves.map((c) => (
+      <div class={`rounded-xl border p-3 ${styles[c.key].card}`}>
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-xs font-bold text-ink-900">{c.label}</span>
+          <span class={`rounded-full px-2 py-0.5 text-[11px] font-bold ${styles[c.key].chip}`} dir="ltr">{labels[c.key]}</span>
+        </div>
+        <svg viewBox="0 0 120 80" class="mt-2 w-full" role="img" aria-label={`${c.label} ${labels[c.key]}`}>
+          <line x1={PLOT_LEFT} y1={PLOT_BOTTOM} x2={PLOT_RIGHT} y2={PLOT_BOTTOM} stroke="#94a3b8" stroke-width="1" />
+          <line x1={PLOT_LEFT} y1={PLOT_BOTTOM} x2={PLOT_LEFT} y2={PLOT_TOP} stroke="#94a3b8" stroke-width="1" />
+          <path d={curvePath(c.key)} fill="none" stroke={styles[c.key].color} stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <text x={PLOT_RIGHT} y="78" font-size="7" fill="#64748b" text-anchor="end">{timeLabel}</text>
+          <text x={PLOT_LEFT + 2} y={PLOT_TOP + 7} font-size="6.5" fill="#64748b">{hazardLabel}</text>
+        </svg>
+        <p class="mt-1.5 text-[11px] leading-relaxed text-ink-600">{c.note}</p>
+      </div>
+    ))}
+  </div>
+  {caption && <p class="mt-2 text-center text-xs text-ink-400">{caption}</p>}
+</div>

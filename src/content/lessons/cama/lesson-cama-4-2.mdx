@@ -28,6 +28,7 @@ sources:
 import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import MaintenanceStrategyMatrix from '../../../components/islands/tools/cama/MaintenanceStrategyMatrix.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCama42 } from '../../../data/quiz/cama/quiz-cama-4-2';
@@ -44,6 +45,18 @@ import { quizCama42 } from '../../../data/quiz/cama/quiz-cama-4-2';
 2. **الصيانة الوقائية (Preventive Maintenance):** أعمال مجدولة على أساس الزمن أو الاستخدام. تقلل الأعطال المفاجئة لكنها قد تزيد من التكاليف إذا تم التوقيت بشكل خاطئ.
 3. **الصيانة التنبؤية (Predictive Maintenance):** استخدام تقنيات المراقبة مثل الاهتزاز والحرارة والصوت لتشخيص التدهور والتدخل في الوقت المناسب.
 4. **الصيانة المبنية على الموثوقية (RCM):** المنهج المنطقي الذي يحدد المهمة الصيانة المناسبة لكل فشل محتمل بناءً على وضوحه وتأثيره على السلامة والإنتاجية.
+
+<Infographic
+  title="خريطة استراتيجيات الصيانة الأربع"
+  cols={4}
+  items={[
+    { title: 'تفاعلية (Reactive)', detail: 'تعامل مع العطل بعد حدوثه؛ مجدية فقط حين تكلفة الوقاية تفوق تكلفة الإصلاح.', icon: '🧯', color: 'rose' },
+    { title: 'وقائية (Preventive)', detail: 'أعمال مجدولة بالزمن أو الاستخدام؛ تقلل الأعطال المفاجئة وقد تزيد التكاليف بالتوقيت الخاطئ.', icon: '📅', color: 'amber' },
+    { title: 'تنبؤية (Predictive)', detail: 'مراقبة الاهتزاز والحرارة والصوت لتشخيص التدهور والتدخل في الوقت المناسب.', icon: '📡', color: 'sky' },
+    { title: 'مبنية على الموثوقية (RCM)', detail: 'تحدد المهمة المناسبة لكل فشل محتمل حسب وضوحه وتأثيره على السلامة والإنتاجية.', icon: '🧠', color: 'teal' },
+  ]}
+  caption="لا استراتيجية أفضل مطلقاً: الاختيار لكل أصل ووضع تشغيله، وغالباً ما يكون المزيج هو الحل."
+/>
 
 <Callout type="tip">
 **القاعدة الذهبية:** لا توجد استراتيجية صيانة "أفضل" بشكل مطلق. المنهج الصحيح هو أن تختار الاستراتيجية المناسبة لكل أصل ووضع تشغيله، وغالباً ما يكون المزيج من استراتيجيات متعددة هو الحل الأفضل.
@@ -93,6 +106,18 @@ There is no single maintenance strategy that fits all assets. The correct approa
 2. **Preventive Maintenance:** scheduled work based on time or usage. It reduces sudden failures but may increase costs if the timing is wrong.
 3. **Predictive Maintenance:** using monitoring techniques such as vibration, heat, and sound to diagnose deterioration and intervene at the right time.
 4. **Reliability-Centered Maintenance (RCM):** the logical approach that determines the appropriate maintenance task for each potential failure based on its visibility and its impact on safety and productivity.
+
+<Infographic
+  title="The map of the four maintenance strategies"
+  cols={4}
+  items={[
+    { title: 'Reactive', detail: 'Dealing with the failure after it occurs; viable only when the cost of prevention exceeds the cost of repair.', icon: '🧯', color: 'rose' },
+    { title: 'Preventive', detail: 'Scheduled work by time or usage; reduces sudden failures and may raise costs with wrong timing.', icon: '📅', color: 'amber' },
+    { title: 'Predictive', detail: 'Vibration, heat, and sound monitoring to diagnose deterioration and intervene at the right time.', icon: '📡', color: 'sky' },
+    { title: 'RCM', detail: 'Determines the appropriate task for each potential failure by its visibility and impact on safety and productivity.', icon: '🧠', color: 'teal' },
+  ]}
+  caption="No strategy is absolutely best: the choice fits each asset and operating context, and a mix is often the answer."
+/>
 
 <Callout type="tip">
 **The golden rule:** there is no absolutely "best" maintenance strategy. The correct approach is to choose the strategy suited to each asset and its operating context, and often a mix of multiple strategies is the best solution.

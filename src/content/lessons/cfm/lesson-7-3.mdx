@@ -26,6 +26,7 @@ sources:
 import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quiz73 } from '../../../data/quiz/cfm/quiz-7-3';
 
@@ -46,6 +47,19 @@ import { quiz73 } from '../../../data/quiz/cfm/quiz-7-3';
 - **ثاني أكسيد الكربون (CO₂)**: مؤشر كفاية التهوية مع الإشغال (راجع القياس في 4.3).
 - **الرطوبة والعفن**: من تسربات وتكثف؛ بويضات بيولوجية تؤذي كل الحساسيين.
 - **دخان التبغ ومخلفات السخانات**: محصورة بسيطرة صارمة داخل المبنى المحيط.
+
+<Infographic
+  title="ملوثات الهواء الداخلي الرئيسية ومصادرها"
+  cols={3}
+  items={[
+    { title: 'مركبات عضوية متطايرة (VOC)', detail: 'تتبخر من الطلاءات واللاصقات والأثاث الجديد؛ الفورمالديهايد يهيّج العيون والتنفس.', icon: '🧪', color: 'rose' },
+    { title: 'جسيمات (PM)', detail: 'غبار وألياف وصغيرات من الأجهزة والتشغيل والنشاط اليومي.', icon: '🌫️', color: 'amber' },
+    { title: 'ثاني أكسيد الكربون (CO₂)', detail: 'مؤشر كفاية التهوية مع الإشغال — ارتفاعه دليل نقص تدفق.', icon: '🫁', color: 'teal' },
+    { title: 'الرطوبة والعفن', detail: 'من التسربات والتكثف؛ بويضات بيولوجية تؤذي أصحاب الحساسية.', icon: '💧', color: 'sky' },
+    { title: 'دخان ومخلفات احتراق', detail: 'تدخل الهواء بسيطرة صارمة على الغلاف ومنع التدخين الداخلي.', icon: '🚬', color: 'brand' },
+  ]}
+  caption="المعالجة المزدوجة دائماً: منع الملوث من المصدر (مواد منخفضة الانبعاث) ثم تخفيف ما تبقى بالتهوية."
+/>
 
 <Callout type="tip">
 **عن الأصل:** الأفضل ممارسة مزدوجة دائماً: منع الملوث من قبيل المصدر (مواد منخفضة الانبعاث)، ثم تخفيف ما تبقى بالتهوية. لا أحدهما يكفي وحده.
@@ -86,6 +100,19 @@ The pollutants divide by their source, and the most important axis is the indoor
 - **Carbon dioxide (CO₂)**: an indicator of ventilation sufficiency under occupancy (see the measurement in 4.3).
 - **Humidity and mold**: from leaks and condensation; biological spores that harm everyone with sensitivities.
 - **Tobacco smoke and combustion byproducts**: kept out by strict control within the building envelope.
+
+<Infographic
+  title="The main indoor air pollutants and their sources"
+  cols={3}
+  items={[
+    { title: 'Volatile organic compounds (VOC)', detail: 'Evaporating from paints, adhesives, and new furniture; formaldehyde irritates the eyes and breathing.', icon: '🧪', color: 'rose' },
+    { title: 'Particulate matter (PM)', detail: 'Dust, fibers, and fine particles from equipment, operations, and daily activity.', icon: '🌫️', color: 'amber' },
+    { title: 'Carbon dioxide (CO₂)', detail: 'An indicator of ventilation sufficiency under occupancy — a rise signals insufficient airflow.', icon: '🫁', color: 'teal' },
+    { title: 'Humidity and mold', detail: 'From leaks and condensation; biological spores harming people with sensitivities.', icon: '💧', color: 'sky' },
+    { title: 'Smoke and combustion byproducts', detail: 'Kept out through strict envelope control and a ban on indoor smoking.', icon: '🚬', color: 'brand' },
+  ]}
+  caption="Always the dual treatment: prevent the pollutant at the source (low-emission materials), then dilute what remains with ventilation."
+/>
 
 <Callout type="tip">
 **On the source:** the best practice is always dual: prevent the pollutant at the source (low-emission materials), then dilute what remains with ventilation. Neither alone is sufficient.

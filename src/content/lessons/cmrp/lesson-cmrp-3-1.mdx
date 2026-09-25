@@ -30,6 +30,8 @@ import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import BottleneckSimulator from '../../../components/islands/tools/cmrp/BottleneckSimulator.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCmrp31 } from '../../../data/quiz/cmrp/quiz-cmrp-3-1';
 
@@ -46,6 +48,17 @@ import { quizCmrp31 } from '../../../data/quiz/cmrp/quiz-cmrp-3-1';
 <Callout type="tip">
 **القاعدة الذهبية:** ساعة توقف ضائعة في نقطة الاختناق هي ساعة ضائعة من إنتاج ومبيعات المصنع بالكامل ولا يمكن استردادها أبداً، بينما ساعة توقف في معدة غير خانقة تملك طاقة فائضة تعوض بسهولة بتشغيل إضافي قصير.
 </Callout>
+
+<FlowChart
+  title="خط التعبئة من أربع محطات: أين خانقة الإنتاج؟"
+  steps={[
+    { title: 'الغسيل', detail: '120 زجاجة/دقيقة', icon: '🫧', type: 'step' },
+    { title: 'التعبئة', detail: '80 زجاجة/دقيقة — نقطة الاختناق: تحكم الإنتاج النهائي', icon: '⏳', type: 'decision' },
+    { title: 'التغطية', detail: '110 زجاجات/دقيقة', icon: '🧢', type: 'step' },
+    { title: 'التغليف', detail: '130 زجاجة/دقيقة — المخرجات النهائية 80 حتماً', icon: '📦', type: 'end' },
+  ]}
+  caption="الاستثمار في الغسيل (160) لا يزيد المبيعات زجاجة واحدة ويكدس مخزوناً تحت التشغيل قبل التعبئة — الإنتاج يحكمه أضعف الحلقات."
+/>
 
 ## 2. خطوات التركيز الخمس (Five Focusing Steps)
 
@@ -64,6 +77,17 @@ import { quizCmrp31 } from '../../../data/quiz/cmrp/quiz-cmrp-3-1';
 - **الطبلة (Drum):** إيقاع نقطة الاختناق؛ تدق بسرعتها ويسير المصنع كله على دقاتها دون تجاوز.
 - **المخزن المؤقت (Buffer):** مخزون زمني أو مادي يوضع قبل الخانقة مباشرة لحمايتها من **الجوع (Starvation)** إذا تعطلت ماكينة سابقة لفترة وجيزة.
 - **الحبل (Rope):** قناة اتصال تمنع إدخال خامات جديدة إلى بداية الخط إلا بالقدر الذي تستهلكه الخانقة، فيمنع تكدس المخزون.
+
+<Infographic
+  title="آلية الطبلة والمخزن المؤقت والحبل (Drum-Buffer-Rope)"
+  cols={3}
+  items={[
+    { title: 'الطبلة (Drum)', detail: 'إيقاع نقطة الاختناق؛ يضبط المصنع كله على دقاتها دون تجاوز.', icon: '🥁', color: 'rose' },
+    { title: 'المخزن المؤقت (Buffer)', detail: 'مخزون زمني قبل الخانقة يحميها من الجوع عند تعطل ماكينة سابقة.', icon: '🛡️', color: 'amber' },
+    { title: 'الحبل (Rope)', detail: 'قناة اتصال تمنع دخول خامات جديدة إلا بقدر استهلاك الخانقة.', icon: '🪢', color: 'teal' },
+  ]}
+  caption="ثلاثة عناصر تنظم الإيقاع: الطبلة تحدد السرعة، والمخزن يحمي الاستمرارية، والحبل يمنع تكدس المخزون تحت التشغيل."
+/>
 
 <Callout type="myth">
 **أسطورة:** "تشغيل كل محطة بأقصى سرعة وكفاءة فردية 100% يرفع أرباح المصنع."
@@ -92,6 +116,17 @@ Take a filling line of four stations: washing at 120 bottles/minute, filling at 
 **The golden rule:** one lost hour at the bottleneck is one hour lost from the entire plant's production and sales and can never be recovered, while an hour at a non-constraining asset with surplus capacity is easily compensated by a short additional run.
 </Callout>
 
+<FlowChart
+  title="A four-station filling line: where is the production constraint?"
+  steps={[
+    { title: 'Washing', detail: '120 bottles/min', icon: '🫧', type: 'step' },
+    { title: 'Filling', detail: '80 bottles/min — the bottleneck: governs final output', icon: '⏳', type: 'decision' },
+    { title: 'Capping', detail: '110 bottles/min', icon: '🧢', type: 'step' },
+    { title: 'Packing', detail: '130 bottles/min — final throughput is inevitably 80', icon: '📦', type: 'end' },
+  ]}
+  caption="Investing in washing (160) would not increase sales by a single bottle and would pile up WIP before filling — output is governed by the weakest link."
+/>
+
 ## 2. The five focusing steps
 
 Maintenance standards adopt a cyclic five-step methodology to address the bottleneck:
@@ -109,6 +144,17 @@ The reliability engineer coordinates the maintenance schedule with production fl
 - **Drum:** the bottleneck's rhythm; it beats at its own speed and the whole plant runs to its beat without exceeding it.
 - **Buffer:** a time or material stock placed just before the bottleneck to protect it from **starvation** if an upstream machine fails for a short period.
 - **Rope:** a communication channel that prevents feeding new materials to the line's start except in the amount the bottleneck consumes, preventing stockpile buildup.
+
+<Infographic
+  title="The Drum-Buffer-Rope mechanism"
+  cols={3}
+  items={[
+    { title: 'Drum', detail: 'The bottleneck rhythm; the whole plant runs to its beat without exceeding it.', icon: '🥁', color: 'rose' },
+    { title: 'Buffer', detail: 'A time or material stock before the bottleneck protecting it from starvation.', icon: '🛡️', color: 'amber' },
+    { title: 'Rope', detail: 'A channel feeding new materials only at the bottleneck consumption rate.', icon: '🪢', color: 'teal' },
+  ]}
+  caption="Three elements regulate the rhythm: the drum sets the speed, the buffer protects continuity, and the rope prevents WIP buildup."
+/>
 
 <Callout type="myth">
 **Myth:** "Running every station at maximum speed and 100% individual efficiency raises plant profits."

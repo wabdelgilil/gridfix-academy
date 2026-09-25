@@ -30,6 +30,7 @@ import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import WeibullExplorer from '../../../components/islands/tools/cmrp/WeibullExplorer.tsx';
+import WeibullCurves from '../../../components/ui/figures/WeibullCurves.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCmrp24 } from '../../../data/quiz/cmrp/quiz-cmrp-2-4';
 
@@ -44,6 +45,18 @@ import { quizCmrp24 } from '../../../data/quiz/cmrp/quiz-cmrp-2-4';
 - **β أكبر من 1 — التقادم والتآكل (Wear-out)**: معدل يرتفع مع العمر، ويماثل التوزيع الطبيعي (Normal Distribution) عند β ≈ 3.5. **هنا فقط** تنجح الصيانة الوقائية بالزمن (Time-Based PM): استبدل قبل الجرف الحتمي. مثال: بطانات فرامل سيور فحم عند بيتا 3.8 وعمر مميز 5000 ساعة.
 
 ويقابله معامل المقياس إيتا (η) — العمر المميز (Characteristic Life): النقطة الزمنية التي يُتوقع أن يفشل عندها 63.2% من مجتمع المعدات.
+
+<WeibullCurves
+  title="ثلاث مناطق سلوك معدل الفشل وفق معامل الشكل بيتا (β)"
+  hazardLabel="معدل الفشل"
+  timeLabel="الزمن"
+  curves={[
+    { key: 'infant', label: 'وفيات الرضع', note: 'معدل ينحدر مع الزمن — أسباب تركيب وجودة قطع. الصيانة بالزمن ضارة هنا.' },
+    { key: 'random', label: 'فشل عشوائي', note: 'معدل ثابت مستقل عن العمر (توزيع أسي) — قياس مشروط أو RTF لغير الحرجة.' },
+    { key: 'wearout', label: 'تآكل مرتبط بالعمر', note: 'معدل يرتفع مع العمر (يقارب الطبيعي عند β ≈ 3.5) — استبدال مجدول قبل الجرف.' },
+  ]}
+  caption="بيتا تحدد شكل منحنى معدل الفشل وبالتالي التكتيك الذي ينجح: انحدار (رضع) أو ثبات (عشوائي) أو ارتفاع (تآكل)."
+/>
 
 <Callout type="myth">
 **أسطورة:** "الاستبدال الدوري المبكر يرفع الموثوقية دائماً في كل المعدات."
@@ -81,6 +94,18 @@ The statistical distribution developed by the Swedish scientist Waloddi Weibull 
 - **β greater than 1 — wear-out**: a rate that rises with age, resembling the normal distribution at β ≈ 3.5. **Only here** does time-based preventive maintenance (Time-Based PM) succeed: replace before the inevitable cliff. Example: coal conveyor brake linings at beta 3.8 with a characteristic life of 5000 hours.
 
 Opposite it stands the scale parameter eta (η) — the characteristic life: the point in time at which 63.2% of the equipment population is expected to have failed.
+
+<WeibullCurves
+  title="Three failure-rate behavior zones by the shape parameter beta (β)"
+  hazardLabel="failure rate"
+  timeLabel="time"
+  curves={[
+    { key: 'infant', label: 'Infant mortality', note: 'A declining rate over time — causes are installation and part quality. Time-based PM is harmful here.' },
+    { key: 'random', label: 'Random failure', note: 'A constant rate independent of age (exponential) — condition monitoring or RTF for non-critical assets.' },
+    { key: 'wearout', label: 'Age-related wear-out', note: 'A rising rate with age (approximating the normal at β ≈ 3.5) — scheduled replacement before the cliff.' },
+  ]}
+  caption="Beta shapes the failure-rate curve and therefore the tactic that works: declining (infant), constant (random), or rising (wear-out)."
+/>
 
 <Callout type="myth">
 **Myth:** "Early periodic replacement always raises reliability in all equipment."

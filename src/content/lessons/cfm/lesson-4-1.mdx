@@ -26,6 +26,7 @@ import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import ErgonomicsSelfCheck from '../../../components/islands/tools/cfm/ErgonomicsSelfCheck.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quiz41 } from '../../../data/quiz/cfm/quiz-4-1';
 
@@ -42,6 +43,19 @@ import { quiz41 } from '../../../data/quiz/cfm/quiz-4-1';
 - **المعصم**: أيادٍ مسترخية فوق لوحة المفاتيح دون انحناء قسري.
 - **الإضاءة**: لا وهج مباشر ولا انعكاس نافذة على الشاشة.
 - **الحركة**: استراحات وقيام دوري كل 30–60 دقيقة.
+
+<Infographic
+  title="نقاط فحص محطة العمل الكلاسيكية"
+  cols={3}
+  items={[
+    { title: 'الشاشة', detail: 'قمتها عند مستوى العين أو أقل، على مسافة 50–70 سم.', icon: '🖥️', color: 'sky' },
+    { title: 'الكرسي', detail: 'دعم للظهر، وقدمان تلامسان الأرض، وذراعان بزاوية مريحة.', icon: '🪑', color: 'teal' },
+    { title: 'المعصم', detail: 'أيادٍ مسترخية دون انحناء قسري.', icon: '✋', color: 'rose' },
+    { title: 'الإضاءة', detail: 'لا وهج مباشر ولا انعكاس نافذة على الشاشة.', icon: '💡', color: 'amber' },
+    { title: 'الحركة', detail: 'استراحات وقيام دوري كل 30–60 دقيقة.', icon: '🚶', color: 'brand' },
+  ]}
+  caption="بيئة العمل نظام متكامل: وضعية الشاشة والكرسي والمعصم فوق إضاءة وحركة — لا قطعة واحدة كافية."
+/>
 
 <Callout type="myth">
 **أسطورة:** "الكراسي الباهظة حل شامل."
@@ -77,6 +91,19 @@ The science of adapting the work environment to the human body, not the reverse.
 - **Wrist**: hands relaxed over the keyboard without forced bending.
 - **Lighting**: no direct glare and no window reflection on the screen.
 - **Movement**: breaks and periodic standing every 30–60 minutes.
+
+<Infographic
+  title="The classic workstation checkpoints"
+  cols={3}
+  items={[
+    { title: 'Screen', detail: 'Top at eye level or slightly below, at a distance of 50–70 cm.', icon: '🖥️', color: 'sky' },
+    { title: 'Chair', detail: 'Back support, feet touching the floor, arms at a comfortable angle.', icon: '🪑', color: 'teal' },
+    { title: 'Wrist', detail: 'Hands relaxed without forced bending.', icon: '✋', color: 'rose' },
+    { title: 'Lighting', detail: 'No direct glare and no window reflection on the screen.', icon: '💡', color: 'amber' },
+    { title: 'Movement', detail: 'Breaks and periodic standing every 30–60 minutes.', icon: '🚶', color: 'brand' },
+  ]}
+  caption="The workplace is an integrated system: screen, chair, and wrist posture on top of lighting and movement — no single piece is enough."
+/>
 
 <Callout type="myth">
 **Myth:** "Expensive chairs are a complete solution."

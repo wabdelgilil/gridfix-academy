@@ -24,6 +24,7 @@ sources:
 
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quiz93 } from '../../../data/quiz/cfm/quiz-9-3';
 
@@ -62,6 +63,17 @@ import { quiz93 } from '../../../data/quiz/cfm/quiz-9-3';
 - **حلل**: طبّق المستويات وقاعدة باريتو والسبب الجذري.
 - **اختر**: قيّم البدائل بأثرها وتكلفتها ومخاطرها، واختر بإطار القرار (تكلفة الأثر، العائد، أولوية المخاطر).
 - **نفذ وراقب**: القرار يصبح افتراضاً يُختبر بمؤشرات بعد التنفيذ، ويُعدَّل حسب النتيجة.
+
+<FlowChart
+  title="من التحليل إلى القرار: أربع خطوات محسوبة"
+  steps={[
+    { title: 'تعرّف', detail: 'بيّن المشكلة بالأرقام لا بالوصف الانطباعي.', icon: '🔎', type: 'start' },
+    { title: 'حلّل', detail: 'المستويات الثلاثة (وصفي/تشخيصي/تنبؤي) + باريتو + السبب الجذري.', icon: '📊', type: 'step' },
+    { title: 'اختر', detail: 'قيّم البدائل بأثرها وتكلفتها ومخاطرها بإطار قرار واضح.', icon: '⚖️', type: 'decision' },
+    { title: 'نفذ وراقب', detail: 'القرار افتراض يُختبر بمؤشرات بعد التنفيذ ويُعدّل حسب النتيجة.', icon: '🔄', type: 'end' },
+  ]}
+  caption="القرار لا ينتهي بالتنفيذ: المتابعة بمؤشرات تحوله من قرار إلى نتائج قابلة للقياس."
+/>
 
 ## 5. التقرير الذي يقنع القيادة
 
@@ -111,6 +123,17 @@ The decisive decision rests on studied causation: a hypothesis + data + excludin
 - **Analyze**: apply the levels, the Pareto rule, and the root cause.
 - **Choose**: evaluate alternatives by their impact, cost, and risk, and choose with a decision framework (impact cost, return, risk priority).
 - **Execute and monitor**: the decision becomes a hypothesis tested with indicators after implementation, and is adjusted according to the result.
+
+<FlowChart
+  title="From analysis to decision: four calculated steps"
+  steps={[
+    { title: 'Identify', detail: 'State the problem in numbers, not in impressionistic description.', icon: '🔎', type: 'start' },
+    { title: 'Analyze', detail: 'The three levels (descriptive/diagnostic/predictive) + Pareto + root cause.', icon: '📊', type: 'step' },
+    { title: 'Choose', detail: 'Evaluate alternatives by impact, cost, and risk with a clear decision framework.', icon: '⚖️', type: 'decision' },
+    { title: 'Execute and monitor', detail: 'The decision is a hypothesis tested with indicators after implementation and adjusted by the result.', icon: '🔄', type: 'end' },
+  ]}
+  caption="A decision does not end with execution: indicator-based monitoring turns it from a decision into measurable results."
+/>
 
 ## 5. The report that persuades the leadership
 

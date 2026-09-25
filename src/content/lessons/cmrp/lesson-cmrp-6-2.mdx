@@ -31,6 +31,8 @@ import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import BalancedScorecard from '../../../components/islands/tools/cmrp/BalancedScorecard.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
+import Comparison from '../../../components/ui/figures/Comparison.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCmrp62 } from '../../../data/quiz/cmrp/quiz-cmrp-6-2';
 
@@ -47,6 +49,18 @@ import { quizCmrp62 } from '../../../data/quiz/cmrp/quiz-cmrp-6-2';
 - **بعد العمليات الداخلية (Internal Processes):** أين يجب أن نتفوق تشغيلياً؟ مثل الالتزام بالجدول الأسبوعي (90% فأكثر) ونسبة العمل الاستباقي.
 - **بعد التعلم والنمو (Learning and Growth):** كيف نبني قدرات الغد؟ مثل ساعات تدريب الفنيين وتغطية مصفوفة الجدارات.
 
+<Infographic
+  title="الأبعاد الأربعة لبطاقة الأداء المتوازن (BSC)"
+  cols={4}
+  items={[
+    { title: 'المالي (Financial)', detail: 'بمَ يبدو الأمر للمساهمين؟ تكلفة الصيانة كنسبة من ERV، والتكلفة لكل وحدة منتجة.', icon: '💰', color: 'sky' },
+    { title: 'العملاء (Customer)', detail: 'بمَ يرانا العميل الداخلي (الإنتاج)؟ الإتاحة التشغيلية، والتلبية في الموعد.', icon: '🤝', color: 'teal' },
+    { title: 'العمليات الداخلية', detail: 'أين نتفوق؟ الالتزام بالجدول الأسبوعي (90% فأكثر)، ونسبة العمل الاستباقي.', icon: '⚙️', color: 'brand' },
+    { title: 'التعلم والنمو', detail: 'قدرات الغد: ساعات التدريب، وتغطية مصفوفة الجدارات.', icon: '📚', color: 'rose' },
+  ]}
+  caption="تربط الأبعاد علاقات سببية من الأسفل إلى الأعلى: تعلم ونمو ← عمليات داخلية ← عملاء ← نتائج مالية."
+/>
+
 <Callout type="tip">
 **القاعدة الذهبية:** النتائج المالية والإنتاجية لا تدار مباشرة لأنها حدثت وانتهت؛ من يرد خفض التكلفة والتوقف فليحسن المؤشرات القيادية في الأسفل (التدريب، جودة التخطيط، الالتزام الوقائي)، فيتحسن التأخيري تلقائياً.
 </Callout>
@@ -58,6 +72,23 @@ import { quizCmrp62 } from '../../../data/quiz/cmrp/quiz-cmrp-6-2';
 المؤشرات التأخيرية (Lagging Indicators) تقيس النتائج النهائية بعد وقوعها ولا يمكن تغييرها بأثر رجعي: ساعات التوقف غير المخططة، التكلفة الإجمالية، معدل الحوادث، متوسط وقت الإصلاح. وهي كمرآة الرؤية الخلفية توضح ما تجاوزته خلفك.
 
 اعتماد مؤشر تأخيري واحد — كساعات التوقف — لتقييم مدير الصيانة ومكافأته خطأ علمي: يدفع الفريق لإخفاء التوقفات أو تأجيل الوقائية الضرورية، ويتجاهل العوامل المشتركة كأخطاء التشغيل وجودة الخامات.
+
+<Comparison
+  title="مؤشرات قيادية أم تأخيرية: كيف تقيس وما الذي تنبئ به؟"
+  sides={[
+    {
+      label: 'تأخيرية (Lagging)',
+      color: 'rose',
+      items: ['تقيس النتائج بعد وقوعها ولا تتغير رجعياً (مرآة الرؤية الخلفية)', 'ساعات التوقف غير المخططة', 'التكلفة الإجمالية ومعدل الحوادث', 'متوسط وقت الإصلاح (MTTR)', 'اعتمادها وحدها للتقييم يدفع للإخفاء'],
+    },
+    {
+      label: 'قيادية (Leading)',
+      color: 'teal',
+      items: ['تُدار اليوم وتوجه المستقبل (عداد السرعة ومستوى الوقود)', 'نسبة الالتزام بالصيانة الوقائية', 'إنجاز مسارات الفحص التنبؤي (PdM)', 'ساعات التدريب ونسبة تجهيز القطع (Kitting)', 'تحسينها يرفع النتائج التأخيرية لاحقاً'],
+    },
+  ]}
+  caption="القيادي مدخل يُدار؛ التأخيري نتيجة تُروى. لا تقيّم ولا تكافئ بمؤشر تأخيري وحيد."
+/>
 
 ## 3. حسابات الموثوقية: MTBF و MTTR والإتاحة
 
@@ -92,6 +123,18 @@ The Balanced Scorecard (BSC) is a framework developed by Kaplan and Norton to al
 - **Internal processes**: where must we excel operationally? Such as weekly schedule compliance (90% or more) and the proactive work ratio.
 - **Learning and growth**: how do we build tomorrow's capabilities? Such as technician training hours and competency matrix coverage.
 
+<Infographic
+  title="The four Balanced Scorecard (BSC) perspectives"
+  cols={4}
+  items={[
+    { title: 'Financial', detail: 'How do we appear to shareholders? Maintenance cost as % of ERV, cost per produced unit.', icon: '💰', color: 'sky' },
+    { title: 'Customer', detail: 'How do we appear to the internal customer (production)? Operational availability, on-time fulfilment.', icon: '🤝', color: 'teal' },
+    { title: 'Internal processes', detail: 'Where must we excel? Weekly schedule compliance (90%+) and proactive work ratio.', icon: '⚙️', color: 'brand' },
+    { title: 'Learning and growth', detail: 'Tomorrow\'s capabilities: training hours, competency matrix coverage.', icon: '📚', color: 'rose' },
+  ]}
+  caption="Causal links run from the bottom up: learning and growth ← internal processes ← customer ← financial results."
+/>
+
 <Callout type="tip">
 **The golden rule:** financial and production results cannot be managed directly because they have already happened; whoever wants lower cost and downtime should improve the leading indicators at the bottom (training, planning quality, preventive compliance), and the lagging ones will improve automatically.
 </Callout>
@@ -103,6 +146,23 @@ Leading indicators measure the inputs and activities we control today to predict
 Lagging indicators measure final results after they occur and cannot be changed retroactively: unplanned downtime hours, total cost, accident rate, and mean time to repair. They are like the rear-view mirror showing what you have already passed.
 
 Basing the evaluation and reward of a maintenance manager on a single lagging indicator — such as downtime hours — is a scientific error: it pushes the team to hide downtime or postpone necessary preventive work, and ignores shared factors such as operating errors and raw material quality.
+
+<Comparison
+  title="Leading or lagging indicators: what do you measure and what do they predict?"
+  sides={[
+    {
+      label: 'Lagging',
+      color: 'rose',
+      items: ['Measure results after the fact; they cannot change retroactively (rear-view mirror)', 'Unplanned downtime hours', 'Total cost and accident rate', 'Mean time to repair (MTTR)', 'Using them alone for evaluation pushes teams to hide'],
+    },
+    {
+      label: 'Leading',
+      color: 'teal',
+      items: ['Managed today to steer the future (speedometer and fuel gauge)', 'Preventive maintenance compliance', 'Predictive inspection route completion (PdM)', 'Training hours and the kitting rate', 'Improving them lifts the lagging results later'],
+    },
+  ]}
+  caption="A leading indicator is an input managed; a lagging one is a result narrated. Never evaluate or reward with a single lagging indicator."
+/>
 
 ## 3. Reliability calculations: MTBF, MTTR, and availability
 

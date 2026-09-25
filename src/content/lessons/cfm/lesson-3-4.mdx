@@ -23,6 +23,7 @@ sources:
 import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quiz34 } from '../../../data/quiz/cfm/quiz-3-4';
 
@@ -38,6 +39,17 @@ import { quiz34 } from '../../../data/quiz/cfm/quiz-3-4';
 2. **الرصد الميداني**: تدقيق متقطع مكتوب يُسجّل المخالفات إن وُجدت.
 3. **الربط بالعقد والـ SLA**: هل نطاق الدفعة مطابق لنطاق العقد؟
 4. **الموافقة المتدرجة**: مسار موافقات بمستويات حسب المبلغ.
+
+<FlowChart
+  title="بوابة الصرف الآمنة: أربعة فحوص قبل الدفعة الشهرية"
+  steps={[
+    { title: 'التقارير الموقعة', detail: 'تقارير تشغيل موثقة (ورديات، إنجاز، مواد) — الدفع يرتبط بدليل لا بروتين.', icon: '📄', type: 'start' },
+    { title: 'الرصد الميداني', detail: 'تدقيق متقطع مكتوب يُسجل المخالفات إن وجدت.', icon: '🔍', type: 'step' },
+    { title: 'الربط بالعقد و SLA', detail: 'هل نطاق الدفعة مطابق لنطاق العقد فعلاً؟', icon: '🤝', type: 'decision' },
+    { title: 'الموافقة المتدرجة', detail: 'مسار موافقات بمستويات حسب المبلغ قبل التحرير.', icon: '✅', type: 'end' },
+  ]}
+  caption="كل دفعة تمر بالبوابة حتى مع علاقات الثقة: أعظم المبالغ تتسرب من أصدق العلاقات."
+/>
 
 ## 2. التسريبات الشائعة في الإنفاق
 
@@ -82,6 +94,17 @@ Before releasing any monthly payment for a service contract:
 2. **Field monitoring**: intermittent written audits recording violations whenever found.
 3. **Contract and SLA linkage**: does the payment scope match the contract scope?
 4. **Tiered approval**: an approval path with levels by amount.
+
+<FlowChart
+  title="The safe payment gate: four checks before the monthly payment"
+  steps={[
+    { title: 'Signed reports', detail: 'Documented operating reports (shifts, tasks completed, materials) — payment ties to evidence, not routine.', icon: '📄', type: 'start' },
+    { title: 'Field monitoring', detail: 'Intermittent written audits recording violations whenever found.', icon: '🔍', type: 'step' },
+    { title: 'Contract and SLA linkage', detail: 'Does the payment scope really match the contract scope?', icon: '🤝', type: 'decision' },
+    { title: 'Tiered approval', detail: 'An approval path with levels by amount before release.', icon: '✅', type: 'end' },
+  ]}
+  caption="Every payment passes through the gate, even in trusting relationships — the greatest amounts leak through the closest ones."
+/>
 
 ## 2. Common spending leaks
 

@@ -30,6 +30,7 @@ import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import WeeklyScheduler from '../../../components/islands/tools/cmrp/WeeklyScheduler.tsx';
+import Timeline from '../../../components/ui/figures/Timeline.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCmrp44 } from '../../../data/quiz/cmrp/quiz-cmrp-4-4';
 
@@ -42,6 +43,18 @@ import { quizCmrp44 } from '../../../data/quiz/cmrp/quiz-cmrp-4-4';
 تلتزم إدارة الإنتاج بإيقاف المعدة وتنظيفها وتبريدها وتسليمها في النافذة المتفق عليها، وتلتزم الصيانة بالبدء فورا وتسليم المعدة جاهزة في الساعة الموعودة. لذلك يعتمد الجدول في اجتماع أسبوعي مشترك قبل نهاية الأسبوع الحالي (عادة ظهر الأربعاء أو الخميس) ليجد المستودع وقتا لتجميع القطع وتجد العمليات وقتا لتجهيز العزل المسبق.
 
 ورفض الإنتاج تسليم المعدة بحجة ضغط المبيعات حجة خاسرة: من لا يختار موعدا للصيانة المخططة تختار له المعدة موعدا للتوقف الكارثي، بتكلفة تفوق المنسقة بثلاثة إلى أربعة أضعاف.
+
+<Timeline
+  title="دورة الجدولة الأسبوعية: من المصافحة إلى التسليم"
+  phases={[
+    { icon: '🤝', title: 'اجتماع الجدولة المشترك', detail: 'ظهر الأربعاء أو الخميس: اعتماد العقد بين الصيانة والإنتاج وتخصيص الأعمال بالفنيين بالاسم.', duration: 'نهاية الأسبوع الحالي' },
+    { icon: '📦', title: 'تجميع القطع (Kitting)', detail: 'المستودع يجمع القطع ويحرزها في صناديق المهام.', duration: '+24 ساعة' },
+    { icon: '🚫', title: 'تجهيز العزل المسبق', detail: 'العمليات توقف المعدة وتنظفها وتبردها وتجمع تصاريح الدخول مسبقاً.', duration: 'قبل النافذة' },
+    { icon: '🛠️', title: 'التنفيذ الميداني', detail: 'الفني المسجل بالاسم يباشر التنفيذ في النافذة المتفق عليها.', duration: 'نافذة الصيانة' },
+    { icon: '✅', title: 'تسليم المعدة للإنتاج', detail: 'البدء الفوري والتسليم جاهزاً في الساعة الموعودة يرفع الالتزام إلى 80–85%.', duration: 'الالتزام بالجدول' },
+  ]}
+  caption="الجدول عقد وليس قائمة أمنيات: الإنتاج يوقّع بالتسليم، والصيانة توقّع بالبدء، والالتزام بالجدول يقيس طرفي العقد."
+/>
 
 ## 2. قاعدة جدولة 100% من صافي الطاقة
 
@@ -80,6 +93,18 @@ If planning answers what we will do and how, then scheduling answers exactly whe
 The production department commits to stopping, cleaning, cooling, and handing over the asset within the agreed window, and maintenance commits to starting immediately and handing the asset back ready at the promised hour. Therefore the schedule is finalized in a joint weekly meeting before the end of the current week (usually Wednesday or Thursday noon) so the warehouse finds time to kit the parts and operations find time to prepare pre-isolation.
 
 Production's refusal to hand over the asset on the pretext of sales pressure is a losing argument: whoever does not choose a date for planned maintenance has the asset choose a date for a catastrophic stoppage, at three to four times the coordinated cost.
+
+<Timeline
+  title="The weekly scheduling cycle: from the handshake to handover"
+  phases={[
+    { icon: '🤝', title: 'Joint scheduling meeting', detail: 'Wednesday or Thursday noon: approving the contract between maintenance and production and assigning jobs to technicians by name.', duration: 'End of current week' },
+    { icon: '📦', title: 'Parts Kitting', detail: 'The warehouse gathers and earmarks the parts into the job containers.', duration: '+24 hours' },
+    { icon: '🚫', title: 'Pre-isolation preparation', detail: 'Operations stop, clean, and cool the asset and gather the entry permits in advance.', duration: 'Before the window' },
+    { icon: '🛠️', title: 'Field execution', detail: 'The named technician executes the work within the agreed window.', duration: 'Maintenance window' },
+    { icon: '✅', title: 'Handing the asset back', detail: 'Immediate start and on-time ready handover lift compliance to 80–85%.', duration: 'Schedule compliance' },
+  ]}
+  caption="The schedule is a contract, not a wish list: production signs for handover, and maintenance signs for start; schedule compliance measures both parties."
+/>
 
 ## 2. The rule of scheduling 100% of net capacity
 

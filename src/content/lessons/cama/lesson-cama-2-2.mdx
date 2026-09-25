@@ -27,6 +27,7 @@ sources:
 import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import DemandAnalyzer from '../../../components/islands/tools/cama/DemandAnalyzer.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCama22 } from '../../../data/quiz/cama/quiz-cama-2-2';
@@ -104,6 +105,18 @@ import { quizCama22 } from '../../../data/quiz/cama/quiz-cama-2-2';
 - **سيناريو النمو السريع**: خطر نقص الأصول وارتفاع تكاليف الشراء المتسارع.
 - **سيناريو الركود**: خطر تقادم الأصول وارتفاع تكاليف الصيانة على أصول قديمة.
 - **سيناريو التحول التكنولوجي**: خطر بقاء أصول حديثة عديمة الفائدة.
+
+<FlowChart
+  title="منهجية تحليل الطلب: خمس خطوات متسلسلة"
+  steps={[
+    { title: 'جمع البيانات التاريخية', detail: 'سجلات الإنتاج 3–5 سنوات، التوقفات والأعطال، تكاليف الصيانة والاستبدال.', icon: '🗂️', type: 'start' },
+    { title: 'تحديد محرّكات الطلب', detail: 'المبيعات، النمو السكاني، التغيرات التنظيمية والتكنولوجية.', icon: '🧭', type: 'step' },
+    { title: 'بناء سيناريوهات الطلب', detail: 'محافظ (Low) وأساسي (Base) وطموح (High) — طلب ليس رقماً واحداً.', icon: '🎯', type: 'decision' },
+    { title: 'تحليل الفجوة (Gap Analysis)', detail: 'الفجوة التشغيلية والمالية والمهارية بين الطلب المتوقع والقدرة الحالية.', icon: '📉', type: 'step' },
+    { title: 'تقييم مخاطر كل سيناريو', detail: 'نمو سريع (نقص أصول)، ركود (تقادم)، تحول تقني (تجميد مكلف).', icon: '⚠️', type: 'end' },
+  ]}
+  caption="السيناريوهات الثلاثة تضمن المرونة أمام المجهول، وتحليل الفجوة يحوّل التوقع إلى قرار تمويل وتشغيل."
+/>
 
 ## 3. دورة التخطيط الاستراتيجي (Strategic Planning Cycle)
 
@@ -221,6 +234,18 @@ Each scenario carries different risks:
 - **Rapid growth scenario**: the risk of asset shortage and high accelerated purchasing costs.
 - **Recession scenario**: the risk of asset obsolescence and rising maintenance costs on aging assets.
 - **Technological shift scenario**: the risk of new assets becoming useless.
+
+<FlowChart
+  title="The demand analysis methodology: five sequential steps"
+  steps={[
+    { title: 'Collect historical data', detail: 'Production records over 3–5 years, stoppages and failures, maintenance and replacement costs.', icon: '🗂️', type: 'start' },
+    { title: 'Identify the demand drivers', detail: 'Sales, population or urban growth, organizational and technological changes.', icon: '🧭', type: 'step' },
+    { title: 'Build demand scenarios', detail: 'Conservative (Low), baseline (Base), and ambitious (High) — demand is not a single number.', icon: '🎯', type: 'decision' },
+    { title: 'Gap analysis', detail: 'The operational, financial, and skills gaps between expected demand and current capacity.', icon: '📉', type: 'step' },
+    { title: 'Assess the risks of each scenario', detail: 'Rapid growth (asset shortage), recession (obsolescence), technological shift (costly freezing).', icon: '⚠️', type: 'end' },
+  ]}
+  caption="The three scenarios ensure flexibility against uncertainty, and gap analysis turns the forecast into a funding and operation decision."
+/>
 
 ## 3. The strategic planning cycle
 

@@ -28,6 +28,7 @@ sources:
 import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import VendorAnalyzer from '../../../components/islands/tools/cama/VendorAnalyzer.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCama43 } from '../../../data/quiz/cama/quiz-cama-4-3';
@@ -53,6 +54,18 @@ import { quizCama43 } from '../../../data/quiz/cama/quiz-cama-4-3';
 - **المناقصات المحدودة:** للأصول المتخصصة حيث تقتصر على موردين معتمدين ولديهم خبرة مثبتة.
 - **العقود طويلة الأمد:** للموردين الاستراتيجيين حيث تثبت الأسعار وتضمن التزام المورد.
 - **الشراء المباشر:** للطوارئ الحرجة حيث لا يسمح الوقت بإجراءات المناقصة.
+
+<Infographic
+  title="استراتيجيات المشتريات الأربع: الاختيار بحسب طبيعة القطعة"
+  cols={4}
+  items={[
+    { title: 'مناقصات مفتوحة', detail: 'للمنتجات المعيارية الكبيرة حيث يتنافس الموردون على السعر والجودة.', icon: '🏛️', color: 'sky' },
+    { title: 'مناقصات محدودة', detail: 'للأصول المتخصصة على موردين معتمدين بخبرة مثبتة.', icon: '🎯', color: 'amber' },
+    { title: 'عقود طويلة الأمد', detail: 'للموردين الاستراتيجيين: أسعار مثبتة والتزام مضمون.', icon: '🤝', color: 'teal' },
+    { title: 'شراء مباشر', detail: 'للطوارئ الحرجة حين لا يسمح الوقت بإجراءات المناقصة.', icon: '⚡', color: 'rose' },
+  ]}
+  caption="المشتريات الذكية تعني الأفضل من حيث القيمة الإجمالية: السعر + التأخير + الجودة + تكلفة الإدارة، لا الأرخص فقط."
+/>
 
 <Callout type="myth">
 **خطأ شائع:** التخلص من الموردين الأقل سعراً دائماً يوفر المال. الحقيقة: المورد الأرخص قد يسبب خسائر بتأخير التسليم أو جودة رديئة. تكلفة المورد الحقيقية = السعر + تكلفة التأخير + تكلفة عدم الجودة + تكلفة إدارة العلاقة.
@@ -109,6 +122,18 @@ Smart procurement does not mean the cheapest; it means the best in terms of tota
 - **Limited tenders:** for specialized assets, restricted to approved suppliers with proven experience.
 - **Long-term contracts:** for strategic suppliers, where prices are stabilized and the supplier's commitment is ensured.
 - **Direct purchase:** for critical emergencies where there is no time for tender procedures.
+
+<Infographic
+  title="The four procurement strategies: choosing by the part's nature"
+  cols={4}
+  items={[
+    { title: 'Open tenders', detail: 'For large standard products where suppliers compete on price and quality.', icon: '🏛️', color: 'sky' },
+    { title: 'Limited tenders', detail: 'For specialized assets, restricted to approved suppliers with proven experience.', icon: '🎯', color: 'amber' },
+    { title: 'Long-term contracts', detail: 'For strategic suppliers: stabilized prices and guaranteed commitment.', icon: '🤝', color: 'teal' },
+    { title: 'Direct purchase', detail: 'For critical emergencies where there is no time for tender procedures.', icon: '⚡', color: 'rose' },
+  ]}
+  caption="Smart procurement means the best in terms of total value: price + delay + quality + management cost — not merely the cheapest."
+/>
 
 <Callout type="myth">
 **Common mistake:** eliminating less expensive suppliers always saves money. **Fact:** the cheapest supplier may cause losses through delivery delays or poor quality. The true cost of a supplier = price + cost of delay + cost of non-quality + cost of relationship management.

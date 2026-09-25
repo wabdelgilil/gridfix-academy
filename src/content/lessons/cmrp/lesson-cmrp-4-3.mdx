@@ -30,6 +30,7 @@ import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import JobPackageBuilder from '../../../components/islands/tools/cmrp/JobPackageBuilder.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCmrp43 } from '../../../data/quiz/cmrp/quiz-cmrp-4-3';
 
@@ -55,6 +56,20 @@ import { quizCmrp43 } from '../../../data/quiz/cmrp/quiz-cmrp-4-3';
 4. **الأدوات الخاصة ومعدات الرفع:** المحاذاة بالليزر ومفاتيح العزم المعايرة والأوناش محجوزة مسبقا فلا يتوقف العمل بانتظار معدة.
 5. **تقدير ساعات العمالة والتخصصات:** عدد الفنيين وساعات كل تخصص (ميكانيكا وكهرباء وأجهزة) بدقة لتوازن الجدول.
 6. **الرسومات والمخططات الهندسية:** رسومات التجميع المقطعية ومخططات التوصيل وجداول عزوم الربط مرفقة بالأمر.
+
+<Infographic
+  title="المكونات الستة لحزمة العمل الجاهزة للجدولة (RTS)"
+  cols={3}
+  items={[
+    { title: '1. الإجراءات القياسية (SOPs)', detail: 'خطوات دقيقة بخلوصات ومعايير قبول تقضي على تباين الفنيين.', icon: '📋', color: 'brand' },
+    { title: '2. السلامة والتصاريح (LOTO/PTW)', detail: 'نقاط عزل الطاقة وتصاريح العمل الساخن والأماكن المغلقة جاهزة.', icon: '🦺', color: 'rose' },
+    { title: '3. قطع مجمعة (Kitting)', detail: 'القطع محرزة بالاسم في صندوق المستودع بحيث لا تُصرف لغير المهمة.', icon: '📦', color: 'amber' },
+    { title: '4. الأدوات الخاصة', detail: 'محاذاة ليزر ومفاتيح عزم معايرة وأوناش محجوزة مسبقاً.', icon: '🛠️', color: 'teal' },
+    { title: '5. تقدير الساعات والتخصصات', detail: 'عدد الفنيين وساعات كل حرفة (ميكانيكا/كهرباء/أجهزة) بدقة.', icon: '⏱️', color: 'sky' },
+    { title: '6. الرسومات الهندسية', detail: 'رسومات تجميع مقطعية ومخططات توصيل وجداول عزوم ربط.', icon: '📐', color: 'brand' },
+  ]}
+  caption="حزمة العمل تجيب عن كل ما قد يوقف الفني ميدانياً: ماذا، بأي خطوات، بأي قطع، بأي أدوات، بأي تصاريح، وكم ساعة."
+/>
 
 ## 3. قاعدة الجاهزية قبل الجدولة
 
@@ -90,6 +105,20 @@ For a work order to earn the Ready to Schedule (RTS) status, the work package (J
 4. **Special tools and lifting equipment:** laser alignment, calibrated torque wrenches, and cranes reserved in advance so work does not stop waiting for equipment.
 5. **Labor hour and craft estimates:** the number of technicians and the hours of each craft (mechanics, electricians, and instruments) accurately, to balance the schedule.
 6. **Drawings and engineering diagrams:** cross-section assembly drawings, wiring diagrams, and bolt-torque charts attached to the order.
+
+<Infographic
+  title="The six components of a Ready to Schedule (RTS) job package"
+  cols={3}
+  items={[
+    { title: '1. Standard procedures (SOPs)', detail: 'Precise steps with clearances and acceptance criteria eliminating technician variation.', icon: '📋', color: 'brand' },
+    { title: '2. Safety and permits (LOTO/PTW)', detail: 'Energy isolation points and hot-work and confined-space permits ready.', icon: '🦺', color: 'rose' },
+    { title: '3. Parts Kitting', detail: 'Parts earmarked by name in the warehouse container so they are not issued elsewhere.', icon: '📦', color: 'amber' },
+    { title: '4. Special tools', detail: 'Laser alignment, calibrated torque wrenches, and cranes reserved in advance.', icon: '🛠️', color: 'teal' },
+    { title: '5. Hour and craft estimates', detail: 'Number of technicians and hours per craft (mechanical/electrical/instruments) accurately.', icon: '⏱️', color: 'sky' },
+    { title: '6. Engineering drawings', detail: 'Cross-section assembly drawings, wiring diagrams, and bolt-torque charts.', icon: '📐', color: 'brand' },
+  ]}
+  caption="The job package answers everything that might stop the technician in the field: what, with which steps, which parts, which tools, which permits, and how many hours."
+/>
 
 ## 3. The readiness-before-scheduling rule
 

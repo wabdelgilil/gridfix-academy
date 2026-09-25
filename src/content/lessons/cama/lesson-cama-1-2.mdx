@@ -30,6 +30,7 @@ sources:
 import Callout from '../../../components/ui/Callout.astro';
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import Iso55001Checklist from '../../../components/islands/tools/cama/Iso55001Checklist.tsx';
+import Timeline from '../../../components/ui/figures/Timeline.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCama12 } from '../../../data/quiz/cama/quiz-cama-1-2';
@@ -46,6 +47,17 @@ import { quizCama12 } from '../../../data/quiz/cama/quiz-cama-1-2';
 - **Do (التنفيذ)**: دعم المنظومة بالموارد والكفاءات والاتصال الداخلي، وقيادة العمليات التشغيلية وادارتها. هذه المرحلة تجيب عن سؤال: كيف ننفّذ ما خططنا؟
 - **Check (التحقق)**: تقييم الأداء عبر مؤشرات قياس (KPIs)، ومراجعة المنظومة داخلياً وخارجيًا، وتحليل البيانات والأداء. هذه المرحلة تجيب عن سؤال: هل ننفّذ كما خططنا؟
 - **Act (التحسين)**: اتخاذ إجراءات التصحيح والتحسين المستمر بناءً على نتائج التقييم. هذه المرحلة تجيب عن سؤال: كيف نصبح أفضل؟
+
+<Timeline
+  title="نموذج الخطة-نفّذ-تحقق-حسّن (PDCA) في إدارة الأصول"
+  phases={[
+    { icon: '📐', title: 'Plan (التخطيط)', detail: 'السياق التنظيمي، سياسة إدارة الأصول، الأهداف الاستراتيجية، تخطيط المخاطر والفرص — لماذا نفعل ما نفعل؟', duration: 'البندان 4–6' },
+    { icon: '⚙️', title: 'Do (التنفيذ)', detail: 'الموارد والكفاءات والاتصال الداخلي وقيادة العمليات التشغيلية — كيف ننفّذ ما خططنا؟', duration: 'البندان 7–8' },
+    { icon: '🔍', title: 'Check (التحقق)', detail: 'تقييم الأداء بمؤشرات (KPIs) ومراجعة داخلية وخارجية وتحليل البيانات — هل ننفّذ كما خططنا؟', duration: 'البند 9' },
+    { icon: '📈', title: 'Act (التحسين)', detail: 'إجراءات التصحيح والتحسين المستمر بناءً على نتائج التقييم — كيف نصبح أفضل؟', duration: 'البند 10' },
+  ]}
+  caption="الدورة تعود إلى التخطيط بعد كل تحسين: الكمال ليس الهدف بل التحسين المستمر الدائم."
+/>
 
 ## 2. سياق المنظومة (Context of the Organization) — البند 4
 
@@ -109,6 +121,17 @@ All ISO management standards adopt the Plan-Do-Check-Act model, and ISO 55001 is
 - **Do**: supporting the system with resources, competencies, and internal communication, and leading and managing the operational processes. This stage answers the question: how do we implement what we planned?
 - **Check**: evaluating performance through key performance indicators (KPIs), reviewing the system internally and externally, and analyzing data and performance. This stage answers the question: are we implementing as we planned?
 - **Act**: taking corrective action and driving continual improvement based on the evaluation results. This stage answers the question: how do we become better?
+
+<Timeline
+  title="The Plan-Do-Check-Act (PDCA) model in asset management"
+  phases={[
+    { icon: '📐', title: 'Plan', detail: 'The organizational context, asset management policy, strategic objectives, and risk-and-opportunity planning — why do we do what we do?', duration: 'Clauses 4–6' },
+    { icon: '⚙️', title: 'Do', detail: 'Resources, competencies, internal communication, and leading the operational processes — how do we implement what we planned?', duration: 'Clauses 7–8' },
+    { icon: '🔍', title: 'Check', detail: 'Performance evaluation with KPIs, internal and external review, and data analysis — are we implementing as we planned?', duration: 'Clause 9' },
+    { icon: '📈', title: 'Act', detail: 'Corrective action and continual improvement based on the evaluation results — how do we become better?', duration: 'Clause 10' },
+  ]}
+  caption="The cycle returns to planning after every improvement: perfection is not the goal — continual improvement is."
+/>
 
 ## 2. Context of the organization — Clause 4
 

@@ -25,6 +25,7 @@ sources:
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import PowerInterestMatrix from '../../../components/islands/tools/cfm/PowerInterestMatrix.tsx';
+import Infographic from '../../../components/ui/figures/Infographic.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quiz82 } from '../../../data/quiz/cfm/quiz-8-2';
 
@@ -48,6 +49,18 @@ import { quiz82 } from '../../../data/quiz/cfm/quiz-8-2';
 | **قوة منخفضة** | **إبقاء على اطلاع** — يتأثر يومياً ويحتاج تحديثات دورية | **مراقبة** — متابعة خفيفة دون جهد كبير |
 
 قاعدة ذهبية: الفئة الأولى تستحق قناة منتظمة مبنية باحتياجها (موجز للإدارة العليا)، والثانية تحميها من المفاجآت، والثالثة تُشرك بتحديثات لا تُغرقها، والرابعة تخضع للرصد المحدود. كل توجيه لم يمر بهذا التصنيف يبث المعلومات في غير محلها.
+
+<Infographic
+  title="استراتيجيات التواصل حسب فئات مصفوفة القوة والاهتمام"
+  cols={4}
+  items={[
+    { title: 'قوة عالية / اهتمام عالٍ', detail: 'إدارة وثيقة: شركاء يُضمون للقرار ويُتابعون بانتظام بموجز تنفيذي.', icon: '🤝', color: 'rose' },
+    { title: 'قوة عالية / اهتمام منخفض', detail: 'إرضاء: لا تفاصيل يومية، لكن لا مفاجآت سلبية أبداً.', icon: '🫥', color: 'amber' },
+    { title: 'قوة منخفضة / اهتمام عالٍ', detail: 'إبقاء على اطلاع: يتأثر يومياً ويحتاج تحديثات دورية لا تُغرق.', icon: '📣', color: 'teal' },
+    { title: 'قوة منخفضة / اهتمام منخفض', detail: 'مراقبة: متابعة خفيفة محدودة دون جهد كبير.', icon: '👁️', color: 'sky' },
+  ]}
+  caption="كل توجيه يسبقه تصنيف: القناة والتواتر والمحتوى والمالك تتبعان فئة الطرف لا شغفه."
+/>
 
 ## 3. خطة التواصل: القنوات والتوقيت والمسؤوليات
 
@@ -90,6 +103,18 @@ The most famous classification tool splits stakeholders into four categories alo
 | **Low power** | **Keep informed** — affected daily and needing periodic updates | **Monitor** — light follow-up without much effort |
 
 Golden rule: the first category deserves a regular channel built around its need (a brief for senior management), the second is protected from surprises, the third is engaged with updates that do not overwhelm it, and the fourth is subject to limited monitoring. Any message that has not passed through this classification broadcasts information to the wrong place.
+
+<Infographic
+  title="Communication strategies across the power/interest matrix"
+  cols={4}
+  items={[
+    { title: 'High power / High interest', detail: 'Manage closely: partners brought into the decision and followed up regularly with an executive brief.', icon: '🤝', color: 'rose' },
+    { title: 'High power / Low interest', detail: 'Keep satisfied: no daily details, but never a negative surprise.', icon: '🫥', color: 'amber' },
+    { title: 'Low power / High interest', detail: 'Keep informed: they are affected daily and need periodic, non-overwhelming updates.', icon: '📣', color: 'teal' },
+    { title: 'Low power / Low interest', detail: 'Monitor: light and limited follow-up without much effort.', icon: '👁️', color: 'sky' },
+  ]}
+  caption="Every message is preceded by classification: channel, frequency, content, and owner follow the party's category, not its enthusiasm."
+/>
 
 ## 3. The communication plan: channels, timing, and responsibilities
 

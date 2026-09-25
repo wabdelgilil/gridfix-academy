@@ -25,6 +25,7 @@ sources:
 
 import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import FlowChart from '../../../components/ui/figures/FlowChart.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quiz102 } from '../../../data/quiz/cfm/quiz-10-2';
 
@@ -50,6 +51,18 @@ import { quiz102 } from '../../../data/quiz/cfm/quiz-10-2';
 5. مراجعة لاحقة تتحقق من الإغلاق وتوثقها.
 
 التبرير «الملف جيد من جوهره» لا يغلق ملاحظة؛ الخطة والتنفيذ والتحقق هي التي تغلقها.
+
+<FlowChart
+  title="دورة إغلاق عدم المطابقة (Non-conformity) من الرصد إلى الإغلاق"
+  steps={[
+    { title: 'الوصف الدقيق', detail: 'تحديد الملاحظة وماذا تخالف من معيار أو سياسة.', icon: '📝', type: 'start' },
+    { title: 'السبب الجذري', detail: 'لماذا وقع؟ تحليل الجذور لا الأعراض.', icon: '🕵️', type: 'step' },
+    { title: 'الإجراء التصحيحي', detail: 'ما يُنفذ ومن منفذه ومسؤوله بالاسم.', icon: '🛠️', type: 'step' },
+    { title: 'المدة المتفق عليها', detail: 'موعد إلزامي للتنفيذ يُسجل في النظام.', icon: '⏱️', type: 'decision' },
+    { title: 'مراجعة التحقق', detail: 'فحص لاحق يتحقق من الإغلاق ويوثقه — لا تبرير يغلق الملاحظة.', icon: '✅', type: 'end' },
+  ]}
+  caption="الوصف ← الجذر ← الإجراء ← المدة ← تحقق: خمس خطوات لا يكتمل إغلاق عدم المطابقة دونها."
+/>
 
 ## 3. الجاهزية للتدقيق: الأدلة قلب القضية
 
@@ -96,6 +109,18 @@ Audit findings are classified: a minor observation (recommended improvement) or 
 5. A follow-up review that verifies the closure and documents it.
 
 The justification "the file is good at its core" does not close a finding; the plan, the execution, and the verification are what close it.
+
+<FlowChart
+  title="The non-conformity closure cycle: from observation to closure"
+  steps={[
+    { title: 'Accurate description', detail: 'Define the finding and which standard or policy it violates.', icon: '📝', type: 'start' },
+    { title: 'Root cause', detail: 'Why did it happen? Root analysis, not symptoms.', icon: '🕵️', type: 'step' },
+    { title: 'Corrective action', detail: 'What is done and who performs and owns it, by name.', icon: '🛠️', type: 'step' },
+    { title: 'Agreed deadline', detail: 'A mandatory completion date recorded in the system.', icon: '⏱️', type: 'decision' },
+    { title: 'Verification review', detail: 'A later check verifies the closure and documents it — no justification closes a finding.', icon: '✅', type: 'end' },
+  ]}
+  caption="Observation ← root cause ← action ← deadline ← verification: five steps without which no non-conformity is closed."
+/>
 
 ## 3. Audit readiness: evidence is the heart of the case
 
