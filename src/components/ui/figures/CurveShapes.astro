@@ -32,10 +32,10 @@ const shapePoints: Record<string, Array<[number, number]>> = {
   F: [
     [0, 55],
     [5, 40],
-    [14, 20],
-    [28, 12],
-    [50, 10],
-    [75, 9],
+    [12, 22],
+    [26, 13],
+    [42, 10],
+    [70, 9],
     [100, 9],
   ],
   E: [
@@ -47,6 +47,7 @@ const shapePoints: Record<string, Array<[number, number]>> = {
     [16, 13],
     [32, 22],
     [50, 25],
+    [75, 25],
     [100, 25],
   ],
   C: [
@@ -69,8 +70,8 @@ const shapePoints: Record<string, Array<[number, number]>> = {
   B: [
     [0, 7],
     [70, 7],
-    [88, 15],
-    [96, 40],
+    [86, 14],
+    [94, 48],
     [100, 58],
   ],
 };
@@ -101,12 +102,19 @@ const sx = (x: number) => 16 + (x / 100) * 132;
 const sy = (h: number) => 72 - h;
 
 function smoothPath(points: Array<[number, number]>): string {
-  const d = [`M${sx(points[0][0])},${sy(points[0][1])}`];
-  for (let i = 0; i < points.length - 1; i++) {
-    const p1 = points[i];
-    const p2 = points[i + 1];
-    const p3 = points[i + 2] ?? p2;
-    d.push(`Q${sx(p1[0])} ${sy(p1[1])} ${sx((p2[0] + p3[0]) / 2)} ${sy((p2[1] + p3[1]) / 2)}`);
+  if (points.length < 2) return '';
+  const pts = points.map(([x, h]) => ({ x: sx(x), y: sy(h) }));
+  const d = [`M${pts[0].x},${pts[0].y}`];
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] ?? pts[i];
+    const p1 = pts[i];
+    const p2 = pts[i + 1];
+    const p3 = pts[i + 2] ?? p2;
+    const c1x = p1.x + (p2.x - p0.x) / 6;
+    const c1y = p1.y + (p2.y - p0.y) / 6;
+    const c2x = p2.x - (p3.x - p1.x) / 6;
+    const c2y = p2.y - (p3.y - p1.y) / 6;
+    d.push(`C${c1x},${c1y} ${c2x},${c2y} ${p2.x},${p2.y}`);
   }
   return d.join(' ');
 }

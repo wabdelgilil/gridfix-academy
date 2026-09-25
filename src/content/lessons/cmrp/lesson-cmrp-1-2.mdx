@@ -31,6 +31,7 @@ import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import PFCurveSimulator from '../../../components/islands/tools/cmrp/PFCurveSimulator.tsx';
 import Hierarchy from '../../../components/ui/figures/Hierarchy.astro';
+import PFCurve from '../../../components/ui/figures/PFCurve.astro';
 import LangSection from '../../../components/ui/LangSection.astro';
 import { quizCmrp12 } from '../../../data/quiz/cmrp/quiz-cmrp-1-2';
 
@@ -47,6 +48,23 @@ import { quizCmrp12 } from '../../../data/quiz/cmrp/quiz-cmrp-1-2';
 <Callout type="tip">
 **القيمة الحقيقية للفاصل الزمني:** الفاصل لا يوقف التدهور الفيزيائي بذاته، بل يشتري الوقت. يمنح المخطط والمجدول نافذة آمنة لطلب قطع الغيار وحجز الفنيين وتنسيق توقف مخطط مع الإنتاج، فيتحول العمل من طارئ مفاجئ إلى عمل مخطط هادئ.
 </Callout>
+
+<PFCurve
+  title="منحنى P-F: هبوط حالة المعدة من النقطة P إلى النقطة F"
+  intervalLabel="الفاصل الزمني P–F (مهلة الفشل)"
+  conditionLabel="حالة المعدة ↑"
+  timeLabel="الوقت/العمر التشغيلي →"
+  pLabel="P"
+  fLabel="F"
+  markers={[
+    { name: 'الموجات فوق الصوتية', cost: '1x', x: 45 },
+    { name: 'تحليل الاهتزازات', cost: '2–3x', x: 56 },
+    { name: 'تحليل الزيوت', cost: '5x', x: 64 },
+    { name: 'التصوير الحراري', cost: '10x', x: 72 },
+    { name: 'الحواس البشرية', cost: '25–40x', x: 78 },
+  ]}
+  caption="كلما تأخر الكشف تحركت النقطة على المنحنى يميناً نحو F، وقصر الفاصل الصافي وتضاعفت التكلفة. تقنيات الكشف المبكر تستقر عند النقطة P نفسها أو قريباً منها."
+/>
 
 ## 2. قاعدة تردد التفتيش: لماذا نقسم على اثنين؟
 
@@ -103,6 +121,23 @@ The central idea here is that every failure announces itself before it occurs, w
 <Callout type="tip">
 **The real value of the interval:** the interval does not stop the physical degradation by itself; it buys time. It gives the planner and scheduler a safe window to order spare parts, book technicians, and coordinate a planned shutdown with production, transforming the work from a sudden emergency into calm planned work.
 </Callout>
+
+<PFCurve
+  title="The P-F curve: condition decline from Point P to Point F"
+  intervalLabel="P-F interval (failure development time)"
+  conditionLabel="Condition ↑"
+  timeLabel="Operating age →"
+  pLabel="P"
+  fLabel="F"
+  markers={[
+    { name: 'Ultrasound', cost: '1x', x: 45 },
+    { name: 'Vibration', cost: '2–3x', x: 56 },
+    { name: 'Oil analysis', cost: '5x', x: 64 },
+    { name: 'Thermography', cost: '10x', x: 72 },
+    { name: 'Human senses', cost: '25–40x', x: 78 },
+  ]}
+  caption="The later the detection, the farther right the point moves on the curve toward F: the net interval shortens and the cost multiplies. Early detection techniques sit at or near Point P itself."
+/>
 
 ## 2. The inspection frequency rule: why do we divide by two?
 

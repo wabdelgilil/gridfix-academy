@@ -1,0 +1,156 @@
+---
+interface Marker {
+  name: string;
+  cost: string;
+  x: number;
+}
+
+interface Props {
+  markers: Marker[];
+  title?: string;
+  caption?: string;
+  pLabel?: string;
+  fLabel?: string;
+  intervalLabel?: string;
+  conditionLabel?: string;
+  timeLabel?: string;
+}
+
+const {
+  markers,
+  title,
+  caption,
+  pLabel = 'P',
+  fLabel = 'F',
+  intervalLabel = 'P-F interval',
+  conditionLabel = 'Condition',
+  timeLabel = 'Time',
+} = Astro.props;
+
+const uid = Math.random().toString(36).slice(2, 7);
+
+const deg: Array<[number, number]> = [
+  [0, 92],
+  [28, 88],
+  [46, 80],
+  [58, 66],
+  [68, 48],
+  [77, 28],
+  [85, 12],
+  [92, 4],
+  [100, 0],
+];
+
+const P_X = 45;
+const F_X = 87;
+
+// plot mapping
+const left = 30;
+const right = 392;
+const plotWidth = right - left;
+const bottom = 150;
+const sx = (x: number) => left + (x / 100) * plotWidth;
+const sy = (cond: number) => bottom - cond * 1.2;
+
+function condAt(x: number): number {
+  for (let i = 0; i < deg.length - 1; i++) {
+    const [x0, c0] = deg[i];
+    const [x1, c1] = deg[i + 1];
+    if (x >= x0 && x <= x1) return c0 + ((x - x0) / (x1 - x0)) * (c1 - c0);
+  }
+  return deg[deg.length - 1][1];
+}
+
+function smoothPath(points: Array<[number, number]>): string {
+  const pts = points.map(([x, c]) => ({ x: sx(x), y: sy(c) }));
+  const d = [`M${pts[0].x},${pts[0].y}`];
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] ?? pts[i];
+    const p1 = pts[i];
+    const p2 = pts[i + 1];
+    const p3 = pts[i + 2] ?? p2;
+    const c1x = p1.x + (p2.x - p0.x) / 6;
+    const c1y = p1.y + (p2.y - p0.y) / 6;
+    const c2x = p2.x - (p3.x - p1.x) / 6;
+    const c2y = p2.y - (p3.y - p1.y) / 6;
+    d.push(`C${c1x},${c1y} ${c2x},${c2y} ${p2.x},${p2.y}`);
+  }
+  return d.join(' ');
+}
+
+const chipColors = ['#0f766e', '#0d9488', '#d97706', '#d97706', '#e11d48'];
+const pY = sy(condAt(P_X));
+const fY = sy(condAt(F_X));
+---
+
+<div class="my-6">
+  {title && <p class="mb-3 text-sm font-bold text-ink-900">{title}</p>}
+  <svg viewBox="0 0 400 250" class="w-full rounded-xl border border-slate-200 bg-white">
+    <defs>
+      <linearGradient id={`band-${uid}`} x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.10" />
+        <stop offset="100%" stop-color="#e11d48" stop-opacity="0.14" />
+      </linearGradient>
+    </defs>
+
+    <!-- P-F interval band -->
+    <rect x={sx(P_X)} y="16" width={sx(F_X) - sx(P_X)} height={bottom - 16} fill={`url(#band-${uid})`} />
+    <line x1={sx(P_X)} y1="14" x2={sx(P_X)} y2={bottom} stroke="#0d9488" stroke-width="1" stroke-dasharray="4 3" />
+    <line x1={sx(F_X)} y1="14" x2={sx(F_X)} y2={bottom} stroke="#e11d48" stroke-width="1" stroke-dasharray="4 3" />
+
+    <!-- interval bracket -->
+    <line x1={sx(P_X)} y1="34" x2={sx(F_X)} y2="34" stroke="#475569" stroke-width="1.2" />
+    <line x1={sx(P_X)} y1="30" x2={sx(P_X)} y2="38" stroke="#475569" stroke-width="1.2" />
+    <line x1={sx(F_X)} y1="30" x2={sx(F_X)} y2="38" stroke="#475569" stroke-width="1.2" />
+    <path d={`M${sx(P_X)},29 l4,-5 l0,10 Z`} fill="#475569" />
+    <path d={`M${sx(F_X)},29 l-4,-5 l0,10 Z`} fill="#475569" />
+    <text x={(sx(P_X) + sx(F_X)) / 2} y="24" font-size="9" fill="#475569" text-anchor="middle">
+      {intervalLabel}
+    </text>
+
+    <!-- axes -->
+    <line x1={left} y1={bottom} x2="394" y2={bottom} stroke="#94a3b8" stroke-width="1.2" />
+    <path d="M395,150 L389,146.5 L389,153.5 Z" fill="#94a3b8" />
+    <line x1={left} y1={bottom} x2={left} y2="14" stroke="#94a3b8" stroke-width="1.2" />
+    <path d="M26,16 L30,9 L34,15.5 Z" fill="#94a3b8" />
+
+    <text x="34" y="30" font-size="8" fill="#64748b">{conditionLabel}</text>
+
+    <!-- degradation curve -->
+    <path d={smoothPath(deg)} fill="none" stroke="#334155" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- technique markers -->
+    {markers.map((m, i) => {
+      const my = sy(condAt(m.x));
+      return (
+        <>
+          <circle cx={sx(m.x)} cy={my} r="2.6" fill={chipColors[i] ?? '#64748b'} />
+          <line x1={sx(m.x)} y1={my + 3} x2={sx(m.x)} y2="176" stroke={chipColors[i] ?? '#64748b'} stroke-width="0.8" stroke-dasharray="2 3" opacity="0.5" />
+          <g>
+            <rect x={sx(m.x) - 14} y={my + 8} width="28" height="13" rx="6.5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8" />
+            <text x={sx(m.x)} y={my + 17.5} font-size="7" fill={chipColors[i] ?? '#475569'} text-anchor="middle" font-weight="700">
+              {m.cost}
+            </text>
+          </g>
+        </>
+      );
+    })}
+
+    <!-- Point P -->
+    <circle cx={sx(P_X)} cy={pY} r="7" fill="#0d9488" />
+    <text x={sx(P_X)} y={pY + 3} font-size="8" fill="#ffffff" text-anchor="middle" font-weight="800">{pLabel}</text>
+    <!-- Point F -->
+    <circle cx={sx(F_X)} cy={fY} r="7" fill="#e11d48" />
+    <text x={sx(F_X)} y={fY + 3} font-size="8" fill="#ffffff" text-anchor="middle" font-weight="800">{fLabel}</text>
+
+    <!-- legend names -->
+    {markers.map((m) => (
+      <text x={sx(m.x)} y="188" font-size="7.5" fill="#334155" text-anchor="middle" font-weight="600">
+        {m.name}
+      </text>
+    ))}
+
+    <text x="394" y="224" font-size="8" fill="#64748b" text-anchor="end">{timeLabel}</text>
+  </svg>
+  {caption && <p class="mt-2 text-center text-xs text-ink-400">{caption}</p>}
+</div>
