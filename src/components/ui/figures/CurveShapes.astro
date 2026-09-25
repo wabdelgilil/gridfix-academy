@@ -17,50 +17,67 @@ interface Props {
   randomLabel?: string;
 }
 
-const { curves, title, caption, axisLabel = 'time →', ageLabel = 'Age-related', randomLabel = 'Random' } = Astro.props;
+const {
+  curves,
+  title,
+  caption,
+  axisLabel = 'time',
+  ageLabel = 'Age-related',
+  randomLabel = 'Random, non-age-related',
+} = Astro.props;
+
+const uid = Math.random().toString(36).slice(2, 7);
 
 const shapePoints: Record<string, Array<[number, number]>> = {
-  A: [
-    [2, 48],
-    [10, 38],
-    [22, 14],
-    [55, 10],
-    [88, 12],
-    [99, 52],
-  ],
-  B: [
-    [2, 10],
-    [70, 10],
-    [88, 18],
-    [99, 52],
-  ],
-  C: [
-    [4, 12],
-    [55, 20],
-    [99, 46],
-  ],
-  D: [
-    [4, 8],
-    [22, 15],
-    [45, 17],
-    [99, 17],
+  F: [
+    [0, 55],
+    [5, 40],
+    [14, 20],
+    [28, 12],
+    [50, 10],
+    [75, 9],
+    [100, 9],
   ],
   E: [
-    [2, 20],
-    [99, 20],
+    [0, 25],
+    [100, 25],
   ],
-  F: [
-    [2, 50],
-    [14, 32],
-    [38, 15],
-    [60, 14],
-    [99, 14],
+  D: [
+    [0, 9],
+    [16, 13],
+    [32, 22],
+    [50, 25],
+    [100, 25],
+  ],
+  C: [
+    [0, 9],
+    [18, 14],
+    [38, 24],
+    [58, 36],
+    [78, 48],
+    [100, 58],
+  ],
+  A: [
+    [0, 55],
+    [7, 42],
+    [20, 16],
+    [45, 9],
+    [72, 10],
+    [90, 28],
+    [100, 54],
+  ],
+  B: [
+    [0, 7],
+    [70, 7],
+    [88, 15],
+    [96, 40],
+    [100, 58],
   ],
 };
 
 const groupStyles: Record<CurveGroup, string> = {
-  age: 'border-teal-300 bg-teal-50/60',
-  random: 'border-rose-300 bg-rose-50/60',
+  age: 'border-teal-300 bg-teal-50/50',
+  random: 'border-rose-300 bg-rose-50/50',
 };
 
 const groupBadge: Record<CurveGroup, string> = {
@@ -68,49 +85,87 @@ const groupBadge: Record<CurveGroup, string> = {
   random: 'bg-rose-100 text-rose-800',
 };
 
-function toSvg(px: number, h: number): string {
-  return `${((px / 100) * 120).toFixed(1)},${(58 - h * 0.8).toFixed(1)}`;
-}
+const letterStyle: Record<CurveGroup, string> = {
+  age: 'bg-teal-700',
+  random: 'bg-rose-700',
+};
+
+const color = {
+  age: '#0d9488',
+  random: '#e11d48',
+};
+
+const cleanLabel = (s: string) => s.replace(/[→←↑↓]/g, '').trim();
+
+const sx = (x: number) => 16 + (x / 100) * 132;
+const sy = (h: number) => 72 - h;
 
 function smoothPath(points: Array<[number, number]>): string {
-  if (points.length < 2) return '';
-  const first = toSvg(points[0][0], points[0][1]).split(',');
-  let d = `M${first[0]},${first[1]}`;
+  const d = [`M${sx(points[0][0])},${sy(points[0][1])}`];
   for (let i = 0; i < points.length - 1; i++) {
     const p1 = points[i];
     const p2 = points[i + 1];
     const p3 = points[i + 2] ?? p2;
-    const mx = (p2[0] + p3[0]) / 2;
-    const my = (p2[1] + p3[1]) / 2;
-    d += ` Q${toSvg(p1[0], p1[1])} ${toSvg(mx, my)}`;
+    d.push(`Q${sx(p1[0])} ${sy(p1[1])} ${sx((p2[0] + p3[0]) / 2)} ${sy((p2[1] + p3[1]) / 2)}`);
   }
-  return d;
+  return d.join(' ');
+}
+
+function areaPath(points: Array<[number, number]>): string {
+  return `${smoothPath(points)} L${sx(100)},72 L${sx(0)},72 Z`;
 }
 ---
 
 <div class="my-6">
   {title && <p class="mb-3 text-sm font-bold text-ink-900">{title}</p>}
-  <div class="grid grid-cols-2 gap-3 lg:grid-cols-3">
+  <div class="grid grid-cols-2 items-start gap-3 lg:grid-cols-3">
     {curves.map((c) => (
-      <div class={`rounded-xl border p-3 ${groupStyles[c.group]}`}>
-        <div class="flex items-center justify-between gap-2">
+      <figure class={`overflow-hidden rounded-xl border ${groupStyles[c.group]}`}>
+        <figcaption class="flex items-start justify-between gap-2 px-3 pt-3">
           <span class="flex items-center gap-1.5">
-            <span class="flex h-6 w-6 items-center justify-center rounded-md bg-ink-900 text-xs font-black text-white">{c.letter}</span>
-            <span class="text-xs font-bold text-ink-900">{c.label}</span>
+            <span
+              class={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-black text-white ${letterStyle[c.group]}`}>
+              {c.letter}
+            </span>
+            <span class="text-xs font-bold leading-tight text-ink-900">{c.label}</span>
           </span>
-          <span class="rounded-full bg-white/70 px-1.5 py-0.5 text-[10px] font-bold" dir="ltr">{c.percent}</span>
-        </div>
-        <svg viewBox="0 0 120 70" class="mt-2 w-full" role="img" aria-label={`${c.label} ${c.percent}`}>
-          <line x1="4" y1="58" x2="116" y2="58" stroke="#cbd5e1" stroke-width="1" />
-          <line x1="4" y1="6" x2="4" y2="58" stroke="#cbd5e1" stroke-width="1" />
-          <path d={smoothPath(shapePoints[c.letter])} fill="none" stroke={c.group === 'age' ? '#0d9488' : '#e11d48'} stroke-width="2" stroke-linecap="round" />
-          <text x="108" y="70" font-size="6" fill="#94a3b8" text-anchor="end">{axisLabel}</text>
-          <text x="8" y="10" font-size="6" fill="#94a3b8">↑</text>
+          <span
+            class={`shrink-0 rounded-full px-2 py-0.5 text-[11px] font-bold ${groupBadge[c.group]}`}
+            dir="ltr">{c.percent}</span>
+        </figcaption>
+        <svg viewBox="0 0 160 96" class="mt-1 w-full" role="img" aria-label={`${c.label} ${c.percent}`}>
+          <defs>
+            <linearGradient id={`${uid}-${c.letter}`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color={color[c.group]} stop-opacity="0.18" />
+              <stop offset="100%" stop-color={color[c.group]} stop-opacity="0.03" />
+            </linearGradient>
+          </defs>
+          <line x1="16" y1="40" x2="148" y2="40" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3 4" />
+          <line x1="16" y1="24" x2="148" y2="24" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3 4" />
+          <path d={areaPath(shapePoints[c.letter])} fill={`url(#${uid}-${c.letter})`} stroke="none" />
+          <line x1="16" y1="72" x2="150" y2="72" stroke="#94a3b8" stroke-width="1.2" />
+          <path d="M151,73 L145,69.5 L145,76.5 Z" fill="#94a3b8" />
+          <line x1="16" y1="72" x2="16" y2="10" stroke="#94a3b8" stroke-width="1.2" />
+          <path d="M12,12 L16,5 L20,11.5 Z" fill="#94a3b8" />
+          <path
+            d={smoothPath(shapePoints[c.letter])}
+            fill="none"
+            stroke={color[c.group]}
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <text
+            x="148"
+            y="86"
+            font-size="8.5"
+            fill="#64748b"
+            text-anchor="end">{cleanLabel(axisLabel)}</text>
         </svg>
-        <span class={`mt-1.5 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold ${groupBadge[c.group]}`}>
+        <span class={`mb-3 mt-1.5 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold ${groupBadge[c.group]}`}>
           {c.group === 'age' ? ageLabel : randomLabel}
         </span>
-      </div>
+      </figure>
     ))}
   </div>
   {caption && <p class="mt-2 text-center text-xs text-ink-400">{caption}</p>}
