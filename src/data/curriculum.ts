@@ -451,7 +451,7 @@ export const curriculum: PlanStation[] = [
     badge: 'الامتحان النهائي', badgeEn: 'Final Exam',
     examWeight: 100,
     status: 'live',
-    description: 'محاكي الامتحان النهائي: 110 أسئلة بتوزيع محتويات GFMAM مع تقرير تشخيصي.', descriptionEn: 'Final CAMA Mock Exam: 110 questions mapped to GFMAM domains with a diagnostic report.',
+    description: 'محاكي الامتحان النهائي: أسئلة مواقف بتوزيع مجلدات GFMAM مع تقرير تشخيصي.', descriptionEn: 'Final CAMA Mock Exam: scenario questions mapped to GFMAM volumes with a diagnostic report.',
     lessons: [
       { id: 'lesson-cama-6-1', station: 'station-cama-6', number: '6.1', title: 'محاكي الامتحان النهائي لـ CAMA', titleEn: 'Final CAMA Mock Exam Simulator', minutes: 150, order: 1, status: 'live', toolName: 'محاكي الامتحان', toolNameEn: 'Exam Simulator' },
     ],

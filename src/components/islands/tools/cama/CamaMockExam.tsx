@@ -75,8 +75,8 @@ export default function CamaMockExam() {
         <div className="space-y-4 p-5">
           <p className="text-sm leading-relaxed text-ink-600">
             {isEn
-              ? `The real exam: 110 scenarios in 150 minutes (~80 seconds per question). This simulator offers the available bank (${mockCamaQuestions.length} questions) under the same time pressure, distributed across the five GFMAM volumes. Passing score is 70%.`
-              : `الامتحان الحقيقي: 110 سيناريوهات في 150 دقيقة (نحو 80 ثانية للسؤال). هذا المحاكي يقدّم مجموعة الأسئلة المتاحة (${mockCamaQuestions.length} سؤالاً) بنفس ضغط الوقت والتوزيع على مجلدات GFMAM الخمسة. النجاح من 70%.`}
+              ? `The real exam: 110 scenarios in 120 minutes (~65 seconds per question). This simulator offers the available bank (${mockCamaQuestions.length} questions) under the same time pressure, distributed across the five GFMAM volumes. The simulator's pass threshold is 70%.`
+              : `الامتحان الحقيقي: 110 سيناريوهات في 120 دقيقة (نحو 65 ثانية للسؤال). هذا المحاكي يقدّم مجموعة الأسئلة المتاحة (${mockCamaQuestions.length} سؤالاً) بنفس ضغط الوقت والتوزيع على مجلدات GFMAM الخمسة. عتبة النجاح في هذا المحاكي 70%.`}
           </p>
           <div className="grid gap-1.5 text-xs">
             {[1, 2, 3, 4, 5].map((p) => (

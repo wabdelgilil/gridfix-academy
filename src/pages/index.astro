@@ -59,17 +59,17 @@ const siteJsonLd = {
         <span class="flex items-center gap-2">
           <span class="font-bold text-amber-300">{liveCourses.length}</span>
           <LangText lang="ar">كورس متاح</LangText>
-          <LangText lang="en" class="hidden">live courses</LangText>
+          <LangText lang="en">live courses</LangText>
         </span>
         <span class="flex items-center gap-2">
           <span class="font-bold text-amber-300">{perCourse.reduce((a, c) => a + c.stations, 0)}</span>
           <LangText lang="ar">محطة</LangText>
-          <LangText lang="en" class="hidden">stations</LangText>
+          <LangText lang="en">stations</LangText>
         </span>
         <span class="flex items-center gap-2">
           <span class="font-bold text-amber-300">{perCourse.reduce((a, c) => a + c.lessons, 0)}</span>
           <LangText lang="ar">درساً</LangText>
-          <LangText lang="en" class="hidden">lessons</LangText>
+          <LangText lang="en">lessons</LangText>
         </span>
       </div>
       <div class="mt-8 flex flex-wrap justify-center gap-4">
@@ -134,12 +134,12 @@ const siteJsonLd = {
                   <span class="chip bg-slate-100 text-ink-600">
                     🗺 {stats?.stations}
                     <LangText lang="ar"> محطات</LangText>
-                    <LangText lang="en" class="hidden"> stations</LangText>
+                    <LangText lang="en"> stations</LangText>
                   </span>
                   <span class="chip bg-slate-100 text-ink-600">
                     📚 {stats?.lessons}
                     <LangText lang="ar"> دروس</LangText>
-                    <LangText lang="en" class="hidden"> lessons</LangText>
+                    <LangText lang="en"> lessons</LangText>
                   </span>
                 </span>
                 <span class="font-bold text-brand-600 transition group-hover:-translate-x-1">

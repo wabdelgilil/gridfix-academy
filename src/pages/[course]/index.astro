@@ -21,6 +21,7 @@ const isPlanned = !courseMeta || courseMeta.status === 'planned';
 const courseImage = course === 'cmrp' ? '/og-cmrp.png' : course === 'cfm' ? '/og-cfm.png' : course === 'cama' ? '/og-cama.png' : undefined;
 
 const lessons = !isPlanned ? await getCollection('lessons') : [];
+const courseLessons = lessons.filter((l) => (l.data.course ?? 'cfm') === course);
 const stationCards = !isPlanned
   ? curriculum.filter((s) => (s.courseId ?? 'cfm') === course && s.status === 'live').sort((a, b) => a.number - b.number)
   : [];
@@ -134,7 +135,7 @@ const courseJsonLd = !isPlanned && courseMeta
           </div>
           <div class="mt-8 flex flex-wrap gap-6 text-sm text-teal-50">
             <span class="flex items-center gap-2">
-              <span class="font-bold text-amber-300">{lessons.length}</span>
+              <span class="font-bold text-amber-300">{courseLessons.length}</span>
               <LangText lang="ar"> دروس متاحة</LangText>
               <LangText lang="en"> lessons available</LangText>
             </span>

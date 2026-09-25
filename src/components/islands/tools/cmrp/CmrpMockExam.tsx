@@ -73,8 +73,8 @@ export default function CmrpMockExam() {
         <div className="space-y-4 p-5">
           <p className="text-sm leading-relaxed text-ink-600">
             {isEn
-              ? 'The real exam: 110 questions in 150 minutes (~80 seconds per question) across the five SMRP pillars. Choose the full simulation for the realistic experience, or a short round for quick review. Passing score is 70%.'
-              : 'الامتحان الحقيقي: 110 أسئلة في 150 دقيقة (نحو 80 ثانية للسؤال) بتوزيع ركائز SMRP الخمس. اختر المحاكاة الكاملة للتجربة الواقعية، أو جولة قصيرة للمراجعة السريعة. النجاح من 70%.'}
+              ? 'The real exam: 110 questions in 150 minutes (~82 seconds per question) across the five SMRP pillars. Choose the full simulation for the realistic experience, or a short round for quick review. Passing score is 70%.'
+              : 'الامتحان الحقيقي: 110 أسئلة في 150 دقيقة (نحو 82 ثانية للسؤال) بتوزيع ركائز SMRP الخمس. اختر المحاكاة الكاملة للتجربة الواقعية، أو جولة قصيرة للمراجعة السريعة. النجاح من 70%.'}
           </p>
           <div className="grid gap-1.5 text-xs">
             {[1, 2, 3, 4, 5].map((p) => (

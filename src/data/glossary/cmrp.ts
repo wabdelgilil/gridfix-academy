@@ -158,8 +158,8 @@ export const cmrpGlossary: GlossaryTerm[] = [
   {
     id: 'cmrp-2-2-t6',
     term: 'The RPN Flaw / Trap',
-    ar: 'القصور الرياضي في RPN؛ حيث قد يحصل عطل كارثي على السلامة (S=10) على رقم RPN منخفض بسبب ندرته (O=1, D=1 -> RPN=10)، ولذلك تشترط SMRP معالجة الشدة العالية (High Severity) دائماً بغض النظر عن قيمة RPN الإجمالية.',
-    en: 'A mathematical limitation of RPN where a catastrophic life-safety failure (S=10) yields a deceptively low score if frequency is rare (O=1, D=1 -> RPN=10). SMRP strictly mandates mitigating high severity first regardless of overall RPN.',
+    ar: 'القصور الرياضي في RPN؛ حيث قد يحصل عطل كارثي على السلامة (S=10) على رقم RPN منخفض بسبب ندرته (O=1, D=1 → RPN=10)، ولذلك تشترط SMRP معالجة الشدة العالية (High Severity) دائماً بغض النظر عن قيمة RPN الإجمالية.',
+    en: 'A mathematical limitation of RPN where a catastrophic life-safety failure (S=10) yields a deceptively low score if frequency is rare (O=1, D=1 → RPN=10). SMRP strictly mandates mitigating high severity first regardless of overall RPN.',
     course: 'cmrp',
   },
   {
