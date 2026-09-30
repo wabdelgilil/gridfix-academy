@@ -28,6 +28,7 @@ const {
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://academy.gridfix.net');
 const ogImage = new URL(image, Astro.site ?? 'https://academy.gridfix.net').toString();
+const gaId = import.meta.env.PUBLIC_GA_ID?.trim() || 'G-WV79RMQ6QK';
 ---
 
 <!doctype html>
@@ -39,6 +40,17 @@ const ogImage = new URL(image, Astro.site ?? 'https://academy.gridfix.net').toSt
     <link rel="apple-touch-icon" href="/logo-icon-192.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#1482db" />
+    {gaId && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+        <script is:inline define:vars={{ gaId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+      </>
+    )}
     <title id="page-title">{title}</title>
     <script is:inline>
       (function () {

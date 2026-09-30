@@ -221,3 +221,21 @@
 - `npm run check`: نجاح تام (0 أخطاء، 0 تحذيرات عبر 194 ملفاً).
 - `npm run build`: نجاح تام وبناء 116 صفحة بالكامل دون أي عائق.
 
+---
+
+## [2026-10-01] تجهيز تكامل Google Analytics 4 (GA4)
+
+**الملفات المتأثرة**: `src/layouts/BaseLayout.astro`، `src/env.d.ts`، `.env.example`، `.env`
+
+1. **إدراج كود التتبع gtag.js في BaseLayout**:
+   - إتاحة قراءة معرّف القياس من متغير البيئة `import.meta.env.PUBLIC_GA_ID`.
+   - حقن وسوم التتبع `gtag.js` وتهيئة `dataLayer` و `gtag('config', gaId)` في أعلى `<head>` بشرط وجود المعرف.
+2. **ملفات البيئة والأنواع البرمجية**:
+   - إنشاء `src/env.d.ts` لدعم التلميح البرمجي الصارم في TypeScript.
+   - إنشاء `.env.example` و `.env` لتسهيل إدراج المعرف (`G-XXXXXXXXXX`).
+3. **البوابات**:
+   - `npm run qa:ar`: ✔ سليم.
+   - `npm run check`: ✔ 0 أخطاء و 0 تحذيرات (195 ملفاً).
+   - `npm run build`: ✔ تم اختبار الحقن والتوليد بنجاح لجميع الصفحات.
+
+
