@@ -74,9 +74,17 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-700 dark:bg-slate-900/90">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <a href="/" className="flex items-center gap-2.5">
-          <img src="/favicon.svg" alt="logo" width="34" height="34" />
-          <span className="text-lg font-bold text-ink-900 dark:text-white">{t('site.name')}</span>
+        <a href="/" className="group flex items-center gap-2.5">
+          <img
+            src="/favicon.svg"
+            alt="GridFix Academy"
+            width="34"
+            height="34"
+            className="transition-transform duration-200 group-hover:scale-105"
+          />
+          <span className="text-lg font-bold tracking-tight text-ink-900 dark:text-white">
+            <span className="text-[#1482db]">GridFix</span> Academy
+          </span>
         </a>
 
         <nav className="hidden items-center gap-1 md:flex">

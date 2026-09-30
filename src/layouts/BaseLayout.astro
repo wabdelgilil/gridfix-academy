@@ -36,6 +36,7 @@ const ogImage = new URL(image, Astro.site ?? 'https://academy.gridfix.net').toSt
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/logo-icon-192.png" />
     <title id="page-title">{title}</title>
     <script is:inline>
       (function () {
@@ -108,8 +109,10 @@ const ogImage = new URL(image, Astro.site ?? 'https://academy.gridfix.net').toSt
         <div class="grid gap-6 text-sm leading-relaxed text-ink-600 md:grid-cols-3">
           <div class="animate-fade-in">
             <div class="mb-2 flex items-center gap-2">
-              <img src="/favicon.svg" alt="" width="26" height="26" class="transition-transform duration-200 hover:scale-110" />
-              <span class="font-bold text-ink-900">GridFix Academy</span>
+              <img src="/favicon.svg" alt="GridFix Academy" width="28" height="28" class="transition-transform duration-200 hover:scale-110" />
+              <span class="font-bold text-ink-900 dark:text-white">
+                <span class="text-[#1482db]">GridFix</span> Academy
+              </span>
             </div>
             <p data-lang="ar">منصة تعليمية مهنية بالعربية لشهادات إدارة المنشآت والصيانة — كل كورس مسار منظم بمحطات وأدوات وقاموس خاص به.</p>
             <p data-lang="en" lang="en" dir="ltr">A professional Arabic learning platform for facility management and maintenance credentials — each course is an organized path with stations, tools, and its own glossary.</p>
