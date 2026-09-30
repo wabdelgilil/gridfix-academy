@@ -6,16 +6,16 @@
 
 @theme {
   --font-sans: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
-  --color-brand-50: #f0fdfa;
-  --color-brand-100: #ccfbf1;
-  --color-brand-200: #99f6e4;
-  --color-brand-300: #5eead4;
-  --color-brand-400: #2dd4bf;
-  --color-brand-500: #14b8a6;
-  --color-brand-600: #0d9488;
-  --color-brand-700: #0f766e;
-  --color-brand-800: #115e59;
-  --color-brand-900: #134e4a;
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #1482db;
+  --color-brand-600: #0f6fc0;
+  --color-brand-700: #0c5ba0;
+  --color-brand-800: #08467d;
+  --color-brand-900: #073864;
   --color-ink-900: #0f172a;
   --color-ink-600: #475569;
   --color-ink-400: #94a3b8;
@@ -109,8 +109,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.4); }
-  50% { box-shadow: 0 0 20px 4px rgba(20, 184, 166, 0.15); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(20, 130, 219, 0.4); }
+  50% { box-shadow: 0 0 20px 4px rgba(20, 130, 219, 0.15); }
 }
 
 @keyframes shimmer {

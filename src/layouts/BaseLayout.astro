@@ -129,44 +129,45 @@ const ogImage = new URL(image, Astro.site ?? 'https://academy.gridfix.net').toSt
             <p data-lang="ar">CFM لإدارة المنشآت • CMRP للصيانة والموثوقية — مسارك القادم.</p>
             <p data-lang="en" lang="en" dir="ltr">CFM for facility management • CMRP for maintenance &amp; reliability — your next path.</p>
           </div>
-          <div class="animate-fade-in" style="animation-delay: 200ms">
-            <p class="mb-2 font-semibold text-ink-900">
-              <span data-lang="ar">مقدمة من GridFix</span>
-              <span data-lang="en" lang="en" dir="ltr">Powered by GridFix</span>
+          <div class="animate-fade-in rounded-2xl border border-blue-200/80 bg-blue-50/40 p-5 shadow-2xs transition-colors hover:border-blue-300 dark:border-blue-900/60 dark:bg-blue-950/20" style="animation-delay: 200ms">
+            <div class="mb-2 flex items-center justify-between">
+              <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 dark:text-blue-300">
+                <span class="h-2 w-2 rounded-full bg-brand-500 animate-pulse"></span>
+                <span data-lang="ar">الجهة الراعية والمطورة</span>
+                <span data-lang="en" lang="en" dir="ltr">Sponsor &amp; Developer</span>
+              </span>
+              <a href="https://gridfix.net" target="_blank" rel="noopener" class="text-xs font-mono font-bold text-brand-700 hover:underline dark:text-blue-400">
+                gridfix.net ↗
+              </a>
+            </div>
+            <p class="font-bold text-ink-900 dark:text-white">
+              <span data-lang="ar">نظام GridFix لإدارة الصيانة والمرافق</span>
+              <span data-lang="en" lang="en" dir="ltr">GridFix Smart CMMS Platform</span>
             </p>
-            <p data-lang="ar">
-              هذه المنصة التعليمية مقدمة مجاناً من{' '}
+            <p class="mt-2 text-xs leading-relaxed text-ink-600 dark:text-slate-300" data-lang="ar">
+              منصة تعليمية مجانية مقدمة برعاية <strong>GridFix</strong>، لتمكين المهندسين العرب بخبرات الميدان في حوكمة الأصول وجداول الصيانة الوقائية.
+            </p>
+            <p class="mt-2 text-xs leading-relaxed text-ink-600 dark:text-slate-300" data-lang="en" lang="en" dir="ltr">
+              A free learning platform sponsored by <strong>GridFix</strong>, empowering engineering professionals with field expertise in asset governance and PM schedules.
+            </p>
+            <div class="mt-4 flex flex-wrap items-center gap-2">
               <a
                 href="https://gridfix.net"
                 target="_blank"
                 rel="noopener"
-                class="font-semibold text-brand-700 underline-offset-4 transition-all duration-200 hover:underline hover:text-brand-800"
+                class="btn btn-sm bg-brand-600 text-white shadow-2xs transition-all duration-200 hover:bg-brand-700 hover:shadow-xs"
               >
-                gridfix.net
-              </a>{' '}
-              — تجمع خبرة عملية في إدارة المنشآت والمرافق.
-            </p>
-            <p data-lang="en" lang="en" dir="ltr">
-              This learning platform is offered for free by{' '}
+                <span data-lang="ar">⚡ زيارة منصة GridFix ↗</span>
+                <span data-lang="en" lang="en" dir="ltr">⚡ Visit GridFix Platform ↗</span>
+              </a>
               <a
-                href="https://gridfix.net"
+                href="https://gridfix.net/demo"
                 target="_blank"
                 rel="noopener"
-                class="font-semibold text-brand-700 underline-offset-4 transition-all duration-200 hover:underline hover:text-brand-800"
+                class="btn btn-sm border border-slate-300 bg-white text-ink-700 transition-all duration-200 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
               >
-                gridfix.net
-              </a>{' '}
-              — bringing hands-on experience in facility and property management.
-            </p>
-            <div class="mt-3 flex flex-wrap gap-2">
-              <a
-                href="https://gridfix.net"
-                target="_blank"
-                rel="noopener"
-                class="btn btn-sm bg-ink-900 text-teal-100 transition-all duration-200 hover:bg-ink-800 hover:shadow-md"
-              >
-                <span data-lang="ar">⚡ زيارة GridFix</span>
-                <span data-lang="en" lang="en" dir="ltr">⚡ Visit GridFix</span>
+                <span data-lang="ar">تجربة الديمو</span>
+                <span data-lang="en" lang="en" dir="ltr">Try Demo</span>
               </a>
             </div>
           </div>

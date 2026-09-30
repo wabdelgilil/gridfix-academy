@@ -103,7 +103,7 @@ export default function SiteHeader() {
           {course && (
             <a
               href="/"
-              className="chip hidden cursor-pointer bg-ink-900 text-teal-100 transition hover:bg-ink-800 sm:inline-flex dark:bg-slate-700 dark:hover:bg-slate-600"
+              className="chip hidden cursor-pointer bg-ink-900 text-brand-100 transition hover:bg-ink-800 sm:inline-flex dark:bg-slate-700 dark:hover:bg-slate-600"
               aria-label={t('header.chooseCourse')}
             >
               {COURSES.find((c) => c.id === course)?.icon} {COURSES.find((c) => c.id === course)?.label} {t('header.switchCourse')}
@@ -113,10 +113,12 @@ export default function SiteHeader() {
             href="https://gridfix.net"
             target="_blank"
             rel="noopener"
-            className="chip hidden cursor-pointer bg-slate-100 text-ink-600 transition hover:bg-slate-200 sm:inline-flex dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-            aria-label="GridFix"
+            className="group hidden items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50/90 px-3 py-1.5 text-xs font-semibold text-[#0f6fc0] shadow-2xs transition-all hover:border-blue-400 hover:bg-blue-100 hover:shadow-xs sm:inline-flex dark:border-blue-900/60 dark:bg-blue-950/50 dark:text-blue-300 dark:hover:border-blue-700 dark:hover:bg-blue-900/40"
+            title={lang === 'ar' ? 'استكشف نظام إدارة الصيانة والمرافق الذكي GridFix CMMS' : 'Explore GridFix Smart CMMS Platform'}
           >
-            {t('header.poweredBy')}
+            <span className="flex h-2 w-2 rounded-full bg-[#1482db] animate-pulse"></span>
+            <span>{t('header.poweredBy')}</span>
+            <span className="text-[11px] text-blue-400 transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5">↗</span>
           </a>
           <button
             type="button"
@@ -160,6 +162,21 @@ export default function SiteHeader() {
               {t(item.key)}
             </a>
           ))}
+          <div className="mt-2 border-t border-slate-100 pt-2 dark:border-slate-800">
+            <a
+              href="https://gridfix.net"
+              target="_blank"
+              rel="noopener"
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50/90 px-3 py-2.5 text-xs font-bold text-[#0f6fc0] transition-colors hover:bg-blue-100 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300"
+            >
+              <span className="flex items-center gap-2">
+                <span className="flex h-2 w-2 rounded-full bg-[#1482db] animate-pulse"></span>
+                <span>{t('header.poweredBy')}</span>
+              </span>
+              <span>↗</span>
+            </a>
+          </div>
         </nav>
       )}
     </header>

@@ -45,7 +45,7 @@ const siteJsonLd = {
         <LangText lang="ar">تعلّم إدارة المنشآت والصيانة <span class="text-amber-300">باحتراف</span></LangText>
         <LangText lang="en">Master Facility &amp; Asset Management <span class="text-amber-300">Professionally</span></LangText>
       </h1>
-      <p class="mt-4 text-lg leading-relaxed text-teal-50">
+      <p class="mt-4 text-lg leading-relaxed text-blue-50">
         <LangText lang="ar">
           أكاديمية <strong class="text-amber-300">GridFix Academy</strong> تقدّم كورسات عربية
           عملية لأشهر شهادات المجال — مع شرح بالمصطلحات الإنجليزية، أدوات تفاعلية، وكويزات مواقف. اختر مسارك وابدأ الآن.
@@ -55,7 +55,7 @@ const siteJsonLd = {
           for the field's leading certifications — with English terminology, interactive tools, and scenario quizzes. Pick your path and start now.
         </LangText>
       </p>
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-teal-50">
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-blue-50">
         <span class="flex items-center gap-2">
           <span class="font-bold text-amber-300">{liveCourses.length}</span>
           <LangText lang="ar">كورس متاح</LangText>
@@ -209,6 +209,105 @@ const siteJsonLd = {
         </p>
       </div>
     ))}
+  </section>
+
+  <!-- قسم مبادرة المسؤولية المعرفية لـ GridFix -->
+  <section class="mt-16 overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-white via-blue-50/40 to-slate-50 p-8 shadow-xs transition-all duration-300 hover:border-blue-200 sm:p-12 dark:border-slate-800 dark:from-slate-900 dark:via-slate-900/80 dark:to-blue-950/20">
+    <div class="mx-auto max-w-4xl">
+      <div class="flex flex-col items-center text-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-100/70 px-4 py-1.5 text-xs font-bold text-brand-700 dark:border-blue-900/80 dark:bg-blue-950/70 dark:text-blue-300">
+          <span class="flex h-2 w-2 rounded-full bg-brand-500 animate-pulse"></span>
+          <LangText lang="ar">مبادرة المسؤولية المعرفية والمجتمعية • برعاية ودعم GridFix</LangText>
+          <LangText lang="en">Knowledge &amp; Social Responsibility Initiative • Powered by GridFix</LangText>
+        </div>
+
+        <h2 class="mt-5 text-2xl font-black tracking-tight text-ink-900 sm:text-3xl lg:text-4xl dark:text-white">
+          <LangText lang="ar">
+            من الميدان إلى الاعتماد المهني — <span class="text-brand-600 dark:text-brand-400">بخبرة مهندسي GridFix</span>
+          </LangText>
+          <LangText lang="en">
+            From the Field to Global Certification — <span class="text-brand-600 dark:text-brand-400">Backed by GridFix Engineering</span>
+          </LangText>
+        </h2>
+
+        <p class="mt-4 max-w-2xl text-base leading-relaxed text-ink-600 dark:text-slate-300">
+          <LangText lang="ar">
+            تُقدّم هذه المنصة التعليمية مجاناً بالكامل من شركة <strong class="text-ink-900 dark:text-white">GridFix</strong> المتخصصة في أنظمة إدارة الصيانة والمرافق الذكية (<span dir="ltr">CMMS</span>) للمصانع والمستشفيات والمنشآت الكبرى. نؤمن بأن تمكين الكفاءات الهندسية العربية هو حجر الأساس لاستدامة الأصول ورفع الموثوقية التشغيلية.
+          </LangText>
+          <LangText lang="en">
+            This learning platform is offered completely free by <strong class="text-ink-900 dark:text-white">GridFix</strong>, specialists in smart Computerized Maintenance Management Systems (CMMS) for industrial plants, healthcare, and enterprise facilities. We believe empowering engineering talent is the foundation of asset reliability.
+          </LangText>
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-3">
+        <div class="rounded-2xl border border-slate-200/80 bg-white/90 p-5 shadow-2xs backdrop-blur-xs transition-transform hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-800/90">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-xl font-bold text-brand-600 dark:bg-blue-950 dark:text-blue-400">
+            ⚡
+          </div>
+          <h3 class="mt-3 text-sm font-bold text-ink-900 dark:text-white">
+            <LangText lang="ar">نظام GridFix الميداني</LangText>
+            <LangText lang="en">GridFix Field CMMS</LangText>
+          </h3>
+          <p class="mt-1.5 text-xs leading-relaxed text-ink-500 dark:text-slate-400">
+            <LangText lang="ar">إدارة أوامر العمل، الجداول الوقائية، والمزامنة الكاملة دون اتصال بالإنترنت (Offline-First).</LangText>
+            <LangText lang="en">Work orders, preventive schedules, and full offline-first synchronization.</LangText>
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200/80 bg-white/90 p-5 shadow-2xs backdrop-blur-xs transition-transform hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-800/90">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-xl font-bold text-amber-600 dark:bg-amber-950/60 dark:text-amber-400">
+            🎓
+          </div>
+          <h3 class="mt-3 text-sm font-bold text-ink-900 dark:text-white">
+            <LangText lang="ar">تأهيل للاعتمادات العالمية</LangText>
+            <LangText lang="en">Global Credentials Prep</LangText>
+          </h3>
+          <p class="mt-1.5 text-xs leading-relaxed text-ink-500 dark:text-slate-400">
+            <LangText lang="ar">تحضير حقيقي لشهادات CFM و CMRP و CAMA وفق المعايير الرسمية لأكبر الهيئات الدولية.</LangText>
+            <LangText lang="en">Rigorous preparation for CFM, CMRP, and CAMA credentials based on global frameworks.</LangText>
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200/80 bg-white/90 p-5 shadow-2xs backdrop-blur-xs transition-transform hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-800/90">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-xl font-bold text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400">
+            💚
+          </div>
+          <h3 class="mt-3 text-sm font-bold text-ink-900 dark:text-white">
+            <LangText lang="ar">محتوى حر ومتاح للجميع</LangText>
+            <LangText lang="en">Open Access Forever</LangText>
+          </h3>
+          <p class="mt-1.5 text-xs leading-relaxed text-ink-500 dark:text-slate-400">
+            <LangText lang="ar">كافة الدروس، الكويزات، والأدوات التفاعلية متاحة دون رسوم أو اشتراكات كخدمة مجتمعية.</LangText>
+            <LangText lang="en">All lessons, quizzes, and calculators are accessible without paywalls or subscriptions.</LangText>
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4 pt-4 border-t border-slate-200/70 dark:border-slate-800">
+        <a
+          href="https://gridfix.net"
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-bold text-white shadow-xs transition hover:bg-brand-700 hover:shadow-md"
+        >
+          <span>⚡</span>
+          <LangText lang="ar">استكشف نظام GridFix CMMS للمنشآت والمصانع</LangText>
+          <LangText lang="en">Explore GridFix CMMS for Facilities &amp; Plants</LangText>
+          <span class="text-xs">↗</span>
+        </a>
+        <a
+          href="https://gridfix.net/demo"
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-ink-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+        >
+          <LangText lang="ar">تجربة النسخة الحية (Live Demo)</LangText>
+          <LangText lang="en">Try Live Demo (Interactive)</LangText>
+          <span class="text-xs text-ink-400">↗</span>
+        </a>
+      </div>
+    </div>
   </section>
 
   <section class="mt-12 rounded-3xl bg-gradient-to-l from-brand-50 to-brand-100/50 px-6 py-10 sm:px-12">
