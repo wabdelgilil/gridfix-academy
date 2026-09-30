@@ -159,4 +159,65 @@
    - **الهيدر العلوي**: تحويل شارة «⚡ مدعوم من GridFix» من زر رمادي باهت إلى شارة تفاعلية بارزة ومضيئة بـ Pulse ومؤشر رابط خارجي `↗`، مع إضافتها لأول مرة لقائمة الموبايل المنسدلة.
    - **الصفحة الرئيسية (Hero & Showcase)**: إضافة قسم مخصص وفخم بعنوان «مبادرة المسؤولية المعرفية والمجتمعية • برعاية ودعم GridFix»، يشرح نظام CMMS الميداني، ورسالة إتاحة الكورسات والامتحانات مجاناً، مع أزرار دعوة مباشرة (CTA) لزيارة المنصة وتجربة الديمو الحي.
    - **تذييل الموقع (Footer)**: تحويل عمود الداعم إلى بطاقة راعية متكاملة (Sponsor & Developer Card) بحدود زرقاء وروابط تفاعلية واضحة.
-3. **البوابات**: `qa:ar` ✔ سليم.
+3. **البوابات**: `qa:ar` ✔ سليم. 
+
+---
+
+## [2026-09-30] المراجعة الشاملة للمنصة الحية (Multi-Persona Audit)
+
+**الملف المولد**: `project_management/PLATFORM_AUDIT_NOTES.md`
+
+- إجراء مراجعة شاملة متزامنة للموقع الحي (`https://academy.gridfix.net/`) والكود المصدري من 3 زوايا:
+  1. **طالب علم ومتعلم**: تدفق الانتقال بين المحطات، ترتيب محطة امتحان CFM، اكتشاف لوحة البحث، وتجربة زر الهيرو.
+  2. **خبير صيانة ومرافق وإدارة أصول**: دقة حساب مؤشر EUI ومساحة GFA، قيمة البداية لحاسبة RIME، تكلفة الاستبدال في LCC، ومنظمة WPiAM لشهادة CAMA.
+  3. **مطور برمجيات**: كشف خطأ ترجمة «صالة GridFix» في 3 صفحات، ازدواجية رابط الجوال، خطأ وسم الميتا في المحطات، وغياب كورس CAMA من صفحة 404 والفوتر.
+- توثيق كامل الملاحظات وخطة العمل ذات الأولويات في `PLATFORM_AUDIT_NOTES.md`.
+
+---
+
+## [2026-10-01] تطبيق وإصلاح كافة ملاحظات المراجعة الشاملة (14 بنداً)
+
+**الملفات المتأثرة**:
+- الصفحات: `src/pages/[course]/index.astro`، `src/pages/[course]/map.astro`، `src/pages/[course]/glossary.astro`، `src/pages/[course]/stations/[station].astro`، `src/pages/index.astro`، `src/pages/404.astro`
+- التخطيط والواجهة: `src/layouts/BaseLayout.astro`، `src/components/islands/SiteHeader.tsx`، `src/components/islands/SearchPalette.tsx`، `src/components/ui/LessonNav.astro`
+- الأدوات والمحاكيات: `src/components/islands/tools/cmrp/RIMECalculator.tsx`، `src/components/islands/tools/cfm/EnergyUseCalculator.tsx`، `src/components/islands/tools/cfm/LifeCycleCostTool.tsx`، `src/components/islands/tools/cfm/SpaceDensityTool.tsx`، `src/components/islands/tools/cfm/MockExam.tsx`، `src/components/islands/tools/cfm/PillarsExplorer.tsx`
+- المنهج والمحتوى: `src/data/curriculum.ts`، `src/content/stations/cfm/station-11.md`، `src/content/stations/cfm/station-12.md`، `src/content/lessons/cfm/lesson-11-1..3.mdx`، `src/content/lessons/cfm/lesson-12-1.mdx`، `src/data/quiz/cfm/quiz-11-1..3.ts`، `src/data/quiz/cfm/quiz-12-1.ts`، `project_management/EXAM_COVERAGE.md`
+- ملفات الويب والأصول: `public/manifest.webmanifest`
+
+**الإصلاحات المنفذة بالتفصيل**:
+1. **تصحيح خطأ الترجمة «صالة GridFix» (SEO & Copy)**:
+   - تم استبدال «صالة GridFix» في وسم الـ title بـ «أكاديمية GridFix» في صفحات `[course]/index.astro` و `map.astro` و `glossary.astro`.
+2. **تصحيح وسم الميتا لمحطات الكورسات (SEO & Meta Description)**:
+   - تمرير الوصف العربي `data.description` بدلاً من النص الإنجليزي في `src/pages/[course]/stations/[station].astro` لضمان ظهور مقتطف عربي جذاب في محركات البحث.
+3. **تصحيح القيمة الافتراضية لحاسبة RIME (حاسبة CMRP)**:
+   - تعديل حالة البداية لـ `ecr` في `RIMECalculator.tsx` من القيمة غير المعرفة `9` إلى القيمة القياسية `8` (معدات مساعدة حرجة)، مما أنهى فراغ الاختيار الأول فور فتح الأداة.
+4. **تدقيق مؤشر كثافة استهلاك الطاقة EUI (حاسبة CFM)**:
+   - تصحيح مسمى المساحة في `EnergyUseCalculator.tsx` من "صافي المساحة" إلى "إجمالي المساحة المبنية GFA (م²)" طبقاً لمعايير ASHRAE 100 و ENERGY STAR، مع إضافة حاشية علمية توضيحية.
+5. **معالجة شرط الحدود في تكلفة دورة الحياة LCC**:
+   - منع احتساب تكلفة شراء استبدال جديد كامل في السنة الأخيرة من أفق الدراسة `y === HORIZON` في `LifeCycleCostTool.tsx`.
+6. **ضبط مؤشر استخدام المساحة في أداة الكثافة المكانية**:
+   - حصر نسبة الاستغلال الفعلي بين 0% و 100% وإضافة ملاحظة توجيهية عند تجاوز الطاقة الاستيعابية في `SpaceDensityTool.tsx`.
+7. **تحديث الروابط القانونية وتذييل الموقع (Footer & Disclaimer)**:
+   - إضافة مسار CAMA لقائمة الكورسات في الفوتر، وإدراج المنظمة الدولية لإدارة الأصول (WPiAM) في نص إخلاء المسؤولية الرسمي إلى جانب IFMA و SMRP.
+8. **تكامل صفحة الخطأ 404 مع مسار CAMA**:
+   - إضافة بطاقة مسار CAMA إلى شبكة الكورسات في `src/pages/404.astro` وتعديل التوزيع الشبكي ليتسع للأربعة مسارات بسلاسة.
+9. **إزالة الازدواجية في قائمة الجوال (Mobile Menu)**:
+   - منع تكرار زر "اختيار الكورس" في قائمة الجوال المنسدلة عند التواجد في الصفحة الرئيسية.
+10. **تعزيز اكتشاف لوحة البحث السريع (Search Palette)**:
+    - إضافة أيقونة بحث واضحة (🔍) في شريط الهيدر بجانب زر اختصار الكيبورد على الديسكتوب، وزر بحث مباشر في قائمة الموبايل.
+11. **تحسين تدفق زر الحث على الفعل (Hero CTA)**:
+    - توجيه زر "ابدأ مسارك التعليمي مجاناً" إلى قسم الكورسات `#courses` بدلاً من فرض كورس CFM مباشرة.
+12. **الربط التلقائي بين المحطات المتتالية (Inter-Station Navigation)**:
+    - ترقية مكون `LessonNav.astro` لربط آخر درس في المحطة بأول درس في المحطة التالية والعكس تلقائياً دون انقطاع لتجربة دراسة متصلة.
+13. **إضافة ملف بيان تطبيق الويب التقدمي (PWA Web Manifest)**:
+    - إنشاء `public/manifest.webmanifest` متضمناً هوية GridFix Academy وألوان العلامة وتوجيهه بالهيد في `BaseLayout.astro`.
+14. **إعادة ترتيب محطات CFM لتتوافق مع المنطق الأكاديمي**:
+    - جعل المحطة 11 مخصصة لركن "إدارة المشاريع (Domain J)" (3 دروس + 3 بنوك كويز).
+    - جعل المحطة 12 هي محطة الختام المخصصة لمحاكي امتحان CFM النهائي (Domain L).
+    - تحديث `curriculum.ts` ومكونات `MockExam.tsx` و `PillarsExplorer.tsx` وتحديث `EXAM_COVERAGE.md`.
+
+**نتائج بوابات الجودة (Verification Gates)**:
+- `npm run qa:ar`: نجاح 100% (خلو تام من كلمات الآلة والتشوهات).
+- `npm run check`: نجاح تام (0 أخطاء، 0 تحذيرات عبر 194 ملفاً).
+- `npm run build`: نجاح تام وبناء 116 صفحة بالكامل دون أي عائق.
+

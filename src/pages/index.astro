@@ -100,12 +100,10 @@ const siteJsonLd = {
         </span>
       </div>
       <div class="mt-8 flex flex-wrap justify-center gap-4">
-        {liveCourses[0] && (
-          <a href={`/${liveCourses[0].id}`} class="rounded-xl bg-amber-400 px-6 py-3 font-bold text-amber-950 transition hover:bg-amber-300">
-            <LangText lang="ar">ابدأ التعلم مجاناً ←</LangText>
-            <LangText lang="en">Start learning for free →</LangText>
-          </a>
-        )}
+        <a href="#courses" class="rounded-xl bg-amber-400 px-6 py-3 font-bold text-amber-950 transition hover:bg-amber-300">
+          <LangText lang="ar">اختر مسارك التعليمي وابدأ مجاناً ↓</LangText>
+          <LangText lang="en">Choose your course &amp; start free ↓</LangText>
+        </a>
       </div>
     </div>
   </section>

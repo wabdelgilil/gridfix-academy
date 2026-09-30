@@ -91,7 +91,12 @@ export default function SearchPalette() {
       if (e.key === 'Escape') setOpen(false);
     };
     window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
+    const onOpen = () => setOpen((o) => !o);
+    window.addEventListener('open-search', onOpen);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('open-search', onOpen);
+    };
   }, []);
 
   useEffect(() => {

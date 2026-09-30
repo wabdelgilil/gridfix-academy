@@ -122,6 +122,16 @@ export default function SiteHeader() {
           </a>
           <button
             type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent('open-search'))}
+            className="chip cursor-pointer bg-slate-100 text-ink-600 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+            aria-label={lang === 'ar' ? 'بحث (Ctrl+K)' : 'Search (Ctrl+K)'}
+            title={lang === 'ar' ? 'بحث (Ctrl+K)' : 'Search (Ctrl+K)'}
+          >
+            <span>🔍</span>
+            <span className="hidden text-xs text-ink-400 sm:inline">Ctrl+K</span>
+          </button>
+          <button
+            type="button"
             onClick={toggleTheme}
             className="chip cursor-pointer bg-slate-100 text-ink-600 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
             aria-label={theme === 'dark' ? t('header.themeLight') : t('header.themeDark')}
@@ -149,9 +159,25 @@ export default function SiteHeader() {
 
       {open && (
         <nav className="border-t border-slate-200 px-4 py-2 md:hidden dark:border-slate-700">
-          <a href="/" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-ink-600 hover:bg-brand-50 hover:text-brand-700 dark:text-slate-300 dark:hover:bg-slate-800">
-            {t('nav.courses')}
-          </a>
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              window.dispatchEvent(new CustomEvent('open-search'));
+            }}
+            className="mb-2 flex w-full items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-ink-600 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+          >
+            <span className="flex items-center gap-2">
+              <span>🔍</span>
+              <span>{lang === 'ar' ? 'بحث في المنصة...' : 'Search academy...'}</span>
+            </span>
+            <span className="text-xs text-ink-400">Ctrl+K</span>
+          </button>
+          {course && (
+            <a href="/" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-ink-600 hover:bg-brand-50 hover:text-brand-700 dark:text-slate-300 dark:hover:bg-slate-800">
+              {t('nav.courses')}
+            </a>
+          )}
           {navKeys.map((item) => (
             <a
               key={item.key}

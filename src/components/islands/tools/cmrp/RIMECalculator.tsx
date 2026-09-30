@@ -45,7 +45,7 @@ function tierOf(score: number) {
 }
 
 export default function RIMECalculator() {
-  const [ecr, setEcr] = useState(9);
+  const [ecr, setEcr] = useState(8);
   const [wcr, setWcr] = useState(8);
 
   const score = ecr * wcr;

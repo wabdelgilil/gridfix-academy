@@ -16,7 +16,7 @@ export default function SpaceDensityTool() {
   const density = area / employees;
   const ref = benchmarks[mode];
   const isLow = density < ref.low; // كثيف (أقل مساحة لكل موظف)
-  const utilization = Math.min(100, Math.round(((density - ref.low) / (ref.high - ref.low)) * 100));
+  const utilization = Math.max(0, Math.min(100, Math.round(((density - ref.low) / (ref.high - ref.low)) * 100)));
 
   const verdict =
     density < ref.low
@@ -77,7 +77,7 @@ export default function SpaceDensityTool() {
           </div>
           <p className="mt-2 opacity-90">النطاق المرجعي التقريبي: <span dir="ltr">{ref.low}–{ref.high}</span> م²/موظف</p>
           <p className="mt-2 font-semibold">{verdict}</p>
-          <p className="mt-2 text-xs opacity-75">النطاقات إرشادية (ممارسات مكتبية عامة) — تراجعها شرائح القطاع والمناخ ونمط العمل الفعلية.</p>
+          <p className="mt-2 text-xs opacity-75">الشريط يوضح موقع كثافتك الحالية بين الحد الأدنى والأعلى للنطاق المرجعي. النطاقات إرشادية حسب الممارسات المكتبية العالمية.</p>
         </div>
       </div>
     </div>

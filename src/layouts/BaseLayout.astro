@@ -37,6 +37,8 @@ const ogImage = new URL(image, Astro.site ?? 'https://academy.gridfix.net').toSt
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/logo-icon-192.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#1482db" />
     <title id="page-title">{title}</title>
     <script is:inline>
       (function () {
@@ -126,8 +128,8 @@ const ogImage = new URL(image, Astro.site ?? 'https://academy.gridfix.net').toSt
               <span data-lang="ar">كورسات المنصة</span>
               <span data-lang="en" lang="en" dir="ltr">Our Courses</span>
             </p>
-            <p data-lang="ar">CFM لإدارة المنشآت • CMRP للصيانة والموثوقية — مسارك القادم.</p>
-            <p data-lang="en" lang="en" dir="ltr">CFM for facility management • CMRP for maintenance &amp; reliability — your next path.</p>
+            <p data-lang="ar">CFM لإدارة المنشآت • CMRP للصيانة والموثوقية • CAMA لتقييم إدارة الأصول.</p>
+            <p data-lang="en" lang="en" dir="ltr">CFM for facility management • CMRP for maintenance &amp; reliability • CAMA for asset management.</p>
           </div>
           <div class="animate-fade-in rounded-2xl border border-blue-200/80 bg-blue-50/40 p-5 shadow-2xs transition-colors hover:border-blue-300 dark:border-blue-900/60 dark:bg-blue-950/20" style="animation-delay: 200ms">
             <div class="mb-2 flex items-center justify-between">
@@ -172,8 +174,8 @@ const ogImage = new URL(image, Astro.site ?? 'https://academy.gridfix.net').toSt
             </div>
           </div>
           <div class="text-xs text-ink-400 md:col-span-3 border-t border-slate-100 pt-4 mt-4">
-            <p data-lang="ar">المنصة ليست جهة اعتماد رسمية. للأهلية والمواعيد والرسوم الحالية، راجع موقع الجهة المانحة (IFMA أو SMRP) الرسمي.</p>
-            <p data-lang="en" lang="en" dir="ltr">This platform is not an official certifying body. For current eligibility, dates, and fees, check the official issuing body's website (IFMA or SMRP).</p>
+            <p data-lang="ar">المنصة ليست جهة اعتماد رسمية. للأهلية والمواعيد والرسوم الحالية، راجع موقع الجهة المانحة (IFMA أو SMRP أو WPiAM) الرسمي.</p>
+            <p data-lang="en" lang="en" dir="ltr">This platform is not an official certifying body. For current eligibility, dates, and fees, check the official issuing body's website (IFMA, SMRP, or WPiAM).</p>
             <p class="mt-2">© {new Date().getFullYear()} GridFix Academy. <span data-lang="ar">جميع الحقوق محفوظة.</span><span data-lang="en" lang="en" dir="ltr">All rights reserved.</span></p>
           </div>
         </div>

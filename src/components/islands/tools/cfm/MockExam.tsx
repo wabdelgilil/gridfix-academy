@@ -33,9 +33,9 @@ import { quiz92 } from '../../../../data/quiz/cfm/quiz-9-2';
 import { quiz93 } from '../../../../data/quiz/cfm/quiz-9-3';
 import { quiz101 } from '../../../../data/quiz/cfm/quiz-10-1';
 import { quiz102 } from '../../../../data/quiz/cfm/quiz-10-2';
-import { quiz121 } from '../../../../data/quiz/cfm/quiz-12-1';
-import { quiz122 } from '../../../../data/quiz/cfm/quiz-12-2';
-import { quiz123 } from '../../../../data/quiz/cfm/quiz-12-3';
+import { quiz111 } from '../../../../data/quiz/cfm/quiz-11-1';
+import { quiz112 } from '../../../../data/quiz/cfm/quiz-11-2';
+import { quiz113 } from '../../../../data/quiz/cfm/quiz-11-3';
 import useLang from '../../../../lib/useLang';
 import { DIFFICULTY_EN } from '../../../../data/quiz/types';
 
@@ -57,7 +57,7 @@ interface QuizItem {
   station: number;
 }
 
-const banks = [quiz01, quiz02, quiz03, quiz11, quiz12, quiz13, quiz14, quiz21, quiz22, quiz23, quiz31, quiz32, quiz33, quiz34, quiz41, quiz42, quiz43, quiz51, quiz52, quiz53, quiz61, quiz62, quiz63, quiz71, quiz72, quiz73, quiz81, quiz82, quiz83, quiz91, quiz92, quiz93, quiz101, quiz102, quiz121, quiz122, quiz123];
+const banks = [quiz01, quiz02, quiz03, quiz11, quiz12, quiz13, quiz14, quiz21, quiz22, quiz23, quiz31, quiz32, quiz33, quiz34, quiz41, quiz42, quiz43, quiz51, quiz52, quiz53, quiz61, quiz62, quiz63, quiz71, quiz72, quiz73, quiz81, quiz82, quiz83, quiz91, quiz92, quiz93, quiz101, quiz102, quiz111, quiz112, quiz113];
 
 const pool: QuizItem[] = banks.flatMap((b) => {
   const st = Number(String(b.id).replace('quiz-', '').split('-')[0]);
@@ -76,7 +76,7 @@ const stationNames: Record<number, string> = {
   8: 'القيادة والاستراتيجية',
   9: 'البيانات والتقنية',
   10: 'الجودة',
-  12: 'إدارة المشاريع',
+  11: 'إدارة المشاريع',
 };
 
 const stationNamesEn: Record<number, string> = {
@@ -91,7 +91,7 @@ const stationNamesEn: Record<number, string> = {
   8: 'Leadership & Strategy',
   9: 'Data & Technology',
   10: 'Quality',
-  12: 'Project Management',
+  11: 'Project Management',
 };
 
 export default function MockExam() {

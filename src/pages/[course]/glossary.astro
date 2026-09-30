@@ -18,7 +18,7 @@ const courseMeta = getCourse(course);
 const terms = getGlossaryForCourse(course ?? 'cfm');
 ---
 
-<BaseLayout title={`قاموس المصطلحات — ${courseMeta?.code ?? ''} | صالة GridFix`} titleEn={`Glossary — ${courseMeta?.code ?? ''} | GridFix Academy`} description="قاموس مركزي قابل للبحث لمصطلحات الكورس بالعربية والإنجليزية." descriptionEn="A searchable central glossary of the course terms in Arabic and English.">
+<BaseLayout title={`قاموس المصطلحات — ${courseMeta?.code ?? ''} | أكاديمية GridFix`} titleEn={`Glossary — ${courseMeta?.code ?? ''} | GridFix Academy`} description="قاموس مركزي قابل للبحث لمصطلحات الكورس بالعربية والإنجليزية." descriptionEn="A searchable central glossary of the course terms in Arabic and English.">
   <div class="mx-auto max-w-3xl">
     <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: 'قاموس المصطلحات', labelEn: 'Glossary' }]} />
     <header class="mb-6">

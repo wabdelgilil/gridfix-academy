@@ -1,7 +1,7 @@
-import type { QuizBank } from '../types';
+﻿import type { QuizBank } from '../types';
 
-export const quiz122: QuizBank = {
-  id: 'quiz-12-2',
+export const quiz112: QuizBank = {
+  id: 'quiz-11-2',
   questions: [
     {
       scenario: 'مشروع متأخر شهرين، ويُجرى تتبعه بالاجتماعات الشفهية دون أداة مواعيد رقمية أو وثيقة مرجعية.',

@@ -222,20 +222,6 @@ export const curriculum: PlanStation[] = [
   {
     id: 'station-11',
     number: 11,
-    title: 'محاكي الامتحان النهائي',
-    titleEn: 'CFM Mock Exam',
-    icon: '📝',
-    badge: 'الاختبار', badgeEn: 'Exam',
-    examWeight: 100,
-    status: 'live',
-    description: 'بنك أسئلة كامل + مؤقت + تقرير تشخيصي.', descriptionEn: 'A realistic CFM mock experience: question bank, timer, and station-level diagnostic.',
-    lessons: [
-      { id: 'lesson-11-1', station: 'station-11', number: '11.1', title: 'محاكي الامتحان الكامل', titleEn: 'CFM Full Mock Exam', minutes: 240, order: 1, status: 'live', toolName: 'محاكي الامتحان', toolNameEn: 'Exam Simulator' },
-    ],
-  },
-  {
-    id: 'station-12',
-    number: 12,
     title: 'إدارة المشاريع',
     titleEn: 'Project Management',
     icon: '🏗️',
@@ -245,9 +231,23 @@ export const curriculum: PlanStation[] = [
     status: 'live',
     description: 'دورة حياة المشروع، النطاق والجدول والميزانية، والتنفيذ والرقابة والإغلاق.', descriptionEn: 'Project life cycle, scope/schedule/budget, procurement, control, and closeout.',
     lessons: [
-      { id: 'lesson-12-1', station: 'station-12', number: '12.1', title: 'دورة حياة المشروع والنطاق', titleEn: 'Project Life Cycle & Scope', minutes: 25, order: 1, status: 'live' },
-      { id: 'lesson-12-2', station: 'station-12', number: '12.2', title: 'الجدولة والتكلفة والرقابة', titleEn: 'Scheduling, Cost & Control', minutes: 25, order: 2, status: 'live' },
-      { id: 'lesson-12-3', station: 'station-12', number: '12.3', title: 'المقاولون والإغلاق', titleEn: 'Procurement & Closeout', minutes: 20, order: 3, status: 'live' },
+      { id: 'lesson-11-1', station: 'station-11', number: '11.1', title: 'دورة حياة المشروع والنطاق', titleEn: 'Project Life Cycle & Scope', minutes: 25, order: 1, status: 'live' },
+      { id: 'lesson-11-2', station: 'station-11', number: '11.2', title: 'الجدولة والتكلفة والرقابة', titleEn: 'Scheduling, Cost & Control', minutes: 25, order: 2, status: 'live' },
+      { id: 'lesson-11-3', station: 'station-11', number: '11.3', title: 'المقاولون والإغلاق', titleEn: 'Procurement & Closeout', minutes: 20, order: 3, status: 'live' },
+    ],
+  },
+  {
+    id: 'station-12',
+    number: 12,
+    title: 'محاكي الامتحان النهائي',
+    titleEn: 'CFM Mock Exam',
+    icon: '📝',
+    badge: 'الاختبار', badgeEn: 'Exam',
+    examWeight: 100,
+    status: 'live',
+    description: 'بنك أسئلة كامل + مؤقت + تقرير تشخيصي.', descriptionEn: 'A realistic CFM mock experience: question bank, timer, and station-level diagnostic.',
+    lessons: [
+      { id: 'lesson-12-1', station: 'station-12', number: '12.1', title: 'محاكي الامتحان الكامل', titleEn: 'CFM Full Mock Exam', minutes: 240, order: 1, status: 'live', toolName: 'محاكي الامتحان', toolNameEn: 'Exam Simulator' },
     ],
   },
   {

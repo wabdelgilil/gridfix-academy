@@ -1,7 +1,7 @@
-import type { QuizBank } from '../types';
+﻿import type { QuizBank } from '../types';
 
-export const quiz123: QuizBank = {
-  id: 'quiz-12-3',
+export const quiz113: QuizBank = {
+  id: 'quiz-11-3',
   questions: [
     {
       scenario: 'مشروع على وشك التصميم يُدار بالطلب الشفهي — ومع كل تمرير سعر يرفع عشوائياً ويكتشف الفريق أخيراً.',

@@ -1,0 +1,28 @@
+{
+  "name": "GridFix Academy — منصة إدارة المنشآت والصيانة",
+  "short_name": "GridFix Academy",
+  "description": "منصة تعليمية عربية مجانية لشهادات CFM و CMRP و CAMA مع أدوات تفاعلية وكويزات عملية.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1482db",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "/logo-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

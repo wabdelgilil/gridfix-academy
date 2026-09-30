@@ -1,5 +1,5 @@
 ---
-import { getStation, type PlanLesson } from '../../data/curriculum';
+import { curriculum } from '../../data/curriculum';
 import LangText from './LangText.astro';
 
 interface Props {
@@ -8,13 +8,38 @@ interface Props {
   lessonId: string;
 }
 const { course, stationId, lessonId } = Astro.props;
-const station = getStation(stationId);
-const lessons = station?.lessons ?? [];
+
+const courseStations = curriculum
+  .filter((s) => (s.courseId ?? 'cfm') === course && s.status === 'live')
+  .sort((a, b) => a.number - b.number);
+
+const currentStationIndex = courseStations.findIndex((s) => s.id === stationId);
+const station = courseStations[currentStationIndex];
+const lessons = (station?.lessons ?? []).filter((l) => l.status === 'live');
 const currentIndex = lessons.findIndex((l) => l.id === lessonId);
-const prev: PlanLesson | undefined = currentIndex > 0 ? lessons[currentIndex - 1] : undefined;
-const next: PlanLesson | undefined = currentIndex >= 0 && currentIndex < lessons.length - 1 ? lessons[currentIndex + 1] : undefined;
-const livePrev: PlanLesson | undefined = prev?.status === 'live' ? prev : undefined;
-const liveNext: PlanLesson | undefined = next?.status === 'live' ? next : undefined;
+
+let livePrev: { id: string; number: string; title: string; titleEn: string } | undefined;
+let liveNext: { id: string; number: string; title: string; titleEn: string } | undefined;
+
+if (currentIndex > 0) {
+  livePrev = lessons[currentIndex - 1];
+} else if (currentStationIndex > 0) {
+  const prevStation = courseStations[currentStationIndex - 1];
+  const prevLessons = prevStation.lessons.filter((l) => l.status === 'live');
+  if (prevLessons.length > 0) {
+    livePrev = prevLessons[prevLessons.length - 1];
+  }
+}
+
+if (currentIndex >= 0 && currentIndex < lessons.length - 1) {
+  liveNext = lessons[currentIndex + 1];
+} else if (currentStationIndex >= 0 && currentStationIndex < courseStations.length - 1) {
+  const nextStation = courseStations[currentStationIndex + 1];
+  const nextLessons = nextStation.lessons.filter((l) => l.status === 'live');
+  if (nextLessons.length > 0) {
+    liveNext = nextLessons[0];
+  }
+}
 ---
 
 <div class="mt-10 border-t border-slate-200 pt-6">

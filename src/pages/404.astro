@@ -14,7 +14,7 @@ import LangText from '../components/ui/LangText.astro';
       <LangText lang="ar">الصفحة التي تبحث عنها غير موجودة أو نُقلت. لا بأس — أفضل المهندسين يعيدون المعايرة ثم يكملون الطريق.</LangText>
       <LangText lang="en">The page you're looking for doesn't exist or has moved. No worries — the best engineers recalibrate and continue the journey.</LangText>
     </p>
-    <div class="mt-8 grid gap-3 sm:grid-cols-3">
+    <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
       <a href="/cfm" class="card p-5 transition hover:border-brand-500 hover:shadow-md">
         <span class="text-3xl">🏗️</span>
         <p class="mt-2 font-bold text-ink-900">
@@ -35,6 +35,17 @@ import LangText from '../components/ui/LangText.astro';
         <p class="mt-1 text-xs text-ink-400">
           <LangText lang="ar">الصيانة والموثوقية التطبيقية</LangText>
           <LangText lang="en">Maintenance and reliability</LangText>
+        </p>
+      </a>
+      <a href="/cama" class="card p-5 transition hover:border-brand-500 hover:shadow-md">
+        <span class="text-3xl">📐</span>
+        <p class="mt-2 font-bold text-ink-900">
+          <LangText lang="ar">مسار CAMA</LangText>
+          <LangText lang="en">CAMA path</LangText>
+        </p>
+        <p class="mt-1 text-xs text-ink-400">
+          <LangText lang="ar">تقييم وتخطيط إدارة الأصول</LangText>
+          <LangText lang="en">Asset management assessor</LangText>
         </p>
       </a>
       <a href="/" class="card p-5 transition hover:border-brand-500 hover:shadow-md">

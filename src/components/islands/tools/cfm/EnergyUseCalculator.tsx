@@ -58,7 +58,7 @@ export default function EnergyUseCalculator() {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-ink-900">صافي المساحة المبنية (م²)</label>
+            <label className="block text-sm font-semibold text-ink-900">إجمالي المساحة المبنية GFA (م²)</label>
             <input
               type="number"
               value={area}
@@ -89,7 +89,7 @@ export default function EnergyUseCalculator() {
           <p className="text-lg font-bold" dir="ltr">EUI = {fmt(eui)} kWh/m²·yr</p>
           <p className="mt-2 opacity-90">النطاق المرجعي التقديري: <span dir="ltr">{ref.low}–{ref.high}</span> kWh/m²·yr</p>
           <p className="mt-3 font-semibold">{verdict}</p>
-          <p className="mt-2 text-xs opacity-75">المرجع التقريبي حسب ENERGY STAR/ASHRAE؛ اقرن دائماً بظروف المناخ ونوع التجهيز. انخفاض EUI ليس هدفاً أعمى — بل مع الحفاظ على الراحة وجودة البيئة.</p>
+          <p className="mt-2 text-xs opacity-75">المرجع التقريبي حسب ENERGY STAR وASHRAE 100؛ يُحسب دائماً على إجمالي المساحة الطابقية (GFA). اقرن بظروف المناخ ونوع التجهيز مع الحفاظ على جودة البيئة الداخلية.</p>
         </div>
       </div>
     </div>

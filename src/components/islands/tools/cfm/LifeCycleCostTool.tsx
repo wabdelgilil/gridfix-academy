@@ -18,7 +18,7 @@ function lccTotal(opt: Option, discount: number): number {
   for (let y = 1; y <= HORIZON; y++) {
     const opCost = opt.annual * Math.pow(1 + opt.escalate / 100, y - 1);
     total += pv(opCost, discount, y);
-    if (y % opt.life === 0) total += pv(opt.initial, discount, y);
+    if (y % opt.life === 0 && y < HORIZON) total += pv(opt.initial, discount, y);
   }
   return total;
 }

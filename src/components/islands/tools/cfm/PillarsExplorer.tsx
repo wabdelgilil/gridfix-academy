@@ -18,7 +18,7 @@ const pillars: Pillar[] = [
   { id: 'quality', letter: 'G', ar: 'الجودة', en: 'Quality', focus: 'التحسين المستمر، PDCA، الجودة والتدقيق — محطة 10.' },
   { id: 'realestate', letter: 'H', ar: 'العقارات', en: 'Real Estate', focus: 'عقود الإيجار، دورة حياة العقار، وتخطيط المساحات — محطة 2.' },
   { id: 'fmtech', letter: 'I', ar: 'تقنية المعلومات والبيانات', en: 'Facility Technology & Data Management', focus: 'مؤشرات KPIs وأنظمة CMMS/CAFM وتحليل البيانات — محطة 9.' },
-  { id: 'projects', letter: 'J', ar: 'إدارة المشاريع', en: 'Project Management', focus: 'دورة حياة المشروع، الجدولة والتكلفة، المقاولون والإغلاق — محطة 12.' },
+  { id: 'projects', letter: 'J', ar: 'إدارة المشاريع', en: 'Project Management', focus: 'دورة حياة المشروع، الجدولة والتكلفة، المقاولون والإغلاق — محطة 11.' },
 ];
 
 export default function PillarsExplorer() {
