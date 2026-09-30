@@ -37,6 +37,11 @@ const siteJsonLd = {
     </div>
 
     <div class="relative z-10 mx-auto max-w-2xl">
+      <div class="mb-6 flex justify-center">
+        <div class="flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center rounded-3xl bg-white/10 p-3.5 shadow-2xl backdrop-blur-md ring-1 ring-white/20 transition-transform duration-300 hover:scale-105">
+          <img src="/logo-academic.svg" alt="GridFix Academy" width="112" height="112" class="h-full w-full object-contain filter drop-shadow-md" />
+        </div>
+      </div>
       <span class="chip bg-amber-400 text-amber-950">
         <LangText lang="ar">منصة تعليمية مجانية بالكامل</LangText>
         <LangText lang="en">100% free learning platform</LangText>
@@ -58,8 +63,8 @@ const siteJsonLd = {
       <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-blue-50">
         <span class="flex items-center gap-2">
           <span class="font-bold text-amber-300">{liveCourses.length}</span>
-          <LangText lang="ar">كورس متاح</LangText>
-          <LangText lang="en">live courses</LangText>
+          <LangText lang="ar">كورسات تخصصية</LangText>
+          <LangText lang="en">specialized courses</LangText>
         </span>
         <span class="flex items-center gap-2">
           <span class="font-bold text-amber-300">{perCourse.reduce((a, c) => a + c.stations, 0)}</span>
@@ -119,10 +124,6 @@ const siteJsonLd = {
                   </div>
                 </div>
               </div>
-              <span class="chip bg-emerald-400/20 text-emerald-200">
-                <LangText lang="ar">متاح الآن</LangText>
-                <LangText lang="en">Available now</LangText>
-              </span>
             </div>
             <div class="px-6 py-5">
               <p class="text-sm leading-relaxed text-ink-600">
@@ -274,11 +275,11 @@ const siteJsonLd = {
             💚
           </div>
           <h3 class="mt-3 text-sm font-bold text-ink-900 dark:text-white">
-            <LangText lang="ar">محتوى حر ومتاح للجميع</LangText>
+            <LangText lang="ar">محتوى مفتوح ومجاني للجميع</LangText>
             <LangText lang="en">Open Access Forever</LangText>
           </h3>
           <p class="mt-1.5 text-xs leading-relaxed text-ink-500 dark:text-slate-400">
-            <LangText lang="ar">كافة الدروس، الكويزات، والأدوات التفاعلية متاحة دون رسوم أو اشتراكات كخدمة مجتمعية.</LangText>
+            <LangText lang="ar">كافة الدروس، الكويزات، والأدوات التفاعلية مجانية بالكامل دون رسوم أو اشتراكات كخدمة مجتمعية.</LangText>
             <LangText lang="en">All lessons, quizzes, and calculators are accessible without paywalls or subscriptions.</LangText>
           </p>
         </div>
@@ -313,10 +314,10 @@ const siteJsonLd = {
   <section class="mt-12 rounded-3xl bg-gradient-to-l from-brand-50 to-brand-100/50 px-6 py-10 sm:px-12">
     <div class="grid gap-6 text-center sm:grid-cols-4">
       <div>
-        <p class="text-3xl font-bold text-brand-700" dir="ltr">{liveCourses.length}+</p>
+        <p class="text-3xl font-bold text-brand-700" dir="ltr">{liveCourses.length}</p>
         <p class="mt-1 text-sm text-ink-600">
-          <LangText lang="ar">كورس متاح</LangText>
-          <LangText lang="en">live courses</LangText>
+          <LangText lang="ar">كورسات متخصصة</LangText>
+          <LangText lang="en">specialized courses</LangText>
         </p>
       </div>
       <div>

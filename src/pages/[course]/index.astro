@@ -93,8 +93,8 @@ const courseJsonLd = !isPlanned && courseMeta
         <div class="relative z-10 max-w-2xl">
           <div class="flex flex-wrap items-center gap-2">
             <span class="chip bg-amber-400 text-amber-950">
-              <LangText lang="ar">🎯 {liveStations} محطات متاحة الآن</LangText>
-              <LangText lang="en">🎯 {liveStations} stations available now</LangText>
+              <LangText lang="ar">🎯 {liveStations} محطات تعليمية</LangText>
+              <LangText lang="en">🎯 {liveStations} learning stations</LangText>
             </span>
             <span class="chip bg-white/15 text-white">
               <LangText lang="ar">💚 منصة مجانية بالكامل</LangText>
@@ -136,8 +136,8 @@ const courseJsonLd = !isPlanned && courseMeta
           <div class="mt-8 flex flex-wrap gap-6 text-sm text-teal-50">
             <span class="flex items-center gap-2">
               <span class="font-bold text-amber-300">{courseLessons.length}</span>
-              <LangText lang="ar"> دروس متاحة</LangText>
-              <LangText lang="en"> lessons available</LangText>
+              <LangText lang="ar"> درساً تطبيقياً</LangText>
+              <LangText lang="en"> practical lessons</LangText>
             </span>
             <span class="flex items-center gap-2">
               <span class="font-bold text-amber-300">{totalMinutes}</span>
@@ -208,9 +208,9 @@ const courseJsonLd = !isPlanned && courseMeta
                   <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-2xl transition-transform duration-300 hover:scale-110">
                     {s.icon}
                   </span>
-                  <span class="chip bg-brand-100 text-brand-700">
-                    <LangText lang="ar">✅ متاح</LangText>
-                    <LangText lang="en">✅ Live</LangText>
+                  <span class="chip bg-slate-100 font-semibold text-slate-700">
+                    <LangText lang="ar">المحطة {s.number}</LangText>
+                    <LangText lang="en">Station {s.number}</LangText>
                   </span>
                 </div>
                 <h3 class="mt-3 font-bold text-ink-900">
@@ -224,7 +224,7 @@ const courseJsonLd = !isPlanned && courseMeta
                 <div class="mt-3 flex items-center justify-between text-sm">
                   <span class="chip bg-slate-100 text-ink-600">
                     📚 {live}
-                    <LangText lang="ar"> دروس متاحة</LangText>
+                    <LangText lang="ar"> درساً</LangText>
                     <LangText lang="en"> lessons</LangText>
                   </span>
                   <span class="font-bold text-brand-600 transition-transform duration-300 group-hover:translate-x-[-4px]">←</span>

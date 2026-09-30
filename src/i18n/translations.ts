@@ -28,7 +28,7 @@ export const translations = {
     'badge.tool': 'أداة تفاعلية',
     'badge.quiz': 'كويز',
     'badge.comingSoon': 'قريباً',
-    'badge.live': 'متاح',
+    'badge.live': 'مكتمل',
     'lesson.objectives': 'أهداف التعلم',
     'lesson.glossary': 'قاموس المصطلحات',
     'lesson.sources': 'مصادر معتمدة',
