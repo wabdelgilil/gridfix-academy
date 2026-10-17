@@ -18,9 +18,21 @@ interface Props {
 const { curves, title, caption, hazardLabel = 'hazard rate', timeLabel = 'time' } = Astro.props;
 
 const styles: Record<CurveKey, Record<string, string>> = {
-  infant: { card: 'border-teal-300 bg-teal-50/50', chip: 'bg-teal-100 text-teal-800', color: '#0d9488' },
-  random: { card: 'border-amber-300 bg-amber-50/50', chip: 'bg-amber-100 text-amber-800', color: '#d97706' },
-  wearout: { card: 'border-rose-300 bg-rose-50/50', chip: 'bg-rose-100 text-rose-800', color: '#e11d48' },
+  infant: {
+    card: 'border-teal-300/80 bg-teal-50/50 dark:border-teal-800/50 dark:bg-teal-950/25 shadow-xs',
+    chip: 'bg-teal-100 text-teal-800 dark:bg-teal-950/80 dark:text-teal-300 ring-1 ring-inset ring-teal-200/50 dark:ring-teal-800/50',
+    color: '#0d9488',
+  },
+  random: {
+    card: 'border-amber-300/80 bg-amber-50/50 dark:border-amber-800/50 dark:bg-amber-950/25 shadow-xs',
+    chip: 'bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 ring-1 ring-inset ring-amber-200/50 dark:ring-amber-800/50',
+    color: '#d97706',
+  },
+  wearout: {
+    card: 'border-rose-300/80 bg-rose-50/50 dark:border-rose-800/50 dark:bg-rose-950/25 shadow-xs',
+    chip: 'bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 ring-1 ring-inset ring-rose-200/50 dark:ring-rose-800/50',
+    color: '#e11d48',
+  },
 };
 
 const labels: Record<CurveKey, string> = {
@@ -70,24 +82,35 @@ function curvePath(key: CurveKey): string {
 ---
 
 <div class="my-6">
-  {title && <p class="mb-3 text-sm font-bold text-ink-900">{title}</p>}
-  <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+  {title && (
+    <div class="mb-3.5 flex items-center gap-2">
+      <span class="inline-block h-2 w-2 rounded-full bg-brand-500" />
+      <p class="text-sm font-bold text-ink-900 dark:text-slate-100">{title}</p>
+    </div>
+  )}
+  <div class="grid grid-cols-1 gap-3.5 sm:grid-cols-3">
     {curves.map((c) => (
-      <div class={`rounded-xl border p-3 ${styles[c.key].card}`}>
+      <div class={`rounded-xl border p-3.5 transition-all ${styles[c.key].card}`}>
         <div class="flex items-center justify-between gap-2">
-          <span class="text-xs font-bold text-ink-900">{c.label}</span>
+          <span class="text-xs font-bold text-ink-900 dark:text-slate-100">{c.label}</span>
           <span class={`rounded-full px-2 py-0.5 text-[11px] font-bold ${styles[c.key].chip}`} dir="ltr">{labels[c.key]}</span>
         </div>
         <svg viewBox="0 0 120 80" class="mt-2 w-full" role="img" aria-label={`${c.label} ${labels[c.key]}`}>
-          <line x1={PLOT_LEFT} y1={PLOT_BOTTOM} x2={PLOT_RIGHT} y2={PLOT_BOTTOM} stroke="#94a3b8" stroke-width="1" />
-          <line x1={PLOT_LEFT} y1={PLOT_BOTTOM} x2={PLOT_LEFT} y2={PLOT_TOP} stroke="#94a3b8" stroke-width="1" />
+          <style>
+            .wb-axis { stroke: #94a3b8; }
+            .wb-text { fill: #64748b; }
+            :global(.dark) .wb-axis { stroke: #475569; }
+            :global(.dark) .wb-text { fill: #94a3b8; }
+          </style>
+          <line x1={PLOT_LEFT} y1={PLOT_BOTTOM} x2={PLOT_RIGHT} y2={PLOT_BOTTOM} class="wb-axis" stroke-width="1" />
+          <line x1={PLOT_LEFT} y1={PLOT_BOTTOM} x2={PLOT_LEFT} y2={PLOT_TOP} class="wb-axis" stroke-width="1" />
           <path d={curvePath(c.key)} fill="none" stroke={styles[c.key].color} stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-          <text x={PLOT_RIGHT} y="78" font-size="7" fill="#64748b" text-anchor="end">{timeLabel}</text>
-          <text x={PLOT_LEFT + 2} y={PLOT_TOP + 7} font-size="6.5" fill="#64748b">{hazardLabel}</text>
+          <text x={PLOT_RIGHT} y="78" font-size="7" class="wb-text" text-anchor="end">{timeLabel}</text>
+          <text x={PLOT_LEFT + 2} y={PLOT_TOP + 7} font-size="6.5" class="wb-text">{hazardLabel}</text>
         </svg>
-        <p class="mt-1.5 text-[11px] leading-relaxed text-ink-600">{c.note}</p>
+        <p class="mt-1.5 text-[11px] leading-relaxed text-ink-600 dark:text-slate-300">{c.note}</p>
       </div>
     ))}
   </div>
-  {caption && <p class="mt-2 text-center text-xs text-ink-400">{caption}</p>}
+  {caption && <p class="mt-2 text-center text-xs text-ink-400 dark:text-slate-400">{caption}</p>}
 </div>

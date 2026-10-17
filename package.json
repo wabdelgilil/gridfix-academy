@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "qa:ar": "node scripts/qa-arabic.mjs"
+    "qa:ar": "node scripts/qa-arabic.mjs",
+    "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.14",
@@ -19,6 +20,7 @@
     "@fontsource/ibm-plex-sans-arabic": "^5.3.0",
     "@fontsource/inter": "^5.3.0",
     "@tailwindcss/vite": "^4.3.3",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^5.18.2",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",

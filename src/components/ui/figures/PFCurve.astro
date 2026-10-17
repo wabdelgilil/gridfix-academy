@@ -84,50 +84,71 @@ const fY = sy(condAt(F_X));
 ---
 
 <div class="my-6">
-  {title && <p class="mb-3 text-sm font-bold text-ink-900">{title}</p>}
-  <svg viewBox="0 0 400 250" class="w-full rounded-xl border border-slate-200 bg-white">
+  {title && (
+    <div class="mb-3.5 flex items-center gap-2">
+      <span class="inline-block h-2 w-2 rounded-full bg-brand-500" />
+      <p class="text-sm font-bold text-ink-900 dark:text-slate-100">{title}</p>
+    </div>
+  )}
+  <svg viewBox="0 0 400 250" class="w-full rounded-xl border border-slate-200/90 bg-white dark:border-slate-700/80 dark:bg-slate-900 shadow-xs">
+    <style>
+      .pf-axis { stroke: #94a3b8; }
+      .pf-arrow { fill: #94a3b8; }
+      .pf-curve { stroke: #334155; }
+      .pf-text-muted { fill: #64748b; }
+      .pf-text-primary { fill: #1e293b; }
+      .pf-bracket { stroke: #475569; fill: #475569; }
+      .pf-badge-bg { fill: #f8fafc; stroke: #cbd5e1; }
+      :global(.dark) .pf-axis { stroke: #475569; }
+      :global(.dark) .pf-arrow { fill: #475569; }
+      :global(.dark) .pf-curve { stroke: #e2e8f0; }
+      :global(.dark) .pf-text-muted { fill: #94a3b8; }
+      :global(.dark) .pf-text-primary { fill: #f1f5f9; }
+      :global(.dark) .pf-bracket { stroke: #94a3b8; fill: #94a3b8; }
+      :global(.dark) .pf-badge-bg { fill: #1e293b; stroke: #334155; }
+    </style>
     <defs>
       <linearGradient id={`band-${uid}`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.10" />
-        <stop offset="100%" stop-color="#e11d48" stop-opacity="0.14" />
+        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.12" />
+        <stop offset="100%" stop-color="#e11d48" stop-opacity="0.16" />
       </linearGradient>
     </defs>
 
     <!-- P-F interval band -->
     <rect x={sx(P_X)} y="16" width={sx(F_X) - sx(P_X)} height={bottom - 16} fill={`url(#band-${uid})`} />
-    <line x1={sx(P_X)} y1="14" x2={sx(P_X)} y2={bottom} stroke="#0d9488" stroke-width="1" stroke-dasharray="4 3" />
-    <line x1={sx(F_X)} y1="14" x2={sx(F_X)} y2={bottom} stroke="#e11d48" stroke-width="1" stroke-dasharray="4 3" />
+    <line x1={sx(P_X)} y1="14" x2={sx(P_X)} y2={bottom} stroke="#0d9488" stroke-width="1.2" stroke-dasharray="4 3" />
+    <line x1={sx(F_X)} y1="14" x2={sx(F_X)} y2={bottom} stroke="#e11d48" stroke-width="1.2" stroke-dasharray="4 3" />
 
     <!-- interval bracket -->
-    <line x1={sx(P_X)} y1="34" x2={sx(F_X)} y2="34" stroke="#475569" stroke-width="1.2" />
-    <line x1={sx(P_X)} y1="30" x2={sx(P_X)} y2="38" stroke="#475569" stroke-width="1.2" />
-    <line x1={sx(F_X)} y1="30" x2={sx(F_X)} y2="38" stroke="#475569" stroke-width="1.2" />
-    <path d={`M${sx(P_X)},29 l4,-5 l0,10 Z`} fill="#475569" />
-    <path d={`M${sx(F_X)},29 l-4,-5 l0,10 Z`} fill="#475569" />
-    <text x={(sx(P_X) + sx(F_X)) / 2} y="24" font-size="9" fill="#475569" text-anchor="middle">
+    <line x1={sx(P_X)} y1="34" x2={sx(F_X)} y2="34" class="pf-bracket" stroke-width="1.2" />
+    <line x1={sx(P_X)} y1="30" x2={sx(P_X)} y2="38" class="pf-bracket" stroke-width="1.2" />
+    <line x1={sx(F_X)} y1="30" x2={sx(F_X)} y2="38" class="pf-bracket" stroke-width="1.2" />
+    <path d={`M${sx(P_X)},29 l4,-5 l0,10 Z`} class="pf-bracket" />
+    <path d={`M${sx(F_X)},29 l-4,-5 l0,10 Z`} class="pf-bracket" />
+    <text x={(sx(P_X) + sx(F_X)) / 2} y="24" font-size="9" class="pf-bracket" text-anchor="middle" font-weight="600">
       {intervalLabel}
     </text>
 
     <!-- axes -->
-    <line x1={left} y1={bottom} x2="394" y2={bottom} stroke="#94a3b8" stroke-width="1.2" />
-    <path d="M395,150 L389,146.5 L389,153.5 Z" fill="#94a3b8" />
-    <line x1={left} y1={bottom} x2={left} y2="14" stroke="#94a3b8" stroke-width="1.2" />
-    <path d="M26,16 L30,9 L34,15.5 Z" fill="#94a3b8" />
+    <line x1={left} y1={bottom} x2="394" y2={bottom} class="pf-axis" stroke-width="1.2" />
+    <path d="M395,150 L389,146.5 L389,153.5 Z" class="pf-arrow" />
+    <line x1={left} y1={bottom} x2={left} y2="14" class="pf-axis" stroke-width="1.2" />
+    <path d="M26,16 L30,9 L34,15.5 Z" class="pf-arrow" />
 
-    <text x="34" y="30" font-size="8" fill="#64748b">{conditionLabel}</text>
+    <text x="34" y="30" font-size="8" class="pf-text-muted">{conditionLabel}</text>
 
     <!-- degradation curve -->
-    <path d={smoothPath(deg)} fill="none" stroke="#334155" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+    <path d={smoothPath(deg)} fill="none" class="pf-curve" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
 
     <!-- technique markers -->
     {markers.map((m, i) => {
       const my = sy(condAt(m.x));
       return (
         <>
-          <circle cx={sx(m.x)} cy={my} r="2.6" fill={chipColors[i] ?? '#64748b'} />
-          <line x1={sx(m.x)} y1={my + 3} x2={sx(m.x)} y2="176" stroke={chipColors[i] ?? '#64748b'} stroke-width="0.8" stroke-dasharray="2 3" opacity="0.5" />
+          <circle cx={sx(m.x)} cy={my} r="3" fill={chipColors[i] ?? '#64748b'} />
+          <line x1={sx(m.x)} y1={my + 3} x2={sx(m.x)} y2="176" stroke={chipColors[i] ?? '#64748b'} stroke-width="0.8" stroke-dasharray="2 3" opacity="0.6" />
           <g>
-            <rect x={sx(m.x) - 14} y={my + 8} width="28" height="13" rx="6.5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8" />
+            <rect x={sx(m.x) - 14} y={my + 8} width="28" height="13" rx="6.5" class="pf-badge-bg" stroke-width="0.8" />
             <text x={sx(m.x)} y={my + 17.5} font-size="7" fill={chipColors[i] ?? '#475569'} text-anchor="middle" font-weight="700">
               {m.cost}
             </text>
@@ -137,20 +158,20 @@ const fY = sy(condAt(F_X));
     })}
 
     <!-- Point P -->
-    <circle cx={sx(P_X)} cy={pY} r="7" fill="#0d9488" />
+    <circle cx={sx(P_X)} cy={pY} r="7.5" fill="#0d9488" />
     <text x={sx(P_X)} y={pY + 3} font-size="8" fill="#ffffff" text-anchor="middle" font-weight="800">{pLabel}</text>
     <!-- Point F -->
-    <circle cx={sx(F_X)} cy={fY} r="7" fill="#e11d48" />
+    <circle cx={sx(F_X)} cy={fY} r="7.5" fill="#e11d48" />
     <text x={sx(F_X)} y={fY + 3} font-size="8" fill="#ffffff" text-anchor="middle" font-weight="800">{fLabel}</text>
 
     <!-- legend names -->
     {markers.map((m) => (
-      <text x={sx(m.x)} y="188" font-size="7.5" fill="#334155" text-anchor="middle" font-weight="600">
+      <text x={sx(m.x)} y="188" font-size="7.5" class="pf-text-primary" text-anchor="middle" font-weight="600">
         {m.name}
       </text>
     ))}
 
-    <text x="394" y="224" font-size="8" fill="#64748b" text-anchor="end">{timeLabel}</text>
+    <text x="394" y="224" font-size="8" class="pf-text-muted" text-anchor="end">{timeLabel}</text>
   </svg>
-  {caption && <p class="mt-2 text-center text-xs text-ink-400">{caption}</p>}
+  {caption && <p class="mt-2 text-center text-xs text-ink-400 dark:text-slate-400">{caption}</p>}
 </div>

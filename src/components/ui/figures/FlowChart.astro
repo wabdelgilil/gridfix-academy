@@ -14,31 +14,78 @@ interface Props {
 
 const { steps, title, caption } = Astro.props;
 
-const styles: Record<string, string> = {
-  start: 'border-brand-300 bg-brand-50 text-brand-800',
-  end: 'border-ink-600 bg-ink-900 text-white',
-  decision: 'border-amber-300 bg-amber-50 text-amber-800',
-  step: 'border-slate-200 bg-white text-ink-800',
+const nodeStyles: Record<string, string> = {
+  start: 'border-brand-400 bg-brand-600 text-white ring-2 ring-brand-200 dark:ring-brand-900 shadow-sm',
+  decision: 'border-amber-400 bg-amber-500 text-white ring-2 ring-amber-200 dark:ring-amber-900 shadow-sm',
+  end: 'border-slate-700 bg-slate-900 text-white ring-2 ring-slate-200 dark:border-slate-500 dark:bg-slate-100 dark:text-slate-900 dark:ring-slate-700 shadow-sm',
+  step: 'border-slate-300 bg-white text-ink-800 ring-2 ring-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:ring-slate-800',
+};
+
+const cardStyles: Record<string, string> = {
+  start: 'border-brand-200/80 bg-brand-50/70 text-brand-950 dark:border-brand-800/60 dark:bg-brand-950/40 dark:text-brand-200 shadow-xs',
+  decision: 'border-amber-300/80 bg-amber-50/70 text-amber-950 dark:border-amber-800/60 dark:bg-amber-950/40 dark:text-amber-200 shadow-xs',
+  end: 'border-slate-700 bg-slate-900 text-white dark:border-slate-700 dark:bg-slate-800/90 dark:text-slate-100 shadow-xs',
+  step: 'border-slate-200 bg-white text-ink-900 dark:border-slate-700/80 dark:bg-slate-800/70 dark:text-slate-100 shadow-xs',
+};
+
+const detailStyles: Record<string, string> = {
+  start: 'text-brand-800/90 dark:text-brand-300/90',
+  decision: 'text-amber-900/90 dark:text-amber-300/90',
+  end: 'text-slate-200/90 dark:text-slate-300/90',
+  step: 'text-ink-600 dark:text-slate-300',
+};
+
+const typeLabels: Record<string, { ar: string; en: string }> = {
+  start: { ar: 'بداية العملية', en: 'Start' },
+  decision: { ar: 'نقطة قرار', en: 'Decision' },
+  end: { ar: 'المخرج النهائي', en: 'End' },
 };
 ---
 
 <div class="my-6">
-  {title && <p class="mb-3 text-sm font-bold text-ink-900">{title}</p>}
+  {title && (
+    <div class="mb-3.5 flex items-center gap-2">
+      <span class="inline-block h-2 w-2 rounded-full bg-brand-500" />
+      <p class="text-sm font-bold text-ink-900 dark:text-slate-100">{title}</p>
+    </div>
+  )}
   <ol class="relative space-y-0">
-    {steps.map((step, i) => (
-      <li class="relative flex gap-3">
-        <div class="flex flex-col items-center">
-          <span class={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold ring-2 ring-offset-2 ${styles[step.type ?? 'step']}`}>
-            {step.icon ?? i + 1}
-          </span>
-          {i < steps.length - 1 && <span class="my-1 w-0.5 flex-1 rounded bg-brand-200" />}
-        </div>
-        <div class={`mb-4 flex-1 rounded-xl border p-3 ${styles[step.type ?? 'step']}`} dir="auto">
-          <p class="text-sm font-bold">{step.title}</p>
-          {step.detail && <p class="mt-1 text-xs leading-relaxed opacity-80">{step.detail}</p>}
-        </div>
-      </li>
-    ))}
+    {steps.map((step, i) => {
+      const type = step.type ?? 'step';
+      const label = typeLabels[type];
+      return (
+        <li class="relative flex gap-3.5">
+          <div class="flex flex-col items-center">
+            <span class={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-transform ${nodeStyles[type]}`}>
+              {step.icon ?? i + 1}
+            </span>
+            {i < steps.length - 1 && (
+              <div class="my-1 flex flex-1 flex-col items-center">
+                <span class="w-0.5 flex-1 rounded-full bg-slate-200 dark:bg-slate-700" />
+                <svg class="h-3 w-3 -mt-0.5 text-slate-300 dark:text-slate-600" viewBox="0 0 12 12" fill="currentColor">
+                  <path d="M6 9.5L2 4.5h8L6 9.5z" />
+                </svg>
+              </div>
+            )}
+          </div>
+          <div class={`mb-4 flex-1 rounded-xl border p-3.5 transition-all ${cardStyles[type]}`} dir="auto">
+            <div class="flex flex-wrap items-center justify-between gap-1.5">
+              <p class="text-sm font-bold">{step.title}</p>
+              {label && (
+                <span class="inline-flex items-center rounded-md px-1.5 py-0.5 text-[10px] font-semibold opacity-75 ring-1 ring-inset ring-current/20">
+                  {label.ar}
+                </span>
+              )}
+            </div>
+            {step.detail && (
+              <p class={`mt-1.5 text-xs leading-relaxed ${detailStyles[type]}`}>
+                {step.detail}
+              </p>
+            )}
+          </div>
+        </li>
+      );
+    })}
   </ol>
-  {caption && <p class="mt-1 text-center text-xs text-ink-400">{caption}</p>}
+  {caption && <p class="mt-1 text-center text-xs text-ink-400 dark:text-slate-400">{caption}</p>}
 </div>

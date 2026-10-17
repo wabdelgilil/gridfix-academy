@@ -223,7 +223,7 @@
 
 ---
 
-## [2026-10-01] تجهيز تكامل Google Analytics 4 (GA4)
+## [2026-10-17] تجهيز تكامل Google Analytics 4 (GA4)
 
 **الملفات المتأثرة**: `src/layouts/BaseLayout.astro`، `src/env.d.ts`، `.env.example`، `.env`
 
@@ -237,5 +237,59 @@
    - `npm run qa:ar`: ✔ سليم.
    - `npm run check`: ✔ 0 أخطاء و 0 تحذيرات (195 ملفاً).
    - `npm run build`: ✔ تم اختبار الحقن والتوليد بنجاح لجميع الصفحات.
+
+---
+
+## [2026-10-17] ترقية هندسة وتجربة الرسوم التوضيحية (Figures System Upgrade)
+
+**الملفات المتأثرة**:
+- `src/components/ui/figures/FlowChart.astro`
+- `src/components/ui/figures/Comparison.astro`
+- `src/components/ui/figures/Infographic.astro`
+- `src/components/ui/figures/Timeline.astro`
+- `src/components/ui/figures/StatGrid.astro`
+- `src/components/ui/figures/Hierarchy.astro`
+- `src/components/ui/figures/PFCurve.astro`
+- `src/components/ui/figures/CurveShapes.astro`
+- `src/components/ui/figures/WeibullCurves.astro`
+
+**التحسينات المنجزة**:
+1. **دعم الوضع الداكن (Dark Mode) ومعايير الوصول (WCAG AA)**:
+   - كانت المكونات تعتمد على خلفيات بيضاء ثابتة ونصوص داكنة غير متكيفة مع الوضع الداكن، فأصبحت تدعم الوضعين بسلاسة مع تباين عالي ومريح للعين أثناء المذاكرة الطويلة.
+2. **FlowChart**: إضافة مؤشرات اتجاه الحركة التتابعية (Downward Chevron Indicators) وشارات نوع المرحلة (Start, Decision, Outcome) لتحويل المخطط من مجرد مربعات رأسية إلى مسار تدفق هندسي متصل.
+3. **Comparison**: تخصيص أيقونات القوائم بحسب السياق (صح `✓` للأعمدة الإيجابية، خطأ `✕` للأعمدة السلبية/العيوب، وتنبيه `•` للأعمدة التحذيرية) بدلاً من تكرار علامة الصح في جميع المقارنات.
+4. **Timeline**: ضبط محاذاة العقد ونقاط التسلسل بدقة هندسية في اتجاه اليمين لليسار (RTL) مع حلقة تفريغ دائرية أنيقة تفصل الخط الزمني عن النقطة وشارات مدة زمنية محسنة.
+5. **StatGrid**: تعزيز أرقام المؤشرات بالخط الهندسي العريض عالي التباين وشريط هوية لوني علوي لكل بطاقة مع تأثيرات تحويم مجهرية.
+6. **Hierarchy**: ضبط نسب عرض طبقات الهرم لمنع تكسر وتكدس النصوص العربية على شاشات الجوال الصغيرة.
+7. **الرسوم البيانية الرياضية (P-F Curve, Nolan & Heap Curves, Weibull Curves)**: إضافة أنماط محصورة متكيفة مع الوضع الداكن لمحاور الـ SVG والنصوص وخطوط التدهور لمنع بهتانها في الشاشات الداكنة.
+
+**نتائج بوابات الجودة**:
+- `npm run qa:ar`: ✔ سليم 100%.
+- `npm run check`: ✔ 0 أخطاء، 0 تحذيرات (195 ملفاً).
+- `npm run build`: ✔ تم بناء 116 صفحة بنجاح كامل في 11.7 ثانية.
+
+---
+
+## [2026-10-17] ترقية شاملة: الكويز التفاعلي + حزمة TDD + دعم Vercel Analytics
+
+**الملفات المتأثرة**:
+- `package.json`: تثبيت `@vercel/analytics` وإضافة سكريبت فحص الاختبارات الآلية `"test": "node --test tests/*.test.mjs"`.
+- `src/layouts/BaseLayout.astro`: دمج مكون `<Analytics />` الرسمي من `@vercel/analytics/astro` بجانب GA4.
+- `src/components/islands/quiz/ScenarioQuiz.tsx`:
+  - إضافة دعم كامل للوحة المفاتيح (أزرار `1-4` أو `A-D` للاختيار الفوري، وزر `Enter` للانتقال للسؤال التالي).
+  - دعم كامل للوضع الداكن (Dark Mode) في الخيارات، شارات الأحرف، صندوق التغذية الراجعة، وشاشة النتائج الدائرية.
+- `src/lib/formulas.ts`: وحدة مركزية موحدة تضم كافة المعادلات الهندسية والمالية (LCC, NPV, MTBF, MTTR, Availability, OEE, EUI, Exam Scoring).
+- `tests/formulas.test.mjs`: جناح اختبارات TDD مؤتمت (14 اختباراً شاملاً تعمل بنظام `node --test`).
+- `src/components/islands/tools/cfm/LifeCycleCostTool.tsx`: ربط الأداة بالمعادلات المركزية ودعم حقول الإدخال والنتائج للوضع الداكن.
+- `src/styles/global.css`: تعميم دعم الوضع الداكن على جميع حقول الإدخال (`input`, `select`, `textarea`) في كافة الأدوات التفاعلية (60 أداة).
+- `src/layouts/LessonLayout.astro`، `src/components/ui/ObjectivesList.astro`، `src/components/ui/SourcesCard.astro`: استكمال دعم الوضع الداكن لعناوين وقوائم أهداف ومصادر الدروس.
+
+**نتائج بوابات الجودة**:
+- `npm test`: ✔ 14 اختباراً ناجحاً بنسبة 100% (0 فشل).
+- `npm run qa:ar`: ✔ سليم 100% دون أي شواذ.
+- `npm run check`: ✔ 0 أخطاء و 0 تحذيرات (197 ملفاً).
+- `npm run build`: ✔ تم بناء 116 صفحة بنجاح كامل وسرعة 9.2 ثانية.
+
+
 
 

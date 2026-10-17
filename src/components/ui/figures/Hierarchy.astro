@@ -17,17 +17,39 @@ const ordered = direction === 'bottom-up' ? [...levels].reverse() : levels;
 ---
 
 <div class="my-6">
-  {title && <p class="mb-3 text-sm font-bold text-ink-900">{title}</p>}
-  <div class="flex flex-col items-center gap-1">
-    {ordered.map((level, i) => (
-      <div
-        class={`w-full rounded-xl px-4 py-2.5 text-center ${i === 0 ? 'bg-brand-600 text-white' : 'bg-brand-50 text-ink-800'}`}
-        style={{ maxWidth: `${100 - i * 14}%` }}
-      >
-        <p class="text-sm font-bold">{level.icon && <span class="me-1">{level.icon}</span>}{level.label}</p>
-        {level.detail && <p class="mt-0.5 text-xs opacity-70">{level.detail}</p>}
-      </div>
-    ))}
+  {title && (
+    <div class="mb-3.5 flex items-center gap-2">
+      <span class="inline-block h-2 w-2 rounded-full bg-brand-500" />
+      <p class="text-sm font-bold text-ink-900 dark:text-slate-100">{title}</p>
+    </div>
+  )}
+  <div class="flex flex-col items-center gap-1.5">
+    {ordered.map((level, i) => {
+      const isTop = i === 0;
+      // Step down smoothly while ensuring mobile text remains readable (minimum 68% width)
+      const step = levels.length > 1 ? (32 / (levels.length - 1)) : 0;
+      const widthPercent = Math.max(68, Math.round(100 - i * step));
+      return (
+        <div
+          class={`w-full rounded-xl px-4 py-2.5 text-center shadow-xs transition-all ${
+            isTop
+              ? 'bg-brand-600 text-white shadow-sm ring-1 ring-brand-400/40 dark:bg-brand-600 dark:text-white'
+              : 'border border-brand-200/70 bg-brand-50/70 text-ink-900 dark:border-slate-700/80 dark:bg-slate-800/80 dark:text-slate-100'
+          }`}
+          style={{ maxWidth: `${widthPercent}%` }}
+        >
+          <p class="text-sm font-bold">
+            {level.icon && <span class="me-1.5">{level.icon}</span>}
+            {level.label}
+          </p>
+          {level.detail && (
+            <p class={`mt-0.5 text-xs ${isTop ? 'text-white/80' : 'text-ink-600 dark:text-slate-300'}`}>
+              {level.detail}
+            </p>
+          )}
+        </div>
+      );
+    })}
   </div>
-  {caption && <p class="mt-2 text-center text-xs text-ink-400">{caption}</p>}
+  {caption && <p class="mt-2 text-center text-xs text-ink-400 dark:text-slate-400">{caption}</p>}
 </div>

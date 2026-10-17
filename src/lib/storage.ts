@@ -132,3 +132,43 @@ export function getLastLesson(course: string): ProgressState['lastLesson'] {
     return undefined;
   }
 }
+
+export function calculateCourseProgress(state: ProgressState, totalLessons: number): number {
+  if (totalLessons <= 0) return 0;
+  return Math.round((state.completedLessons.length / totalLessons) * 100);
+}
+
+export function isCourseComplete(state: ProgressState, totalLessons: number): boolean {
+  if (totalLessons <= 0) return false;
+  return state.completedLessons.length >= totalLessons;
+}
+
+export function toggleBookmark(state: ProgressState, lessonId: string): ProgressState {
+  const bookmarks = state.bookmarks ?? [];
+  const exists = bookmarks.includes(lessonId);
+  return {
+    ...state,
+    bookmarks: exists ? bookmarks.filter((id) => id !== lessonId) : [...bookmarks, lessonId],
+  };
+}
+
+export function isBookmarked(state: ProgressState, lessonId: string): boolean {
+  return (state.bookmarks ?? []).includes(lessonId);
+}
+
+export function recordMockExamScore(
+  state: ProgressState,
+  percentage: number,
+  pillarBreakdown: Record<string, number>,
+  passed: boolean,
+): ProgressState {
+  return {
+    ...state,
+    mockExam: {
+      percentage,
+      pillarBreakdown,
+      passed,
+      at: new Date().toISOString(),
+    },
+  };
+}

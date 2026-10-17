@@ -87,6 +87,34 @@ body {
   @apply bg-slate-600;
 }
 
+/* ===== Form controls & Dark mode defaults for interactive tools ===== */
+input[type="number"],
+input[type="text"],
+input[type="search"],
+select,
+textarea {
+  @apply transition-colors duration-150;
+}
+
+.dark input[type="number"],
+.dark input[type="text"],
+.dark input[type="search"],
+.dark select,
+.dark textarea {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+.dark input[type="number"]:focus,
+.dark input[type="text"]:focus,
+.dark input[type="search"]:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: #1482db;
+  outline: none;
+}
+
 /* ===== Animations ===== */
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(12px); }
@@ -320,34 +348,59 @@ html[lang="en"] {
   @apply bg-brand-50/50;
 }
 
-/* ===== Print ===== */
+/* ===== Print & PDF Cheatsheet Mode ===== */
 @media print {
+  @page {
+    margin: 1.5cm;
+    size: auto;
+  }
   .sr-only,
   header,
   footer,
   nav,
+  aside,
   [role="progressbar"],
-  button {
+  button,
+  .search-overlay,
+  .search-dialog {
     display: none !important;
   }
   body {
     background: white !important;
-    color: black !important;
-    font-size: 12pt !important;
+    color: #0f172a !important;
+    font-size: 11pt !important;
+    line-height: 1.6 !important;
   }
-  main {
+  main,
+  .mx-auto {
     max-width: 100% !important;
+    margin: 0 !important;
     padding: 0 !important;
   }
   .prose-lesson {
-    font-size: 11pt !important;
+    font-size: 10.5pt !important;
+    color: #1e293b !important;
   }
-  .prose-lesson h2 {
+  .prose-lesson h1,
+  .prose-lesson h2,
+  .prose-lesson h3 {
+    color: #0f172a !important;
     page-break-after: avoid;
+    break-after: avoid;
   }
-  .card {
-    border: 1px solid #e2e8f0 !important;
+  .card,
+  figure,
+  svg,
+  .prose-lesson table,
+  .prose-lesson blockquote {
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
     box-shadow: none !important;
     break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
   }
 }
