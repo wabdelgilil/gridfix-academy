@@ -34,7 +34,7 @@ export default function ResumeLearning({ course }: Props) {
 
   return (
     <a
-      href={`/${course}/lessons/${last.lessonId}`}
+      href={`/${course}/lessons/${last.lessonId}/`}
       className="card group relative overflow-hidden border-brand-200 bg-gradient-to-l from-brand-50 to-white p-5 transition hover:border-brand-400 hover:shadow-md"
     >
       <div className="flex items-center gap-3">

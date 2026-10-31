@@ -123,12 +123,12 @@ const courseJsonLd = !isPlanned && courseMeta
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
             {(station0 ?? stationCards[0]) && (
-              <a href={`/${course}/stations/${(station0 ?? stationCards[0])!.id}`} class="btn-primary bg-amber-400 text-amber-950 hover:bg-amber-300">
+              <a href={`/${course}/stations/${(station0 ?? stationCards[0])!.id}/`} class="btn-primary bg-amber-400 text-amber-950 hover:bg-amber-300">
                 <LangText lang="ar">{station0 ? 'ابدأ التعلم من المحطة 0 ←' : 'ابدأ التعلم من المحطة 1 ←'}</LangText>
                 <LangText lang="en">{station0 ? 'Start learning at Station 0 →' : 'Start learning at Station 1 →'}</LangText>
               </a>
             )}
-            <a href={`/${course}/map`} class="btn-outline border-white/30 text-white hover:bg-white/10">
+            <a href={`/${course}/map/`} class="btn-outline border-white/30 text-white hover:bg-white/10">
               <LangText lang="ar">خريطة المنهج</LangText>
               <LangText lang="en">Curriculum map</LangText>
             </a>
@@ -201,7 +201,7 @@ const courseJsonLd = !isPlanned && courseMeta
             const live = s.lessons.filter((l) => l.status === 'live').length;
             return (
               <a
-                href={`/${course}/stations/${s.id}`}
+                href={`/${course}/stations/${s.id}/`}
                 class={`card p-5 card-hover animate-fade-in stagger-${(i % 6) + 1}`}
               >
                 <div class="flex items-start justify-between">

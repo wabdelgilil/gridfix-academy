@@ -4,6 +4,25 @@
 
 ---
 
+## [2026-10-31] ميزة المشاركة المعرفية المتطورة (Advanced Knowledge Share)
+
+**الملفات الرئيسية المتأثرة**: `src/components/islands/share/ShareLesson.tsx`، `src/lib/lessonSummary.ts`، `src/layouts/LessonLayout.astro`، `src/i18n/translations.ts`
+
+1. **نظام استخراج الفائدة العلمية (Knowledge-first Snippet)**:
+   - استخراج تلقائي لبنود الخلاصة العلمية (`## خلاصة` / `## Summary`) من متن كل درس لضمان أن النص المشارك هو معلومة مفيدة وقابلة للقراءة بذاتها وليست نصاً دعائياً.
+   - دعم ثنائي لغوي كامل (عربي وإنجليزي).
+2. **مكوّن الشير المتطور (`ShareLesson.tsx`)**:
+   - صيغة الزر العلوي في هيدر الدرس (`variant="button"`) للمشاركة السريعة.
+   - بطاقة نشر المعرفة التفاعلية (`variant="card"`) في نهاية الدرس تعرض الفائدة مباشرة مع أزرار المشاركة الفورية.
+   - تكامل مع Web Share API للأجهزة الذكية (`navigator.share`).
+   - نافذة تفاعلية منبثقة (Modal) مع معاينة حية للمنشور، أزرار مباشرة لواتساب، لينكد إن، إكس، وتيليجرام، نسخ الرابط، نسخ الفائدة كاملة، وتوليد رمز QR.
+3. **البوابات والتحقق**:
+   - `npm run qa:ar` ✔
+   - `npm run check` ✔ (0 أخطاء)
+   - `npm run build` ✔ (116 صفحة ناجحة)
+
+---
+
 ## [2026-09-17] إعادة الهيكلة: معمارية الكورسات المتعددة
 
 **الملفات الرئيسية المتأثرة**: `src/data/courses.ts`، `src/pages/[course]/`، `src/pages/index.astro`
@@ -293,3 +312,35 @@
 
 
 
+
+---
+
+## [2026-10-31] توحيد الروابط والشرطة المائلة (Trailing Slash) وحل استبعاد صفحات Search Console
+
+**السياق والمشكلة**:
+- ظهور صفحات الدروس والقواميس مستبعدة في Google Search Console تحت بند «صفحة بديلة تتضمن علامة أساسية مناسبة» (Alternate page with proper canonical tag).
+- السبب الجذري كان وجود عدم تطابق بين الروابط الداخلية المكتوبة في الموقع (كانت بدون شرطة مائلة `/`) وبين وسوم الـ Canonical وخريطة الموقع التي تنتهي بشرطة مائلة (`/`).
+
+**الإجراءات المتخذة**:
+1. **تحديث إعدادات Astro**: تفعيل `trailingSlash: 'always'` في `astro.config.mjs` لتوحيد سلوك المولد مع البنية الدليلية.
+2. **إنشاء `vercel.json`**: تفعيل `"trailingSlash": true` لإرسال إعادة توجيه دائمة (308/301 Permanent Redirect) من أي رابط بدون شرطة مائلة إلى الرابط بشرطة مائلة على مستوى Edge CDN.
+3. **ضمان وسوم الـ Canonical**: تحديث `src/layouts/BaseLayout.astro` للتأكد الصارم من انتهاء الـ Canonical بالشرطة المائلة دائماً.
+4. **توحيد كافة الروابط الداخلية (Internal Links)**:
+   - `src/components/islands/SiteHeader.tsx`: روابط المحطات، الخريطة، الامتحان، والقاموس.
+   - `src/components/islands/SearchPalette.tsx`: فهرس البحث للمسارات والمحطات والدروس.
+   - `src/components/islands/LessonSidebar.tsx`: روابط قائمة دروس المحطة الجانبية.
+   - `src/components/islands/ResumeLearning.tsx` و `ResumeLearningWidget.tsx`: بطاقات استئناف التعلم.
+   - `src/components/ui/LessonNav.astro`: أزرار الدرس السابق والتالي والعودة للمحطة.
+   - `src/layouts/LessonLayout.astro`، `Breadcrumb.astro`: مسار التنقل ومسارات Schema.org BreadcrumbList.
+   - `src/pages/404.astro`: بطاقات الانتقال للمسارات (CFM, CMRP, CAMA).
+   - `src/pages/index.astro`: بطاقات اختيار الكورسات.
+   - `src/pages/[course]/index.astro`: زر البداية وخريطة المنهج وبطاقات المحطات.
+   - `src/pages/[course]/map.astro`: روابط المحطات والدروس على الخريطة ومسار الخبز.
+   - `src/pages/[course]/stations/[station].astro`: روابط بطاقات دروس المحطة.
+   - `src/pages/[course]/exam.astro` و `glossary.astro`: مسارات الخبز وروابط التنقل.
+
+**نتائج بوابات الجودة**:
+- `npm test`: ✔ 24 اختباراً ناجحاً بنسبة 100%.
+- `npm run qa:ar`: ✔ سليم 100%.
+- `npm run check`: ✔ 0 أخطاء و 0 تحذيرات (198 ملفاً).
+- `npm run build`: ✔ تم بناء 116 صفحة بنجاح كامل مع مطابقة تامة بين الـ Canonical والروابط وخريطة الموقع.

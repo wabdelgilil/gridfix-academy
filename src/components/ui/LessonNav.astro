@@ -45,7 +45,7 @@ if (currentIndex >= 0 && currentIndex < lessons.length - 1) {
 <div class="mt-10 border-t border-slate-200 pt-6">
   <div class="flex items-center justify-between gap-3">
     <a
-      href={livePrev ? `/${course}/lessons/${livePrev.id}` : undefined}
+      href={livePrev ? `/${course}/lessons/${livePrev.id}/` : undefined}
       class={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition ${livePrev ? 'bg-white text-ink-900 ring-1 ring-slate-200 hover:bg-slate-50 hover:shadow-sm' : 'cursor-not-allowed text-ink-400 ring-1 ring-slate-100'}`}
       aria-disabled={!livePrev}
     >
@@ -61,13 +61,13 @@ if (currentIndex >= 0 && currentIndex < lessons.length - 1) {
         </div>
       </div>
     </a>
-    <a href={`/${course}/stations/${stationId}`} class="flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-ink-800 hover:shadow-md">
+    <a href={`/${course}/stations/${stationId}/`} class="flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-ink-800 hover:shadow-md">
       <span>📋</span>
       <LangText lang="ar">إكمال المحطة</LangText>
       <LangText lang="en">Back to station</LangText>
     </a>
     <a
-      href={liveNext ? `/${course}/lessons/${liveNext.id}` : undefined}
+      href={liveNext ? `/${course}/lessons/${liveNext.id}/` : undefined}
       class={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition ${liveNext ? 'bg-white text-ink-900 ring-1 ring-slate-200 hover:bg-slate-50 hover:shadow-sm' : 'cursor-not-allowed text-ink-400 ring-1 ring-slate-100'}`}
       aria-disabled={!liveNext}
     >

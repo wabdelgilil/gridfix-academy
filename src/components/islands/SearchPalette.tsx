@@ -23,7 +23,7 @@ function buildIndex(): SearchItem[] {
       titleEn: c.titleEn,
       subtitle: c.code,
       subtitleEn: c.code,
-      href: `/${c.id}`,
+      href: `/${c.id}/`,
       category: c.code,
     });
   }
@@ -37,7 +37,7 @@ function buildIndex(): SearchItem[] {
       titleEn: s.titleEn,
       subtitle: s.title,
       subtitleEn: s.titleEn,
-      href: `/${courseId}/stations/${s.id}`,
+      href: `/${courseId}/stations/${s.id}/`,
       category: 'المحطات',
       categoryEn: 'Stations',
     });
@@ -49,7 +49,7 @@ function buildIndex(): SearchItem[] {
         titleEn: l.titleEn,
         subtitle: `${s.title} • ${l.number} • ${l.minutes} دقيقة`,
         subtitleEn: `${s.titleEn} • ${l.number} • ${l.minutes} min`,
-        href: `/${courseId}/lessons/${l.id}`,
+        href: `/${courseId}/lessons/${l.id}/`,
         category: s.title,
         categoryEn: s.titleEn,
       });

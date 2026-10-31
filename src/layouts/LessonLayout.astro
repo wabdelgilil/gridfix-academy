@@ -10,6 +10,8 @@ import ReadingProgress from '../components/islands/progress/ReadingProgress.tsx'
 import LessonToc from '../components/islands/LessonToc.tsx';
 import LangText from '../components/ui/LangText.astro';
 import LessonSidebar from '../components/islands/LessonSidebar.tsx';
+import ShareLesson from '../components/islands/share/ShareLesson.tsx';
+import { extractLessonSummary } from '../lib/lessonSummary';
 import { getStation } from '../data/curriculum';
 import { getCourse } from '../data/courses';
 
@@ -22,6 +24,12 @@ const course = data.course ?? 'cfm';
 const station = getStation(data.station);
 const courseMeta = getCourse(course);
 const courseImage = course === 'cmrp' ? '/og-cmrp.png' : course === 'cfm' ? '/og-cfm.png' : course === 'cama' ? '/og-cama.png' : undefined;
+
+const { arPoints, enPoints } = extractLessonSummary(
+  lesson.body,
+  data.objectives,
+  data.objectivesEn
+);
 ---
 
 <BaseLayout title={`${data.number} ${data.title}`} titleEn={`${data.number} ${data.titleEn}`} description={`${data.title} — درس من محطة ${station?.title ?? ''}`} descriptionEn={`${data.titleEn} — a lesson from the ${station?.titleEn ?? ''} station`} image={courseImage}>
@@ -49,7 +57,7 @@ const courseImage = course === 'cmrp' ? '/og-cmrp.png' : course === 'cfm' ? '/og
       </aside>
 
       <div class="flex-1 min-w-0 max-w-3xl mx-auto xl:mx-0">
-        <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: station?.title ?? data.station, labelEn: station?.titleEn, href: `/${course}/stations/${data.station}` }, { label: data.title, labelEn: data.titleEn }]} />
+        <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}/` }, { label: station?.title ?? data.station, labelEn: station?.titleEn, href: `/${course}/stations/${data.station}/` }, { label: data.title, labelEn: data.titleEn }]} />
 
         <header class="card overflow-hidden">
           <div class="flex flex-wrap items-center gap-2 bg-gradient-to-l from-brand-700 to-brand-500 px-6 py-4">
@@ -65,9 +73,29 @@ const courseImage = course === 'cmrp' ? '/og-cmrp.png' : course === 'cfm' ? '/og
             {data.quizId && <span class="chip bg-white/20 text-white" data-lang="ar">💬 كويز</span>}
             {data.quizId && <span class="chip bg-white/20 text-white" data-lang="en">💬 Quiz</span>}
           </div>
-          <div class="px-6 py-5">
-            <h1 class="text-2xl font-bold leading-relaxed text-ink-900 dark:text-slate-100" data-lang="ar">{data.title}</h1>
-            <h1 class="text-2xl font-bold leading-relaxed text-ink-900 dark:text-slate-100" data-lang="en" lang="en" dir="ltr">{data.titleEn}</h1>
+          <div class="px-6 py-5 flex items-start justify-between gap-4">
+            <div>
+              <h1 class="text-2xl font-bold leading-relaxed text-ink-900 dark:text-slate-100" data-lang="ar">{data.title}</h1>
+              <h1 class="text-2xl font-bold leading-relaxed text-ink-900 dark:text-slate-100" data-lang="en" lang="en" dir="ltr">{data.titleEn}</h1>
+            </div>
+            <div class="shrink-0 mt-1">
+              <ShareLesson
+                client:load
+                variant="button"
+                course={course}
+                courseTitle={courseMeta?.title ?? course}
+                courseTitleEn={courseMeta?.titleEn ?? courseMeta?.title ?? course}
+                stationId={data.station}
+                stationTitle={station?.title ?? data.station}
+                stationTitleEn={station?.titleEn ?? station?.title ?? data.station}
+                lessonId={data.id}
+                lessonNumber={data.number}
+                lessonTitle={data.title}
+                lessonTitleEn={data.titleEn}
+                summaryPointsAr={arPoints}
+                summaryPointsEn={enPoints}
+              />
+            </div>
           </div>
         </header>
 
@@ -79,8 +107,24 @@ const courseImage = course === 'cmrp' ? '/og-cmrp.png' : course === 'cfm' ? '/og
 
         {data.sources && data.sources.length > 0 && <SourcesCard sourceIds={data.sources} />}
 
-        <div class="mt-8">
+        <div class="mt-8 space-y-4">
           <CompleteLessonButton course={course} lessonId={data.id} client:load />
+          <ShareLesson
+            client:load
+            variant="card"
+            course={course}
+            courseTitle={courseMeta?.title ?? course}
+            courseTitleEn={courseMeta?.titleEn ?? courseMeta?.title ?? course}
+            stationId={data.station}
+            stationTitle={station?.title ?? data.station}
+            stationTitleEn={station?.titleEn ?? station?.title ?? data.station}
+            lessonId={data.id}
+            lessonNumber={data.number}
+            lessonTitle={data.title}
+            lessonTitleEn={data.titleEn}
+            summaryPointsAr={arPoints}
+            summaryPointsEn={enPoints}
+          />
         </div>
 
         <LessonNav course={course} stationId={data.station} lessonId={data.id} />

@@ -72,7 +72,7 @@ function StationNode({
               <li key={lesson.id}>
                 {lesson.status === 'live' ? (
                   <a
-                    href={`/${course}/lessons/${lesson.id}`}
+                    href={`/${course}/lessons/${lesson.id}/`}
                     aria-current={isCurrent ? 'true' : undefined}
                     className={`group flex items-center gap-2 rounded-md px-2.5 py-1.5 text-xs leading-relaxed transition ${
                       isCurrent

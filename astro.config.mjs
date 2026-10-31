@@ -11,6 +11,7 @@ const plannedCourseIds = courses.filter((c) => c.status !== 'live').map((c) => c
 export default defineConfig({
   site: 'https://academy.gridfix.net',
   output: 'static',
+  trailingSlash: 'always',
   integrations: [
     react(),
     mdx(),

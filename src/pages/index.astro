@@ -130,7 +130,7 @@ const siteJsonLd = {
       {liveCourses.map((c) => {
         const stats = perCourse.find((p) => p.course.id === c.id);
         return (
-          <a href={`/${c.id}`} class="card group overflow-hidden transition hover:border-brand-500 hover:shadow-md">
+          <a href={`/${c.id}/`} class="card group overflow-hidden transition hover:border-brand-500 hover:shadow-md">
             <div class="flex items-start justify-between bg-gradient-to-l from-ink-900 to-brand-700 px-6 py-5 text-white">
               <div class="flex items-center gap-3">
                 <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl transition-transform duration-300 group-hover:scale-110">{c.icon}</span>

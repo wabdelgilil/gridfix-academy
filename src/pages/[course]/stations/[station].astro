@@ -39,7 +39,7 @@ const courseMeta = getLiveCourses().find((c) => c.id === data.course);
 
 <BaseLayout title={`${data.title} — ${courseMeta?.code ?? ''}`} titleEn={`${data.titleEn} — ${courseMeta?.code ?? ''}`} description={data.description} descriptionEn={data.descriptionEn}>
   <div class="mx-auto max-w-4xl">
-    <Breadcrumb items={[{ label: courseMeta?.code ?? data.course, href: `/${data.course}` }, { label: data.title, labelEn: data.titleEn }]} />
+    <Breadcrumb items={[{ label: courseMeta?.code ?? data.course, href: `/${data.course}/` }, { label: data.title, labelEn: data.titleEn }]} />
 
     <header class="card overflow-hidden animate-fade-in">
       <div class="flex flex-wrap items-center gap-2 bg-gradient-to-l from-ink-900 to-brand-700 px-6 py-4">
@@ -98,7 +98,7 @@ const courseMeta = getLiveCourses().find((c) => c.id === data.course);
       <div class="mt-4 grid gap-3">
         {stationLessons.map((lesson, i) => (
           <a
-            href={`/${data.course}/lessons/${lesson.data.id}`}
+            href={`/${data.course}/lessons/${lesson.data.id}/`}
             class={`card flex items-center justify-between gap-4 p-4 card-hover animate-fade-in stagger-${(i % 4) + 1}`}
           >
             <div class="flex items-center gap-4">

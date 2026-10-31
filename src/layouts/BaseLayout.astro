@@ -27,7 +27,8 @@ const {
   image = '/og-default.png',
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://academy.gridfix.net');
+const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonical = new URL(pathname, Astro.site ?? 'https://academy.gridfix.net');
 const ogImage = new URL(image, Astro.site ?? 'https://academy.gridfix.net').toString();
 const gaId = import.meta.env.PUBLIC_GA_ID?.trim() || 'G-WV79RMQ6QK';
 ---

@@ -60,10 +60,10 @@ export default function SiteHeader() {
 
   const navKeys: { key: TranslationKey; href: string }[] = course
     ? [
-        { key: 'nav.stations', href: `/${course}/stations/${firstStationId(course)}` },
-        { key: 'nav.map', href: `/${course}/map` },
-        { key: 'nav.exam', href: `/${course}/exam` },
-        { key: 'nav.glossary', href: `/${course}/glossary` },
+        { key: 'nav.stations', href: `/${course}/stations/${firstStationId(course)}/` },
+        { key: 'nav.map', href: `/${course}/map/` },
+        { key: 'nav.exam', href: `/${course}/exam/` },
+        { key: 'nav.glossary', href: `/${course}/glossary/` },
       ]
     : [
         { key: 'nav.courses', href: '/' },

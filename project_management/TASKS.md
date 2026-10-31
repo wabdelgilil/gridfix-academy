@@ -129,6 +129,7 @@ src/components/islands/tools/{course}/  — أدوات تفاعلية
 - [x] تحسين عنوان الرئيسية
 - [x] **إصلاح حرج**: `Astro.params.course` بدل `Astro.props.course`
 - [x] فلتر محطات `[course]/index.astro` بـ `courseId` + fallback محطة البدء (بلا station-0)
+- [x] **توحيد الروابط والشرطة المائلة (Trailing Slash)**: تفعيل `trailingSlash: 'always'` في Astro + ضبط `vercel.json` لإعادة التوجيه 301/308 + توحيد كافة الروابط الداخلية والـ Canonical لمنع استبعاد صفحات Search Console.
 
 ---
 

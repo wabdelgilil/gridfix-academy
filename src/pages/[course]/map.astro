@@ -24,7 +24,7 @@ const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
 
 <BaseLayout title={`خريطة منهج ${courseMeta?.code ?? ''} — أكاديمية GridFix`} titleEn={`${courseMeta?.code ?? ''} Curriculum Map | GridFix Academy`} description="الخريطة الكاملة لمسار المنصة: المحطات والدروس والأدوات ووزن كل ركن في الامتحان." descriptionEn="The complete platform path map: stations, lessons, tools, and the exam weight of every pillar." noindex={isPlanned}>
   <div class="mx-auto max-w-4xl">
-    <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}` }, { label: 'خريطة المنهج', labelEn: 'Curriculum map' }]} />
+    <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}/` }, { label: 'خريطة المنهج', labelEn: 'Curriculum map' }]} />
     <header class="mb-6 flex flex-wrap items-end justify-between gap-4 animate-fade-in">
       <div>
         <span class="chip bg-brand-100 text-brand-700">
@@ -88,7 +88,7 @@ const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
               </span>
 
               <a
-                href={`/${course}/stations/${s.id}`}
+                href={`/${course}/stations/${s.id}/`}
                 class="card block rounded-2xl p-5 card-hover animate-fade-in"
               >
                 <div class="flex flex-wrap items-center justify-between gap-3">
@@ -127,7 +127,7 @@ const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
                     <li class="flex items-center">
                       {l.status === 'live' ? (
                         <a
-                          href={`/${course}/lessons/${l.id}`}
+                          href={`/${course}/lessons/${l.id}/`}
                           class="rounded-lg bg-slate-50 px-2.5 py-1 text-xs font-semibold text-ink-600 transition hover:bg-brand-50 hover:text-brand-700"
                         >
                           <LangText lang="ar">{l.number} {l.title} {l.toolName ? `🛠 ${l.toolName}` : ''}</LangText>
