@@ -4,7 +4,7 @@ import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import CarPlayer, { type PlaylistItem } from '../../components/islands/audio/CarPlayer';
 import { courses, getCourse } from '../../data/courses';
 import { curriculum } from '../../data/curriculum';
-import { audioLessons, getLessonAudioUrl } from '../../data/audioManifest';
+import { getLessonAudioUrl } from '../../data/audioManifest';
 
 export async function getStaticPaths() {
   return courses.map((courseEntry) => ({ params: { course: courseEntry.id } }));
@@ -23,8 +23,9 @@ const playlist: PlaylistItem[] = [];
 
 for (const station of courseStations) {
   for (const lesson of station.lessons) {
-    const hasAudio = Boolean(audioLessons[lesson.id]);
-    const audioSrc = hasAudio ? (getLessonAudioUrl(lesson.id, audioBaseUrl) ?? undefined) : undefined;
+    const audioResult = getLessonAudioUrl(lesson.id, 'ar', audioBaseUrl);
+    const hasAudio = Boolean(audioResult.url);
+    const audioSrc = audioResult.url ?? undefined;
     playlist.push({
       id: lesson.id,
       number: lesson.number,
@@ -58,7 +59,9 @@ for (const station of courseStations) {
     {playlist.length > 0 ? (
       <CarPlayer
         client:only="react"
+        courseId={course}
         courseTitle={courseMeta?.title ?? 'GridFix Academy'}
+        coursesList={courses.map((c) => ({ id: c.id, code: c.code, title: c.title, icon: c.icon }))}
         playlist={playlist}
       />
     ) : (

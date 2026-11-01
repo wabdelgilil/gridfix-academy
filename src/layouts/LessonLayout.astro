@@ -59,7 +59,8 @@ if (currentLessonIndex >= 0 && currentLessonIndex < stationLessons.length - 1) {
 }
 
 const audioBaseUrl = import.meta.env.PUBLIC_AUDIO_BASE_URL;
-const audioUrl = getLessonAudioUrl(data.id, audioBaseUrl);
+const audioResult = getLessonAudioUrl(data.id, 'ar', audioBaseUrl);
+const audioUrl = audioResult.url;
 
 const { arPoints, enPoints } = extractLessonSummary(
   lesson.body,

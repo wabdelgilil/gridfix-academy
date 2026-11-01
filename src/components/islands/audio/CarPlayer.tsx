@@ -12,14 +12,25 @@ export interface PlaylistItem {
   lessonUrl: string;
 }
 
+export interface CourseOption {
+  id: string;
+  code: string;
+  title: string;
+  icon: string;
+}
+
 interface CarPlayerProps {
   courseTitle: string;
+  courseId?: string;
+  coursesList?: CourseOption[];
   playlist: PlaylistItem[];
   initialLessonId?: string;
 }
 
 export default function CarPlayer({
   courseTitle,
+  courseId,
+  coursesList,
   playlist,
   initialLessonId
 }: CarPlayerProps) {
@@ -43,6 +54,63 @@ export default function CarPlayer({
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [wakeLockActive, setWakeLockActive] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [lang, setLang] = useState<'ar' | 'en'>('ar');
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('cfm-lang');
+      if (stored === 'en' || stored === 'ar') setLang(stored);
+    } catch {}
+
+    const onLangChanged = (e: any) => {
+      if (e.detail?.lang) setLang(e.detail.lang);
+    };
+    window.addEventListener('cfm-lang-changed', onLangChanged);
+    return () => window.removeEventListener('cfm-lang-changed', onLangChanged);
+  }, []);
+
+  // Read URL query (?lesson= or ?playlist=true) and localStorage on mount
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const lessonParam = params.get('lesson');
+    if (lessonParam) {
+      const idx = playlist.findIndex((item) => item.id === lessonParam);
+      if (idx !== -1) {
+        setCurrentIndex(idx);
+        return;
+      }
+    }
+    if (params.get('playlist') === 'true') {
+      setIsDrawerOpen(true);
+      return;
+    }
+    try {
+      const stored = localStorage.getItem('last-played-audio');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed.courseId === courseId && parsed.lessonId) {
+          const idx = playlist.findIndex((item) => item.id === parsed.lessonId);
+          if (idx !== -1) setCurrentIndex(idx);
+        }
+      }
+    } catch {}
+  }, [playlist, courseId]);
+
+  // Persist current track to localStorage
+  useEffect(() => {
+    if (!currentTrack || !courseId) return;
+    try {
+      localStorage.setItem(
+        'last-played-audio',
+        JSON.stringify({
+          courseId,
+          lessonId: currentTrack.id,
+          lessonTitle: currentTrack.title,
+        })
+      );
+    } catch {}
+  }, [currentIndex, currentTrack, courseId]);
 
   // Format seconds -> mm:ss
   const formatTime = (time: number) => {
@@ -241,15 +309,37 @@ export default function CarPlayer({
         }}
       />
 
-      {/* Top Bar: Official Drive & Learn Slogan Badge & Controls */}
+      {/* Top Bar: Official Drive & Learn Slogan Badge, Course Switcher & Controls */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/90 pb-4">
-        {/* Drive & Learn Slogan Badge */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-amber-500/20 to-emerald-500/20 px-3.5 py-1 text-xs font-bold text-amber-300 border border-amber-500/30 shadow-sm">
+        {/* Drive & Learn Slogan Badge & Course Switcher */}
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-amber-500/20 to-emerald-500/20 px-3 py-1 text-xs font-bold text-amber-300 border border-amber-500/30 shadow-sm">
             <span>🚗</span>
             <span>ادرس أثناء القيادة</span>
-            <span className="text-[10px] text-emerald-400 font-semibold border-r border-amber-500/30 pr-1.5 mr-1">Drive & Learn</span>
           </div>
+
+          {coursesList && coursesList.length > 0 && (
+            <div className="flex items-center gap-1 bg-slate-900/90 rounded-2xl p-1 border border-slate-800 text-xs">
+              {coursesList.map((c) => {
+                const active = c.id === courseId;
+                return (
+                  <a
+                    key={c.id}
+                    href={`/${c.id}/listen/?playlist=true`}
+                    className={`px-2 py-0.5 rounded-xl font-bold transition flex items-center gap-1 ${
+                      active
+                        ? 'bg-brand-600 text-white shadow-xs'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                    }`}
+                    title={c.title}
+                  >
+                    <span>{c.icon}</span>
+                    <span>{c.code}</span>
+                  </a>
+                );
+              })}
+            </div>
+          )}
 
           {wakeLockActive && (
             <span className="hidden sm:inline-flex items-center gap-1 text-[11px] text-slate-400" title="الشاشة ستبقى مضاءة أثناء القيادة">
@@ -310,6 +400,13 @@ export default function CarPlayer({
         <p className="mt-2 text-sm sm:text-base text-slate-400 dir-ltr font-sans" dir="ltr">
           {currentTrack.titleEn}
         </p>
+
+        {lang === 'en' && currentTrack.hasAudio && (
+          <div className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 text-xs text-amber-300">
+            <span>🎙️</span>
+            <span>English audio is in production — Playing Arabic narration (🇸🇦)</span>
+          </div>
+        )}
 
         {currentTrack.hasAudio ? (
           <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-slate-800/60 px-3.5 py-1 text-xs text-slate-400 border border-slate-700/60">

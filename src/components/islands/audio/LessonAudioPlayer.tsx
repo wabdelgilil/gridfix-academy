@@ -35,6 +35,20 @@ export default function LessonAudioPlayer({
   const [autoPlayNext, setAutoPlayNext] = useState(true);
   const [isNavigating, setIsNavigating] = useState(false);
   const [countdown, setCountdown] = useState(3);
+  const [lang, setLang] = useState<'ar' | 'en'>('ar');
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('cfm-lang');
+      if (stored === 'en' || stored === 'ar') setLang(stored);
+    } catch {}
+
+    const onLangChanged = (e: any) => {
+      if (e.detail?.lang) setLang(e.detail.lang);
+    };
+    window.addEventListener('cfm-lang-changed', onLangChanged);
+    return () => window.removeEventListener('cfm-lang-changed', onLangChanged);
+  }, []);
 
   // Formatting seconds to mm:ss
   const formatTime = (time: number) => {
@@ -239,6 +253,19 @@ export default function LessonAudioPlayer({
           )}
         </div>
       </div>
+
+      {/* English notice if listening while browsing in English */}
+      {lang === 'en' && (
+        <div className="mb-2.5 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-xs text-amber-700 dark:text-amber-300 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5">
+            <span>🎙️</span>
+            <span>English audio is in production. Playing Arabic narration.</span>
+          </div>
+          <span className="shrink-0 rounded-md bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-bold">
+            🇸🇦 Arabic Audio
+          </span>
+        </div>
+      )}
 
       {/* Progress Bar (RTL Fixed) */}
       <div
