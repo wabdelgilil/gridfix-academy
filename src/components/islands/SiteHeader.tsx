@@ -100,6 +100,20 @@ export default function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <a
+            href={`/${course || 'cmrp'}/listen/`}
+            className="group inline-flex items-center gap-1.5 rounded-full border border-emerald-300 bg-emerald-50/90 px-2.5 py-1 text-xs font-bold text-emerald-800 shadow-2xs transition-all hover:scale-105 hover:border-emerald-400 hover:bg-emerald-100 hover:shadow-xs dark:border-emerald-700/60 dark:bg-emerald-950/60 dark:text-emerald-300 dark:hover:bg-emerald-900/60"
+            title={lang === 'ar' ? 'ادرس أثناء القيادة — استمع لكل الدروس بوضع السيارة' : 'Drive & Learn — Listen hands-free in Car Mode'}
+          >
+            <span className="text-sm transition-transform group-hover:scale-110">🚗</span>
+            <span className="hidden sm:inline">{lang === 'ar' ? 'ادرس أثناء القيادة' : 'Drive & Learn'}</span>
+            <span className="sm:hidden">{lang === 'ar' ? 'استمع' : 'Audio'}</span>
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+            </span>
+          </a>
+
           {course && (
             <a
               href="/"
@@ -159,6 +173,20 @@ export default function SiteHeader() {
 
       {open && (
         <nav className="border-t border-slate-200 px-4 py-2 md:hidden dark:border-slate-700">
+          <a
+            href={`/${course || 'cmrp'}/listen/`}
+            onClick={() => setOpen(false)}
+            className="mb-2 flex items-center justify-between rounded-xl border border-emerald-300 bg-emerald-50/90 px-3 py-2.5 text-xs font-bold text-emerald-900 transition-colors hover:bg-emerald-100 dark:border-emerald-700/60 dark:bg-emerald-950/50 dark:text-emerald-300"
+          >
+            <span className="flex items-center gap-2">
+              <span className="text-base">🚗</span>
+              <span>{lang === 'ar' ? 'ادرس أثناء القيادة (مشغل الصوت)' : 'Drive & Learn (Audio Player)'}</span>
+            </span>
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+            </span>
+          </a>
           <button
             type="button"
             onClick={() => {
