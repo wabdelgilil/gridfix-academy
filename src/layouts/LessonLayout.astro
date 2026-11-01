@@ -36,6 +36,17 @@ const currentStationObj = courseStations[currentStationIndex];
 const stationLessons = (currentStationObj?.lessons ?? []).filter((l) => l.status === 'live');
 const currentLessonIndex = stationLessons.findIndex((l) => l.id === data.id);
 
+let prevLessonData: { id: string; number: string; title: string; titleEn: string } | undefined;
+if (currentLessonIndex > 0) {
+  prevLessonData = stationLessons[currentLessonIndex - 1];
+} else if (currentStationIndex > 0) {
+  const prevStation = courseStations[currentStationIndex - 1];
+  const prevLessons = prevStation.lessons.filter((l) => l.status === 'live');
+  if (prevLessons.length > 0) {
+    prevLessonData = prevLessons[prevLessons.length - 1];
+  }
+}
+
 let nextLessonData: { id: string; number: string; title: string; titleEn: string } | undefined;
 if (currentLessonIndex >= 0 && currentLessonIndex < stationLessons.length - 1) {
   nextLessonData = stationLessons[currentLessonIndex + 1];
@@ -126,17 +137,34 @@ const { arPoints, enPoints } = extractLessonSummary(
 
         <ObjectivesList objectives={data.objectives} objectivesEn={data.objectivesEn} />
 
-        {audioUrl && (
+        {audioUrl ? (
           <LessonAudioPlayer
             client:load
+            courseId={course}
             audioSrc={audioUrl}
             lessonTitle={data.title}
             lessonNumber={data.number}
             stationTitle={station?.title}
             courseTitle={courseMeta?.title}
+            prevLessonUrl={prevLessonData ? `/${course}/lessons/${prevLessonData.id}/` : undefined}
+            prevLessonTitle={prevLessonData ? `${prevLessonData.number} ${prevLessonData.title}` : undefined}
             nextLessonUrl={nextLessonData ? `/${course}/lessons/${nextLessonData.id}/` : undefined}
             nextLessonTitle={nextLessonData ? `${nextLessonData.number} ${nextLessonData.title}` : undefined}
           />
+        ) : (
+          <div class="my-4 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-slate-200/60 bg-slate-50/50 px-4 py-2.5 text-xs text-slate-500 dark:border-slate-800/60 dark:bg-slate-900/30 dark:text-slate-400">
+            <div class="flex items-center gap-2">
+              <span class="text-sm">🎧</span>
+              <span>
+                <LangText lang="ar">الشرح الصوتي للقيادة: جاري تسجيله وسيتوفر قريباً لهذا الدرس.</LangText>
+                <LangText lang="en">Driving audio explanation: coming soon for this lesson.</LangText>
+              </span>
+            </div>
+            <a href={`/${course}/listen/`} class="font-semibold text-brand-600 hover:underline dark:text-brand-400">
+              <LangText lang="ar">استمع للدروس المتوفرة 🚗</LangText>
+              <LangText lang="en">Listen to available lessons 🚗</LangText>
+            </a>
+          </div>
         )}
 
         <article class="prose-lesson mt-8">

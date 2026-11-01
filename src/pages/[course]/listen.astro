@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import CarPlayer, { type PlaylistItem } from '../../components/islands/audio/CarPlayer';
+import { courses, getCourse } from '../../data/courses';
+import { curriculum } from '../../data/curriculum';
+import { audioLessons, getLessonAudioUrl } from '../../data/audioManifest';
+
+export async function getStaticPaths() {
+  return courses.map((courseEntry) => ({ params: { course: courseEntry.id } }));
+}
+
+const { course } = Astro.params;
+const courseMeta = getCourse(course);
+const audioBaseUrl = import.meta.env.PUBLIC_AUDIO_BASE_URL;
+
+// Build playlist of all available audio tracks for this course
+const courseStations = curriculum
+  .filter((s) => (s.courseId ?? 'cfm') === course && s.status === 'live')
+  .sort((a, b) => a.number - b.number);
+
+const playlist: PlaylistItem[] = [];
+
+for (const station of courseStations) {
+  for (const lesson of station.lessons) {
+    const hasAudio = Boolean(audioLessons[lesson.id]);
+    const audioSrc = hasAudio ? (getLessonAudioUrl(lesson.id, audioBaseUrl) ?? undefined) : undefined;
+    playlist.push({
+      id: lesson.id,
+      number: lesson.number,
+      title: lesson.title,
+      titleEn: lesson.titleEn,
+      stationNumber: station.number,
+      stationTitle: station.title,
+      audioSrc,
+      hasAudio,
+      lessonUrl: `/${course}/lessons/${lesson.id}/`,
+    });
+  }
+}
+---
+
+<BaseLayout
+  title={`وضع القيادة والاستماع — ${courseMeta?.title ?? course}`}
+  titleEn={`Car Listening Mode — ${courseMeta?.titleEn ?? course}`}
+  description="مشغل صوتي مخصص للقيادة للاستماع لدروس الكورس والتحكم من شاشات وعجلة قيادة السيارات."
+>
+  <div class="mx-auto max-w-4xl py-4 sm:py-6">
+    <div class="mb-4 sm:mb-6 px-4 sm:px-0">
+      <Breadcrumb
+        items={[
+          { label: courseMeta?.code ?? course, href: `/${course}/` },
+          { label: 'وضع القيادة والاستماع', labelEn: 'Car Listening Mode' }
+        ]}
+      />
+    </div>
+
+    {playlist.length > 0 ? (
+      <CarPlayer
+        client:only="react"
+        courseTitle={courseMeta?.title ?? 'GridFix Academy'}
+        playlist={playlist}
+      />
+    ) : (
+      <div class="rounded-3xl border border-slate-200 bg-white p-12 text-center dark:border-slate-800 dark:bg-slate-900">
+        <span class="text-4xl">🎧</span>
+        <h2 class="mt-4 text-xl font-bold text-slate-800 dark:text-slate-100">
+          جاري تجهيز الشروحات الصوتية لهذا المسار قريباً
+        </h2>
+        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">
+          يمكنك متابعة قراءة الدروس التفاعلية من خريطة المنهج.
+        </p>
+        <a
+          href={`/${course}/`}
+          class="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-500 transition"
+        >
+          العودة للدروس
+        </a>
+      </div>
+    )}
+  </div>
+</BaseLayout>

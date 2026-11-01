@@ -4,6 +4,29 @@
 
 ---
 
+## [2026-11-02] إطلاق وضع القيادة المتصل (Dedicated Car Mode & Continuous Playlist)
+
+**الملفات الرئيسية المتأثرة**: `src/pages/[course]/listen.astro`، `src/components/islands/audio/CarPlayer.tsx`، `src/components/islands/audio/LessonAudioPlayer.tsx`، `src/pages/[course]/index.astro`، `src/layouts/LessonLayout.astro`
+
+1. **مشغل وضع القيادة المتصل (`CarPlayer.tsx` & `/[course]/listen/`)**:
+   - شاشة مشغل كاملة مخصصة للسائقين بدون تشتيت، تعرض محطات ودروس الكورس بقائمة متصلة (Playlist).
+   - تحكم كامل من أزرار عجلة القيادة (Steering Wheel) عبر MediaSession:
+     * التنقل بين الدروس بالكامل (Next / Prev Track) دون إعادة تحميل المتصفح أو لمس الشاشة.
+     * التقديم والتأخير (15 ثانية) داخل نفس الدرس.
+   - دعم بقاء الشاشة مضاءة أثناء القيادة (Screen WakeLock API) لتثبيت الهاتف على لوحة القيادة.
+   - قائمة منسدلة (Drawer) لاختيار أي درس مباشرة مع إبراز الدرس قيد التشغيل.
+
+2. **تطوير مشغل المذاكرة في المقال (`LessonAudioPlayer.tsx`)**:
+   - إضافة زري الانتقال السريع للدرس التالي والسابق مباشرة من داخل المقال.
+   - إضافة زر "🚗 وضع القيادة" للتحويل المباشر لشاشة السيارة بنقرة واحدة.
+
+3. **البوابات**:
+   - `npm run qa:ar` ✔
+   - `npm run check` ✔ (0 أخطاء، 0 تحذيرات)
+   - `npm run build` ✔ (119 صفحة ناجحة)
+
+---
+
 ## [2026-11-01] نظام الشروحات الصوتية للقيادة (Audio Companion & Driving Mode)
 
 **الملفات الرئيسية المتأثرة**: `src/components/islands/audio/LessonAudioPlayer.tsx`، `src/data/audioManifest.ts`، `src/layouts/LessonLayout.astro`، `.env.example`، `public/audio/cmrp/`
