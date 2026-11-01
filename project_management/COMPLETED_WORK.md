@@ -4,6 +4,31 @@
 
 ---
 
+## [2026-11-01] نظام الشروحات الصوتية للقيادة (Audio Companion & Driving Mode)
+
+**الملفات الرئيسية المتأثرة**: `src/components/islands/audio/LessonAudioPlayer.tsx`، `src/data/audioManifest.ts`، `src/layouts/LessonLayout.astro`، `.env.example`، `public/audio/cmrp/`
+
+1. **معمارية الصوت المنفصلة (Decoupled Audio Architecture)**:
+   - تشغيل الموقع على Vercel مع استضافة ملفات الصوت السحابية الموزعة (Cloudflare R2 / S3) عبر `PUBLIC_AUDIO_BASE_URL`.
+   - تنظيم هرمي للملفات الصوتية والسكربتات (`station-X/lesson-cmrp-X-Y.mp3`).
+   - ملف السجل الصوتي المركزي `src/data/audioManifest.ts`.
+
+2. **مشغل الصوت التفاعلي للقيادة (`LessonAudioPlayer.tsx`)**:
+   - مشغل صوتي مدمج في رأس الدرس (تقديم وتأخير 15 ثانية، سرعة 1x إلى 2x).
+   - دعم MediaSession للتحكم من شاشات القفل وعجلة قيادة السيارات عبر البلوتوث.
+   - انتقال وتشغيل تلقائي للدرس التالي (`autoPlayNext` مع رابط `?autoplay=1`) لتجربة Hands-free.
+
+3. **توليد شروحات CMRP الصوتية وضغطها**:
+   - توليد آلي لنصوص وشروحات علمية مباشرة دون حشو مقيدة بنص دروس المنهج.
+   - ضغط ملفات الصوت لصيغة MP3 (64kbps) موفراً 83% من الحجم.
+
+4. **البوابات**:
+   - `npm run qa:ar` ✔
+   - `npm run check` ✔ (0 أخطاء)
+   - `npm run build` ✔ (116 صفحة ناجحة)
+
+---
+
 ## [2026-10-31] ميزة المشاركة المعرفية المتطورة (Advanced Knowledge Share)
 
 **الملفات الرئيسية المتأثرة**: `src/components/islands/share/ShareLesson.tsx`، `src/lib/lessonSummary.ts`، `src/layouts/LessonLayout.astro`، `src/i18n/translations.ts`

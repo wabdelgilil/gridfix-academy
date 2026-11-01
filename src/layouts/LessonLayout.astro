@@ -11,9 +11,11 @@ import LessonToc from '../components/islands/LessonToc.tsx';
 import LangText from '../components/ui/LangText.astro';
 import LessonSidebar from '../components/islands/LessonSidebar.tsx';
 import ShareLesson from '../components/islands/share/ShareLesson.tsx';
+import LessonAudioPlayer from '../components/islands/audio/LessonAudioPlayer.tsx';
 import { extractLessonSummary } from '../lib/lessonSummary';
-import { getStation } from '../data/curriculum';
+import { getStation, curriculum } from '../data/curriculum';
 import { getCourse } from '../data/courses';
+import { getLessonAudioUrl } from '../data/audioManifest';
 
 interface Props {
   lesson: CollectionEntry<'lessons'>;
@@ -24,6 +26,29 @@ const course = data.course ?? 'cfm';
 const station = getStation(data.station);
 const courseMeta = getCourse(course);
 const courseImage = course === 'cmrp' ? '/og-cmrp.png' : course === 'cfm' ? '/og-cfm.png' : course === 'cama' ? '/og-cama.png' : undefined;
+
+// Audio detection & next lesson resolution for seamless continuous listening
+const courseStations = curriculum
+  .filter((s) => (s.courseId ?? 'cfm') === course && s.status === 'live')
+  .sort((a, b) => a.number - b.number);
+const currentStationIndex = courseStations.findIndex((s) => s.id === data.station);
+const currentStationObj = courseStations[currentStationIndex];
+const stationLessons = (currentStationObj?.lessons ?? []).filter((l) => l.status === 'live');
+const currentLessonIndex = stationLessons.findIndex((l) => l.id === data.id);
+
+let nextLessonData: { id: string; number: string; title: string; titleEn: string } | undefined;
+if (currentLessonIndex >= 0 && currentLessonIndex < stationLessons.length - 1) {
+  nextLessonData = stationLessons[currentLessonIndex + 1];
+} else if (currentStationIndex >= 0 && currentStationIndex < courseStations.length - 1) {
+  const nextStation = courseStations[currentStationIndex + 1];
+  const nextLessons = nextStation.lessons.filter((l) => l.status === 'live');
+  if (nextLessons.length > 0) {
+    nextLessonData = nextLessons[0];
+  }
+}
+
+const audioBaseUrl = import.meta.env.PUBLIC_AUDIO_BASE_URL;
+const audioUrl = getLessonAudioUrl(data.id, audioBaseUrl);
 
 const { arPoints, enPoints } = extractLessonSummary(
   lesson.body,
@@ -100,6 +125,19 @@ const { arPoints, enPoints } = extractLessonSummary(
         </header>
 
         <ObjectivesList objectives={data.objectives} objectivesEn={data.objectivesEn} />
+
+        {audioUrl && (
+          <LessonAudioPlayer
+            client:load
+            audioSrc={audioUrl}
+            lessonTitle={data.title}
+            lessonNumber={data.number}
+            stationTitle={station?.title}
+            courseTitle={courseMeta?.title}
+            nextLessonUrl={nextLessonData ? `/${course}/lessons/${nextLessonData.id}/` : undefined}
+            nextLessonTitle={nextLessonData ? `${nextLessonData.number} ${nextLessonData.title}` : undefined}
+          />
+        )}
 
         <article class="prose-lesson mt-8">
           <slot />
