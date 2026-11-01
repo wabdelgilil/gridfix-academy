@@ -74,11 +74,12 @@ export default function LessonAudioPlayer({
     }
   };
 
-  // Handle scrub on progress bar
+  // Handle scrub on progress bar (RTL-Aware Fix)
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!progressBarRef.current || !audioRef.current || !duration) return;
     const rect = progressBarRef.current.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
+    const isRtl = document.dir === 'rtl' || getComputedStyle(progressBarRef.current).direction === 'rtl';
+    const clickX = isRtl ? (rect.right - e.clientX) : (e.clientX - rect.left);
     const percentage = Math.max(0, Math.min(1, clickX / rect.width));
     audioRef.current.currentTime = percentage * duration;
   };
@@ -200,11 +201,12 @@ export default function LessonAudioPlayer({
                 الشرح الصوتي المباشر للدرس
               </span>
               <a
-                href={`/${courseId}/listen/`}
-                className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400 hover:bg-emerald-500/20 transition border border-emerald-500/20"
-                title="فتح المشغل المتصل المخصص للسيارة بدون انقطاع"
+                href={`/${courseId}/listen/?lesson=${encodeURIComponent(lessonTitle)}`}
+                className="inline-flex items-center gap-1 rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[10px] font-bold text-amber-600 dark:bg-amber-500/20 dark:text-amber-300 hover:bg-amber-500/25 transition border border-amber-500/30 shadow-xs"
+                title="فتح المشغل المتصل المخصص للسيارة والتابلت بدون انقطاع"
               >
-                <span>🚗 وضع القيادة</span>
+                <span>🚗</span>
+                <span>ادرس أثناء القيادة</span>
               </a>
             </div>
             <div className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">
@@ -238,14 +240,15 @@ export default function LessonAudioPlayer({
         </div>
       </div>
 
-      {/* Progress Bar */}
+      {/* Progress Bar (RTL Fixed) */}
       <div
         ref={progressBarRef}
         onClick={handleSeek}
-        className="relative h-2 w-full cursor-pointer rounded-full bg-slate-200/80 dark:bg-slate-800 overflow-hidden mb-3"
+        className="relative h-2.5 w-full cursor-pointer rounded-full bg-slate-200/80 dark:bg-slate-800 overflow-hidden mb-3 touch-none"
+        title="انقر لتقديم أو تأخير موضع الاستماع"
       >
         <div
-          className="h-full bg-gradient-to-l from-brand-600 to-brand-400 transition-all duration-75"
+          className="h-full bg-gradient-to-l from-brand-600 via-emerald-500 to-brand-400 transition-all duration-75"
           style={{ width: `${progressPercent}%` }}
         />
       </div>
@@ -257,7 +260,7 @@ export default function LessonAudioPlayer({
           type="button"
           onClick={goToPrev}
           disabled={!prevLessonUrl && currentTime <= 3}
-          className="flex h-9 w-9 items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-900 disabled:opacity-30 disabled:cursor-not-allowed dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition"
+          className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-900 disabled:opacity-30 disabled:cursor-not-allowed dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition"
           title={prevLessonTitle ? `الدرس السابق (${prevLessonTitle})` : 'الدرس السابق (أو إعادة البدء)'}
           aria-label="الدرس السابق"
         >
@@ -270,7 +273,7 @@ export default function LessonAudioPlayer({
         <button
           type="button"
           onClick={() => skip(-15)}
-          className="flex h-9 w-9 items-center justify-center rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition text-xs font-bold"
+          className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition text-xs font-bold"
           title="تأخير 15 ثانية داخل الدرس"
           aria-label="تأخير 15 ثانية"
         >
@@ -300,7 +303,7 @@ export default function LessonAudioPlayer({
         <button
           type="button"
           onClick={() => skip(15)}
-          className="flex h-9 w-9 items-center justify-center rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition text-xs font-bold"
+          className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition text-xs font-bold"
           title="تقديم 15 ثانية داخل الدرس"
           aria-label="تقديم 15 ثانية"
         >
@@ -312,7 +315,7 @@ export default function LessonAudioPlayer({
           type="button"
           onClick={goToNext}
           disabled={!nextLessonUrl}
-          className="flex h-9 w-9 items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-900 disabled:opacity-30 disabled:cursor-not-allowed dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition"
+          className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-900 disabled:opacity-30 disabled:cursor-not-allowed dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition"
           title="الدرس التالي"
           aria-label="الدرس التالي"
         >

@@ -31,6 +31,7 @@ export default function CarPlayer({
   const [currentIndex, setCurrentIndex] = useState(Math.max(0, initialIndex !== -1 ? initialIndex : 0));
   const currentTrack = playlist[currentIndex] || playlist[0];
 
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressBarRef = useRef<HTMLDivElement | null>(null);
 
@@ -41,6 +42,7 @@ export default function CarPlayer({
   const [autoPlayNext, setAutoPlayNext] = useState(true);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [wakeLockActive, setWakeLockActive] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Format seconds -> mm:ss
   const formatTime = (time: number) => {
@@ -112,13 +114,24 @@ export default function CarPlayer({
     }
   };
 
-  // Handle Scrub
+  // RTL-Aware Scrubbing fix
   const handleScrub = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!progressBarRef.current || !audioRef.current || !duration) return;
     const rect = progressBarRef.current.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
+    const isRtl = document.dir === 'rtl' || getComputedStyle(progressBarRef.current).direction === 'rtl';
+    const clickX = isRtl ? rect.right - e.clientX : e.clientX - rect.left;
     const pct = Math.max(0, Math.min(1, clickX / rect.width));
     audioRef.current.currentTime = pct * duration;
+  };
+
+  // Fullscreen toggle for clean dashboard / tablet mode
+  const toggleFullscreen = () => {
+    if (!containerRef.current) return;
+    if (!document.fullscreenElement) {
+      containerRef.current.requestFullscreen().then(() => setIsFullscreen(true)).catch(() => {});
+    } else {
+      document.exitFullscreen().then(() => setIsFullscreen(false)).catch(() => {});
+    }
   };
 
   // Auto-play when track index changes
@@ -203,7 +216,10 @@ export default function CarPlayer({
   const availableTracksCount = playlist.filter((p) => p.hasAudio).length;
 
   return (
-    <div className="relative mx-auto flex min-h-[82vh] max-w-2xl flex-col justify-between rounded-3xl border border-slate-200/90 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 p-6 sm:p-8 text-white shadow-2xl overflow-hidden select-none">
+    <div
+      ref={containerRef}
+      className="relative mx-auto flex min-h-[82vh] md:min-h-[85vh] w-full max-w-3xl flex-col justify-between rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 p-5 sm:p-8 text-white shadow-2xl overflow-hidden select-none"
+    >
       <audio
         ref={audioRef}
         src={currentTrack.audioSrc}
@@ -225,25 +241,30 @@ export default function CarPlayer({
         }}
       />
 
-      {/* Top Bar: Mode Badge, WakeLock & Playlist toggle */}
-      <div className="flex items-center justify-between gap-3 border-b border-slate-800/80 pb-4">
+      {/* Top Bar: Official Drive & Learn Slogan Badge & Controls */}
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/90 pb-4">
+        {/* Drive & Learn Slogan Badge */}
         <div className="flex items-center gap-2">
-          <span className="flex h-7 items-center gap-1.5 rounded-full bg-emerald-500/20 px-3 text-xs font-semibold text-emerald-400 border border-emerald-500/30">
+          <div className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-amber-500/20 to-emerald-500/20 px-3.5 py-1 text-xs font-bold text-amber-300 border border-amber-500/30 shadow-sm">
             <span>🚗</span>
-            <span>وضع القيادة المتصل</span>
-          </span>
+            <span>ادرس أثناء القيادة</span>
+            <span className="text-[10px] text-emerald-400 font-semibold border-r border-amber-500/30 pr-1.5 mr-1">Drive & Learn</span>
+          </div>
+
           {wakeLockActive && (
-            <span className="text-[10px] text-slate-400" title="الشاشة ستبقى مضاءة أثناء القيادة">
-              ☀️ الشاشة مستيقظة
+            <span className="hidden sm:inline-flex items-center gap-1 text-[11px] text-slate-400" title="الشاشة ستبقى مضاءة أثناء القيادة">
+              <span>☀️</span>
+              <span>الشاشة مضاءة</span>
             </span>
           )}
         </div>
 
+        {/* Top Actions: Speed, Playlist, Fullscreen */}
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={cycleSpeed}
-            className="rounded-lg border border-slate-700 bg-slate-800/90 px-3 py-1 text-xs font-medium text-slate-200 hover:bg-slate-700 transition"
+            className="rounded-xl border border-slate-700 bg-slate-800/90 px-3 py-1.5 text-xs font-bold text-slate-200 hover:bg-slate-700 transition"
             title="سرعة الإلقاء"
           >
             {playbackRate}x
@@ -252,40 +273,51 @@ export default function CarPlayer({
           <button
             type="button"
             onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-            className="flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/90 px-3 py-1 text-xs font-medium text-slate-200 hover:bg-slate-700 transition"
+            className="flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-800/90 px-3 py-1.5 text-xs font-bold text-slate-200 hover:bg-slate-700 transition"
             title="قائمة الدروس"
           >
             <span>📑</span>
-            <span>{availableTracksCount} درس جاهز</span>
+            <span>{availableTracksCount} درس</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={toggleFullscreen}
+            className="hidden sm:flex items-center justify-center rounded-xl border border-slate-700 bg-slate-800/90 p-1.5 text-slate-200 hover:bg-slate-700 transition"
+            title={isFullscreen ? 'إنهاء الشاشة الكاملة' : 'ملء الشاشة لوضع السيارة'}
+            aria-label="ملء الشاشة"
+          >
+            <span className="text-sm">⛶</span>
           </button>
         </div>
       </div>
 
-      {/* Main Track Display: Big typography for fast glances */}
-      <div className="my-auto py-8 text-center">
-        <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-brand-500/20 px-4 py-1 text-xs font-medium text-brand-300 border border-brand-500/30">
+      {/* Main Track Display: Large Typography for Car / Tablet Mounts */}
+      <div className="my-auto py-6 sm:py-10 text-center">
+        <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-brand-500/20 px-4 py-1 text-xs font-semibold text-brand-300 border border-brand-500/30">
           <span>المحطة {currentTrack.stationNumber}:</span>
           <span>{currentTrack.stationTitle}</span>
         </div>
 
-        <div className="text-4xl font-extrabold text-brand-400 tracking-tight mb-2">
+        <div className="text-3xl sm:text-5xl font-black text-brand-400 tracking-tight mb-2 sm:mb-3">
           الدرس {currentTrack.number}
         </div>
 
-        <h1 className="text-2xl sm:text-3xl font-bold leading-relaxed text-white drop-shadow-sm px-2">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-relaxed sm:leading-tight text-white drop-shadow-sm px-2 max-w-xl mx-auto">
           {currentTrack.title}
         </h1>
 
-        <p className="mt-1 text-sm text-slate-400 dir-ltr" dir="ltr">
+        <p className="mt-2 text-sm sm:text-base text-slate-400 dir-ltr font-sans" dir="ltr">
           {currentTrack.titleEn}
         </p>
 
         {currentTrack.hasAudio ? (
-          <div className="mt-4 text-xs text-slate-400">
-            يمكنك استخدام أزرار عجلة القيادة (Steering Wheel) لتخطي الدروس وتقديم الصوت
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-slate-800/60 px-3.5 py-1 text-xs text-slate-400 border border-slate-700/60">
+            <span>🔘</span>
+            <span>مدعوم بالتحكم من أزرار عجلة القيادة وبلوتوث السيارة</span>
           </div>
         ) : (
-          <div className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-amber-500/20 px-3 py-1 text-xs font-medium text-amber-300 border border-amber-500/30">
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-amber-500/20 px-4 py-1.5 text-xs font-bold text-amber-300 border border-amber-500/40 animate-pulse">
             <span>🎙️</span>
             <span>الشرح الصوتي لهذا الدرس قيد الإنتاج وسيتوفر قريباً</span>
           </div>
@@ -293,36 +325,37 @@ export default function CarPlayer({
       </div>
 
       {/* Bottom Area: Controls & Scrub */}
-      <div className="space-y-4 pt-4 border-t border-slate-800/80">
-        {/* Progress Bar & Timers */}
+      <div className="space-y-4 pt-4 border-t border-slate-800/90">
+        {/* Progress Bar & Timers (RTL Fixed) */}
         <div>
           <div
             ref={progressBarRef}
             onClick={handleScrub}
-            className="relative h-3 w-full cursor-pointer rounded-full bg-slate-800 overflow-hidden shadow-inner"
+            className="relative h-3.5 w-full cursor-pointer rounded-full bg-slate-800 overflow-hidden shadow-inner touch-none"
+            title="انقر أو اسحب للتقديم والتأخير"
           >
             <div
-              className="h-full bg-gradient-to-l from-brand-500 to-emerald-400 transition-all duration-75"
+              className="h-full bg-gradient-to-l from-brand-500 via-emerald-400 to-teal-300 transition-all duration-75"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
-          <div className="mt-2 flex justify-between text-xs font-mono text-slate-400 px-1">
+          <div className="mt-2 flex justify-between text-xs sm:text-sm font-mono text-slate-400 px-1">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
           </div>
         </div>
 
-        {/* Big tactile controls */}
+        {/* Big Tactile Touch Targets for Mobile, Tablet & Dashboard */}
         <div className="flex items-center justify-center gap-3 sm:gap-6 py-2">
           {/* Previous Lesson (Track) */}
           <button
             type="button"
             onClick={playPrevLesson}
-            className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-800 text-slate-200 hover:bg-slate-700 active:scale-95 transition shadow-md"
+            className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-slate-800/90 text-slate-200 hover:bg-slate-700 active:scale-95 transition shadow-lg border border-slate-700/60"
             title="الدرس السابق (أو رجوع لبداية الدرس)"
             aria-label="الدرس السابق"
           >
-            <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
+            <svg className="h-6 w-6 sm:h-7 sm:w-7 fill-current" viewBox="0 0 24 24">
               <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
             </svg>
           </button>
@@ -331,28 +364,28 @@ export default function CarPlayer({
           <button
             type="button"
             onClick={() => seek(-15)}
-            className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-800/80 text-slate-300 hover:bg-slate-700 active:scale-95 transition text-xs font-bold"
+            className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-slate-800/70 text-slate-300 hover:bg-slate-700 active:scale-95 transition text-xs sm:text-sm font-bold border border-slate-700/40"
             title="تأخير 15 ثانية داخل الدرس"
             aria-label="تأخير 15 ثانية"
           >
             <span>↺ 15</span>
           </button>
 
-          {/* Big Play / Pause Button */}
+          {/* Huge Play / Pause Button (Easy touch in car) */}
           <button
             type="button"
             onClick={togglePlay}
             disabled={!currentTrack.hasAudio}
-            className="flex h-18 w-18 items-center justify-center rounded-3xl bg-gradient-to-tr from-brand-600 to-brand-500 text-white shadow-xl shadow-brand-500/30 hover:scale-105 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition"
+            className="flex h-20 w-20 sm:h-22 sm:w-22 items-center justify-center rounded-3xl bg-gradient-to-tr from-brand-600 to-brand-500 text-white shadow-2xl shadow-brand-500/40 hover:scale-105 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition"
             title={isPlaying ? 'إيقاف مؤقت' : 'تشغيل'}
             aria-label={isPlaying ? 'إيقاف مؤقت' : 'تشغيل'}
           >
             {isPlaying ? (
-              <svg className="h-8 w-8 fill-current" viewBox="0 0 24 24">
+              <svg className="h-9 w-9 sm:h-10 sm:w-10 fill-current" viewBox="0 0 24 24">
                 <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
               </svg>
             ) : (
-              <svg className="h-8 w-8 fill-current translate-x-0.5" viewBox="0 0 24 24">
+              <svg className="h-9 w-9 sm:h-10 sm:w-10 fill-current translate-x-0.5" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg>
             )}
@@ -362,7 +395,7 @@ export default function CarPlayer({
           <button
             type="button"
             onClick={() => seek(15)}
-            className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-800/80 text-slate-300 hover:bg-slate-700 active:scale-95 transition text-xs font-bold"
+            className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-slate-800/70 text-slate-300 hover:bg-slate-700 active:scale-95 transition text-xs sm:text-sm font-bold border border-slate-700/40"
             title="تقديم 15 ثانية داخل الدرس"
             aria-label="تقديم 15 ثانية"
           >
@@ -373,18 +406,18 @@ export default function CarPlayer({
           <button
             type="button"
             onClick={playNextLesson}
-            className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-800 text-slate-200 hover:bg-slate-700 active:scale-95 transition shadow-md"
+            className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-slate-800/90 text-slate-200 hover:bg-slate-700 active:scale-95 transition shadow-lg border border-slate-700/60"
             title="الدرس التالي"
             aria-label="الدرس التالي"
           >
-            <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
+            <svg className="h-6 w-6 sm:h-7 sm:w-7 fill-current" viewBox="0 0 24 24">
               <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
             </svg>
           </button>
         </div>
 
         {/* Footer info: Auto-advance switch & Read lesson link */}
-        <div className="flex items-center justify-between text-xs text-slate-400 pt-2">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 pt-2">
           <label className="flex items-center gap-2 cursor-pointer select-none">
             <input
               type="checkbox"
@@ -401,7 +434,7 @@ export default function CarPlayer({
             rel="noopener noreferrer"
             className="text-brand-400 hover:underline flex items-center gap-1"
           >
-            <span>فتح المقال الكامل</span>
+            <span>فتح المقال الكامل للقراءة</span>
             <span>↗</span>
           </a>
         </div>
@@ -409,16 +442,16 @@ export default function CarPlayer({
 
       {/* Playlist Drawer (Modal / Overlay) */}
       {isDrawerOpen && (
-        <div className="absolute inset-0 z-30 flex flex-col bg-slate-950/95 backdrop-blur-md p-6 animate-fadeIn">
+        <div className="absolute inset-0 z-30 flex flex-col bg-slate-950/98 backdrop-blur-md p-5 sm:p-6 animate-fadeIn">
           <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
             <div>
               <h3 className="font-bold text-lg text-white">شروحات الكورس الصوتية</h3>
-              <div className="text-xs text-slate-400">{availableTracksCount} درس جاهز للاستماع</div>
+              <div className="text-xs text-slate-400">{availableTracksCount} درس جاهز للاستماع الآن</div>
             </div>
             <button
               type="button"
               onClick={() => setIsDrawerOpen(false)}
-              className="rounded-lg bg-slate-800 p-2 text-slate-300 hover:bg-slate-700"
+              className="rounded-xl bg-slate-800 px-3 py-1.5 text-sm font-semibold text-slate-300 hover:bg-slate-700"
             >
               ✕ إغلاق
             </button>
@@ -433,12 +466,12 @@ export default function CarPlayer({
                   type="button"
                   onClick={() => selectTrack(idx)}
                   disabled={!track.hasAudio}
-                  className={`w-full text-right p-3.5 rounded-xl border transition flex items-center justify-between gap-3 ${
+                  className={`w-full text-right p-3.5 rounded-2xl border transition flex items-center justify-between gap-3 ${
                     isSelected
-                      ? 'border-brand-500 bg-brand-500/10 text-brand-300 font-bold'
+                      ? 'border-brand-500 bg-brand-500/10 text-brand-300 font-bold shadow-sm'
                       : track.hasAudio
                       ? 'border-slate-800 bg-slate-900/60 text-slate-300 hover:bg-slate-800/80 cursor-pointer'
-                      : 'border-slate-800/40 bg-slate-900/20 text-slate-500 cursor-not-allowed opacity-60'
+                      : 'border-slate-800/30 bg-slate-900/20 text-slate-500 cursor-not-allowed opacity-50'
                   }`}
                 >
                   <div className="min-w-0 flex-1">
@@ -449,11 +482,11 @@ export default function CarPlayer({
                   </div>
                   <div>
                     {isSelected ? (
-                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-white text-xs">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-white text-xs shadow-md">
                         ▶
                       </span>
                     ) : track.hasAudio ? (
-                      <span className="text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+                      <span className="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">
                         متاح
                       </span>
                     ) : (
