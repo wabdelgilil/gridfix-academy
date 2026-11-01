@@ -6,6 +6,11 @@
 
 ## [2026-11-02] إطلاق وضع القيادة المتصل (Dedicated Car Mode & Continuous Playlist)
 
+- **شريط التنقل العلوي — شارة اختصار وضع القيادة (Drive & Learn Badge)**:
+  - إضافة شارة اختصار مميزة ومتحركة في الشريط العلوي (SiteHeader.tsx) لنقل المتعلم بضغطة واحدة إلى مشغل السيارة وقائمة التشغيل الكاملة (/[course]/listen/).
+  - متجاوبة تماماً: تظهر كنص كامل «🚗 ادرس أثناء القيادة» على الشاشات الكبيرة و«🚗 استمع» على الهواتف، بالإضافة لإدراجها في قائمة الهواتف المنسدلة.
+
+
 **الملفات الرئيسية المتأثرة**: `src/pages/[course]/listen.astro`، `src/components/islands/audio/CarPlayer.tsx`، `src/components/islands/audio/LessonAudioPlayer.tsx`، `src/pages/[course]/index.astro`، `src/layouts/LessonLayout.astro`
 
 1. **مشغل وضع القيادة المتصل (`CarPlayer.tsx` & `/[course]/listen/`)**:
