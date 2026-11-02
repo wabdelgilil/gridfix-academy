@@ -52,7 +52,8 @@ export default function CarPlayer({
   const [currentTime, setCurrentTime] = useState(0);
   const [playbackRate, setPlaybackRate] = useState(1);
   const [autoPlayNext, setAutoPlayNext] = useState(true);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [wakeLockActive, setWakeLockActive] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [lang, setLang] = useState<'ar' | 'en'>('ar');
@@ -111,7 +112,8 @@ export default function CarPlayer({
       }
     }
     if (params.get('playlist') === 'true') {
-      setIsDrawerOpen(true);
+      setIsMobileDrawerOpen(true);
+      setIsSidebarOpen(true);
       return;
     }
     try {
@@ -198,7 +200,7 @@ export default function CarPlayer({
   const selectTrack = (index: number) => {
     if (!playlist[index].hasAudio) return;
     setCurrentIndex(index);
-    setIsDrawerOpen(false);
+    setIsMobileDrawerOpen(false);
   };
 
   // Cycle speed: 1x -> 1.25x -> 1.5x -> 1.75x -> 2x
@@ -316,11 +318,7 @@ export default function CarPlayer({
   return (
     <div
       ref={containerRef}
-      className={`relative mx-auto flex min-h-[82vh] md:min-h-[85vh] w-full max-w-4xl flex-col justify-between rounded-3xl border-2 p-5 sm:p-8 shadow-2xl overflow-hidden select-none transition-colors duration-200 ${
-        isDay
-          ? 'bg-slate-100 border-slate-300 text-slate-900'
-          : 'bg-slate-950 border-slate-800 text-white'
-      }`}
+      className="relative mx-auto flex w-full max-w-7xl flex-col lg:flex-row gap-4 lg:gap-6 items-stretch select-none transition-colors duration-200"
     >
       <audio
         ref={audioRef}
@@ -342,6 +340,15 @@ export default function CarPlayer({
           }
         }}
       />
+
+      {/* Main Player Screen Stage */}
+      <div
+        className={`relative flex min-h-[82vh] md:min-h-[85vh] flex-col justify-between flex-1 min-w-0 rounded-3xl border-2 p-4 sm:p-7 shadow-2xl transition-colors duration-200 ${
+          isDay
+            ? 'bg-slate-100 border-slate-300 text-slate-900'
+            : 'bg-slate-950 border-slate-800 text-white'
+        }`}
+      >
 
       {/* Top Bar: Chunky Driver Ergonomics & Balanced 2-Tier Toolbar */}
       <div className={`space-y-3 border-b pb-3.5 ${
@@ -433,16 +440,26 @@ export default function CarPlayer({
               <span>{playbackRate}x</span>
             </button>
 
-            {/* Playlist Drawer Button - Chunky 48px */}
+            {/* Playlist Drawer/Sidebar Toggle Button - Chunky 48px */}
             <button
               type="button"
-              onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+              onClick={() => {
+                if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+                  setIsMobileDrawerOpen(!isMobileDrawerOpen);
+                } else {
+                  setIsSidebarOpen(!isSidebarOpen);
+                }
+              }}
               className={`flex h-12 items-center gap-1.5 px-3 sm:px-4 rounded-2xl font-black text-xs sm:text-sm border-2 transition-all shadow-md active:scale-95 cursor-pointer ${
-                isDay
+                isSidebarOpen || isMobileDrawerOpen
+                  ? isDay
+                    ? 'bg-amber-200 text-amber-950 border-amber-400'
+                    : 'bg-slate-700 text-white border-slate-600'
+                  : isDay
                   ? 'bg-white hover:bg-slate-50 text-slate-900 border-slate-300'
                   : 'bg-slate-800 hover:bg-slate-700 text-slate-100 border-slate-700'
               }`}
-              title="عرض قائمة الدروس للاختيار"
+              title="عرض أو إخفاء قائمة الدروس"
             >
               <span>📑</span>
               <span className="hidden sm:inline">{availableTracksCount} درس</span>
@@ -1000,19 +1017,114 @@ export default function CarPlayer({
           </a>
         </div>
       </div>
+    </div>
 
-      {/* Playlist Drawer (Modal / Overlay) */}
-      {isDrawerOpen && (
-        <div className="absolute inset-0 z-30 flex flex-col bg-slate-950/98 backdrop-blur-md p-5 sm:p-6 animate-fadeIn">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+      {/* Desktop & Tablet Playlist Sidebar (Beside the main screen) */}
+      {isSidebarOpen && (
+        <aside
+          className={`hidden lg:flex flex-col w-80 xl:w-96 rounded-3xl border-2 p-4 shadow-2xl shrink-0 max-h-[85vh] transition-colors duration-200 ${
+            isDay
+              ? 'bg-white border-slate-300 text-slate-900'
+              : 'bg-slate-900/95 border-slate-800 text-white'
+          }`}
+        >
+          <div className={`flex items-center justify-between border-b pb-3 mb-3 shrink-0 ${
+            isDay ? 'border-slate-200' : 'border-slate-800'
+          }`}>
+            <div>
+              <h3 className="font-black text-sm sm:text-base flex items-center gap-1.5">
+                <span>📑</span>
+                <span>قائمة دروس الكورس</span>
+              </h3>
+              <div className={`text-xs mt-0.5 ${isDay ? 'text-slate-600' : 'text-slate-400'}`}>
+                {availableTracksCount} درس جاهز للاستماع الآن
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsSidebarOpen(false)}
+              className={`p-1.5 px-2.5 rounded-xl border text-xs font-bold transition cursor-pointer ${
+                isDay
+                  ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-300'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
+              }`}
+              title="إخفاء القائمة الجانبية لتوسيع الشاشة"
+            >
+              ✕ إخفاء
+            </button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto space-y-2 pr-1">
+            {playlist.map((track, idx) => {
+              const isSelected = idx === currentIndex;
+              return (
+                <button
+                  key={track.id}
+                  type="button"
+                  onClick={() => selectTrack(idx)}
+                  disabled={!track.hasAudio}
+                  className={`w-full text-right p-3 rounded-2xl border transition flex items-center justify-between gap-2.5 cursor-pointer ${
+                    isSelected
+                      ? isDay
+                        ? 'border-emerald-600 bg-emerald-50 text-slate-900 font-black shadow-sm ring-2 ring-emerald-400/30'
+                        : 'border-emerald-500 bg-emerald-500/20 text-emerald-200 font-black shadow-sm ring-1 ring-emerald-500/40'
+                      : track.hasAudio
+                      ? isDay
+                        ? 'border-slate-200 bg-slate-50 text-slate-800 hover:bg-slate-100 hover:border-slate-300'
+                        : 'border-slate-800/80 bg-slate-800/40 text-slate-300 hover:bg-slate-800'
+                      : isDay
+                      ? 'border-slate-200 bg-slate-100 text-slate-400 cursor-not-allowed opacity-40'
+                      : 'border-slate-800/30 bg-slate-900/20 text-slate-600 cursor-not-allowed opacity-40'
+                  }`}
+                >
+                  <div className="min-w-0 flex-1">
+                    <div className={`text-[10px] font-bold ${
+                      isSelected
+                        ? isDay ? 'text-emerald-800' : 'text-emerald-300'
+                        : isDay ? 'text-slate-500' : 'text-slate-400'
+                    }`}>
+                      محطة {track.stationNumber} • درس {track.number}
+                    </div>
+                    <div className="text-xs sm:text-sm font-bold truncate mt-0.5">{track.title}</div>
+                  </div>
+                  <div className="shrink-0">
+                    {isSelected ? (
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-600 text-white text-[10px] shadow-sm animate-pulse">
+                        ▶
+                      </span>
+                    ) : track.hasAudio ? (
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                        isDay
+                          ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                          : 'bg-emerald-950/60 text-emerald-400 border-emerald-800/60'
+                      }`}>
+                        متاح
+                      </span>
+                    ) : (
+                      <span className="text-[10px] text-slate-500 px-1.5 py-0.5 rounded-full">
+                        قريباً
+                      </span>
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </aside>
+      )}
+
+      {/* Mobile Overlay Drawer (Only for mobile screens < lg:) */}
+      {isMobileDrawerOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 flex flex-col bg-slate-950/98 backdrop-blur-md p-5 animate-fadeIn">
+          <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4 shrink-0">
             <div>
               <h3 className="font-bold text-lg text-white">شروحات الكورس الصوتية</h3>
               <div className="text-xs text-slate-400">{availableTracksCount} درس جاهز للاستماع الآن</div>
             </div>
             <button
               type="button"
-              onClick={() => setIsDrawerOpen(false)}
-              className="rounded-xl bg-slate-800 px-3 py-1.5 text-sm font-semibold text-slate-300 hover:bg-slate-700"
+              onClick={() => setIsMobileDrawerOpen(false)}
+              className="rounded-xl bg-slate-800 px-3 py-1.5 text-sm font-semibold text-slate-300 hover:bg-slate-700 cursor-pointer"
             >
               ✕ إغلاق
             </button>
@@ -1025,7 +1137,10 @@ export default function CarPlayer({
                 <button
                   key={track.id}
                   type="button"
-                  onClick={() => selectTrack(idx)}
+                  onClick={() => {
+                    selectTrack(idx);
+                    setIsMobileDrawerOpen(false);
+                  }}
                   disabled={!track.hasAudio}
                   className={`w-full text-right p-3.5 rounded-2xl border transition flex items-center justify-between gap-3 ${
                     isSelected
