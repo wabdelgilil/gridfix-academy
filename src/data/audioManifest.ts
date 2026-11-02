@@ -8,21 +8,35 @@ export interface LessonAudioTrack {
 }
 
 export const audioLessons: Record<string, LessonAudioTrack> = {
-  // كورس CMRP — المحطة 1
+  // كورس CMRP — المحطة 1: فهم الأصل وآليات الانهيار
   'lesson-cmrp-1-1': { ar: 'cmrp/station-1/lesson-cmrp-1-1.mp3' },
+  'lesson-cmrp-1-2': { ar: 'cmrp/station-1/lesson-cmrp-1-2.mp3' },
 
-  // كورس CMRP — المحطة 2
+  // كورس CMRP — المحطة 2: الاستراتيجية الفنية وحماية الأصل
   'lesson-cmrp-2-1': { ar: 'cmrp/station-2/lesson-cmrp-2-1.mp3' },
   'lesson-cmrp-2-2': { ar: 'cmrp/station-2/lesson-cmrp-2-2.mp3' },
+  'lesson-cmrp-2-3': { ar: 'cmrp/station-2/lesson-cmrp-2-3.mp3' },
+  'lesson-cmrp-2-4': { ar: 'cmrp/station-2/lesson-cmrp-2-4.mp3' },
 
-  // كورس CMRP — المحطة 3
+  // كورس CMRP — المحطة 3: الأصل في خط الإنتاج والعمليات
   'lesson-cmrp-3-1': { ar: 'cmrp/station-3/lesson-cmrp-3-1.mp3' },
   'lesson-cmrp-3-2': { ar: 'cmrp/station-3/lesson-cmrp-3-2.mp3' },
   'lesson-cmrp-3-3': { ar: 'cmrp/station-3/lesson-cmrp-3-3.mp3' },
 
-  // كورس CMRP — المحطة 4
+  // كورس CMRP — المحطة 4: محرك التنفيذ اليومي وإدارة الأعمال
+  'lesson-cmrp-4-1': { ar: 'cmrp/station-4/lesson-cmrp-4-1.mp3' },
   'lesson-cmrp-4-2': { ar: 'cmrp/station-4/lesson-cmrp-4-2.mp3' },
   'lesson-cmrp-4-3': { ar: 'cmrp/station-4/lesson-cmrp-4-3.mp3' },
+  'lesson-cmrp-4-4': { ar: 'cmrp/station-4/lesson-cmrp-4-4.mp3' },
+  'lesson-cmrp-4-5': { ar: 'cmrp/station-4/lesson-cmrp-4-5.mp3' },
+
+  // كورس CMRP — المحطة 5: الكادر البشري والقيادة المؤسسية
+  'lesson-cmrp-5-1': { ar: 'cmrp/station-5/lesson-cmrp-5-1.mp3' },
+  'lesson-cmrp-5-2': { ar: 'cmrp/station-5/lesson-cmrp-5-2.mp3' },
+  'lesson-cmrp-5-3': { ar: 'cmrp/station-5/lesson-cmrp-5-3.mp3' },
+
+  // كورس CMRP — المحطة 6: لغة المال والإدارة العليا
+  'lesson-cmrp-6-1': { ar: 'cmrp/station-6/lesson-cmrp-6-1.mp3' },
 };
 
 export interface LessonAudioResult {
