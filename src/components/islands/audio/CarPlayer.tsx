@@ -536,6 +536,182 @@ export default function CarPlayer({
                 {activeCue.keyTakeaway}
               </div>
 
+              {/* 1. Visual Mathematical Formula Display */}
+              {activeCue.formula && (
+                <div className={`p-4 sm:p-5 rounded-2xl border mb-3 text-center ${
+                  isDay ? 'bg-amber-50/70 border-amber-300/80 text-amber-950' : 'bg-slate-950/80 border-amber-500/30 text-amber-200'
+                }`}>
+                  <div className={`text-xs font-bold mb-2 ${isDay ? 'text-amber-900' : 'text-amber-400'}`}>
+                    📐 {activeCue.formula.label}
+                  </div>
+                  <div className="font-mono text-lg sm:text-2xl md:text-3xl font-black py-2 tracking-wide dir-ltr text-brand-500" dir="ltr">
+                    {activeCue.formula.expression}
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3 pt-3 border-t border-amber-300/40 text-right">
+                    {activeCue.formula.variables.map((v, i) => (
+                      <div key={i} className={`p-2 rounded-xl text-xs font-semibold ${
+                        isDay ? 'bg-white/80 text-slate-800' : 'bg-slate-900/80 text-slate-300'
+                      }`}>
+                        <span className="font-mono font-black text-brand-500 inline-block ml-1.5" dir="ltr">{v.symbol}:</span>
+                        <span>{v.meaning}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* 2. Visual Failure Curves Plotter (SVG Charts) */}
+              {activeCue.curvesGraphic && (
+                <div className={`p-4 rounded-2xl border mb-3 ${
+                  isDay ? 'bg-slate-50 border-slate-300' : 'bg-slate-950/70 border-slate-800'
+                }`}>
+                  <div className={`text-xs font-bold mb-3 text-right flex items-center justify-between ${
+                    isDay ? 'text-slate-800' : 'text-slate-300'
+                  }`}>
+                    <span className="flex items-center gap-1.5 font-black">
+                      <span>📈</span>
+                      <span>{activeCue.curvesGraphic.title}</span>
+                    </span>
+                    <span className="text-[11px] font-mono opacity-70">المحور الأفقي: الوقت ←</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                    {activeCue.curvesGraphic.items.map((item) => {
+                      const pathD = item.letter === 'F'
+                        ? "M 10,15 Q 30,50 60,52 L 140,52"
+                        : item.letter === 'E'
+                        ? "M 10,35 L 140,35"
+                        : "M 10,20 Q 25,50 50,52 L 100,52 Q 125,50 140,20";
+                      const strokeColor = item.group === 'random' ? '#f43f5e' : '#14b8a6';
+                      return (
+                        <div
+                          key={item.letter}
+                          className={`p-2.5 sm:p-3 rounded-xl border text-center transition-all ${
+                            item.highlight
+                              ? isDay
+                                ? 'bg-rose-50/90 border-rose-400 ring-2 ring-rose-200'
+                                : 'bg-rose-950/40 border-rose-500 ring-1 ring-rose-500/50'
+                              : isDay
+                              ? 'bg-white border-slate-200'
+                              : 'bg-slate-900 border-slate-800'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between text-xs mb-1">
+                            <span className={`px-2 py-0.5 rounded-md font-black text-white text-[11px] ${
+                              item.group === 'random' ? 'bg-rose-600' : 'bg-teal-600'
+                            }`}>
+                              {item.letter}
+                            </span>
+                            <span className={`font-mono font-black text-sm ${
+                              item.group === 'random' ? 'text-rose-500' : 'text-teal-500'
+                            }`}>
+                              {item.percent}
+                            </span>
+                          </div>
+                          <div className="my-1 py-1">
+                            <svg viewBox="0 0 150 65" className="w-full h-10 sm:h-12 overflow-visible">
+                              <line x1="10" y1="58" x2="140" y2="58" stroke="currentColor" strokeOpacity="0.2" strokeWidth="1" />
+                              <line x1="10" y1="10" x2="10" y2="58" stroke="currentColor" strokeOpacity="0.2" strokeWidth="1" />
+                              <path
+                                d={pathD}
+                                fill="none"
+                                stroke={strokeColor}
+                                strokeWidth="3.5"
+                                strokeLinecap="round"
+                              />
+                            </svg>
+                          </div>
+                          <div className="text-[11px] font-bold truncate leading-tight mt-0.5">
+                            {item.label}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* 3. Visual Proportion Bar (89% vs 11%) */}
+              {activeCue.visualBar && (
+                <div className={`p-4 rounded-2xl border mb-3 ${
+                  isDay ? 'bg-slate-50 border-slate-300' : 'bg-slate-950/70 border-slate-800'
+                }`}>
+                  <div className={`text-xs font-bold mb-2 text-right ${isDay ? 'text-slate-800' : 'text-slate-300'}`}>
+                    📊 {activeCue.visualBar.title}
+                  </div>
+                  <div className="h-6 w-full rounded-xl overflow-hidden flex border border-slate-700/40 shadow-inner">
+                    <div
+                      className="bg-rose-500 flex items-center justify-center text-white text-xs font-black"
+                      style={{ width: `${activeCue.visualBar.left.percent}%` }}
+                      title={activeCue.visualBar.left.label}
+                    >
+                      {activeCue.visualBar.left.percent}%
+                    </div>
+                    <div
+                      className="bg-teal-500 flex items-center justify-center text-white text-xs font-black"
+                      style={{ width: `${activeCue.visualBar.right.percent}%` }}
+                      title={activeCue.visualBar.right.label}
+                    >
+                      {activeCue.visualBar.right.percent}%
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 mt-3 text-right">
+                    <div className={`p-3 rounded-xl border ${
+                      isDay ? 'bg-rose-50 border-rose-200 text-rose-950' : 'bg-rose-950/30 border-rose-800 text-rose-200'
+                    }`}>
+                      <div className="text-xs font-black text-rose-500">{activeCue.visualBar.left.label}</div>
+                      <div className="text-[11px] font-medium mt-0.5 leading-relaxed">{activeCue.visualBar.left.desc}</div>
+                    </div>
+                    <div className={`p-3 rounded-xl border ${
+                      isDay ? 'bg-teal-50 border-teal-200 text-teal-950' : 'bg-teal-950/30 border-teal-800 text-teal-200'
+                    }`}>
+                      <div className="text-xs font-black text-teal-500">{activeCue.visualBar.right.label}</div>
+                      <div className="text-[11px] font-medium mt-0.5 leading-relaxed">{activeCue.visualBar.right.desc}</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* 4. Engineering Flowchart / Decision Logic */}
+              {activeCue.flowchart && (
+                <div className={`p-4 rounded-2xl border mb-3 ${
+                  isDay ? 'bg-slate-50 border-slate-300' : 'bg-slate-950/70 border-slate-800'
+                }`}>
+                  <div className={`text-xs font-bold mb-3 text-right flex items-center gap-1.5 ${
+                    isDay ? 'text-slate-800' : 'text-slate-300'
+                  }`}>
+                    <span>🔄</span>
+                    <span>{activeCue.flowchart.title}</span>
+                  </div>
+                  <div className="space-y-2">
+                    {activeCue.flowchart.steps.map((st, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl font-mono text-xs font-black text-white ${
+                          st.outcomeType === 'warning'
+                            ? 'bg-amber-600'
+                            : st.outcomeType === 'success'
+                            ? 'bg-emerald-600'
+                            : 'bg-brand-600'
+                        }`}>
+                          {st.step}
+                        </div>
+                        <div className={`flex-1 p-2.5 rounded-xl border text-right text-xs font-bold ${
+                          st.outcomeType === 'warning'
+                            ? isDay ? 'bg-amber-100 border-amber-300 text-amber-950' : 'bg-amber-950/40 border-amber-800 text-amber-200'
+                            : st.outcomeType === 'success'
+                            ? isDay ? 'bg-emerald-100 border-emerald-300 text-emerald-950' : 'bg-emerald-950/40 border-emerald-800 text-emerald-200'
+                            : isDay ? 'bg-white border-slate-200 text-slate-900' : 'bg-slate-900 border-slate-800 text-slate-100'
+                        }`}>
+                          <div>{st.title}</div>
+                          {st.decision && (
+                            <div className="text-[11px] opacity-75 font-normal mt-0.5">{st.decision}</div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Visual Graphic Element: Highlight Stat */}
               {activeCue.highlightStat && (
                 <div className={`flex items-center justify-center gap-4 p-4 rounded-2xl border mb-3 ${
