@@ -170,13 +170,13 @@ export default function AudioLauncherModal({
           </div>
 
           {/* Quick Actions: Day/Night Mode Switch & Close */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               type="button"
               onClick={toggleDriveTheme}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold text-xs sm:text-sm border transition shadow-xs cursor-pointer ${
+              className={`flex h-12 items-center gap-2 px-3.5 sm:px-5 rounded-2xl font-black text-xs sm:text-sm border-2 transition-all shadow-md active:scale-95 cursor-pointer ${
                 isDay
-                  ? 'bg-amber-100 hover:bg-amber-200 text-amber-900 border-amber-300'
+                  ? 'bg-amber-300 hover:bg-amber-400 text-amber-950 border-amber-400 ring-2 ring-amber-300/40'
                   : 'bg-slate-800 hover:bg-slate-700 text-amber-300 border-slate-700'
               }`}
               title={
@@ -185,16 +185,16 @@ export default function AudioLauncherModal({
                   : 'Toggle Day High-Contrast and Night Mode'
               }
             >
-              <span>{isDay ? '☀️' : '🌙'}</span>
+              <span className="text-xl sm:text-2xl">{isDay ? '☀️' : '🌙'}</span>
               <span>{isDay ? (lang === 'ar' ? 'وضع النهار' : 'Day Mode') : (lang === 'ar' ? 'وضع الليل' : 'Night Mode')}</span>
             </button>
 
             <button
               type="button"
               onClick={onClose}
-              className={`flex h-10 w-10 items-center justify-center rounded-xl border text-base font-bold transition cursor-pointer ${
+              className={`flex h-12 w-12 items-center justify-center rounded-2xl border-2 text-lg font-black transition-all shadow-md active:scale-95 cursor-pointer ${
                 isDay
-                  ? 'bg-slate-200 hover:bg-slate-300 text-slate-800 border-slate-300'
+                  ? 'bg-slate-200 hover:bg-slate-300 text-slate-900 border-slate-300'
                   : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
               }`}
               aria-label={lang === 'ar' ? 'إغلاق' : 'Close'}
