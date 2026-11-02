@@ -55,6 +55,27 @@ export default function CarPlayer({
   const [wakeLockActive, setWakeLockActive] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [lang, setLang] = useState<'ar' | 'en'>('ar');
+  const [driveTheme, setDriveTheme] = useState<'day' | 'night'>('day');
+
+  useEffect(() => {
+    try {
+      const storedTheme = localStorage.getItem('car-drive-theme');
+      if (storedTheme === 'day' || storedTheme === 'night') {
+        setDriveTheme(storedTheme);
+      } else {
+        const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setDriveTheme(isDark ? 'night' : 'day');
+      }
+    } catch {}
+  }, []);
+
+  const toggleDriveTheme = () => {
+    const next = driveTheme === 'day' ? 'night' : 'day';
+    setDriveTheme(next);
+    try {
+      localStorage.setItem('car-drive-theme', next);
+    } catch {}
+  };
 
   useEffect(() => {
     try {
@@ -282,11 +303,16 @@ export default function CarPlayer({
 
   const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
   const availableTracksCount = playlist.filter((p) => p.hasAudio).length;
+  const isDay = driveTheme === 'day';
 
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto flex min-h-[82vh] md:min-h-[85vh] w-full max-w-3xl flex-col justify-between rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 p-5 sm:p-8 text-white shadow-2xl overflow-hidden select-none"
+      className={`relative mx-auto flex min-h-[82vh] md:min-h-[85vh] w-full max-w-4xl flex-col justify-between rounded-3xl border-2 p-5 sm:p-8 shadow-2xl overflow-hidden select-none transition-colors duration-200 ${
+        isDay
+          ? 'bg-slate-100 border-slate-300 text-slate-900'
+          : 'bg-slate-950 border-slate-800 text-white'
+      }`}
     >
       <audio
         ref={audioRef}
@@ -349,8 +375,21 @@ export default function CarPlayer({
           )}
         </div>
 
-        {/* Top Actions: Speed, Playlist, Fullscreen */}
+        {/* Top Actions: Day/Night, Speed, Playlist, Fullscreen */}
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={toggleDriveTheme}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold text-xs border transition shadow-xs cursor-pointer ${
+              isDay
+                ? 'bg-amber-100 hover:bg-amber-200 text-amber-900 border-amber-300'
+                : 'bg-slate-800 hover:bg-slate-700 text-amber-300 border-slate-700'
+            }`}
+            title="التبديل بين وضع النهار عالي التباين ووضع الليل للقيادة"
+          >
+            <span>{isDay ? '☀️' : '🌙'}</span>
+            <span>{isDay ? 'نهار' : 'ليل'}</span>
+          </button>
           <button
             type="button"
             onClick={cycleSpeed}
@@ -382,22 +421,32 @@ export default function CarPlayer({
         </div>
       </div>
 
-      {/* Main Track Display: Large Typography for Car / Tablet Mounts */}
+      {/* Main Track Display: High-Contrast Large Typography for Car / Tablet Mounts */}
       <div className="my-auto py-6 sm:py-10 text-center">
-        <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-brand-500/20 px-4 py-1 text-xs font-semibold text-brand-300 border border-brand-500/30">
+        <div className={`mb-3 inline-flex items-center gap-2 rounded-full px-4 py-1 text-xs font-black border ${
+          isDay
+            ? 'bg-brand-100 text-brand-900 border-brand-300'
+            : 'bg-brand-500/20 text-brand-300 border-brand-500/30'
+        }`}>
           <span>المحطة {currentTrack.stationNumber}:</span>
           <span>{currentTrack.stationTitle}</span>
         </div>
 
-        <div className="text-3xl sm:text-5xl font-black text-brand-400 tracking-tight mb-2 sm:mb-3">
+        <div className={`text-3xl sm:text-5xl font-black tracking-tight mb-2 sm:mb-3 ${
+          isDay ? 'text-brand-600' : 'text-brand-400'
+        }`}>
           الدرس {currentTrack.number}
         </div>
 
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-relaxed sm:leading-tight text-white drop-shadow-sm px-2 max-w-xl mx-auto">
+        <h1 className={`text-2xl sm:text-4xl lg:text-5xl font-black leading-relaxed sm:leading-tight px-2 max-w-2xl mx-auto ${
+          isDay ? 'text-slate-950' : 'text-white drop-shadow-sm'
+        }`}>
           {currentTrack.title}
         </h1>
 
-        <p className="mt-2 text-sm sm:text-base text-slate-400 dir-ltr font-sans" dir="ltr">
+        <p className={`mt-2 text-sm sm:text-base dir-ltr font-sans font-bold ${
+          isDay ? 'text-slate-700' : 'text-slate-400'
+        }`} dir="ltr">
           {currentTrack.titleEn}
         </p>
 
@@ -448,7 +497,11 @@ export default function CarPlayer({
           <button
             type="button"
             onClick={playPrevLesson}
-            className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-slate-800/90 text-slate-200 hover:bg-slate-700 active:scale-95 transition shadow-lg border border-slate-700/60"
+            className={`flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl transition shadow-lg active:scale-95 border-2 ${
+              isDay
+                ? 'bg-white hover:bg-slate-50 text-slate-900 border-slate-300'
+                : 'bg-slate-800/90 text-slate-200 hover:bg-slate-700 border-slate-700/60'
+            }`}
             title="الدرس السابق (أو رجوع لبداية الدرس)"
             aria-label="الدرس السابق"
           >
@@ -461,7 +514,11 @@ export default function CarPlayer({
           <button
             type="button"
             onClick={() => seek(-15)}
-            className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-slate-800/70 text-slate-300 hover:bg-slate-700 active:scale-95 transition text-xs sm:text-sm font-bold border border-slate-700/40"
+            className={`flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl transition text-xs sm:text-sm font-black border-2 active:scale-95 ${
+              isDay
+                ? 'bg-slate-200 hover:bg-slate-300 text-slate-900 border-slate-300'
+                : 'bg-slate-800/70 text-slate-300 hover:bg-slate-700 border-slate-700/40'
+            }`}
             title="تأخير 15 ثانية داخل الدرس"
             aria-label="تأخير 15 ثانية"
           >
@@ -473,7 +530,7 @@ export default function CarPlayer({
             type="button"
             onClick={togglePlay}
             disabled={!currentTrack.hasAudio}
-            className="flex h-20 w-20 sm:h-22 sm:w-22 items-center justify-center rounded-3xl bg-gradient-to-tr from-brand-600 to-brand-500 text-white shadow-2xl shadow-brand-500/40 hover:scale-105 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition"
+            className="flex h-20 w-20 sm:h-22 sm:w-22 items-center justify-center rounded-3xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white shadow-2xl shadow-emerald-600/40 hover:scale-105 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition"
             title={isPlaying ? 'إيقاف مؤقت' : 'تشغيل'}
             aria-label={isPlaying ? 'إيقاف مؤقت' : 'تشغيل'}
           >
@@ -492,7 +549,11 @@ export default function CarPlayer({
           <button
             type="button"
             onClick={() => seek(15)}
-            className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-slate-800/70 text-slate-300 hover:bg-slate-700 active:scale-95 transition text-xs sm:text-sm font-bold border border-slate-700/40"
+            className={`flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl transition text-xs sm:text-sm font-black border-2 active:scale-95 ${
+              isDay
+                ? 'bg-slate-200 hover:bg-slate-300 text-slate-900 border-slate-300'
+                : 'bg-slate-800/70 text-slate-300 hover:bg-slate-700 border-slate-700/40'
+            }`}
             title="تقديم 15 ثانية داخل الدرس"
             aria-label="تقديم 15 ثانية"
           >
@@ -503,7 +564,11 @@ export default function CarPlayer({
           <button
             type="button"
             onClick={playNextLesson}
-            className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-slate-800/90 text-slate-200 hover:bg-slate-700 active:scale-95 transition shadow-lg border border-slate-700/60"
+            className={`flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl transition shadow-lg active:scale-95 border-2 ${
+              isDay
+                ? 'bg-white hover:bg-slate-50 text-slate-900 border-slate-300'
+                : 'bg-slate-800/90 text-slate-200 hover:bg-slate-700 border-slate-700/60'
+            }`}
             title="الدرس التالي"
             aria-label="الدرس التالي"
           >
