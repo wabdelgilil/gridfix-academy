@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { getLessonAudioCues } from '../../../data/audioCues';
 
 export interface PlaylistItem {
   id: string;
@@ -41,6 +42,13 @@ export default function CarPlayer({
 
   const [currentIndex, setCurrentIndex] = useState(Math.max(0, initialIndex !== -1 ? initialIndex : 0));
   const currentTrack = playlist[currentIndex] || playlist[0];
+
+  // Smart Synchronized Audio Cues for the current track
+  const currentCues = currentTrack ? getLessonAudioCues(currentTrack.id) : [];
+  const activeCueIndex = currentCues.length > 0
+    ? currentCues.reduce((acc, cue, idx) => (currentTime >= cue.atSeconds ? idx : acc), 0)
+    : -1;
+  const activeCue = activeCueIndex >= 0 ? currentCues[activeCueIndex] : null;
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -335,23 +343,34 @@ export default function CarPlayer({
         }}
       />
 
-      {/* Top Bar: Chunky Driver Ergonomics (Day/Night, Speed, Course Switcher) */}
-      <div className={`flex flex-wrap items-center justify-between gap-3 border-b pb-4 ${
+      {/* Top Bar: Chunky Driver Ergonomics & Balanced 2-Tier Toolbar */}
+      <div className={`space-y-3 border-b pb-3.5 ${
         isDay ? 'border-slate-300' : 'border-slate-800/90'
       }`}>
-        {/* Course Switcher & Slogan */}
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-          <div className={`flex items-center gap-2 rounded-2xl px-3.5 py-2 text-xs sm:text-sm font-black border-2 shadow-xs ${
-            isDay
-              ? 'bg-amber-100 text-amber-950 border-amber-300'
-              : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-          }`}>
-            <span className="text-base sm:text-lg">🚗</span>
-            <span>ادرس أثناء القيادة</span>
+        {/* Tier 1: Course Switcher & Slogan - Perfectly Spaced Across Top */}
+        <div className="flex items-center justify-between gap-2 sm:gap-3 w-full">
+          <div className="flex items-center gap-2 shrink-0">
+            <div className={`flex items-center gap-2 rounded-2xl px-3 sm:px-3.5 py-1.5 sm:py-2 text-xs sm:text-sm font-black border-2 shadow-xs shrink-0 ${
+              isDay
+                ? 'bg-amber-100 text-amber-950 border-amber-300'
+                : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+            }`}>
+              <span className="text-base sm:text-lg">🚗</span>
+              <span>ادرس أثناء القيادة</span>
+            </div>
+
+            {wakeLockActive && (
+              <span className={`hidden md:inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-xl border shrink-0 ${
+                isDay ? 'bg-slate-200 text-slate-800 border-slate-300' : 'bg-slate-800 text-slate-300 border-slate-700'
+              }`} title="الشاشة ستبقى مضاءة أثناء القيادة">
+                <span>☀️</span>
+                <span>الشاشة مضاءة</span>
+              </span>
+            )}
           </div>
 
           {coursesList && coursesList.length > 0 && (
-            <div className={`flex items-center gap-1 rounded-2xl p-1 border-2 text-xs sm:text-sm ${
+            <div className={`flex items-center gap-1 rounded-2xl p-1 border-2 text-xs sm:text-sm shrink-0 ${
               isDay ? 'bg-white border-slate-300' : 'bg-slate-900 border-slate-800'
             }`}>
               {coursesList.map((c) => {
@@ -360,7 +379,7 @@ export default function CarPlayer({
                   <a
                     key={c.id}
                     href={`/${c.id}/listen/?playlist=true`}
-                    className={`px-3 py-1.5 rounded-xl font-black transition flex items-center gap-1.5 ${
+                    className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl font-black transition flex items-center gap-1 sm:gap-1.5 ${
                       active
                         ? 'bg-emerald-600 text-white shadow-xs'
                         : isDay
@@ -376,24 +395,17 @@ export default function CarPlayer({
               })}
             </div>
           )}
-
-          {wakeLockActive && (
-            <span className={`hidden sm:inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-xl border ${
-              isDay ? 'bg-slate-200 text-slate-800 border-slate-300' : 'bg-slate-800 text-slate-300 border-slate-700'
-            }`} title="الشاشة ستبقى مضاءة أثناء القيادة">
-              <span>☀️</span>
-              <span>الشاشة مضاءة</span>
-            </span>
-          )}
         </div>
 
-        {/* Big Tactile Driver Actions: Day/Night Toggle & Speed Control */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Tier 2: Dedicated Driver Action Strip (Day/Night, Speed, Playlist, Fullscreen) */}
+        <div className={`flex items-center justify-between gap-2 sm:gap-3 w-full pt-2 border-t ${
+          isDay ? 'border-slate-200/80' : 'border-slate-800/80'
+        }`}>
           {/* Day / Night Slap Button - Chunky 48px */}
           <button
             type="button"
             onClick={toggleDriveTheme}
-            className={`flex h-12 items-center gap-2 px-3.5 sm:px-4 rounded-2xl font-black text-xs sm:text-sm border-2 transition-all shadow-md active:scale-95 cursor-pointer ${
+            className={`flex h-12 items-center gap-2 px-3.5 sm:px-4 rounded-2xl font-black text-xs sm:text-sm border-2 transition-all shadow-md active:scale-95 cursor-pointer shrink-0 ${
               isDay
                 ? 'bg-amber-300 hover:bg-amber-400 text-amber-950 border-amber-400 ring-2 ring-amber-300/40'
                 : 'bg-slate-800 hover:bg-slate-700 text-amber-300 border-slate-700'
@@ -404,99 +416,272 @@ export default function CarPlayer({
             <span>{isDay ? 'وضع النهار' : 'وضع الليل'}</span>
           </button>
 
-          {/* Speed Toggle - Chunky 48px */}
-          <button
-            type="button"
-            onClick={cycleSpeed}
-            className={`flex h-12 items-center gap-1.5 px-3.5 sm:px-4 rounded-2xl font-black text-xs sm:text-sm border-2 transition-all shadow-md active:scale-95 cursor-pointer ${
-              isDay
-                ? 'bg-white hover:bg-slate-50 text-slate-900 border-slate-300'
-                : 'bg-slate-800 hover:bg-slate-700 text-slate-100 border-slate-700'
-            }`}
-            title="سرعة إلقاء الصوت (1x, 1.25x, 1.5x, 1.75x, 2x)"
-          >
-            <span className="text-amber-500 text-base">⚡</span>
-            <span>{playbackRate}x</span>
-          </button>
+          {/* Grouped Driver Utilities (Speed, Playlist, Fullscreen) */}
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+            {/* Speed Toggle - Chunky 48px */}
+            <button
+              type="button"
+              onClick={cycleSpeed}
+              className={`flex h-12 items-center gap-1.5 px-3 sm:px-4 rounded-2xl font-black text-xs sm:text-sm border-2 transition-all shadow-md active:scale-95 cursor-pointer ${
+                isDay
+                  ? 'bg-white hover:bg-slate-50 text-slate-900 border-slate-300'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-100 border-slate-700'
+              }`}
+              title="سرعة إلقاء الصوت (1x, 1.25x, 1.5x, 1.75x, 2x)"
+            >
+              <span className="text-amber-500 text-base">⚡</span>
+              <span>{playbackRate}x</span>
+            </button>
 
-          {/* Playlist Drawer Button - Chunky 48px */}
-          <button
-            type="button"
-            onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-            className={`flex h-12 items-center gap-1.5 px-3.5 sm:px-4 rounded-2xl font-black text-xs sm:text-sm border-2 transition-all shadow-md active:scale-95 cursor-pointer ${
-              isDay
-                ? 'bg-white hover:bg-slate-50 text-slate-900 border-slate-300'
-                : 'bg-slate-800 hover:bg-slate-700 text-slate-100 border-slate-700'
-            }`}
-            title="عرض قائمة الدروس للاختيار"
-          >
-            <span>📑</span>
-            <span className="hidden sm:inline">{availableTracksCount} درس</span>
-          </button>
+            {/* Playlist Drawer Button - Chunky 48px */}
+            <button
+              type="button"
+              onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+              className={`flex h-12 items-center gap-1.5 px-3 sm:px-4 rounded-2xl font-black text-xs sm:text-sm border-2 transition-all shadow-md active:scale-95 cursor-pointer ${
+                isDay
+                  ? 'bg-white hover:bg-slate-50 text-slate-900 border-slate-300'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-100 border-slate-700'
+              }`}
+              title="عرض قائمة الدروس للاختيار"
+            >
+              <span>📑</span>
+              <span className="hidden sm:inline">{availableTracksCount} درس</span>
+              <span className="sm:hidden">{availableTracksCount}</span>
+            </button>
 
-          {/* Fullscreen Toggle */}
-          <button
-            type="button"
-            onClick={toggleFullscreen}
-            className={`hidden sm:flex h-12 w-12 items-center justify-center rounded-2xl border-2 transition-all shadow-md active:scale-95 cursor-pointer ${
-              isDay
-                ? 'bg-white hover:bg-slate-50 text-slate-900 border-slate-300'
-                : 'bg-slate-800 hover:bg-slate-700 text-slate-100 border-slate-700'
-            }`}
-            title={isFullscreen ? 'إنهاء الشاشة الكاملة' : 'ملء الشاشة لوضع السيارة'}
-            aria-label="ملء الشاشة"
-          >
-            <span className="text-base font-black">⛶</span>
-          </button>
+            {/* Fullscreen Toggle - Chunky 48px */}
+            <button
+              type="button"
+              onClick={toggleFullscreen}
+              className={`flex h-12 w-12 items-center justify-center rounded-2xl border-2 transition-all shadow-md active:scale-95 cursor-pointer ${
+                isDay
+                  ? 'bg-white hover:bg-slate-50 text-slate-900 border-slate-300'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-100 border-slate-700'
+              }`}
+              title={isFullscreen ? 'إنهاء الشاشة الكاملة' : 'ملء الشاشة لوضع السيارة'}
+              aria-label="ملء الشاشة"
+            >
+              <span className="text-base font-black">⛶</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Main Track Display: High-Contrast Large Typography for Car / Tablet Mounts */}
-      <div className="my-auto py-6 sm:py-10 text-center">
-        <div className={`mb-3 inline-flex items-center gap-2 rounded-full px-4 py-1 text-xs font-black border ${
-          isDay
-            ? 'bg-brand-100 text-brand-900 border-brand-300'
-            : 'bg-brand-500/20 text-brand-300 border-brand-500/30'
-        }`}>
-          <span>المحطة {currentTrack.stationNumber}:</span>
-          <span>{currentTrack.stationTitle}</span>
-        </div>
+      {/* Main Center Stage: Synchronized Smart Audio Visual Board OR Classic Track Typography */}
+      <div className="my-auto py-4 sm:py-6 text-center">
+        {activeCue ? (
+          /* Live Synchronized Audio Cue Board */
+          <div className="w-full max-w-3xl mx-auto space-y-3 animate-fadeIn">
+            {/* Top Scene Context & Lesson Breadcrumb */}
+            <div className="flex items-center justify-between gap-2 px-1 text-xs">
+              <div className="flex items-center gap-2 truncate">
+                <span className={`px-2.5 py-0.5 rounded-full font-black border text-xs shrink-0 ${
+                  isDay
+                    ? 'bg-brand-100 text-brand-900 border-brand-300'
+                    : 'bg-brand-500/20 text-brand-300 border-brand-500/30'
+                }`}>
+                  الدرس {currentTrack.number}
+                </span>
+                <span className={`font-bold truncate text-xs sm:text-sm ${
+                  isDay ? 'text-slate-800' : 'text-slate-300'
+                }`}>
+                  {currentTrack.title}
+                </span>
+              </div>
 
-        <div className={`text-3xl sm:text-5xl font-black tracking-tight mb-2 sm:mb-3 ${
-          isDay ? 'text-brand-600' : 'text-brand-400'
-        }`}>
-          الدرس {currentTrack.number}
-        </div>
+              <div className={`px-2.5 py-0.5 rounded-full font-mono text-[11px] font-bold border shrink-0 ${
+                isDay ? 'bg-slate-200 text-slate-800 border-slate-300' : 'bg-slate-800 text-slate-300 border-slate-700'
+              }`}>
+                مشهد {activeCueIndex + 1} من {currentCues.length}
+              </div>
+            </div>
 
-        <h1 className={`text-2xl sm:text-4xl lg:text-5xl font-black leading-relaxed sm:leading-tight px-2 max-w-2xl mx-auto ${
-          isDay ? 'text-slate-950' : 'text-white drop-shadow-sm'
-        }`}>
-          {currentTrack.title}
-        </h1>
+            {/* Smart Synchronized Visual Card */}
+            <div className={`relative rounded-3xl p-5 sm:p-7 border-2 transition-all duration-300 shadow-xl text-right overflow-hidden ${
+              isDay
+                ? 'bg-white border-amber-300/80 text-slate-900 ring-2 ring-amber-100'
+                : 'bg-slate-900/90 border-brand-500/40 text-white shadow-brand-500/5'
+            }`}>
+              {/* Card Header: Category Badge & Scene Time */}
+              <div className="flex items-center justify-between gap-2 mb-3">
+                <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs sm:text-sm font-black border ${
+                  activeCue.type === 'rule'
+                    ? isDay ? 'bg-amber-100 text-amber-950 border-amber-400' : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                    : activeCue.type === 'stat'
+                    ? isDay ? 'bg-rose-100 text-rose-950 border-rose-300' : 'bg-rose-500/20 text-rose-300 border-rose-500/40'
+                    : isDay ? 'bg-emerald-100 text-emerald-950 border-emerald-300' : 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                }`}>
+                  <span className="text-base">{activeCue.badgeIcon}</span>
+                  <span>{activeCue.badge}</span>
+                </div>
 
-        <p className={`mt-2 text-sm sm:text-base dir-ltr font-sans font-bold ${
-          isDay ? 'text-slate-700' : 'text-slate-400'
-        }`} dir="ltr">
-          {currentTrack.titleEn}
-        </p>
+                <span className={`text-[11px] font-mono font-bold ${isDay ? 'text-slate-500' : 'text-slate-400'}`}>
+                  بدء النقطة: {formatTime(activeCue.atSeconds)}
+                </span>
+              </div>
 
-        {lang === 'en' && currentTrack.hasAudio && (
-          <div className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 text-xs text-amber-300">
-            <span>🎙️</span>
-            <span>English audio is in production — Playing Arabic narration (🇸🇦)</span>
-          </div>
-        )}
+              {/* Title of the active point */}
+              <h2 className={`text-xl sm:text-2xl lg:text-3xl font-black mb-3 leading-snug ${
+                isDay ? 'text-slate-950' : 'text-white'
+              }`}>
+                {activeCue.title}
+              </h2>
 
-        {currentTrack.hasAudio ? (
-          <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-slate-800/60 px-3.5 py-1 text-xs text-slate-400 border border-slate-700/60">
-            <span>🔘</span>
-            <span>مدعوم بالتحكم من أزرار عجلة القيادة وبلوتوث السيارة</span>
+              {/* Big Bold Key Takeaway (Driver punchline) */}
+              <div className={`p-4 rounded-2xl mb-4 border text-base sm:text-xl font-black leading-relaxed ${
+                activeCue.type === 'rule'
+                  ? isDay ? 'bg-amber-50 border-amber-200 text-amber-950' : 'bg-amber-500/10 border-amber-500/30 text-amber-200'
+                  : isDay ? 'bg-slate-50 border-slate-200 text-slate-900' : 'bg-slate-800/60 border-slate-700/60 text-slate-100'
+              }`}>
+                {activeCue.keyTakeaway}
+              </div>
+
+              {/* Visual Graphic Element: Highlight Stat */}
+              {activeCue.highlightStat && (
+                <div className={`flex items-center justify-center gap-4 p-4 rounded-2xl border mb-3 ${
+                  isDay ? 'bg-slate-100 border-slate-200' : 'bg-slate-950/60 border-slate-800'
+                }`}>
+                  <div className={`text-4xl sm:text-5xl font-black font-mono tracking-tight shrink-0 ${
+                    activeCue.highlightStat.color === 'rose'
+                      ? isDay ? 'text-rose-600' : 'text-rose-400'
+                      : activeCue.highlightStat.color === 'amber'
+                      ? isDay ? 'text-amber-600' : 'text-amber-400'
+                      : activeCue.highlightStat.color === 'emerald'
+                      ? isDay ? 'text-emerald-600' : 'text-emerald-400'
+                      : isDay ? 'text-teal-600' : 'text-teal-400'
+                  }`}>
+                    {activeCue.highlightStat.value}
+                  </div>
+                  <div className="text-right">
+                    <div className={`text-sm sm:text-base font-black ${isDay ? 'text-slate-900' : 'text-white'}`}>
+                      {activeCue.highlightStat.label}
+                    </div>
+                    {activeCue.highlightStat.sub && (
+                      <div className={`text-xs font-semibold mt-0.5 ${isDay ? 'text-slate-600' : 'text-slate-400'}`}>
+                        {activeCue.highlightStat.sub}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Visual Graphic Element: Comparison Side-by-Side */}
+              {activeCue.comparison && (
+                <div className="grid grid-cols-2 gap-3 mb-3 text-right">
+                  <div className={`p-3.5 rounded-2xl border ${
+                    isDay ? 'bg-rose-50 border-rose-200 text-slate-900' : 'bg-rose-950/30 border-rose-800/40 text-rose-100'
+                  }`}>
+                    <div className="text-xs font-bold opacity-80">{activeCue.comparison.right.label}</div>
+                    <div className="text-lg sm:text-xl font-black my-1 text-rose-500">{activeCue.comparison.right.value}</div>
+                    <div className="text-xs font-medium leading-relaxed">{activeCue.comparison.right.desc}</div>
+                  </div>
+                  <div className={`p-3.5 rounded-2xl border ${
+                    isDay ? 'bg-emerald-50 border-emerald-200 text-slate-900' : 'bg-emerald-950/30 border-emerald-800/40 text-emerald-100'
+                  }`}>
+                    <div className="text-xs font-bold opacity-80">{activeCue.comparison.left.label}</div>
+                    <div className="text-lg sm:text-xl font-black my-1 text-emerald-500">{activeCue.comparison.left.value}</div>
+                    <div className="text-xs font-medium leading-relaxed">{activeCue.comparison.left.desc}</div>
+                  </div>
+                </div>
+              )}
+
+              {/* Detail sentence */}
+              {activeCue.detail && (
+                <p className={`text-xs sm:text-sm font-semibold leading-relaxed ${
+                  isDay ? 'text-slate-700' : 'text-slate-300'
+                }`}>
+                  {activeCue.detail}
+                </p>
+              )}
+            </div>
+
+            {/* Interactive Chapter Scrubbing Strip */}
+            <div className="flex items-center justify-center gap-1.5 sm:gap-2 max-w-2xl mx-auto overflow-x-auto py-1">
+              {currentCues.map((cue, idx) => {
+                const isActive = idx === activeCueIndex;
+                const isPast = currentTime > cue.atSeconds;
+                return (
+                  <button
+                    key={cue.id}
+                    type="button"
+                    onClick={() => {
+                      if (audioRef.current) {
+                        audioRef.current.currentTime = cue.atSeconds;
+                        setCurrentTime(cue.atSeconds);
+                      }
+                    }}
+                    className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
+                      isActive
+                        ? isDay
+                          ? 'bg-amber-300 text-amber-950 border-amber-400 font-black shadow-md scale-105'
+                          : 'bg-brand-500 text-white border-brand-400 font-black shadow-lg shadow-brand-500/20 scale-105'
+                        : isPast
+                        ? isDay
+                          ? 'bg-slate-200 text-slate-700 border-slate-300'
+                          : 'bg-slate-800/80 text-slate-300 border-slate-700'
+                        : isDay
+                        ? 'bg-white text-slate-500 border-slate-200 hover:bg-slate-100'
+                        : 'bg-slate-900/60 text-slate-500 border-slate-800 hover:bg-slate-800'
+                    }`}
+                    title={`انقر للانتقال إلى: ${cue.title} (${formatTime(cue.atSeconds)})`}
+                  >
+                    <span>{cue.badgeIcon}</span>
+                    <span className="hidden sm:inline">{cue.badge}</span>
+                    <span className="font-mono text-[10px] opacity-75">{formatTime(cue.atSeconds)}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         ) : (
-          <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-amber-500/20 px-4 py-1.5 text-xs font-bold text-amber-300 border border-amber-500/40 animate-pulse">
-            <span>🎙️</span>
-            <span>الشرح الصوتي لهذا الدرس قيد الإنتاج وسيتوفر قريباً</span>
-          </div>
+          /* Classic Minimal Typography (when no custom cues are registered) */
+          <>
+            <div className={`mb-3 inline-flex items-center gap-2 rounded-full px-4 py-1 text-xs font-black border ${
+              isDay
+                ? 'bg-brand-100 text-brand-900 border-brand-300'
+                : 'bg-brand-500/20 text-brand-300 border-brand-500/30'
+            }`}>
+              <span>المحطة {currentTrack.stationNumber}:</span>
+              <span>{currentTrack.stationTitle}</span>
+            </div>
+
+            <div className={`text-3xl sm:text-5xl font-black tracking-tight mb-2 sm:mb-3 ${
+              isDay ? 'text-brand-600' : 'text-brand-400'
+            }`}>
+              الدرس {currentTrack.number}
+            </div>
+
+            <h1 className={`text-2xl sm:text-4xl lg:text-5xl font-black leading-relaxed sm:leading-tight px-2 max-w-2xl mx-auto ${
+              isDay ? 'text-slate-950' : 'text-white drop-shadow-sm'
+            }`}>
+              {currentTrack.title}
+            </h1>
+
+            <p className={`mt-2 text-sm sm:text-base dir-ltr font-sans font-bold ${
+              isDay ? 'text-slate-700' : 'text-slate-400'
+            }`} dir="ltr">
+              {currentTrack.titleEn}
+            </p>
+
+            {lang === 'en' && currentTrack.hasAudio && (
+              <div className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 text-xs text-amber-300">
+                <span>🎙️</span>
+                <span>English audio is in production — Playing Arabic narration (🇸🇦)</span>
+              </div>
+            )}
+
+            {currentTrack.hasAudio ? (
+              <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-slate-800/60 px-3.5 py-1 text-xs text-slate-400 border border-slate-700/60">
+                <span>🔘</span>
+                <span>مدعوم بالتحكم من أزرار عجلة القيادة وبلوتوث السيارة</span>
+              </div>
+            ) : (
+              <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-amber-500/20 px-4 py-1.5 text-xs font-bold text-amber-300 border border-amber-500/40 animate-pulse">
+                <span>🎙️</span>
+                <span>الشرح الصوتي لهذا الدرس قيد الإنتاج وسيتوفر قريباً</span>
+              </div>
+            )}
+          </>
         )}
       </div>
 
@@ -521,18 +706,18 @@ export default function CarPlayer({
           </div>
         </div>
 
-        {/* Big Tactile Touch Targets for Mobile, Tablet & Dashboard */}
-        <div className="flex items-center justify-center gap-3 sm:gap-6 py-2">
+        {/* Big Tactile Touch Targets for Mobile, Tablet & Dashboard (Standardized LTR Audio Transport) */}
+        <div className="flex items-center justify-center gap-3 sm:gap-6 py-2" dir="ltr">
           {/* Previous Lesson (Track) */}
           <button
             type="button"
             onClick={playPrevLesson}
-            className={`flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl transition shadow-lg active:scale-95 border-2 ${
+            className={`flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl transition shadow-lg active:scale-95 border-2 cursor-pointer ${
               isDay
                 ? 'bg-white hover:bg-slate-50 text-slate-900 border-slate-300'
                 : 'bg-slate-800/90 text-slate-200 hover:bg-slate-700 border-slate-700/60'
             }`}
-            title="الدرس السابق (أو رجوع لبداية الدرس)"
+            title="الدرس السابق"
             aria-label="الدرس السابق"
           >
             <svg className="h-6 w-6 sm:h-7 sm:w-7 fill-current" viewBox="0 0 24 24">
@@ -544,7 +729,7 @@ export default function CarPlayer({
           <button
             type="button"
             onClick={() => seek(-15)}
-            className={`flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl transition text-xs sm:text-sm font-black border-2 active:scale-95 ${
+            className={`flex h-12 sm:h-14 items-center justify-center gap-1 px-3 sm:px-4 rounded-2xl transition text-xs sm:text-sm font-black border-2 active:scale-95 cursor-pointer ${
               isDay
                 ? 'bg-slate-200 hover:bg-slate-300 text-slate-900 border-slate-300'
                 : 'bg-slate-800/70 text-slate-300 hover:bg-slate-700 border-slate-700/40'
@@ -552,7 +737,11 @@ export default function CarPlayer({
             title="تأخير 15 ثانية داخل الدرس"
             aria-label="تأخير 15 ثانية"
           >
-            <span>↺ 15</span>
+            <svg className="h-4 w-4 sm:h-5 sm:w-5 fill-none stroke-current stroke-2 shrink-0" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h10a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5H6" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M7 6 3 10l4 4" />
+            </svg>
+            <span className="font-mono font-bold text-xs sm:text-sm">15s</span>
           </button>
 
           {/* Huge Play / Pause Button (Easy touch in car) */}
@@ -560,7 +749,7 @@ export default function CarPlayer({
             type="button"
             onClick={togglePlay}
             disabled={!currentTrack.hasAudio}
-            className="flex h-20 w-20 sm:h-22 sm:w-22 items-center justify-center rounded-3xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white shadow-2xl shadow-emerald-600/40 hover:scale-105 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition"
+            className="flex h-20 w-20 sm:h-22 sm:w-22 items-center justify-center rounded-3xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white shadow-2xl shadow-emerald-600/40 hover:scale-105 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
             title={isPlaying ? 'إيقاف مؤقت' : 'تشغيل'}
             aria-label={isPlaying ? 'إيقاف مؤقت' : 'تشغيل'}
           >
@@ -579,7 +768,7 @@ export default function CarPlayer({
           <button
             type="button"
             onClick={() => seek(15)}
-            className={`flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl transition text-xs sm:text-sm font-black border-2 active:scale-95 ${
+            className={`flex h-12 sm:h-14 items-center justify-center gap-1 px-3 sm:px-4 rounded-2xl transition text-xs sm:text-sm font-black border-2 active:scale-95 cursor-pointer ${
               isDay
                 ? 'bg-slate-200 hover:bg-slate-300 text-slate-900 border-slate-300'
                 : 'bg-slate-800/70 text-slate-300 hover:bg-slate-700 border-slate-700/40'
@@ -587,14 +776,18 @@ export default function CarPlayer({
             title="تقديم 15 ثانية داخل الدرس"
             aria-label="تقديم 15 ثانية"
           >
-            <span>15 ↻</span>
+            <span className="font-mono font-bold text-xs sm:text-sm">15s</span>
+            <svg className="h-4 w-4 sm:h-5 sm:w-5 fill-none stroke-current stroke-2 shrink-0" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 10H11a5 5 0 0 0-5 5v1a5 5 0 0 0 5 5h7" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="m17 6 4 4-4 4" />
+            </svg>
           </button>
 
           {/* Next Lesson (Track) */}
           <button
             type="button"
             onClick={playNextLesson}
-            className={`flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl transition shadow-lg active:scale-95 border-2 ${
+            className={`flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl transition shadow-lg active:scale-95 border-2 cursor-pointer ${
               isDay
                 ? 'bg-white hover:bg-slate-50 text-slate-900 border-slate-300'
                 : 'bg-slate-800/90 text-slate-200 hover:bg-slate-700 border-slate-700/60'
