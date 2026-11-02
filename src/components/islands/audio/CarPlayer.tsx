@@ -318,7 +318,7 @@ export default function CarPlayer({
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto flex w-full max-w-7xl flex-col lg:flex-row gap-4 lg:gap-6 items-stretch select-none transition-colors duration-200"
+      className="relative mx-auto flex w-full max-w-[1680px] flex-col lg:flex-row gap-3 lg:gap-5 items-stretch select-none transition-all duration-300"
     >
       <audio
         ref={audioRef}
@@ -341,9 +341,9 @@ export default function CarPlayer({
         }}
       />
 
-      {/* Main Player Screen Stage */}
+      {/* Main Player Screen Stage (Expands to 100% when playlist is hidden like YouTube Theater mode) */}
       <div
-        className={`relative flex min-h-[82vh] md:min-h-[85vh] flex-col justify-between flex-1 min-w-0 rounded-3xl border-2 p-4 sm:p-7 shadow-2xl transition-colors duration-200 ${
+        className={`relative flex min-h-[76vh] lg:min-h-[80vh] flex-col justify-between flex-1 min-w-0 rounded-3xl border-2 p-3 sm:p-5 lg:p-6 shadow-2xl transition-all duration-300 overflow-hidden ${
           isDay
             ? 'bg-slate-100 border-slate-300 text-slate-900'
             : 'bg-slate-950 border-slate-800 text-white'
@@ -440,7 +440,7 @@ export default function CarPlayer({
               <span>{playbackRate}x</span>
             </button>
 
-            {/* Playlist Drawer/Sidebar Toggle Button - Chunky 48px */}
+            {/* YouTube-Style Playlist Sidebar Toggle Button - Chunky 48px */}
             <button
               type="button"
               onClick={() => {
@@ -450,20 +450,26 @@ export default function CarPlayer({
                   setIsSidebarOpen(!isSidebarOpen);
                 }
               }}
-              className={`flex h-12 items-center gap-1.5 px-3 sm:px-4 rounded-2xl font-black text-xs sm:text-sm border-2 transition-all shadow-md active:scale-95 cursor-pointer ${
+              className={`flex h-12 items-center gap-2 px-3.5 sm:px-4 rounded-2xl font-black text-xs sm:text-sm border-2 transition-all shadow-md active:scale-95 cursor-pointer shrink-0 ${
                 isSidebarOpen || isMobileDrawerOpen
                   ? isDay
-                    ? 'bg-amber-200 text-amber-950 border-amber-400'
-                    : 'bg-slate-700 text-white border-slate-600'
+                    ? 'bg-amber-300 text-amber-950 border-amber-400 ring-2 ring-amber-300/40'
+                    : 'bg-emerald-600 text-white border-emerald-500 shadow-emerald-500/20'
                   : isDay
                   ? 'bg-white hover:bg-slate-50 text-slate-900 border-slate-300'
                   : 'bg-slate-800 hover:bg-slate-700 text-slate-100 border-slate-700'
               }`}
-              title="عرض أو إخفاء قائمة الدروس"
+              title={isSidebarOpen ? 'إغلاق القائمة لتوسيع شاشة العرض (عرض سينمائي)' : 'عرض قائمة دروس الكورس الجانبية'}
             >
-              <span>📑</span>
-              <span className="hidden sm:inline">{availableTracksCount} درس</span>
-              <span className="sm:hidden">{availableTracksCount}</span>
+              <span className="text-base sm:text-lg">📑</span>
+              <span className="hidden sm:inline font-bold">{isSidebarOpen ? 'إخفاء القائمة' : 'عرض القائمة'}</span>
+              <span className={`text-[11px] px-2 py-0.5 rounded-full font-mono font-black ${
+                (isSidebarOpen || isMobileDrawerOpen)
+                  ? 'bg-black/20 text-current'
+                  : isDay ? 'bg-slate-200 text-slate-800' : 'bg-slate-700 text-slate-200'
+              }`}>
+                {currentIndex + 1} / {availableTracksCount}
+              </span>
             </button>
 
             {/* Fullscreen Toggle - Chunky 48px */}
@@ -485,10 +491,10 @@ export default function CarPlayer({
       </div>
 
       {/* Main Center Stage: Synchronized Smart Audio Visual Board OR Classic Track Typography */}
-      <div className="my-auto py-4 sm:py-6 text-center">
+      <div className="my-auto py-2 sm:py-3 text-center w-full">
         {activeCue ? (
           /* Live Synchronized Audio Cue Board */
-          <div className="w-full max-w-3xl mx-auto space-y-3 animate-fadeIn">
+          <div className="w-full space-y-2.5 animate-fadeIn">
             {/* Top Scene Context & Lesson Breadcrumb */}
             <div className="flex items-center justify-between gap-2 px-1 text-xs">
               <div className="flex items-center gap-2 truncate">
@@ -513,14 +519,14 @@ export default function CarPlayer({
               </div>
             </div>
 
-            {/* Smart Synchronized Visual Card */}
-            <div className={`relative rounded-3xl p-5 sm:p-7 border-2 transition-all duration-300 shadow-xl text-right overflow-hidden ${
+            {/* Smart Synchronized Visual Card (Spacious & Full-Width) */}
+            <div className={`relative rounded-3xl p-4 sm:p-6 lg:p-7 border-2 transition-all duration-300 shadow-xl text-right overflow-hidden w-full ${
               isDay
                 ? 'bg-white border-amber-300/80 text-slate-900 ring-2 ring-amber-100'
                 : 'bg-slate-900/90 border-brand-500/40 text-white shadow-brand-500/5'
             }`}>
               {/* Card Header: Category Badge & Scene Time */}
-              <div className="flex items-center justify-between gap-2 mb-3">
+              <div className="flex items-center justify-between gap-2 mb-2.5">
                 <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs sm:text-sm font-black border ${
                   activeCue.type === 'rule'
                     ? isDay ? 'bg-amber-100 text-amber-950 border-amber-400' : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
@@ -538,14 +544,14 @@ export default function CarPlayer({
               </div>
 
               {/* Title of the active point */}
-              <h2 className={`text-xl sm:text-2xl lg:text-3xl font-black mb-3 leading-snug ${
+              <h2 className={`text-xl sm:text-2xl lg:text-3xl font-black mb-2.5 leading-snug ${
                 isDay ? 'text-slate-950' : 'text-white'
               }`}>
                 {activeCue.title}
               </h2>
 
               {/* Big Bold Key Takeaway (Driver punchline) */}
-              <div className={`p-4 rounded-2xl mb-4 border text-base sm:text-xl font-black leading-relaxed ${
+              <div className={`p-3.5 sm:p-4 rounded-2xl mb-3 border text-base sm:text-lg lg:text-xl font-black leading-relaxed ${
                 activeCue.type === 'rule'
                   ? isDay ? 'bg-amber-50 border-amber-200 text-amber-950' : 'bg-amber-500/10 border-amber-500/30 text-amber-200'
                   : isDay ? 'bg-slate-50 border-slate-200 text-slate-900' : 'bg-slate-800/60 border-slate-700/60 text-slate-100'
@@ -553,23 +559,23 @@ export default function CarPlayer({
                 {activeCue.keyTakeaway}
               </div>
 
-              {/* 1. Visual Mathematical Formula Display */}
+              {/* 1. Visual Mathematical Formula Display (Spacious Unbroken Single Line) */}
               {activeCue.formula && (
                 <div className={`p-4 sm:p-5 rounded-2xl border mb-3 text-center ${
                   isDay ? 'bg-amber-50/70 border-amber-300/80 text-amber-950' : 'bg-slate-950/80 border-amber-500/30 text-amber-200'
                 }`}>
-                  <div className={`text-xs font-bold mb-2 ${isDay ? 'text-amber-900' : 'text-amber-400'}`}>
+                  <div className={`text-xs font-bold mb-1.5 ${isDay ? 'text-amber-900' : 'text-amber-400'}`}>
                     📐 {activeCue.formula.label}
                   </div>
-                  <div className="font-mono text-lg sm:text-2xl md:text-3xl font-black py-2 tracking-wide dir-ltr text-brand-500" dir="ltr">
+                  <div className="font-mono text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black py-2 tracking-wider dir-ltr text-brand-500 whitespace-nowrap overflow-x-auto" dir="ltr">
                     {activeCue.formula.expression}
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3 pt-3 border-t border-amber-300/40 text-right">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 mt-3 pt-3 border-t border-amber-300/40 text-right">
                     {activeCue.formula.variables.map((v, i) => (
-                      <div key={i} className={`p-2 rounded-xl text-xs font-semibold ${
-                        isDay ? 'bg-white/80 text-slate-800' : 'bg-slate-900/80 text-slate-300'
+                      <div key={i} className={`p-2.5 rounded-xl text-xs font-semibold ${
+                        isDay ? 'bg-white text-slate-800 shadow-2xs' : 'bg-slate-900/90 text-slate-200'
                       }`}>
-                        <span className="font-mono font-black text-brand-500 inline-block ml-1.5" dir="ltr">{v.symbol}:</span>
+                        <span className="font-mono font-black text-brand-500 inline-block ml-1.5 text-sm" dir="ltr">{v.symbol}:</span>
                         <span>{v.meaning}</span>
                       </div>
                     ))}
@@ -591,7 +597,7 @@ export default function CarPlayer({
                     </span>
                     <span className="text-[11px] font-mono opacity-70">المحور الأفقي: الوقت ←</span>
                   </div>
-                  <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:gap-5">
                     {activeCue.curvesGraphic.items.map((item) => {
                       const pathD = item.letter === 'F'
                         ? "M 10,15 Q 30,50 60,52 L 140,52"
@@ -688,7 +694,7 @@ export default function CarPlayer({
                 </div>
               )}
 
-              {/* 4. Engineering Flowchart / Decision Logic */}
+              {/* 4. Engineering Flowchart / Decision Logic (Horizontal on Widescreens) */}
               {activeCue.flowchart && (
                 <div className={`p-4 rounded-2xl border mb-3 ${
                   isDay ? 'bg-slate-50 border-slate-300' : 'bg-slate-950/70 border-slate-800'
@@ -697,83 +703,30 @@ export default function CarPlayer({
                     isDay ? 'text-slate-800' : 'text-slate-300'
                   }`}>
                     <span>🔄</span>
-                    <span>{activeCue.flowchart.title}</span>
+                    <span className="font-black">{activeCue.flowchart.title}</span>
                   </div>
-                  <div className="space-y-2">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
                     {activeCue.flowchart.steps.map((st, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl font-mono text-xs font-black text-white ${
-                          st.outcomeType === 'warning'
-                            ? 'bg-amber-600'
-                            : st.outcomeType === 'success'
-                            ? 'bg-emerald-600'
-                            : 'bg-brand-600'
-                        }`}>
-                          {st.step}
+                      <div key={i} className={`p-3 rounded-2xl border text-right text-xs font-bold transition-all ${
+                        st.outcomeType === 'warning'
+                          ? isDay ? 'bg-amber-100/80 border-amber-300 text-amber-950' : 'bg-amber-950/40 border-amber-800 text-amber-200'
+                          : st.outcomeType === 'success'
+                          ? isDay ? 'bg-emerald-100/80 border-emerald-300 text-emerald-950' : 'bg-emerald-950/40 border-emerald-800 text-emerald-200'
+                          : isDay ? 'bg-white border-slate-200 text-slate-900' : 'bg-slate-900 border-slate-800 text-slate-100'
+                      }`}>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-lg font-mono text-xs font-black text-white ${
+                            st.outcomeType === 'warning' ? 'bg-amber-600' : st.outcomeType === 'success' ? 'bg-emerald-600' : 'bg-brand-600'
+                          }`}>
+                            {st.step}
+                          </span>
+                          <span className="font-black text-xs sm:text-sm">{st.title}</span>
                         </div>
-                        <div className={`flex-1 p-2.5 rounded-xl border text-right text-xs font-bold ${
-                          st.outcomeType === 'warning'
-                            ? isDay ? 'bg-amber-100 border-amber-300 text-amber-950' : 'bg-amber-950/40 border-amber-800 text-amber-200'
-                            : st.outcomeType === 'success'
-                            ? isDay ? 'bg-emerald-100 border-emerald-300 text-emerald-950' : 'bg-emerald-950/40 border-emerald-800 text-emerald-200'
-                            : isDay ? 'bg-white border-slate-200 text-slate-900' : 'bg-slate-900 border-slate-800 text-slate-100'
-                        }`}>
-                          <div>{st.title}</div>
-                          {st.decision && (
-                            <div className="text-[11px] opacity-75 font-normal mt-0.5">{st.decision}</div>
-                          )}
-                        </div>
+                        {st.decision && (
+                          <div className="text-[11px] opacity-80 font-normal pr-8">{st.decision}</div>
+                        )}
                       </div>
                     ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Visual Graphic Element: Highlight Stat */}
-              {activeCue.highlightStat && (
-                <div className={`flex items-center justify-center gap-4 p-4 rounded-2xl border mb-3 ${
-                  isDay ? 'bg-slate-100 border-slate-200' : 'bg-slate-950/60 border-slate-800'
-                }`}>
-                  <div className={`text-4xl sm:text-5xl font-black font-mono tracking-tight shrink-0 ${
-                    activeCue.highlightStat.color === 'rose'
-                      ? isDay ? 'text-rose-600' : 'text-rose-400'
-                      : activeCue.highlightStat.color === 'amber'
-                      ? isDay ? 'text-amber-600' : 'text-amber-400'
-                      : activeCue.highlightStat.color === 'emerald'
-                      ? isDay ? 'text-emerald-600' : 'text-emerald-400'
-                      : isDay ? 'text-teal-600' : 'text-teal-400'
-                  }`}>
-                    {activeCue.highlightStat.value}
-                  </div>
-                  <div className="text-right">
-                    <div className={`text-sm sm:text-base font-black ${isDay ? 'text-slate-900' : 'text-white'}`}>
-                      {activeCue.highlightStat.label}
-                    </div>
-                    {activeCue.highlightStat.sub && (
-                      <div className={`text-xs font-semibold mt-0.5 ${isDay ? 'text-slate-600' : 'text-slate-400'}`}>
-                        {activeCue.highlightStat.sub}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Visual Graphic Element: Comparison Side-by-Side */}
-              {activeCue.comparison && (
-                <div className="grid grid-cols-2 gap-3 mb-3 text-right">
-                  <div className={`p-3.5 rounded-2xl border ${
-                    isDay ? 'bg-rose-50 border-rose-200 text-slate-900' : 'bg-rose-950/30 border-rose-800/40 text-rose-100'
-                  }`}>
-                    <div className="text-xs font-bold opacity-80">{activeCue.comparison.right.label}</div>
-                    <div className="text-lg sm:text-xl font-black my-1 text-rose-500">{activeCue.comparison.right.value}</div>
-                    <div className="text-xs font-medium leading-relaxed">{activeCue.comparison.right.desc}</div>
-                  </div>
-                  <div className={`p-3.5 rounded-2xl border ${
-                    isDay ? 'bg-emerald-50 border-emerald-200 text-slate-900' : 'bg-emerald-950/30 border-emerald-800/40 text-emerald-100'
-                  }`}>
-                    <div className="text-xs font-bold opacity-80">{activeCue.comparison.left.label}</div>
-                    <div className="text-lg sm:text-xl font-black my-1 text-emerald-500">{activeCue.comparison.left.value}</div>
-                    <div className="text-xs font-medium leading-relaxed">{activeCue.comparison.left.desc}</div>
                   </div>
                 </div>
               )}
@@ -789,7 +742,7 @@ export default function CarPlayer({
             </div>
 
             {/* Interactive Chapter Scrubbing Strip */}
-            <div className="flex items-center justify-center gap-1.5 sm:gap-2 max-w-2xl mx-auto overflow-x-auto py-1">
+            <div className="flex items-center justify-center gap-1.5 sm:gap-2.5 w-full overflow-x-auto py-1">
               {currentCues.map((cue, idx) => {
                 const isActive = idx === activeCueIndex;
                 const isPast = currentTime > cue.atSeconds;
@@ -803,7 +756,7 @@ export default function CarPlayer({
                         setCurrentTime(cue.atSeconds);
                       }
                     }}
-                    className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer border ${
                       isActive
                         ? isDay
                           ? 'bg-amber-300 text-amber-950 border-amber-400 font-black shadow-md scale-105'
@@ -878,8 +831,10 @@ export default function CarPlayer({
         )}
       </div>
 
-      {/* Bottom Area: Controls & Scrub */}
-      <div className="space-y-4 pt-4 border-t border-slate-800/90">
+      {/* Bottom Area: Controls & Scrub (Compact Zero-Scroll Fitting) */}
+      <div className={`space-y-2.5 pt-2.5 sm:pt-3 border-t shrink-0 ${
+        isDay ? 'border-slate-300' : 'border-slate-800/90'
+      }`}>
         {/* Progress Bar & Timers (RTL Fixed) */}
         <div>
           <div
@@ -1019,38 +974,45 @@ export default function CarPlayer({
       </div>
     </div>
 
-      {/* Desktop & Tablet Playlist Sidebar (Beside the main screen) */}
+      {/* Desktop & Tablet YouTube-Style Playlist Sidebar */}
       {isSidebarOpen && (
         <aside
-          className={`hidden lg:flex flex-col w-80 xl:w-96 rounded-3xl border-2 p-4 shadow-2xl shrink-0 max-h-[85vh] transition-colors duration-200 ${
+          className={`hidden lg:flex flex-col w-80 xl:w-96 rounded-3xl border-2 p-4 shadow-2xl shrink-0 transition-all duration-300 animate-fadeIn ${
             isDay
-              ? 'bg-white border-slate-300 text-slate-900'
-              : 'bg-slate-900/95 border-slate-800 text-white'
+              ? 'bg-white border-slate-300 text-slate-900 ring-2 ring-amber-100'
+              : 'bg-slate-900/95 border-slate-800 text-white shadow-brand-500/5'
           }`}
         >
           <div className={`flex items-center justify-between border-b pb-3 mb-3 shrink-0 ${
             isDay ? 'border-slate-200' : 'border-slate-800'
           }`}>
             <div>
-              <h3 className="font-black text-sm sm:text-base flex items-center gap-1.5">
-                <span>📑</span>
-                <span>قائمة دروس الكورس</span>
-              </h3>
-              <div className={`text-xs mt-0.5 ${isDay ? 'text-slate-600' : 'text-slate-400'}`}>
-                {availableTracksCount} درس جاهز للاستماع الآن
+              <div className="flex items-center gap-2">
+                <span className="text-base sm:text-lg">📑</span>
+                <h3 className="font-black text-sm sm:text-base">قائمة التشغيل</h3>
+                <span className={`text-[11px] font-mono font-bold px-2 py-0.5 rounded-full ${
+                  isDay ? 'bg-amber-100 text-amber-950 border border-amber-300' : 'bg-slate-800 text-slate-300'
+                }`}>
+                  {currentIndex + 1} من {availableTracksCount}
+                </span>
               </div>
+              <p className={`text-xs mt-0.5 font-medium ${isDay ? 'text-slate-600' : 'text-slate-400'}`}>
+                {courseTitle}
+              </p>
             </div>
+
             <button
               type="button"
               onClick={() => setIsSidebarOpen(false)}
-              className={`p-1.5 px-2.5 rounded-xl border text-xs font-bold transition cursor-pointer ${
+              className={`flex h-8 w-8 items-center justify-center rounded-xl border text-sm font-bold transition hover:scale-105 active:scale-95 cursor-pointer ${
                 isDay
                   ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-300'
                   : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
               }`}
-              title="إخفاء القائمة الجانبية لتوسيع الشاشة"
+              title="إغلاق القائمة لتوسيع شاشة العرض (عرض سينمائي كامل)"
+              aria-label="إغلاق القائمة"
             >
-              ✕ إخفاء
+              ✕
             </button>
           </div>
 
