@@ -356,9 +356,9 @@ export default function CarPlayer({
         }}
       />
 
-      {/* Main Player Screen Stage (Expands to 100% when playlist is hidden like YouTube Theater mode) */}
+      {/* Main Player Screen Stage (16:9 Widescreen Video Aspect Ratio on Desktop/Tablet) */}
       <div
-        className={`relative flex flex-col justify-between flex-1 min-w-0 rounded-3xl border-2 p-4 sm:p-6 lg:p-7 shadow-2xl transition-all duration-300 overflow-hidden ${
+        className={`relative flex flex-col justify-between flex-1 min-w-0 md:aspect-video rounded-3xl border-2 p-3.5 sm:p-5 lg:p-6 shadow-2xl transition-all duration-300 overflow-hidden ${
           isDay
             ? 'bg-slate-100 border-slate-300 text-slate-900'
             : 'bg-slate-950 border-slate-800 text-white'
@@ -742,6 +742,55 @@ export default function CarPlayer({
                         )}
                       </div>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {/* 5. Highlight Stat Card */}
+              {activeCue.highlightStat && (
+                <div className={`p-3.5 sm:p-4 rounded-2xl border mb-3 flex items-center justify-between gap-4 text-right ${
+                  isDay ? 'bg-slate-50 border-slate-300' : 'bg-slate-950/70 border-slate-800'
+                }`}>
+                  <div className="flex-1 min-w-0">
+                    <div className={`text-xs sm:text-sm font-black ${isDay ? 'text-slate-900' : 'text-white'}`}>
+                      {activeCue.highlightStat.label}
+                    </div>
+                    {activeCue.highlightStat.sub && (
+                      <div className={`text-[11px] sm:text-xs font-medium mt-0.5 ${isDay ? 'text-slate-600' : 'text-slate-400'}`}>
+                        {activeCue.highlightStat.sub}
+                      </div>
+                    )}
+                  </div>
+                  <div className={`font-mono text-2xl sm:text-3xl font-black px-3.5 py-1.5 rounded-xl border shrink-0 ${
+                    activeCue.highlightStat.color === 'rose'
+                      ? 'bg-rose-500/10 text-rose-500 border-rose-500/30'
+                      : activeCue.highlightStat.color === 'amber'
+                      ? 'bg-amber-500/10 text-amber-500 border-amber-500/30'
+                      : activeCue.highlightStat.color === 'teal'
+                      ? 'bg-teal-500/10 text-teal-400 border-teal-500/30'
+                      : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+                  }`}>
+                    {activeCue.highlightStat.value}
+                  </div>
+                </div>
+              )}
+
+              {/* 6. Side-by-Side Comparison Grid */}
+              {activeCue.comparison && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 mb-3 text-right">
+                  <div className={`p-3 sm:p-3.5 rounded-2xl border ${
+                    isDay ? 'bg-amber-50/80 border-amber-200 text-amber-950' : 'bg-amber-950/20 border-amber-800/40 text-amber-200'
+                  }`}>
+                    <div className="text-[11px] font-bold text-amber-500">{activeCue.comparison.right.label}</div>
+                    <div className="text-sm sm:text-base font-black my-0.5">{activeCue.comparison.right.value}</div>
+                    <div className="text-[11px] font-medium leading-relaxed opacity-90">{activeCue.comparison.right.desc}</div>
+                  </div>
+                  <div className={`p-3 sm:p-3.5 rounded-2xl border ${
+                    isDay ? 'bg-emerald-50/80 border-emerald-200 text-emerald-950' : 'bg-emerald-950/20 border-emerald-800/40 text-emerald-200'
+                  }`}>
+                    <div className="text-[11px] font-bold text-emerald-500">{activeCue.comparison.left.label}</div>
+                    <div className="text-sm sm:text-base font-black my-0.5">{activeCue.comparison.left.value}</div>
+                    <div className="text-[11px] font-medium leading-relaxed opacity-90">{activeCue.comparison.left.desc}</div>
                   </div>
                 </div>
               )}
