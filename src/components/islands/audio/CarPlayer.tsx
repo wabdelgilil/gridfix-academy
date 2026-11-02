@@ -43,13 +43,6 @@ export default function CarPlayer({
   const [currentIndex, setCurrentIndex] = useState(Math.max(0, initialIndex !== -1 ? initialIndex : 0));
   const currentTrack = playlist[currentIndex] || playlist[0];
 
-  // Smart Synchronized Audio Cues for the current track
-  const currentCues = currentTrack ? getLessonAudioCues(currentTrack.id) : [];
-  const activeCueIndex = currentCues.length > 0
-    ? currentCues.reduce((acc, cue, idx) => (currentTime >= cue.atSeconds ? idx : acc), 0)
-    : -1;
-  const activeCue = activeCueIndex >= 0 ? currentCues[activeCueIndex] : null;
-
   const containerRef = useRef<HTMLDivElement | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressBarRef = useRef<HTMLDivElement | null>(null);
@@ -64,6 +57,13 @@ export default function CarPlayer({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [lang, setLang] = useState<'ar' | 'en'>('ar');
   const [driveTheme, setDriveTheme] = useState<'day' | 'night'>('day');
+
+  // Smart Synchronized Audio Cues for the current track (computed after currentTime state)
+  const currentCues = currentTrack ? getLessonAudioCues(currentTrack.id) : [];
+  const activeCueIndex = currentCues.length > 0
+    ? currentCues.reduce((acc, cue, idx) => (currentTime >= cue.atSeconds ? idx : acc), 0)
+    : -1;
+  const activeCue = activeCueIndex >= 0 ? currentCues[activeCueIndex] : null;
 
   useEffect(() => {
     try {
