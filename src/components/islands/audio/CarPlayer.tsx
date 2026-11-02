@@ -66,6 +66,21 @@ export default function CarPlayer({
     : -1;
   const activeCue = activeCueIndex >= 0 ? currentCues[activeCueIndex] : null;
 
+  // Group playlist by Station for hierarchical display (المحطات والدروس)
+  const stationsList = playlist.reduce((acc, track, globalIdx) => {
+    let st = acc.find((s) => s.number === track.stationNumber);
+    if (!st) {
+      st = {
+        number: track.stationNumber,
+        title: track.stationTitle,
+        lessons: [] as Array<{ track: PlaylistItem; globalIdx: number }>,
+      };
+      acc.push(st);
+    }
+    st.lessons.push({ track, globalIdx });
+    return acc;
+  }, [] as Array<{ number: number; title: string; lessons: Array<{ track: PlaylistItem; globalIdx: number }> }>);
+
   useEffect(() => {
     try {
       const storedTheme = localStorage.getItem('car-drive-theme');
@@ -318,7 +333,7 @@ export default function CarPlayer({
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto flex w-full max-w-[1680px] flex-col lg:flex-row gap-3 lg:gap-5 items-stretch select-none transition-all duration-300"
+      className="relative mx-auto flex w-full max-w-[1680px] flex-col lg:flex-row gap-4 lg:gap-6 items-start select-none transition-all duration-300"
     >
       <audio
         ref={audioRef}
@@ -343,7 +358,7 @@ export default function CarPlayer({
 
       {/* Main Player Screen Stage (Expands to 100% when playlist is hidden like YouTube Theater mode) */}
       <div
-        className={`relative flex min-h-[76vh] lg:min-h-[80vh] flex-col justify-between flex-1 min-w-0 rounded-3xl border-2 p-3 sm:p-5 lg:p-6 shadow-2xl transition-all duration-300 overflow-hidden ${
+        className={`relative flex flex-col justify-between flex-1 min-w-0 rounded-3xl border-2 p-4 sm:p-6 lg:p-7 shadow-2xl transition-all duration-300 overflow-hidden ${
           isDay
             ? 'bg-slate-100 border-slate-300 text-slate-900'
             : 'bg-slate-950 border-slate-800 text-white'
@@ -977,9 +992,9 @@ export default function CarPlayer({
       {/* Desktop & Tablet YouTube-Style Playlist Sidebar */}
       {isSidebarOpen && (
         <aside
-          className={`hidden lg:flex flex-col w-80 xl:w-96 rounded-3xl border-2 p-4 shadow-2xl shrink-0 transition-all duration-300 animate-fadeIn ${
+          className={`hidden lg:flex flex-col w-84 xl:w-96 sticky top-20 max-h-[calc(100vh-6rem)] rounded-3xl border-2 p-4 shadow-xl shrink-0 transition-all duration-300 animate-fadeIn ${
             isDay
-              ? 'bg-white border-slate-300 text-slate-900 ring-2 ring-amber-100'
+              ? 'bg-white border-slate-300 text-slate-900 ring-1 ring-slate-200'
               : 'bg-slate-900/95 border-slate-800 text-white shadow-brand-500/5'
           }`}
         >
@@ -1016,59 +1031,104 @@ export default function CarPlayer({
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto space-y-2 pr-1">
-            {playlist.map((track, idx) => {
-              const isSelected = idx === currentIndex;
+          <div className="flex-1 overflow-y-auto space-y-3.5 pr-1">
+            {stationsList.map((station) => {
+              const isCurrentStation = currentTrack?.stationNumber === station.number;
+              const stationAvailableCount = station.lessons.filter((l) => l.track.hasAudio).length;
+
               return (
-                <button
-                  key={track.id}
-                  type="button"
-                  onClick={() => selectTrack(idx)}
-                  disabled={!track.hasAudio}
-                  className={`w-full text-right p-3 rounded-2xl border transition flex items-center justify-between gap-2.5 cursor-pointer ${
-                    isSelected
+                <div
+                  key={station.number}
+                  className={`rounded-2xl border p-2.5 transition-colors ${
+                    isCurrentStation
                       ? isDay
-                        ? 'border-emerald-600 bg-emerald-50 text-slate-900 font-black shadow-sm ring-2 ring-emerald-400/30'
-                        : 'border-emerald-500 bg-emerald-500/20 text-emerald-200 font-black shadow-sm ring-1 ring-emerald-500/40'
-                      : track.hasAudio
-                      ? isDay
-                        ? 'border-slate-200 bg-slate-50 text-slate-800 hover:bg-slate-100 hover:border-slate-300'
-                        : 'border-slate-800/80 bg-slate-800/40 text-slate-300 hover:bg-slate-800'
+                        ? 'border-amber-300/80 bg-amber-50/50'
+                        : 'border-emerald-500/30 bg-emerald-950/20'
                       : isDay
-                      ? 'border-slate-200 bg-slate-100 text-slate-400 cursor-not-allowed opacity-40'
-                      : 'border-slate-800/30 bg-slate-900/20 text-slate-600 cursor-not-allowed opacity-40'
+                      ? 'border-slate-200 bg-slate-50/60'
+                      : 'border-slate-800/80 bg-slate-900/40'
                   }`}
                 >
-                  <div className="min-w-0 flex-1">
-                    <div className={`text-[10px] font-bold ${
-                      isSelected
-                        ? isDay ? 'text-emerald-800' : 'text-emerald-300'
-                        : isDay ? 'text-slate-500' : 'text-slate-400'
-                    }`}>
-                      محطة {track.stationNumber} • درس {track.number}
+                  {/* Station Section Header */}
+                  <div
+                    className={`flex items-center justify-between px-2.5 py-1.5 mb-2 rounded-xl text-xs font-black transition-colors ${
+                      isCurrentStation
+                        ? isDay
+                          ? 'bg-amber-200 text-amber-950 border border-amber-300'
+                          : 'bg-emerald-900/60 text-emerald-300 border border-emerald-700/50'
+                        : isDay
+                        ? 'bg-slate-200/80 text-slate-700 border border-slate-300/60'
+                        : 'bg-slate-800/80 text-slate-300 border border-slate-700/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-1.5 truncate">
+                      <span className="text-sm">📍</span>
+                      <span className="font-mono text-[11px] font-black shrink-0">المحطة {station.number}:</span>
+                      <span className="truncate">{station.title}</span>
                     </div>
-                    <div className="text-xs sm:text-sm font-bold truncate mt-0.5">{track.title}</div>
+                    <span className="text-[10px] font-bold shrink-0 opacity-80 px-1.5 py-0.5 rounded-md bg-black/10 dark:bg-white/10">
+                      {stationAvailableCount} درس
+                    </span>
                   </div>
-                  <div className="shrink-0">
-                    {isSelected ? (
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-600 text-white text-[10px] shadow-sm animate-pulse">
-                        ▶
-                      </span>
-                    ) : track.hasAudio ? (
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                        isDay
-                          ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
-                          : 'bg-emerald-950/60 text-emerald-400 border-emerald-800/60'
-                      }`}>
-                        متاح
-                      </span>
-                    ) : (
-                      <span className="text-[10px] text-slate-500 px-1.5 py-0.5 rounded-full">
-                        قريباً
-                      </span>
-                    )}
+
+                  {/* Station Lessons List */}
+                  <div className="space-y-1.5">
+                    {station.lessons.map(({ track, globalIdx }) => {
+                      const isSelected = globalIdx === currentIndex;
+                      return (
+                        <button
+                          key={track.id}
+                          type="button"
+                          onClick={() => selectTrack(globalIdx)}
+                          disabled={!track.hasAudio}
+                          className={`w-full text-right p-2.5 rounded-xl border transition-all flex items-center justify-between gap-2.5 cursor-pointer ${
+                            isSelected
+                              ? isDay
+                                ? 'border-emerald-600 bg-emerald-100 text-slate-900 font-black shadow-sm ring-2 ring-emerald-400/40'
+                                : 'border-emerald-500 bg-emerald-500/20 text-emerald-200 font-black shadow-sm ring-1 ring-emerald-500/40'
+                              : track.hasAudio
+                              ? isDay
+                                ? 'border-slate-200 bg-white text-slate-800 hover:bg-slate-100 hover:border-slate-300'
+                                : 'border-slate-800/80 bg-slate-800/50 text-slate-300 hover:bg-slate-800'
+                              : isDay
+                              ? 'border-slate-200 bg-slate-100 text-slate-400 cursor-not-allowed opacity-40'
+                              : 'border-slate-800/30 bg-slate-900/20 text-slate-600 cursor-not-allowed opacity-40'
+                          }`}
+                        >
+                          <div className="min-w-0 flex-1">
+                            <div className={`text-[10px] font-bold flex items-center gap-1 ${
+                              isSelected
+                                ? isDay ? 'text-emerald-800' : 'text-emerald-300'
+                                : isDay ? 'text-slate-500' : 'text-slate-400'
+                            }`}>
+                              <span>درس {track.number}</span>
+                            </div>
+                            <div className="text-xs sm:text-sm font-bold truncate mt-0.5">{track.title}</div>
+                          </div>
+                          <div className="shrink-0">
+                            {isSelected ? (
+                              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-600 text-white text-[10px] shadow-sm animate-pulse">
+                                ▶
+                              </span>
+                            ) : track.hasAudio ? (
+                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                                isDay
+                                  ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                                  : 'bg-emerald-950/60 text-emerald-400 border-emerald-800/60'
+                              }`}>
+                                متاح
+                              </span>
+                            ) : (
+                              <span className="text-[10px] text-slate-500 px-1.5 py-0.5 rounded-full">
+                                قريباً
+                              </span>
+                            )}
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
@@ -1092,48 +1152,81 @@ export default function CarPlayer({
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto space-y-2 pr-1">
-            {playlist.map((track, idx) => {
-              const isSelected = idx === currentIndex;
+          <div className="flex-1 overflow-y-auto space-y-3.5 pr-1">
+            {stationsList.map((station) => {
+              const isCurrentStation = currentTrack?.stationNumber === station.number;
+              const stationAvailableCount = station.lessons.filter((l) => l.track.hasAudio).length;
+
               return (
-                <button
-                  key={track.id}
-                  type="button"
-                  onClick={() => {
-                    selectTrack(idx);
-                    setIsMobileDrawerOpen(false);
-                  }}
-                  disabled={!track.hasAudio}
-                  className={`w-full text-right p-3.5 rounded-2xl border transition flex items-center justify-between gap-3 ${
-                    isSelected
-                      ? 'border-brand-500 bg-brand-500/10 text-brand-300 font-bold shadow-sm'
-                      : track.hasAudio
-                      ? 'border-slate-800 bg-slate-900/60 text-slate-300 hover:bg-slate-800/80 cursor-pointer'
-                      : 'border-slate-800/30 bg-slate-900/20 text-slate-500 cursor-not-allowed opacity-50'
+                <div
+                  key={station.number}
+                  className={`rounded-2xl border p-3 ${
+                    isCurrentStation
+                      ? 'border-emerald-500/40 bg-emerald-950/20'
+                      : 'border-slate-800 bg-slate-900/40'
                   }`}
                 >
-                  <div className="min-w-0 flex-1">
-                    <div className="text-[11px] text-slate-400">
-                      محطة {track.stationNumber} • درس {track.number}
+                  <div className={`flex items-center justify-between px-3 py-1.5 mb-2.5 rounded-xl text-xs font-black ${
+                    isCurrentStation
+                      ? 'bg-emerald-900/60 text-emerald-300 border border-emerald-700/50'
+                      : 'bg-slate-800 text-slate-300 border border-slate-700/50'
+                  }`}>
+                    <div className="flex items-center gap-1.5 truncate">
+                      <span>📍</span>
+                      <span className="font-mono text-[11px] font-black shrink-0">المحطة {station.number}:</span>
+                      <span className="truncate">{station.title}</span>
                     </div>
-                    <div className="text-sm truncate">{track.title}</div>
+                    <span className="text-[10px] font-bold shrink-0 opacity-80 px-2 py-0.5 rounded-md bg-white/10">
+                      {stationAvailableCount} درس
+                    </span>
                   </div>
-                  <div>
-                    {isSelected ? (
-                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-white text-xs shadow-md">
-                        ▶
-                      </span>
-                    ) : track.hasAudio ? (
-                      <span className="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">
-                        متاح
-                      </span>
-                    ) : (
-                      <span className="text-[11px] text-slate-500 bg-slate-800/40 px-2 py-0.5 rounded-full">
-                        قريباً
-                      </span>
-                    )}
+
+                  <div className="space-y-2">
+                    {station.lessons.map(({ track, globalIdx }) => {
+                      const isSelected = globalIdx === currentIndex;
+                      return (
+                        <button
+                          key={track.id}
+                          type="button"
+                          onClick={() => {
+                            selectTrack(globalIdx);
+                            setIsMobileDrawerOpen(false);
+                          }}
+                          disabled={!track.hasAudio}
+                          className={`w-full text-right p-3 rounded-xl border transition flex items-center justify-between gap-3 ${
+                            isSelected
+                              ? 'border-emerald-500 bg-emerald-500/20 text-emerald-200 font-bold shadow-sm'
+                              : track.hasAudio
+                              ? 'border-slate-800 bg-slate-900/60 text-slate-300 hover:bg-slate-800/80 cursor-pointer'
+                              : 'border-slate-800/30 bg-slate-900/20 text-slate-500 cursor-not-allowed opacity-50'
+                          }`}
+                        >
+                          <div className="min-w-0 flex-1">
+                            <div className="text-[11px] text-slate-400">
+                              درس {track.number}
+                            </div>
+                            <div className="text-sm font-bold truncate">{track.title}</div>
+                          </div>
+                          <div>
+                            {isSelected ? (
+                              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-white text-xs shadow-md">
+                                ▶
+                              </span>
+                            ) : track.hasAudio ? (
+                              <span className="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">
+                                متاح
+                              </span>
+                            ) : (
+                              <span className="text-[11px] text-slate-500 bg-slate-800/40 px-2 py-0.5 rounded-full">
+                                قريباً
+                              </span>
+                            )}
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
