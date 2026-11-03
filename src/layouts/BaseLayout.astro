@@ -116,12 +116,12 @@ const gaId = import.meta.env.PUBLIC_GA_ID?.trim() || 'G-WV79RMQ6QK';
     <SiteHeader client:load />
     <SearchPalette client:load />
 
-    <main class="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
+    <main class="mx-auto w-full max-w-[1720px] flex-1 px-4 sm:px-6 lg:px-8 py-6">
       <slot />
     </main>
 
     <footer class="mt-12 border-t border-slate-200 bg-white transition-colors duration-300 hover:border-brand-200">
-      <div class="mx-auto max-w-6xl px-4 py-8">
+      <div class="mx-auto max-w-[1720px] px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid gap-6 text-sm leading-relaxed text-ink-600 md:grid-cols-3">
           <div class="animate-fade-in">
             <div class="mb-2 flex items-center gap-2">

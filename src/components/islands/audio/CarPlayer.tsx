@@ -380,21 +380,60 @@ export default function CarPlayer({
           }`}
         >
           {/* Top Subtle Video Header Overlay */}
-          <div className="flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-b from-black/80 via-black/40 to-transparent z-10 text-xs shrink-0">
-            <div className="flex items-center gap-2 truncate">
+          <div className="flex items-center justify-between px-3 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-b from-black/85 via-black/40 to-transparent z-10 text-xs shrink-0 gap-2">
+            <div className="flex items-center gap-2 truncate min-w-0">
               <span className="px-2.5 py-0.5 rounded-full font-black bg-brand-500/30 text-brand-300 border border-brand-500/40 text-xs shrink-0">
                 الدرس {currentTrack.number}
               </span>
               <span className="font-bold text-slate-200 truncate text-xs sm:text-sm">
                 {currentTrack.title}
               </span>
+              {wakeLockActive && (
+                <span className="hidden xl:inline-flex items-center gap-1 text-[10px] font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full border border-amber-400/20" title="الشاشة ستبقى مضاءة أثناء القيادة">
+                  ☀️ الشاشة مضاءة
+                </span>
+              )}
             </div>
 
-            {activeCue && currentCues.length > 0 && (
-              <div className="px-2.5 py-0.5 rounded-full font-mono text-[11px] font-bold bg-white/10 text-slate-300 border border-white/15 shrink-0">
-                مشهد {activeCueIndex + 1} من {currentCues.length}
+            {/* Course Switcher Tabs */}
+            {coursesList && coursesList.length > 0 && (
+              <div className="hidden md:flex items-center gap-1 p-0.5 rounded-xl border border-white/10 bg-black/40 text-xs shrink-0">
+                {coursesList.map((c) => (
+                  <a
+                    key={c.id}
+                    href={`/${c.id}/listen/?playlist=true`}
+                    className={`px-2 py-0.5 rounded-lg font-bold transition flex items-center gap-1 text-[11px] ${
+                      c.id === courseId
+                        ? 'bg-emerald-600 text-white shadow-xs'
+                        : 'text-slate-400 hover:text-white'
+                    }`}
+                    title={c.title}
+                  >
+                    <span>{c.icon}</span>
+                    <span>{c.code}</span>
+                  </a>
+                ))}
               </div>
             )}
+
+            {/* Scene Count & Read Article Link */}
+            <div className="flex items-center gap-2 shrink-0">
+              {activeCue && currentCues.length > 0 && (
+                <div className="px-2.5 py-0.5 rounded-full font-mono text-[11px] font-bold bg-white/10 text-slate-300 border border-white/15 shrink-0">
+                  مشهد {activeCueIndex + 1} من {currentCues.length}
+                </div>
+              )}
+              <a
+                href={currentTrack.lessonUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:flex items-center gap-1 px-2.5 py-0.5 rounded-lg text-[11px] font-bold bg-white/10 hover:bg-white/20 text-slate-200 border border-white/15 transition shrink-0"
+                title="فتح المقال الكامل للقراءة"
+              >
+                <span>📖 المقال</span>
+                <span>↗</span>
+              </a>
+            </div>
           </div>
 
           {/* Center Slide Stage: Clean Responsive Visual Card */}
@@ -718,8 +757,18 @@ export default function CarPlayer({
                 </div>
               </div>
 
-              {/* Right Controls: Speed, Theme, Playlist Toggle, Fullscreen */}
+              {/* Right Controls: Auto Next, Speed, Theme, Playlist Toggle, Fullscreen */}
               <div className="flex items-center gap-1.5 sm:gap-2">
+                <label className="hidden sm:flex items-center gap-1.5 cursor-pointer select-none text-[11px] text-slate-300 hover:text-white px-2 py-1 rounded-md bg-white/5 hover:bg-white/10 transition" title="التشغيل التلقائي للدرس التالي">
+                  <input
+                    type="checkbox"
+                    checked={autoPlayNext}
+                    onChange={(e) => setAutoPlayNext(e.target.checked)}
+                    className="h-3.5 w-3.5 rounded border-slate-700 bg-slate-800 text-brand-500 focus:ring-brand-500 cursor-pointer"
+                  />
+                  <span>تلقائي</span>
+                </label>
+
                 <button
                   type="button"
                   onClick={cycleSpeed}
@@ -740,8 +789,14 @@ export default function CarPlayer({
 
                 <button
                   type="button"
-                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                  className={`hidden lg:flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold transition cursor-pointer ${
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+                      setIsMobileDrawerOpen(true);
+                    } else {
+                      setIsSidebarOpen(!isSidebarOpen);
+                    }
+                  }}
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold transition cursor-pointer ${
                     isSidebarOpen
                       ? 'bg-emerald-600 text-white'
                       : 'bg-white/10 hover:bg-white/20 text-slate-200'
@@ -762,135 +817,6 @@ export default function CarPlayer({
                 </button>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* 2. Below Video Player: YouTube Details & Actions Section */}
-        <div className={`p-4 sm:p-5 rounded-2xl sm:rounded-3xl border-2 transition-all duration-300 ${
-          isDay ? 'bg-white border-slate-200 shadow-sm text-slate-900' : 'bg-slate-900 border-slate-800 shadow-md text-white'
-        }`}>
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b pb-4 mb-3 border-slate-200 dark:border-slate-800">
-            <div>
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                  المحطة {currentTrack.stationNumber}: {currentTrack.stationTitle}
-                </span>
-                {wakeLockActive && (
-                  <span className="text-[11px] font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
-                    ☀️ الشاشة نشطة
-                  </span>
-                )}
-              </div>
-              <h1 className="text-lg sm:text-2xl font-black leading-tight">
-                الدرس {currentTrack.number}: {currentTrack.title}
-              </h1>
-            </div>
-
-            {/* Action Badges Row */}
-            <div className="flex items-center gap-2 shrink-0 flex-wrap">
-              {/* Course Switcher */}
-              {coursesList && coursesList.length > 0 && (
-                <div className={`flex items-center gap-1 p-1 rounded-xl border text-xs ${
-                  isDay ? 'bg-slate-100 border-slate-200' : 'bg-slate-800 border-slate-700'
-                }`}>
-                  {coursesList.map((c) => (
-                    <a
-                      key={c.id}
-                      href={`/${c.id}/listen/?playlist=true`}
-                      className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 ${
-                        c.id === courseId
-                          ? 'bg-emerald-600 text-white shadow-xs'
-                          : isDay
-                          ? 'text-slate-600 hover:text-slate-950'
-                          : 'text-slate-400 hover:text-white'
-                      }`}
-                      title={c.title}
-                    >
-                      <span>{c.icon}</span>
-                      <span>{c.code}</span>
-                    </a>
-                  ))}
-                </div>
-              )}
-
-              {/* Drive Mode Badge */}
-              <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border ${
-                isDay ? 'bg-amber-100 text-amber-950 border-amber-300' : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-              }`}>
-                <span>🚗</span>
-                <span>ادرس أثناء القيادة</span>
-              </div>
-
-              {/* Read Full Article */}
-              <a
-                href={currentTrack.lessonUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-brand-600 hover:bg-brand-500 text-white transition shadow-xs"
-              >
-                <span>📖</span>
-                <span>المقال كاملاً</span>
-                <span>↗</span>
-              </a>
-
-              {/* Mobile Drawer Toggle */}
-              <button
-                type="button"
-                onClick={() => setIsMobileDrawerOpen(true)}
-                className="lg:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-200 border border-slate-700 cursor-pointer"
-              >
-                <span>📑</span>
-                <span>القائمة ({availableTracksCount})</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Scenes Strip & Auto Advance */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
-            {currentCues.length > 0 ? (
-              <div className="flex items-center gap-1.5 overflow-x-auto py-1">
-                <span className="text-xs font-bold text-slate-400 shrink-0 ml-1">محطات الشرح:</span>
-                {currentCues.map((cue, idx) => {
-                  const isActive = idx === activeCueIndex;
-                  return (
-                    <button
-                      key={cue.id}
-                      type="button"
-                      onClick={() => {
-                        if (audioRef.current) {
-                          audioRef.current.currentTime = cue.atSeconds;
-                          setCurrentTime(cue.atSeconds);
-                        }
-                      }}
-                      className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold transition shrink-0 cursor-pointer border ${
-                        isActive
-                          ? 'bg-emerald-600 text-white border-emerald-500 shadow-sm font-black'
-                          : isDay
-                          ? 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'
-                          : 'bg-slate-800 text-slate-400 border-slate-700 hover:bg-slate-700'
-                      }`}
-                    >
-                      <span>{cue.badgeIcon}</span>
-                      <span>{cue.badge}</span>
-                      <span className="font-mono text-[10px] opacity-75">{formatTime(cue.atSeconds)}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            ) : (
-              <div />
-            )}
-
-            {/* Auto advance toggle */}
-            <label className="flex items-center gap-2 cursor-pointer select-none text-xs text-slate-400 shrink-0">
-              <input
-                type="checkbox"
-                checked={autoPlayNext}
-                onChange={(e) => setAutoPlayNext(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-700 bg-slate-800 text-brand-500 focus:ring-brand-500"
-              />
-              <span>التشغيل التلقائي للدرس التالي</span>
-            </label>
           </div>
         </div>
       </div>
