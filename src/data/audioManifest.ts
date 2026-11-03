@@ -37,6 +37,11 @@ export const audioLessons: Record<string, LessonAudioTrack> = {
 
   // كورس CMRP — المحطة 6: لغة المال والإدارة العليا
   'lesson-cmrp-6-1': { ar: 'cmrp/station-6/lesson-cmrp-6-1.mp3' },
+  'lesson-cmrp-6-2': { ar: 'cmrp/station-6/lesson-cmrp-6-2.mp3' },
+  'lesson-cmrp-6-3': { ar: 'cmrp/station-6/lesson-cmrp-6-3.mp3' },
+
+  // كورس CMRP — المحطة 7: محاكي الامتحان الشامل
+  'lesson-cmrp-7-1': { ar: 'cmrp/station-7/lesson-cmrp-7-1.mp3' },
 };
 
 export interface LessonAudioResult {
