@@ -44,6 +44,37 @@ export const audioLessons: Record<string, LessonAudioTrack> = {
   'lesson-cmrp-7-1': { ar: 'cmrp/station-7/lesson-cmrp-7-1.mp3' },
 };
 
+/**
+ * أطوال الدروس الصوتية الفعلية المسجلة (mm:ss)
+ */
+export const lessonAudioDurations: Record<string, string> = {
+  'lesson-cmrp-1-1': '06:23',
+  'lesson-cmrp-1-2': '05:42',
+  'lesson-cmrp-2-1': '04:11',
+  'lesson-cmrp-2-2': '05:23',
+  'lesson-cmrp-2-3': '04:08',
+  'lesson-cmrp-2-4': '04:09',
+  'lesson-cmrp-3-1': '04:05',
+  'lesson-cmrp-3-2': '04:55',
+  'lesson-cmrp-3-3': '04:14',
+  'lesson-cmrp-4-1': '04:01',
+  'lesson-cmrp-4-2': '03:19',
+  'lesson-cmrp-4-3': '03:32',
+  'lesson-cmrp-4-4': '02:55',
+  'lesson-cmrp-4-5': '03:07',
+  'lesson-cmrp-5-1': '03:52',
+  'lesson-cmrp-5-2': '03:28',
+  'lesson-cmrp-5-3': '04:11',
+  'lesson-cmrp-6-1': '04:45',
+  'lesson-cmrp-6-2': '05:28',
+  'lesson-cmrp-6-3': '05:51',
+  'lesson-cmrp-7-1': '03:13',
+};
+
+export function getLessonAudioDuration(lessonId: string): string | undefined {
+  return lessonAudioDurations[lessonId];
+}
+
 export interface LessonAudioResult {
   url: string | null;
   audioLang: 'ar' | 'en' | null;

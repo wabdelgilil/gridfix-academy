@@ -80,7 +80,7 @@ export default function ShareLesson({
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
-        document.execCommand('copy');
+        (document as any).execCommand?.('copy');
         textArea.remove();
       }
       setCopiedType(type);

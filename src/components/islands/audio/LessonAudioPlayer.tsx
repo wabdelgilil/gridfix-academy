@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { formatAudioTime, calculateProgressPercent, getNextPlaybackSpeed } from '../../../lib/audioUtils';
 
 interface LessonAudioPlayerProps {
   courseId: string;
@@ -50,14 +51,6 @@ export default function LessonAudioPlayer({
     return () => window.removeEventListener('cfm-lang-changed', onLangChanged);
   }, []);
 
-  // Formatting seconds to mm:ss
-  const formatTime = (time: number) => {
-    if (isNaN(time) || time === 0) return '00:00';
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  };
-
   // Play / Pause toggle
   const togglePlay = () => {
     if (!audioRef.current) return;
@@ -77,11 +70,9 @@ export default function LessonAudioPlayer({
     );
   };
 
-  // Cycle playback speed: 1x -> 1.25x -> 1.5x -> 1.75x -> 2x
+  // Cycle playback speed
   const cyclePlaybackRate = () => {
-    const rates = [1, 1.25, 1.5, 1.75, 2];
-    const currentIndex = rates.indexOf(playbackRate);
-    const nextRate = rates[(currentIndex + 1) % rates.length];
+    const nextRate = getNextPlaybackSpeed(playbackRate);
     setPlaybackRate(nextRate);
     if (audioRef.current) {
       audioRef.current.playbackRate = nextRate;
@@ -180,7 +171,7 @@ export default function LessonAudioPlayer({
     }
   }, []);
 
-  const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const progressPercent = calculateProgressPercent(currentTime, duration);
 
   return (
     <div className="my-6 rounded-2xl border border-slate-200/90 bg-gradient-to-br from-white to-slate-50/80 p-4 sm:p-5 shadow-sm dark:border-slate-800 dark:from-slate-900 dark:to-slate-900/60 transition-all">
@@ -224,7 +215,7 @@ export default function LessonAudioPlayer({
               </a>
             </div>
             <div className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">
-              {formatTime(currentTime)} / {formatTime(duration)}
+              {formatAudioTime(currentTime)} / {formatAudioTime(duration)}
             </div>
           </div>
         </div>
