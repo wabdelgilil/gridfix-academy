@@ -375,17 +375,20 @@ export default function CarPlayer({
         <div
           className={`relative w-full aspect-video rounded-2xl sm:rounded-3xl border-2 overflow-hidden shadow-2xl flex flex-col justify-between transition-all duration-300 ${
             isDay
-              ? 'bg-slate-900 border-slate-700 text-white'
-              : 'bg-slate-950 border-slate-800 text-white'
+              ? 'bg-slate-100 border-slate-300 text-slate-900 shadow-xl'
+              : 'bg-slate-950 border-slate-800 text-white shadow-2xl'
           }`}
         >
           {/* Top Subtle Video Header Overlay */}
-          <div className="flex items-center justify-between px-3 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-b from-black/85 via-black/40 to-transparent z-10 text-xs shrink-0 gap-2">
+          <div className={`flex items-center justify-between px-3 sm:px-5 py-2 sm:py-2.5 z-10 text-xs shrink-0 gap-2 ${
+            isDay ? "bg-gradient-to-b from-slate-200/95 via-slate-200/60 to-transparent text-slate-900" : "bg-gradient-to-b from-black/85 via-black/40 to-transparent text-white"
+          }`}>
             <div className="flex items-center gap-2 truncate min-w-0">
               <span className="px-2.5 py-0.5 rounded-full font-black bg-brand-500/30 text-brand-300 border border-brand-500/40 text-xs shrink-0">
                 الدرس {currentTrack.number}
               </span>
-              <span className="font-bold text-slate-200 truncate text-xs sm:text-sm">
+              <span className={`font-bold truncate text-xs sm:text-sm ${isDay ? "text-slate-900 font-black" : "text-slate-200"}`}>
+
                 {currentTrack.title}
               </span>
               {wakeLockActive && (
@@ -397,7 +400,8 @@ export default function CarPlayer({
 
             {/* Course Switcher Tabs */}
             {coursesList && coursesList.length > 0 && (
-              <div className="hidden md:flex items-center gap-1 p-0.5 rounded-xl border border-white/10 bg-black/40 text-xs shrink-0">
+              <div className={`hidden md:flex items-center gap-1 p-0.5 rounded-xl border text-xs shrink-0 ${isDay ? "bg-white border-slate-300" : "border-white/10 bg-black/40"}`}>
+
                 {coursesList.map((c) => (
                   <a
                     key={c.id}
@@ -419,7 +423,8 @@ export default function CarPlayer({
             {/* Scene Count & Read Article Link */}
             <div className="flex items-center gap-2 shrink-0">
               {activeCue && currentCues.length > 0 && (
-                <div className="px-2.5 py-0.5 rounded-full font-mono text-[11px] font-bold bg-white/10 text-slate-300 border border-white/15 shrink-0">
+                <div className={`px-2.5 py-0.5 rounded-full font-mono text-[11px] font-bold border shrink-0 ${isDay ? "bg-slate-200 text-slate-800 border-slate-300" : "bg-white/10 text-slate-300 border-white/15"}`}>
+
                   مشهد {activeCueIndex + 1} من {currentCues.length}
                 </div>
               )}
@@ -427,7 +432,7 @@ export default function CarPlayer({
                 href={currentTrack.lessonUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:flex items-center gap-1 px-2.5 py-0.5 rounded-lg text-[11px] font-bold bg-white/10 hover:bg-white/20 text-slate-200 border border-white/15 transition shrink-0"
+                className={`hidden sm:flex items-center gap-1 px-2.5 py-0.5 rounded-lg text-[11px] font-bold border transition shrink-0 ${isDay ? "bg-white hover:bg-slate-200 text-slate-900 border-slate-300" : "bg-white/10 hover:bg-white/20 text-slate-200 border-white/15"}`}
                 title="فتح المقال الكامل للقراءة"
               >
                 <span>📖 المقال</span>
@@ -459,31 +464,34 @@ export default function CarPlayer({
                 </div>
 
                 {/* Title */}
-                <h2 className="text-lg sm:text-xl md:text-2xl font-black text-white leading-snug">
+                <h2 className={`text-lg sm:text-xl md:text-2xl font-black leading-snug ${isDay ? "text-slate-950" : "text-white"}`}>
                   {activeCue.title}
                 </h2>
 
                 {/* Key Takeaway */}
                 <div className={`p-2.5 sm:p-3 rounded-xl border text-sm sm:text-base font-black leading-relaxed ${
                   activeCue.type === 'rule'
-                    ? 'bg-amber-500/10 border-amber-500/30 text-amber-200'
-                    : 'bg-slate-800/80 border-slate-700/80 text-slate-100'
+                    ? (isDay ? 'bg-amber-100 border-amber-300 text-amber-950' : 'bg-amber-500/10 border-amber-500/30 text-amber-200')
+                    : (isDay ? 'bg-white border-slate-300 text-slate-900 shadow-xs' : 'bg-slate-800/80 border-slate-700/80 text-slate-100')
                 }`}>
                   {activeCue.keyTakeaway}
                 </div>
 
                 {/* 1. Mathematical Formula */}
                 {activeCue.formula && (
-                  <div className="p-3 sm:p-4 rounded-xl border bg-slate-900/90 border-amber-500/30 text-center">
+                  <div className={`p-3 sm:p-4 rounded-xl border text-center ${isDay ? "bg-amber-50/70 border-amber-300 text-amber-950 shadow-xs" : "bg-slate-900/90 border-amber-500/30 text-amber-200"}`}>
+
                     <div className="text-xs font-bold mb-1 text-amber-400">
                       📐 {activeCue.formula.label}
                     </div>
-                    <div className="font-mono text-lg sm:text-xl md:text-2xl lg:text-3xl font-black py-1 tracking-wider text-brand-400 whitespace-nowrap overflow-x-auto" dir="ltr">
+                    <div className={`font-mono text-lg sm:text-xl md:text-2xl lg:text-3xl font-black py-1 tracking-wider whitespace-nowrap overflow-x-auto ${isDay ? "text-brand-600" : "text-brand-400"}`} dir="ltr">
+
                       {activeCue.formula.expression}
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-2 pt-2 border-t border-amber-500/20 text-right">
                       {activeCue.formula.variables.map((v, i) => (
-                        <div key={i} className="p-1.5 sm:p-2 rounded-lg text-xs font-semibold bg-slate-950/80 text-slate-200">
+                        <div key={i} className={`p-1.5 sm:p-2 rounded-lg text-xs font-semibold ${isDay ? "bg-white text-slate-800 border border-slate-200 shadow-2xs" : "bg-slate-950/80 text-slate-200"}`}>
+
                           <span className="font-mono font-black text-brand-400 inline-block ml-1 text-xs" dir="ltr">{v.symbol}:</span>
                           <span>{v.meaning}</span>
                         </div>
@@ -494,7 +502,8 @@ export default function CarPlayer({
 
                 {/* 2. Failure Curves Plotter */}
                 {activeCue.curvesGraphic && (
-                  <div className="p-3 rounded-xl border bg-slate-900/80 border-slate-800">
+                  <div className={`p-3 rounded-xl border ${isDay ? "bg-white border-slate-300 shadow-xs text-slate-900" : "bg-slate-900/80 border-slate-800 text-white"}`}>
+
                     <div className="text-xs font-bold mb-2 text-right flex items-center justify-between text-slate-300">
                       <span className="flex items-center gap-1.5 font-black">
                         <span>📈</span>
@@ -546,7 +555,8 @@ export default function CarPlayer({
 
                 {/* 3. Proportion Bar */}
                 {activeCue.visualBar && (
-                  <div className="p-3 rounded-xl border bg-slate-900/80 border-slate-800">
+                  <div className={`p-3 rounded-xl border ${isDay ? "bg-white border-slate-300 shadow-xs text-slate-900" : "bg-slate-900/80 border-slate-800 text-white"}`}>
+
                     <div className="text-xs font-bold mb-1.5 text-right text-slate-300">
                       📊 {activeCue.visualBar.title}
                     </div>
@@ -579,7 +589,8 @@ export default function CarPlayer({
 
                 {/* 4. Engineering Flowchart */}
                 {activeCue.flowchart && (
-                  <div className="p-3 rounded-xl border bg-slate-900/80 border-slate-800">
+                  <div className={`p-3 rounded-xl border ${isDay ? "bg-white border-slate-300 shadow-xs text-slate-900" : "bg-slate-900/80 border-slate-800 text-white"}`}>
+
                     <div className="text-xs font-bold mb-2 text-right flex items-center gap-1.5 text-slate-300">
                       <span>🔄</span>
                       <span className="font-black">{activeCue.flowchart.title}</span>
@@ -643,7 +654,7 @@ export default function CarPlayer({
 
                 {/* Detail */}
                 {activeCue.detail && (
-                  <p className="text-xs sm:text-sm font-semibold text-slate-300 leading-relaxed">
+                  <p className={`text-xs sm:text-sm leading-relaxed ${isDay ? "text-slate-700 font-bold" : "text-slate-300 font-semibold"}`}>
                     {activeCue.detail}
                   </p>
                 )}
@@ -675,12 +686,14 @@ export default function CarPlayer({
           </div>
 
           {/* Bottom YouTube-Style Transport Overlay */}
-          <div className="bg-gradient-to-t from-black/95 via-black/85 to-transparent pt-3 pb-2 px-3 sm:px-5 shrink-0 z-10 space-y-1">
+          <div className={`pt-3 pb-2 px-3 sm:px-5 shrink-0 z-10 space-y-1 ${
+            isDay ? "bg-gradient-to-t from-slate-200/95 via-slate-200/85 to-transparent text-slate-900" : "bg-gradient-to-t from-black/95 via-black/85 to-transparent text-white"
+          }`}>
             {/* Full-width Scrub Bar */}
             <div
               ref={progressBarRef}
               onClick={handleScrub}
-              className="group relative h-1.5 hover:h-2.5 w-full cursor-pointer rounded-full bg-white/20 transition-all duration-150 overflow-hidden"
+              className={`group relative h-1.5 hover:h-2.5 w-full cursor-pointer rounded-full transition-all duration-150 overflow-hidden ${isDay ? "bg-slate-300" : "bg-white/20"}`}
               title="انقر أو اسحب للتقديم والتأخير"
             >
               <div
@@ -696,7 +709,7 @@ export default function CarPlayer({
                 <button
                   type="button"
                   onClick={togglePlay}
-                  className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white text-slate-950 hover:bg-slate-100 transition shadow-md active:scale-95 cursor-pointer shrink-0"
+                  className={`flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full transition shadow-md active:scale-95 cursor-pointer shrink-0 ${isDay ? "bg-brand-600 text-white hover:bg-brand-700" : "bg-white text-slate-950 hover:bg-slate-100"}`}
                   aria-label={isPlaying ? 'إيقاف مؤقت' : 'تشغيل'}
                 >
                   {isPlaying ? (
