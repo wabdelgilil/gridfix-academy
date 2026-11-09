@@ -1,56 +1,18 @@
 import { useState, useEffect } from 'react';
-import { translate, type TranslationKey } from '../../i18n/translations';
-import { dirs, type Language } from '../../i18n/ui';
-import { courses } from '../../data/courses';
-import { curriculum } from '../../data/curriculum';
+import { useLanguage } from '../../lib/useLang';
+import { useTheme } from '../../lib/useTheme';
 import AudioLauncherModal from './audio/AudioLauncherModal';
-
-const COURSES = courses.map((c) => ({ id: c.id, label: c.code, icon: c.icon }));
-
-function firstStationId(courseId: string): string {
-  const stations = curriculum
-    .filter((s) => (s.courseId ?? 'cfm') === courseId && s.status === 'live')
-    .sort((a, b) => a.number - b.number);
-  return stations[0]?.id ?? 'station-0';
-}
-
-type Theme = 'light' | 'dark';
-
-function getStoredTheme(): Theme {
-  try {
-    const stored = localStorage.getItem('cfm-theme');
-    if (stored === 'dark' || stored === 'light') return stored;
-  } catch {}
-  if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark';
-  }
-  return 'light';
-}
+import { COURSES, getNavItems } from './header/headerUtils';
+import NavLinks from './header/NavLinks';
+import HeaderControls from './header/HeaderControls';
+import MobileMenu from './header/MobileMenu';
 
 export default function SiteHeader() {
-  const [lang, setLang] = useState<Language>('ar');
+  const [lang, setLang] = useLanguage();
+  const [theme, toggleTheme] = useTheme();
   const [open, setOpen] = useState(false);
   const [course, setCourse] = useState<string>('');
-  const [theme, setTheme] = useState<Theme>('light');
   const [audioModalOpen, setAudioModalOpen] = useState(false);
-
-  useEffect(() => {
-    setTheme(getStoredTheme());
-    const stored = localStorage.getItem('cfm-lang');
-    if (stored === 'en' || stored === 'ar') setLang(stored);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    localStorage.setItem('cfm-theme', theme);
-  }, [theme]);
-
-  useEffect(() => {
-    document.documentElement.lang = lang;
-    document.documentElement.dir = dirs[lang];
-    localStorage.setItem('cfm-lang', lang);
-    window.dispatchEvent(new CustomEvent('cfm-lang-changed', { detail: { lang } }));
-  }, [lang]);
 
   useEffect(() => {
     const first = window.location.pathname.split('/')[1];
@@ -58,24 +20,20 @@ export default function SiteHeader() {
     else setCourse('');
   }, []);
 
-  const t = (key: TranslationKey) => translate(lang, key);
+  const navKeys = getNavItems(course);
 
-  const navKeys: { key: TranslationKey; href: string }[] = course
-    ? [
-        { key: 'nav.stations', href: `/${course}/stations/${firstStationId(course)}/` },
-        { key: 'nav.map', href: `/${course}/map/` },
-        { key: 'nav.exam', href: `/${course}/exam/` },
-        { key: 'nav.glossary', href: `/${course}/glossary/` },
-      ]
-    : [
-        { key: 'nav.courses', href: '/' },
-      ];
+  const toggleLanguage = () => {
+    setLang(lang === 'ar' ? 'en' : 'ar');
+  };
 
-  const toggleTheme = () => setTheme((t) => (t === 'light' ? 'dark' : 'light'));
+  const handleOpenSearch = () => {
+    window.dispatchEvent(new CustomEvent('open-search'));
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-700 dark:bg-slate-900/90">
       <div className="mx-auto flex max-w-[1720px] w-full items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
+        {/* Platform Brand Logo & Name */}
         <a href="/" className="group flex items-center gap-2.5">
           <img
             src="/favicon.svg"
@@ -89,158 +47,37 @@ export default function SiteHeader() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          {navKeys.map((item) => (
-            <a
-              key={item.key}
-              href={item.href}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-ink-600 transition hover:bg-brand-50 hover:text-brand-700 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-brand-400"
-            >
-              {t(item.key)}
-            </a>
-          ))}
-        </nav>
+        {/* Desktop Navigation Links */}
+        <NavLinks navKeys={navKeys} lang={lang} />
 
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setAudioModalOpen(true)}
-            className="group inline-flex items-center gap-1.5 rounded-full border border-emerald-300 bg-emerald-50/90 px-2.5 py-1 text-xs font-bold text-emerald-800 shadow-2xs transition-all hover:scale-105 hover:border-emerald-400 hover:bg-emerald-100 hover:shadow-xs dark:border-emerald-700/60 dark:bg-emerald-950/60 dark:text-emerald-300 dark:hover:bg-emerald-900/60 cursor-pointer"
-            title={lang === 'ar' ? 'ادرس أثناء القيادة — اختر الكورس والدرس للاستماع' : 'Drive & Learn — Choose course and lesson to listen'}
-            aria-label={lang === 'ar' ? 'ادرس أثناء القيادة' : 'Drive & Learn'}
-          >
-            <span className="text-sm transition-transform group-hover:scale-110">🚗</span>
-            <span className="hidden sm:inline">{lang === 'ar' ? 'ادرس أثناء القيادة' : 'Drive & Learn'}</span>
-            <span className="sm:hidden">{lang === 'ar' ? 'استمع' : 'Audio'}</span>
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-            </span>
-          </button>
-
-          {course && (
-            <a
-              href="/"
-              className="chip hidden cursor-pointer bg-ink-900 text-brand-100 transition hover:bg-ink-800 sm:inline-flex dark:bg-slate-700 dark:hover:bg-slate-600"
-              aria-label={t('header.chooseCourse')}
-            >
-              {COURSES.find((c) => c.id === course)?.icon} {COURSES.find((c) => c.id === course)?.label} {t('header.switchCourse')}
-            </a>
-          )}
-          <a
-            href="https://gridfix.net"
-            target="_blank"
-            rel="noopener"
-            className="group hidden items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50/90 px-3 py-1.5 text-xs font-semibold text-[#0f6fc0] shadow-2xs transition-all hover:border-blue-400 hover:bg-blue-100 hover:shadow-xs sm:inline-flex dark:border-blue-900/60 dark:bg-blue-950/50 dark:text-blue-300 dark:hover:border-blue-700 dark:hover:bg-blue-900/40"
-            title={lang === 'ar' ? 'استكشف نظام إدارة الصيانة والمرافق الذكي GridFix CMMS' : 'Explore GridFix Smart CMMS Platform'}
-          >
-            <span className="flex h-2 w-2 rounded-full bg-[#1482db] animate-pulse"></span>
-            <span>{t('header.poweredBy')}</span>
-            <span className="text-[11px] text-blue-400 transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5">↗</span>
-          </a>
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new CustomEvent('open-search'))}
-            className="chip cursor-pointer bg-slate-100 text-ink-600 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-            aria-label={lang === 'ar' ? 'بحث (Ctrl+K)' : 'Search (Ctrl+K)'}
-            title={lang === 'ar' ? 'بحث (Ctrl+K)' : 'Search (Ctrl+K)'}
-          >
-            <span>🔍</span>
-            <span className="hidden text-xs text-ink-400 sm:inline">Ctrl+K</span>
-          </button>
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="chip cursor-pointer bg-slate-100 text-ink-600 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-            aria-label={theme === 'dark' ? t('header.themeLight') : t('header.themeDark')}
-          >
-            {theme === 'dark' ? '☀️' : '🌙'}
-          </button>
-          <button
-            type="button"
-            onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')}
-            className="chip cursor-pointer bg-slate-100 text-ink-600 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-            aria-label={t('header.changeLang')}
-          >
-            {lang === 'ar' ? 'English' : 'العربية'}
-          </button>
-          <button
-            type="button"
-            className="rounded-lg p-2 text-ink-600 md:hidden dark:text-slate-300"
-            onClick={() => setOpen((o) => !o)}
-            aria-label="Menu"
-          >
-            {open ? '✕' : '☰'}
-          </button>
-        </div>
+        {/* Top Header Action Buttons */}
+        <HeaderControls
+          lang={lang}
+          theme={theme}
+          course={course}
+          isMenuOpen={open}
+          onToggleTheme={toggleTheme}
+          onToggleLang={toggleLanguage}
+          onToggleMenu={() => setOpen((o) => !o)}
+          onOpenAudioModal={() => setAudioModalOpen(true)}
+          onOpenSearch={handleOpenSearch}
+        />
       </div>
 
+      {/* Mobile Menu Drawer */}
       {open && (
-        <nav className="border-t border-slate-200 px-4 py-2 md:hidden dark:border-slate-700">
-          <button
-            type="button"
-            onClick={() => {
-              setOpen(false);
-              setAudioModalOpen(true);
-            }}
-            className="mb-2 flex w-full items-center justify-between rounded-xl border border-emerald-300 bg-emerald-50/90 px-3 py-2.5 text-xs font-bold text-emerald-900 transition-colors hover:bg-emerald-100 dark:border-emerald-700/60 dark:bg-emerald-950/50 dark:text-emerald-300 cursor-pointer"
-          >
-            <span className="flex items-center gap-2">
-              <span className="text-base">🚗</span>
-              <span>{lang === 'ar' ? 'ادرس أثناء القيادة (اختيار الكورس والدرس)' : 'Drive & Learn (Choose Course & Lesson)'}</span>
-            </span>
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-            </span>
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setOpen(false);
-              window.dispatchEvent(new CustomEvent('open-search'));
-            }}
-            className="mb-2 flex w-full items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-ink-600 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
-          >
-            <span className="flex items-center gap-2">
-              <span>🔍</span>
-              <span>{lang === 'ar' ? 'بحث في المنصة...' : 'Search academy...'}</span>
-            </span>
-            <span className="text-xs text-ink-400">Ctrl+K</span>
-          </button>
-          {course && (
-            <a href="/" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-ink-600 hover:bg-brand-50 hover:text-brand-700 dark:text-slate-300 dark:hover:bg-slate-800">
-              {t('nav.courses')}
-            </a>
-          )}
-          {navKeys.map((item) => (
-            <a
-              key={item.key}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="block rounded-lg px-3 py-2 text-sm font-medium text-ink-600 hover:bg-brand-50 hover:text-brand-700 dark:text-slate-300 dark:hover:bg-slate-800"
-            >
-              {t(item.key)}
-            </a>
-          ))}
-          <div className="mt-2 border-t border-slate-100 pt-2 dark:border-slate-800">
-            <a
-              href="https://gridfix.net"
-              target="_blank"
-              rel="noopener"
-              onClick={() => setOpen(false)}
-              className="flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50/90 px-3 py-2.5 text-xs font-bold text-[#0f6fc0] transition-colors hover:bg-blue-100 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300"
-            >
-              <span className="flex items-center gap-2">
-                <span className="flex h-2 w-2 rounded-full bg-[#1482db] animate-pulse"></span>
-                <span>{t('header.poweredBy')}</span>
-              </span>
-              <span>↗</span>
-            </a>
-          </div>
-        </nav>
+        <MobileMenu
+          navKeys={navKeys}
+          course={course}
+          lang={lang}
+          onClose={() => setOpen(false)}
+          onOpenAudioModal={() => setAudioModalOpen(true)}
+          onOpenSearch={handleOpenSearch}
+        />
       )}
-          <AudioLauncherModal
+
+      {/* Drive & Learn Modal */}
+      <AudioLauncherModal
         isOpen={audioModalOpen}
         onClose={() => setAudioModalOpen(false)}
         initialCourseId={course || 'cmrp'}

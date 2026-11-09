@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { getLessonAudioCues } from '../../../data/audioCues';
-import { calculateProgressPercent, getNextPlaybackSpeed } from '../../../lib/audioUtils';
+import useLang from '../../../lib/useLang';
+import { calculateProgressPercent, calculateSeekTime, getNextPlaybackSpeed } from '../../../lib/audioUtils';
 import type { PlaylistItem, CourseOption, DriveTheme } from './car/types';
 import PlayerHeader from './car/PlayerHeader';
 import SlideStage from './car/SlideStage';
@@ -46,7 +47,7 @@ export default function CarPlayer({
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [wakeLockActive, setWakeLockActive] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [lang, setLang] = useState<'ar' | 'en'>('ar');
+  const lang = useLang();
   const [driveTheme, setDriveTheme] = useState<DriveTheme>('day');
 
   // Smart Synchronized Audio Cues for current track
@@ -84,20 +85,6 @@ export default function CarPlayer({
       localStorage.setItem('car-drive-theme', next);
     } catch {}
   };
-
-  // Language change listener
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('cfm-lang');
-      if (stored === 'en' || stored === 'ar') setLang(stored);
-    } catch {}
-
-    const onLangChanged = (e: any) => {
-      if (e.detail?.lang) setLang(e.detail.lang);
-    };
-    window.addEventListener('cfm-lang-changed', onLangChanged);
-    return () => window.removeEventListener('cfm-lang-changed', onLangChanged);
-  }, []);
 
   // Read URL query (?lesson= or ?playlist=true) and stored last-played
   useEffect(() => {
@@ -209,9 +196,7 @@ export default function CarPlayer({
     if (!progressBarRef.current || !audioRef.current || !duration) return;
     const rect = progressBarRef.current.getBoundingClientRect();
     const isRtl = document.dir === 'rtl' || getComputedStyle(progressBarRef.current).direction === 'rtl';
-    const clickX = isRtl ? rect.right - e.clientX : e.clientX - rect.left;
-    const pct = Math.max(0, Math.min(1, clickX / rect.width));
-    audioRef.current.currentTime = pct * duration;
+    audioRef.current.currentTime = calculateSeekTime(e.clientX, rect, isRtl, duration);
   };
 
   // Fullscreen toggle

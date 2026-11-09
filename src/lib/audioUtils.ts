@@ -21,6 +21,33 @@ export function calculateProgressPercent(currentTime: number, duration: number):
 }
 
 /**
+ * حساب نسبة النقر على شريط التقدم مع مراعاة اتجاه القراءة (RTL / LTR)
+ */
+export function calculateRtlSeekPercent(
+  clientX: number,
+  rect: DOMRect,
+  isRtl: boolean
+): number {
+  if (!rect || rect.width <= 0) return 0;
+  const clickX = isRtl ? (rect.right - clientX) : (clientX - rect.left);
+  return Math.max(0, Math.min(1, clickX / rect.width));
+}
+
+/**
+ * حساب زمن النقر المباشر بالثواني
+ */
+export function calculateSeekTime(
+  clientX: number,
+  rect: DOMRect,
+  isRtl: boolean,
+  duration: number
+): number {
+  if (!duration || isNaN(duration) || duration <= 0) return 0;
+  const percent = calculateRtlSeekPercent(clientX, rect, isRtl);
+  return percent * duration;
+}
+
+/**
  * سرعات التشغيل المتاحة في المشغلات
  */
 export const PLAYBACK_SPEEDS = [1, 1.25, 1.5, 1.75, 2] as const;

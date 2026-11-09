@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import useLang from '../../../lib/useLang';
 import type { QuizQuestion, QuizOption } from '../../../data/quiz/types';
 import { DIFFICULTY_EN } from '../../../data/quiz/types';
 import { loadProgress, saveProgress, recordQuizScore } from '../../../lib/storage';
@@ -14,16 +15,9 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
-  const [lang, setLang] = useState<'ar' | 'en'>('ar');
+  const lang = useLang();
 
   const isEn = lang === 'en';
-
-  useEffect(() => {
-    const sync = () => setLang(document.documentElement.lang === 'en' ? 'en' : 'ar');
-    sync();
-    window.addEventListener('cfm-lang-changed', sync);
-    return () => window.removeEventListener('cfm-lang-changed', sync);
-  }, []);
 
   const pick = <T,>(ar: T, en?: T) => (isEn && en !== undefined ? en : ar);
 

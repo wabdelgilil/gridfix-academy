@@ -1,85 +1,19 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { courses } from '../../data/courses';
-import { curriculum } from '../../data/curriculum';
-
-interface SearchItem {
-  kind: 'course' | 'station' | 'lesson';
-  title: string;
-  titleEn: string;
-  subtitle?: string;
-  subtitleEn?: string;
-  href: string;
-  category: string;
-  categoryEn?: string;
-}
-
-function buildIndex(): SearchItem[] {
-  const items: SearchItem[] = [];
-
-  for (const c of courses) {
-    items.push({
-      kind: 'course',
-      title: c.title,
-      titleEn: c.titleEn,
-      subtitle: c.code,
-      subtitleEn: c.code,
-      href: `/${c.id}/`,
-      category: c.code,
-    });
-  }
-
-  for (const s of curriculum) {
-    const courseId = s.courseId ?? 'cfm';
-    if (s.status !== 'live') continue;
-    items.push({
-      kind: 'station',
-      title: s.title,
-      titleEn: s.titleEn,
-      subtitle: s.title,
-      subtitleEn: s.titleEn,
-      href: `/${courseId}/stations/${s.id}/`,
-      category: 'المحطات',
-      categoryEn: 'Stations',
-    });
-    for (const l of s.lessons) {
-      if (l.status !== 'live') continue;
-      items.push({
-        kind: 'lesson',
-        title: l.title,
-        titleEn: l.titleEn,
-        subtitle: `${s.title} • ${l.number} • ${l.minutes} دقيقة`,
-        subtitleEn: `${s.titleEn} • ${l.number} • ${l.minutes} min`,
-        href: `/${courseId}/lessons/${l.id}/`,
-        category: s.title,
-        categoryEn: s.titleEn,
-      });
-    }
-  }
-
-  return items;
-}
-
-const KINDS = {
-  course: { icon: '🎓', label: 'كورس', labelEn: 'Course' },
-  station: { icon: '🗺', label: 'محطة', labelEn: 'Station' },
-  lesson: { icon: '📖', label: 'درس', labelEn: 'Lesson' },
-} as const;
+import useLang from '../../lib/useLang';
+import { buildSearchIndex, filterSearchItems, KINDS, type SearchItem } from '../../lib/searchIndex';
 
 export default function SearchPalette() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
-  const [lang, setLang] = useState<'ar' | 'en'>('ar');
+  const lang = useLang();
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  const items = useRef(buildIndex());
+  const items = useRef<SearchItem[]>([]);
 
   useEffect(() => {
-    setLang(document.documentElement.lang === 'en' ? 'en' : 'ar');
-    const onChange = () => setLang(document.documentElement.lang === 'en' ? 'en' : 'ar');
-    document.addEventListener('cfm-lang-changed', onChange);
-    return () => document.removeEventListener('cfm-lang-changed', onChange);
+    items.current = buildSearchIndex();
   }, []);
 
   useEffect(() => {
@@ -113,13 +47,9 @@ export default function SearchPalette() {
     };
   }, [open]);
 
-  const filtered = items.current
-    .filter((item) => {
-      const q = query.trim().toLowerCase();
-      if (!q) return true;
-      return (item.title + ' ' + item.titleEn + ' ' + item.subtitle + ' ' + item.subtitleEn + ' ' + item.href).toLowerCase().includes(q);
-    })
-    .slice(0, 12);
+  const filtered = (
+    query.trim() ? filterSearchItems(items.current, query) : items.current
+  ).slice(0, 12);
 
   useEffect(() => {
     setActive(0);

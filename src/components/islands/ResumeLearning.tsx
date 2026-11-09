@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import useLang from '../../lib/useLang';
+import { getTimeAgo } from '../../lib/dateUtils';
 import { getLastLesson } from '../../lib/storage';
 import { resolveLessonEnglish } from '../../data/curriculum';
 
@@ -7,16 +9,15 @@ interface Props {
 }
 
 export default function ResumeLearning({ course }: Props) {
-  const [last, setLast] = useState<{ lessonId: string; title: string; titleEn?: string; stationTitle: string; stationTitleEn?: string; at: string } | null>(null);
-  const [lang, setLang] = useState<'ar' | 'en'>('ar');
-
-  useEffect(() => {
-    const langFromDoc = document.documentElement.lang === 'en' ? 'en' : 'ar';
-    setLang(langFromDoc);
-    const onChange = () => setLang(document.documentElement.lang === 'en' ? 'en' : 'ar');
-    document.addEventListener('cfm-lang-changed', onChange);
-    return () => document.removeEventListener('cfm-lang-changed', onChange);
-  }, []);
+  const [last, setLast] = useState<{
+    lessonId: string;
+    title: string;
+    titleEn?: string;
+    stationTitle: string;
+    stationTitleEn?: string;
+    at: string;
+  } | null>(null);
+  const lang = useLang();
 
   useEffect(() => {
     const data = getLastLesson(course);
@@ -52,23 +53,4 @@ export default function ResumeLearning({ course }: Props) {
       </div>
     </a>
   );
-}
-
-function getTimeAgo(iso: string, lang: 'ar' | 'en'): string {
-  const diff = Date.now() - new Date(iso).getTime();
-  const mins = Math.floor(diff / 60000);
-  if (lang === 'en') {
-    if (mins < 1) return 'just now';
-    if (mins < 60) return `${mins} min ago`;
-    const hrs = Math.floor(mins / 60);
-    if (hrs < 24) return `${hrs} hr ago`;
-    const days = Math.floor(hrs / 24);
-    return `${days} day${days === 1 ? '' : 's'} ago`;
-  }
-  if (mins < 1) return 'الآن';
-  if (mins < 60) return `منذ ${mins} دقيقة`;
-  const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `منذ ${hrs} ساعة`;
-  const days = Math.floor(hrs / 24);
-  return `منذ ${days} يوم`;
 }

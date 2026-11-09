@@ -1,5 +1,14 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { formatAudioTime, calculateProgressPercent, getNextPlaybackSpeed } from '../../../lib/audioUtils';
+import useLang from '../../../lib/useLang';
+import {
+  calculateProgressPercent,
+  calculateSeekTime,
+  getNextPlaybackSpeed,
+} from '../../../lib/audioUtils';
+import LessonPlayerHeader from './lesson/LessonPlayerHeader';
+import LessonProgressBar from './lesson/LessonProgressBar';
+import LessonTransportControls from './lesson/LessonTransportControls';
+import CountdownToast from './lesson/CountdownToast';
 
 interface LessonAudioPlayerProps {
   courseId: string;
@@ -24,10 +33,11 @@ export default function LessonAudioPlayer({
   prevLessonUrl,
   prevLessonTitle,
   nextLessonUrl,
-  nextLessonTitle
+  nextLessonTitle,
 }: LessonAudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressBarRef = useRef<HTMLDivElement | null>(null);
+  const lang = useLang();
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -36,20 +46,6 @@ export default function LessonAudioPlayer({
   const [autoPlayNext, setAutoPlayNext] = useState(true);
   const [isNavigating, setIsNavigating] = useState(false);
   const [countdown, setCountdown] = useState(3);
-  const [lang, setLang] = useState<'ar' | 'en'>('ar');
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('cfm-lang');
-      if (stored === 'en' || stored === 'ar') setLang(stored);
-    } catch {}
-
-    const onLangChanged = (e: any) => {
-      if (e.detail?.lang) setLang(e.detail.lang);
-    };
-    window.addEventListener('cfm-lang-changed', onLangChanged);
-    return () => window.removeEventListener('cfm-lang-changed', onLangChanged);
-  }, []);
 
   // Play / Pause toggle
   const togglePlay = () => {
@@ -79,14 +75,13 @@ export default function LessonAudioPlayer({
     }
   };
 
-  // Handle scrub on progress bar (RTL-Aware Fix)
+  // Handle seek on progress bar
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!progressBarRef.current || !audioRef.current || !duration) return;
     const rect = progressBarRef.current.getBoundingClientRect();
     const isRtl = document.dir === 'rtl' || getComputedStyle(progressBarRef.current).direction === 'rtl';
-    const clickX = isRtl ? (rect.right - e.clientX) : (e.clientX - rect.left);
-    const percentage = Math.max(0, Math.min(1, clickX / rect.width));
-    audioRef.current.currentTime = percentage * duration;
+    const targetTime = calculateSeekTime(e.clientX, rect, isRtl, duration);
+    audioRef.current.currentTime = targetTime;
   };
 
   // Navigate to previous lesson or restart current
@@ -132,8 +127,8 @@ export default function LessonAudioPlayer({
         album: stationTitle ?? 'منهج الاعتمادية وإدارة المنشآت',
         artwork: [
           { src: '/logo-icon-192.png', sizes: '192x192', type: 'image/png' },
-          { src: '/logo-icon-512.png', sizes: '512x512', type: 'image/png' }
-        ]
+          { src: '/logo-icon-512.png', sizes: '512x512', type: 'image/png' },
+        ],
       });
 
       navigator.mediaSession.setActionHandler('play', () => {
@@ -195,55 +190,17 @@ export default function LessonAudioPlayer({
       />
 
       {/* Header Info */}
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600 dark:bg-brand-500/20 dark:text-brand-400">
-            <span className="text-lg">🎧</span>
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-ink-900 dark:text-slate-100">
-                الشرح الصوتي المباشر للدرس
-              </span>
-              <a
-                href={`/${courseId}/listen/?lesson=${encodeURIComponent(lessonTitle)}`}
-                className="inline-flex items-center gap-1 rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[10px] font-bold text-amber-600 dark:bg-amber-500/20 dark:text-amber-300 hover:bg-amber-500/25 transition border border-amber-500/30 shadow-xs"
-                title="فتح المشغل المتصل المخصص للسيارة والتابلت بدون انقطاع"
-              >
-                <span>🚗</span>
-                <span>ادرس أثناء القيادة</span>
-              </a>
-            </div>
-            <div className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">
-              {formatAudioTime(currentTime)} / {formatAudioTime(duration)}
-            </div>
-          </div>
-        </div>
-
-        {/* Speed & Auto-advance toggle */}
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={cyclePlaybackRate}
-            className="rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 transition"
-            title="تغيير سرعة الإلقاء"
-          >
-            {playbackRate}x
-          </button>
-
-          {nextLessonUrl && (
-            <label className="flex items-center gap-1.5 cursor-pointer text-[11px] text-slate-600 dark:text-slate-400 select-none">
-              <input
-                type="checkbox"
-                checked={autoPlayNext}
-                onChange={(e) => setAutoPlayNext(e.target.checked)}
-                className="h-3.5 w-3.5 rounded border-slate-300 text-brand-600 focus:ring-brand-500 dark:border-slate-600 dark:bg-slate-800"
-              />
-              <span>التالي تلقائياً</span>
-            </label>
-          )}
-        </div>
-      </div>
+      <LessonPlayerHeader
+        courseId={courseId}
+        lessonTitle={lessonTitle}
+        currentTime={currentTime}
+        duration={duration}
+        playbackRate={playbackRate}
+        onCyclePlaybackRate={cyclePlaybackRate}
+        autoPlayNext={autoPlayNext}
+        onToggleAutoPlayNext={setAutoPlayNext}
+        hasNextLesson={Boolean(nextLessonUrl)}
+      />
 
       {/* English notice if listening while browsing in English */}
       {lang === 'en' && (
@@ -258,97 +215,31 @@ export default function LessonAudioPlayer({
         </div>
       )}
 
-      {/* Progress Bar (RTL Fixed) */}
-      <div
-        ref={progressBarRef}
-        onClick={handleSeek}
-        className="relative h-2.5 w-full cursor-pointer rounded-full bg-slate-200/80 dark:bg-slate-800 overflow-hidden mb-3 touch-none"
-        title="انقر لتقديم أو تأخير موضع الاستماع"
-      >
-        <div
-          className="h-full bg-gradient-to-l from-brand-600 via-emerald-500 to-brand-400 transition-all duration-75"
-          style={{ width: `${progressPercent}%` }}
-        />
-      </div>
+      {/* Progress Bar */}
+      <LessonProgressBar
+        progressPercent={progressPercent}
+        onSeek={handleSeek}
+        progressBarRef={progressBarRef}
+      />
 
-      {/* Controls: Prev Lesson, Seek Back 15s, Play/Pause, Seek Fwd 15s, Next Lesson */}
-      <div className="flex items-center justify-center gap-2 sm:gap-4">
-        {/* Previous Lesson */}
-        <button
-          type="button"
-          onClick={goToPrev}
-          disabled={!prevLessonUrl && currentTime <= 3}
-          className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-900 disabled:opacity-30 disabled:cursor-not-allowed dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition"
-          title={prevLessonTitle ? `الدرس السابق (${prevLessonTitle})` : 'الدرس السابق (أو إعادة البدء)'}
-          aria-label="الدرس السابق"
-        >
-          <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
-            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
-          </svg>
-        </button>
-
-        {/* Replay 15s */}
-        <button
-          type="button"
-          onClick={() => skip(-15)}
-          className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition text-xs font-bold"
-          title="تأخير 15 ثانية داخل الدرس"
-          aria-label="تأخير 15 ثانية"
-        >
-          <span>↺ 15</span>
-        </button>
-
-        {/* Play / Pause Primary Button */}
-        <button
-          type="button"
-          onClick={togglePlay}
-          className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-600 text-white shadow-md shadow-brand-500/20 hover:bg-brand-500 active:scale-95 transition"
-          title={isPlaying ? 'إيقاف مؤقت' : 'تشغيل'}
-          aria-label={isPlaying ? 'إيقاف مؤقت' : 'تشغيل'}
-        >
-          {isPlaying ? (
-            <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-            </svg>
-          ) : (
-            <svg className="h-5 w-5 fill-current translate-x-0.5" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          )}
-        </button>
-
-        {/* Forward 15s */}
-        <button
-          type="button"
-          onClick={() => skip(15)}
-          className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition text-xs font-bold"
-          title="تقديم 15 ثانية داخل الدرس"
-          aria-label="تقديم 15 ثانية"
-        >
-          <span>15 ↻</span>
-        </button>
-
-        {/* Next Lesson */}
-        <button
-          type="button"
-          onClick={goToNext}
-          disabled={!nextLessonUrl}
-          className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-900 disabled:opacity-30 disabled:cursor-not-allowed dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition"
-          title="الدرس التالي"
-          aria-label="الدرس التالي"
-        >
-          <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
-            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
-          </svg>
-        </button>
-      </div>
+      {/* Controls */}
+      <LessonTransportControls
+        isPlaying={isPlaying}
+        onTogglePlay={togglePlay}
+        onSkip={skip}
+        onGoToPrev={goToPrev}
+        onGoToNext={goToNext}
+        hasPrev={Boolean(prevLessonUrl || currentTime > 3)}
+        hasNext={Boolean(nextLessonUrl)}
+        prevLessonTitle={prevLessonTitle}
+      />
 
       {/* Countdown overlay when auto-advancing */}
-      {isNavigating && nextLessonTitle && (
-        <div className="mt-3 rounded-xl bg-brand-50 border border-brand-200/60 p-2 text-center text-xs text-brand-900 dark:bg-brand-950/40 dark:border-brand-800/40 dark:text-brand-300 animate-pulse">
-          🚗 انتهى الدرس! جاري الانتقال تلقائياً إلى <strong>{nextLessonTitle}</strong> خلال {countdown} ثوانٍ...
-        </div>
-      )}
+      <CountdownToast
+        isNavigating={isNavigating}
+        nextLessonTitle={nextLessonTitle}
+        countdown={countdown}
+      />
     </div>
   );
 }
