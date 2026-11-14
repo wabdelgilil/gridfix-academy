@@ -1,7 +1,6 @@
 ---
 import SiteHeader from '../components/islands/SiteHeader.tsx';
 import SearchPalette from '../components/islands/SearchPalette.tsx';
-import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css';
 import type { Language } from '../i18n/ui';
 
@@ -195,6 +194,5 @@ const gaId = import.meta.env.PUBLIC_GA_ID?.trim() || 'G-WV79RMQ6QK';
         </div>
       </div>
     </footer>
-    <Analytics />
   </body>
 </html>
