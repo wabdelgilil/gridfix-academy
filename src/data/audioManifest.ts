@@ -94,7 +94,12 @@ export function getLessonAudioUrl(
     return { url: null, audioLang: null, isFallback: false };
   }
 
-  const base = customBaseUrl ? customBaseUrl.replace(/\/$/, '') : '/audio';
+  const defaultBase = 'https://cdn.gridfix.net';
+  const envBase =
+    typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_AUDIO_BASE_URL
+      ? (import.meta.env.PUBLIC_AUDIO_BASE_URL as string)
+      : undefined;
+  const base = (customBaseUrl || envBase || defaultBase).replace(/\/$/, '');
 
   // 1. If audio is available in the requested language
   if (track[lang]) {
