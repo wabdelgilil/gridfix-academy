@@ -19,7 +19,9 @@ function getActiveLang(): string {
 
 function collectToc(): TocItem[] {
   const activeLang = getActiveLang();
-  const headings = document.querySelectorAll<HTMLElement>('.prose-lesson h2, .prose-lesson h3');
+  const headings = document.querySelectorAll<HTMLElement>(
+    '.prose-lesson h2, .prose-lesson h3'
+  );
   const tocItems: TocItem[] = [];
 
   headings.forEach((el) => {
@@ -92,7 +94,9 @@ export default function LessonTOC() {
 
   return (
     <nav className="sticky top-24 h-fit max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <p className="mb-3 text-xs font-semibold text-ink-900">{activeLang === 'en' ? 'Lesson index' : 'فهرس الدرس'}</p>
+      <p className="mb-3 text-xs font-semibold text-ink-900">
+        {activeLang === 'en' ? 'Lesson index' : 'فهرس الدرس'}
+      </p>
       <ul className="space-y-1">
         {items.map((item) => (
           <li key={item.id}>

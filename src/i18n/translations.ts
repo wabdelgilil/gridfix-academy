@@ -61,7 +61,8 @@ export const translations = {
     'share.button': 'مشاركة الفائدة',
     'share.title': 'مشاركة فائدة من الدرس',
     'share.cardTitle': '💡 انشر هذه الفائدة المهنية مع زملائك',
-    'share.cardSubtitle': 'معلومة علمية مستخلصة مباشرة من خلاصة هذا الدرس جاهزة للنشر والمشاركة.',
+    'share.cardSubtitle':
+      'معلومة علمية مستخلصة مباشرة من خلاصة هذا الدرس جاهزة للنشر والمشاركة.',
     'share.preview': 'معاينة المنشور المعرفي',
     'share.copyText': 'نسخ الفائدة والرابط',
     'share.copyLink': 'نسخ الرابط فقط',
@@ -133,7 +134,8 @@ export const translations = {
     'share.button': 'Share insight',
     'share.title': 'Share lesson insight',
     'share.cardTitle': '💡 Share this professional insight with peers',
-    'share.cardSubtitle': 'A scientific takeaway extracted directly from this lesson summary, ready to share.',
+    'share.cardSubtitle':
+      'A scientific takeaway extracted directly from this lesson summary, ready to share.',
     'share.preview': 'Knowledge post preview',
     'share.copyText': 'Copy insight & link',
     'share.copyLink': 'Copy link only',

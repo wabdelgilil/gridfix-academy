@@ -8,7 +8,9 @@ import { audioLessons } from '../data/audioManifest';
 function getCourseAudioCount(courseId: string): number {
   const stations = curriculum.filter((s) => (s.courseId ?? 'cfm') === courseId);
   return stations.reduce((acc, station) => {
-    return acc + station.lessons.filter((l) => Boolean(audioLessons[l.id])).length;
+    return (
+      acc + station.lessons.filter((l) => Boolean(audioLessons[l.id])).length
+    );
   }, 0);
 }
 
@@ -28,7 +30,7 @@ function getCourseTotalLessons(courseId: string): number {
       <Breadcrumb
         items={[
           { label: 'الرئيسية', href: '/' },
-          { label: 'ادرس أثناء القيادة 🚗', labelEn: 'Drive & Learn' }
+          { label: 'ادرس أثناء القيادة 🚗', labelEn: 'Drive & Learn' },
         ]}
       />
     </div>
@@ -49,7 +51,9 @@ function getCourseTotalLessons(courseId: string): number {
         </h1>
 
         <p class="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
-          مشغل تفاعلي يدعم البلوتوث وأزرار عجلة القيادة، مصمم بنصوص علمية موثقة وخالية من الحشو. اختر كورس تخصصك وحدد الدرس الذي ترغب في الاستماع إليه مباشرة.
+          مشغل تفاعلي يدعم البلوتوث وأزرار عجلة القيادة، مصمم بنصوص علمية موثقة
+          وخالية من الحشو. اختر كورس تخصصك وحدد الدرس الذي ترغب في الاستماع إليه
+          مباشرة.
         </p>
       </div>
 
@@ -64,9 +68,7 @@ function getCourseTotalLessons(courseId: string): number {
         <h2 class="text-xl font-bold text-slate-900 dark:text-white">
           اختر الكورس التعليمي للاستماع:
         </h2>
-        <span class="text-xs text-slate-500">
-          3 مسارات مهنية متوفرة
-        </span>
+        <span class="text-xs text-slate-500">3 مسارات مهنية متوفرة</span>
       </div>
 
       <div class="grid gap-6 md:grid-cols-3">
@@ -124,7 +126,9 @@ function getCourseTotalLessons(courseId: string): number {
                   }`}
                 >
                   <span>🚗</span>
-                  <span>{hasAudio ? 'فتح مشغل وضع القيادة' : 'استعراض قائمة الدروس'}</span>
+                  <span>
+                    {hasAudio ? 'فتح مشغل وضع القيادة' : 'استعراض قائمة الدروس'}
+                  </span>
                 </a>
               </div>
             </div>
@@ -146,7 +150,8 @@ function getCourseTotalLessons(courseId: string): number {
             <span>تحكم عجلة القيادة</span>
           </div>
           <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
-            استخدم أزرار التالي والسابق على مقود السيارة للتنقل بين الدروس أو تقديم وتأخير الدرس 15 ثانية.
+            استخدم أزرار التالي والسابق على مقود السيارة للتنقل بين الدروس أو
+            تقديم وتأخير الدرس 15 ثانية.
           </p>
         </div>
 
@@ -156,7 +161,8 @@ function getCourseTotalLessons(courseId: string): number {
             <span>إبقاء الشاشة مضاءة</span>
           </div>
           <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
-            تظل شاشة الهاتف أو التابلت مضاءة تلقائياً طالما أن المشغل يعمل لتتمكن من النظر بسرعة للعنوان.
+            تظل شاشة الهاتف أو التابلت مضاءة تلقائياً طالما أن المشغل يعمل لتتمكن
+            من النظر بسرعة للعنوان.
           </p>
         </div>
 
@@ -166,7 +172,8 @@ function getCourseTotalLessons(courseId: string): number {
             <span>التشغيل المتواصل</span>
           </div>
           <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
-            ينتقل المشغل تلقائياً إلى الدرس التالي فور انتهاء الدرس الحالي لتستمتع بمسار تعليمي متكامل بدون تشتيت.
+            ينتقل المشغل تلقائياً إلى الدرس التالي فور انتهاء الدرس الحالي
+            لتستمتع بمسار تعليمي متكامل بدون تشتيت.
           </p>
         </div>
       </div>

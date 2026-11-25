@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { curriculum } from '../../../data/curriculum';
 import { audioLessons } from '../../../data/audioManifest';
-import type { AudioLauncherModalProps, DriveTheme, LastPlayedAudio } from './launcher/types';
+import type {
+  AudioLauncherModalProps,
+  DriveTheme,
+  LastPlayedAudio,
+} from './launcher/types';
 import LauncherHeader from './launcher/LauncherHeader';
 import CourseSelectorSidebar from './launcher/CourseSelectorSidebar';
 import StationLessonsList from './launcher/StationLessonsList';
@@ -14,9 +18,12 @@ export default function AudioLauncherModal({
   lang = 'ar',
 }: AudioLauncherModalProps) {
   const [mounted, setMounted] = useState(false);
-  const [selectedCourse, setSelectedCourse] = useState<string>(initialCourseId || 'cmrp');
+  const [selectedCourse, setSelectedCourse] = useState<string>(
+    initialCourseId || 'cmrp'
+  );
   const [driveTheme, setDriveTheme] = useState<DriveTheme>('day');
-  const [lastPlayedLesson, setLastPlayedLesson] = useState<LastPlayedAudio | null>(null);
+  const [lastPlayedLesson, setLastPlayedLesson] =
+    useState<LastPlayedAudio | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -25,7 +32,9 @@ export default function AudioLauncherModal({
       if (storedTheme === 'day' || storedTheme === 'night') {
         setDriveTheme(storedTheme);
       } else {
-        const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark =
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches;
         setDriveTheme(isDark ? 'night' : 'day');
       }
     } catch {}
@@ -83,9 +92,13 @@ export default function AudioLauncherModal({
 
   // Count available audio lessons for each course
   const getAudioCount = (courseId: string) => {
-    const stations = curriculum.filter((s) => (s.courseId ?? 'cfm') === courseId);
+    const stations = curriculum.filter(
+      (s) => (s.courseId ?? 'cfm') === courseId
+    );
     return stations.reduce((acc, station) => {
-      return acc + station.lessons.filter((l) => Boolean(audioLessons[l.id])).length;
+      return (
+        acc + station.lessons.filter((l) => Boolean(audioLessons[l.id])).length
+      );
     }, 0);
   };
 

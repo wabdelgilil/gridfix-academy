@@ -26,9 +26,17 @@ const {
   image = '/og-default.png',
 } = Astro.props;
 
-const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
-const canonical = new URL(pathname, Astro.site ?? 'https://academy.gridfix.net');
-const ogImage = new URL(image, Astro.site ?? 'https://academy.gridfix.net').toString();
+const pathname = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+const canonical = new URL(
+  pathname,
+  Astro.site ?? 'https://academy.gridfix.net'
+);
+const ogImage = new URL(
+  image,
+  Astro.site ?? 'https://academy.gridfix.net'
+).toString();
 const gaId = import.meta.env.PUBLIC_GA_ID?.trim() || 'G-WV79RMQ6QK';
 ---
 
@@ -43,10 +51,16 @@ const gaId = import.meta.env.PUBLIC_GA_ID?.trim() || 'G-WV79RMQ6QK';
     <meta name="theme-color" content="#1482db" />
     {gaId && (
       <>
-        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+        <script
+          is:inline
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+        ></script>
         <script is:inline define:vars={{ gaId }}>
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
+          function gtag() {
+            dataLayer.push(arguments);
+          }
           gtag('js', new Date());
           gtag('config', gaId);
         </script>
@@ -56,7 +70,9 @@ const gaId = import.meta.env.PUBLIC_GA_ID?.trim() || 'G-WV79RMQ6QK';
     <script is:inline>
       (function () {
         var t = localStorage.getItem('cfm-theme');
-        var d = t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var d =
+          t === 'dark' ||
+          (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
         if (d) document.documentElement.classList.add('dark');
       })();
     </script>
@@ -69,7 +85,10 @@ const gaId = import.meta.env.PUBLIC_GA_ID?.trim() || 'G-WV79RMQ6QK';
         }
       })();
     </script>
-    <script is:inline define:vars={{ title, titleEn, description, descriptionEn }}>
+    <script
+      is:inline
+      define:vars={{ title, titleEn, description, descriptionEn }}
+    >
       (function () {
         var apply = function (lang) {
           var en = lang === 'en';
@@ -81,9 +100,15 @@ const gaId = import.meta.env.PUBLIC_GA_ID?.trim() || 'G-WV79RMQ6QK';
           };
           swap('meta[name="description"]', en ? descriptionEn : description);
           swap('meta[property="og:title"]', en ? titleEn : title);
-          swap('meta[property="og:description"]', en ? descriptionEn : description);
+          swap(
+            'meta[property="og:description"]',
+            en ? descriptionEn : description
+          );
           swap('meta[name="twitter:title"]', en ? titleEn : title);
-          swap('meta[name="twitter:description"]', en ? descriptionEn : description);
+          swap(
+            'meta[name="twitter:description"]',
+            en ? descriptionEn : description
+          );
           swap('meta[property="og:locale"]', en ? 'en' : 'ar');
         };
         apply(localStorage.getItem('cfm-lang') === 'en' ? 'en' : 'ar');
@@ -124,46 +149,96 @@ const gaId = import.meta.env.PUBLIC_GA_ID?.trim() || 'G-WV79RMQ6QK';
         <div class="grid gap-6 text-sm leading-relaxed text-ink-600 md:grid-cols-3">
           <div class="animate-fade-in">
             <div class="mb-2 flex items-center gap-2">
-              <img src="/favicon.svg" alt="GridFix Academy" width="28" height="28" class="transition-transform duration-200 hover:scale-110" />
+              <img
+                src="/favicon.svg"
+                alt="GridFix Academy"
+                width="28"
+                height="28"
+                class="transition-transform duration-200 hover:scale-110"
+              />
               <span class="font-bold text-ink-900 dark:text-white">
                 <span class="text-[#1482db]">GridFix</span> Academy
               </span>
             </div>
-            <p data-lang="ar">منصة تعليمية مهنية بالعربية لشهادات إدارة المنشآت والصيانة — كل كورس مسار منظم بمحطات وأدوات وقاموس خاص به.</p>
-            <p data-lang="en" lang="en" dir="ltr">A professional Arabic learning platform for facility management and maintenance credentials — each course is an organized path with stations, tools, and its own glossary.</p>
+            <p data-lang="ar">
+              منصة تعليمية مهنية بالعربية لشهادات إدارة المنشآت والصيانة — كل
+              كورس مسار منظم بمحطات وأدوات وقاموس خاص به.
+            </p>
+            <p data-lang="en" lang="en" dir="ltr">
+              A professional Arabic learning platform for facility management
+              and maintenance credentials — each course is an organized path
+              with stations, tools, and its own glossary.
+            </p>
             <p class="mt-3 inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1.5 text-xs font-semibold text-brand-800 transition-colors duration-200 hover:bg-brand-100">
-              💚 <span data-lang="ar">منصة تعليمية <strong>مجانية بالكامل</strong></span>
-              <span data-lang="en" lang="en" dir="ltr">A <strong>100% free</strong> learning platform</span>
+              💚{' '}
+              <span data-lang="ar">
+                منصة تعليمية <strong>مجانية بالكامل</strong>
+              </span>
+              <span data-lang="en" lang="en" dir="ltr">
+                A <strong>100% free</strong> learning platform
+              </span>
             </p>
           </div>
           <div class="animate-fade-in" style="animation-delay: 100ms">
             <p class="mb-2 font-semibold text-ink-900">
               <span data-lang="ar">كورسات المنصة</span>
-              <span data-lang="en" lang="en" dir="ltr">Our Courses</span>
+              <span data-lang="en" lang="en" dir="ltr">
+                Our Courses
+              </span>
             </p>
-            <p data-lang="ar">CFM لإدارة المنشآت • CMRP للصيانة والموثوقية • CAMA لتقييم إدارة الأصول.</p>
-            <p data-lang="en" lang="en" dir="ltr">CFM for facility management • CMRP for maintenance &amp; reliability • CAMA for asset management.</p>
+            <p data-lang="ar">
+              CFM لإدارة المنشآت • CMRP للصيانة والموثوقية • CAMA لتقييم إدارة
+              الأصول.
+            </p>
+            <p data-lang="en" lang="en" dir="ltr">
+              CFM for facility management • CMRP for maintenance &amp;
+              reliability • CAMA for asset management.
+            </p>
           </div>
-          <div class="animate-fade-in rounded-2xl border border-blue-200/80 bg-blue-50/40 p-5 shadow-2xs transition-colors hover:border-blue-300 dark:border-blue-900/60 dark:bg-blue-950/20" style="animation-delay: 200ms">
+          <div
+            class="animate-fade-in rounded-2xl border border-blue-200/80 bg-blue-50/40 p-5 shadow-2xs transition-colors hover:border-blue-300 dark:border-blue-900/60 dark:bg-blue-950/20"
+            style="animation-delay: 200ms"
+          >
             <div class="mb-2 flex items-center justify-between">
               <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 dark:text-blue-300">
                 <span class="h-2 w-2 rounded-full bg-brand-500 animate-pulse"></span>
                 <span data-lang="ar">الجهة الراعية والمطورة</span>
-                <span data-lang="en" lang="en" dir="ltr">Sponsor &amp; Developer</span>
+                <span data-lang="en" lang="en" dir="ltr">
+                  Sponsor &amp; Developer
+                </span>
               </span>
-              <a href="https://gridfix.net" target="_blank" rel="noopener" class="text-xs font-mono font-bold text-brand-700 hover:underline dark:text-blue-400">
+              <a
+                href="https://gridfix.net"
+                target="_blank"
+                rel="noopener"
+                class="text-xs font-mono font-bold text-brand-700 hover:underline dark:text-blue-400"
+              >
                 gridfix.net ↗
               </a>
             </div>
             <p class="font-bold text-ink-900 dark:text-white">
               <span data-lang="ar">نظام GridFix لإدارة الصيانة والمرافق</span>
-              <span data-lang="en" lang="en" dir="ltr">GridFix Smart CMMS Platform</span>
+              <span data-lang="en" lang="en" dir="ltr">
+                GridFix Smart CMMS Platform
+              </span>
             </p>
-            <p class="mt-2 text-xs leading-relaxed text-ink-600 dark:text-slate-300" data-lang="ar">
-              منصة تعليمية مجانية مقدمة برعاية <strong>GridFix</strong>، لتمكين المهندسين العرب بخبرات الميدان في حوكمة الأصول وجداول الصيانة الوقائية.
+            <p
+              class="mt-2 text-xs leading-relaxed text-ink-600 dark:text-slate-300"
+              data-lang="ar"
+            >
+              منصة تعليمية مجانية مقدمة برعاية <strong>GridFix</strong>، لتمكين
+              المهندسين العرب بخبرات الميدان في حوكمة الأصول وجداول الصيانة
+              الوقائية.
             </p>
-            <p class="mt-2 text-xs leading-relaxed text-ink-600 dark:text-slate-300" data-lang="en" lang="en" dir="ltr">
-              A free learning platform sponsored by <strong>GridFix</strong>, empowering engineering professionals with field expertise in asset governance and PM schedules.
+            <p
+              class="mt-2 text-xs leading-relaxed text-ink-600 dark:text-slate-300"
+              data-lang="en"
+              lang="en"
+              dir="ltr"
+            >
+              A free learning platform sponsored by <strong>GridFix</strong>,
+              empowering engineering professionals with field expertise in asset
+              governance and PM schedules.
             </p>
             <div class="mt-4 flex flex-wrap items-center gap-2">
               <a
@@ -173,7 +248,9 @@ const gaId = import.meta.env.PUBLIC_GA_ID?.trim() || 'G-WV79RMQ6QK';
                 class="btn btn-sm bg-brand-600 text-white shadow-2xs transition-all duration-200 hover:bg-brand-700 hover:shadow-xs"
               >
                 <span data-lang="ar">⚡ زيارة منصة GridFix ↗</span>
-                <span data-lang="en" lang="en" dir="ltr">⚡ Visit GridFix Platform ↗</span>
+                <span data-lang="en" lang="en" dir="ltr">
+                  ⚡ Visit GridFix Platform ↗
+                </span>
               </a>
               <a
                 href="https://gridfix.net/demo"
@@ -182,14 +259,29 @@ const gaId = import.meta.env.PUBLIC_GA_ID?.trim() || 'G-WV79RMQ6QK';
                 class="btn btn-sm border border-slate-300 bg-white text-ink-700 transition-all duration-200 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
               >
                 <span data-lang="ar">تجربة الديمو</span>
-                <span data-lang="en" lang="en" dir="ltr">Try Demo</span>
+                <span data-lang="en" lang="en" dir="ltr">
+                  Try Demo
+                </span>
               </a>
             </div>
           </div>
           <div class="text-xs text-ink-400 md:col-span-3 border-t border-slate-100 pt-4 mt-4">
-            <p data-lang="ar">المنصة ليست جهة اعتماد رسمية. للأهلية والمواعيد والرسوم الحالية، راجع موقع الجهة المانحة (IFMA أو SMRP أو WPiAM) الرسمي.</p>
-            <p data-lang="en" lang="en" dir="ltr">This platform is not an official certifying body. For current eligibility, dates, and fees, check the official issuing body's website (IFMA, SMRP, or WPiAM).</p>
-            <p class="mt-2">© {new Date().getFullYear()} GridFix Academy. <span data-lang="ar">جميع الحقوق محفوظة.</span><span data-lang="en" lang="en" dir="ltr">All rights reserved.</span></p>
+            <p data-lang="ar">
+              المنصة ليست جهة اعتماد رسمية. للأهلية والمواعيد والرسوم الحالية،
+              راجع موقع الجهة المانحة (IFMA أو SMRP أو WPiAM) الرسمي.
+            </p>
+            <p data-lang="en" lang="en" dir="ltr">
+              This platform is not an official certifying body. For current
+              eligibility, dates, and fees, check the official issuing body's
+              website (IFMA, SMRP, or WPiAM).
+            </p>
+            <p class="mt-2">
+              © {new Date().getFullYear()} GridFix Academy.{' '}
+              <span data-lang="ar">جميع الحقوق محفوظة.</span>
+              <span data-lang="en" lang="en" dir="ltr">
+                All rights reserved.
+              </span>
+            </p>
           </div>
         </div>
       </div>

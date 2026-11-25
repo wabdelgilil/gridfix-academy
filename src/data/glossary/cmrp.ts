@@ -481,7 +481,7 @@ export const cmrpGlossary: GlossaryTerm[] = [
     id: 'cmrp-4-3-t4',
     term: 'Craft Hours Estimation',
     ar: 'تقدير المخطط لعدد الساعات المطلوبة لكل تخصص (ميكانيكا، كهرباء، أجهزة) لإنجاز المهمة، استناداً لمعايير الصيانة القياسية أو سجلات الأعمال السابقة في الـ CMMS.',
-    en: 'The planner\'s quantified forecast of hours required per craft discipline (mechanic, electrician, I&C), enabling accurate weekly crew scheduling without over- or under-loading labor capacity.',
+    en: "The planner's quantified forecast of hours required per craft discipline (mechanic, electrician, I&C), enabling accurate weekly crew scheduling without over- or under-loading labor capacity.",
     course: 'cmrp',
   },
   {
@@ -495,7 +495,7 @@ export const cmrpGlossary: GlossaryTerm[] = [
     id: 'cmrp-4-3-t6',
     term: 'Ready to Schedule (RTS)',
     ar: 'الحالة في الـ CMMS التي تؤكد اكتمال حزمة العمل بنسبة 100% ووصول كافة قطع الغيار للمستودع، بحيث يمكن لمنسق الجدولة إدراجها فوراً في خطة الأسبوع دون مخاطرة.',
-    en: 'The milestone CMMS status signifying that 100% of planning elements and 100% of staged parts are physically available, authorizing the scheduler to commit the work into next week\'s plan.',
+    en: "The milestone CMMS status signifying that 100% of planning elements and 100% of staged parts are physically available, authorizing the scheduler to commit the work into next week's plan.",
     course: 'cmrp',
   },
   {
@@ -516,14 +516,14 @@ export const cmrpGlossary: GlossaryTerm[] = [
     id: 'cmrp-4-4-t3',
     term: '100% Capacity Scheduling Rule',
     ar: 'المبدأ الشهير لـ SMRP: يجب جدولة 100% من صافي ساعات العمالة المتاحة بأعمال مخططة، وعدم ترك أي فراغ زمني عمداً لحالات الطوارئ، لأن الفراغ الزمني يستنزف الإنتاجية.',
-    en: 'The foundational SMRP rule dictating that 100% of net craft hours must be committed to planned, ready backlog; intentional scheduling gaps cause labor pacing to slow down (Parkinson\'s Law).',
+    en: "The foundational SMRP rule dictating that 100% of net craft hours must be committed to planned, ready backlog; intentional scheduling gaps cause labor pacing to slow down (Parkinson's Law).",
     course: 'cmrp',
   },
   {
     id: 'cmrp-4-4-t4',
     term: 'Weekly Scheduling Meeting',
     ar: 'اجتماع أسبوعي إلزامي يجمع منسق الجدولة، مشرفي الصيانة، وممثلي العمليات لمراجعة أوامر الشغل الجاهزة، وحل تعارضات الإنتاج، واعتماد الجدول النهائي للأسبوع القادم.',
-    en: 'A mandatory weekly cross-functional session convened by the scheduler with operations and maintenance supervisors to lock down ready work orders, resolve handover conflicts, and freeze next week\'s plan.',
+    en: "A mandatory weekly cross-functional session convened by the scheduler with operations and maintenance supervisors to lock down ready work orders, resolve handover conflicts, and freeze next week's plan.",
     course: 'cmrp',
   },
   {

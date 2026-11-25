@@ -23,19 +23,75 @@ const RE_LATIN_AR = new RegExp('([A-Za-z]{2,})' + AR_LETTERS);
 
 // مصطلحات إنجليزية شرعية مرتبطة بالمجال — يُسمح بورودها حتى لو التصقت بحرف عربي
 const ALLOWED_TERMS = new Set([
-  'HVAC', 'CMMS', 'CAFM', 'SLA', 'ROI', 'LCC', 'IFMA', 'LLM', 'CFM', 'FMP',
-  'OSHA', 'LEED', 'ISO', 'KPI', 'EUI', 'IEQ', 'IAQ', 'IEQ', 'NNN', 'CAM',
-  'BAS', 'UPS', 'IoT', 'BIM', 'AI', 'GA', 'CO', 'LED', 'Payback', 'Gross',
-  'CapEx', 'OPEX', 'PDCA', 'Six', 'Sigma', 'ROI', 'LCC', 'QA', 'RR', 'PLC',
+  'HVAC',
+  'CMMS',
+  'CAFM',
+  'SLA',
+  'ROI',
+  'LCC',
+  'IFMA',
+  'LLM',
+  'CFM',
+  'FMP',
+  'OSHA',
+  'LEED',
+  'ISO',
+  'KPI',
+  'EUI',
+  'IEQ',
+  'IAQ',
+  'IEQ',
+  'NNN',
+  'CAM',
+  'BAS',
+  'UPS',
+  'IoT',
+  'BIM',
+  'AI',
+  'GA',
+  'CO',
+  'LED',
+  'Payback',
+  'Gross',
+  'CapEx',
+  'OPEX',
+  'PDCA',
+  'Six',
+  'Sigma',
+  'ROI',
+  'LCC',
+  'QA',
+  'RR',
+  'PLC',
 ]);
 const isAllowedRun = (run) => ALLOWED_TERMS.has(run);
 
 // كلمات آلة غبية عُثر عليها ونُهي عنها — أضف كل حالة جديدة تظهر هنا
 const GARBLED_WORDS = [
-  'ritaje', 'lply', 'يبلتحسن', 'المهملع', 'التسوئ', 'ابيبيل', 'ميليء',
-  'الحماس', 'لبساب', 'وفراعية', 'الغيباب', 'شرطة المبنى', 'إلاستجابة',
-  'انقطة', 'متريثة', 'الفلإ', 'بلاس التي', 'التقت', 'وصلة كل سنة',
-  'HashMap', 'Flashs', 'Ticket-to-Main', 'بحيرات البيانات', 'مبنيانا',
+  'ritaje',
+  'lply',
+  'يبلتحسن',
+  'المهملع',
+  'التسوئ',
+  'ابيبيل',
+  'ميليء',
+  'الحماس',
+  'لبساب',
+  'وفراعية',
+  'الغيباب',
+  'شرطة المبنى',
+  'إلاستجابة',
+  'انقطة',
+  'متريثة',
+  'الفلإ',
+  'بلاس التي',
+  'التقت',
+  'وصلة كل سنة',
+  'HashMap',
+  'Flashs',
+  'Ticket-to-Main',
+  'بحيرات البيانات',
+  'مبنيانا',
   'المكتب الاداري',
 ];
 
@@ -71,7 +127,11 @@ for (const file of walk(SRC)) {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const content = hasArabic(line);
-    if (content && (/={4,}/.test(line) || /==>/.test(line)) && !line.includes('<!--')) {
+    if (
+      content &&
+      (/={4,}/.test(line) || /==>/.test(line)) &&
+      !line.includes('<!--')
+    ) {
       report(file, i + 1, 'رموز تساوي غريبة', line);
     }
     if (content) {
@@ -96,7 +156,9 @@ for (const file of walk(SRC)) {
 }
 
 if (issues > 0) {
-  console.error(`\n✖ جودة العربية فاشلة: ${issues} ملاحظة — أصلحها قبل الاعتماد.`);
+  console.error(
+    `\n✖ جودة العربية فاشلة: ${issues} ملاحظة — أصلحها قبل الاعتماد.`
+  );
   process.exit(1);
 }
 console.log('✔ جودة العربية سليمة — لا كلمات آلة ولا تشوهات.');

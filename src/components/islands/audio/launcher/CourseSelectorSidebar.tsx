@@ -35,7 +35,9 @@ export default function CourseSelectorSidebar({
           >
             {lang === 'ar' ? '1. اختر الكورس التعليمي:' : '1. Choose Course:'}
           </span>
-          <span className={`text-[11px] font-bold ${isDay ? 'text-slate-500' : 'text-slate-400'}`}>
+          <span
+            className={`text-[11px] font-bold ${isDay ? 'text-slate-500' : 'text-slate-400'}`}
+          >
             {courses.length} {lang === 'ar' ? 'مسارات' : 'courses'}
           </span>
         </div>
@@ -56,12 +58,14 @@ export default function CourseSelectorSidebar({
                       ? 'border-emerald-600 bg-emerald-50 text-slate-900 shadow-md ring-2 ring-emerald-500/30'
                       : 'border-emerald-500 bg-emerald-500/20 text-white shadow-lg shadow-emerald-500/10'
                     : isDay
-                    ? 'border-slate-200 bg-slate-50 text-slate-800 hover:border-slate-300 hover:bg-white'
-                    : 'border-slate-800 bg-slate-800/60 text-slate-300 hover:bg-slate-800 hover:border-slate-700'
+                      ? 'border-slate-200 bg-slate-50 text-slate-800 hover:border-slate-300 hover:bg-white'
+                      : 'border-slate-800 bg-slate-800/60 text-slate-300 hover:bg-slate-800 hover:border-slate-700'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
-                  <span className="text-2xl sm:text-3xl shrink-0">{course.icon}</span>
+                  <span className="text-2xl sm:text-3xl shrink-0">
+                    {course.icon}
+                  </span>
                   <div className="min-w-0">
                     <div className="text-xs sm:text-sm font-black tracking-wide leading-tight">
                       {course.code}
@@ -86,7 +90,9 @@ export default function CourseSelectorSidebar({
                       }`}
                     >
                       <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse"></span>
-                      <span>{audioCount} {lang === 'ar' ? 'صوت جاهز' : 'Audio'}</span>
+                      <span>
+                        {audioCount} {lang === 'ar' ? 'صوت جاهز' : 'Audio'}
+                      </span>
                     </span>
                   ) : (
                     <span
@@ -121,7 +127,9 @@ export default function CourseSelectorSidebar({
                   isDay ? 'text-amber-900' : 'text-amber-300'
                 }`}
               >
-                {lang === 'ar' ? '⚡ استئناف من حيث توقفت:' : '⚡ Resume listening:'}
+                {lang === 'ar'
+                  ? '⚡ استئناف من حيث توقفت:'
+                  : '⚡ Resume listening:'}
               </div>
               <div className="text-xs sm:text-sm font-black truncate mt-0.5">
                 {lastPlayedLesson.lessonTitle}

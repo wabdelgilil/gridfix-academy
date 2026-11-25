@@ -24,7 +24,10 @@ describe('Engineering & Financial Formulas (TDD Suite)', () => {
     });
 
     test('throws on negative discount rate', () => {
-      assert.throws(() => presentValue(1000, -5, 1), /Discount rate cannot be negative/);
+      assert.throws(
+        () => presentValue(1000, -5, 1),
+        /Discount rate cannot be negative/
+      );
     });
   });
 
@@ -75,7 +78,10 @@ describe('Engineering & Financial Formulas (TDD Suite)', () => {
     });
 
     test('throws if area is zero or negative', () => {
-      assert.throws(() => calculateEUI(150000, 0), /Area must be greater than zero/);
+      assert.throws(
+        () => calculateEUI(150000, 0),
+        /Area must be greater than zero/
+      );
     });
   });
 

@@ -29,7 +29,10 @@ export default function LauncherHeader({
         </span>
         <div>
           <div className="flex items-center gap-2">
-            <h2 id="audio-modal-title" className="text-base sm:text-lg font-black tracking-tight">
+            <h2
+              id="audio-modal-title"
+              className="text-base sm:text-lg font-black tracking-tight"
+            >
               {lang === 'ar' ? 'ادرس أثناء القيادة' : 'Drive & Learn'}
             </h2>
             <span
@@ -77,8 +80,8 @@ export default function LauncherHeader({
                 ? 'وضع النهار'
                 : 'Day Mode'
               : lang === 'ar'
-              ? 'وضع الليل'
-              : 'Night Mode'}
+                ? 'وضع الليل'
+                : 'Night Mode'}
           </span>
         </button>
 

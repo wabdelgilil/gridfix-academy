@@ -57,12 +57,48 @@ const EXTERNAL_FACTORS = [
 ];
 
 const STAKEHOLDERS = [
-  { id: 'upper', label: 'الإدارة العليا', interest: 'عالي', power: 'عالي', strategy: 'إشراك وتمكين' },
-  { id: 'ops', label: 'التشغيل', interest: 'عالي', power: 'عالي', strategy: 'تعاون يومي' },
-  { id: 'eng', label: 'الهندسة', interest: 'متوسط', power: 'متوسط', strategy: 'استشارة ودعم فني' },
-  { id: 'fin', label: 'المالية', interest: 'متوسط', power: 'عالي', strategy: 'تقارير مالية واضحة' },
-  { id: 'suppliers', label: 'الموردون', interest: 'منخفض', power: 'منخفض', strategy: 'شراكات استراتيجية' },
-  { id: 'regulators', label: 'الجهات الرقابية', interest: 'عالي', power: 'عالي', strategy: 'امتثال كامل' },
+  {
+    id: 'upper',
+    label: 'الإدارة العليا',
+    interest: 'عالي',
+    power: 'عالي',
+    strategy: 'إشراك وتمكين',
+  },
+  {
+    id: 'ops',
+    label: 'التشغيل',
+    interest: 'عالي',
+    power: 'عالي',
+    strategy: 'تعاون يومي',
+  },
+  {
+    id: 'eng',
+    label: 'الهندسة',
+    interest: 'متوسط',
+    power: 'متوسط',
+    strategy: 'استشارة ودعم فني',
+  },
+  {
+    id: 'fin',
+    label: 'المالية',
+    interest: 'متوسط',
+    power: 'عالي',
+    strategy: 'تقارير مالية واضحة',
+  },
+  {
+    id: 'suppliers',
+    label: 'الموردون',
+    interest: 'منخفض',
+    power: 'منخفض',
+    strategy: 'شراكات استراتيجية',
+  },
+  {
+    id: 'regulators',
+    label: 'الجهات الرقابية',
+    interest: 'عالي',
+    power: 'عالي',
+    strategy: 'امتثال كامل',
+  },
 ];
 
 type FactorSelection = Record<string, string>;
@@ -78,12 +114,16 @@ export default function ContextBuilder() {
 
   const internalScore = Object.keys(internal).length;
   const externalScore = Object.keys(external).length;
-  const activeStakeholders = Object.entries(stakeholders).filter(([, v]) => v).length;
+  const activeStakeholders = Object.entries(stakeholders).filter(
+    ([, v]) => v
+  ).length;
 
   const getStrengthLabel = (count: number, total: number) => {
     const ratio = count / total;
-    if (ratio >= 0.7) return { text: 'قوي', color: 'text-teal-700 bg-teal-100' };
-    if (ratio >= 0.4) return { text: 'متوسط', color: 'text-amber-700 bg-amber-100' };
+    if (ratio >= 0.7)
+      return { text: 'قوي', color: 'text-teal-700 bg-teal-100' };
+    if (ratio >= 0.4)
+      return { text: 'متوسط', color: 'text-amber-700 bg-amber-100' };
     return { text: 'ضعيف', color: 'text-rose-700 bg-rose-100' };
   };
 
@@ -106,8 +146,13 @@ export default function ContextBuilder() {
           <p className="mb-2 text-sm font-bold text-ink-800">السياق الداخلي</p>
           <div className="space-y-3">
             {INTERNAL_FACTORS.map((factor) => (
-              <div key={factor.id} className="rounded-xl border border-slate-200 p-3">
-                <p className="mb-2 text-xs font-bold text-ink-700">{factor.label}</p>
+              <div
+                key={factor.id}
+                className="rounded-xl border border-slate-200 p-3"
+              >
+                <p className="mb-2 text-xs font-bold text-ink-700">
+                  {factor.label}
+                </p>
                 <div className="flex flex-wrap gap-1.5">
                   {factor.items.map((item) => (
                     <button
@@ -139,8 +184,13 @@ export default function ContextBuilder() {
           <p className="mb-2 text-sm font-bold text-ink-800">السياق الخارجي</p>
           <div className="space-y-3">
             {EXTERNAL_FACTORS.map((factor) => (
-              <div key={factor.id} className="rounded-xl border border-slate-200 p-3">
-                <p className="mb-2 text-xs font-bold text-ink-700">{factor.label}</p>
+              <div
+                key={factor.id}
+                className="rounded-xl border border-slate-200 p-3"
+              >
+                <p className="mb-2 text-xs font-bold text-ink-700">
+                  {factor.label}
+                </p>
                 <div className="flex flex-wrap gap-1.5">
                   {factor.items.map((item) => (
                     <button
@@ -169,37 +219,61 @@ export default function ContextBuilder() {
 
         {/* Stakeholders */}
         <div>
-          <p className="mb-2 text-sm font-bold text-ink-800">أصحاب المصلحة الرئيسيون</p>
+          <p className="mb-2 text-sm font-bold text-ink-800">
+            أصحاب المصلحة الرئيسيون
+          </p>
           <div className="overflow-x-auto">
             <table className="w-full text-[11px]">
               <thead>
                 <tr className="border-b border-slate-200">
-                  <th className="px-2 py-1.5 text-right font-bold text-ink-700">صاحب المصلحة</th>
-                  <th className="px-2 py-1.5 text-center font-bold text-ink-700">المصلحة</th>
-                  <th className="px-2 py-1.5 text-center font-bold text-ink-700">السلطة</th>
-                  <th className="px-2 py-1.5 text-center font-bold text-ink-700">استراتيجية التعامل</th>
-                  <th className="px-2 py-1.5 text-center font-bold text-ink-700">تفعيل</th>
+                  <th className="px-2 py-1.5 text-right font-bold text-ink-700">
+                    صاحب المصلحة
+                  </th>
+                  <th className="px-2 py-1.5 text-center font-bold text-ink-700">
+                    المصلحة
+                  </th>
+                  <th className="px-2 py-1.5 text-center font-bold text-ink-700">
+                    السلطة
+                  </th>
+                  <th className="px-2 py-1.5 text-center font-bold text-ink-700">
+                    استراتيجية التعامل
+                  </th>
+                  <th className="px-2 py-1.5 text-center font-bold text-ink-700">
+                    تفعيل
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {STAKEHOLDERS.map((s) => (
                   <tr key={s.id} className="border-b border-slate-100">
-                    <td className="px-2 py-1.5 font-semibold text-ink-800">{s.label}</td>
+                    <td className="px-2 py-1.5 font-semibold text-ink-800">
+                      {s.label}
+                    </td>
                     <td className="px-2 py-1.5 text-center">
-                      <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${
-                        s.interest === 'عالي' ? 'bg-rose-100 text-rose-700' : 'bg-slate-100 text-slate-600'
-                      }`}>
+                      <span
+                        className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${
+                          s.interest === 'عالي'
+                            ? 'bg-rose-100 text-rose-700'
+                            : 'bg-slate-100 text-slate-600'
+                        }`}
+                      >
                         {s.interest}
                       </span>
                     </td>
                     <td className="px-2 py-1.5 text-center">
-                      <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${
-                        s.power === 'عالي' ? 'bg-rose-100 text-rose-700' : 'bg-slate-100 text-slate-600'
-                      }`}>
+                      <span
+                        className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${
+                          s.power === 'عالي'
+                            ? 'bg-rose-100 text-rose-700'
+                            : 'bg-slate-100 text-slate-600'
+                        }`}
+                      >
                         {s.power}
                       </span>
                     </td>
-                    <td className="px-2 py-1.5 text-center text-ink-600">{s.strategy}</td>
+                    <td className="px-2 py-1.5 text-center text-ink-600">
+                      {s.strategy}
+                    </td>
                     <td className="px-2 py-1.5 text-center">
                       <button
                         type="button"
@@ -228,11 +302,17 @@ export default function ContextBuilder() {
         {/* Summary */}
         <div className="rounded-xl bg-slate-50 p-4 space-y-2">
           <div className="flex flex-wrap gap-2">
-            <span className={`rounded-lg px-3 py-1 text-xs font-bold ${getStrengthLabel(internalScore, 5).color}`}>
-              السياق الداخلي: {getStrengthLabel(internalScore, 5).text} ({internalScore}/5)
+            <span
+              className={`rounded-lg px-3 py-1 text-xs font-bold ${getStrengthLabel(internalScore, 5).color}`}
+            >
+              السياق الداخلي: {getStrengthLabel(internalScore, 5).text} (
+              {internalScore}/5)
             </span>
-            <span className={`rounded-lg px-3 py-1 text-xs font-bold ${getStrengthLabel(externalScore, 5).color}`}>
-              السياق الخارجي: {getStrengthLabel(externalScore, 5).text} ({externalScore}/5)
+            <span
+              className={`rounded-lg px-3 py-1 text-xs font-bold ${getStrengthLabel(externalScore, 5).color}`}
+            >
+              السياق الخارجي: {getStrengthLabel(externalScore, 5).text} (
+              {externalScore}/5)
             </span>
             <span className="rounded-lg bg-brand-100 px-3 py-1 text-xs font-bold text-brand-700">
               أصحاب مصلحة مفعّلين: {activeStakeholders}

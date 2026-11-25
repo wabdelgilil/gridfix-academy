@@ -43,7 +43,13 @@ export default function ShareCard({
           onClick={onNativeShare}
           className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-brand-500 cursor-pointer"
         >
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg
+            className="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -59,12 +65,18 @@ export default function ShareCard({
         <div className="rounded-xl border border-brand-100 bg-white/90 p-4 mb-4 dark:border-slate-700/60 dark:bg-slate-900/60">
           <div className="text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-2 flex items-center gap-1.5">
             <span>📌</span>
-            <span>{lang === 'ar' ? 'فائدة مهنية مستخلصة من الدرس:' : 'Key professional insight:'}</span>
+            <span>
+              {lang === 'ar'
+                ? 'فائدة مهنية مستخلصة من الدرس:'
+                : 'Key professional insight:'}
+            </span>
           </div>
           <ul className="space-y-2 text-sm leading-relaxed text-ink-900 dark:text-slate-200">
             {activePoints.slice(0, 3).map((pt, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <span className="text-brand-500 font-bold shrink-0 mt-0.5">•</span>
+                <span className="text-brand-500 font-bold shrink-0 mt-0.5">
+                  •
+                </span>
                 <span>{pt}</span>
               </li>
             ))}
@@ -125,7 +137,9 @@ export default function ShareCard({
         >
           <span>{copiedType === 'full' ? '✓' : '📋'}</span>
           <span>
-            {copiedType === 'full' ? translate(lang, 'share.copied') : translate(lang, 'share.copyText')}
+            {copiedType === 'full'
+              ? translate(lang, 'share.copied')
+              : translate(lang, 'share.copyText')}
           </span>
         </button>
       </div>

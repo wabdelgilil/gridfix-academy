@@ -23,17 +23,19 @@ export const KINDS = {
  */
 export function normalizeArabic(text: string): string {
   if (!text) return '';
-  return text
-    .toLowerCase()
-    // إزالة التشكيل والتنوين
-    .replace(/[\u064B-\u065F\u0670]/g, '')
-    // توحيد الألف بكافة أشكالها
-    .replace(/[أإآ]/g, 'ا')
-    // توحيد التاء المربوطة والهاء
-    .replace(/ة/g, 'ه')
-    // توحيد الألف المقصورة والياء
-    .replace(/ى/g, 'ي')
-    .trim();
+  return (
+    text
+      .toLowerCase()
+      // إزالة التشكيل والتنوين
+      .replace(/[\u064B-\u065F\u0670]/g, '')
+      // توحيد الألف بكافة أشكالها
+      .replace(/[أإآ]/g, 'ا')
+      // توحيد التاء المربوطة والهاء
+      .replace(/ة/g, 'ه')
+      // توحيد الألف المقصورة والياء
+      .replace(/ى/g, 'ي')
+      .trim()
+  );
 }
 
 /**

@@ -11,7 +11,12 @@ const roles: { id: Role; label: string }[] = [
   { id: 'craft', label: 'الفني الحرفي' },
 ];
 
-const tasks: { id: string; task: string; desc: string; standard: Record<Role, Letter> }[] = [
+const tasks: {
+  id: string;
+  task: string;
+  desc: string;
+  standard: Record<Role, Letter>;
+}[] = [
   {
     id: 't1',
     task: 'اعتماد الجدول الأسبوعي للصيانة',
@@ -50,18 +55,21 @@ function letterStyle(letter: Letter) {
   if (letter === 'A') return 'bg-rose-100 text-rose-800 border-rose-400';
   if (letter === 'R') return 'bg-blue-100 text-blue-800 border-blue-400';
   if (letter === 'C') return 'bg-amber-100 text-amber-800 border-amber-400';
-  if (letter === 'I') return 'bg-emerald-100 text-emerald-800 border-emerald-400';
+  if (letter === 'I')
+    return 'bg-emerald-100 text-emerald-800 border-emerald-400';
   return 'bg-slate-100 text-slate-400 border-slate-300';
 }
 
 export default function RACIMatrix() {
-  const [matrix, setMatrix] = useState<Record<string, Record<Role, Letter>>>(() => {
-    const init: Record<string, Record<Role, Letter>> = {};
-    tasks.forEach((t) => {
-      init[t.id] = { ...t.standard };
-    });
-    return init;
-  });
+  const [matrix, setMatrix] = useState<Record<string, Record<Role, Letter>>>(
+    () => {
+      const init: Record<string, Record<Role, Letter>> = {};
+      tasks.forEach((t) => {
+        init[t.id] = { ...t.standard };
+      });
+      return init;
+    }
+  );
 
   function cycle(taskId: string, role: Role) {
     setMatrix((prev) => {
@@ -91,10 +99,18 @@ export default function RACIMatrix() {
       </div>
       <div className="space-y-4 p-5">
         <div className="grid grid-cols-2 gap-2 text-xs sm:grid-cols-4">
-          <div className="rounded-lg bg-blue-50 px-3 py-2 text-blue-800">R = المنفذ الذي يعمل بيده</div>
-          <div className="rounded-lg bg-rose-50 px-3 py-2 text-rose-800">A = المساءل وصاحب القرار (واحد فقط)</div>
-          <div className="rounded-lg bg-amber-50 px-3 py-2 text-amber-800">C = المستشار قبل التنفيذ</div>
-          <div className="rounded-lg bg-emerald-50 px-3 py-2 text-emerald-800">I = المبلَّغ بالنتيجة بعدها</div>
+          <div className="rounded-lg bg-blue-50 px-3 py-2 text-blue-800">
+            R = المنفذ الذي يعمل بيده
+          </div>
+          <div className="rounded-lg bg-rose-50 px-3 py-2 text-rose-800">
+            A = المساءل وصاحب القرار (واحد فقط)
+          </div>
+          <div className="rounded-lg bg-amber-50 px-3 py-2 text-amber-800">
+            C = المستشار قبل التنفيذ
+          </div>
+          <div className="rounded-lg bg-emerald-50 px-3 py-2 text-emerald-800">
+            I = المبلَّغ بالنتيجة بعدها
+          </div>
         </div>
         <div className="overflow-x-auto rounded-xl border border-slate-200">
           <table className="w-full min-w-[640px] border-collapse text-right text-xs">
@@ -102,27 +118,39 @@ export default function RACIMatrix() {
               <tr className="bg-slate-50 text-ink-700">
                 <th className="min-w-44 p-3 font-bold">المهمة</th>
                 {roles.map((r) => (
-                  <th key={r.id} className="min-w-20 border-r border-slate-200 p-2 text-center font-bold">
+                  <th
+                    key={r.id}
+                    className="min-w-20 border-r border-slate-200 p-2 text-center font-bold"
+                  >
                     {r.label}
                   </th>
                 ))}
-                <th className="min-w-32 border-r border-slate-200 p-2 text-center font-bold">فحص الحوكمة</th>
+                <th className="min-w-32 border-r border-slate-200 p-2 text-center font-bold">
+                  فحص الحوكمة
+                </th>
               </tr>
             </thead>
             <tbody>
               {tasks.map((t) => {
                 const row = matrix[t.id];
-                const aCount = Object.values(row).filter((l) => l === 'A').length;
+                const aCount = Object.values(row).filter(
+                  (l) => l === 'A'
+                ).length;
                 const hasR = Object.values(row).includes('R');
                 const valid = aCount === 1 && hasR;
                 return (
                   <tr key={t.id} className="border-t border-slate-200">
                     <td className="p-3">
                       <div className="font-bold text-ink-800">{t.task}</div>
-                      <div className="mt-0.5 text-[11px] text-ink-500">{t.desc}</div>
+                      <div className="mt-0.5 text-[11px] text-ink-500">
+                        {t.desc}
+                      </div>
                     </td>
                     {roles.map((r) => (
-                      <td key={r.id} className="border-r border-slate-200 p-2 text-center">
+                      <td
+                        key={r.id}
+                        className="border-r border-slate-200 p-2 text-center"
+                      >
                         <button
                           type="button"
                           onClick={() => cycle(t.id, r.id)}
@@ -134,13 +162,21 @@ export default function RACIMatrix() {
                     ))}
                     <td className="border-r border-slate-200 p-2 text-center text-[11px] font-bold">
                       {valid ? (
-                        <span className="text-emerald-700">✔ حوكمة سليمة (A واحدة + R)</span>
+                        <span className="text-emerald-700">
+                          ✔ حوكمة سليمة (A واحدة + R)
+                        </span>
                       ) : aCount === 0 ? (
-                        <span className="text-amber-700">⚠ خطأ: لا يوجد مساءل (A)</span>
+                        <span className="text-amber-700">
+                          ⚠ خطأ: لا يوجد مساءل (A)
+                        </span>
                       ) : aCount > 1 ? (
-                        <span className="text-rose-700">✘ تعدد المساءلين ({aCount})!</span>
+                        <span className="text-rose-700">
+                          ✘ تعدد المساءلين ({aCount})!
+                        </span>
                       ) : (
-                        <span className="text-amber-700">⚠ خطأ: لا يوجد منفذ (R)</span>
+                        <span className="text-amber-700">
+                          ⚠ خطأ: لا يوجد منفذ (R)
+                        </span>
                       )}
                     </td>
                   </tr>
@@ -151,7 +187,10 @@ export default function RACIMatrix() {
         </div>
         <div className="flex flex-col items-start justify-between gap-3 rounded-xl bg-slate-50 p-4 text-sm sm:flex-row sm:items-center">
           <p className="font-bold text-ink-800">
-            المهام السليمة: <strong dir="ltr">{validCount} / {tasks.length}</strong>
+            المهام السليمة:{' '}
+            <strong dir="ltr">
+              {validCount} / {tasks.length}
+            </strong>
           </p>
           <button
             type="button"
@@ -162,7 +201,8 @@ export default function RACIMatrix() {
           </button>
         </div>
         <p className="rounded-xl bg-brand-50 p-4 text-xs leading-relaxed text-ink-600">
-          القاعدة الذهبية: حرف (A) واحد لكل مهمة، وتعدد المنفذين (R) مسموح. الاستشارة رأي فني والقرار النهائي لصاحب (A) وحده.
+          القاعدة الذهبية: حرف (A) واحد لكل مهمة، وتعدد المنفذين (R) مسموح.
+          الاستشارة رأي فني والقرار النهائي لصاحب (A) وحده.
         </p>
       </div>
     </div>

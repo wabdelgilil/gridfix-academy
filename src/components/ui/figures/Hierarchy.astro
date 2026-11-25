@@ -27,7 +27,7 @@ const ordered = direction === 'bottom-up' ? [...levels].reverse() : levels;
     {ordered.map((level, i) => {
       const isTop = i === 0;
       // Step down smoothly while ensuring mobile text remains readable (minimum 68% width)
-      const step = levels.length > 1 ? (32 / (levels.length - 1)) : 0;
+      const step = levels.length > 1 ? 32 / (levels.length - 1) : 0;
       const widthPercent = Math.max(68, Math.round(100 - i * step));
       return (
         <div
@@ -43,7 +43,9 @@ const ordered = direction === 'bottom-up' ? [...levels].reverse() : levels;
             {level.label}
           </p>
           {level.detail && (
-            <p class={`mt-0.5 text-xs ${isTop ? 'text-white/80' : 'text-ink-600 dark:text-slate-300'}`}>
+            <p
+              class={`mt-0.5 text-xs ${isTop ? 'text-white/80' : 'text-ink-600 dark:text-slate-300'}`}
+            >
               {level.detail}
             </p>
           )}
@@ -51,5 +53,9 @@ const ordered = direction === 'bottom-up' ? [...levels].reverse() : levels;
       );
     })}
   </div>
-  {caption && <p class="mt-2 text-center text-xs text-ink-400 dark:text-slate-400">{caption}</p>}
+  {caption && (
+    <p class="mt-2 text-center text-xs text-ink-400 dark:text-slate-400">
+      {caption}
+    </p>
+  )}
 </div>

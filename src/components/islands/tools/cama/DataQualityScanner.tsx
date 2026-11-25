@@ -41,11 +41,16 @@ const DIMENSIONS = [
 function getColorClasses(color: string, value: number) {
   if (value >= 80) {
     switch (color) {
-      case 'blue': return 'bg-blue-100 text-blue-800 ring-blue-500';
-      case 'teal': return 'bg-teal-100 text-teal-800 ring-teal-500';
-      case 'amber': return 'bg-amber-100 text-amber-800 ring-amber-500';
-      case 'purple': return 'bg-purple-100 text-purple-800 ring-purple-500';
-      case 'rose': return 'bg-rose-100 text-rose-800 ring-rose-500';
+      case 'blue':
+        return 'bg-blue-100 text-blue-800 ring-blue-500';
+      case 'teal':
+        return 'bg-teal-100 text-teal-800 ring-teal-500';
+      case 'amber':
+        return 'bg-amber-100 text-amber-800 ring-amber-500';
+      case 'purple':
+        return 'bg-purple-100 text-purple-800 ring-purple-500';
+      case 'rose':
+        return 'bg-rose-100 text-rose-800 ring-rose-500';
     }
   }
   if (value >= 50) return 'bg-amber-50 text-amber-700 ring-amber-400';
@@ -62,12 +67,24 @@ function getRating(value: number) {
 
 function getRecommendations(scores: Record<string, number>) {
   const recs: string[] = [];
-  if (scores.accuracy < 70) recs.push('قم بمراجعة يدوية لعينة عشوائية من السجلات وقارنها بالواقع الميداني.');
-  if (scores.completeness < 70) recs.push('حدد الحقول الفارغة الأكثر تأثيراً وأكملها تدريجياً بدلاً من محاولة ملء الكل دفعة واحدة.');
-  if (scores.timeliness < 70) recs.push('أدخل سياسة تحديث دورية (شهرياً على الأقل) مع تعيين مسؤول محدد.');
-  if (scores.consistency < 70) recs.push('أنشئ دليل تسمية موحد وطبّقه على جميع الأنظمة قبل ربطها.');
-  if (scores.validity < 70) recs.push('أضف قواعد تحقق آلية (Validation Rules) ترفض القيم خارج النطاق المقبول.');
-  if (recs.length === 0) recs.push('بياناتك جيدة — حافظ على المراجعة الدورية المستمرة.');
+  if (scores.accuracy < 70)
+    recs.push(
+      'قم بمراجعة يدوية لعينة عشوائية من السجلات وقارنها بالواقع الميداني.'
+    );
+  if (scores.completeness < 70)
+    recs.push(
+      'حدد الحقول الفارغة الأكثر تأثيراً وأكملها تدريجياً بدلاً من محاولة ملء الكل دفعة واحدة.'
+    );
+  if (scores.timeliness < 70)
+    recs.push('أدخل سياسة تحديث دورية (شهرياً على الأقل) مع تعيين مسؤول محدد.');
+  if (scores.consistency < 70)
+    recs.push('أنشئ دليل تسمية موحد وطبّقه على جميع الأنظمة قبل ربطها.');
+  if (scores.validity < 70)
+    recs.push(
+      'أضف قواعد تحقق آلية (Validation Rules) ترفض القيم خارج النطاق المقبول.'
+    );
+  if (recs.length === 0)
+    recs.push('بياناتك جيدة — حافظ على المراجعة الدورية المستمرة.');
   return recs;
 }
 
@@ -95,12 +112,20 @@ export default function DataQualityScanner() {
         {/* Sliders */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {DIMENSIONS.map((dim) => (
-            <div key={dim.id} className="rounded-xl border border-slate-200 p-4">
+            <div
+              key={dim.id}
+              className="rounded-xl border border-slate-200 p-4"
+            >
               <div className="mb-2 flex items-center justify-between">
                 <label className="text-sm font-bold text-ink-700">
-                  {dim.label} <span className="text-[10px] font-normal text-ink-400">({dim.labelEn})</span>
+                  {dim.label}{' '}
+                  <span className="text-[10px] font-normal text-ink-400">
+                    ({dim.labelEn})
+                  </span>
                 </label>
-                <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ring-1 ${getColorClasses(dim.color, scores[dim.id])}`}>
+                <span
+                  className={`rounded-full px-2 py-0.5 text-[10px] font-bold ring-1 ${getColorClasses(dim.color, scores[dim.id])}`}
+                >
                   {scores[dim.id]}%
                 </span>
               </div>
@@ -110,7 +135,12 @@ export default function DataQualityScanner() {
                 min={0}
                 max={100}
                 value={scores[dim.id]}
-                onChange={(e) => setScores((prev) => ({ ...prev, [dim.id]: Number(e.target.value) }))}
+                onChange={(e) =>
+                  setScores((prev) => ({
+                    ...prev,
+                    [dim.id]: Number(e.target.value),
+                  }))
+                }
                 className="w-full cursor-pointer"
                 aria-label={`نسبة ${dim.label}`}
               />
@@ -122,13 +152,15 @@ export default function DataQualityScanner() {
         </div>
 
         {/* Overall Score */}
-        <div className={`rounded-xl p-4 text-center ring-2 ${
-          overall >= 80
-            ? 'bg-teal-50 text-teal-800 ring-teal-500'
-            : overall >= 60
-              ? 'bg-amber-50 text-amber-800 ring-amber-500'
-              : 'bg-rose-50 text-rose-800 ring-rose-500'
-        }`}>
+        <div
+          className={`rounded-xl p-4 text-center ring-2 ${
+            overall >= 80
+              ? 'bg-teal-50 text-teal-800 ring-teal-500'
+              : overall >= 60
+                ? 'bg-amber-50 text-amber-800 ring-amber-500'
+                : 'bg-rose-50 text-rose-800 ring-rose-500'
+          }`}
+        >
           <p className="text-lg font-bold">
             التقييم الإجمالي: {overall}% — {getRating(overall)}
           </p>
@@ -139,7 +171,10 @@ export default function DataQualityScanner() {
           <p className="mb-2 text-sm font-bold text-ink-800">توصيات التحسين:</p>
           <ul className="space-y-1.5">
             {recommendations.map((rec, i) => (
-              <li key={i} className="flex items-start gap-2 text-xs text-ink-600">
+              <li
+                key={i}
+                className="flex items-start gap-2 text-xs text-ink-600"
+              >
                 <span className="mt-0.5 text-teal-500">▸</span>
                 {rec}
               </li>
@@ -150,7 +185,8 @@ export default function DataQualityScanner() {
         {/* Footer */}
         <div className="rounded-xl bg-slate-50 px-4 py-3">
           <p className="text-[11px] text-ink-500">
-            جودة البيانات = الدقة × الشمولية × التوقيت × التناسق × الصلاحية. عامل واحد ضعيف يُضعف النتيجة الإجمالية.
+            جودة البيانات = الدقة × الشمولية × التوقيت × التناسق × الصلاحية.
+            عامل واحد ضعيف يُضعف النتيجة الإجمالية.
           </p>
         </div>
       </div>

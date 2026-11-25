@@ -9,7 +9,10 @@ export function getStoredTheme(): Theme {
     if (stored === 'dark' || stored === 'light') return stored;
   } catch {}
 
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  if (
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  ) {
     return 'dark';
   }
   return 'light';

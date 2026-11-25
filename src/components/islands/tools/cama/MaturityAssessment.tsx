@@ -65,10 +65,29 @@ const dimensions: Dimension[] = [
 ];
 
 function getScoreLabel(pct: number) {
-  if (pct >= 90) return { label: 'ممتاز — نضج عالي', color: 'text-emerald-700', bg: 'bg-emerald-50' };
-  if (pct >= 70) return { label: 'جيد — نضج متوسط مع تحسينات مطلوبة', color: 'text-sky-700', bg: 'bg-sky-50' };
-  if (pct >= 50) return { label: 'مقبول — يحتاج تطوير جوهري', color: 'text-amber-700', bg: 'bg-amber-50' };
-  return { label: 'ضعيف — يحتاج بناء من الأساس', color: 'text-rose-700', bg: 'bg-rose-50' };
+  if (pct >= 90)
+    return {
+      label: 'ممتاز — نضج عالي',
+      color: 'text-emerald-700',
+      bg: 'bg-emerald-50',
+    };
+  if (pct >= 70)
+    return {
+      label: 'جيد — نضج متوسط مع تحسينات مطلوبة',
+      color: 'text-sky-700',
+      bg: 'bg-sky-50',
+    };
+  if (pct >= 50)
+    return {
+      label: 'مقبول — يحتاج تطوير جوهري',
+      color: 'text-amber-700',
+      bg: 'bg-amber-50',
+    };
+  return {
+    label: 'ضعيف — يحتاج بناء من الأساس',
+    color: 'text-rose-700',
+    bg: 'bg-rose-50',
+  };
 }
 
 export default function MaturityAssessment() {
@@ -90,14 +109,20 @@ export default function MaturityAssessment() {
 
   const dimScores = dimensions.map((d) => {
     const maxScore = d.questions.length * 4;
-    const actualScore = d.questions.reduce((sum, _, qi) => sum + answers[`${d.id}-${qi}`], 0);
+    const actualScore = d.questions.reduce(
+      (sum, _, qi) => sum + answers[`${d.id}-${qi}`],
+      0
+    );
     return {
       ...d,
       pct: Math.round((actualScore / maxScore) * 100),
     };
   });
 
-  const overallMax = dimensions.reduce((sum, d) => sum + d.questions.length * 4, 0);
+  const overallMax = dimensions.reduce(
+    (sum, d) => sum + d.questions.length * 4,
+    0
+  );
   const overallActual = Object.values(answers).reduce((sum, v) => sum + v, 0);
   const overallPct = Math.round((overallActual / overallMax) * 100);
   const overall = getScoreLabel(overallPct);
@@ -127,7 +152,9 @@ export default function MaturityAssessment() {
             >
               <div>
                 <span className="font-bold text-ink-800">{d.name}</span>
-                <span className="mr-3 text-xs text-ink-500">({d.questions.length} أسئلة)</span>
+                <span className="mr-3 text-xs text-ink-500">
+                  ({d.questions.length} أسئلة)
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <span
@@ -135,7 +162,9 @@ export default function MaturityAssessment() {
                 >
                   {d.pct}%
                 </span>
-                <span className="text-ink-400">{expanded === d.id ? '▲' : '▼'}</span>
+                <span className="text-ink-400">
+                  {expanded === d.id ? '▲' : '▼'}
+                </span>
               </div>
             </button>
 
@@ -145,8 +174,13 @@ export default function MaturityAssessment() {
                   const key = `${d.id}-${qi}`;
                   const val = answers[key];
                   return (
-                    <div key={qi} className="flex items-center gap-3 border-b border-slate-50 py-3 last:border-0">
-                      <span className="min-w-0 flex-1 text-sm text-ink-700">{q}</span>
+                    <div
+                      key={qi}
+                      className="flex items-center gap-3 border-b border-slate-50 py-3 last:border-0"
+                    >
+                      <span className="min-w-0 flex-1 text-sm text-ink-700">
+                        {q}
+                      </span>
                       <div className="flex shrink-0 gap-1">
                         {levels.map((lv) => (
                           <button
@@ -154,7 +188,9 @@ export default function MaturityAssessment() {
                             type="button"
                             onClick={() => setVal(key, lv.val)}
                             className={`rounded-lg px-2 py-1 text-[10px] font-bold transition ${
-                              val === lv.val ? lv.color : 'bg-slate-50 text-slate-400 hover:bg-slate-100'
+                              val === lv.val
+                                ? lv.color
+                                : 'bg-slate-50 text-slate-400 hover:bg-slate-100'
                             }`}
                             title={lv.label}
                           >
@@ -172,17 +208,26 @@ export default function MaturityAssessment() {
 
         <div className={`rounded-xl p-4 ring-2 ring-slate-300 ${overall.bg}`}>
           <p className="font-bold text-ink-800">
-            النسبة الإجمالية: <strong dir="ltr">{overallPct}%</strong> — <span className={overall.color}>{overall.label}</span>
+            النسبة الإجمالية: <strong dir="ltr">{overallPct}%</strong> —{' '}
+            <span className={overall.color}>{overall.label}</span>
           </p>
           <p className="mt-1 text-xs text-ink-600">
-            أضعف محور: {weakest.name} ({weakest.pct}%) — ابدأ من هنا لتحسين الأداء الكلي.
+            أضعف محور: {weakest.name} ({weakest.pct}%) — ابدأ من هنا لتحسين
+            الأداء الكلي.
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
             {dimScores.map((d) => (
-              <div key={d.id} className="flex items-center gap-1.5 text-[11px] text-ink-600">
+              <div
+                key={d.id}
+                className="flex items-center gap-1.5 text-[11px] text-ink-600"
+              >
                 <span
                   className={`inline-block h-2.5 w-2.5 rounded-full ${
-                    d.pct >= 70 ? 'bg-emerald-500' : d.pct >= 50 ? 'bg-amber-500' : 'bg-rose-500'
+                    d.pct >= 70
+                      ? 'bg-emerald-500'
+                      : d.pct >= 50
+                        ? 'bg-amber-500'
+                        : 'bg-rose-500'
                   }`}
                 />
                 {d.name}: {d.pct}%

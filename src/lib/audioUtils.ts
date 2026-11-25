@@ -15,7 +15,10 @@ export function formatAudioTime(seconds: number): string {
 /**
  * حساب نسبة التقدم من 0 إلى 100
  */
-export function calculateProgressPercent(currentTime: number, duration: number): number {
+export function calculateProgressPercent(
+  currentTime: number,
+  duration: number
+): number {
   if (!duration || isNaN(duration) || duration <= 0) return 0;
   return Math.min(100, Math.max(0, (currentTime / duration) * 100));
 }
@@ -29,7 +32,7 @@ export function calculateRtlSeekPercent(
   isRtl: boolean
 ): number {
   if (!rect || rect.width <= 0) return 0;
-  const clickX = isRtl ? (rect.right - clientX) : (clientX - rect.left);
+  const clickX = isRtl ? rect.right - clientX : clientX - rect.left;
   return Math.max(0, Math.min(1, clickX / rect.width));
 }
 

@@ -1,6 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import useLang from '../../lib/useLang';
-import { buildSearchIndex, filterSearchItems, KINDS, type SearchItem } from '../../lib/searchIndex';
+import {
+  buildSearchIndex,
+  filterSearchItems,
+  KINDS,
+  type SearchItem,
+} from '../../lib/searchIndex';
 
 export default function SearchPalette() {
   const [open, setOpen] = useState(false);
@@ -56,7 +61,9 @@ export default function SearchPalette() {
   }, [query, open]);
 
   const scrollActiveIntoView = useCallback((idx: number) => {
-    listRef.current?.querySelector(`[data-idx="${idx}"]`)?.scrollIntoView?.({ block: 'nearest' });
+    listRef.current
+      ?.querySelector(`[data-idx="${idx}"]`)
+      ?.scrollIntoView?.({ block: 'nearest' });
   }, []);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -70,7 +77,8 @@ export default function SearchPalette() {
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
       setActive((a) => {
-        const next = (a - 1 + Math.max(filtered.length, 1)) % Math.max(filtered.length, 1);
+        const next =
+          (a - 1 + Math.max(filtered.length, 1)) % Math.max(filtered.length, 1);
         scrollActiveIntoView(next);
         return next;
       });
@@ -96,17 +104,25 @@ export default function SearchPalette() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={onKeyDown}
-            placeholder={lang === 'en' ? 'Search lessons, stations, or courses... (Ctrl+K)' : 'ابحث عن درس، محطة، أو كورس... (Ctrl+K)'}
+            placeholder={
+              lang === 'en'
+                ? 'Search lessons, stations, or courses... (Ctrl+K)'
+                : 'ابحث عن درس، محطة، أو كورس... (Ctrl+K)'
+            }
             className="w-full bg-transparent text-base text-ink-900 outline-none placeholder:text-ink-400"
             aria-label={lang === 'en' ? 'Quick search' : 'بحث سريع'}
           />
-          <kbd className="chip bg-slate-100 text-xs text-ink-400" dir="ltr">esc</kbd>
+          <kbd className="chip bg-slate-100 text-xs text-ink-400" dir="ltr">
+            esc
+          </kbd>
         </div>
 
         <div ref={listRef} className="max-h-[55vh] overflow-y-auto p-2">
           {filtered.length === 0 && (
             <p className="px-4 py-8 text-center text-sm text-ink-400">
-              {lang === 'en' ? 'No results match your search.' : 'لا توجد نتائج مطابقة لبحثك.'}
+              {lang === 'en'
+                ? 'No results match your search.'
+                : 'لا توجد نتائج مطابقة لبحثك.'}
             </p>
           )}
           {filtered.map((item, idx) => (
@@ -126,20 +142,44 @@ export default function SearchPalette() {
                   {lang === 'en' ? item.titleEn : item.title}
                 </span>
                 <span className="mt-0.5 block truncate text-xs text-ink-400">
-                  {lang === 'en' ? item.subtitleEn ?? item.titleEn : item.subtitle}
+                  {lang === 'en'
+                    ? (item.subtitleEn ?? item.titleEn)
+                    : item.subtitle}
                 </span>
               </span>
               <span className="chip hidden bg-slate-100 text-[10px] text-ink-400 sm:inline-flex">
-                {lang === 'en' ? KINDS[item.kind].labelEn : KINDS[item.kind].label}
+                {lang === 'en'
+                  ? KINDS[item.kind].labelEn
+                  : KINDS[item.kind].label}
               </span>
             </a>
           ))}
         </div>
 
         <div className="flex items-center gap-3 border-t border-slate-200 bg-slate-50 px-5 py-2 text-[10px] text-ink-400">
-          <span className="flex items-center gap-1"><kbd className="rounded bg-white px-1.5 py-0.5 ring-1 ring-slate-200" dir="ltr">↑↓</kbd> {lang === 'en' ? 'Navigate' : 'تنقل'}</span>
-          <span className="flex items-center gap-1"><kbd className="rounded bg-white px-1.5 py-0.5 ring-1 ring-slate-200" dir="ltr">↵</kbd> {lang === 'en' ? 'Open' : 'فتح'}</span>
-          <span className="ms-auto">{lang === 'en' ? 'Quick search across the whole platform' : 'بحث سريع في كل المنصة'}</span>
+          <span className="flex items-center gap-1">
+            <kbd
+              className="rounded bg-white px-1.5 py-0.5 ring-1 ring-slate-200"
+              dir="ltr"
+            >
+              ↑↓
+            </kbd>{' '}
+            {lang === 'en' ? 'Navigate' : 'تنقل'}
+          </span>
+          <span className="flex items-center gap-1">
+            <kbd
+              className="rounded bg-white px-1.5 py-0.5 ring-1 ring-slate-200"
+              dir="ltr"
+            >
+              ↵
+            </kbd>{' '}
+            {lang === 'en' ? 'Open' : 'فتح'}
+          </span>
+          <span className="ms-auto">
+            {lang === 'en'
+              ? 'Quick search across the whole platform'
+              : 'بحث سريع في كل المنصة'}
+          </span>
         </div>
       </div>
     </div>

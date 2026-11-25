@@ -3,18 +3,44 @@ import { useState } from 'react';
 type Step = 'plan' | 'do' | 'check' | 'act';
 
 const steps: { id: Step; num: string; label: string; hint: string }[] = [
-  { id: 'plan', num: '1', label: 'خطط (Plan)', hint: 'عرّف المشكلة بالأرقام، وحدد هدفاً ومؤشراً وإجراءات ومسؤولاً.' },
-  { id: 'do', num: '2', label: 'نفذ (Do)', hint: 'جرّب الحل نطاقاً صغيراً، وراقب التنفيذ وسجّل الملاحظات.' },
-  { id: 'check', num: '3', label: 'افحص (Check)', hint: 'قارن النتيجة بالهدف وبالقياس السابق، والقط جانب الانحراف.' },
-  { id: 'act', num: '4', label: 'استعد (Act)', hint: 'اعتمد لو نجح، أو عدّل والكرار الدورة، ثم ثبّت في الإجراء القياسي.' },
+  {
+    id: 'plan',
+    num: '1',
+    label: 'خطط (Plan)',
+    hint: 'عرّف المشكلة بالأرقام، وحدد هدفاً ومؤشراً وإجراءات ومسؤولاً.',
+  },
+  {
+    id: 'do',
+    num: '2',
+    label: 'نفذ (Do)',
+    hint: 'جرّب الحل نطاقاً صغيراً، وراقب التنفيذ وسجّل الملاحظات.',
+  },
+  {
+    id: 'check',
+    num: '3',
+    label: 'افحص (Check)',
+    hint: 'قارن النتيجة بالهدف وبالقياس السابق، والقط جانب الانحراف.',
+  },
+  {
+    id: 'act',
+    num: '4',
+    label: 'استعد (Act)',
+    hint: 'اعتمد لو نجح، أو عدّل والكرار الدورة، ثم ثبّت في الإجراء القياسي.',
+  },
 ];
 
 export default function PDCALab() {
   const [step, setStep] = useState<Step>('plan');
-  const [fields, setFields] = useState<Record<Step, string>>({ plan: '', do: '', check: '', act: '' });
+  const [fields, setFields] = useState<Record<Step, string>>({
+    plan: '',
+    do: '',
+    check: '',
+    act: '',
+  });
   const [history, setHistory] = useState<string[]>([]);
 
-  const set = (s: Step, v: string) => setFields((prev) => ({ ...prev, [s]: v }));
+  const set = (s: Step, v: string) =>
+    setFields((prev) => ({ ...prev, [s]: v }));
 
   const idx = steps.findIndex((s) => s.id === step);
   const canNext = fields[step].trim();
@@ -40,7 +66,9 @@ export default function PDCALab() {
               type="button"
               onClick={() => setStep(s.id)}
               className={`cursor-pointer rounded-full px-3 py-1.5 text-sm font-semibold transition ${
-                step === s.id ? 'bg-brand-600 text-white' : 'bg-slate-100 text-ink-500 hover:bg-slate-200'
+                step === s.id
+                  ? 'bg-brand-600 text-white'
+                  : 'bg-slate-100 text-ink-500 hover:bg-slate-200'
               }`}
             >
               {s.num} {s.label}
@@ -91,13 +119,18 @@ export default function PDCALab() {
 
         {history.length > 0 && (
           <div className="rounded-xl bg-slate-50 p-3">
-            <p className="mb-1 text-xs font-bold text-ink-500">سجل دوراتك المكتملة:</p>
+            <p className="mb-1 text-xs font-bold text-ink-500">
+              سجل دوراتك المكتملة:
+            </p>
             <ul className="list-inside list-disc space-y-1 text-sm text-ink-700">
               {history.map((h, i) => (
                 <li key={i}>{h}</li>
               ))}
             </ul>
-            <p className="mt-2 text-xs text-teal-700">استمرار الدورات المتراكمة يحقق تحسيناً مستمراً ويُغلق في إجراءات قياسية موثقة.</p>
+            <p className="mt-2 text-xs text-teal-700">
+              استمرار الدورات المتراكمة يحقق تحسيناً مستمراً ويُغلق في إجراءات
+              قياسية موثقة.
+            </p>
           </div>
         )}
       </div>

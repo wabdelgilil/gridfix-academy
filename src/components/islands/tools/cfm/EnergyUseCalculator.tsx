@@ -2,7 +2,10 @@ import { useState } from 'react';
 
 type BuildingType = 'office' | 'retail' | 'hospital' | 'education';
 
-const benchmarks: Record<BuildingType, { label: string; low: number; high: number }> = {
+const benchmarks: Record<
+  BuildingType,
+  { label: string; low: number; high: number }
+> = {
   office: { label: 'مكتبي', low: 200, high: 350 },
   retail: { label: 'تجاري', low: 250, high: 400 },
   hospital: { label: 'مستشفى', low: 450, high: 650 },
@@ -49,7 +52,9 @@ export default function EnergyUseCalculator() {
       <div className="grid gap-5 p-5 sm:grid-cols-2">
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-semibold text-ink-900">الاستهلاك السنوي للطاقة (kWh/سنة)</label>
+            <label className="block text-sm font-semibold text-ink-900">
+              الاستهلاك السنوي للطاقة (kWh/سنة)
+            </label>
             <input
               type="number"
               value={kwh}
@@ -58,7 +63,9 @@ export default function EnergyUseCalculator() {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-ink-900">إجمالي المساحة المبنية GFA (م²)</label>
+            <label className="block text-sm font-semibold text-ink-900">
+              إجمالي المساحة المبنية GFA (م²)
+            </label>
             <input
               type="number"
               value={area}
@@ -67,7 +74,9 @@ export default function EnergyUseCalculator() {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-ink-900">نوع المبنى (للمقارنة المرجعية)</label>
+            <label className="block text-sm font-semibold text-ink-900">
+              نوع المبنى (للمقارنة المرجعية)
+            </label>
             <div className="mt-2 flex flex-wrap gap-2">
               {(Object.keys(benchmarks) as BuildingType[]).map((b) => (
                 <button
@@ -75,7 +84,9 @@ export default function EnergyUseCalculator() {
                   key={b}
                   onClick={() => setType(b)}
                   className={`rounded-xl px-3.5 py-2 text-sm font-medium transition ${
-                    type === b ? 'bg-brand-600 text-white' : 'bg-slate-100 text-ink-600 hover:bg-slate-200 cursor-pointer'
+                    type === b
+                      ? 'bg-brand-600 text-white'
+                      : 'bg-slate-100 text-ink-600 hover:bg-slate-200 cursor-pointer'
                   }`}
                 >
                   {benchmarks[b].label}
@@ -85,11 +96,25 @@ export default function EnergyUseCalculator() {
           </div>
         </div>
 
-        <div className={`rounded-xl p-5 text-sm leading-relaxed ${verdictColor}`}>
-          <p className="text-lg font-bold" dir="ltr">EUI = {fmt(eui)} kWh/m²·yr</p>
-          <p className="mt-2 opacity-90">النطاق المرجعي التقديري: <span dir="ltr">{ref.low}–{ref.high}</span> kWh/m²·yr</p>
+        <div
+          className={`rounded-xl p-5 text-sm leading-relaxed ${verdictColor}`}
+        >
+          <p className="text-lg font-bold" dir="ltr">
+            EUI = {fmt(eui)} kWh/m²·yr
+          </p>
+          <p className="mt-2 opacity-90">
+            النطاق المرجعي التقديري:{' '}
+            <span dir="ltr">
+              {ref.low}–{ref.high}
+            </span>{' '}
+            kWh/m²·yr
+          </p>
           <p className="mt-3 font-semibold">{verdict}</p>
-          <p className="mt-2 text-xs opacity-75">المرجع التقريبي حسب ENERGY STAR وASHRAE 100؛ يُحسب دائماً على إجمالي المساحة الطابقية (GFA). اقرن بظروف المناخ ونوع التجهيز مع الحفاظ على جودة البيئة الداخلية.</p>
+          <p className="mt-2 text-xs opacity-75">
+            المرجع التقريبي حسب ENERGY STAR وASHRAE 100؛ يُحسب دائماً على إجمالي
+            المساحة الطابقية (GFA). اقرن بظروف المناخ ونوع التجهيز مع الحفاظ على
+            جودة البيئة الداخلية.
+          </p>
         </div>
       </div>
     </div>

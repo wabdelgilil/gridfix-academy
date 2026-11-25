@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import useLang from '../../../../lib/useLang';
 import { DIFFICULTY_EN } from '../../../../data/quiz/types';
-import { loadProgress, saveProgress, recordMockExamScore } from '../../../../lib/storage';
+import {
+  loadProgress,
+  saveProgress,
+  recordMockExamScore,
+} from '../../../../lib/storage';
 
 export interface ExamOption {
   text: string;
@@ -96,28 +100,40 @@ export default function GenericExamRunner({
     if (timedOut) setStage('done');
   }, [timedOut]);
 
-  const pick = (opt: number) => setAnswers((a) => a.map((v, i) => (i === idx ? opt : v)));
+  const pick = (opt: number) =>
+    setAnswers((a) => a.map((v, i) => (i === idx ? opt : v)));
   const answered = answers.filter((a) => a >= 0).length;
 
-  const score = answers.reduce((acc, a, i) => acc + (a >= 0 && items[i]?.options[a]?.isCorrect ? 1 : 0), 0);
+  const score = answers.reduce(
+    (acc, a, i) => acc + (a >= 0 && items[i]?.options[a]?.isCorrect ? 1 : 0),
+    0
+  );
   const pct = count ? Math.round((score / count) * 100) : 0;
   const pass = pct >= passThresholdPercent;
 
   // Breakdown by section
-  const sectionBreakdown = sections.map((sec) => {
-    const qs = items.map((q, i) => ({ q, i })).filter(({ q }) => q.sectionId === sec.id);
-    const ok = qs.filter(({ q, i }) => answers[i] >= 0 && q.options[answers[i]]?.isCorrect).length;
-    return {
-      id: sec.id,
-      name: sec.name,
-      nameEn: sec.nameEn,
-      ok,
-      total: qs.length,
-      pct: qs.length ? Math.round((ok / qs.length) * 100) : 0,
-    };
-  }).filter((s) => s.total > 0 || stage === 'setup');
+  const sectionBreakdown = sections
+    .map((sec) => {
+      const qs = items
+        .map((q, i) => ({ q, i }))
+        .filter(({ q }) => q.sectionId === sec.id);
+      const ok = qs.filter(
+        ({ q, i }) => answers[i] >= 0 && q.options[answers[i]]?.isCorrect
+      ).length;
+      return {
+        id: sec.id,
+        name: sec.name,
+        nameEn: sec.nameEn,
+        ok,
+        total: qs.length,
+        pct: qs.length ? Math.round((ok / qs.length) * 100) : 0,
+      };
+    })
+    .filter((s) => s.total > 0 || stage === 'setup');
 
-  const weakest = sectionBreakdown.filter((s) => s.total > 0).sort((a, b) => a.pct - b.pct)[0];
+  const weakest = sectionBreakdown
+    .filter((s) => s.total > 0)
+    .sort((a, b) => a.pct - b.pct)[0];
 
   // Save exam results when finished
   useEffect(() => {
@@ -184,7 +200,10 @@ export default function GenericExamRunner({
     return (
       <div className="card mt-6 overflow-hidden dark:border-slate-700/80 dark:bg-slate-850">
         <div className="border-b border-slate-200 bg-brand-50/80 px-5 py-3 text-sm font-semibold text-brand-900 dark:border-slate-700 dark:bg-brand-950/40 dark:text-brand-300">
-          📝 {isEn ? `${examTitleEn} — Choose questions count & start` : `${examTitle} — اختر عدد الأسئلة وابدأ`}
+          📝{' '}
+          {isEn
+            ? `${examTitleEn} — Choose questions count & start`
+            : `${examTitle} — اختر عدد الأسئلة وابدأ`}
         </div>
         <div className="space-y-4 p-5">
           <p className="text-sm leading-relaxed text-ink-600 dark:text-slate-300">
@@ -193,16 +212,23 @@ export default function GenericExamRunner({
 
           <div className="grid gap-1.5 text-xs">
             {sections.map((sec) => {
-              const secCount = questions.filter((q) => q.sectionId === sec.id).length;
+              const secCount = questions.filter(
+                (q) => q.sectionId === sec.id
+              ).length;
               return (
                 <div
                   key={sec.id}
                   className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-1.5 dark:bg-slate-800/60"
                 >
                   <span className="font-semibold text-ink-700 dark:text-slate-300">
-                    {isEn ? `${sectionLabelEn} ${sec.id}: ${sec.nameEn}` : `${sectionLabel} ${sec.id}: ${sec.name}`}
+                    {isEn
+                      ? `${sectionLabelEn} ${sec.id}: ${sec.nameEn}`
+                      : `${sectionLabel} ${sec.id}: ${sec.name}`}
                   </span>
-                  <span dir="ltr" className="font-mono text-ink-500 dark:text-slate-400">
+                  <span
+                    dir="ltr"
+                    className="font-mono text-ink-500 dark:text-slate-400"
+                  >
                     {secCount} {isEn ? 'questions' : 'سؤال'}
                   </span>
                 </div>
@@ -223,8 +249,8 @@ export default function GenericExamRunner({
                     ? `Full simulation (${n})`
                     : `المحاكاة الكاملة (${n})`
                   : isEn
-                  ? `${n} questions`
-                  : `${n} سؤالاً`}
+                    ? `${n} questions`
+                    : `${n} سؤالاً`}
               </button>
             ))}
           </div>
@@ -238,7 +264,10 @@ export default function GenericExamRunner({
     return (
       <div className="card mt-6 overflow-hidden dark:border-slate-700/80 dark:bg-slate-850">
         <div className="border-b border-slate-200 bg-brand-50/80 px-5 py-3 text-sm font-semibold text-brand-900 dark:border-slate-700 dark:bg-brand-950/40 dark:text-brand-300">
-          📋 {isEn ? `${examCode} Simulation Report — Diagnosis` : `تقرير محاكي ${examCode} — التشخيص والنتائج`}
+          📋{' '}
+          {isEn
+            ? `${examCode} Simulation Report — Diagnosis`
+            : `تقرير محاكي ${examCode} — التشخيص والنتائج`}
         </div>
         <div className="space-y-4 p-5">
           <div
@@ -258,8 +287,8 @@ export default function GenericExamRunner({
                   ? 'Excellent — You are on track for certification!'
                   : 'ممتاز — وتيرة النجاح في متناولك وجاهزيتك ممتازة!'
                 : isEn
-                ? `Review your weakest section (${weakest ? weakest.nameEn : ''}) then retry`
-                : `راجع أضعف قسم (${weakest ? weakest.name : ''}) ثم أعد المحاكاة`}
+                  ? `Review your weakest section (${weakest ? weakest.nameEn : ''}) then retry`
+                  : `راجع أضعف قسم (${weakest ? weakest.name : ''}) ثم أعد المحاكاة`}
             </p>
           </div>
 
@@ -270,9 +299,14 @@ export default function GenericExamRunner({
                 className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-sm dark:bg-slate-800/60"
               >
                 <span className="font-semibold text-ink-700 dark:text-slate-300">
-                  {isEn ? `${sectionLabelEn} ${s.id}: ${s.nameEn}` : `${sectionLabel} ${s.id}: ${s.name}`}
+                  {isEn
+                    ? `${sectionLabelEn} ${s.id}: ${s.nameEn}`
+                    : `${sectionLabel} ${s.id}: ${s.name}`}
                 </span>
-                <span dir="ltr" className="font-mono text-xs text-ink-500 dark:text-slate-400">
+                <span
+                  dir="ltr"
+                  className="font-mono text-xs text-ink-500 dark:text-slate-400"
+                >
                   {s.ok}/{s.total} ({s.pct}%)
                 </span>
               </div>
@@ -290,20 +324,22 @@ export default function GenericExamRunner({
                   className="mb-2 rounded-lg border border-rose-200 bg-rose-50/70 p-3 text-sm dark:border-rose-900/40 dark:bg-rose-950/20"
                 >
                   <summary className="cursor-pointer font-semibold text-rose-800 dark:text-rose-300">
-                    {isEn ? q.questionEn ?? q.question : q.question}
+                    {isEn ? (q.questionEn ?? q.question) : q.question}
                   </summary>
                   <p className="mt-1.5 text-xs text-ink-600 dark:text-slate-400">
-                    {isEn ? q.scenarioEn ?? q.scenario : q.scenario}
+                    {isEn ? (q.scenarioEn ?? q.scenario) : q.scenario}
                   </p>
                   <p className="mt-1.5 text-xs font-bold text-teal-700 dark:text-teal-400">
                     {isEn ? 'Correct Answer: ' : 'الإجابة الصحيحة: '}
                     {isEn
-                      ? q.options.find((o) => o.isCorrect)?.textEn ?? q.options.find((o) => o.isCorrect)?.text
+                      ? (q.options.find((o) => o.isCorrect)?.textEn ??
+                        q.options.find((o) => o.isCorrect)?.text)
                       : q.options.find((o) => o.isCorrect)?.text}
                   </p>
                   <p className="mt-1 text-xs text-ink-500 dark:text-slate-400">
                     {isEn
-                      ? q.options.find((o) => o.isCorrect)?.explanationEn ?? q.options.find((o) => o.isCorrect)?.explanation
+                      ? (q.options.find((o) => o.isCorrect)?.explanationEn ??
+                        q.options.find((o) => o.isCorrect)?.explanation)
                       : q.options.find((o) => o.isCorrect)?.explanation}
                   </p>
                 </details>
@@ -330,7 +366,10 @@ export default function GenericExamRunner({
   return (
     <div className="card mt-6 overflow-hidden dark:border-slate-700/80 dark:bg-slate-850">
       <div className="border-b border-slate-200 bg-brand-50/80 px-5 py-3 text-sm font-semibold text-brand-900 dark:border-slate-700 dark:bg-brand-950/40 dark:text-brand-300">
-        🏆 {isEn ? `${examCode} Mock — Question ${idx + 1} of ${count}` : `محاكي ${examCode} — سؤال ${idx + 1} من ${count}`}
+        🏆{' '}
+        {isEn
+          ? `${examCode} Mock — Question ${idx + 1} of ${count}`
+          : `محاكي ${examCode} — سؤال ${idx + 1} من ${count}`}
       </div>
 
       <div className="space-y-4 p-5">
@@ -368,10 +407,10 @@ export default function GenericExamRunner({
             • {isEn ? DIFFICULTY_EN[q.difficulty] : q.difficulty}
           </p>
           <p className="mt-1 text-sm italic text-ink-500 dark:text-slate-400">
-            {isEn ? q.scenarioEn ?? q.scenario : q.scenario}
+            {isEn ? (q.scenarioEn ?? q.scenario) : q.scenario}
           </p>
           <p className="mt-1 text-base font-bold text-ink-900 dark:text-white">
-            {isEn ? q.questionEn ?? q.question : q.question}
+            {isEn ? (q.questionEn ?? q.question) : q.question}
           </p>
         </div>
 
@@ -399,7 +438,9 @@ export default function GenericExamRunner({
                   >
                     {String.fromCharCode(65 + oi)}
                   </span>
-                  <span className="flex-1 text-right">{isEn ? o.textEn ?? o.text : o.text}</span>
+                  <span className="flex-1 text-right">
+                    {isEn ? (o.textEn ?? o.text) : o.text}
+                  </span>
                 </div>
               </button>
             );

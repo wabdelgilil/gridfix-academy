@@ -25,18 +25,30 @@ const { data } = lesson;
 const course = data.course ?? 'cfm';
 const station = getStation(data.station);
 const courseMeta = getCourse(course);
-const courseImage = course === 'cmrp' ? '/og-cmrp.png' : course === 'cfm' ? '/og-cfm.png' : course === 'cama' ? '/og-cama.png' : undefined;
+const courseImage =
+  course === 'cmrp'
+    ? '/og-cmrp.png'
+    : course === 'cfm'
+      ? '/og-cfm.png'
+      : course === 'cama'
+        ? '/og-cama.png'
+        : undefined;
 
 // Audio detection & next lesson resolution for seamless continuous listening
 const courseStations = curriculum
   .filter((s) => (s.courseId ?? 'cfm') === course && s.status === 'live')
   .sort((a, b) => a.number - b.number);
-const currentStationIndex = courseStations.findIndex((s) => s.id === data.station);
+const currentStationIndex = courseStations.findIndex(
+  (s) => s.id === data.station
+);
 const currentStationObj = courseStations[currentStationIndex];
-const stationLessons = (currentStationObj?.lessons ?? []).filter((l) => l.status === 'live');
+const stationLessons = (currentStationObj?.lessons ?? []).filter(
+  (l) => l.status === 'live'
+);
 const currentLessonIndex = stationLessons.findIndex((l) => l.id === data.id);
 
-let prevLessonData: { id: string; number: string; title: string; titleEn: string } | undefined;
+let prevLessonData:
+  { id: string; number: string; title: string; titleEn: string } | undefined;
 if (currentLessonIndex > 0) {
   prevLessonData = stationLessons[currentLessonIndex - 1];
 } else if (currentStationIndex > 0) {
@@ -47,10 +59,14 @@ if (currentLessonIndex > 0) {
   }
 }
 
-let nextLessonData: { id: string; number: string; title: string; titleEn: string } | undefined;
+let nextLessonData:
+  { id: string; number: string; title: string; titleEn: string } | undefined;
 if (currentLessonIndex >= 0 && currentLessonIndex < stationLessons.length - 1) {
   nextLessonData = stationLessons[currentLessonIndex + 1];
-} else if (currentStationIndex >= 0 && currentStationIndex < courseStations.length - 1) {
+} else if (
+  currentStationIndex >= 0 &&
+  currentStationIndex < courseStations.length - 1
+) {
   const nextStation = courseStations[currentStationIndex + 1];
   const nextLessons = nextStation.lessons.filter((l) => l.status === 'live');
   if (nextLessons.length > 0) {
@@ -69,20 +85,55 @@ const { arPoints, enPoints } = extractLessonSummary(
 );
 ---
 
-<BaseLayout title={`${data.number} ${data.title}`} titleEn={`${data.number} ${data.titleEn}`} description={`${data.title} — درس من محطة ${station?.title ?? ''}`} descriptionEn={`${data.titleEn} — a lesson from the ${station?.titleEn ?? ''} station`} image={courseImage}>
+<BaseLayout
+  title={`${data.number} ${data.title}`}
+  titleEn={`${data.number} ${data.titleEn}`}
+  description={`${data.title} — درس من محطة ${station?.title ?? ''}`}
+  descriptionEn={`${data.titleEn} — a lesson from the ${station?.titleEn ?? ''} station`}
+  image={courseImage}
+>
   <ReadingProgress client:load />
 
-  <script is:inline define:vars={{ course, lessonId: data.id, lessonTitle: data.title, lessonTitleEn: data.titleEn, stationTitle: station?.title ?? data.station, stationTitleEn: station?.titleEn ?? station?.title ?? data.station }}>
+  <script
+    is:inline
+    define:vars={{
+      course,
+      lessonId: data.id,
+      lessonTitle: data.title,
+      lessonTitleEn: data.titleEn,
+      stationTitle: station?.title ?? data.station,
+      stationTitleEn: station?.titleEn ?? station?.title ?? data.station,
+    }}
+  >
     (function () {
       try {
         var at = new Date().toISOString();
         var key = course + '-course-progress@v1';
         var raw = localStorage.getItem(key);
         var state = raw ? JSON.parse(raw) : {};
-        state.lastLesson = { courseId: course, lessonId: lessonId, title: lessonTitle, titleEn: lessonTitleEn, stationTitle: stationTitle, stationTitleEn: stationTitleEn, at: at };
+        state.lastLesson = {
+          courseId: course,
+          lessonId: lessonId,
+          title: lessonTitle,
+          titleEn: lessonTitleEn,
+          stationTitle: stationTitle,
+          stationTitleEn: stationTitleEn,
+          at: at,
+        };
         localStorage.setItem(key, JSON.stringify(state));
 
-        localStorage.setItem('cfm-last-visited-lesson', JSON.stringify({ courseId: course, lessonId: lessonId, lessonTitle: lessonTitle, lessonTitleEn: lessonTitleEn, stationTitle: stationTitle, stationTitleEn: stationTitleEn, visitedAt: at }));
+        localStorage.setItem(
+          'cfm-last-visited-lesson',
+          JSON.stringify({
+            courseId: course,
+            lessonId: lessonId,
+            lessonTitle: lessonTitle,
+            lessonTitleEn: lessonTitleEn,
+            stationTitle: stationTitle,
+            stationTitleEn: stationTitleEn,
+            visitedAt: at,
+          })
+        );
       } catch (e) {}
     })();
   </script>
@@ -90,30 +141,81 @@ const { arPoints, enPoints } = extractLessonSummary(
   <div class="mx-auto w-full max-w-[1720px]">
     <div class="flex items-start justify-between gap-6 xl:gap-8 w-full">
       <aside class="hidden xl:block w-72 shrink-0 sticky top-20 self-start">
-        <LessonSidebar course={course} currentStationId={data.station} currentLessonId={data.id} client:load />
+        <LessonSidebar
+          course={course}
+          currentStationId={data.station}
+          currentLessonId={data.id}
+          client:load
+        />
       </aside>
 
       <div class="flex-1 min-w-0 max-w-5xl mx-auto">
-        <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}/` }, { label: station?.title ?? data.station, labelEn: station?.titleEn, href: `/${course}/stations/${data.station}/` }, { label: data.title, labelEn: data.titleEn }]} />
+        <Breadcrumb
+          items={[
+            { label: courseMeta?.code ?? course, href: `/${course}/` },
+            {
+              label: station?.title ?? data.station,
+              labelEn: station?.titleEn,
+              href: `/${course}/stations/${data.station}/`,
+            },
+            { label: data.title, labelEn: data.titleEn },
+          ]}
+        />
 
         <header class="card overflow-hidden">
           <div class="flex flex-wrap items-center gap-2 bg-gradient-to-l from-brand-700 to-brand-500 px-6 py-4">
             <span class="chip bg-white/20 text-white">
-              <LangText lang="ar">{station?.icon} {station?.badge}</LangText>
-              <LangText lang="en">{station?.icon} {station?.badgeEn}</LangText>
+              <LangText lang="ar">
+                {station?.icon} {station?.badge}
+              </LangText>
+              <LangText lang="en">
+                {station?.icon} {station?.badgeEn}
+              </LangText>
             </span>
             <span class="chip bg-white/20 text-white">{data.number}</span>
-            <span class="chip bg-white/20 text-white" data-lang="ar">⏱ {data.minutes} دقيقة</span>
-            <span class="chip bg-white/20 text-white" data-lang="en">⏱ {data.minutes} min</span>
-            {data.hasTool && <span class="chip bg-amber-400/90 text-amber-950" data-lang="ar">🛠 أداة تفاعلية</span>}
-            {data.hasTool && <span class="chip bg-amber-400/90 text-amber-950" data-lang="en">🛠 Interactive tool</span>}
-            {data.quizId && <span class="chip bg-white/20 text-white" data-lang="ar">💬 كويز</span>}
-            {data.quizId && <span class="chip bg-white/20 text-white" data-lang="en">💬 Quiz</span>}
+            <span class="chip bg-white/20 text-white" data-lang="ar">
+              ⏱ {data.minutes} دقيقة
+            </span>
+            <span class="chip bg-white/20 text-white" data-lang="en">
+              ⏱ {data.minutes} min
+            </span>
+            {data.hasTool && (
+              <span class="chip bg-amber-400/90 text-amber-950" data-lang="ar">
+                🛠 أداة تفاعلية
+              </span>
+            )}
+            {data.hasTool && (
+              <span class="chip bg-amber-400/90 text-amber-950" data-lang="en">
+                🛠 Interactive tool
+              </span>
+            )}
+            {data.quizId && (
+              <span class="chip bg-white/20 text-white" data-lang="ar">
+                💬 كويز
+              </span>
+            )}
+            {data.quizId && (
+              <span class="chip bg-white/20 text-white" data-lang="en">
+                💬 Quiz
+              </span>
+            )}
           </div>
           <div class="px-6 py-5 flex items-start justify-between gap-4">
             <div>
-              <h1 class="text-2xl font-bold leading-relaxed text-ink-900 dark:text-slate-100" data-lang="ar">{data.title}</h1>
-              <h1 class="text-2xl font-bold leading-relaxed text-ink-900 dark:text-slate-100" data-lang="en" lang="en" dir="ltr">{data.titleEn}</h1>
+              <h1
+                class="text-2xl font-bold leading-relaxed text-ink-900 dark:text-slate-100"
+                data-lang="ar"
+              >
+                {data.title}
+              </h1>
+              <h1
+                class="text-2xl font-bold leading-relaxed text-ink-900 dark:text-slate-100"
+                data-lang="en"
+                lang="en"
+                dir="ltr"
+              >
+                {data.titleEn}
+              </h1>
             </div>
             <div class="shrink-0 mt-1">
               <ShareLesson
@@ -121,10 +223,14 @@ const { arPoints, enPoints } = extractLessonSummary(
                 variant="button"
                 course={course}
                 courseTitle={courseMeta?.title ?? course}
-                courseTitleEn={courseMeta?.titleEn ?? courseMeta?.title ?? course}
+                courseTitleEn={
+                  courseMeta?.titleEn ?? courseMeta?.title ?? course
+                }
                 stationId={data.station}
                 stationTitle={station?.title ?? data.station}
-                stationTitleEn={station?.titleEn ?? station?.title ?? data.station}
+                stationTitleEn={
+                  station?.titleEn ?? station?.title ?? data.station
+                }
                 lessonId={data.id}
                 lessonNumber={data.number}
                 lessonTitle={data.title}
@@ -136,7 +242,10 @@ const { arPoints, enPoints } = extractLessonSummary(
           </div>
         </header>
 
-        <ObjectivesList objectives={data.objectives} objectivesEn={data.objectivesEn} />
+        <ObjectivesList
+          objectives={data.objectives}
+          objectivesEn={data.objectivesEn}
+        />
 
         {audioUrl ? (
           <LessonAudioPlayer
@@ -147,21 +256,44 @@ const { arPoints, enPoints } = extractLessonSummary(
             lessonNumber={data.number}
             stationTitle={station?.title}
             courseTitle={courseMeta?.title}
-            prevLessonUrl={prevLessonData ? `/${course}/lessons/${prevLessonData.id}/` : undefined}
-            prevLessonTitle={prevLessonData ? `${prevLessonData.number} ${prevLessonData.title}` : undefined}
-            nextLessonUrl={nextLessonData ? `/${course}/lessons/${nextLessonData.id}/` : undefined}
-            nextLessonTitle={nextLessonData ? `${nextLessonData.number} ${nextLessonData.title}` : undefined}
+            prevLessonUrl={
+              prevLessonData
+                ? `/${course}/lessons/${prevLessonData.id}/`
+                : undefined
+            }
+            prevLessonTitle={
+              prevLessonData
+                ? `${prevLessonData.number} ${prevLessonData.title}`
+                : undefined
+            }
+            nextLessonUrl={
+              nextLessonData
+                ? `/${course}/lessons/${nextLessonData.id}/`
+                : undefined
+            }
+            nextLessonTitle={
+              nextLessonData
+                ? `${nextLessonData.number} ${nextLessonData.title}`
+                : undefined
+            }
           />
         ) : (
           <div class="my-4 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-slate-200/60 bg-slate-50/50 px-4 py-2.5 text-xs text-slate-500 dark:border-slate-800/60 dark:bg-slate-900/30 dark:text-slate-400">
             <div class="flex items-center gap-2">
               <span class="text-sm">🎧</span>
               <span>
-                <LangText lang="ar">الشرح الصوتي للقيادة: جاري تسجيله وسيتوفر قريباً لهذا الدرس.</LangText>
-                <LangText lang="en">Driving audio explanation: coming soon for this lesson.</LangText>
+                <LangText lang="ar">
+                  الشرح الصوتي للقيادة: جاري تسجيله وسيتوفر قريباً لهذا الدرس.
+                </LangText>
+                <LangText lang="en">
+                  Driving audio explanation: coming soon for this lesson.
+                </LangText>
               </span>
             </div>
-            <a href={`/${course}/listen/`} class="font-semibold text-brand-600 hover:underline dark:text-brand-400">
+            <a
+              href={`/${course}/listen/`}
+              class="font-semibold text-brand-600 hover:underline dark:text-brand-400"
+            >
               <LangText lang="ar">استمع للدروس المتوفرة 🚗</LangText>
               <LangText lang="en">Listen to available lessons 🚗</LangText>
             </a>
@@ -172,10 +304,16 @@ const { arPoints, enPoints } = extractLessonSummary(
           <slot />
         </article>
 
-        {data.sources && data.sources.length > 0 && <SourcesCard sourceIds={data.sources} />}
+        {data.sources && data.sources.length > 0 && (
+          <SourcesCard sourceIds={data.sources} />
+        )}
 
         <div class="mt-8 space-y-4">
-          <CompleteLessonButton course={course} lessonId={data.id} client:load />
+          <CompleteLessonButton
+            course={course}
+            lessonId={data.id}
+            client:load
+          />
           <ShareLesson
             client:load
             variant="card"
@@ -194,7 +332,11 @@ const { arPoints, enPoints } = extractLessonSummary(
           />
         </div>
 
-        <LessonNav course={course} stationId={data.station} lessonId={data.id} />
+        <LessonNav
+          course={course}
+          stationId={data.station}
+          lessonId={data.id}
+        />
       </div>
 
       <aside class="hidden xl:block w-64 shrink-0 sticky top-20 self-start">

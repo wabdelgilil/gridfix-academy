@@ -36,18 +36,21 @@ function riskReading(score: number) {
     return {
       level: 'حرج غير مقبول',
       cls: 'bg-rose-50 text-rose-800 ring-rose-500',
-      action: 'يُحظر التشغيل — يلزم تحكم هندسي فوري يخفض الشدة أو الاحتمال قبل أي عمل.',
+      action:
+        'يُحظر التشغيل — يلزم تحكم هندسي فوري يخفض الشدة أو الاحتمال قبل أي عمل.',
     };
   if (score >= 8)
     return {
       level: 'متوسط يدار بمبدأ ALARP',
       cls: 'bg-amber-50 text-amber-800 ring-amber-500',
-      action: 'يُدار بأقل مستوى ممكن عملياً: تفتيش تنبؤي وتحليل سلامة العمل وعزل الطاقة.',
+      action:
+        'يُدار بأقل مستوى ممكن عملياً: تفتيش تنبؤي وتحليل سلامة العمل وعزل الطاقة.',
     };
   return {
     level: 'منخفض مقبول',
     cls: 'bg-teal-50 text-teal-800 ring-teal-500',
-    action: 'يُدار بالإجراءات القياسية ومهمات الوقاية المعتادة مع المتابعة الدورية.',
+    action:
+      'يُدار بالإجراءات القياسية ومهمات الوقاية المعتادة مع المتابعة الدورية.',
   };
 }
 
@@ -111,7 +114,8 @@ export default function MocRiskTool() {
 
         <div className={`rounded-xl p-4 text-sm ring-2 ${r.cls}`}>
           <p className="font-bold">
-            درجة الخطر: <strong dir="ltr">{score} / 25</strong> — مستوى {r.level}
+            درجة الخطر: <strong dir="ltr">{score} / 25</strong> — مستوى{' '}
+            {r.level}
           </p>
           <p className="mt-1 text-xs font-normal opacity-90">{r.action}</p>
         </div>
@@ -142,8 +146,12 @@ export default function MocRiskTool() {
                   ✓
                 </span>
                 <span>
-                  <span className="block text-xs font-bold text-ink-800">{item.title}</span>
-                  <span className="block text-xs text-ink-500">{item.desc}</span>
+                  <span className="block text-xs font-bold text-ink-800">
+                    {item.title}
+                  </span>
+                  <span className="block text-xs text-ink-500">
+                    {item.desc}
+                  </span>
                 </span>
               </button>
             ))}
@@ -153,19 +161,24 @@ export default function MocRiskTool() {
         <div className="rounded-xl bg-slate-50 p-4 text-sm ring-2 ring-slate-400">
           {isRik && !checks.safetyReview && done <= 2 ? (
             <p className="font-bold text-teal-800">
-              ✅ استبدال مطابق للأصل (Replacement in Kind) — لا يتطلب دورة MOC كاملة، ويُغلق بأمر شغل عادي.
+              ✅ استبدال مطابق للأصل (Replacement in Kind) — لا يتطلب دورة MOC
+              كاملة، ويُغلق بأمر شغل عادي.
             </p>
           ) : mocComplete ? (
             <p className="font-bold text-teal-800">
-              ✅ تغيير معتمد — اكتملت مراجعة السلامة وتحديث المخططات والتدريب والاعتماد، والتغيير جاهز للتنفيذ الآمن.
+              ✅ تغيير معتمد — اكتملت مراجعة السلامة وتحديث المخططات والتدريب
+              والاعتماد، والتغيير جاهز للتنفيذ الآمن.
             </p>
           ) : (
             <p className="font-bold text-rose-800">
-              ⛔ تغيير غير مكتمل — يُحظر التنفيذ حتى إتمام البنود الناقصة أعلاه، وأي تعديل في الخامة أو النوع أو البرمجة يستلزم دورة MOC كاملة.
+              ⛔ تغيير غير مكتمل — يُحظر التنفيذ حتى إتمام البنود الناقصة أعلاه،
+              وأي تعديل في الخامة أو النوع أو البرمجة يستلزم دورة MOC كاملة.
             </p>
           )}
           <p className="mt-1 text-xs font-normal text-ink-600">
-            القاعدة: الاستبدال المطابق 100% للتصميم الأصلي لا يحتاج MOC، وأي اختلاف في الخامة أو النوع أو السعة أو منطق التحكم يحتاج مراجعة واعتماداً وتوثيقاً.
+            القاعدة: الاستبدال المطابق 100% للتصميم الأصلي لا يحتاج MOC، وأي
+            اختلاف في الخامة أو النوع أو السعة أو منطق التحكم يحتاج مراجعة
+            واعتماداً وتوثيقاً.
           </p>
         </div>
       </div>

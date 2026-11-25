@@ -42,7 +42,9 @@ export default function HeaderControls({
         }
         aria-label={lang === 'ar' ? 'ادرس أثناء القيادة' : 'Drive & Learn'}
       >
-        <span className="text-sm transition-transform group-hover:scale-110">🚗</span>
+        <span className="text-sm transition-transform group-hover:scale-110">
+          🚗
+        </span>
         <span className="hidden sm:inline">
           {lang === 'ar' ? 'ادرس أثناء القيادة' : 'Drive & Learn'}
         </span>
@@ -60,7 +62,8 @@ export default function HeaderControls({
           className="chip hidden cursor-pointer bg-ink-900 text-brand-100 transition hover:bg-ink-800 sm:inline-flex dark:bg-slate-700 dark:hover:bg-slate-600"
           aria-label={translate(lang, 'header.chooseCourse')}
         >
-          {currentCourse.icon} {currentCourse.label} {translate(lang, 'header.switchCourse')}
+          {currentCourse.icon} {currentCourse.label}{' '}
+          {translate(lang, 'header.switchCourse')}
         </a>
       )}
 
@@ -100,7 +103,11 @@ export default function HeaderControls({
         type="button"
         onClick={onToggleTheme}
         className="chip cursor-pointer bg-slate-100 text-ink-600 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-        aria-label={theme === 'dark' ? translate(lang, 'header.themeLight') : translate(lang, 'header.themeDark')}
+        aria-label={
+          theme === 'dark'
+            ? translate(lang, 'header.themeLight')
+            : translate(lang, 'header.themeDark')
+        }
       >
         {theme === 'dark' ? '☀️' : '🌙'}
       </button>

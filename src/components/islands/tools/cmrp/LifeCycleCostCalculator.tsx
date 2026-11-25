@@ -39,7 +39,9 @@ export default function LifeCycleCostCalculator() {
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl border border-slate-200 p-4">
-            <p className="mb-3 text-sm font-bold text-rose-700">الخيار (أ): سعر شراء منخفض</p>
+            <p className="mb-3 text-sm font-bold text-rose-700">
+              الخيار (أ): سعر شراء منخفض
+            </p>
             <label className="mb-1 block text-xs font-semibold text-ink-500">
               سعر الشراء الأولي (CapEx) بالدولار
             </label>
@@ -64,7 +66,9 @@ export default function LifeCycleCostCalculator() {
           </div>
 
           <div className="rounded-xl border border-slate-200 p-4">
-            <p className="mb-3 text-sm font-bold text-teal-700">الخيار (ب): تصميم عالي الاعتمادية</p>
+            <p className="mb-3 text-sm font-bold text-teal-700">
+              الخيار (ب): تصميم عالي الاعتمادية
+            </p>
             <label className="mb-1 block text-xs font-semibold text-ink-500">
               سعر الشراء الأولي (CapEx) بالدولار
             </label>
@@ -102,7 +106,9 @@ export default function LifeCycleCostCalculator() {
               : `الخيار (أ) هو الأوفر: إجمالي تكلفة دورة الحياة $${fmt(totalA)} مقابل $${fmt(totalB)} للخيار (ب).`}
           </p>
           <p className="mt-1 text-xs font-normal opacity-90">
-            صافي الوفر على مدى {years} سنوات: ${fmt(diff)} — القاعدة: تكلفة دورة الحياة = سعر الشراء + (التكلفة السنوية × عدد السنوات)، وسعر الشراء لا يمثل عادة سوى 10% إلى 20% من الإجمالي.
+            صافي الوفر على مدى {years} سنوات: ${fmt(diff)} — القاعدة: تكلفة دورة
+            الحياة = سعر الشراء + (التكلفة السنوية × عدد السنوات)، وسعر الشراء
+            لا يمثل عادة سوى 10% إلى 20% من الإجمالي.
           </p>
         </div>
       </div>

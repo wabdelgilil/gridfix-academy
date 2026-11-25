@@ -15,7 +15,10 @@ const CATEGORIES = [
     name: 'الإنسان (Man)',
     causes: [
       { text: 'استخدام مفتاح عادي دون ضبط العزم المطلوب', kind: 'سبب بشري' },
-      { text: 'قلة خبرة الفني الجديد بأجهزة المحاذاة بالليزر', kind: 'سبب بشري' },
+      {
+        text: 'قلة خبرة الفني الجديد بأجهزة المحاذاة بالليزر',
+        kind: 'سبب بشري',
+      },
       { text: 'إجهاد العمل الإضافي في الوردية الليلية', kind: 'سبب بشري' },
     ],
   },
@@ -33,7 +36,10 @@ const CATEGORIES = [
     name: 'الطريقة (Method)',
     causes: [
       { text: 'غياب إجراءات عمل قياسية مكتوبة (SOPs)', kind: 'سبب كامن' },
-      { text: 'لا قائمة تحقق إلزامية قبل تسليم الأصل للتشغيل', kind: 'سبب كامن' },
+      {
+        text: 'لا قائمة تحقق إلزامية قبل تسليم الأصل للتشغيل',
+        kind: 'سبب كامن',
+      },
       { text: 'خطة صيانة وقائية غير محدثة منذ سنوات', kind: 'سبب كامن' },
     ],
   },
@@ -51,7 +57,10 @@ const CATEGORIES = [
     name: 'البيئة (Milieu)',
     causes: [
       { text: 'ارتفاع حرارة الجو المحيط إلى 50 درجة مئوية', kind: 'سبب مادي' },
-      { text: 'تسرب مياه الأمطار ورطوبة عالية في غرفة المعدات', kind: 'سبب مادي' },
+      {
+        text: 'تسرب مياه الأمطار ورطوبة عالية في غرفة المعدات',
+        kind: 'سبب مادي',
+      },
       { text: 'تراكم الغبار على زعانف تبريد المحرك', kind: 'سبب مادي' },
     ],
   },
@@ -76,7 +85,8 @@ export default function FishboneExplorer() {
 
       <div className="space-y-4 p-5">
         <p className="text-xs text-ink-500">
-          مشكلة التحليل: كسر مفاجئ لعمود مضخة مياه التبريد — انقر أي فئة لاستعراض أسبابها المحتملة.
+          مشكلة التحليل: كسر مفاجئ لعمود مضخة مياه التبريد — انقر أي فئة
+          لاستعراض أسبابها المحتملة.
         </p>
 
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -103,19 +113,29 @@ export default function FishboneExplorer() {
         </div>
 
         <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-          <p className="text-sm font-bold text-ink-800">الأسباب المحتملة: {active.name}</p>
+          <p className="text-sm font-bold text-ink-800">
+            الأسباب المحتملة: {active.name}
+          </p>
           <div className="mt-3 grid gap-2.5 sm:grid-cols-3">
             {active.causes.map((cause) => (
-              <div key={cause.text} className="rounded-xl border border-slate-200 bg-white p-3">
-                <span className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-bold ${kindStyle(cause.kind)}`}>
+              <div
+                key={cause.text}
+                className="rounded-xl border border-slate-200 bg-white p-3"
+              >
+                <span
+                  className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-bold ${kindStyle(cause.kind)}`}
+                >
                   {cause.kind}
                 </span>
-                <p className="mt-1.5 text-xs leading-relaxed text-ink-700">{cause.text}</p>
+                <p className="mt-1.5 text-xs leading-relaxed text-ink-700">
+                  {cause.text}
+                </p>
               </div>
             ))}
           </div>
           <p className="mt-3 text-[11px] leading-relaxed text-ink-500">
-            الهدف الحقيقي للتحقيق هو السبب الكامن المؤسسي — معالجته تمنع العطل في المصنع كله، لا في هذه الماكينة وحدها.
+            الهدف الحقيقي للتحقيق هو السبب الكامن المؤسسي — معالجته تمنع العطل
+            في المصنع كله، لا في هذه الماكينة وحدها.
           </p>
         </div>
       </div>

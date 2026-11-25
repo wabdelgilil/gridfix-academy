@@ -18,49 +18,90 @@ interface Props {
 const { course } = Astro.params;
 const courseMeta = getCourse(course);
 const isPlanned = !courseMeta || courseMeta.status === 'planned';
-const courseImage = course === 'cmrp' ? '/og-cmrp.png' : course === 'cfm' ? '/og-cfm.png' : course === 'cama' ? '/og-cama.png' : undefined;
+const courseImage =
+  course === 'cmrp'
+    ? '/og-cmrp.png'
+    : course === 'cfm'
+      ? '/og-cfm.png'
+      : course === 'cama'
+        ? '/og-cama.png'
+        : undefined;
 
 const lessons = !isPlanned ? await getCollection('lessons') : [];
-const courseLessons = lessons.filter((l) => (l.data.course ?? 'cfm') === course);
+const courseLessons = lessons.filter(
+  (l) => (l.data.course ?? 'cfm') === course
+);
 const stationCards = !isPlanned
-  ? curriculum.filter((s) => (s.courseId ?? 'cfm') === course && s.status === 'live').sort((a, b) => a.number - b.number)
+  ? curriculum
+      .filter((s) => (s.courseId ?? 'cfm') === course && s.status === 'live')
+      .sort((a, b) => a.number - b.number)
   : [];
-const totalMinutes = lessons.filter((l) => (l.data.course ?? 'cfm') === course).reduce((sum, l) => sum + l.data.minutes, 0);
+const totalMinutes = lessons
+  .filter((l) => (l.data.course ?? 'cfm') === course)
+  .reduce((sum, l) => sum + l.data.minutes, 0);
 const liveStations = !isPlanned ? stationCards.length : 0;
-const station0 = !isPlanned ? stationCards.find((s) => s.number === 0) : undefined;
+const station0 = !isPlanned
+  ? stationCards.find((s) => s.number === 0)
+  : undefined;
 
-const courseJsonLd = !isPlanned && courseMeta
-  ? {
-      '@context': 'https://schema.org',
-      '@type': 'Course',
-      name: `${courseMeta.title} (${courseMeta.code})`,
-      description: courseMeta.description,
-      inLanguage: 'ar',
-      isAccessibleForFree: true,
-      provider: {
-        '@type': 'Organization',
-        name: 'GridFix Academy',
-        sameAs: 'https://gridfix.net',
-      },
-      url: new URL(`/${course}`, Astro.site ?? 'https://academy.gridfix.net').toString(),
-      hasCourseInstance: {
-        '@type': 'CourseInstance',
-        courseMode: 'online',
-        courseWorkload: `PT${Math.round(totalMinutes / 60)}H`,
-      },
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD',
-        availability: 'https://schema.org/InStock',
-      },
-    }
-  : null;
+const courseJsonLd =
+  !isPlanned && courseMeta
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Course',
+        name: `${courseMeta.title} (${courseMeta.code})`,
+        description: courseMeta.description,
+        inLanguage: 'ar',
+        isAccessibleForFree: true,
+        provider: {
+          '@type': 'Organization',
+          name: 'GridFix Academy',
+          sameAs: 'https://gridfix.net',
+        },
+        url: new URL(
+          `/${course}`,
+          Astro.site ?? 'https://academy.gridfix.net'
+        ).toString(),
+        hasCourseInstance: {
+          '@type': 'CourseInstance',
+          courseMode: 'online',
+          courseWorkload: `PT${Math.round(totalMinutes / 60)}H`,
+        },
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+          availability: 'https://schema.org/InStock',
+        },
+      }
+    : null;
 ---
 
-<BaseLayout title={`${courseMeta ? `${courseMeta.title} — ${courseMeta.titleEn}` : 'الكورس'} | أكاديمية GridFix`} titleEn={`${courseMeta?.titleEn ?? 'Course'} | GridFix Academy`} description={courseMeta?.description ?? 'منصة GridFix التعليمية'} descriptionEn={courseMeta?.descriptionEn ?? 'GridFix Academy educational platform'} noindex={isPlanned} image={courseImage}>
-  {courseJsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(courseJsonLd)} />}
-  <Breadcrumb items={[{ label: courseMeta?.code ?? course, labelEn: courseMeta?.code ?? course }]} />
+<BaseLayout
+  title={`${courseMeta ? `${courseMeta.title} — ${courseMeta.titleEn}` : 'الكورس'} | أكاديمية GridFix`}
+  titleEn={`${courseMeta?.titleEn ?? 'Course'} | GridFix Academy`}
+  description={courseMeta?.description ?? 'منصة GridFix التعليمية'}
+  descriptionEn={
+    courseMeta?.descriptionEn ?? 'GridFix Academy educational platform'
+  }
+  noindex={isPlanned}
+  image={courseImage}
+>
+  {courseJsonLd && (
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(courseJsonLd)}
+    />
+  )}
+  <Breadcrumb
+    items={[
+      {
+        label: courseMeta?.code ?? course,
+        labelEn: courseMeta?.code ?? course,
+      },
+    ]}
+  />
   {isPlanned ? (
     <div class="mx-auto max-w-2xl text-center animate-fade-in">
       <span class="text-6xl animate-float">{courseMeta?.icon ?? '⏳'}</span>
@@ -103,36 +144,68 @@ const courseJsonLd = !isPlanned && courseMeta
           </div>
           <h1 class="mt-4 text-3xl font-bold leading-relaxed sm:text-4xl">
             <LangText lang="ar">{courseMeta!.title} بالطريقة العملية</LangText>
-            <LangText lang="en">{courseMeta!.titleEn} — the practical way</LangText>
+            <LangText lang="en">
+              {courseMeta!.titleEn} — the practical way
+            </LangText>
           </h1>
           <p class="mt-4 text-lg leading-relaxed text-teal-50">
             <LangText lang="ar">
-              {courseMeta!.description} مع شرح عربي ومصطلحات إنجليزية وتمارين تفاعلية —{' '}
-              <strong>مجاناً بالكامل</strong>، مقدمة من منصة{' '}
-              <a href="https://gridfix.net" target="_blank" rel="noopener" class="font-bold text-amber-300 underline underline-offset-4 hover:text-amber-200">
+              {courseMeta!.description} مع شرح عربي ومصطلحات إنجليزية وتمارين
+              تفاعلية — <strong>مجاناً بالكامل</strong>، مقدمة من منصة{' '}
+              <a
+                href="https://gridfix.net"
+                target="_blank"
+                rel="noopener"
+                class="font-bold text-amber-300 underline underline-offset-4 hover:text-amber-200"
+              >
                 GridFix Academy
-              </a>.
+              </a>
+              .
             </LangText>
             <LangText lang="en">
-              {courseMeta!.descriptionEn} With Arabic explanations, English terminology, and interactive exercises —{' '}
+              {courseMeta!.descriptionEn} With Arabic explanations, English
+              terminology, and interactive exercises —{' '}
               <strong>completely free</strong>, offered by{' '}
-              <a href="https://gridfix.net" target="_blank" rel="noopener" class="font-bold text-amber-300 underline underline-offset-4 hover:text-amber-200">
+              <a
+                href="https://gridfix.net"
+                target="_blank"
+                rel="noopener"
+                class="font-bold text-amber-300 underline underline-offset-4 hover:text-amber-200"
+              >
                 GridFix Academy
-              </a>.
+              </a>
+              .
             </LangText>
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
             {(station0 ?? stationCards[0]) && (
-              <a href={`/${course}/stations/${(station0 ?? stationCards[0])!.id}/`} class="btn-primary bg-amber-400 text-amber-950 hover:bg-amber-300">
-                <LangText lang="ar">{station0 ? 'ابدأ التعلم من المحطة 0 ←' : 'ابدأ التعلم من المحطة 1 ←'}</LangText>
-                <LangText lang="en">{station0 ? 'Start learning at Station 0 →' : 'Start learning at Station 1 →'}</LangText>
+              <a
+                href={`/${course}/stations/${(station0 ?? stationCards[0])!.id}/`}
+                class="btn-primary bg-amber-400 text-amber-950 hover:bg-amber-300"
+              >
+                <LangText lang="ar">
+                  {station0
+                    ? 'ابدأ التعلم من المحطة 0 ←'
+                    : 'ابدأ التعلم من المحطة 1 ←'}
+                </LangText>
+                <LangText lang="en">
+                  {station0
+                    ? 'Start learning at Station 0 →'
+                    : 'Start learning at Station 1 →'}
+                </LangText>
               </a>
             )}
-            <a href={`/${course}/map/`} class="btn-outline border-white/30 text-white hover:bg-white/10">
+            <a
+              href={`/${course}/map/`}
+              class="btn-outline border-white/30 text-white hover:bg-white/10"
+            >
               <LangText lang="ar">خريطة المنهج</LangText>
               <LangText lang="en">Curriculum map</LangText>
             </a>
-            <a href={`/${course}/listen/`} class="btn-outline border-white/30 text-white hover:bg-white/10 flex items-center gap-1.5">
+            <a
+              href={`/${course}/listen/`}
+              class="btn-outline border-white/30 text-white hover:bg-white/10 flex items-center gap-1.5"
+            >
               <span>🚗</span>
               <LangText lang="ar">ادرس أثناء القيادة 🚗</LangText>
               <LangText lang="en">Drive & Learn 🚗</LangText>
@@ -140,7 +213,9 @@ const courseJsonLd = !isPlanned && courseMeta
           </div>
           <div class="mt-8 flex flex-wrap gap-6 text-sm text-teal-50">
             <span class="flex items-center gap-2">
-              <span class="font-bold text-amber-300">{courseLessons.length}</span>
+              <span class="font-bold text-amber-300">
+                {courseLessons.length}
+              </span>
               <LangText lang="ar"> درساً تطبيقياً</LangText>
               <LangText lang="en"> practical lessons</LangText>
             </span>
@@ -179,8 +254,12 @@ const courseJsonLd = !isPlanned && courseMeta
             { icon: '💬', ar: 'كويز سيناريو', en: 'Scenario quiz' },
             { icon: '📎', ar: 'مصادر موثوقة', en: 'Trusted sources' },
           ].map((item, i) => (
-            <div class={`flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white px-3 py-5 text-center text-sm font-medium text-ink-700 shadow-sm transition-all duration-300 hover:border-brand-300 hover:shadow-md animate-fade-in stagger-${i + 1}`}>
-              <span class="mb-2 block text-xl transition-transform duration-300 hover:scale-125">{item.icon}</span>
+            <div
+              class={`flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white px-3 py-5 text-center text-sm font-medium text-ink-700 shadow-sm transition-all duration-300 hover:border-brand-300 hover:shadow-md animate-fade-in stagger-${i + 1}`}
+            >
+              <span class="mb-2 block text-xl transition-transform duration-300 hover:scale-125">
+                {item.icon}
+              </span>
               <span>
                 <LangText lang="ar">{item.ar}</LangText>
                 <LangText lang="en">{item.en}</LangText>
@@ -197,8 +276,12 @@ const courseJsonLd = !isPlanned && courseMeta
           <LangText lang="en">Station map</LangText>
         </h2>
         <p class="mt-1 text-sm text-ink-400">
-          <LangText lang="ar">المسار الكامل من التأسيس حتى محاكي الامتحان.</LangText>
-          <LangText lang="en">The full path from the foundations to the exam simulator.</LangText>
+          <LangText lang="ar">
+            المسار الكامل من التأسيس حتى محاكي الامتحان.
+          </LangText>
+          <LangText lang="en">
+            The full path from the foundations to the exam simulator.
+          </LangText>
         </p>
 
         <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -232,7 +315,9 @@ const courseJsonLd = !isPlanned && courseMeta
                     <LangText lang="ar"> درساً</LangText>
                     <LangText lang="en"> lessons</LangText>
                   </span>
-                  <span class="font-bold text-brand-600 transition-transform duration-300 group-hover:translate-x-[-4px]">←</span>
+                  <span class="font-bold text-brand-600 transition-transform duration-300 group-hover:translate-x-[-4px]">
+                    ←
+                  </span>
                 </div>
               </a>
             );

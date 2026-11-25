@@ -2,7 +2,11 @@ import { courses } from '../../../data/courses';
 import { curriculum } from '../../../data/curriculum';
 import type { TranslationKey } from '../../../i18n/translations';
 
-export const COURSES = courses.map((c) => ({ id: c.id, label: c.code, icon: c.icon }));
+export const COURSES = courses.map((c) => ({
+  id: c.id,
+  label: c.code,
+  icon: c.icon,
+}));
 
 export function firstStationId(courseId: string): string {
   const stations = curriculum
@@ -19,7 +23,10 @@ export interface NavItem {
 export function getNavItems(course: string): NavItem[] {
   if (course) {
     return [
-      { key: 'nav.stations', href: `/${course}/stations/${firstStationId(course)}/` },
+      {
+        key: 'nav.stations',
+        href: `/${course}/stations/${firstStationId(course)}/`,
+      },
       { key: 'nav.map', href: `/${course}/map/` },
       { key: 'nav.exam', href: `/${course}/exam/` },
       { key: 'nav.glossary', href: `/${course}/glossary/` },

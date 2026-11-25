@@ -1,4 +1,6 @@
-import GenericExamRunner, { type ExamQuestion } from '../common/GenericExamRunner';
+import GenericExamRunner, {
+  type ExamQuestion,
+} from '../common/GenericExamRunner';
 import { quiz01 } from '../../../../data/quiz/cfm/quiz-0-1';
 import { quiz02 } from '../../../../data/quiz/cfm/quiz-0-2';
 import { quiz03 } from '../../../../data/quiz/cfm/quiz-0-3';
@@ -38,18 +40,43 @@ import { quiz112 } from '../../../../data/quiz/cfm/quiz-11-2';
 import { quiz113 } from '../../../../data/quiz/cfm/quiz-11-3';
 
 const banks = [
-  quiz01, quiz02, quiz03,
-  quiz11, quiz12, quiz13, quiz14,
-  quiz21, quiz22, quiz23,
-  quiz31, quiz32, quiz33, quiz34,
-  quiz41, quiz42, quiz43,
-  quiz51, quiz52, quiz53,
-  quiz61, quiz62, quiz63,
-  quiz71, quiz72, quiz73,
-  quiz81, quiz82, quiz83,
-  quiz91, quiz92, quiz93,
-  quiz101, quiz102,
-  quiz111, quiz112, quiz113,
+  quiz01,
+  quiz02,
+  quiz03,
+  quiz11,
+  quiz12,
+  quiz13,
+  quiz14,
+  quiz21,
+  quiz22,
+  quiz23,
+  quiz31,
+  quiz32,
+  quiz33,
+  quiz34,
+  quiz41,
+  quiz42,
+  quiz43,
+  quiz51,
+  quiz52,
+  quiz53,
+  quiz61,
+  quiz62,
+  quiz63,
+  quiz71,
+  quiz72,
+  quiz73,
+  quiz81,
+  quiz82,
+  quiz83,
+  quiz91,
+  quiz92,
+  quiz93,
+  quiz101,
+  quiz102,
+  quiz111,
+  quiz112,
+  quiz113,
 ];
 
 const stationNames: Record<number, string> = {

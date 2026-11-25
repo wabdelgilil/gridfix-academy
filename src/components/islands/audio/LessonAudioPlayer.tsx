@@ -79,7 +79,9 @@ export default function LessonAudioPlayer({
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!progressBarRef.current || !audioRef.current || !duration) return;
     const rect = progressBarRef.current.getBoundingClientRect();
-    const isRtl = document.dir === 'rtl' || getComputedStyle(progressBarRef.current).direction === 'rtl';
+    const isRtl =
+      document.dir === 'rtl' ||
+      getComputedStyle(progressBarRef.current).direction === 'rtl';
     const targetTime = calculateSeekTime(e.clientX, rect, isRtl, duration);
     audioRef.current.currentTime = targetTime;
   };
@@ -156,7 +158,14 @@ export default function LessonAudioPlayer({
         });
       }
     }
-  }, [lessonTitle, lessonNumber, courseTitle, stationTitle, prevLessonUrl, nextLessonUrl]);
+  }, [
+    lessonTitle,
+    lessonNumber,
+    courseTitle,
+    stationTitle,
+    prevLessonUrl,
+    nextLessonUrl,
+  ]);
 
   // Check URL param for ?autoplay=1
   useEffect(() => {
@@ -207,7 +216,9 @@ export default function LessonAudioPlayer({
         <div className="mb-2.5 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-xs text-amber-700 dark:text-amber-300 flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5">
             <span>🎙️</span>
-            <span>English audio is in production. Playing Arabic narration.</span>
+            <span>
+              English audio is in production. Playing Arabic narration.
+            </span>
           </div>
           <span className="shrink-0 rounded-md bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-bold">
             🇸🇦 Arabic Audio

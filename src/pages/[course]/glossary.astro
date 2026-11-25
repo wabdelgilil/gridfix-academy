@@ -18,22 +18,42 @@ const courseMeta = getCourse(course);
 const terms = getGlossaryForCourse(course ?? 'cfm');
 ---
 
-<BaseLayout title={`قاموس المصطلحات — ${courseMeta?.code ?? ''} | أكاديمية GridFix`} titleEn={`Glossary — ${courseMeta?.code ?? ''} | GridFix Academy`} description="قاموس مركزي قابل للبحث لمصطلحات الكورس بالعربية والإنجليزية." descriptionEn="A searchable central glossary of the course terms in Arabic and English.">
+<BaseLayout
+  title={`قاموس المصطلحات — ${courseMeta?.code ?? ''} | أكاديمية GridFix`}
+  titleEn={`Glossary — ${courseMeta?.code ?? ''} | GridFix Academy`}
+  description="قاموس مركزي قابل للبحث لمصطلحات الكورس بالعربية والإنجليزية."
+  descriptionEn="A searchable central glossary of the course terms in Arabic and English."
+>
   <div class="mx-auto max-w-3xl">
-    <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}/` }, { label: 'قاموس المصطلحات', labelEn: 'Glossary' }]} />
+    <Breadcrumb
+      items={[
+        { label: courseMeta?.code ?? course, href: `/${course}/` },
+        { label: 'قاموس المصطلحات', labelEn: 'Glossary' },
+      ]}
+    />
     <header class="mb-6">
       <h1 class="text-2xl font-bold text-ink-900 dark:text-white">
-        <LangText lang="ar">📖 قاموس المصطلحات — {courseMeta?.code ?? ''}</LangText>
+        <LangText lang="ar">
+          📖 قاموس المصطلحات — {courseMeta?.code ?? ''}
+        </LangText>
         <LangText lang="en">📖 Glossary — {courseMeta?.code ?? ''}</LangText>
       </h1>
       <p class="mt-1 text-sm text-ink-400 dark:text-slate-400">
-        <LangText lang="ar">المصطلحات بتعريف عربي مبسط مع الاسم الإنجليزي الأصلي — أساس النجاح في الامتحان.</LangText>
-        <LangText lang="en">Terms with a plain-Arabic definition alongside the original English name — the foundation for exam success.</LangText>
+        <LangText lang="ar">
+          المصطلحات بتعريف عربي مبسط مع الاسم الإنجليزي الأصلي — أساس النجاح في
+          الامتحان.
+        </LangText>
+        <LangText lang="en">
+          Terms with a plain-Arabic definition alongside the original English
+          name — the foundation for exam success.
+        </LangText>
       </p>
     </header>
 
     <div class="relative mb-6">
-      <span class="pointer-events-none absolute start-4 top-1/2 -translate-y-1/2 text-ink-400">🔍</span>
+      <span class="pointer-events-none absolute start-4 top-1/2 -translate-y-1/2 text-ink-400">
+        🔍
+      </span>
       <input
         id="glossary-search"
         type="search"
@@ -51,9 +71,20 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
           data-search={`${term.term} ${term.abbreviation ?? ''} ${term.ar} ${term.en}`.toLowerCase()}
         >
           <div class="flex flex-wrap items-center gap-2">
-            <span dir="ltr" lang="en" class="font-bold text-brand-700 dark:text-brand-400">{term.term}</span>
+            <span
+              dir="ltr"
+              lang="en"
+              class="font-bold text-brand-700 dark:text-brand-400"
+            >
+              {term.term}
+            </span>
             {term.abbreviation && (
-              <span class="chip bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300" dir="ltr">{term.abbreviation}</span>
+              <span
+                class="chip bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300"
+                dir="ltr"
+              >
+                {term.abbreviation}
+              </span>
             )}
             <button
               type="button"
@@ -80,8 +111,20 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
               📋
             </button>
           </div>
-          <p data-lang="ar" class="mt-2 text-sm leading-relaxed text-ink-600 dark:text-slate-300">{term.ar}</p>
-          <p data-lang="en" dir="ltr" lang="en" class="mt-2 text-xs leading-relaxed text-ink-400 dark:text-slate-500">{term.en}</p>
+          <p
+            data-lang="ar"
+            class="mt-2 text-sm leading-relaxed text-ink-600 dark:text-slate-300"
+          >
+            {term.ar}
+          </p>
+          <p
+            data-lang="en"
+            dir="ltr"
+            lang="en"
+            class="mt-2 text-xs leading-relaxed text-ink-400 dark:text-slate-500"
+          >
+            {term.en}
+          </p>
         </div>
       ))}
     </div>
@@ -98,16 +141,34 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
     const lang = document.documentElement.lang === 'en' ? 'en' : 'ar';
 
     input && lang === 'en'
-      ? input.setAttribute('placeholder', input.dataset.placeholderEn ?? 'Search the glossary...')
-      : input?.setAttribute('placeholder', input.dataset.placeholderAr ?? 'ابحث في القاموس...');
+      ? input.setAttribute(
+          'placeholder',
+          input.dataset.placeholderEn ?? 'Search the glossary...'
+        )
+      : input?.setAttribute(
+          'placeholder',
+          input.dataset.placeholderAr ?? 'ابحث في القاموس...'
+        );
 
-    document.querySelectorAll<HTMLButtonElement>('.speak-btn, .copy-btn').forEach((btn) => {
-      btn.setAttribute('aria-label', lang === 'en' ? (btn.dataset.ariaEn ?? '') : (btn.dataset.ariaAr ?? ''));
-      btn.title = lang === 'en' ? (btn.dataset.titleEn ?? '') : (btn.dataset.titleAr ?? '');
-    });
+    document
+      .querySelectorAll<HTMLButtonElement>('.speak-btn, .copy-btn')
+      .forEach((btn) => {
+        btn.setAttribute(
+          'aria-label',
+          lang === 'en'
+            ? (btn.dataset.ariaEn ?? '')
+            : (btn.dataset.ariaAr ?? '')
+        );
+        btn.title =
+          lang === 'en'
+            ? (btn.dataset.titleEn ?? '')
+            : (btn.dataset.titleAr ?? '');
+      });
   };
 
-  const input = document.getElementById('glossary-search') as HTMLInputElement | null;
+  const input = document.getElementById(
+    'glossary-search'
+  ) as HTMLInputElement | null;
   const empty = document.getElementById('glossary-empty');
   const items = Array.from(document.querySelectorAll('.glossary-item'));
 
@@ -144,7 +205,9 @@ const terms = getGlossaryForCourse(course ?? 'cfm');
           await navigator.clipboard.writeText(term);
           const original = btn.textContent;
           btn.textContent = '✓';
-          setTimeout(() => { btn.textContent = original; }, 1500);
+          setTimeout(() => {
+            btn.textContent = original;
+          }, 1500);
         } catch {}
       }
     });

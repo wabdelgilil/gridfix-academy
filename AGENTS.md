@@ -1,70 +1,50 @@
-# إرشادات التطوير — مشروع GridFix Academy
+# Project Engineering Governance (Tier-0 Micro-Kernel)
 
-منصة تعليمية **عربية مجانية** (مقدمة من GridFix — `gridfix.net`) لتعليم إدارة المنشآت وصولاً لشهادة CFM.
-التقنية: Astro 5 + React islands + Tailwind 4 + MDX content collections + TypeScript صارم.
+> Framework Reference: `../VibeCodeingFramwork/INDEX.md` (or `https://github.com/wabdelgilil/vibe-coding-framework`)
+> Navigation Law: Stop-on-Target. Read only the triggered micro-leaf before acting.
 
-## الأوامر الإلزامية قبل اعتماد أي تغيير
+## 10 Non-Negotiable Laws
 
-```bash
-npm run qa:ar   # بوابة جودة العربية (إلزامية مع أي تعديل على نصوص/محتوى)
-npm run check   # فحص TypeScript وAstro
-npm run build   # البناء النهائي (يجب أن ينجح)
-```
+1. **Objectivity:** Never flatter blindly; push back with trade-offs when an idea carries risk.
+2. **Pre-Code Plan Gate:** Never edit code before a verified plan proportional to change size.
+3. **Dependency-First Order:** Prioritize `P0` security/data, then `P1` foundations, then `P2` features.
+4. **Root Cause & Long-Term Impact:** Fix causes at authoritative layers; evaluate 6–12 month impact.
+5. **Zero Shortcuts:** No stubs, empty `catch`, hardcoded fakes, or unverified client assertions.
+6. **Zero AI Footprint:** Clean human-grade code, comments ("why" only), commits, and document metadata.
+7. **Always Strict Security:** Zero hardcoded secrets; sanitize inputs; protect baseline assets.
+8. **Dual Verification:** Run automated checks (`npm run verify`) AND directly inspect modified files.
+9. **Living Docs Sync:** Update `SRS.md`, specs, and `CHANGELOG.md` atomically with code changes.
+10. **Clean Workspace:** 100% relative links; keep `MASTER_PLAN.md` lean; physically archive closed plans.
 
-## قاعدة جودة العربية — قاعدة مشروع غير قابلة للتنازل
+## Action Boundaries (3-Zone Matrix)
 
-كل النصوص (دروس، كويزات، أدوات، صفحات، خطط، تقارير) يجب أن تكون عربية أصيلة:
+- **Always:** Run `npm run verify` (`check` + `qa:ar` + `test`), use relative links, update `ACTIVE_CONTEXT.md`.
+- **Ask First:** Add 3rd-party dependencies, change SSG/SSR modes, or modify curriculum scoring logic.
+- **Never:** Commit garbled machine Arabic, bypass type/test gates, or hardcode secrets in `.env`.
 
-1. **ممنوع "كلمات الآلة"**: كلمات عربية غير موجودة أو غريبة (أمثلة من المشروع: "الحماس"، "ميليء"، "ابيبيل"، "لبساب"، "الغيباب"). كل حرف وكل كلمة يجب أن تكون مفهومة وقابلة للنطق بمعنى صحيح.
-2. **ممنوع خلط الحروف اللاتينية الملتصقة**: لا تكتب "بمغritaje" — المصطلحات الإنجليزية تُفصل بمسافات أو توضع داخل أقواس: "نظام HVAC"، "عائد الاستثمار (ROI)".
-3. **ممنوع الرموز المشوّهة**: `====`، `==>`، وعلامات الترقيم المكررة بلا معنى.
-4. **الهمزات والتشكيل دقيقة**: أي/إي، ء/أ/ؤ/ئ، التاء المربوطة (ة) مقابل المفتوحة (ه/ت) في غير موضعها من الأخطاء المرفوضة.
-5. **المصطلحات الإنجليزية المسموحة** حصراً تقنياً: HVAV، HVAC، CMMS، CAFM، SLA، ROI، LCC، IFMA، CFM، FMP، OSHA، LEED، ISO، KPI، EUI، IEQ، IAQ، NNN، CO₂ ... والموازنة المبدئية تشرح كل مصطلح بإنجليزي وعربي في القاموس.
-6. **المراجعة اليدوية شرط أساسي لا يُغنِي عنه السكربت**: السكربت لا «يفكر» — هناك كلمات آلة تشبه العربية الطبيعية تماماً (مثل "الحماس"، "الغيباب"، "التنرية"). أي محتوى جديد يتطلّب قراءة فعلية من الوكيل/المطوّر لكل نص مولّد (دروس، كويزات، أدوات) بحثاً عن: كلمات غير موجودة، تعابير ركيكة، أخطاء همزات، وتراكيب لا يقولها عربي. المطلوب: **مراجعة يدوية + سكربت معاً**.
-7. عند توليد محتوى جديد أو تعديله: راجع يدوياً فعلياً → شغّل `npm run qa:ar` → وإن اكتشفت كلمة غبية لم يلتقطها السكربت فأضفها إلى `GARBLED_WORDS` في `scripts/qa-arabic.mjs`.
+## On-Demand Trigger Routing Table
 
-## قاعدة أسلوب الشرح — المادة العلمية أولاً
+| When you are about to...                 | Read ONLY this file first                                                                            |
+| :--------------------------------------- | :--------------------------------------------------------------------------------------------------- |
+| Start a session or resume work           | `project_management/ACTIVE_CONTEXT.md` (+ run `git status`)                                          |
+| Plan a feature or multi-file change      | `../VibeCodeingFramwork/07_project_management_and_context/planning_rigor_and_pre_code_gate.md`       |
+| Prioritize tasks or roadmap items        | `../VibeCodeingFramwork/07_project_management_and_context/prioritization_and_dependency_ordering.md` |
+| Write or review Arabic text/lessons      | `docs/memory/arabic_quality.md` (+ run `npm run qa:ar`)                                              |
+| Structure lessons, terms, or figures     | `docs/memory/pedagogy_and_figures.md`                                                                |
+| Generate YouTube video assets            | `docs/memory/video_constitution.md`                                                                  |
+| Debug a failure or weigh a quick fix     | `../VibeCodeingFramwork/01_anti_shortcuts/root_cause_protocol.md`                                    |
+| Design queries, caching, or async jobs   | `../VibeCodeingFramwork/03_scalability/README.md`                                                    |
+| Add/change entities or cross-layer flows | `../VibeCodeingFramwork/04_maintainability/domain_and_impact_integrity.md`                           |
+| Touch storage, auth, or input validation | `../VibeCodeingFramwork/06_security_and_reliability/README.md`                                       |
+| Add/modify features (standard docs)      | `../VibeCodeingFramwork/05_documentation/standard_artifacts_per_feature.md`                          |
+| Close any task or audit                  | `../VibeCodeingFramwork/01_anti_shortcuts/proof_of_work.md`                                          |
+| Touch domain conventions or guidelines   | `docs/memory/INDEX.md`                                                                               |
 
-هدف الدرس هو **المادة العلمية** (ما يسأل عنه امتحان CFM)، لا القصة ولا المصطلحات.
+## Standing User Preferences (Bucket A — Max 10 One-Liners)
 
-1. **المادة هي الهيكل**: يُبنى الدرس على موضوعات علمية منظمة بعناوين واضحة، لا على سرد حكاية أو تمثيل شخصيات.
-2. **القصة/المثال أداة توصيل فقط**: تُستعمل حين تُوضّح المعلومة في موضعها (مثال داخل بند، موقف يضيء قاعدة)، وليست إلزامية — بعض المواضيع لا تناسبها قصة، فتُستغنى عنها.
-3. **الخلاصة نص علمي محض**: تُكتب بنفسها بحيث يفهمها القارئ دون قراءة الأمثلة أو القصة نهائياً.
-4. لا تُبنى قوائم الخلاصة أو الأهداف على أحداث المثال («الكراتين → مسار الهروب») بل تُكتب بالمصطلح العلمي المباشر.
-5. المصطلح يُشرح في سياقه وفي وقته ويُضمّن في القاموس، ولا يُعالج الدرس كقاموس مصطلحات.
-6. **التوجيه الامتحاني مرشد لا محور**: تُكتب المادة كعلم أصيل قائم بذاته، وإشارة الامتحان تلميح في موضعه (مثل مثال في نهاية قسم) لا عموداً فقرياً لكل جملة — المادة أولاً والامتحان لاحقاً.
-7. **المصطلحات بالصيغة المزدوجة الموثّقة**: عند أول ورود لأي مصطلح علمي تُكتب الترجمة العربية يليها الأصل الإنجليزي بين قوسين — مثل «شبه الحوادث (Near Miss)» — لأن المتعلم سيدخل الامتحان أو يمارس المجال بالإنجليزية. ويُشترط أن يكون الأصل الإنجليزي مصطلحاً فعلياً من المصادر الرسمية (OSHA، NFPA، ASHRAE، IFMA، ISO...) لا توليفاً أو ترجمة عكسية من عند الكاتب.
-
-## قاعدة الرسوم التوضيحية — الرسم للفكرة لا للتزيين
-
-كل درس يُبنى أصلاً بنص علمي، لكن أنواعاً معيّنة من المعرفة **تحتاج** رسماً توضيحياً لتُفهم بشكل صحيح. القاعدة: الرسم موجود ليخدم الفكرة في موضعها، وليس لأن «حتى يكون فيه رسمة».
-
-**الفحص عند بناء كل درس — اسأل دائماً:**
-1. هل توجد **تسلسل خطوات/قرارات** شجرة قرار أو خريطة عملية؟ → `FlowChart` (مخطط انسيابي).
-2. هل توجد **عملية زمنية أو مراحل دورة** (دورة حياة، تجديد، مراجع)? → `Timeline` (خط زمني) أو `LifecycleCycle`.
-3. هل توجد **تصنيفات/أنواع/أقسام** (أنظمة، استراتيجيات، أركان)? → `Infographic` (شبكة تصنيف).
-4. هل يوجد **ترتيب هرمي أو علاقة رئيسية/مكوّنات**؟ → `Hierarchy` (هرم/شجرة).
-5. هل يوجد **مقارنة بين بديلين أو أكثر** (خياران، قبل/بعد، عقدان)? → `Comparison` (مقارنة جانباً بجانب).
-6. هل توجد **أرقام/نسب/توزيعات/وزن امتحاني** خلف فكرة جوهرية؟ → `StatGrid` (شبكة إحصائية).
-
-**قواعد صارمة:**
-1. **لا رسم بلا محتوى**: المكوّن يُملأ بمعلومات من الدرس نفسه (مصطلحات الدرس، مراجعه، بياناته) لا نصوص عامة فارغة.
-2. **الرسم يوضّح ما يصعب شرحه بالنص فقط** — لا تكرّر الرسم نفس الجُمل النصية، بل تُضغط في عناوين/أيقونات قصيرة.
-3. **مكانه بعد النص الذي يشرح الفكرة مباشرة** (قبل فقرة النتائج أو الخلاصة التي تليه)، لا في بداية الدرس كزخرفة.
-4. **دقة المصطلحات**: الأسماء داخل الرسم بالعربية مع الأصل الإنجليزي (بين قوسين) لأي مصطلح علمي، كما في النص.
-5. **المكوّنات المستخدمة**: من `src/components/ui/figures/` فقط (FlowChart، Timeline، Infographic، Hierarchy، Comparison، StatGrid) — لا SVG مكتوب يدوياً ولا صور خارجية.
-6. **الترتيب الافتراضي**: كل درس نموذجياً بـ 1–3 رسوم (حسب الحاجة فقط)؛ بعض الدروس قد لا تحتاج أي رسم.
-
-**التطبيق على محتوى جديد**: عند تلخيص خطة درس في سير العمل، أضف بند «الرسوم التوضيحية المقترحة» في نص الخطة مع تحديد نوع الرسم وموضعه، ثم أعدها عند كتابة الدرس.
-
-## نموذج المحتوى
-
-- **درس**: `src/content/lessons/*.mdx` — frontmatter + أقسام مرقمة + Callout + GlossaryCard + أداة + QuizBank + مصادر + رسوم توضيحية من `src/components/ui/figures/`.
-- **كويز**: `src/data/quiz/` — بنك يحتوي نفس id المرتبط في الدرس.
-- **أداة تفاعلية**: `src/components/islands/tools/*.tsx` — React بلا مستوى تعليقات (Props/استخدام `displayName` غير مسموح).
-- **خريطة المنهج**: `src/data/curriculum.ts`.
-- **توثيق الخطط**: `project_management/` — MASTER_PLAN.md و DETAILED_PLAN.md و EXAM_COVERAGE.md.
-
-## التدفق القياسي
-
-1. أعد/أضف المحتوى → 2. `npm run qa:ar` → 3. `npm run check` → 4. `npm run build` → 5. عند الطلب فقط: commit.
+- Platform identity: GridFix Academy (`gridfix.net`) — Free Arabic FM & CFM educational platform.
+- Tech stack: Astro 5 static SSG + React 19 islands + Tailwind CSS 4 + TypeScript strict.
+- Non-negotiable Arabic quality: Zero machine-translated words; strict dual verification (script + manual review).
+- Pedagogy: Subject matter first (CFM exam scope), concise real-world examples, verified bilingual terms `(Term)`.
+- UI figures: Use `src/components/ui/figures/` only (FlowChart, Timeline, Infographic, Hierarchy, Comparison, StatGrid).
+- Deterministic gates: All changes must pass `npm run verify` (`check` + `qa:ar` + `test` + `format:check`).

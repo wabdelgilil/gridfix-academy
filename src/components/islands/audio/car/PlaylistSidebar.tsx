@@ -30,13 +30,17 @@ export default function PlaylistSidebar({
   return (
     <aside
       className={`hidden lg:flex flex-col w-84 xl:w-96 sticky top-4 max-h-[calc(100vh-2rem)] rounded-2xl sm:rounded-3xl border-2 shadow-xl shrink-0 overflow-hidden transition-all duration-300 ${
-        isDay ? 'bg-white border-slate-200 text-slate-900' : 'bg-slate-900 border-slate-800 text-white'
+        isDay
+          ? 'bg-white border-slate-200 text-slate-900'
+          : 'bg-slate-900 border-slate-800 text-white'
       }`}
     >
       {/* Header */}
       <div
         className={`p-4 border-b shrink-0 flex items-center justify-between ${
-          isDay ? 'border-slate-200 bg-slate-50' : 'border-slate-800 bg-slate-950/60'
+          isDay
+            ? 'border-slate-200 bg-slate-50'
+            : 'border-slate-800 bg-slate-950/60'
         }`}
       >
         <div>
@@ -66,7 +70,9 @@ export default function PlaylistSidebar({
       <div className="flex-1 overflow-y-auto p-2 space-y-1.5">
         {playlist.map((track, globalIdx) => {
           const isSelected = globalIdx === currentIndex;
-          const durationStr = lessonAudioDurations[track.id] || (track.hasAudio ? 'متاح' : 'قريباً');
+          const durationStr =
+            lessonAudioDurations[track.id] ||
+            (track.hasAudio ? 'متاح' : 'قريباً');
           return (
             <button
               key={track.id}
@@ -80,10 +86,10 @@ export default function PlaylistSidebar({
                     ? 'bg-emerald-50 border-emerald-400 text-emerald-950 font-bold shadow-xs'
                     : 'bg-white/10 border-emerald-500 text-white font-bold shadow-xs'
                   : track.hasAudio
-                  ? isDay
-                    ? 'border-transparent hover:bg-slate-100 text-slate-800 cursor-pointer'
-                    : 'border-transparent hover:bg-white/5 text-slate-300 cursor-pointer'
-                  : 'border-transparent opacity-40 cursor-not-allowed text-slate-500'
+                    ? isDay
+                      ? 'border-transparent hover:bg-slate-100 text-slate-800 cursor-pointer'
+                      : 'border-transparent hover:bg-white/5 text-slate-300 cursor-pointer'
+                    : 'border-transparent opacity-40 cursor-not-allowed text-slate-500'
               }`}
             >
               {/* Track Index or Play Icon */}
@@ -100,7 +106,10 @@ export default function PlaylistSidebar({
                 <span className="text-[10px] font-bold text-slate-400">
                   م {track.stationNumber}
                 </span>
-                <span className="absolute bottom-1 right-1 px-1 py-0.2 rounded bg-black/80 text-[9px] font-mono font-bold text-white" dir="ltr">
+                <span
+                  className="absolute bottom-1 right-1 px-1 py-0.2 rounded bg-black/80 text-[9px] font-mono font-bold text-white"
+                  dir="ltr"
+                >
                   {durationStr}
                 </span>
               </div>

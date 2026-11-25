@@ -6,7 +6,9 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { courses } from './src/data/courses.ts';
 
-const plannedCourseIds = courses.filter((c) => c.status !== 'live').map((c) => c.id);
+const plannedCourseIds = courses
+  .filter((c) => c.status !== 'live')
+  .map((c) => c.id);
 
 export default defineConfig({
   site: 'https://academy.gridfix.net',

@@ -1,5 +1,10 @@
 import { useState, useCallback, useEffect } from 'react';
-import { loadProgress, saveProgress, toggleLessonComplete, isLessonComplete } from '../../../lib/storage';
+import {
+  loadProgress,
+  saveProgress,
+  toggleLessonComplete,
+  isLessonComplete,
+} from '../../../lib/storage';
 import { translate } from '../../../i18n/translations';
 
 interface Props {
@@ -20,7 +25,10 @@ export default function CompleteLessonButton({ course, lessonId }: Props) {
   const toggle = useCallback(() => {
     setDone((prev) => {
       const newDone = !prev;
-      saveProgress(toggleLessonComplete(loadProgress(course), lessonId), course);
+      saveProgress(
+        toggleLessonComplete(loadProgress(course), lessonId),
+        course
+      );
       if (newDone) {
         setShowConfetti(true);
         setTimeout(() => setShowConfetti(false), 2000);

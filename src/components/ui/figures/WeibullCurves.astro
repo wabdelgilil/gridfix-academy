@@ -15,7 +15,13 @@ interface Props {
   timeLabel?: string;
 }
 
-const { curves, title, caption, hazardLabel = 'hazard rate', timeLabel = 'time' } = Astro.props;
+const {
+  curves,
+  title,
+  caption,
+  hazardLabel = 'hazard rate',
+  timeLabel = 'time',
+} = Astro.props;
 
 const styles: Record<CurveKey, Record<string, string>> = {
   infant: {
@@ -90,27 +96,91 @@ function curvePath(key: CurveKey): string {
   )}
   <div class="grid grid-cols-1 gap-3.5 sm:grid-cols-3">
     {curves.map((c) => (
-      <div class={`rounded-xl border p-3.5 transition-all ${styles[c.key].card}`}>
+      <div
+        class={`rounded-xl border p-3.5 transition-all ${styles[c.key].card}`}
+      >
         <div class="flex items-center justify-between gap-2">
-          <span class="text-xs font-bold text-ink-900 dark:text-slate-100">{c.label}</span>
-          <span class={`rounded-full px-2 py-0.5 text-[11px] font-bold ${styles[c.key].chip}`} dir="ltr">{labels[c.key]}</span>
+          <span class="text-xs font-bold text-ink-900 dark:text-slate-100">
+            {c.label}
+          </span>
+          <span
+            class={`rounded-full px-2 py-0.5 text-[11px] font-bold ${styles[c.key].chip}`}
+            dir="ltr"
+          >
+            {labels[c.key]}
+          </span>
         </div>
-        <svg viewBox="0 0 120 80" class="mt-2 w-full" role="img" aria-label={`${c.label} ${labels[c.key]}`}>
+        <svg
+          viewBox="0 0 120 80"
+          class="mt-2 w-full"
+          role="img"
+          aria-label={`${c.label} ${labels[c.key]}`}
+        >
           <style>
-            .wb-axis { stroke: #94a3b8; }
-            .wb-text { fill: #64748b; }
-            :global(.dark) .wb-axis { stroke: #475569; }
-            :global(.dark) .wb-text { fill: #94a3b8; }
+            .wb-axis {
+              stroke: #94a3b8;
+            }
+            .wb-text {
+              fill: #64748b;
+            }
+            :global(.dark) .wb-axis {
+              stroke: #475569;
+            }
+            :global(.dark) .wb-text {
+              fill: #94a3b8;
+            }
           </style>
-          <line x1={PLOT_LEFT} y1={PLOT_BOTTOM} x2={PLOT_RIGHT} y2={PLOT_BOTTOM} class="wb-axis" stroke-width="1" />
-          <line x1={PLOT_LEFT} y1={PLOT_BOTTOM} x2={PLOT_LEFT} y2={PLOT_TOP} class="wb-axis" stroke-width="1" />
-          <path d={curvePath(c.key)} fill="none" stroke={styles[c.key].color} stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-          <text x={PLOT_RIGHT} y="78" font-size="7" class="wb-text" text-anchor="end">{timeLabel}</text>
-          <text x={PLOT_LEFT + 2} y={PLOT_TOP + 7} font-size="6.5" class="wb-text">{hazardLabel}</text>
+          <line
+            x1={PLOT_LEFT}
+            y1={PLOT_BOTTOM}
+            x2={PLOT_RIGHT}
+            y2={PLOT_BOTTOM}
+            class="wb-axis"
+            stroke-width="1"
+          />
+          <line
+            x1={PLOT_LEFT}
+            y1={PLOT_BOTTOM}
+            x2={PLOT_LEFT}
+            y2={PLOT_TOP}
+            class="wb-axis"
+            stroke-width="1"
+          />
+          <path
+            d={curvePath(c.key)}
+            fill="none"
+            stroke={styles[c.key].color}
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <text
+            x={PLOT_RIGHT}
+            y="78"
+            font-size="7"
+            class="wb-text"
+            text-anchor="end"
+          >
+            {timeLabel}
+          </text>
+          <text
+            x={PLOT_LEFT + 2}
+            y={PLOT_TOP + 7}
+            font-size="6.5"
+            class="wb-text"
+          >
+            {hazardLabel}
+          </text>
         </svg>
-        <p class="mt-1.5 text-[11px] leading-relaxed text-ink-600 dark:text-slate-300">{c.note}</p>
+        <p class="mt-1.5 text-[11px] leading-relaxed text-ink-600 dark:text-slate-300">
+          {c.note}
+        </p>
       </div>
     ))}
   </div>
-  {caption && <p class="mt-2 text-center text-xs text-ink-400 dark:text-slate-400">{caption}</p>}
+  {caption && (
+    <p class="mt-2 text-center text-xs text-ink-400 dark:text-slate-400">
+      {caption}
+    </p>
+  )}
 </div>

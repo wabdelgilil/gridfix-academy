@@ -22,7 +22,10 @@ export default function BottleneckSimulator() {
   const bottleneck = stages.find((s) => s.rate === bottleneckRate) ?? stages[0];
   const bottleneckIndex = stages.findIndex((s) => s.id === bottleneck.id);
   const upstream = bottleneckIndex > 0 ? stages[bottleneckIndex - 1] : null;
-  const wip = upstream && upstream.rate > bottleneckRate ? upstream.rate - bottleneckRate : 0;
+  const wip =
+    upstream && upstream.rate > bottleneckRate
+      ? upstream.rate - bottleneckRate
+      : 0;
   const hourlyLoss = bottleneckRate * 60 * PROFIT_PER_UNIT;
 
   return (
@@ -73,17 +76,27 @@ export default function BottleneckSimulator() {
 
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="rounded-xl bg-teal-50 p-4 ring-2 ring-teal-500">
-            <p className="text-xs font-semibold text-teal-800">إنتاجية الخط الفعلية</p>
+            <p className="text-xs font-semibold text-teal-800">
+              إنتاجية الخط الفعلية
+            </p>
             <p className="mt-1 text-xl font-bold text-teal-800">
               <strong dir="ltr">{bottleneckRate}</strong> زجاجة/دقيقة
             </p>
-            <p className="mt-1 text-[11px] text-teal-700">تساوي سرعة أبطأ محطة في الخط</p>
+            <p className="mt-1 text-[11px] text-teal-700">
+              تساوي سرعة أبطأ محطة في الخط
+            </p>
           </div>
-          <div className={`rounded-xl p-4 ring-2 ${wip > 0 ? 'bg-rose-50 ring-rose-500' : 'bg-slate-50 ring-slate-300'}`}>
-            <p className={`text-xs font-semibold ${wip > 0 ? 'text-rose-800' : 'text-ink-500'}`}>
+          <div
+            className={`rounded-xl p-4 ring-2 ${wip > 0 ? 'bg-rose-50 ring-rose-500' : 'bg-slate-50 ring-slate-300'}`}
+          >
+            <p
+              className={`text-xs font-semibold ${wip > 0 ? 'text-rose-800' : 'text-ink-500'}`}
+            >
               تكدس المخزون تحت التشغيل
             </p>
-            <p className={`mt-1 text-xl font-bold ${wip > 0 ? 'text-rose-800' : 'text-ink-700'}`}>
+            <p
+              className={`mt-1 text-xl font-bold ${wip > 0 ? 'text-rose-800' : 'text-ink-700'}`}
+            >
               {wip > 0 ? (
                 <>
                   +<strong dir="ltr">{wip}</strong> زجاجة/دقيقة
@@ -93,21 +106,28 @@ export default function BottleneckSimulator() {
               )}
             </p>
             <p className="mt-1 text-[11px] opacity-80">
-              {wip > 0 ? 'رأس مال مجمد وخطر تلف قبل الاختناق' : 'تدفق سلس دون هدر تخزيني'}
+              {wip > 0
+                ? 'رأس مال مجمد وخطر تلف قبل الاختناق'
+                : 'تدفق سلس دون هدر تخزيني'}
             </p>
           </div>
           <div className="rounded-xl bg-amber-50 p-4 ring-2 ring-amber-500">
-            <p className="text-xs font-semibold text-amber-800">خسارة ساعة توقف في الاختناق</p>
+            <p className="text-xs font-semibold text-amber-800">
+              خسارة ساعة توقف في الاختناق
+            </p>
             <p className="mt-1 text-xl font-bold text-amber-800">
               $<strong dir="ltr">{hourlyLoss.toLocaleString('en-US')}</strong>
             </p>
-            <p className="mt-1 text-[11px] text-amber-700">ساعة ضائعة هنا = ساعة من مبيعات المصنع كله</p>
+            <p className="mt-1 text-[11px] text-amber-700">
+              ساعة ضائعة هنا = ساعة من مبيعات المصنع كله
+            </p>
           </div>
         </div>
 
         <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
           <p className="text-xs text-ink-500">
-            جرّب رفع التعبئة فوق 110 ولاحظ انتقال الاختناق إلى التغطية — هذه هي الخطوة الخامسة لنظرية القيود.
+            جرّب رفع التعبئة فوق 110 ولاحظ انتقال الاختناق إلى التغطية — هذه هي
+            الخطوة الخامسة لنظرية القيود.
           </p>
           <button
             type="button"

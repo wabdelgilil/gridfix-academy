@@ -11,8 +11,14 @@ const steps: Step[] = [
     key: 'criticality',
     question: 'ما مدى حرجية هذا الأصل لعمل المنشأة؟ (تخيّل توقفه وسط يوم عمل)',
     options: [
-      { text: 'حرج للغاية — توقفه يوقف العمل أو يعرض السلامة للخطر', value: 'high' },
-      { text: 'متوسط — يسبب إزعاجاً وضعف أداء لكنه ليس توقفاً كاملاً', value: 'med' },
+      {
+        text: 'حرج للغاية — توقفه يوقف العمل أو يعرض السلامة للخطر',
+        value: 'high',
+      },
+      {
+        text: 'متوسط — يسبب إزعاجاً وضعف أداء لكنه ليس توقفاً كاملاً',
+        value: 'med',
+      },
       { text: 'منخفض — توقفه مؤقت وبسيط وبلا أثر كبير', value: 'low' },
     ],
   },
@@ -20,9 +26,15 @@ const steps: Step[] = [
     key: 'failurecost',
     question: 'كيف تقارن تكلفة الفشل المفاجئ بتكلفة الصيانة الوقائية؟',
     options: [
-      { text: 'الفشل كارثي/باهظ التكلفة (توقف باهظ، أرواح، سمعة)', value: 'high' },
+      {
+        text: 'الفشل كارثي/باهظ التكلفة (توقف باهظ، أرواح، سمعة)',
+        value: 'high',
+      },
       { text: 'التكلفتان متقاربتان في المجمل', value: 'med' },
-      { text: 'الفشل رخيص وسريع الإصلاح (مثل استبدال مروحة بسيطة)', value: 'low' },
+      {
+        text: 'الفشل رخيص وسريع الإصلاح (مثل استبدال مروحة بسيطة)',
+        value: 'low',
+      },
     ],
   },
   {
@@ -44,7 +56,10 @@ interface Verdict {
 
 function decide([criticality, failureCost, monitorable]: string[]): Verdict {
   const med = criticality === 'high' || failureCost === 'high';
-  if (criticality === 'low' && (failureCost === 'low' || failureCost === 'med')) {
+  if (
+    criticality === 'low' &&
+    (failureCost === 'low' || failureCost === 'med')
+  ) {
     return {
       strategy: 'Run-to-Failure (التشغيل حتى العطل)',
       icon: '🛌',
@@ -98,12 +113,20 @@ export default function MaintenanceWizard() {
           🧭 معالج اختيار استراتيجية الصيانة — النتيجة
         </div>
         <div className="p-6 text-center">
-          <div className={`inline-flex items-center gap-3 rounded-2xl px-6 py-4 ring-2 ${verdict.color}`}>
+          <div
+            className={`inline-flex items-center gap-3 rounded-2xl px-6 py-4 ring-2 ${verdict.color}`}
+          >
             <span className="text-3xl">{verdict.icon}</span>
             <span className="text-lg font-bold">{verdict.strategy}</span>
           </div>
-          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink-600">{verdict.why}</p>
-          <button type="button" onClick={reset} className="mt-5 rounded-xl bg-ink-900 px-6 py-2.5 text-sm font-semibold text-white cursor-pointer hover:bg-ink-600">
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink-600">
+            {verdict.why}
+          </p>
+          <button
+            type="button"
+            onClick={reset}
+            className="mt-5 rounded-xl bg-ink-900 px-6 py-2.5 text-sm font-semibold text-white cursor-pointer hover:bg-ink-600"
+          >
             🔄 معالجة أصل آخر
           </button>
         </div>
@@ -118,15 +141,22 @@ export default function MaintenanceWizard() {
     <div className="card mt-6 overflow-hidden">
       <div className="border-b border-slate-200 bg-slate-50 px-5 py-3">
         <div className="flex items-center justify-between text-sm">
-          <span className="font-semibold text-ink-900">سؤال {step + 1} من {steps.length}</span>
+          <span className="font-semibold text-ink-900">
+            سؤال {step + 1} من {steps.length}
+          </span>
           <span className="chip bg-brand-100 text-brand-700">{progress}%</span>
         </div>
         <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-100">
-          <div className="h-full rounded-full bg-brand-600 transition-all" style={{ width: `${progress}%` }} />
+          <div
+            className="h-full rounded-full bg-brand-600 transition-all"
+            style={{ width: `${progress}%` }}
+          />
         </div>
       </div>
       <div className="p-5">
-        <p className="text-base font-medium leading-relaxed text-ink-900">{s.question}</p>
+        <p className="text-base font-medium leading-relaxed text-ink-900">
+          {s.question}
+        </p>
         <div className="mt-4 grid gap-2.5">
           {s.options.map((opt) => (
             <button

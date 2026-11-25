@@ -2,7 +2,11 @@ import { useState, useEffect, useCallback } from 'react';
 import useLang from '../../../lib/useLang';
 import type { QuizQuestion, QuizOption } from '../../../data/quiz/types';
 import { DIFFICULTY_EN } from '../../../data/quiz/types';
-import { loadProgress, saveProgress, recordQuizScore } from '../../../lib/storage';
+import {
+  loadProgress,
+  saveProgress,
+  recordQuizScore,
+} from '../../../lib/storage';
 
 interface Props {
   quizId: string;
@@ -10,7 +14,11 @@ interface Props {
 }
 
 export default function ScenarioQuiz({ quizId, questions }: Props) {
-  const course = quizId.startsWith('quiz-cmrp') ? 'cmrp' : quizId.startsWith('quiz-cama') ? 'cama' : 'cfm';
+  const course = quizId.startsWith('quiz-cmrp')
+    ? 'cmrp'
+    : quizId.startsWith('quiz-cama')
+      ? 'cama'
+      : 'cfm';
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
@@ -22,22 +30,31 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
   const pick = <T,>(ar: T, en?: T) => (isEn && en !== undefined ? en : ar);
 
   const optionText = (o: QuizOption) => pick(o.text, o.textEn);
-  const optionExplanation = (o: QuizOption) => pick(o.explanation, o.explanationEn);
+  const optionExplanation = (o: QuizOption) =>
+    pick(o.explanation, o.explanationEn);
 
   const q = questions[current];
-  const progress = Math.round(((current + (selected !== null ? 1 : 0)) / questions.length) * 100);
+  const progress = Math.round(
+    ((current + (selected !== null ? 1 : 0)) / questions.length) * 100
+  );
 
-  const choose = useCallback((idx: number) => {
-    if (selected !== null) return;
-    setSelected(idx);
-    if (q.options[idx].isCorrect) setScore((s) => s + 1);
-  }, [selected, q]);
+  const choose = useCallback(
+    (idx: number) => {
+      if (selected !== null) return;
+      setSelected(idx);
+      if (q.options[idx].isCorrect) setScore((s) => s + 1);
+    },
+    [selected, q]
+  );
 
   const next = useCallback(() => {
     if (current + 1 >= questions.length) {
       const total = questions.length;
       const finalScore = score;
-      saveProgress(recordQuizScore(loadProgress(course), quizId, finalScore, total), course);
+      saveProgress(
+        recordQuizScore(loadProgress(course), quizId, finalScore, total),
+        course
+      );
       setFinished(true);
     } else {
       setCurrent((c) => c + 1);
@@ -90,7 +107,9 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
     return (
       <div className="card mt-6 overflow-hidden animate-fade-in dark:border-slate-700/80 dark:bg-slate-850">
         <div className="border-b border-slate-200 bg-slate-50 px-5 py-3 text-sm font-semibold text-ink-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
-          {isEn ? '🏁 Test your understanding — final score' : '🏁 اختبر فهمك — النتيجة النهائية'}
+          {isEn
+            ? '🏁 Test your understanding — final score'
+            : '🏁 اختبر فهمك — النتيجة النهائية'}
         </div>
         <div className="p-8 text-center">
           <div className="relative mx-auto h-32 w-32">
@@ -117,7 +136,10 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className={`text-3xl font-extrabold ${pass ? 'text-brand-600 dark:text-brand-400' : 'text-rose-600 dark:text-rose-400'}`} dir="ltr">
+              <span
+                className={`text-3xl font-extrabold ${pass ? 'text-brand-600 dark:text-brand-400' : 'text-rose-600 dark:text-rose-400'}`}
+                dir="ltr"
+              >
                 {pct}%
               </span>
             </div>
@@ -128,13 +150,21 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
               ? `${score} out of ${total} correct`
               : `${score} من ${total} إجابة صحيحة`}
           </p>
-          <p className={`mt-2 font-medium ${pass ? 'text-brand-600 dark:text-brand-400' : 'text-rose-600 dark:text-rose-400'}`}>
+          <p
+            className={`mt-2 font-medium ${pass ? 'text-brand-600 dark:text-brand-400' : 'text-rose-600 dark:text-rose-400'}`}
+          >
             {pass
-              ? isEn ? '🎉 Great job! Solid foundation — ready for the actual exam' : '🎉 أحسنت، أساسك قوي! جاهز للامتحان الفعلي'
-              : isEn ? '💪 Review the explanations and try again' : '💪 راجع الشرح وحاول مرة أخرى'}
+              ? isEn
+                ? '🎉 Great job! Solid foundation — ready for the actual exam'
+                : '🎉 أحسنت، أساسك قوي! جاهز للامتحان الفعلي'
+              : isEn
+                ? '💪 Review the explanations and try again'
+                : '💪 راجع الشرح وحاول مرة أخرى'}
           </p>
           <p className="mt-2 text-sm text-ink-400 dark:text-slate-400">
-            {isEn ? 'The CFM exam favors scenario-based application, not memorization.' : 'نمط أسئلة CFM يعتمد السيناريو والتطبيق، لا الحفظ.'}
+            {isEn
+              ? 'The CFM exam favors scenario-based application, not memorization.'
+              : 'نمط أسئلة CFM يعتمد السيناريو والتطبيق، لا الحفظ.'}
           </p>
 
           <div className="mt-6 mx-auto max-w-xs">
@@ -150,7 +180,11 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
             </div>
           </div>
 
-          <button type="button" onClick={reset} className="btn-primary mt-6 shadow-sm">
+          <button
+            type="button"
+            onClick={reset}
+            className="btn-primary mt-6 shadow-sm"
+          >
             {isEn ? '🔄 Try again' : '🔄 إعادة المحاولة'}
           </button>
         </div>
@@ -169,18 +203,27 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
 
       <div className="flex items-center justify-between border-b border-slate-200 bg-brand-50/70 px-5 py-3 dark:border-slate-700 dark:bg-brand-950/40">
         <span className="text-sm font-semibold text-brand-900 dark:text-brand-300">
-          {isEn ? `💬 Scenario ${current + 1} of ${questions.length}` : `💬 سيناريو ${current + 1} من ${questions.length}`}
+          {isEn
+            ? `💬 Scenario ${current + 1} of ${questions.length}`
+            : `💬 سيناريو ${current + 1} من ${questions.length}`}
         </span>
         <div className="flex items-center gap-2">
           <span className="chip bg-brand-100 text-brand-800 dark:bg-brand-900/60 dark:text-brand-300">
-            {isEn ? `${DIFFICULTY_EN[q.difficulty]}` : `الصعوبة: ${q.difficulty}`}
+            {isEn
+              ? `${DIFFICULTY_EN[q.difficulty]}`
+              : `الصعوبة: ${q.difficulty}`}
           </span>
-          <span className="text-xs text-ink-400 dark:text-slate-400" dir="ltr">{progress}%</span>
+          <span className="text-xs text-ink-400 dark:text-slate-400" dir="ltr">
+            {progress}%
+          </span>
         </div>
       </div>
 
       <div className="p-6">
-        <p className="text-base font-medium leading-relaxed text-ink-900 dark:text-slate-100" dir={isEn ? 'ltr' : 'rtl'}>
+        <p
+          className="text-base font-medium leading-relaxed text-ink-900 dark:text-slate-100"
+          dir={isEn ? 'ltr' : 'rtl'}
+        >
           {pick(q.scenario, q.scenarioEn)}
         </p>
         <p className="mt-4 text-sm font-bold text-brand-700 dark:text-brand-400">
@@ -190,19 +233,25 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
         <div className="mt-5 grid gap-3">
           {q.options.map((option, idx) => {
             const isSelected = selected === idx;
-            let cls = 'bg-white text-ink-800 ring-1 ring-slate-200 hover:ring-brand-500 hover:bg-brand-50/40 dark:bg-slate-800/80 dark:text-slate-200 dark:ring-slate-700 dark:hover:bg-slate-750 dark:hover:ring-brand-400';
-            let badgeCls = 'bg-slate-100 text-ink-700 dark:bg-slate-700 dark:text-slate-300';
+            let cls =
+              'bg-white text-ink-800 ring-1 ring-slate-200 hover:ring-brand-500 hover:bg-brand-50/40 dark:bg-slate-800/80 dark:text-slate-200 dark:ring-slate-700 dark:hover:bg-slate-750 dark:hover:ring-brand-400';
+            let badgeCls =
+              'bg-slate-100 text-ink-700 dark:bg-slate-700 dark:text-slate-300';
 
             if (selected !== null) {
               if (option.isCorrect) {
-                cls = 'bg-emerald-50 text-emerald-950 ring-2 ring-emerald-500 dark:bg-emerald-950/40 dark:text-emerald-200 dark:ring-emerald-400';
+                cls =
+                  'bg-emerald-50 text-emerald-950 ring-2 ring-emerald-500 dark:bg-emerald-950/40 dark:text-emerald-200 dark:ring-emerald-400';
                 badgeCls = 'bg-emerald-600 text-white dark:bg-emerald-500';
               } else if (isSelected) {
-                cls = 'bg-rose-50 text-rose-950 ring-2 ring-rose-400 dark:bg-rose-950/40 dark:text-rose-200 dark:ring-rose-500';
+                cls =
+                  'bg-rose-50 text-rose-950 ring-2 ring-rose-400 dark:bg-rose-950/40 dark:text-rose-200 dark:ring-rose-500';
                 badgeCls = 'bg-rose-600 text-white dark:bg-rose-500';
               } else {
-                cls = 'bg-slate-50/60 text-ink-400 opacity-60 dark:bg-slate-800/30 dark:text-slate-500';
-                badgeCls = 'bg-slate-200/50 text-slate-400 dark:bg-slate-700/50 dark:text-slate-500';
+                cls =
+                  'bg-slate-50/60 text-ink-400 opacity-60 dark:bg-slate-800/30 dark:text-slate-500';
+                badgeCls =
+                  'bg-slate-200/50 text-slate-400 dark:bg-slate-700/50 dark:text-slate-500';
               }
             }
 
@@ -236,8 +285,12 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
           >
             <span className="font-bold">
               {q.options[selected].isCorrect
-                ? isEn ? '✓ Correct — ' : '✓ إجابة صحيحة — '
-                : isEn ? '✗ Not the best choice — ' : '✗ ليست الأفضل — '}
+                ? isEn
+                  ? '✓ Correct — '
+                  : '✓ إجابة صحيحة — '
+                : isEn
+                  ? '✗ Not the best choice — '
+                  : '✗ ليست الأفضل — '}
             </span>
             {optionExplanation(q.options[selected])}
           </div>
@@ -251,8 +304,12 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
               className="btn-primary shadow-sm shadow-brand-500/20"
             >
               {current + 1 >= questions.length
-                ? isEn ? 'Show final score 🏁' : 'عرض النتيجة 🏁'
-                : isEn ? 'Next question ←' : 'السؤال التالي ←'}
+                ? isEn
+                  ? 'Show final score 🏁'
+                  : 'عرض النتيجة 🏁'
+                : isEn
+                  ? 'Next question ←'
+                  : 'السؤال التالي ←'}
             </button>
             <span className="text-xs text-ink-400 dark:text-slate-400 hidden sm:inline">
               {isEn ? 'Press Enter ↵ for next' : 'اضغط Enter ↵ للتالي'}

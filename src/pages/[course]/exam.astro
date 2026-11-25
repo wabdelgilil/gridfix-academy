@@ -20,9 +20,20 @@ const courseMeta = getCourse(course);
 const isPlanned = !courseMeta || courseMeta.status !== 'live';
 ---
 
-<BaseLayout title={`محاكي الامتحان — ${courseMeta?.code ?? ''}`} titleEn={`Exam Simulator — ${courseMeta?.code ?? ''}`} description="محاكي حقيقي للامتحان: أسئلة مواقف، مؤقت زمني، وتقرير تشخيصي حسب أركان المنهج." descriptionEn="A real exam simulator: scenario questions, a countdown timer, and a diagnostic report by competency pillar." noindex={isPlanned}>
+<BaseLayout
+  title={`محاكي الامتحان — ${courseMeta?.code ?? ''}`}
+  titleEn={`Exam Simulator — ${courseMeta?.code ?? ''}`}
+  description="محاكي حقيقي للامتحان: أسئلة مواقف، مؤقت زمني، وتقرير تشخيصي حسب أركان المنهج."
+  descriptionEn="A real exam simulator: scenario questions, a countdown timer, and a diagnostic report by competency pillar."
+  noindex={isPlanned}
+>
   <div class="mx-auto max-w-3xl">
-    <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}/` }, { label: 'محاكي الامتحان', labelEn: 'Exam simulator' }]} />
+    <Breadcrumb
+      items={[
+        { label: courseMeta?.code ?? course, href: `/${course}/` },
+        { label: 'محاكي الامتحان', labelEn: 'Exam simulator' },
+      ]}
+    />
     <header class="mb-6">
       <span class="chip bg-brand-100 text-brand-700">
         <LangText lang="ar">🧪 تدريب فعلي</LangText>
@@ -30,23 +41,54 @@ const isPlanned = !courseMeta || courseMeta.status !== 'live';
       </span>
       <h1 class="mt-3 text-2xl font-bold text-ink-900">
         <LangText lang="ar">📝 محاكي امتحان {courseMeta?.code ?? ''}</LangText>
-        <LangText lang="en">📝 {courseMeta?.code ?? ''} Exam Simulator</LangText>
+        <LangText lang="en">
+          📝 {courseMeta?.code ?? ''} Exam Simulator
+        </LangText>
       </h1>
       <p class="mt-2 text-sm leading-relaxed text-ink-500">
         {course === 'cmrp' ? (
           <>
-            <LangText lang="ar">أسئلة مواقف حقيقية من ركائز SMRP الخمس مع مؤقت يحاكي إيقاع الامتحان الفعلي (82 ثانية للسؤال) وتقرير يبين أضعف ركيزة لديك بعد كل محاولة. اجمع 70% فأكثر لتعتبر جاهزاً.</LangText>
-            <LangText lang="en">Real scenario questions from the five SMRP pillars with a timer mimicking the real exam pace (82 seconds per question) and a report showing your weakest pillar after each attempt. Score 70% or more to be considered ready.</LangText>
+            <LangText lang="ar">
+              أسئلة مواقف حقيقية من ركائز SMRP الخمس مع مؤقت يحاكي إيقاع
+              الامتحان الفعلي (82 ثانية للسؤال) وتقرير يبين أضعف ركيزة لديك بعد
+              كل محاولة. اجمع 70% فأكثر لتعتبر جاهزاً.
+            </LangText>
+            <LangText lang="en">
+              Real scenario questions from the five SMRP pillars with a timer
+              mimicking the real exam pace (82 seconds per question) and a
+              report showing your weakest pillar after each attempt. Score 70%
+              or more to be considered ready.
+            </LangText>
           </>
         ) : course === 'cama' ? (
           <>
-            <LangText lang="ar">أسئلة مواقف موزعة على مجلدات GFMAM الخمسة مع مؤقت يحاكي إيقاع الامتحان الفعلي (65 ثانية للسؤال، والامتحان الحقيقي 110 أسئلة في 120 دقيقة) وتقرير يبين أضعف مجلد لديك بعد كل محاولة. اجمع 70% فأكثر لتعتبر جاهزاً.</LangText>
-            <LangText lang="en">Scenario questions spread across the five GFMAM Folders with a timer mimicking the real exam pace (65 seconds per question; the real exam is 110 questions in 120 minutes) and a report showing your weakest folder after each attempt. Score 70% or more to be considered ready.</LangText>
+            <LangText lang="ar">
+              أسئلة مواقف موزعة على مجلدات GFMAM الخمسة مع مؤقت يحاكي إيقاع
+              الامتحان الفعلي (65 ثانية للسؤال، والامتحان الحقيقي 110 أسئلة في
+              120 دقيقة) وتقرير يبين أضعف مجلد لديك بعد كل محاولة. اجمع 70%
+              فأكثر لتعتبر جاهزاً.
+            </LangText>
+            <LangText lang="en">
+              Scenario questions spread across the five GFMAM Folders with a
+              timer mimicking the real exam pace (65 seconds per question; the
+              real exam is 110 questions in 120 minutes) and a report showing
+              your weakest folder after each attempt. Score 70% or more to be
+              considered ready.
+            </LangText>
           </>
         ) : (
           <>
-            <LangText lang="ar">أسئلة مواقف حقيقية من كل أركان المنهج مع مؤقت يحاكي إيقاع الامتحان الفعلي (90 ثانية للسؤال) وتقرير يبين أضعف ركن لديك بعد كل محاولة. اجمع 70% فأكثر لتعتبر جاهزاً.</LangText>
-            <LangText lang="en">Real scenario questions from every competence area with a timer mimicking the real exam pace (90 seconds per question) and a report showing your weakest area after each attempt. Score 70% or more to be considered ready.</LangText>
+            <LangText lang="ar">
+              أسئلة مواقف حقيقية من كل أركان المنهج مع مؤقت يحاكي إيقاع الامتحان
+              الفعلي (90 ثانية للسؤال) وتقرير يبين أضعف ركن لديك بعد كل محاولة.
+              اجمع 70% فأكثر لتعتبر جاهزاً.
+            </LangText>
+            <LangText lang="en">
+              Real scenario questions from every competence area with a timer
+              mimicking the real exam pace (90 seconds per question) and a
+              report showing your weakest area after each attempt. Score 70% or
+              more to be considered ready.
+            </LangText>
           </>
         )}
       </p>
@@ -63,7 +105,10 @@ const isPlanned = !courseMeta || courseMeta.status !== 'live';
           <LangText lang="ar">{courseMeta?.description}</LangText>
           <LangText lang="en">{courseMeta?.descriptionEn}</LangText>
         </p>
-        <a href="/" class="mt-4 inline-block font-semibold text-brand-700 hover:underline">
+        <a
+          href="/"
+          class="mt-4 inline-block font-semibold text-brand-700 hover:underline"
+        >
           <LangText lang="ar">← العودة لاختيار الكورس</LangText>
           <LangText lang="en">← Back to course selection</LangText>
         </a>

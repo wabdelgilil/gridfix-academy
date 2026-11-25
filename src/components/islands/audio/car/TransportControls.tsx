@@ -74,14 +74,19 @@ export default function TransportControls({
       </div>
 
       {/* Transport Row (LTR) */}
-      <div className="flex items-center justify-between text-white pt-1" dir="ltr">
+      <div
+        className="flex items-center justify-between text-white pt-1"
+        dir="ltr"
+      >
         {/* Left Controls: Play, Prev, -15s, +15s, Next, Time */}
         <div className="flex items-center gap-2 sm:gap-3">
           <button
             type="button"
             onClick={togglePlay}
             className={`flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full transition shadow-md active:scale-95 cursor-pointer shrink-0 ${
-              isDay ? 'bg-brand-600 text-white hover:bg-brand-700' : 'bg-white text-slate-950 hover:bg-slate-100'
+              isDay
+                ? 'bg-brand-600 text-white hover:bg-brand-700'
+                : 'bg-white text-slate-950 hover:bg-slate-100'
             }`}
             aria-label={isPlaying ? 'إيقاف مؤقت' : 'تشغيل'}
           >
@@ -90,7 +95,10 @@ export default function TransportControls({
                 <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
               </svg>
             ) : (
-              <svg className="h-5 w-5 fill-current translate-x-0.5" viewBox="0 0 24 24">
+              <svg
+                className="h-5 w-5 fill-current translate-x-0.5"
+                viewBox="0 0 24 24"
+              >
                 <path d="M8 5v14l11-7z" />
               </svg>
             )}
@@ -137,7 +145,9 @@ export default function TransportControls({
           </button>
 
           <div className="font-mono text-xs sm:text-sm text-slate-300 ml-1">
-            <span className="text-white font-bold">{formatAudioTime(currentTime)}</span>
+            <span className="text-white font-bold">
+              {formatAudioTime(currentTime)}
+            </span>
             <span className="mx-1 text-slate-500">/</span>
             <span>{formatAudioTime(duration)}</span>
           </div>
@@ -180,7 +190,9 @@ export default function TransportControls({
             type="button"
             onClick={onTogglePlaylist}
             className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold transition cursor-pointer ${
-              isSidebarOpen ? 'bg-emerald-600 text-white' : 'bg-white/10 hover:bg-white/20 text-slate-200'
+              isSidebarOpen
+                ? 'bg-emerald-600 text-white'
+                : 'bg-white/10 hover:bg-white/20 text-slate-200'
             }`}
             title={isSidebarOpen ? 'إخفاء قائمة التشغيل' : 'عرض قائمة التشغيل'}
           >

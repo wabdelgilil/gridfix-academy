@@ -10,7 +10,12 @@ const SYSTEMS = [
     cost: 'منخفض إلى متوسط',
     integration: 'متوسط',
     scalability: 'متوسط',
-    features: ['أوامر الشغل', 'الجدولة الوقائية', 'المخزون', 'التقارير الأساسية'],
+    features: [
+      'أوامر الشغل',
+      'الجدولة الوقائية',
+      'المخزون',
+      'التقارير الأساسية',
+    ],
   },
   {
     id: 'cafm',
@@ -21,7 +26,12 @@ const SYSTEMS = [
     cost: 'متوسط',
     integration: 'جيد',
     scalability: 'جيد',
-    features: ['إدارة المساحات', 'المخططات المعمارية', 'خدمات FM', 'السلامة البيئية'],
+    features: [
+      'إدارة المساحات',
+      'المخططات المعمارية',
+      'خدمات FM',
+      'السلامة البيئية',
+    ],
   },
   {
     id: 'eam',
@@ -46,9 +56,30 @@ const CRITERIA = [
 ];
 
 const SCORE_MAP: Record<string, Record<string, number>> = {
-  cmms: { scalability: 60, ease: 80, integration: 50, reports: 60, cost: 85, support: 70 },
-  cafm: { scalability: 70, ease: 70, integration: 70, reports: 75, cost: 65, support: 65 },
-  eam: { scalability: 90, ease: 55, integration: 95, reports: 90, cost: 40, support: 60 },
+  cmms: {
+    scalability: 60,
+    ease: 80,
+    integration: 50,
+    reports: 60,
+    cost: 85,
+    support: 70,
+  },
+  cafm: {
+    scalability: 70,
+    ease: 70,
+    integration: 70,
+    reports: 75,
+    cost: 65,
+    support: 65,
+  },
+  eam: {
+    scalability: 90,
+    ease: 55,
+    integration: 95,
+    reports: 90,
+    cost: 40,
+    support: 60,
+  },
 };
 
 function getWeightedScore(systemId: string, weights: Record<string, number>) {
@@ -83,21 +114,32 @@ export default function SystemEvaluator() {
       <div className="space-y-5 p-5">
         {/* Criteria Weights */}
         <div>
-          <p className="mb-2 text-sm font-bold text-ink-700">weighted المعايير حسب أهميتها (المجموع = 100%):</p>
+          <p className="mb-2 text-sm font-bold text-ink-700">
+            weighted المعايير حسب أهميتها (المجموع = 100%):
+          </p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {CRITERIA.map((c) => (
               <div key={c.id} className="flex items-center gap-2">
-                <label className="w-28 text-xs font-semibold text-ink-600">{c.label}:</label>
+                <label className="w-28 text-xs font-semibold text-ink-600">
+                  {c.label}:
+                </label>
                 <input
                   type="range"
                   min={0}
                   max={50}
                   value={weights[c.id]}
-                  onChange={(e) => setWeights((prev) => ({ ...prev, [c.id]: Number(e.target.value) }))}
+                  onChange={(e) =>
+                    setWeights((prev) => ({
+                      ...prev,
+                      [c.id]: Number(e.target.value),
+                    }))
+                  }
                   className="flex-1 cursor-pointer"
                   aria-label={`وزن ${c.label}`}
                 />
-                <span className="w-8 text-center text-[11px] font-bold text-ink-700">{weights[c.id]}</span>
+                <span className="w-8 text-center text-[11px] font-bold text-ink-700">
+                  {weights[c.id]}
+                </span>
               </div>
             ))}
           </div>
@@ -123,7 +165,9 @@ export default function SystemEvaluator() {
                 )}
               </div>
               <p className="mb-1 text-[11px] text-ink-500">{sys.nameAr}</p>
-              <p className="mb-2 text-[11px] font-semibold text-brand-700">التركيز: {sys.focus}</p>
+              <p className="mb-2 text-[11px] font-semibold text-brand-700">
+                التركيز: {sys.focus}
+              </p>
               <div className="mb-3 flex items-center gap-2">
                 <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-200">
                   <div
@@ -133,13 +177,21 @@ export default function SystemEvaluator() {
                     style={{ width: `${sys.score}%` }}
                   />
                 </div>
-                <span className="text-sm font-bold text-ink-800">{sys.score}%</span>
+                <span className="text-sm font-bold text-ink-800">
+                  {sys.score}%
+                </span>
               </div>
-              <p className="mb-1 text-[10px] font-semibold text-ink-500">أفضل استخدام لـ: {sys.best}</p>
-              <p className="mb-1 text-[10px] text-ink-500">التكلفة: {sys.cost}</p>
+              <p className="mb-1 text-[10px] font-semibold text-ink-500">
+                أفضل استخدام لـ: {sys.best}
+              </p>
+              <p className="mb-1 text-[10px] text-ink-500">
+                التكلفة: {sys.cost}
+              </p>
               <ul className="mt-2 space-y-0.5">
                 {sys.features.map((f) => (
-                  <li key={f} className="text-[10px] text-ink-500">• {f}</li>
+                  <li key={f} className="text-[10px] text-ink-500">
+                    • {f}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -149,10 +201,14 @@ export default function SystemEvaluator() {
         {/* Recommendation */}
         <div className="rounded-xl bg-slate-50 px-4 py-3">
           <p className="text-xs text-ink-500">
-            بناءً على أولوياتك: <strong>{top.name}</strong> ({top.nameAr}) هو الأنسب — درجة التوافق <strong>{top.score}%</strong>.{' '}
-            {top.id === 'cmms' && 'مناسب للتركيز على التنفيذ التشغيلي مع تكلفة محدودة.'}
-            {top.id === 'cafm' && 'مناسب لإدارة المنشآت والمساحات مع تكامل جيد.'}
-            {top.id === 'eam' && 'مناسب للمؤسسات الكبيرة التي تحتاج تكاملاً مؤسسياً شاملاً.'}
+            بناءً على أولوياتك: <strong>{top.name}</strong> ({top.nameAr}) هو
+            الأنسب — درجة التوافق <strong>{top.score}%</strong>.{' '}
+            {top.id === 'cmms' &&
+              'مناسب للتركيز على التنفيذ التشغيلي مع تكلفة محدودة.'}
+            {top.id === 'cafm' &&
+              'مناسب لإدارة المنشآت والمساحات مع تكامل جيد.'}
+            {top.id === 'eam' &&
+              'مناسب للمؤسسات الكبيرة التي تحتاج تكاملاً مؤسسياً شاملاً.'}
           </p>
         </div>
       </div>

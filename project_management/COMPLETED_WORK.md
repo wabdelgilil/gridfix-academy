@@ -3,6 +3,43 @@
 > يُسجّل كل إنجاز كبرى بالتاريخ والملفات المتأثرة. يُقرأ في بداية كل جلسة لفهم ما تم بالفعل.
 
 ---
+## [2026-11-25] اعتماد إطار الحوكمة الهندسي (Greenfield Governance Bootstrap) وتفعيل بوابات التحقق الآلي
+
+- **تثبيت النواة الصغرى للحوكمة (Tier-0 Micro-Kernel)**:
+  - صياغة ملف الحوكمة الأساسي `AGENTS.md` (50 سطراً) ليتوافق بدقة مع معيار (<= 90 سطراً).
+  - تثبيت مؤشر بيئة Gemini في `GEMINI.md` ليشير للنواة الأساسية دون ازدواجية.
+  - نقل الذاكرة المعرفية التخصصية إلى `docs/memory/` (`arabic_quality.md`, `pedagogy_and_figures.md`, `video_constitution.md`).
+- **إنشاء التوثيق الحي للمشروع (Living Documentation)**:
+  - إعداد وثيقة المتطلبات البرمجية [SRS.md](SRS.md) الشاملة للأهداف، المتطلبات الوظيفية وغير الوظيفية.
+  - إعداد ملف [README.md](README.md) و [CHANGELOG.md](CHANGELOG.md) والمعمارية [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) وسجل الممارسات المحظورة [docs/ANTI_PATTERNS.md](docs/ANTI_PATTERNS.md).
+  - توثيق القرار المعماري الأول [docs/adrs/ADR-001-engineering-governance-and-architecture.md](docs/adrs/ADR-001-engineering-governance-and-architecture.md).
+- **أدوات التحقق الآلية الحتمية (Deterministic Tooling Gate)**:
+  - تثبيت وضبط Prettier مع إضافة `prettier-plugin-astro` وملفات التكوين `.prettierrc` و `.prettierignore`.
+  - تدشين أمر التحقق الموحد `npm run verify` الجامع لأربعة فحوصات: `astro check` + `qa:ar` + `test` + `format:check`.
+  - اجتياز كافة الفحوصات بنجاح بنسبة 100% مع بناء 120 صفحة في 6 ثوانٍ بدون أي أخطاء.
+- **الملفات المعتمدة**:
+  - `AGENTS.md`, `GEMINI.md`, `SRS.md`, `README.md`, `CHANGELOG.md`
+  - `docs/ARCHITECTURE.md`, `docs/ANTI_PATTERNS.md`, `docs/adrs/ADR-001...`
+  - `docs/memory/INDEX.md`, `docs/memory/*.md`
+  - `project_management/ACTIVE_CONTEXT.md`, `project_management/TECH_DEBT_REGISTER.md`
+  - `project_management/plans/01-governance-bootstrap/plan.md`
+
+---
+## [2026-11-25] إطلاق مسار إنتاج وتسييل فيديوهات YouTube بنظام الطلب الموحد (Single-Pass Gemini Flash) والامتثال لشروط الربح
+
+- **محرك توليد الصوت البشري فائق الجودة المجاني (Single-Pass Gemini 2.5 Flash Speech Generation)**:
+  - اعتماد صوت `Charon` الفخم لتقديم شروحات هندسية رصينة بنبرة وثائقية ووقفات تفكير طبيعية.
+  - حل معضلة الكوتة اليومية المجانية بنظام **الطلب الموحد (Single-Pass Request)**: إنتاج الدرس بالكامل (5 دقائق) في طلب API واحد فقط بدلاً من استهلاك 7 طلبات، مما يوفر إمكانية إنتاج 10-15 درساً كاملاً يومياً مجاناً.
+- **تحديث محرك إنتاج الفيديو 1080p Full HD (`Playwright + FFMPEG`)**:
+  - إضافة شريط تقدم زمني سفلي حي (In-Video Dynamic Progress Bar) لمنع متلازمة الشرائح الثابتة وضمان الحركة المستمرة لموافقة شروط يوتيوب (YPP).
+  - تثبيت الهوية المؤسسية الرسمية للأكاديمية (`GridFix Academy — أكاديمية جريد فيكس`) بدون أي شارات أو أفاتار فردي للمحاضر بناءً على توجيهات الإدارة.
+  - إبراز المعادلات الرياضية لمنحنيات الفشل وجداول المقارنة وشجرة قرار RCM بتنسيق بصري جذاب.
+- **توليد بيانات الرفع والـ SEO التلقائية (YouTube Chapters & Metadata)**:
+  - استخراج الفصول الزمنية الدقيقة والروابط التفاعلية المباشرة لكل درس في ملف `YOUTUBE_METADATA.md`.
+- **المخرجات المعتمدة**:
+  - تصدير الفيديو الكامل لدرس CMRP 1.1 بنجاح: `dist/videos/pilot_gemini/lesson_cmrp_1_1_gemini.mp4` (5:09 دقيقة، 9.9 MB).
+
+---
 ## [2026-11-09] إعادة هيكلة شاملة لمنظومة الكود وقابلية التوسع (Scalable & Maintainable Architecture)
 
 - **تفكيك وإعادة هيكلة نافذة مشغل الصوت والسيارة (`AudioLauncherModal.tsx`)**:

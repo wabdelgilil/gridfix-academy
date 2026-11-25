@@ -11,10 +11,19 @@ type Class = 'حرجة' | 'هامة' | 'قياسية';
 
 function classify(impact: number, mtd: number): { level: Class; note: string } {
   if (impact >= 50000 || mtd <= 4)
-    return { level: 'حرجة', note: 'تتوقف عليها الأعمال فوراً — استرداد بسرعة (RTO من ساعات) ومستوى توافر عالٍ.' };
+    return {
+      level: 'حرجة',
+      note: 'تتوقف عليها الأعمال فوراً — استرداد بسرعة (RTO من ساعات) ومستوى توافر عالٍ.',
+    };
   if (impact >= 10000 || mtd <= 24)
-    return { level: 'هامة', note: 'تأثر ملموس — استرداد خلال يوم عمل وإجراءات موثقة.' };
-  return { level: 'قياسية', note: 'يمكن تأجيلها بمرونة — استرداد خلال أيام دون ضرر جوهري.' };
+    return {
+      level: 'هامة',
+      note: 'تأثر ملموس — استرداد خلال يوم عمل وإجراءات موثقة.',
+    };
+  return {
+    level: 'قياسية',
+    note: 'يمكن تأجيلها بمرونة — استرداد خلال أيام دون ضرر جوهري.',
+  };
 }
 
 const levelTone: Record<Class, string> = {
@@ -34,16 +43,29 @@ export default function BIACalculator() {
   const add = () => {
     const imp = Number(impact);
     const m = Number(mtd);
-    if (!name.trim() || !Number.isFinite(imp) || imp <= 0 || !Number.isFinite(m) || m <= 0) return;
-    setRows((prev) => [...prev, { id: nextId++, name: name.trim(), impact: imp, mtd: m }]);
+    if (
+      !name.trim() ||
+      !Number.isFinite(imp) ||
+      imp <= 0 ||
+      !Number.isFinite(m) ||
+      m <= 0
+    )
+      return;
+    setRows((prev) => [
+      ...prev,
+      { id: nextId++, name: name.trim(), impact: imp, mtd: m },
+    ]);
     setName('');
     setImpact('');
     setMtd('');
   };
 
-  const remove = (id: number) => setRows((prev) => prev.filter((r) => r.id !== id));
+  const remove = (id: number) =>
+    setRows((prev) => prev.filter((r) => r.id !== id));
 
-  const criticalCount = rows.filter((r) => classify(r.impact, r.mtd).level === 'حرجة').length;
+  const criticalCount = rows.filter(
+    (r) => classify(r.impact, r.mtd).level === 'حرجة'
+  ).length;
 
   return (
     <div className="card mt-6 overflow-hidden">
@@ -101,18 +123,30 @@ export default function BIACalculator() {
 
         {rows.length === 0 ? (
           <p className="rounded-xl bg-slate-100 p-3 text-center text-sm text-ink-400">
-            أضف عملياتك واحدة تلو الأخرى، وسيُرتبها التحليل بحسب الأثر وأقصى وقت تعطل.
+            أضف عملياتك واحدة تلو الأخرى، وسيُرتبها التحليل بحسب الأثر وأقصى وقت
+            تعطل.
           </p>
         ) : (
           <>
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[480px] text-right text-sm" dir="ltr">
+              <table
+                className="w-full min-w-[480px] text-right text-sm"
+                dir="ltr"
+              >
                 <thead className="text-xs text-ink-500">
                   <tr>
-                    <th className="pb-2 pr-1 text-right font-semibold">العملية</th>
-                    <th className="pb-2 pr-4 text-left font-semibold">الأثر/اليوم</th>
-                    <th className="pb-2 pr-4 text-left font-semibold">MTD (ساعات)</th>
-                    <th className="pb-2 pr-4 text-left font-semibold">خسارة تقديرية 3 أيام</th>
+                    <th className="pb-2 pr-1 text-right font-semibold">
+                      العملية
+                    </th>
+                    <th className="pb-2 pr-4 text-left font-semibold">
+                      الأثر/اليوم
+                    </th>
+                    <th className="pb-2 pr-4 text-left font-semibold">
+                      MTD (ساعات)
+                    </th>
+                    <th className="pb-2 pr-4 text-left font-semibold">
+                      خسارة تقديرية 3 أيام
+                    </th>
                     <th className="pb-2 text-left font-semibold">التصنيف</th>
                     <th className="pb-2" />
                   </tr>
@@ -122,12 +156,18 @@ export default function BIACalculator() {
                     const c = classify(r.impact, r.mtd);
                     return (
                       <tr key={r.id} className="border-t border-slate-100">
-                        <td className="py-2.5 pr-1 text-right font-semibold text-ink-800">{r.name}</td>
+                        <td className="py-2.5 pr-1 text-right font-semibold text-ink-800">
+                          {r.name}
+                        </td>
                         <td className="py-2.5">{r.impact.toLocaleString()}</td>
                         <td className="py-2.5">{r.mtd}</td>
-                        <td className="py-2.5">{(r.impact * 3).toLocaleString()}</td>
                         <td className="py-2.5">
-                          <span className={`inline-block rounded-full px-2.5 py-1 text-xs font-bold ring-2 ${levelTone[c.level]}`}>
+                          {(r.impact * 3).toLocaleString()}
+                        </td>
+                        <td className="py-2.5">
+                          <span
+                            className={`inline-block rounded-full px-2.5 py-1 text-xs font-bold ring-2 ${levelTone[c.level]}`}
+                          >
                             {c.level}
                           </span>
                         </td>
@@ -149,18 +189,20 @@ export default function BIACalculator() {
 
             <div className="rounded-xl bg-ink-900 p-4 text-sm text-white">
               <p className="font-bold">
-                أولويات الاسترداد: <span dir="ltr">{criticalCount}</span> عملية حرجة من أصل{' '}
-                <span dir="ltr">{rows.length}</span>
+                أولويات الاسترداد: <span dir="ltr">{criticalCount}</span> عملية
+                حرجة من أصل <span dir="ltr">{rows.length}</span>
               </p>
               <p className="mt-1 text-xs text-teal-100">
-                ابدأ الاستعداد بالعمليات الحرجة: حدد لها أهداف استرداد صغيرة (RTO ≤ MTD بهامش مخطط) ونُسَخاً أكثر تكراراً (RPO أصغر).
+                ابدأ الاستعداد بالعمليات الحرجة: حدد لها أهداف استرداد صغيرة
+                (RTO ≤ MTD بهامش مخطط) ونُسَخاً أكثر تكراراً (RPO أصغر).
               </p>
             </div>
           </>
         )}
 
         <p className="rounded-xl bg-slate-100 p-3 text-xs leading-relaxed text-ink-500">
-          هذا تحليل استرشادي يقوم على أثر تعطل ليوم كامل — تُبنى القيمة من أرقام منشأتك الفعلية ومستوى توافر خدماتها.
+          هذا تحليل استرشادي يقوم على أثر تعطل ليوم كامل — تُبنى القيمة من أرقام
+          منشأتك الفعلية ومستوى توافر خدماتها.
         </p>
       </div>
     </div>

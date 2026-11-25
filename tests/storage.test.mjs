@@ -31,7 +31,11 @@ describe('Storage & Progress Engine (TDD Suite)', () => {
     });
 
     test('toggles lesson from complete back to incomplete', () => {
-      const state = { completedLessons: ['lesson-1-1', 'lesson-1-2'], quizScores: {}, bookmarks: [] };
+      const state = {
+        completedLessons: ['lesson-1-1', 'lesson-1-2'],
+        quizScores: {},
+        bookmarks: [],
+      };
       const updated = toggleLessonComplete(state, 'lesson-1-1');
 
       assert.equal(isLessonComplete(updated, 'lesson-1-1'), false);
@@ -54,7 +58,11 @@ describe('Storage & Progress Engine (TDD Suite)', () => {
       const state = {
         completedLessons: [],
         quizScores: {
-          'quiz-1-1': { score: 2, total: 5, completedAt: '2026-01-01T00:00:00.000Z' },
+          'quiz-1-1': {
+            score: 2,
+            total: 5,
+            completedAt: '2026-01-01T00:00:00.000Z',
+          },
         },
         bookmarks: [],
       };

@@ -40,7 +40,7 @@ export const camaGlossary: GlossaryTerm[] = [
     id: 'cama-1-2-t1',
     term: 'Asset Management System',
     ar: 'نظام إدارة الأصول — مجموعة من السياسات والإجراءات والأدوار والمسؤوليات والموارد والعمليات المنظمة التي تُستخدم لإدارة أصول المؤسسة وتحقيق أهدافها الاستراتيجية.',
-    en: 'A set of policies, processes, roles, responsibilities, resources, and organized activities used to manage an organization\'s assets and achieve its strategic objectives.',
+    en: "A set of policies, processes, roles, responsibilities, resources, and organized activities used to manage an organization's assets and achieve its strategic objectives.",
     course: 'cama',
   },
   {
@@ -61,7 +61,7 @@ export const camaGlossary: GlossaryTerm[] = [
     id: 'cama-1-2-t4',
     term: 'Integration',
     ar: 'التكامل التنظيمي — مبدأ ربط نظام إدارة الأصول بنظام الإدارة الكلي للمؤسسة (مثل ISO 9001 للجودة، ISO 14001 للبيئة، ISO 45001 للسلامة) بدلاً من إنشاء نظام منفصل.',
-    en: 'The principle of linking the AMS to the organization\'s overall management system (e.g., ISO 9001 for quality, ISO 14001 for environment, ISO 45001 for safety) rather than creating a separate system.',
+    en: "The principle of linking the AMS to the organization's overall management system (e.g., ISO 9001 for quality, ISO 14001 for environment, ISO 45001 for safety) rather than creating a separate system.",
     course: 'cama',
   },
   {
@@ -166,7 +166,7 @@ export const camaGlossary: GlossaryTerm[] = [
     id: 'cama-5-3-t2',
     term: 'Maturity Assessment',
     ar: 'تقييم النضج — أداة لقياس مدى تطور منظومة إدارة الأصول في المؤسسة عبر مستويات متدرجة (من البدائية إلى المرجعية)، لتحديد المكان الحالي والطريق إلى المستوى التالي.',
-    en: 'A tool for measuring the maturity level of an organization\'s asset management system across graduated levels (from initial to benchmark), identifying the current state and the path to the next level.',
+    en: "A tool for measuring the maturity level of an organization's asset management system across graduated levels (from initial to benchmark), identifying the current state and the path to the next level.",
     course: 'cama',
   },
   {

@@ -14,7 +14,10 @@ interface Props {
 }
 
 const { items, homeLabel = 'GridFix Academy', homeLabelEn } = Astro.props;
-const crumbs: Crumb[] = [{ label: homeLabel, labelEn: homeLabelEn, href: '/' }, ...items];
+const crumbs: Crumb[] = [
+  { label: homeLabel, labelEn: homeLabelEn, href: '/' },
+  ...items,
+];
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -22,13 +25,24 @@ const jsonLd = {
     '@type': 'ListItem',
     position: i + 1,
     name: c.label,
-    ...(c.href ? { item: new URL(c.href, Astro.site ?? 'https://academy.gridfix.net').toString() } : {}),
+    ...(c.href
+      ? {
+          item: new URL(
+            c.href,
+            Astro.site ?? 'https://academy.gridfix.net'
+          ).toString(),
+        }
+      : {}),
   })),
 };
 ---
 
 <nav class="mb-6 text-sm text-ink-400" aria-label="Breadcrumb">
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+  />
   <ol class="flex flex-wrap items-center gap-2">
     {crumbs.map((c, i) => {
       const last = i === crumbs.length - 1;
@@ -36,7 +50,10 @@ const jsonLd = {
         <li class="flex items-center gap-2">
           {i > 0 && <span aria-hidden="true">←</span>}
           {c.href && !last ? (
-            <a href={c.href} class="transition hover:text-brand-700 hover:underline">
+            <a
+              href={c.href}
+              class="transition hover:text-brand-700 hover:underline"
+            >
               <LangText lang="ar">{c.label}</LangText>
               {c.labelEn && <LangText lang="en">{c.labelEn}</LangText>}
             </a>

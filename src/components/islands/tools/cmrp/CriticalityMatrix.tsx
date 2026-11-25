@@ -1,6 +1,12 @@
 import { useState } from 'react';
 
-const probabilityLabels = ['نادر جداً', 'غير محتمل', 'محتمل', 'مرتفع', 'مستمر ومتكرر'];
+const probabilityLabels = [
+  'نادر جداً',
+  'غير محتمل',
+  'محتمل',
+  'مرتفع',
+  'مستمر ومتكرر',
+];
 const probabilityHints = [
   'أقل من مرة كل 5 إلى 10 سنوات',
   'مرة كل 2 إلى 5 سنوات',
@@ -26,8 +32,10 @@ function classify(probability: number, consequence: number) {
       bg: 'bg-rose-50',
       text: 'text-rose-800',
       ring: 'ring-rose-500',
-      strategy: 'صيانة تنبؤية مشروطة متقدمة (CBM): اهتزازات وزيوت وحرارة مستمرة، مع دراسة إضافة نظام بديل (Redundancy) وتطبيق الصيانة الدقيقة.',
-      spares: 'قطع غيار تأمينية مخصصة محجوزة في المستودع (Insurance Spares) مع مراقبة صلاحية التخزين.',
+      strategy:
+        'صيانة تنبؤية مشروطة متقدمة (CBM): اهتزازات وزيوت وحرارة مستمرة، مع دراسة إضافة نظام بديل (Redundancy) وتطبيق الصيانة الدقيقة.',
+      spares:
+        'قطع غيار تأمينية مخصصة محجوزة في المستودع (Insurance Spares) مع مراقبة صلاحية التخزين.',
     };
   if (score <= 5 && consequence <= 2)
     return {
@@ -36,8 +44,10 @@ function classify(probability: number, consequence: number) {
       bg: 'bg-slate-50',
       text: 'text-slate-800',
       ring: 'ring-slate-500',
-      strategy: 'مرشح مثالي للتشغيل حتى العطل (Run to Failure) كقرار هندسي واعٍ، أو فحص بصري بسيط بتكلفة لا تذكر.',
-      spares: 'لا يُجمَّد رأس المال في التخزين — الشراء عند الطلب من السوق المحلي (Just-in-Time).',
+      strategy:
+        'مرشح مثالي للتشغيل حتى العطل (Run to Failure) كقرار هندسي واعٍ، أو فحص بصري بسيط بتكلفة لا تذكر.',
+      spares:
+        'لا يُجمَّد رأس المال في التخزين — الشراء عند الطلب من السوق المحلي (Just-in-Time).',
     };
   return {
     assetClass: 'B',
@@ -45,7 +55,8 @@ function classify(probability: number, consequence: number) {
     bg: 'bg-amber-50',
     text: 'text-amber-800',
     ring: 'ring-amber-500',
-    strategy: 'صيانة وقائية دورية (PM) مع تشحيم منتظم وفحص اهتزازات محمول شهرياً، وتدخل مشروط عند توفر المؤشرات.',
+    strategy:
+      'صيانة وقائية دورية (PM) مع تشحيم منتظم وفحص اهتزازات محمول شهرياً، وتدخل مشروط عند توفر المؤشرات.',
     spares: 'مخزون قياسي بنظام الحد الأدنى والأعلى (Min/Max) مع استعواض دوري.',
   };
 }
@@ -133,7 +144,11 @@ export default function CriticalityMatrix() {
                 >
                   <span>{cellScore}</span>
                   <span className="text-[9px] opacity-75">
-                    {cVal === 5 || cellScore >= 15 ? 'A' : cellScore >= 6 ? 'B' : 'C'}
+                    {cVal === 5 || cellScore >= 15
+                      ? 'A'
+                      : cellScore >= 6
+                        ? 'B'
+                        : 'C'}
                   </span>
                 </button>
               );
@@ -141,18 +156,23 @@ export default function CriticalityMatrix() {
           </div>
           <div className="mt-2 flex flex-wrap items-center justify-center gap-3 text-[11px] font-bold text-ink-600">
             <span className="flex items-center gap-1">
-              <span className="h-3 w-3 rounded bg-rose-600" /> فئة A: حرج (15–25 أو عواقب 5)
+              <span className="h-3 w-3 rounded bg-rose-600" /> فئة A: حرج (15–25
+              أو عواقب 5)
             </span>
             <span className="flex items-center gap-1">
-              <span className="h-3 w-3 rounded bg-amber-500" /> فئة B: متوسط (6–12)
+              <span className="h-3 w-3 rounded bg-amber-500" /> فئة B: متوسط
+              (6–12)
             </span>
             <span className="flex items-center gap-1">
-              <span className="h-3 w-3 rounded bg-slate-400" /> فئة C: غير حرج (1–5)
+              <span className="h-3 w-3 rounded bg-slate-400" /> فئة C: غير حرج
+              (1–5)
             </span>
           </div>
         </div>
 
-        <div className={`rounded-xl p-4 text-sm ring-2 ${r.ring} ${r.bg} ${r.text}`}>
+        <div
+          className={`rounded-xl p-4 text-sm ring-2 ${r.ring} ${r.bg} ${r.text}`}
+        >
           <p className="font-bold">
             درجة الخطر: <strong dir="ltr">{score} / 25</strong> — التصنيف:{' '}
             <strong>{r.title}</strong>
@@ -164,7 +184,8 @@ export default function CriticalityMatrix() {
             <strong>قطع الغيار:</strong> {r.spares}
           </p>
           <p className="mt-1 text-xs font-normal opacity-70">
-            قاعدة ذهبية: أي عطل يمس السلامة أو البيئة (عواقب 5) يصنف فئة A تلقائياً مهما كانت ندرة احتماله.
+            قاعدة ذهبية: أي عطل يمس السلامة أو البيئة (عواقب 5) يصنف فئة A
+            تلقائياً مهما كانت ندرة احتماله.
           </p>
         </div>
       </div>

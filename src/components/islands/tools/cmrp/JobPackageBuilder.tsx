@@ -58,15 +58,27 @@ export default function JobPackageBuilder() {
       </div>
 
       <div className="space-y-4 p-5">
-        <div className={`rounded-xl p-4 text-sm ring-2 ${ready ? 'bg-teal-50 text-teal-800 ring-teal-500' : 'bg-amber-50 text-amber-800 ring-amber-500'}`}>
+        <div
+          className={`rounded-xl p-4 text-sm ring-2 ${ready ? 'bg-teal-50 text-teal-800 ring-teal-500' : 'bg-amber-50 text-amber-800 ring-amber-500'}`}
+        >
           <div className="flex items-center justify-between gap-2">
-            <p className="font-bold">{ready ? 'جاهز للجدولة (RTS) — 100%' : `قيد التجهيز — ${percent}%`}</p>
+            <p className="font-bold">
+              {ready
+                ? 'جاهز للجدولة (RTS) — 100%'
+                : `قيد التجهيز — ${percent}%`}
+            </p>
             <p className="font-mono text-xs opacity-70" dir="ltr">
               {done} / {items.length}
             </p>
           </div>
-          <div dir="ltr" className="mt-2 h-2.5 overflow-hidden rounded-full bg-white/70">
-            <div className={`h-full rounded-full transition-all ${ready ? 'bg-teal-600' : 'bg-amber-500'}`} style={{ width: `${percent}%` }} />
+          <div
+            dir="ltr"
+            className="mt-2 h-2.5 overflow-hidden rounded-full bg-white/70"
+          >
+            <div
+              className={`h-full rounded-full transition-all ${ready ? 'bg-teal-600' : 'bg-amber-500'}`}
+              style={{ width: `${percent}%` }}
+            />
           </div>
           <p className="mt-2 text-xs font-normal opacity-90">
             {ready
@@ -82,9 +94,13 @@ export default function JobPackageBuilder() {
             <button
               key={item.id}
               type="button"
-              onClick={() => setChecked((p) => ({ ...p, [item.id]: !p[item.id] }))}
+              onClick={() =>
+                setChecked((p) => ({ ...p, [item.id]: !p[item.id] }))
+              }
               className={`cursor-pointer rounded-xl border p-3 text-right transition ${
-                checked[item.id] ? 'border-teal-400 bg-teal-50' : 'border-slate-200 bg-white hover:border-slate-400'
+                checked[item.id]
+                  ? 'border-teal-400 bg-teal-50'
+                  : 'border-slate-200 bg-white hover:border-slate-400'
               }`}
             >
               <p className="flex items-center justify-between text-xs font-bold text-ink-800">
@@ -92,10 +108,15 @@ export default function JobPackageBuilder() {
                   {checked[item.id] ? '☑' : '☐'} {item.title}
                 </span>
               </p>
-              <p className="mt-0.5 font-mono text-[11px] text-ink-400" dir="ltr">
+              <p
+                className="mt-0.5 font-mono text-[11px] text-ink-400"
+                dir="ltr"
+              >
                 {item.en}
               </p>
-              <p className="mt-1 text-[11px] leading-relaxed text-ink-500">{item.desc}</p>
+              <p className="mt-1 text-[11px] leading-relaxed text-ink-500">
+                {item.desc}
+              </p>
             </button>
           ))}
         </div>

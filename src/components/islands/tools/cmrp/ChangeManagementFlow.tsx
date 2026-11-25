@@ -5,7 +5,8 @@ const steps = [
     n: 1,
     title: 'خلق الإحساس بالإلحاح',
     desc: 'كسر الاطمئنان الكاذب بإظهار خسائر التوقف ومقارنة المنافسين وإثبات أن ثقافة رد الفعل تهدد الوظائف.',
-    action: 'اعرض بيانات مالية موثقة لهدر الأعطال التفاعلية على الإدارة والفنيين معاً.',
+    action:
+      'اعرض بيانات مالية موثقة لهدر الأعطال التفاعلية على الإدارة والفنيين معاً.',
     pitfall: 'الادعاء بأن المصنع يعمل هكذا منذ سنوات ولا داعي للتغيير.',
     check: 'هل يدرك غالبية الفريق أن البقاء على الوضع الراهن خطر حقيقي؟',
   },
@@ -13,7 +14,8 @@ const steps = [
     n: 2,
     title: 'تشكيل التحالف القيادي',
     desc: 'فريق نواة يضم قادة مؤثرين من الصيانة والتشغيل والسلامة والإمداد يتمتعون بالسلطة والمصداقية.',
-    action: 'اختر مدير الإنتاج ومهندس الاعتمادية ومشرفاً مخضرماً محبوباً لقيادة المبادرة معاً.',
+    action:
+      'اختر مدير الإنتاج ومهندس الاعتمادية ومشرفاً مخضرماً محبوباً لقيادة المبادرة معاً.',
     pitfall: 'قصر الفريق على مهندسي الصيانة فيبدو المشروع شأناً خاصاً بالورشة.',
     check: 'هل يضم الفريق قائداً مسموع الكلمة من كل إدارة معنية؟',
   },
@@ -21,7 +23,8 @@ const steps = [
     n: 3,
     title: 'بناء الرؤية',
     desc: 'صياغة هدف بسيط وجذاب يُشرح في دقائق ويربط صحة المعدات بالأمان الوظيفي وراحة البال.',
-    action: 'اكتب ميثاق اعتمادية من صفحة واحدة يحدد الهدف والموعد والمكسب للجميع.',
+    action:
+      'اكتب ميثاق اعتمادية من صفحة واحدة يحدد الهدف والموعد والمكسب للجميع.',
     pitfall: 'خطط ضخمة معقدة بلغة أكاديمية لا يفهمها الفنيون والمشغلون.',
     check: 'هل يستطيع أي فني شرح الرؤية بكلماته الخاصة؟',
   },
@@ -37,15 +40,18 @@ const steps = [
     n: 5,
     title: 'تمكين العاملين وإزالة العقبات',
     desc: 'توفير الأدوات الدقيقة والتمويل وتبسيط السياسات التي تعاقب المبلِّغ عن العيوب.',
-    action: 'جهز الحواسيب اللوحية المرتبطة بالنظام وبسّط إجراءات صرف قطع الغيار.',
-    pitfall: 'مطالبة الفني بالعمل الدقيق مع رفض شراء مفاتيح العزم وأجهزة القياس.',
+    action:
+      'جهز الحواسيب اللوحية المرتبطة بالنظام وبسّط إجراءات صرف قطع الغيار.',
+    pitfall:
+      'مطالبة الفني بالعمل الدقيق مع رفض شراء مفاتيح العزم وأجهزة القياس.',
     check: 'هل يملك الفني كل ما يحتاجه للعمل الاستباقي فعلاً؟',
   },
   {
     n: 6,
     title: 'تحقيق المكاسب السريعة',
     desc: 'نتائج ملموسة خلال 60 إلى 90 يوماً على معدة حرجة بتكلفة منخفضة لإثبات الجدوى.',
-    action: 'اقضِ على عطل متكرر في مضخة مزمنة بالمحاذاة الدقيقة ومانع تسرب ممتاز.',
+    action:
+      'اقضِ على عطل متكرر في مضخة مزمنة بالمحاذاة الدقيقة ومانع تسرب ممتاز.',
     pitfall: 'انتظار الوفورات الكبرى بعد سنوات دون الاحتفال بالنجاحات الأولى.',
     check: 'هل لديك نصر واحد موثق بالأرقام تعرضه على الإدارة العليا؟',
   },
@@ -61,18 +67,44 @@ const steps = [
     n: 8,
     title: 'تثبيت الثقافة الجديدة',
     desc: 'ربط الترقية والمكافآت والتوظيف بالسلوك الاستباقي حتى تصبح الموثوقية طريقة العمل الطبيعية.',
-    action: 'اجعل تقييم المشرفين مبنياً على غياب الأعطال وزمن المفتاح لا على بطولات الطوارئ الليلية.',
+    action:
+      'اجعل تقييم المشرفين مبنياً على غياب الأعطال وزمن المفتاح لا على بطولات الطوارئ الليلية.',
     pitfall: 'ضياع كل شيء برحيل الراعي الأول ما لم تُدوَّن الثقافة سياسة رسمية.',
     check: 'هل تستمر الممارسات الجديدة حتى لو تغير المدير؟',
   },
 ];
 
 const adkar = [
-  { id: 'awareness', letter: 'A', name: 'الوعي', hint: 'هل يعي الموظف لماذا يجب إنهاء ثقافة الطوارئ؟' },
-  { id: 'desire', letter: 'D', name: 'الرغبة', hint: 'هل لديه دافع شخصي وما مكسبه من التغيير؟' },
-  { id: 'knowledge', letter: 'K', name: 'المعرفة', hint: 'هل يعرف نظرياً كيف يستخدم الأدوات والنظام الجديد؟' },
-  { id: 'ability', letter: 'A', name: 'القدرة', hint: 'هل يستطيع التطبيق عملياً دون خوف من الخطأ؟' },
-  { id: 'reinforcement', letter: 'R', name: 'التعزيز', hint: 'هل يُكافأ على السلوك الجديد حتى لا ينتكس؟' },
+  {
+    id: 'awareness',
+    letter: 'A',
+    name: 'الوعي',
+    hint: 'هل يعي الموظف لماذا يجب إنهاء ثقافة الطوارئ؟',
+  },
+  {
+    id: 'desire',
+    letter: 'D',
+    name: 'الرغبة',
+    hint: 'هل لديه دافع شخصي وما مكسبه من التغيير؟',
+  },
+  {
+    id: 'knowledge',
+    letter: 'K',
+    name: 'المعرفة',
+    hint: 'هل يعرف نظرياً كيف يستخدم الأدوات والنظام الجديد؟',
+  },
+  {
+    id: 'ability',
+    letter: 'A',
+    name: 'القدرة',
+    hint: 'هل يستطيع التطبيق عملياً دون خوف من الخطأ؟',
+  },
+  {
+    id: 'reinforcement',
+    letter: 'R',
+    name: 'التعزيز',
+    hint: 'هل يُكافأ على السلوك الجديد حتى لا ينتكس؟',
+  },
 ];
 
 export default function ChangeManagementFlow() {
@@ -135,21 +167,35 @@ export default function ChangeManagementFlow() {
               ))}
             </div>
             <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-              <p className="text-xs font-bold text-amber-700">المرحلة {step.n} من 8</p>
-              <h3 className="mt-0.5 text-base font-black text-ink-800">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-700">{step.desc}</p>
+              <p className="text-xs font-bold text-amber-700">
+                المرحلة {step.n} من 8
+              </p>
+              <h3 className="mt-0.5 text-base font-black text-ink-800">
+                {step.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-700">
+                {step.desc}
+              </p>
               <div className="mt-3 grid gap-2 text-xs sm:grid-cols-3">
                 <div className="rounded-lg bg-white p-3 ring-1 ring-emerald-200">
-                  <p className="font-bold text-emerald-700">✔ الإجراء النموذجي</p>
-                  <p className="mt-1 leading-relaxed text-ink-600">{step.action}</p>
+                  <p className="font-bold text-emerald-700">
+                    ✔ الإجراء النموذجي
+                  </p>
+                  <p className="mt-1 leading-relaxed text-ink-600">
+                    {step.action}
+                  </p>
                 </div>
                 <div className="rounded-lg bg-white p-3 ring-1 ring-rose-200">
                   <p className="font-bold text-rose-700">✘ الفخ القاتل</p>
-                  <p className="mt-1 leading-relaxed text-ink-600">{step.pitfall}</p>
+                  <p className="mt-1 leading-relaxed text-ink-600">
+                    {step.pitfall}
+                  </p>
                 </div>
                 <div className="rounded-lg bg-white p-3 ring-1 ring-amber-200">
                   <p className="font-bold text-amber-700">؟ سؤال التحقق</p>
-                  <p className="mt-1 leading-relaxed text-ink-600">{step.check}</p>
+                  <p className="mt-1 leading-relaxed text-ink-600">
+                    {step.check}
+                  </p>
                 </div>
               </div>
               <div className="mt-3 flex items-center justify-between">
@@ -161,10 +207,14 @@ export default function ChangeManagementFlow() {
                 >
                   السابق
                 </button>
-                <p className="text-xs text-ink-500" dir="ltr">{index + 1} / 8</p>
+                <p className="text-xs text-ink-500" dir="ltr">
+                  {index + 1} / 8
+                </p>
                 <button
                   type="button"
-                  onClick={() => setIndex(Math.min(steps.length - 1, index + 1))}
+                  onClick={() =>
+                    setIndex(Math.min(steps.length - 1, index + 1))
+                  }
                   disabled={index === steps.length - 1}
                   className="cursor-pointer rounded-lg bg-ink-900 px-3 py-1.5 text-xs font-bold text-white disabled:cursor-not-allowed disabled:opacity-30"
                 >
@@ -176,15 +226,25 @@ export default function ChangeManagementFlow() {
         ) : (
           <div className="space-y-3">
             <p className="rounded-xl bg-amber-50 p-3 text-xs leading-relaxed text-amber-800">
-              قيّم الموظف من 1 إلى 5 في كل حلقة لاكتشاف نقطة الاختناق: التدريب لا يجدي إن كان الخلل في الوعي أو الرغبة، والمكاسب تضيع دون تعزيز.
+              قيّم الموظف من 1 إلى 5 في كل حلقة لاكتشاف نقطة الاختناق: التدريب لا
+              يجدي إن كان الخلل في الوعي أو الرغبة، والمكاسب تضيع دون تعزيز.
             </p>
             {adkar.map((a) => (
-              <div key={a.id} className="rounded-xl border border-slate-200 p-3">
+              <div
+                key={a.id}
+                className="rounded-xl border border-slate-200 p-3"
+              >
                 <div className="flex items-center justify-between text-sm">
                   <p className="font-bold text-ink-800">
-                    <span className="font-mono text-amber-600">{a.letter}</span> — {a.name}
+                    <span className="font-mono text-amber-600">{a.letter}</span>{' '}
+                    — {a.name}
                   </p>
-                  <p className="font-mono text-sm font-black text-ink-800" dir="ltr">{scores[a.id]} / 5</p>
+                  <p
+                    className="font-mono text-sm font-black text-ink-800"
+                    dir="ltr"
+                  >
+                    {scores[a.id]} / 5
+                  </p>
                 </div>
                 <p className="mt-0.5 text-xs text-ink-500">{a.hint}</p>
                 <input
@@ -193,15 +253,21 @@ export default function ChangeManagementFlow() {
                   max={5}
                   step={1}
                   value={scores[a.id]}
-                  onChange={(e) => setScores({ ...scores, [a.id]: Number(e.target.value) })}
+                  onChange={(e) =>
+                    setScores({ ...scores, [a.id]: Number(e.target.value) })
+                  }
                   className="mt-2 w-full accent-amber-500"
                 />
               </div>
             ))}
             <div className="rounded-xl bg-slate-50 p-4 text-sm text-ink-700">
-              <p className="font-bold text-ink-800">نقطة الاختناق الحالية: {lowestName} ({lowest[1]} من 5)</p>
+              <p className="font-bold text-ink-800">
+                نقطة الاختناق الحالية: {lowestName} ({lowest[1]} من 5)
+              </p>
               <p className="mt-1 text-xs leading-relaxed text-ink-500">
-                عالج هذه الحلقة أولاً: وعي غائب يحتاج حقائق وخسائر موثقة، ورغبة غائبة تحتاج مصلحة واضحة، ومعرفة أو قدرة ناقصة تحتاج تدريباً فردياً صبوراً، وتعزيز غائب يحتاج تقديراً ومكافأة مستمرة.
+                عالج هذه الحلقة أولاً: وعي غائب يحتاج حقائق وخسائر موثقة، ورغبة
+                غائبة تحتاج مصلحة واضحة، ومعرفة أو قدرة ناقصة تحتاج تدريباً فردياً
+                صبوراً، وتعزيز غائب يحتاج تقديراً ومكافأة مستمرة.
               </p>
             </div>
           </div>

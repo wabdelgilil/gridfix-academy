@@ -1,9 +1,25 @@
 export interface ProgressState {
   completedLessons: string[];
-  quizScores: Record<string, { score: number; total: number; completedAt: string }>;
+  quizScores: Record<
+    string,
+    { score: number; total: number; completedAt: string }
+  >;
   bookmarks: string[];
-  lastLesson?: { courseId: string; lessonId: string; title: string; titleEn?: string; stationTitle: string; stationTitleEn?: string; at: string };
-  mockExam?: { percentage: number; pillarBreakdown: Record<string, number>; passed: boolean; at: string };
+  lastLesson?: {
+    courseId: string;
+    lessonId: string;
+    title: string;
+    titleEn?: string;
+    stationTitle: string;
+    stationTitleEn?: string;
+    at: string;
+  };
+  mockExam?: {
+    percentage: number;
+    pillarBreakdown: Record<string, number>;
+    passed: boolean;
+    at: string;
+  };
 }
 
 export const STORAGE_KEY = 'cfm-course-progress@v1';
@@ -29,15 +45,24 @@ export function loadProgress(course: string = 'cfm'): ProgressState {
   }
 }
 
-export function saveProgress(state: ProgressState, course: string = 'cfm'): void {
+export function saveProgress(
+  state: ProgressState,
+  course: string = 'cfm'
+): void {
   localStorage.setItem(storageKeyFor(course), JSON.stringify(state));
 }
 
-export function isLessonComplete(state: ProgressState, lessonId: string): boolean {
+export function isLessonComplete(
+  state: ProgressState,
+  lessonId: string
+): boolean {
   return state.completedLessons.includes(lessonId);
 }
 
-export function toggleLessonComplete(state: ProgressState, lessonId: string): ProgressState {
+export function toggleLessonComplete(
+  state: ProgressState,
+  lessonId: string
+): ProgressState {
   const completed = isLessonComplete(state, lessonId);
   return {
     ...state,
@@ -51,7 +76,7 @@ export function recordQuizScore(
   state: ProgressState,
   quizId: string,
   score: number,
-  total: number,
+  total: number
 ): ProgressState {
   return {
     ...state,
@@ -88,7 +113,7 @@ export function saveLastVisitedLesson(
   courseId: string,
   lessonId: string,
   lessonTitle: string,
-  stationTitle: string,
+  stationTitle: string
 ): void {
   const data: LastVisitedLesson = {
     courseId,
@@ -104,7 +129,7 @@ export function recordLastLesson(
   courseId: string,
   lessonId: string,
   title: string,
-  stationTitle: string,
+  stationTitle: string
 ): void {
   saveLastVisitedLesson(courseId, lessonId, title, stationTitle);
 }
@@ -114,11 +139,17 @@ export function setLastLesson(
   courseId: string,
   lessonId: string,
   title: string,
-  stationTitle: string,
+  stationTitle: string
 ): ProgressState {
   return {
     ...state,
-    lastLesson: { courseId, lessonId, title, stationTitle, at: new Date().toISOString() },
+    lastLesson: {
+      courseId,
+      lessonId,
+      title,
+      stationTitle,
+      at: new Date().toISOString(),
+    },
   };
 }
 
@@ -133,22 +164,33 @@ export function getLastLesson(course: string): ProgressState['lastLesson'] {
   }
 }
 
-export function calculateCourseProgress(state: ProgressState, totalLessons: number): number {
+export function calculateCourseProgress(
+  state: ProgressState,
+  totalLessons: number
+): number {
   if (totalLessons <= 0) return 0;
   return Math.round((state.completedLessons.length / totalLessons) * 100);
 }
 
-export function isCourseComplete(state: ProgressState, totalLessons: number): boolean {
+export function isCourseComplete(
+  state: ProgressState,
+  totalLessons: number
+): boolean {
   if (totalLessons <= 0) return false;
   return state.completedLessons.length >= totalLessons;
 }
 
-export function toggleBookmark(state: ProgressState, lessonId: string): ProgressState {
+export function toggleBookmark(
+  state: ProgressState,
+  lessonId: string
+): ProgressState {
   const bookmarks = state.bookmarks ?? [];
   const exists = bookmarks.includes(lessonId);
   return {
     ...state,
-    bookmarks: exists ? bookmarks.filter((id) => id !== lessonId) : [...bookmarks, lessonId],
+    bookmarks: exists
+      ? bookmarks.filter((id) => id !== lessonId)
+      : [...bookmarks, lessonId],
   };
 }
 
@@ -160,7 +202,7 @@ export function recordMockExamScore(
   state: ProgressState,
   percentage: number,
   pillarBreakdown: Record<string, number>,
-  passed: boolean,
+  passed: boolean
 ): ProgressState {
   return {
     ...state,

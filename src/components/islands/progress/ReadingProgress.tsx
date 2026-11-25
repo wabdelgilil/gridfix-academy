@@ -6,9 +6,13 @@ export default function ReadingProgress() {
 
   useEffect(() => {
     function onScroll() {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       if (docHeight > 0) {
-        const pct = Math.min(100, Math.round((window.scrollY / docHeight) * 100));
+        const pct = Math.min(
+          100,
+          Math.round((window.scrollY / docHeight) * 100)
+        );
         setProgress(pct);
         setVisible(window.scrollY > 100);
       }

@@ -1,5 +1,9 @@
 import GenericExamRunner from '../common/GenericExamRunner';
-import { mockCmrpQuestions, mockCmrpPillars, mockCmrpPillarsEn } from '../../../../data/quiz/cmrp/mock-cmrp';
+import {
+  mockCmrpQuestions,
+  mockCmrpPillars,
+  mockCmrpPillarsEn,
+} from '../../../../data/quiz/cmrp/mock-cmrp';
 
 const sections = [1, 2, 3, 4, 5].map((id) => ({
   id,

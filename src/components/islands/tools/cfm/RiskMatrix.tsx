@@ -18,7 +18,8 @@ function describe(score: number) {
       bg: 'bg-amber-50',
       text: 'text-amber-800',
       ring: 'ring-amber-500',
-      action: 'يتطلب اتخاذ إجراء خلال فترات محددة — إجراءات إدارية أو وقاية شخصية.',
+      action:
+        'يتطلب اتخاذ إجراء خلال فترات محددة — إجراءات إدارية أو وقاية شخصية.',
     };
   if (score <= 14)
     return {
@@ -33,7 +34,8 @@ function describe(score: number) {
     bg: 'bg-rose-50',
     text: 'text-rose-800',
     ring: 'ring-rose-500',
-    action: 'يُوقف العمل في المنطقة فوراً — لا يُستأنف إلا بعد القضاء على الخطر أو تغييره جذرياً.',
+    action:
+      'يُوقف العمل في المنطقة فوراً — لا يُستأنف إلا بعد القضاء على الخطر أو تغييره جذرياً.',
   };
 }
 
@@ -104,7 +106,8 @@ export default function RiskMatrix() {
               const likelihoodVal = row + 1;
               const severityVal = col;
               const cellScore = likelihoodVal * severityVal;
-              const isSelected = likelihood === likelihoodVal && severity === severityVal;
+              const isSelected =
+                likelihood === likelihoodVal && severity === severityVal;
               return (
                 <button
                   key={idx}
@@ -125,14 +128,17 @@ export default function RiskMatrix() {
           </div>
         </div>
 
-        <div className={`rounded-xl p-4 text-sm ring-2 ${r.ring} ${r.bg} ${r.text}`}>
+        <div
+          className={`rounded-xl p-4 text-sm ring-2 ${r.ring} ${r.bg} ${r.text}`}
+        >
           <p className="font-bold">
             درجة الخطر: <strong dir="ltr">{score} / 25</strong> — مستوى{' '}
             <strong>{r.level}</strong>
           </p>
           <p className="mt-1 text-xs font-normal opacity-90">{r.action}</p>
           <p className="mt-1 text-xs font-normal opacity-70">
-            عدّل القيم أعلاه لمحاكاة سيناريوهات مختلفة، وجرّب نحو تقليل الأرجحية أو الشدة.
+            عدّل القيم أعلاه لمحاكاة سيناريوهات مختلفة، وجرّب نحو تقليل الأرجحية
+            أو الشدة.
           </p>
         </div>
       </div>

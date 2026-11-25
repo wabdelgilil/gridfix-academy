@@ -77,10 +77,16 @@ export default function WrenchTimeCalculator() {
           </div>
         </div>
 
-        <div className={`rounded-xl p-4 text-sm ring-2 ${worldClass ? 'bg-teal-50 text-teal-800 ring-teal-500' : 'bg-amber-50 text-amber-800 ring-amber-500'}`}>
+        <div
+          className={`rounded-xl p-4 text-sm ring-2 ${worldClass ? 'bg-teal-50 text-teal-800 ring-teal-500' : 'bg-amber-50 text-amber-800 ring-amber-500'}`}
+        >
           <p className="font-bold">
             زمن المفتاح: <strong dir="ltr">{percent}%</strong> —{' '}
-            {worldClass ? 'مستوى عالمي ممتاز (55% إلى 65%)' : typical ? 'مستوى تفاعلي معتاد (25% إلى 35%)' : 'خارج النطاقين — راجع التوزيع'}
+            {worldClass
+              ? 'مستوى عالمي ممتاز (55% إلى 65%)'
+              : typical
+                ? 'مستوى تفاعلي معتاد (25% إلى 35%)'
+                : 'خارج النطاقين — راجع التوزيع'}
           </p>
           <p className="mt-1 text-xs font-normal opacity-90">
             {worldClass
@@ -88,7 +94,8 @@ export default function WrenchTimeCalculator() {
               : 'أكثر من ثلثي الوردية يضيع في التنقل والانتظار — التخطيط المسبق وتجميع القطع هما العلاج.'}
           </p>
           <p className="mt-1 text-xs font-normal opacity-70">
-            تذكر: مهمة وقائية شهرية (30 يوما) تقبل نافذة سماح ±3 أيام فقط وفق قاعدة 10%، والمستهدف العالمي للالتزام الوقائي 95% إلى 99%.
+            تذكر: مهمة وقائية شهرية (30 يوما) تقبل نافذة سماح ±3 أيام فقط وفق
+            قاعدة 10%، والمستهدف العالمي للالتزام الوقائي 95% إلى 99%.
           </p>
         </div>
       </div>

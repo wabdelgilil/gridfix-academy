@@ -1,7 +1,11 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { getLessonAudioCues } from '../../../data/audioCues';
 import useLang from '../../../lib/useLang';
-import { calculateProgressPercent, calculateSeekTime, getNextPlaybackSpeed } from '../../../lib/audioUtils';
+import {
+  calculateProgressPercent,
+  calculateSeekTime,
+  getNextPlaybackSpeed,
+} from '../../../lib/audioUtils';
 import type { PlaylistItem, CourseOption, DriveTheme } from './car/types';
 import PlayerHeader from './car/PlayerHeader';
 import SlideStage from './car/SlideStage';
@@ -30,7 +34,9 @@ export default function CarPlayer({
     ? playlist.findIndex((item) => item.id === initialLessonId && item.hasAudio)
     : playlist.findIndex((item) => item.hasAudio);
 
-  const [currentIndex, setCurrentIndex] = useState(Math.max(0, initialIndex !== -1 ? initialIndex : 0));
+  const [currentIndex, setCurrentIndex] = useState(
+    Math.max(0, initialIndex !== -1 ? initialIndex : 0)
+  );
   const currentTrack = playlist[currentIndex] || playlist[0];
 
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -54,14 +60,20 @@ export default function CarPlayer({
   const currentCues = currentTrack ? getLessonAudioCues(currentTrack.id) : [];
   const activeCueIndex =
     currentCues.length > 0
-      ? currentCues.reduce((acc, cue, idx) => (currentTime >= cue.atSeconds ? idx : acc), 0)
+      ? currentCues.reduce(
+          (acc, cue, idx) => (currentTime >= cue.atSeconds ? idx : acc),
+          0
+        )
       : -1;
   const activeCue = activeCueIndex >= 0 ? currentCues[activeCueIndex] : null;
 
   // Auto-scroll active item in sidebar
   useEffect(() => {
     if (activeItemRef.current) {
-      activeItemRef.current.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      activeItemRef.current.scrollIntoView({
+        block: 'nearest',
+        behavior: 'smooth',
+      });
     }
   }, [currentIndex]);
 
@@ -72,7 +84,9 @@ export default function CarPlayer({
       if (storedTheme === 'day' || storedTheme === 'night') {
         setDriveTheme(storedTheme);
       } else {
-        const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark =
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches;
         setDriveTheme(isDark ? 'night' : 'day');
       }
     } catch {}
@@ -143,7 +157,10 @@ export default function CarPlayer({
   // Seek +/- seconds
   const seek = (seconds: number) => {
     if (!audioRef.current) return;
-    const target = Math.min(Math.max(audioRef.current.currentTime + seconds, 0), duration);
+    const target = Math.min(
+      Math.max(audioRef.current.currentTime + seconds, 0),
+      duration
+    );
     audioRef.current.currentTime = target;
   };
 
@@ -195,17 +212,30 @@ export default function CarPlayer({
   const handleScrub = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!progressBarRef.current || !audioRef.current || !duration) return;
     const rect = progressBarRef.current.getBoundingClientRect();
-    const isRtl = document.dir === 'rtl' || getComputedStyle(progressBarRef.current).direction === 'rtl';
-    audioRef.current.currentTime = calculateSeekTime(e.clientX, rect, isRtl, duration);
+    const isRtl =
+      document.dir === 'rtl' ||
+      getComputedStyle(progressBarRef.current).direction === 'rtl';
+    audioRef.current.currentTime = calculateSeekTime(
+      e.clientX,
+      rect,
+      isRtl,
+      duration
+    );
   };
 
   // Fullscreen toggle
   const toggleFullscreen = () => {
     if (!containerRef.current) return;
     if (!document.fullscreenElement) {
-      containerRef.current.requestFullscreen().then(() => setIsFullscreen(true)).catch(() => {});
+      containerRef.current
+        .requestFullscreen()
+        .then(() => setIsFullscreen(true))
+        .catch(() => {});
     } else {
-      document.exitFullscreen().then(() => setIsFullscreen(false)).catch(() => {});
+      document
+        .exitFullscreen()
+        .then(() => setIsFullscreen(false))
+        .catch(() => {});
     }
   };
 

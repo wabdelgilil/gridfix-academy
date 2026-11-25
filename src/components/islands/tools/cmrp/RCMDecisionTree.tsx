@@ -2,10 +2,16 @@ import { useState } from 'react';
 
 type Answer = boolean | null;
 
-function outcome(isEvident: boolean, hasSafety: boolean, hasOperational: boolean, hasCbm: boolean) {
+function outcome(
+  isEvident: boolean,
+  hasSafety: boolean,
+  hasOperational: boolean,
+  hasCbm: boolean
+) {
   if (!isEvident && hasSafety)
     return {
-      tactic: 'مهمة اكتشاف العطل الإلزامية (Failure-Finding Task) أو إعادة التصميم',
+      tactic:
+        'مهمة اكتشاف العطل الإلزامية (Failure-Finding Task) أو إعادة التصميم',
       color: 'bg-rose-50 text-rose-800 ring-rose-500',
       text: 'العطل مخفي ويهدد السلامة (مثل صمام الأمان أو مضخة الحريق): اختبار وظيفي دوري يثبت الجاهزية عند الطلب، وإن تعذر خفض الخطر فإعادة التصميم إلزامية.',
     };
@@ -47,9 +53,30 @@ function outcome(isEvident: boolean, hasSafety: boolean, hasOperational: boolean
 }
 
 const presets = [
-  { id: 'relief', name: 'صمام أمان غلاية — مخفي ويمس السلامة', evident: false, safety: true, operational: false, cbm: false },
-  { id: 'bearing', name: 'محمل سير ناقل — ظاهر ويوقف الإنتاج وقابل للمراقبة', evident: true, safety: false, operational: true, cbm: true },
-  { id: 'lamp', name: 'لمبة ممر مخزن — ظاهرة بلا أثر', evident: true, safety: false, operational: false, cbm: false },
+  {
+    id: 'relief',
+    name: 'صمام أمان غلاية — مخفي ويمس السلامة',
+    evident: false,
+    safety: true,
+    operational: false,
+    cbm: false,
+  },
+  {
+    id: 'bearing',
+    name: 'محمل سير ناقل — ظاهر ويوقف الإنتاج وقابل للمراقبة',
+    evident: true,
+    safety: false,
+    operational: true,
+    cbm: true,
+  },
+  {
+    id: 'lamp',
+    name: 'لمبة ممر مخزن — ظاهرة بلا أثر',
+    evident: true,
+    safety: false,
+    operational: false,
+    cbm: false,
+  },
 ];
 
 export default function RCMDecisionTree() {
@@ -79,7 +106,12 @@ export default function RCMDecisionTree() {
 
   const done = step === 5 && isEvident !== null && hasSafety !== null;
   const r = done
-    ? outcome(isEvident as boolean, hasSafety as boolean, hasOperational ?? false, hasCbm ?? false)
+    ? outcome(
+        isEvident as boolean,
+        hasSafety as boolean,
+        hasOperational ?? false,
+        hasCbm ?? false
+      )
     : null;
 
   return (
@@ -90,7 +122,9 @@ export default function RCMDecisionTree() {
 
       <div className="space-y-4 p-5">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-semibold text-ink-500">جرّب سيناريو جاهز:</span>
+          <span className="text-xs font-semibold text-ink-500">
+            جرّب سيناريو جاهز:
+          </span>
           {presets.map((p) => (
             <button
               key={p.id}
@@ -119,14 +153,20 @@ export default function RCMDecisionTree() {
             <div className="mt-3 grid gap-2 sm:grid-cols-2">
               <button
                 type="button"
-                onClick={() => { setIsEvident(true); setStep(2); }}
+                onClick={() => {
+                  setIsEvident(true);
+                  setStep(2);
+                }}
                 className="cursor-pointer rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-teal-700"
               >
                 نعم — عطل ظاهر (Evident)
               </button>
               <button
                 type="button"
-                onClick={() => { setIsEvident(false); setStep(2); }}
+                onClick={() => {
+                  setIsEvident(false);
+                  setStep(2);
+                }}
                 className="cursor-pointer rounded-lg bg-slate-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-slate-700"
               >
                 لا — عطل مخفي (Hidden)
@@ -144,14 +184,20 @@ export default function RCMDecisionTree() {
             <div className="mt-3 grid gap-2 sm:grid-cols-2">
               <button
                 type="button"
-                onClick={() => { setHasSafety(true); setStep(isEvident ? 4 : 5); }}
+                onClick={() => {
+                  setHasSafety(true);
+                  setStep(isEvident ? 4 : 5);
+                }}
                 className="cursor-pointer rounded-lg bg-rose-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-rose-700"
               >
                 نعم — يمس السلامة أو البيئة
               </button>
               <button
                 type="button"
-                onClick={() => { setHasSafety(false); setStep(isEvident ? 3 : 5); }}
+                onClick={() => {
+                  setHasSafety(false);
+                  setStep(isEvident ? 3 : 5);
+                }}
                 className="cursor-pointer rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-teal-700"
               >
                 لا — بلا أثر على السلامة
@@ -169,14 +215,20 @@ export default function RCMDecisionTree() {
             <div className="mt-3 grid gap-2 sm:grid-cols-2">
               <button
                 type="button"
-                onClick={() => { setHasOperational(true); setStep(4); }}
+                onClick={() => {
+                  setHasOperational(true);
+                  setStep(4);
+                }}
                 className="cursor-pointer rounded-lg bg-amber-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-amber-700"
               >
                 نعم — خسائر إنتاجية
               </button>
               <button
                 type="button"
-                onClick={() => { setHasOperational(false); setStep(5); }}
+                onClick={() => {
+                  setHasOperational(false);
+                  setStep(5);
+                }}
                 className="cursor-pointer rounded-lg bg-slate-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-slate-700"
               >
                 لا — تكلفة إصلاح فقط
@@ -189,19 +241,26 @@ export default function RCMDecisionTree() {
           <div className="rounded-xl border border-slate-200 p-4">
             <p className="text-xs font-bold text-ink-500">الخطوة 4 من 4</p>
             <p className="mt-1 text-sm font-bold text-ink-800">
-              هل للعطل نافذة تدهور (P-F Interval) تتيح كشفه بالاهتزاز أو الحرارة أو الزيت؟
+              هل للعطل نافذة تدهور (P-F Interval) تتيح كشفه بالاهتزاز أو الحرارة
+              أو الزيت؟
             </p>
             <div className="mt-3 grid gap-2 sm:grid-cols-2">
               <button
                 type="button"
-                onClick={() => { setHasCbm(true); setStep(5); }}
+                onClick={() => {
+                  setHasCbm(true);
+                  setStep(5);
+                }}
                 className="cursor-pointer rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-teal-700"
               >
                 نعم — المراقبة المشروطة مجدية
               </button>
               <button
                 type="button"
-                onClick={() => { setHasCbm(false); setStep(5); }}
+                onClick={() => {
+                  setHasCbm(false);
+                  setStep(5);
+                }}
                 className="cursor-pointer rounded-lg bg-slate-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-slate-700"
               >
                 لا — مفاجئ أو غير قابل للقياس
@@ -215,7 +274,9 @@ export default function RCMDecisionTree() {
             <p className="font-bold">التكتيك الموصى به: {r.tactic}</p>
             <p className="mt-1 text-xs font-normal opacity-90">{r.text}</p>
             <p className="mt-2 text-xs font-normal opacity-70" dir="ltr">
-              {isEvident ? 'Evident' : 'Hidden'} • {hasSafety ? 'Safety' : 'No safety'} • {hasOperational ? 'Operational' : 'Non-operational'}
+              {isEvident ? 'Evident' : 'Hidden'} •{' '}
+              {hasSafety ? 'Safety' : 'No safety'} •{' '}
+              {hasOperational ? 'Operational' : 'Non-operational'}
             </p>
           </div>
         )}

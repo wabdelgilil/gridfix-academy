@@ -16,14 +16,20 @@ export default function SpaceDensityTool() {
   const density = area / employees;
   const ref = benchmarks[mode];
   const isLow = density < ref.low; // كثيف (أقل مساحة لكل موظف)
-  const utilization = Math.max(0, Math.min(100, Math.round(((density - ref.low) / (ref.high - ref.low)) * 100)));
+  const utilization = Math.max(
+    0,
+    Math.min(
+      100,
+      Math.round(((density - ref.low) / (ref.high - ref.low)) * 100)
+    )
+  );
 
   const verdict =
     density < ref.low
       ? 'كثيفة — المساحة لكل موظف أقل من النطاق المرجعي، انتبه للراحة والازدحام.'
       : density <= ref.high
         ? 'متوازنة — داخل النطاق المرجعي لنمط عملك.'
-        : 'واسعة — المساحة أعلى من المرجع؛ فرصة لدراسة تقليص تكلفة مساحية.'
+        : 'واسعة — المساحة أعلى من المرجع؛ فرصة لدراسة تقليص تكلفة مساحية.';
 
   return (
     <div className="card mt-6 overflow-hidden">
@@ -34,7 +40,9 @@ export default function SpaceDensityTool() {
       <div className="grid gap-5 p-5 sm:grid-cols-2">
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-semibold text-ink-900">المساحة المخصصة (م²)</label>
+            <label className="block text-sm font-semibold text-ink-900">
+              المساحة المخصصة (م²)
+            </label>
             <input
               type="number"
               value={area}
@@ -43,7 +51,9 @@ export default function SpaceDensityTool() {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-ink-900">عدد الموظفين</label>
+            <label className="block text-sm font-semibold text-ink-900">
+              عدد الموظفين
+            </label>
             <input
               type="number"
               value={employees}
@@ -52,7 +62,9 @@ export default function SpaceDensityTool() {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-ink-900">نمط العمل</label>
+            <label className="block text-sm font-semibold text-ink-900">
+              نمط العمل
+            </label>
             <div className="mt-2 flex flex-wrap gap-2">
               {(Object.keys(benchmarks) as Mode[]).map((m) => (
                 <button
@@ -60,7 +72,9 @@ export default function SpaceDensityTool() {
                   key={m}
                   onClick={() => setMode(m)}
                   className={`rounded-xl px-3.5 py-2 text-sm font-medium transition ${
-                    mode === m ? 'bg-brand-600 text-white' : 'bg-slate-100 text-ink-600 hover:bg-slate-200 cursor-pointer'
+                    mode === m
+                      ? 'bg-brand-600 text-white'
+                      : 'bg-slate-100 text-ink-600 hover:bg-slate-200 cursor-pointer'
                   }`}
                 >
                   {benchmarks[m].label}
@@ -70,14 +84,30 @@ export default function SpaceDensityTool() {
           </div>
         </div>
 
-        <div className={`rounded-xl p-5 text-sm leading-relaxed ${isLow ? 'bg-rose-50 text-rose-800' : 'bg-brand-50 text-brand-800'}`}>
-          <p className="text-lg font-bold" dir="ltr">{Math.round(density * 10) / 10} م²/موظف</p>
+        <div
+          className={`rounded-xl p-5 text-sm leading-relaxed ${isLow ? 'bg-rose-50 text-rose-800' : 'bg-brand-50 text-brand-800'}`}
+        >
+          <p className="text-lg font-bold" dir="ltr">
+            {Math.round(density * 10) / 10} م²/موظف
+          </p>
           <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-white">
-            <div className="h-full rounded-full bg-brand-500 transition-all" style={{ width: `${Math.max(5, Math.min(100, utilization))}%` }} />
+            <div
+              className="h-full rounded-full bg-brand-500 transition-all"
+              style={{ width: `${Math.max(5, Math.min(100, utilization))}%` }}
+            />
           </div>
-          <p className="mt-2 opacity-90">النطاق المرجعي التقريبي: <span dir="ltr">{ref.low}–{ref.high}</span> م²/موظف</p>
+          <p className="mt-2 opacity-90">
+            النطاق المرجعي التقريبي:{' '}
+            <span dir="ltr">
+              {ref.low}–{ref.high}
+            </span>{' '}
+            م²/موظف
+          </p>
           <p className="mt-2 font-semibold">{verdict}</p>
-          <p className="mt-2 text-xs opacity-75">الشريط يوضح موقع كثافتك الحالية بين الحد الأدنى والأعلى للنطاق المرجعي. النطاقات إرشادية حسب الممارسات المكتبية العالمية.</p>
+          <p className="mt-2 text-xs opacity-75">
+            الشريط يوضح موقع كثافتك الحالية بين الحد الأدنى والأعلى للنطاق
+            المرجعي. النطاقات إرشادية حسب الممارسات المكتبية العالمية.
+          </p>
         </div>
       </div>
     </div>

@@ -17,9 +17,20 @@ const initial: Record<string, { current: number; required: number }> = {
 };
 
 function priority(gap: number) {
-  if (gap <= 0) return { label: 'مكتملة — لا تدريب مطلوب', cls: 'bg-teal-100 text-teal-800' };
-  if (gap === 1) return { label: 'أولوية متوسطة — تدريب على رأس العمل', cls: 'bg-amber-100 text-amber-800' };
-  return { label: 'أولوية حرجة — برنامج تدريبي عاجل', cls: 'bg-rose-100 text-rose-800' };
+  if (gap <= 0)
+    return {
+      label: 'مكتملة — لا تدريب مطلوب',
+      cls: 'bg-teal-100 text-teal-800',
+    };
+  if (gap === 1)
+    return {
+      label: 'أولوية متوسطة — تدريب على رأس العمل',
+      cls: 'bg-amber-100 text-amber-800',
+    };
+  return {
+    label: 'أولوية حرجة — برنامج تدريبي عاجل',
+    cls: 'bg-rose-100 text-rose-800',
+  };
 }
 
 export default function SkillsGapAnalyzer() {
@@ -43,10 +54,26 @@ export default function SkillsGapAnalyzer() {
   const done = gaps.filter((g) => g.gap === 0).length;
 
   const kirkpatrickLevels = [
-    { n: 1, name: 'رد الفعل', desc: 'استبيان رضا المتدربين عن القاعة والمدرب — مؤشر شكلي لا يضمن أي مهارة.' },
-    { n: 2, name: 'التعلم', desc: 'اختبار المعرفة بعد الدورة مباشرة لقياس استيعاب المفاهيم.' },
-    { n: 3, name: 'السلوك', desc: 'التطبيق الميداني الفعلي: هل يستخدم الفني الجهاز على المعدة وفق الإجراءات؟' },
-    { n: 4, name: 'النتائج', desc: 'الأثر التشغيلي: انخفاض الأعطال وتراجع زمن الإصلاح والعائد المالي.' },
+    {
+      n: 1,
+      name: 'رد الفعل',
+      desc: 'استبيان رضا المتدربين عن القاعة والمدرب — مؤشر شكلي لا يضمن أي مهارة.',
+    },
+    {
+      n: 2,
+      name: 'التعلم',
+      desc: 'اختبار المعرفة بعد الدورة مباشرة لقياس استيعاب المفاهيم.',
+    },
+    {
+      n: 3,
+      name: 'السلوك',
+      desc: 'التطبيق الميداني الفعلي: هل يستخدم الفني الجهاز على المعدة وفق الإجراءات؟',
+    },
+    {
+      n: 4,
+      name: 'النتائج',
+      desc: 'الأثر التشغيلي: انخفاض الأعطال وتراجع زمن الإصلاح والعائد المالي.',
+    },
   ];
 
   return (
@@ -59,12 +86,20 @@ export default function SkillsGapAnalyzer() {
           {gaps.map((g) => {
             const p = priority(g.gap);
             return (
-              <div key={g.id} className="rounded-xl border border-slate-200 p-4">
+              <div
+                key={g.id}
+                className="rounded-xl border border-slate-200 p-4"
+              >
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <p className="text-sm font-bold text-ink-800">
-                    {g.name} <span className="text-xs font-normal text-ink-500">(المطلوب: مستوى {g.required})</span>
+                    {g.name}{' '}
+                    <span className="text-xs font-normal text-ink-500">
+                      (المطلوب: مستوى {g.required})
+                    </span>
                   </p>
-                  <span className={`rounded-full px-3 py-1 text-xs font-bold ${p.cls}`}>
+                  <span
+                    className={`rounded-full px-3 py-1 text-xs font-bold ${p.cls}`}
+                  >
                     {g.gap === 0 ? p.label : `فجوة ${g.gap} — ${p.label}`}
                   </span>
                 </div>
@@ -79,7 +114,9 @@ export default function SkillsGapAnalyzer() {
                       max={4}
                       step={1}
                       value={g.current}
-                      onChange={(e) => set('current', g.id, Number(e.target.value))}
+                      onChange={(e) =>
+                        set('current', g.id, Number(e.target.value))
+                      }
                       className="w-full accent-teal-600"
                     />
                     <div className="flex justify-between text-[11px] text-ink-500">
@@ -99,7 +136,9 @@ export default function SkillsGapAnalyzer() {
                       max={4}
                       step={1}
                       value={g.required}
-                      onChange={(e) => set('required', g.id, Number(e.target.value))}
+                      onChange={(e) =>
+                        set('required', g.id, Number(e.target.value))
+                      }
                       className="w-full accent-indigo-600"
                     />
                     <div className="flex justify-between text-[11px] text-ink-500">
@@ -110,7 +149,10 @@ export default function SkillsGapAnalyzer() {
                     </div>
                   </div>
                 </div>
-                <div dir="ltr" className="mt-2 h-2.5 overflow-hidden rounded-full bg-slate-100">
+                <div
+                  dir="ltr"
+                  className="mt-2 h-2.5 overflow-hidden rounded-full bg-slate-100"
+                >
                   <div
                     className={`h-full rounded-full transition-all ${g.gap === 0 ? 'bg-teal-500' : g.gap === 1 ? 'bg-amber-500' : 'bg-rose-500'}`}
                     style={{ width: `${(g.current / 4) * 100}%` }}
@@ -121,15 +163,22 @@ export default function SkillsGapAnalyzer() {
           })}
         </div>
         <div className="rounded-xl bg-slate-50 p-4 text-sm font-bold text-ink-800">
-          المهارات المكتملة: <strong dir="ltr">{done} / {gaps.length}</strong>
+          المهارات المكتملة:{' '}
+          <strong dir="ltr">
+            {done} / {gaps.length}
+          </strong>
           <span className="mx-2 text-slate-300">|</span>
           الفجوات الحرجة: <strong dir="ltr">{critical}</strong>
           <p className="mt-1 text-xs font-normal text-ink-500">
-            ابدأ بالفجوات الحرجة (فجوة 2 فأكثر) ببرنامج تدريب على رأس العمل بإشراف خبير، وامنع تكليف من هم دون المستوى الثالث بالأعمال الحرجة.
+            ابدأ بالفجوات الحرجة (فجوة 2 فأكثر) ببرنامج تدريب على رأس العمل
+            بإشراف خبير، وامنع تكليف من هم دون المستوى الثالث بالأعمال الحرجة.
           </p>
         </div>
         <div className="rounded-xl border border-slate-200 p-4">
-          <p className="mb-2 text-sm font-bold text-ink-800">مستويات كيركباتريك لتقييم التدريب — المستوى الحالي: {kirkpatrick} من 4</p>
+          <p className="mb-2 text-sm font-bold text-ink-800">
+            مستويات كيركباتريك لتقييم التدريب — المستوى الحالي: {kirkpatrick} من
+            4
+          </p>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
             {kirkpatrickLevels.map((k) => (
               <button

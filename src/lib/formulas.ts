@@ -7,7 +7,11 @@
  * Net Present Value (PV) calculation for a future amount.
  * PV = amount / (1 + rate / 100)^year
  */
-export function presentValue(amount: number, discountRate: number, year: number): number {
+export function presentValue(
+  amount: number,
+  discountRate: number,
+  year: number
+): number {
   if (discountRate < 0) throw new Error('Discount rate cannot be negative');
   if (year < 0) throw new Error('Year cannot be negative');
   return amount / Math.pow(1 + discountRate / 100, year);
@@ -23,11 +27,16 @@ export interface LCCOption {
 /**
  * Calculates Life Cycle Cost (LCC) discounted over a horizon.
  */
-export function calculateLCC(option: LCCOption, discountRate: number, horizon: number = 12): number {
+export function calculateLCC(
+  option: LCCOption,
+  discountRate: number,
+  horizon: number = 12
+): number {
   if (horizon <= 0) throw new Error('Horizon must be positive');
   let total = option.initial;
   for (let year = 1; year <= horizon; year++) {
-    const operatingCost = option.annual * Math.pow(1 + option.escalate / 100, year - 1);
+    const operatingCost =
+      option.annual * Math.pow(1 + option.escalate / 100, year - 1);
     total += presentValue(operatingCost, discountRate, year);
     if (year % option.life === 0 && year < horizon) {
       total += presentValue(option.initial, discountRate, year);
@@ -40,7 +49,10 @@ export function calculateLCC(option: LCCOption, discountRate: number, horizon: n
  * Mean Time Between Failures (MTBF) in hours
  * MTBF = (Total Operating Time) / Failures Count
  */
-export function calculateMTBF(operatingHours: number, failures: number): number {
+export function calculateMTBF(
+  operatingHours: number,
+  failures: number
+): number {
   if (failures <= 0) return operatingHours;
   return Number((operatingHours / failures).toFixed(2));
 }
@@ -68,8 +80,13 @@ export function calculateAvailability(mtbf: number, mttr: number): number {
  * Overall Equipment Effectiveness (OEE) percentage
  * OEE = Availability * Performance * Quality (all passed as percentages 0-100 or fractions 0-1)
  */
-export function calculateOEE(availabilityPct: number, performancePct: number, qualityPct: number): number {
-  const oee = (availabilityPct / 100) * (performancePct / 100) * (qualityPct / 100) * 100;
+export function calculateOEE(
+  availabilityPct: number,
+  performancePct: number,
+  qualityPct: number
+): number {
+  const oee =
+    (availabilityPct / 100) * (performancePct / 100) * (qualityPct / 100) * 100;
   return Number(oee.toFixed(2));
 }
 
@@ -86,7 +103,11 @@ export function calculateEUI(totalEnergyKwh: number, areaSqM: number): number {
  * Exam Pass / Score calculator
  * Standard IFMA / SMRP threshold is 70%
  */
-export function evaluateExamScore(score: number, total: number, passingThresholdPct: number = 70): {
+export function evaluateExamScore(
+  score: number,
+  total: number,
+  passingThresholdPct: number = 70
+): {
   percentage: number;
   passed: boolean;
 } {

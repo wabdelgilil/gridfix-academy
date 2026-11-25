@@ -1,8 +1,20 @@
 import { useState } from 'react';
 
 const presets = [
-  { id: 'bearing', name: 'محمل العمود الرئيسي — تآكل ونقر في المجاري', s: 8, o: 6, d: 3 },
-  { id: 'seal', name: 'مانع التسرب الميكانيكي — تصدع أسطح الحلقات', s: 10, o: 2, d: 4 },
+  {
+    id: 'bearing',
+    name: 'محمل العمود الرئيسي — تآكل ونقر في المجاري',
+    s: 8,
+    o: 6,
+    d: 3,
+  },
+  {
+    id: 'seal',
+    name: 'مانع التسرب الميكانيكي — تصدع أسطح الحلقات',
+    s: 10,
+    o: 2,
+    d: 4,
+  },
   { id: 'prv', name: 'صمام الأمان — التصاق في وضع الإغلاق', s: 10, o: 2, d: 8 },
   { id: 'filter', name: 'فلتر سحب الهواء — انسداد تدريجي', s: 3, o: 7, d: 2 },
 ];
@@ -79,7 +91,10 @@ export default function FMEATable() {
           <div>
             <div className="mb-1 flex items-center justify-between text-sm font-semibold text-ink-700">
               <span>الشدة (Severity)</span>
-              <span className="rounded border border-slate-300 px-2 py-0.5 font-mono text-sm font-bold" dir="ltr">
+              <span
+                className="rounded border border-slate-300 px-2 py-0.5 font-mono text-sm font-bold"
+                dir="ltr"
+              >
                 {severity} / 10
               </span>
             </div>
@@ -92,14 +107,18 @@ export default function FMEATable() {
               className="w-full cursor-pointer accent-rose-600"
             />
             <p className="text-[11px] text-ink-500">
-              1 = لا أثر — 10 = كارثة بشرية دون إنذار. الشدة 9 أو 10 أولوية مطلقة دائماً.
+              1 = لا أثر — 10 = كارثة بشرية دون إنذار. الشدة 9 أو 10 أولوية
+              مطلقة دائماً.
             </p>
           </div>
 
           <div>
             <div className="mb-1 flex items-center justify-between text-sm font-semibold text-ink-700">
               <span>معدل الحدوث (Occurrence)</span>
-              <span className="rounded border border-slate-300 px-2 py-0.5 font-mono text-sm font-bold" dir="ltr">
+              <span
+                className="rounded border border-slate-300 px-2 py-0.5 font-mono text-sm font-bold"
+                dir="ltr"
+              >
                 {occurrence} / 10
               </span>
             </div>
@@ -119,7 +138,10 @@ export default function FMEATable() {
           <div>
             <div className="mb-1 flex items-center justify-between text-sm font-semibold text-ink-700">
               <span>صعوبة الكشف (Detection)</span>
-              <span className="rounded border border-slate-300 px-2 py-0.5 font-mono text-sm font-bold" dir="ltr">
+              <span
+                className="rounded border border-slate-300 px-2 py-0.5 font-mono text-sm font-bold"
+                dir="ltr"
+              >
                 {detection} / 10
               </span>
             </div>
@@ -139,12 +161,17 @@ export default function FMEATable() {
 
         <div className={`rounded-xl p-4 text-sm ring-2 ${a.cls}`}>
           <p className="font-bold">
-            رقم أولوية المخاطر: <strong dir="ltr">RPN = {severity} × {occurrence} × {detection} = {rpn}</strong> (من 1000) — {a.level}
+            رقم أولوية المخاطر:{' '}
+            <strong dir="ltr">
+              RPN = {severity} × {occurrence} × {detection} = {rpn}
+            </strong>{' '}
+            (من 1000) — {a.level}
           </p>
           <p className="mt-1 text-xs font-normal opacity-90">{a.text}</p>
           {severity >= 9 && (
             <p className="mt-1 text-xs font-bold opacity-100">
-              تنبيه السلامة: لا تعتمد على الرقم الإجمالي وحده — نمط بشدة 10 ورقم 60 (10 × 2 × 3) يتقدم على نمط بشدة 3 ورقم 180 (3 × 10 × 6).
+              تنبيه السلامة: لا تعتمد على الرقم الإجمالي وحده — نمط بشدة 10 ورقم
+              60 (10 × 2 × 3) يتقدم على نمط بشدة 3 ورقم 180 (3 × 10 × 6).
             </p>
           )}
         </div>

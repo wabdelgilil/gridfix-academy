@@ -24,7 +24,9 @@ export default function WeeklyScheduler() {
       <div className="space-y-4 p-5">
         <div className="grid gap-3 sm:grid-cols-2">
           <div>
-            <label className="mb-1.5 block text-sm font-semibold text-ink-700">عدد الفنيين: {techs}</label>
+            <label className="mb-1.5 block text-sm font-semibold text-ink-700">
+              عدد الفنيين: {techs}
+            </label>
             <input
               type="range"
               min={2}
@@ -35,7 +37,9 @@ export default function WeeklyScheduler() {
             />
           </div>
           <div>
-            <label className="mb-1.5 block text-sm font-semibold text-ink-700">ساعات الفني أسبوعيا: {hoursPerTech}</label>
+            <label className="mb-1.5 block text-sm font-semibold text-ink-700">
+              ساعات الفني أسبوعيا: {hoursPerTech}
+            </label>
             <input
               type="range"
               min={24}
@@ -96,25 +100,41 @@ export default function WeeklyScheduler() {
             <p className="font-mono text-xl font-black text-ink-900" dir="ltr">
               {net} Hrs
             </p>
-            <p className="text-[10px] text-ink-400">الإجمالي {gross} − المستقطع {deductions}</p>
+            <p className="text-[10px] text-ink-400">
+              الإجمالي {gross} − المستقطع {deductions}
+            </p>
           </div>
           <div className="rounded-xl bg-slate-100 p-3">
             <p className="text-[11px] font-bold text-ink-500">نسبة التحميل</p>
-            <p className={`font-mono text-xl font-black ${load === 100 ? 'text-teal-700' : 'text-amber-600'}`} dir="ltr">
+            <p
+              className={`font-mono text-xl font-black ${load === 100 ? 'text-teal-700' : 'text-amber-600'}`}
+              dir="ltr"
+            >
               {load}%
             </p>
-            <p className="text-[10px] text-ink-400">القاعدة: جدولة 100% من الصافي</p>
+            <p className="text-[10px] text-ink-400">
+              القاعدة: جدولة 100% من الصافي
+            </p>
           </div>
-          <div className={`rounded-xl p-3 ring-2 ${good ? 'bg-teal-50 ring-teal-500' : 'bg-amber-50 ring-amber-500'}`}>
-            <p className="text-[11px] font-bold text-ink-500">الالتزام بالجدول</p>
-            <p className={`font-mono text-xl font-black ${good ? 'text-teal-700' : 'text-amber-600'}`} dir="ltr">
+          <div
+            className={`rounded-xl p-3 ring-2 ${good ? 'bg-teal-50 ring-teal-500' : 'bg-amber-50 ring-amber-500'}`}
+          >
+            <p className="text-[11px] font-bold text-ink-500">
+              الالتزام بالجدول
+            </p>
+            <p
+              className={`font-mono text-xl font-black ${good ? 'text-teal-700' : 'text-amber-600'}`}
+              dir="ltr"
+            >
               {compliance.toFixed(1)}%
             </p>
             <p className="text-[10px] text-ink-400">المستهدف العالمي ≥ 80%</p>
           </div>
         </div>
 
-        <div className={`rounded-xl p-4 text-sm ring-2 ${good ? 'bg-teal-50 text-teal-800 ring-teal-500' : 'bg-amber-50 text-amber-800 ring-amber-500'}`}>
+        <div
+          className={`rounded-xl p-4 text-sm ring-2 ${good ? 'bg-teal-50 text-teal-800 ring-teal-500' : 'bg-amber-50 text-amber-800 ring-amber-500'}`}
+        >
           <p className="text-xs leading-relaxed">
             {load < 100
               ? `تركت ${net - scheduled} ساعة فارغة عمدا — قانون باركنسون يحذر: العمل يتمدد ليملأ الوقت المتاح فتتباطأ الوتيرة وتضيع الساعات.`

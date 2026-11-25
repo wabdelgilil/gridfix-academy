@@ -76,8 +76,12 @@ export default function WorkOrderFlow() {
                     : 'border-slate-200 bg-white hover:border-slate-400'
               }`}
             >
-              <span className="font-mono text-[11px] font-bold text-ink-400">#{i + 1}</span>
-              <span className="text-[11px] font-bold leading-tight text-ink-800">{st.title}</span>
+              <span className="font-mono text-[11px] font-bold text-ink-400">
+                #{i + 1}
+              </span>
+              <span className="text-[11px] font-bold leading-tight text-ink-800">
+                {st.title}
+              </span>
             </button>
           ))}
         </div>
@@ -85,7 +89,8 @@ export default function WorkOrderFlow() {
         <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm font-bold text-ink-900">
-              المرحلة {idx + 1} من 6: {s.title} <span className="font-mono text-xs text-ink-400">({s.en})</span>
+              المرحلة {idx + 1} من 6: {s.title}{' '}
+              <span className="font-mono text-xs text-ink-400">({s.en})</span>
             </p>
             <span className="rounded-full bg-brand-100 px-3 py-1 font-mono text-[11px] font-bold text-brand-800">
               {s.status}

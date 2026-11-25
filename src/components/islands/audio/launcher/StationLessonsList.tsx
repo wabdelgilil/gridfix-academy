@@ -16,7 +16,9 @@ export default function StationLessonsList({
   const selectedCourseMeta = courses.find((c) => c.id === selectedCourse);
 
   const currentCourseStations = curriculum
-    .filter((s) => (s.courseId ?? 'cfm') === selectedCourse && s.status === 'live')
+    .filter(
+      (s) => (s.courseId ?? 'cfm') === selectedCourse && s.status === 'live'
+    )
     .sort((a, b) => a.number - b.number);
 
   return (
@@ -28,7 +30,9 @@ export default function StationLessonsList({
       {/* Header of Lesson List */}
       <div
         className={`flex items-center justify-between px-4 py-2.5 sm:px-6 sm:py-3 border-b shrink-0 ${
-          isDay ? 'bg-white border-slate-200' : 'bg-slate-900/40 border-slate-800'
+          isDay
+            ? 'bg-white border-slate-200'
+            : 'bg-slate-900/40 border-slate-800'
         }`}
       >
         <div className="flex items-center gap-2">
@@ -85,14 +89,18 @@ export default function StationLessonsList({
                 <div className="text-xs sm:text-sm font-black flex items-center gap-2 text-brand-600 dark:text-brand-400">
                   <span
                     className={`flex h-6 w-6 items-center justify-center rounded-xl text-xs font-black ${
-                      isDay ? 'bg-brand-100 text-brand-800' : 'bg-brand-500/20 text-brand-300'
+                      isDay
+                        ? 'bg-brand-100 text-brand-800'
+                        : 'bg-brand-500/20 text-brand-300'
                     }`}
                   >
                     {station.number}
                   </span>
                   <span>{lang === 'ar' ? station.title : station.titleEn}</span>
                 </div>
-                <span className={`text-xs font-bold ${isDay ? 'text-slate-500' : 'text-slate-500'}`}>
+                <span
+                  className={`text-xs font-bold ${isDay ? 'text-slate-500' : 'text-slate-500'}`}
+                >
                   {station.lessons.length} {lang === 'ar' ? 'دروس' : 'lessons'}
                 </span>
               </div>
@@ -110,15 +118,17 @@ export default function StationLessonsList({
                             ? 'border-slate-300 bg-white hover:border-emerald-600 hover:shadow-md'
                             : 'border-slate-800 bg-slate-900/90 hover:border-emerald-500/70'
                           : isDay
-                          ? 'border-slate-200 bg-slate-50 opacity-80'
-                          : 'border-slate-800/50 bg-slate-900/30 opacity-75'
+                            ? 'border-slate-200 bg-slate-50 opacity-80'
+                            : 'border-slate-800/50 bg-slate-900/30 opacity-75'
                       }`}
                     >
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
                           <span
                             className={`text-xs sm:text-sm font-black px-1.5 py-0.5 rounded-lg ${
-                              isDay ? 'bg-slate-200 text-slate-900' : 'bg-slate-800 text-slate-300'
+                              isDay
+                                ? 'bg-slate-200 text-slate-900'
+                                : 'bg-slate-800 text-slate-300'
                             }`}
                           >
                             {lesson.number}
@@ -146,7 +156,11 @@ export default function StationLessonsList({
                         <a
                           href={`/${selectedCourse}/listen/?lesson=${lesson.id}`}
                           className="shrink-0 inline-flex items-center justify-center gap-1.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 px-4 py-2.5 text-xs sm:text-sm font-black text-white shadow-md transition"
-                          title={lang === 'ar' ? 'بدء الاستماع لهذا الدرس' : 'Listen now'}
+                          title={
+                            lang === 'ar'
+                              ? 'بدء الاستماع لهذا الدرس'
+                              : 'Listen now'
+                          }
                         >
                           <span className="text-sm">▶</span>
                           <span>{lang === 'ar' ? 'استمع' : 'Play'}</span>
@@ -160,10 +174,16 @@ export default function StationLessonsList({
                                 ? 'bg-slate-200 hover:bg-slate-300 text-slate-800 border-slate-300'
                                 : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
                             }`}
-                            title={lang === 'ar' ? 'فتح الدرس في وضع القيادة' : 'Open in Car Mode'}
+                            title={
+                              lang === 'ar'
+                                ? 'فتح الدرس في وضع القيادة'
+                                : 'Open in Car Mode'
+                            }
                           >
                             <span>🚗</span>
-                            <span>{lang === 'ar' ? 'وضع السيارة' : 'Car Mode'}</span>
+                            <span>
+                              {lang === 'ar' ? 'وضع السيارة' : 'Car Mode'}
+                            </span>
                           </a>
                           <a
                             href={`/${selectedCourse}/lessons/${lesson.id}/`}
@@ -172,7 +192,9 @@ export default function StationLessonsList({
                                 ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-300'
                                 : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
                             }`}
-                            title={lang === 'ar' ? 'قراءة نص الدرس' : 'Read article'}
+                            title={
+                              lang === 'ar' ? 'قراءة نص الدرس' : 'Read article'
+                            }
                           >
                             <span>📖</span>
                           </a>
@@ -193,14 +215,20 @@ export default function StationLessonsList({
           isDay ? 'bg-white border-slate-200' : 'bg-slate-900 border-slate-800'
         }`}
       >
-        <div className={`text-xs font-bold ${isDay ? 'text-slate-600' : 'text-slate-400'}`}>
-          {lang === 'ar' ? 'مشغل السيارة يدعم أزرار عجلة القيادة' : 'Steering controls supported'}
+        <div
+          className={`text-xs font-bold ${isDay ? 'text-slate-600' : 'text-slate-400'}`}
+        >
+          {lang === 'ar'
+            ? 'مشغل السيارة يدعم أزرار عجلة القيادة'
+            : 'Steering controls supported'}
         </div>
         <a
           href={`/${selectedCourse}/listen/?playlist=true`}
           className="rounded-xl bg-emerald-600 px-3.5 py-2 text-xs font-black text-white hover:bg-emerald-700 shadow-sm transition"
         >
-          {lang === 'ar' ? `فتح مشغل ${selectedCourseMeta?.code} 🚗` : `Open Player 🚗`}
+          {lang === 'ar'
+            ? `فتح مشغل ${selectedCourseMeta?.code} 🚗`
+            : `Open Player 🚗`}
         </a>
       </div>
     </div>

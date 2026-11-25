@@ -16,9 +16,9 @@ function quadrant(power: number, interest: number): string {
 
 const qTone: Record<string, string> = {
   'إدارة وثيقة': 'bg-rose-50 text-rose-800 ring-rose-400',
-  'إرضاء': 'bg-amber-50 text-amber-800 ring-amber-400',
+  إرضاء: 'bg-amber-50 text-amber-800 ring-amber-400',
   'إبقاء على اطلاع': 'bg-teal-50 text-teal-800 ring-teal-400',
-  'مراقبة': 'bg-slate-100 text-ink-500 ring-slate-300',
+  مراقبة: 'bg-slate-100 text-ink-500 ring-slate-300',
 };
 
 export default function PowerInterestMatrix() {
@@ -31,7 +31,10 @@ export default function PowerInterestMatrix() {
     if (!name.trim()) return;
     const key = `${power},${interest}`;
     const fresh = { id: nextId++, name: name.trim() };
-    setStakes((prev) => ({ ...prev, [key]: prev[key] ? { ...prev[key] } : fresh }));
+    setStakes((prev) => ({
+      ...prev,
+      [key]: prev[key] ? { ...prev[key] } : fresh,
+    }));
     setName('');
   };
 
@@ -68,7 +71,9 @@ export default function PowerInterestMatrix() {
             >
               <option value={0}>اختر</option>
               {[1, 2, 3, 4, 5].map((v) => (
-                <option key={v} value={v}>{v}</option>
+                <option key={v} value={v}>
+                  {v}
+                </option>
               ))}
             </select>
           </label>
@@ -81,7 +86,9 @@ export default function PowerInterestMatrix() {
             >
               <option value={0}>اختر</option>
               {[1, 2, 3, 4, 5].map((v) => (
-                <option key={v} value={v}>{v}</option>
+                <option key={v} value={v}>
+                  {v}
+                </option>
               ))}
             </select>
           </label>
@@ -96,9 +103,17 @@ export default function PowerInterestMatrix() {
           </div>
         </div>
 
-        <div dir="ltr" className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-          <p className="mb-2 text-center text-xs font-semibold text-ink-500">اهتمام (Interest) → مرتفع</p>
-          <div className="grid grid-cols-5 gap-1.5" style={{ direction: 'ltr' }}>
+        <div
+          dir="ltr"
+          className="rounded-xl border border-slate-200 bg-slate-50 p-4"
+        >
+          <p className="mb-2 text-center text-xs font-semibold text-ink-500">
+            اهتمام (Interest) → مرتفع
+          </p>
+          <div
+            className="grid grid-cols-5 gap-1.5"
+            style={{ direction: 'ltr' }}
+          >
             {Array.from({ length: 25 }, (_, idx) => {
               const powerVal = 5 - Math.floor(idx / 5);
               const interestVal = (idx % 5) + 1;
@@ -111,11 +126,20 @@ export default function PowerInterestMatrix() {
               else if (q === 'إبقاء على اطلاع') qClass = 'bg-teal-100';
               else qClass = 'bg-slate-100';
               return (
-                <div key={key} className={`flex h-16 min-w-0 flex-col items-center justify-center rounded-lg p-1 ${qClass}`}>
+                <div
+                  key={key}
+                  className={`flex h-16 min-w-0 flex-col items-center justify-center rounded-lg p-1 ${qClass}`}
+                >
                   {s ? (
                     <>
-                      <span className="w-full truncate text-center text-[11px] font-bold text-ink-800">{s.name}</span>
-                      <button type="button" onClick={() => remove(key)} className="cursor-pointer text-[10px] text-rose-500">
+                      <span className="w-full truncate text-center text-[11px] font-bold text-ink-800">
+                        {s.name}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => remove(key)}
+                        className="cursor-pointer text-[10px] text-rose-500"
+                      >
                         إزالة
                       </button>
                     </>
@@ -128,7 +152,9 @@ export default function PowerInterestMatrix() {
               );
             })}
           </div>
-          <p className="mb-1 mt-2 text-center text-xs font-semibold text-ink-500">قوة (Power) → تنازلياً (5 الأعلى أعلى)</p>
+          <p className="mb-1 mt-2 text-center text-xs font-semibold text-ink-500">
+            قوة (Power) → تنازلياً (5 الأعلى أعلى)
+          </p>
         </div>
 
         <div className="grid gap-2 sm:grid-cols-2">
@@ -136,16 +162,25 @@ export default function PowerInterestMatrix() {
             const [pw, it] = key.split(',').map(Number);
             const q = quadrant(pw, it);
             return (
-              <div key={key} className={`flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm ring-1 ${qTone[q]}`}>
-                <span className="font-semibold">{q}: {s.name}</span>
-                <span className="text-xs" dir="ltr">قوة {pw} • اهتمام {it}</span>
+              <div
+                key={key}
+                className={`flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm ring-1 ${qTone[q]}`}
+              >
+                <span className="font-semibold">
+                  {q}: {s.name}
+                </span>
+                <span className="text-xs" dir="ltr">
+                  قوة {pw} • اهتمام {it}
+                </span>
               </div>
             );
           })}
         </div>
 
         <p className="rounded-xl bg-slate-100 p-3 text-xs leading-relaxed text-ink-500">
-          القاعدة: أصحاب «القوة العالية» يحتاجون إرضاء أو إدارة وثيقة، و«الاهتمام العالي» يحتاجون إبقاءً على اطلاع — ومسارات التواصل تحدد من هذه المصفوفة قبل إعداد التقارير.
+          القاعدة: أصحاب «القوة العالية» يحتاجون إرضاء أو إدارة وثيقة،
+          و«الاهتمام العالي» يحتاجون إبقاءً على اطلاع — ومسارات التواصل تحدد من
+          هذه المصفوفة قبل إعداد التقارير.
         </p>
       </div>
     </div>

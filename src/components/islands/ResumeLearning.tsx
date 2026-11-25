@@ -30,8 +30,14 @@ export default function ResumeLearning({ course }: Props) {
 
   const timeAgo = getTimeAgo(last.at, lang);
   const resolved = resolveLessonEnglish(course, last.lessonId);
-  const lessonTitle = lang === 'en' ? (last.titleEn ?? resolved.lessonTitleEn ?? last.title) : last.title;
-  const stationTitle = lang === 'en' ? (last.stationTitleEn ?? resolved.stationTitleEn ?? last.stationTitle) : last.stationTitle;
+  const lessonTitle =
+    lang === 'en'
+      ? (last.titleEn ?? resolved.lessonTitleEn ?? last.title)
+      : last.title;
+  const stationTitle =
+    lang === 'en'
+      ? (last.stationTitleEn ?? resolved.stationTitleEn ?? last.stationTitle)
+      : last.stationTitle;
 
   return (
     <a
@@ -43,13 +49,21 @@ export default function ResumeLearning({ course }: Props) {
           ▶
         </span>
         <div className="min-w-0 flex-1">
-          <p className="text-xs text-ink-400">{lang === 'en' ? 'Continue where you left off' : 'تابع من حيث توقفت'}</p>
-          <p className="mt-0.5 truncate font-bold text-ink-900">{lessonTitle}</p>
+          <p className="text-xs text-ink-400">
+            {lang === 'en'
+              ? 'Continue where you left off'
+              : 'تابع من حيث توقفت'}
+          </p>
+          <p className="mt-0.5 truncate font-bold text-ink-900">
+            {lessonTitle}
+          </p>
           <p className="mt-0.5 text-xs text-ink-400">
             {stationTitle} · {timeAgo}
           </p>
         </div>
-        <span className="text-lg font-bold text-brand-600 transition group-hover:-translate-x-1">←</span>
+        <span className="text-lg font-bold text-brand-600 transition group-hover:-translate-x-1">
+          ←
+        </span>
       </div>
     </a>
   );

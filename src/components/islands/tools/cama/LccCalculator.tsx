@@ -25,8 +25,22 @@ function lccTotal(cfg: LccOption, discount: number): number {
   return total;
 }
 
-const defaultA: LccOption = { label: 'الخيار أ: الأرخص شراءً', purchase: 10000, operating: 3000, maintenance: 2000, disposal: 1500, life: 10 };
-const defaultB: LccOption = { label: 'الخيار ب: الأكفأ تشغيلاً', purchase: 14000, operating: 1500, maintenance: 800, disposal: 2000, life: 10 };
+const defaultA: LccOption = {
+  label: 'الخيار أ: الأرخص شراءً',
+  purchase: 10000,
+  operating: 3000,
+  maintenance: 2000,
+  disposal: 1500,
+  life: 10,
+};
+const defaultB: LccOption = {
+  label: 'الخيار ب: الأكفأ تشغيلاً',
+  purchase: 14000,
+  operating: 1500,
+  maintenance: 800,
+  disposal: 2000,
+  life: 10,
+};
 
 export default function LccCalculator() {
   const [discount, setDiscount] = useState(10);
@@ -53,7 +67,9 @@ export default function LccCalculator() {
           <input
             type="number"
             value={opt.purchase}
-            onChange={(e) => setField(group, 'purchase', Number(e.target.value))}
+            onChange={(e) =>
+              setField(group, 'purchase', Number(e.target.value))
+            }
             className="mt-1 w-full rounded-lg border border-slate-200 px-2.5 py-1.5 outline-none focus:border-brand-500"
             dir="ltr"
           />
@@ -63,7 +79,9 @@ export default function LccCalculator() {
           <input
             type="number"
             value={opt.operating}
-            onChange={(e) => setField(group, 'operating', Number(e.target.value))}
+            onChange={(e) =>
+              setField(group, 'operating', Number(e.target.value))
+            }
             className="mt-1 w-full rounded-lg border border-slate-200 px-2.5 py-1.5 outline-none focus:border-brand-500"
             dir="ltr"
           />
@@ -73,7 +91,9 @@ export default function LccCalculator() {
           <input
             type="number"
             value={opt.maintenance}
-            onChange={(e) => setField(group, 'maintenance', Number(e.target.value))}
+            onChange={(e) =>
+              setField(group, 'maintenance', Number(e.target.value))
+            }
             className="mt-1 w-full rounded-lg border border-slate-200 px-2.5 py-1.5 outline-none focus:border-brand-500"
             dir="ltr"
           />
@@ -83,7 +103,9 @@ export default function LccCalculator() {
           <input
             type="number"
             value={opt.disposal}
-            onChange={(e) => setField(group, 'disposal', Number(e.target.value))}
+            onChange={(e) =>
+              setField(group, 'disposal', Number(e.target.value))
+            }
             className="mt-1 w-full rounded-lg border border-slate-200 px-2.5 py-1.5 outline-none focus:border-brand-500"
             dir="ltr"
           />
@@ -114,7 +136,12 @@ export default function LccCalculator() {
       </div>
 
       <div className="px-5 pb-4">
-        <label className="text-sm font-semibold text-ink-900">معدل الخصم السنوي % <span className="font-normal text-ink-400">(تكلفة رأس المال والتضخم)</span></label>
+        <label className="text-sm font-semibold text-ink-900">
+          معدل الخصم السنوي %{' '}
+          <span className="font-normal text-ink-400">
+            (تكلفة رأس المال والتضخم)
+          </span>
+        </label>
         <input
           type="range"
           min="0"
@@ -124,15 +151,25 @@ export default function LccCalculator() {
           onChange={(e) => setDiscount(Number(e.target.value))}
           className="mt-2 w-full accent-teal-600"
         />
-        <span className="chip mt-2 bg-brand-100 text-brand-700" dir="ltr">{discount}%</span>
+        <span className="chip mt-2 bg-brand-100 text-brand-700" dir="ltr">
+          {discount}%
+        </span>
       </div>
 
       <div className="mx-5 mb-5 space-y-3 rounded-xl p-4 ring-2 ring-brand-500 bg-brand-50 text-sm text-brand-800">
-        <p className="text-base font-bold" dir="ltr">أ: {Math.round(totalA).toLocaleString('en-US')} ريال | ب: {Math.round(totalB).toLocaleString('en-US')} ريال</p>
-        <p className="mt-1">
-          تكلفة دورة الحياة الأقل = الأوفر على المدى الطويل. الخيار الأوفر حالياً: <strong>الخيار {cheaper}</strong> بفرق {Math.round(savings).toLocaleString('en-US')} ريال.
+        <p className="text-base font-bold" dir="ltr">
+          أ: {Math.round(totalA).toLocaleString('en-US')} ريال | ب:{' '}
+          {Math.round(totalB).toLocaleString('en-US')} ريال
         </p>
-        <p className="text-xs opacity-80">يحسّب التكلفة الإجمالية المخصومة: اكتساب + (تشغيل + صيانة) عبر العمر − قيمة النهاية المخصومة. لا يغني عن دراسة الجودة والمخاطر.</p>
+        <p className="mt-1">
+          تكلفة دورة الحياة الأقل = الأوفر على المدى الطويل. الخيار الأوفر
+          حالياً: <strong>الخيار {cheaper}</strong> بفرق{' '}
+          {Math.round(savings).toLocaleString('en-US')} ريال.
+        </p>
+        <p className="text-xs opacity-80">
+          يحسّب التكلفة الإجمالية المخصومة: اكتساب + (تشغيل + صيانة) عبر العمر −
+          قيمة النهاية المخصومة. لا يغني عن دراسة الجودة والمخاطر.
+        </p>
       </div>
     </div>
   );

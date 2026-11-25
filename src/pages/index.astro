@@ -9,10 +9,15 @@ const liveCourses = courses.filter((c) => c.status === 'live');
 const plannedCourses = courses.filter((c) => c.status === 'planned');
 
 const perCourse = liveCourses.map((c) => {
-  const stations = curriculum.filter((s) => (s.courseId ?? 'cfm') === c.id).length;
+  const stations = curriculum.filter(
+    (s) => (s.courseId ?? 'cfm') === c.id
+  ).length;
   const lessons = curriculum
     .filter((s) => (s.courseId ?? 'cfm') === c.id)
-    .reduce((acc, s) => acc + s.lessons.filter((l) => l.status === 'live').length, 0);
+    .reduce(
+      (acc, s) => acc + s.lessons.filter((l) => l.status === 'live').length,
+      0
+    );
   return { course: c, stations, lessons };
 });
 
@@ -21,15 +26,28 @@ const siteJsonLd = {
   '@type': 'EducationalOrganization',
   name: 'GridFix Academy',
   url: 'https://academy.gridfix.net',
-  description: 'منصة تعليمية عربية مجانية لإدارة المنشآت والصيانة وإدارة الأصول.',
+  description:
+    'منصة تعليمية عربية مجانية لإدارة المنشآت والصيانة وإدارة الأصول.',
   inLanguage: 'ar',
-  parentOrganization: { '@type': 'Organization', name: 'GridFix', url: 'https://gridfix.net' },
+  parentOrganization: {
+    '@type': 'Organization',
+    name: 'GridFix',
+    url: 'https://gridfix.net',
+  },
 };
 ---
 
-<BaseLayout title="GridFix Academy — تعلم CFM وCMRP وCAMA مجاناً بالعربية" titleEn="GridFix Academy — learn CFM, CMRP &amp; CAMA in Arabic for free" description="منصة تعليمية عربية مجانية مقدمة من GridFix: كورسات منظمة لشهادات CFM وCMRP وCAMA بالعربية مع المصطلحات الإنجليزية وأدوات تفاعلية." descriptionEn="A free Arabic learning platform by GridFix: structured courses for the CFM, CMRP and CAMA credentials in Arabic, with English terminology and interactive tools.">
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(siteJsonLd)} />
-
+<BaseLayout
+  title="GridFix Academy — تعلم CFM وCMRP وCAMA مجاناً بالعربية"
+  titleEn="GridFix Academy — learn CFM, CMRP &amp; CAMA in Arabic for free"
+  description="منصة تعليمية عربية مجانية مقدمة من GridFix: كورسات منظمة لشهادات CFM وCMRP وCAMA بالعربية مع المصطلحات الإنجليزية وأدوات تفاعلية."
+  descriptionEn="A free Arabic learning platform by GridFix: structured courses for the CFM, CMRP and CAMA credentials in Arabic, with English terminology and interactive tools."
+>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(siteJsonLd)}
+  />
   <section class="relative overflow-hidden rounded-3xl bg-gradient-to-l from-ink-900 via-brand-800 to-brand-600 px-6 py-16 text-center text-white sm:px-12">
     <div class="absolute inset-0 overflow-hidden">
       <div class="absolute -top-24 -start-24 h-64 w-64 rounded-full bg-brand-400/10 blur-3xl"></div>
@@ -53,12 +71,21 @@ const siteJsonLd = {
               class="h-20 w-20 sm:h-24 sm:w-24 object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
             />
             <div class="text-center sm:text-start">
-              <div class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900" dir="ltr">
-                <span class="text-[#1482db]">Grid</span><span class="text-[#65808b]">Fix</span> <span class="text-slate-900">Academy</span>
+              <div
+                class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900"
+                dir="ltr"
+              >
+                <span class="text-[#1482db]">Grid</span>
+                <span class="text-[#65808b]">Fix</span>{' '}
+                <span class="text-slate-900">Academy</span>
               </div>
               <p class="mt-1 text-xs sm:text-sm font-semibold text-slate-500">
-                <LangText lang="ar">المنصة التعليمية لإدارة المنشآت والصيانة والأصول</LangText>
-                <LangText lang="en">The Educational Platform for Facilities &amp; Maintenance</LangText>
+                <LangText lang="ar">
+                  المنصة التعليمية لإدارة المنشآت والصيانة والأصول
+                </LangText>
+                <LangText lang="en">
+                  The Educational Platform for Facilities &amp; Maintenance
+                </LangText>
               </p>
             </div>
           </div>
@@ -69,17 +96,26 @@ const siteJsonLd = {
         <LangText lang="en">100% free learning platform</LangText>
       </span>
       <h1 class="mt-5 text-3xl font-bold leading-relaxed sm:text-4xl lg:text-5xl">
-        <LangText lang="ar">تعلّم إدارة المنشآت والصيانة <span class="text-amber-300">باحتراف</span></LangText>
-        <LangText lang="en">Master Facility &amp; Asset Management <span class="text-amber-300">Professionally</span></LangText>
+        <LangText lang="ar">
+          تعلّم إدارة المنشآت والصيانة{' '}
+          <span class="text-amber-300">باحتراف</span>
+        </LangText>
+        <LangText lang="en">
+          Master Facility &amp; Asset Management{' '}
+          <span class="text-amber-300">Professionally</span>
+        </LangText>
       </h1>
       <p class="mt-4 text-lg leading-relaxed text-blue-50">
         <LangText lang="ar">
-          أكاديمية <strong class="text-amber-300">GridFix Academy</strong> تقدّم كورسات عربية
-          عملية لأشهر شهادات المجال — مع شرح بالمصطلحات الإنجليزية، أدوات تفاعلية، وكويزات مواقف. اختر مسارك وابدأ الآن.
+          أكاديمية <strong class="text-amber-300">GridFix Academy</strong> تقدّم
+          كورسات عربية عملية لأشهر شهادات المجال — مع شرح بالمصطلحات الإنجليزية،
+          أدوات تفاعلية، وكويزات مواقف. اختر مسارك وابدأ الآن.
         </LangText>
         <LangText lang="en">
-          <strong class="text-amber-300">GridFix Academy</strong> offers practical courses in Arabic
-          for the field's leading certifications — with English terminology, interactive tools, and scenario quizzes. Pick your path and start now.
+          <strong class="text-amber-300">GridFix Academy</strong> offers
+          practical courses in Arabic for the field's leading certifications —
+          with English terminology, interactive tools, and scenario quizzes.
+          Pick your path and start now.
         </LangText>
       </p>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-blue-50">
@@ -89,18 +125,25 @@ const siteJsonLd = {
           <LangText lang="en">specialized courses</LangText>
         </span>
         <span class="flex items-center gap-2">
-          <span class="font-bold text-amber-300">{perCourse.reduce((a, c) => a + c.stations, 0)}</span>
+          <span class="font-bold text-amber-300">
+            {perCourse.reduce((a, c) => a + c.stations, 0)}
+          </span>
           <LangText lang="ar">محطة</LangText>
           <LangText lang="en">stations</LangText>
         </span>
         <span class="flex items-center gap-2">
-          <span class="font-bold text-amber-300">{perCourse.reduce((a, c) => a + c.lessons, 0)}</span>
+          <span class="font-bold text-amber-300">
+            {perCourse.reduce((a, c) => a + c.lessons, 0)}
+          </span>
           <LangText lang="ar">درساً</LangText>
           <LangText lang="en">lessons</LangText>
         </span>
       </div>
       <div class="mt-8 flex flex-wrap justify-center gap-4">
-        <a href="#courses" class="rounded-xl bg-amber-400 px-6 py-3 font-bold text-amber-950 transition hover:bg-amber-300">
+        <a
+          href="#courses"
+          class="rounded-xl bg-amber-400 px-6 py-3 font-bold text-amber-950 transition hover:bg-amber-300"
+        >
           <LangText lang="ar">اختر مسارك التعليمي وابدأ مجاناً ↓</LangText>
           <LangText lang="en">Choose your course &amp; start free ↓</LangText>
         </a>
@@ -120,8 +163,13 @@ const siteJsonLd = {
           <LangText lang="en">Choose your course</LangText>
         </h2>
         <p class="mt-1 text-sm text-ink-400">
-          <LangText lang="ar">كل كورس مسار مستقل: محطات، أدوات، وقاموس خاص به.</LangText>
-          <LangText lang="en">Each course is an independent path: stations, tools, and its own glossary.</LangText>
+          <LangText lang="ar">
+            كل كورس مسار مستقل: محطات، أدوات، وقاموس خاص به.
+          </LangText>
+          <LangText lang="en">
+            Each course is an independent path: stations, tools, and its own
+            glossary.
+          </LangText>
         </p>
       </div>
     </div>
@@ -130,17 +178,24 @@ const siteJsonLd = {
       {liveCourses.map((c) => {
         const stats = perCourse.find((p) => p.course.id === c.id);
         return (
-          <a href={`/${c.id}/`} class="card group overflow-hidden transition hover:border-brand-500 hover:shadow-md">
+          <a
+            href={`/${c.id}/`}
+            class="card group overflow-hidden transition hover:border-brand-500 hover:shadow-md"
+          >
             <div class="flex items-start justify-between bg-gradient-to-l from-ink-900 to-brand-700 px-6 py-5 text-white">
               <div class="flex items-center gap-3">
-                <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl transition-transform duration-300 group-hover:scale-110">{c.icon}</span>
+                <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl transition-transform duration-300 group-hover:scale-110">
+                  {c.icon}
+                </span>
                 <div>
                   <div class="flex items-center gap-2">
                     <h3 class="text-lg font-bold">
                       <LangText lang="ar">{c.title}</LangText>
                       <LangText lang="en">{c.titleEn}</LangText>
                     </h3>
-                    <span class="chip bg-amber-400 text-amber-950" dir="ltr">{c.code}</span>
+                    <span class="chip bg-amber-400 text-amber-950" dir="ltr">
+                      {c.code}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -177,14 +232,18 @@ const siteJsonLd = {
         <div class="card overflow-hidden opacity-80">
           <div class="flex items-start justify-between bg-gradient-to-l from-slate-500 to-slate-700 px-6 py-5 text-white">
             <div class="flex items-center gap-3">
-              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl">{c.icon}</span>
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl">
+                {c.icon}
+              </span>
               <div>
                 <div class="flex items-center gap-2">
                   <h3 class="text-lg font-bold">
                     <LangText lang="ar">{c.title}</LangText>
                     <LangText lang="en">{c.titleEn}</LangText>
                   </h3>
-                  <span class="chip bg-slate-100 text-ink-700" dir="ltr">{c.code}</span>
+                  <span class="chip bg-slate-100 text-ink-700" dir="ltr">
+                    {c.code}
+                  </span>
                 </div>
               </div>
             </div>
@@ -201,7 +260,9 @@ const siteJsonLd = {
             <div class="mt-4">
               <span class="chip bg-slate-100 text-ink-600">
                 <LangText lang="ar">سيُطلق قريباً — اشترك ليصلك التنبيه</LangText>
-                <LangText lang="en">Coming soon — subscribe for the launch alert</LangText>
+                <LangText lang="en">
+                  Coming soon — subscribe for the launch alert
+                </LangText>
               </span>
             </div>
           </div>
@@ -212,9 +273,28 @@ const siteJsonLd = {
 
   <section class="mt-12 grid gap-4 sm:grid-cols-3">
     {[
-      { icon: '🎯', titleAr: 'مسارات منظمة بالمحطات', titleEn: 'Structured station paths', descAr: 'محطات متسلسلة من التأسيس للتمكين مع أوزان الامتحان', descEn: 'Sequential stations from foundation to mastery with exam weights' },
-      { icon: '🛠', titleAr: 'أدوات تفاعلية تطبيقية', titleEn: 'Hands-on interactive tools', descAr: 'أكثر من 40 أداة عملية لتطبيق المفاهيم فعلياً', descEn: 'More than 40 practical tools to truly apply the concepts' },
-      { icon: '📝', titleAr: 'كويزات محاكية للامتحان', titleEn: 'Exam-style quizzes', descAr: 'سيناريوهات حقيقية مع تقييم فوري وتشخيص', descEn: 'Real scenarios with instant scoring and diagnosis' },
+      {
+        icon: '🎯',
+        titleAr: 'مسارات منظمة بالمحطات',
+        titleEn: 'Structured station paths',
+        descAr: 'محطات متسلسلة من التأسيس للتمكين مع أوزان الامتحان',
+        descEn:
+          'Sequential stations from foundation to mastery with exam weights',
+      },
+      {
+        icon: '🛠',
+        titleAr: 'أدوات تفاعلية تطبيقية',
+        titleEn: 'Hands-on interactive tools',
+        descAr: 'أكثر من 40 أداة عملية لتطبيق المفاهيم فعلياً',
+        descEn: 'More than 40 practical tools to truly apply the concepts',
+      },
+      {
+        icon: '📝',
+        titleAr: 'كويزات محاكية للامتحان',
+        titleEn: 'Exam-style quizzes',
+        descAr: 'سيناريوهات حقيقية مع تقييم فوري وتشخيص',
+        descEn: 'Real scenarios with instant scoring and diagnosis',
+      },
     ].map((item) => (
       <div class="card flex flex-col items-center gap-3 p-6 text-center">
         <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-3xl transition-transform duration-300 hover:scale-110">
@@ -238,25 +318,46 @@ const siteJsonLd = {
       <div class="flex flex-col items-center text-center">
         <div class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-100/70 px-4 py-1.5 text-xs font-bold text-brand-700 dark:border-blue-900/80 dark:bg-blue-950/70 dark:text-blue-300">
           <span class="flex h-2 w-2 rounded-full bg-brand-500 animate-pulse"></span>
-          <LangText lang="ar">مبادرة المسؤولية المعرفية والمجتمعية • برعاية ودعم GridFix</LangText>
-          <LangText lang="en">Knowledge &amp; Social Responsibility Initiative • Powered by GridFix</LangText>
+          <LangText lang="ar">
+            مبادرة المسؤولية المعرفية والمجتمعية • برعاية ودعم GridFix
+          </LangText>
+          <LangText lang="en">
+            Knowledge &amp; Social Responsibility Initiative • Powered by
+            GridFix
+          </LangText>
         </div>
 
         <h2 class="mt-5 text-2xl font-black tracking-tight text-ink-900 sm:text-3xl lg:text-4xl dark:text-white">
           <LangText lang="ar">
-            من الميدان إلى الاعتماد المهني — <span class="text-brand-600 dark:text-brand-400">بخبرة مهندسي GridFix</span>
+            من الميدان إلى الاعتماد المهني —{' '}
+            <span class="text-brand-600 dark:text-brand-400">
+              بخبرة مهندسي GridFix
+            </span>
           </LangText>
           <LangText lang="en">
-            From the Field to Global Certification — <span class="text-brand-600 dark:text-brand-400">Backed by GridFix Engineering</span>
+            From the Field to Global Certification —{' '}
+            <span class="text-brand-600 dark:text-brand-400">
+              Backed by GridFix Engineering
+            </span>
           </LangText>
         </h2>
 
         <p class="mt-4 max-w-2xl text-base leading-relaxed text-ink-600 dark:text-slate-300">
           <LangText lang="ar">
-            تُقدّم هذه المنصة التعليمية مجاناً بالكامل من شركة <strong class="text-ink-900 dark:text-white">GridFix</strong> المتخصصة في أنظمة إدارة الصيانة والمرافق الذكية (<span dir="ltr">CMMS</span>) للمصانع والمستشفيات والمنشآت الكبرى. نؤمن بأن تمكين الكفاءات الهندسية العربية هو حجر الأساس لاستدامة الأصول ورفع الموثوقية التشغيلية.
+            تُقدّم هذه المنصة التعليمية مجاناً بالكامل من شركة{' '}
+            <strong class="text-ink-900 dark:text-white">GridFix</strong>{' '}
+            المتخصصة في أنظمة إدارة الصيانة والمرافق الذكية (
+            <span dir="ltr">CMMS</span>) للمصانع والمستشفيات والمنشآت الكبرى.
+            نؤمن بأن تمكين الكفاءات الهندسية العربية هو حجر الأساس لاستدامة
+            الأصول ورفع الموثوقية التشغيلية.
           </LangText>
           <LangText lang="en">
-            This learning platform is offered completely free by <strong class="text-ink-900 dark:text-white">GridFix</strong>, specialists in smart Computerized Maintenance Management Systems (CMMS) for industrial plants, healthcare, and enterprise facilities. We believe empowering engineering talent is the foundation of asset reliability.
+            This learning platform is offered completely free by{' '}
+            <strong class="text-ink-900 dark:text-white">GridFix</strong>,
+            specialists in smart Computerized Maintenance Management Systems
+            (CMMS) for industrial plants, healthcare, and enterprise facilities.
+            We believe empowering engineering talent is the foundation of asset
+            reliability.
           </LangText>
         </p>
       </div>
@@ -271,8 +372,14 @@ const siteJsonLd = {
             <LangText lang="en">GridFix Field CMMS</LangText>
           </h3>
           <p class="mt-1.5 text-xs leading-relaxed text-ink-500 dark:text-slate-400">
-            <LangText lang="ar">إدارة أوامر العمل، الجداول الوقائية، والمزامنة الكاملة دون اتصال بالإنترنت (Offline-First).</LangText>
-            <LangText lang="en">Work orders, preventive schedules, and full offline-first synchronization.</LangText>
+            <LangText lang="ar">
+              إدارة أوامر العمل، الجداول الوقائية، والمزامنة الكاملة دون اتصال
+              بالإنترنت (Offline-First).
+            </LangText>
+            <LangText lang="en">
+              Work orders, preventive schedules, and full offline-first
+              synchronization.
+            </LangText>
           </p>
         </div>
 
@@ -285,8 +392,14 @@ const siteJsonLd = {
             <LangText lang="en">Global Credentials Prep</LangText>
           </h3>
           <p class="mt-1.5 text-xs leading-relaxed text-ink-500 dark:text-slate-400">
-            <LangText lang="ar">تحضير حقيقي لشهادات CFM و CMRP و CAMA وفق المعايير الرسمية لأكبر الهيئات الدولية.</LangText>
-            <LangText lang="en">Rigorous preparation for CFM, CMRP, and CAMA credentials based on global frameworks.</LangText>
+            <LangText lang="ar">
+              تحضير حقيقي لشهادات CFM و CMRP و CAMA وفق المعايير الرسمية لأكبر
+              الهيئات الدولية.
+            </LangText>
+            <LangText lang="en">
+              Rigorous preparation for CFM, CMRP, and CAMA credentials based on
+              global frameworks.
+            </LangText>
           </p>
         </div>
 
@@ -299,8 +412,14 @@ const siteJsonLd = {
             <LangText lang="en">Open Access Forever</LangText>
           </h3>
           <p class="mt-1.5 text-xs leading-relaxed text-ink-500 dark:text-slate-400">
-            <LangText lang="ar">كافة الدروس، الكويزات، والأدوات التفاعلية مجانية بالكامل دون رسوم أو اشتراكات كخدمة مجتمعية.</LangText>
-            <LangText lang="en">All lessons, quizzes, and calculators are accessible without paywalls or subscriptions.</LangText>
+            <LangText lang="ar">
+              كافة الدروس، الكويزات، والأدوات التفاعلية مجانية بالكامل دون رسوم
+              أو اشتراكات كخدمة مجتمعية.
+            </LangText>
+            <LangText lang="en">
+              All lessons, quizzes, and calculators are accessible without
+              paywalls or subscriptions.
+            </LangText>
           </p>
         </div>
       </div>
@@ -313,8 +432,12 @@ const siteJsonLd = {
           class="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-bold text-white shadow-xs transition hover:bg-brand-700 hover:shadow-md"
         >
           <span>⚡</span>
-          <LangText lang="ar">استكشف نظام GridFix CMMS للمنشآت والمصانع</LangText>
-          <LangText lang="en">Explore GridFix CMMS for Facilities &amp; Plants</LangText>
+          <LangText lang="ar">
+            استكشف نظام GridFix CMMS للمنشآت والمصانع
+          </LangText>
+          <LangText lang="en">
+            Explore GridFix CMMS for Facilities &amp; Plants
+          </LangText>
           <span class="text-xs">↗</span>
         </a>
         <a
@@ -334,28 +457,36 @@ const siteJsonLd = {
   <section class="mt-12 rounded-3xl bg-gradient-to-l from-brand-50 to-brand-100/50 px-6 py-10 sm:px-12">
     <div class="grid gap-6 text-center sm:grid-cols-4">
       <div>
-        <p class="text-3xl font-bold text-brand-700" dir="ltr">{liveCourses.length}</p>
+        <p class="text-3xl font-bold text-brand-700" dir="ltr">
+          {liveCourses.length}
+        </p>
         <p class="mt-1 text-sm text-ink-600">
           <LangText lang="ar">كورسات متخصصة</LangText>
           <LangText lang="en">specialized courses</LangText>
         </p>
       </div>
       <div>
-        <p class="text-3xl font-bold text-brand-700" dir="ltr">40+</p>
+        <p class="text-3xl font-bold text-brand-700" dir="ltr">
+          40+
+        </p>
         <p class="mt-1 text-sm text-ink-600">
           <LangText lang="ar">أداة تفاعلية</LangText>
           <LangText lang="en">interactive tools</LangText>
         </p>
       </div>
       <div>
-        <p class="text-3xl font-bold text-brand-700" dir="ltr">100%</p>
+        <p class="text-3xl font-bold text-brand-700" dir="ltr">
+          100%
+        </p>
         <p class="mt-1 text-sm text-ink-600">
           <LangText lang="ar">مجاني بالكامل</LangText>
           <LangText lang="en">free forever</LangText>
         </p>
       </div>
       <div>
-        <p class="text-3xl font-bold text-brand-700" dir="ltr">AR</p>
+        <p class="text-3xl font-bold text-brand-700" dir="ltr">
+          AR
+        </p>
         <p class="mt-1 text-sm text-ink-600">
           <LangText lang="ar">محتوى عربي أصيل</LangText>
           <LangText lang="en">authentic Arabic content</LangText>

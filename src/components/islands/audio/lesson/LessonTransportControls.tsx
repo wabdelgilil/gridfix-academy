@@ -27,7 +27,11 @@ export default function LessonTransportControls({
         onClick={onGoToPrev}
         disabled={!hasPrev}
         className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-900 disabled:opacity-30 disabled:cursor-not-allowed dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 transition cursor-pointer"
-        title={prevLessonTitle ? `الدرس السابق (${prevLessonTitle})` : 'الدرس السابق (أو إعادة البدء)'}
+        title={
+          prevLessonTitle
+            ? `الدرس السابق (${prevLessonTitle})`
+            : 'الدرس السابق (أو إعادة البدء)'
+        }
         aria-label="الدرس السابق"
       >
         <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -59,7 +63,10 @@ export default function LessonTransportControls({
             <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
           </svg>
         ) : (
-          <svg className="h-5 w-5 fill-current translate-x-0.5" viewBox="0 0 24 24">
+          <svg
+            className="h-5 w-5 fill-current translate-x-0.5"
+            viewBox="0 0 24 24"
+          >
             <path d="M8 5v14l11-7z" />
           </svg>
         )}

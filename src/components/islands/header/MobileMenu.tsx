@@ -55,7 +55,9 @@ export default function MobileMenu({
       >
         <span className="flex items-center gap-2">
           <span>🔍</span>
-          <span>{lang === 'ar' ? 'بحث في المنصة...' : 'Search academy...'}</span>
+          <span>
+            {lang === 'ar' ? 'بحث في المنصة...' : 'Search academy...'}
+          </span>
         </span>
         <span className="text-xs text-ink-400">Ctrl+K</span>
       </button>

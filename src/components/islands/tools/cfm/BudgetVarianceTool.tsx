@@ -18,7 +18,12 @@ export default function BudgetVarianceTool() {
   const [planned, setPlanned] = useState([100, 105, 102, 110, 108, 112]);
   const [actual, setActual] = useState([98, 111, 109, 108, 130, 118]);
 
-  const setVal = (arr: number[], setter: (v: number[]) => void, i: number, v: number) => {
+  const setVal = (
+    arr: number[],
+    setter: (v: number[]) => void,
+    i: number,
+    v: number
+  ) => {
     const next = [...arr];
     next[i] = v;
     setter(next);
@@ -66,7 +71,9 @@ export default function BudgetVarianceTool() {
                     <input
                       type="number"
                       value={planned[i]}
-                      onChange={(e) => setVal(planned, setPlanned, i, Number(e.target.value))}
+                      onChange={(e) =>
+                        setVal(planned, setPlanned, i, Number(e.target.value))
+                      }
                       className="w-20 rounded-lg border border-slate-200 px-2 py-1 outline-none focus:border-brand-500"
                     />
                   </td>
@@ -74,15 +81,24 @@ export default function BudgetVarianceTool() {
                     <input
                       type="number"
                       value={actual[i]}
-                      onChange={(e) => setVal(actual, setActual, i, Number(e.target.value))}
+                      onChange={(e) =>
+                        setVal(actual, setActual, i, Number(e.target.value))
+                      }
                       className="w-20 rounded-lg border border-slate-200 px-2 py-1 outline-none focus:border-brand-500"
                     />
                   </td>
-                  <td className={`py-2 font-semibold ${v > 0 ? 'text-rose-600' : 'text-teal-700'}`} dir="ltr">
-                    {v > 0 ? '+' : ''}{v}%
+                  <td
+                    className={`py-2 font-semibold ${v > 0 ? 'text-rose-600' : 'text-teal-700'}`}
+                    dir="ltr"
+                  >
+                    {v > 0 ? '+' : ''}
+                    {v}%
                   </td>
                   <td className="py-2">
-                    <div className="h-10 w-full overflow-hidden rounded-md bg-slate-100" style={{ background: barColor(v) }} />
+                    <div
+                      className="h-10 w-full overflow-hidden rounded-md bg-slate-100"
+                      style={{ background: barColor(v) }}
+                    />
                   </td>
                 </tr>
               );
@@ -90,9 +106,20 @@ export default function BudgetVarianceTool() {
           </tbody>
         </table>
 
-        <div className={`mt-4 rounded-xl p-4 text-sm font-semibold ${totalTone.tone === 'ok' ? 'bg-teal-50 text-teal-800' : totalTone.tone === 'warn' ? 'bg-amber-50 text-amber-800' : 'bg-rose-50 text-rose-800'}`}>
-          الإجمالي: المخطط {totalPlanned.toLocaleString('en-US')} × الفعلي {totalActual.toLocaleString('en-US')} → انحراف <span dir="ltr">{totalVar > 0 ? '+' : ''}{totalVar}%</span> — {totalTone.label}
-          <p className="mt-1 text-xs font-normal opacity-80">الانحراف الموجب إنفاق زائد؛ السالب توفير أو تأخير إنفاق. خارج ±5% يتطلب تحليلاً وسبباً.</p>
+        <div
+          className={`mt-4 rounded-xl p-4 text-sm font-semibold ${totalTone.tone === 'ok' ? 'bg-teal-50 text-teal-800' : totalTone.tone === 'warn' ? 'bg-amber-50 text-amber-800' : 'bg-rose-50 text-rose-800'}`}
+        >
+          الإجمالي: المخطط {totalPlanned.toLocaleString('en-US')} × الفعلي{' '}
+          {totalActual.toLocaleString('en-US')} → انحراف{' '}
+          <span dir="ltr">
+            {totalVar > 0 ? '+' : ''}
+            {totalVar}%
+          </span>{' '}
+          — {totalTone.label}
+          <p className="mt-1 text-xs font-normal opacity-80">
+            الانحراف الموجب إنفاق زائد؛ السالب توفير أو تأخير إنفاق. خارج ±5%
+            يتطلب تحليلاً وسبباً.
+          </p>
         </div>
       </div>
     </div>

@@ -21,7 +21,9 @@ export function extractLessonSummary(
   let enPoints: string[] = [];
 
   if (body) {
-    const arMatch = body.match(/## (?:خلاصة|الخلاصة)([\s\S]*?)(?:<\/LangSection>|##|$)/);
+    const arMatch = body.match(
+      /## (?:خلاصة|الخلاصة)([\s\S]*?)(?:<\/LangSection>|##|$)/
+    );
     const enMatch = body.match(/## Summary([\s\S]*?)(?:<\/LangSection>|##|$)/);
 
     if (arMatch) {
@@ -63,14 +65,24 @@ export function buildShareMessage(options: {
   points: string[];
   url: string;
 }): string {
-  const { lang, courseTitle, stationTitle, lessonNumber, lessonTitle, points, url } = options;
+  const {
+    lang,
+    courseTitle,
+    stationTitle,
+    lessonNumber,
+    lessonTitle,
+    points,
+    url,
+  } = options;
 
   // Take top 2-3 points to keep it readable and impactful
   const selectedPoints = points.slice(0, 3);
   const bulletSymbol = '•';
 
   if (lang === 'ar') {
-    const pointsText = selectedPoints.map((p) => `${bulletSymbol} ${p}`).join('\n');
+    const pointsText = selectedPoints
+      .map((p) => `${bulletSymbol} ${p}`)
+      .join('\n');
     return `💡 معلومة مهنية في ${courseTitle}:
 ${pointsText}
 
@@ -78,7 +90,9 @@ ${pointsText}
 🔗 للمزيد والمصدر: ${url}`;
   }
 
-  const pointsText = selectedPoints.map((p) => `${bulletSymbol} ${p}`).join('\n');
+  const pointsText = selectedPoints
+    .map((p) => `${bulletSymbol} ${p}`)
+    .join('\n');
   return `💡 Professional insight in ${courseTitle}:
 ${pointsText}
 

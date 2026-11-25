@@ -56,7 +56,9 @@ export default function BalancedScorecard() {
     (scores.financial + scores.customer + scores.internal + scores.learning) / 4
   );
   const r = reading(avg);
-  const weakest = perspectives.reduce((a, b) => (scores[a.id] <= scores[b.id] ? a : b));
+  const weakest = perspectives.reduce((a, b) =>
+    scores[a.id] <= scores[b.id] ? a : b
+  );
 
   return (
     <div className="card mt-6 overflow-hidden">
@@ -80,7 +82,10 @@ export default function BalancedScorecard() {
               max={100}
               value={scores[p.id]}
               onChange={(e) =>
-                setScores((prev) => ({ ...prev, [p.id]: Number(e.target.value) }))
+                setScores((prev) => ({
+                  ...prev,
+                  [p.id]: Number(e.target.value),
+                }))
               }
               className={`w-full ${p.color}`}
             />
@@ -93,7 +98,9 @@ export default function BalancedScorecard() {
           </p>
           <p className="mt-1 text-xs text-ink-600">{r.text}</p>
           <p className="mt-1 text-xs text-ink-600">
-            أضعف بعد حالياً: {weakest.name} ({scores[weakest.id]}%) — ابدأ منه: التدريب وجودة التخطيط والالتزام بالصيانة الوقائية مؤشرات قيادية ترفع الإتاحة وتخفض التكلفة لاحقاً.
+            أضعف بعد حالياً: {weakest.name} ({scores[weakest.id]}%) — ابدأ منه:
+            التدريب وجودة التخطيط والالتزام بالصيانة الوقائية مؤشرات قيادية ترفع
+            الإتاحة وتخفض التكلفة لاحقاً.
           </p>
         </div>
       </div>

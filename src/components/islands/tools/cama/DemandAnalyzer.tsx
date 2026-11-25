@@ -1,16 +1,59 @@
 import { useState } from 'react';
 
 const OPERATIONAL_DEMANDS = [
-  { id: 'production', label: 'حجم الإنتاج المطلوب', unit: 'وحدة/يوم', min: 100, max: 1000, default: 500 },
-  { id: 'availability', label: 'التوافر المطلوب', unit: '%', min: 80, max: 99, default: 92 },
-  { id: 'shifts', label: 'عدد النوبات', unit: 'نوبات', min: 1, max: 3, default: 2 },
-  { id: 'quality', label: 'معدل جودة المنتج', unit: '%', min: 90, max: 99.9, default: 97 },
+  {
+    id: 'production',
+    label: 'حجم الإنتاج المطلوب',
+    unit: 'وحدة/يوم',
+    min: 100,
+    max: 1000,
+    default: 500,
+  },
+  {
+    id: 'availability',
+    label: 'التوافر المطلوب',
+    unit: '%',
+    min: 80,
+    max: 99,
+    default: 92,
+  },
+  {
+    id: 'shifts',
+    label: 'عدد النوبات',
+    unit: 'نوبات',
+    min: 1,
+    max: 3,
+    default: 2,
+  },
+  {
+    id: 'quality',
+    label: 'معدل جودة المنتج',
+    unit: '%',
+    min: 90,
+    max: 99.9,
+    default: 97,
+  },
 ];
 
 const INVESTMENT_DEMANDS = [
-  { id: 'replacement', label: 'استبدال الأصول المتقادمة', budget: 500000, urgency: 'متوسط' },
-  { id: 'expansion', label: 'التوسع المستقبلي', budget: 2000000, urgency: 'منخفض' },
-  { id: 'compliance', label: 'الامتثال للمعايير الجديدة', budget: 300000, urgency: 'عالي' },
+  {
+    id: 'replacement',
+    label: 'استبدال الأصول المتقادمة',
+    budget: 500000,
+    urgency: 'متوسط',
+  },
+  {
+    id: 'expansion',
+    label: 'التوسع المستقبلي',
+    budget: 2000000,
+    urgency: 'منخفض',
+  },
+  {
+    id: 'compliance',
+    label: 'الامتثال للمعايير الجديدة',
+    budget: 300000,
+    urgency: 'عالي',
+  },
   { id: 'upgrade', label: 'تحسين الكفاءة', budget: 800000, urgency: 'متوسط' },
 ];
 
@@ -20,7 +63,8 @@ const SCENARIOS = [
     label: 'السيناريو المحافظ',
     growth: 0,
     color: 'bg-blue-100 text-blue-800 ring-blue-300',
-    description: 'لا تغييرات كبيرة، الطلب يبقى عند المستوى الحالي أو ينخفض قليلاً.',
+    description:
+      'لا تغييرات كبيرة، الطلب يبقى عند المستوى الحالي أو ينخفض قليلاً.',
   },
   {
     id: 'base',
@@ -52,23 +96,38 @@ export default function DemandAnalyzer() {
   const [selectedScenario, setSelectedScenario] = useState('base');
   const [years, setYears] = useState(5);
 
-  const scenario = SCENARIOS.find((s) => s.id === selectedScenario) ?? SCENARIOS[1];
-  const futureProduction = Math.round(operational.production * Math.pow(1 + scenario.growth / 100, years));
-  const futureAvailability = Math.min(99, operational.availability + (scenario.id === 'ambitious' ? 2 : 0));
+  const scenario =
+    SCENARIOS.find((s) => s.id === selectedScenario) ?? SCENARIOS[1];
+  const futureProduction = Math.round(
+    operational.production * Math.pow(1 + scenario.growth / 100, years)
+  );
+  const futureAvailability = Math.min(
+    99,
+    operational.availability + (scenario.id === 'ambitious' ? 2 : 0)
+  );
 
-  const totalInvestmentBudget = INVESTMENT_DEMANDS
-    .filter((d) => investments[d.id])
-    .reduce((sum, d) => sum + d.budget, 0);
+  const totalInvestmentBudget = INVESTMENT_DEMANDS.filter(
+    (d) => investments[d.id]
+  ).reduce((sum, d) => sum + d.budget, 0);
 
   const annualInvestment = Math.round(totalInvestmentBudget / years);
 
   const gapAnalysis = (() => {
-    const currentCapacity = operational.production * (operational.availability / 100);
+    const currentCapacity =
+      operational.production * (operational.availability / 100);
     const futureCapacity = futureProduction * (futureAvailability / 100);
     const gap = futureCapacity - currentCapacity;
     const gapPercent = ((gap / currentCapacity) * 100).toFixed(1);
-    if (gap > 0) return { text: `فجوة نمو ${gapPercent}% — تحتاج أصولاً إضافية`, color: 'text-rose-700 bg-rose-50' };
-    if (gap < 0) return { text: `سعة زائدة ${Math.abs(Number(gapPercent))}% — فرصة للتحسين`, color: 'text-teal-700 bg-teal-50' };
+    if (gap > 0)
+      return {
+        text: `فجوة نمو ${gapPercent}% — تحتاج أصولاً إضافية`,
+        color: 'text-rose-700 bg-rose-50',
+      };
+    if (gap < 0)
+      return {
+        text: `سعة زائدة ${Math.abs(Number(gapPercent))}% — فرصة للتحسين`,
+        color: 'text-teal-700 bg-teal-50',
+      };
     return { text: 'السعة الحالية كافية', color: 'text-brand-700 bg-brand-50' };
   })();
 
@@ -95,7 +154,9 @@ export default function DemandAnalyzer() {
                 }`}
               >
                 <span className="block text-xs font-bold">{s.label}</span>
-                <span className="block text-[10px] text-ink-500 mt-0.5">{s.description}</span>
+                <span className="block text-[10px] text-ink-500 mt-0.5">
+                  {s.description}
+                </span>
               </button>
             ))}
           </div>
@@ -112,7 +173,10 @@ export default function DemandAnalyzer() {
             onChange={(e) => setYears(Number(e.target.value))}
             className="flex-1"
           />
-          <span className="rounded-lg bg-brand-100 px-2 py-0.5 text-xs font-bold text-brand-700" dir="ltr">
+          <span
+            className="rounded-lg bg-brand-100 px-2 py-0.5 text-xs font-bold text-brand-700"
+            dir="ltr"
+          >
             {years} سنوات
           </span>
         </div>
@@ -122,9 +186,14 @@ export default function DemandAnalyzer() {
           <p className="mb-2 text-sm font-bold text-ink-800">الطلب التشغيلي:</p>
           <div className="grid gap-3 sm:grid-cols-2">
             {OPERATIONAL_DEMANDS.map((demand) => (
-              <div key={demand.id} className="rounded-xl border border-slate-200 p-3">
+              <div
+                key={demand.id}
+                className="rounded-xl border border-slate-200 p-3"
+              >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-ink-700">{demand.label}</span>
+                  <span className="text-xs font-semibold text-ink-700">
+                    {demand.label}
+                  </span>
                   <span className="text-xs font-bold text-brand-700" dir="ltr">
                     {operational[demand.id]} {demand.unit}
                   </span>
@@ -150,7 +219,9 @@ export default function DemandAnalyzer() {
 
         {/* Investment Demand */}
         <div>
-          <p className="mb-2 text-sm font-bold text-ink-800">الطلب الاستثماري:</p>
+          <p className="mb-2 text-sm font-bold text-ink-800">
+            الطلب الاستثماري:
+          </p>
           <div className="space-y-2">
             {INVESTMENT_DEMANDS.map((inv) => (
               <div
@@ -178,17 +249,23 @@ export default function DemandAnalyzer() {
                   >
                     {investments[inv.id] ? 'مفعّل' : 'معطّل'}
                   </button>
-                  <span className="text-xs font-semibold text-ink-800">{inv.label}</span>
+                  <span className="text-xs font-semibold text-ink-800">
+                    {inv.label}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] text-ink-500" dir="ltr">
                     {inv.budget.toLocaleString()} ريال
                   </span>
-                  <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${
-                    inv.urgency === 'عالي' ? 'bg-rose-100 text-rose-700' :
-                    inv.urgency === 'متوسط' ? 'bg-amber-100 text-amber-700' :
-                    'bg-slate-100 text-slate-600'
-                  }`}>
+                  <span
+                    className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${
+                      inv.urgency === 'عالي'
+                        ? 'bg-rose-100 text-rose-700'
+                        : inv.urgency === 'متوسط'
+                          ? 'bg-amber-100 text-amber-700'
+                          : 'bg-slate-100 text-slate-600'
+                    }`}
+                  >
                     {inv.urgency}
                   </span>
                 </div>
@@ -200,30 +277,36 @@ export default function DemandAnalyzer() {
         {/* Results */}
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="rounded-xl bg-slate-50 p-4 space-y-2">
-            <p className="text-[10px] font-bold text-ink-500 uppercase">الإنتاج المطلوب بعد {years} سنوات</p>
+            <p className="text-[10px] font-bold text-ink-500 uppercase">
+              الإنتاج المطلوب بعد {years} سنوات
+            </p>
             <p className="text-2xl font-black text-ink-900" dir="ltr">
-              {futureProduction.toLocaleString()} <span className="text-sm">وحدة/يوم</span>
+              {futureProduction.toLocaleString()}{' '}
+              <span className="text-sm">وحدة/يوم</span>
             </p>
             <p className="text-[10px] text-ink-500">
-              نمو {(scenario.growth * years).toFixed(0)}% إجمالي | التوفر المطلوب {futureAvailability}%
+              نمو {(scenario.growth * years).toFixed(0)}% إجمالي | التوفر
+              المطلوب {futureAvailability}%
             </p>
           </div>
 
           <div className="rounded-xl bg-slate-50 p-4 space-y-2">
-            <p className="text-[10px] font-bold text-ink-500 uppercase">إجمالي الميزانية الاستثمارية</p>
+            <p className="text-[10px] font-bold text-ink-500 uppercase">
+              إجمالي الميزانية الاستثمارية
+            </p>
             <p className="text-2xl font-black text-ink-900" dir="ltr">
-              {totalInvestmentBudget.toLocaleString()} <span className="text-sm">ريال</span>
+              {totalInvestmentBudget.toLocaleString()}{' '}
+              <span className="text-sm">ريال</span>
             </p>
             <p className="text-[10px] text-ink-500">
-              {(INVESTMENT_DEMANDS.filter((d) => investments[d.id]).length)} مشاريع | متوسط {annualInvestment.toLocaleString()} ريال/سنة
+              {INVESTMENT_DEMANDS.filter((d) => investments[d.id]).length}{' '}
+              مشاريع | متوسط {annualInvestment.toLocaleString()} ريال/سنة
             </p>
           </div>
         </div>
 
         <div className={`rounded-xl p-4 ${gapAnalysis.color}`}>
-          <p className="text-sm font-bold">
-            تحليل الفجوة: {gapAnalysis.text}
-          </p>
+          <p className="text-sm font-bold">تحليل الفجوة: {gapAnalysis.text}</p>
         </div>
       </div>
     </div>

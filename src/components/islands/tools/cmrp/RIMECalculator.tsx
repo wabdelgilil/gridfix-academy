@@ -93,7 +93,10 @@ export default function RIMECalculator() {
           </div>
         </div>
 
-        <p dir="ltr" className="rounded bg-slate-100 px-3 py-2 text-center font-mono text-xs text-ink-500">
+        <p
+          dir="ltr"
+          className="rounded bg-slate-100 px-3 py-2 text-center font-mono text-xs text-ink-500"
+        >
           RIME = ECR × WCR = {ecr} × {wcr} = {score} / 100
         </p>
 
@@ -103,7 +106,8 @@ export default function RIMECalculator() {
           </p>
           <p className="mt-1 text-xs font-normal opacity-90">{t.hint}</p>
           <p className="mt-1 text-xs font-normal opacity-70">
-            جرّب: طلمبة الغلاية (9 × 8 = 72) مقابل مكيف مكتب (2 × 3 = 6) لترى كيف يحمي المؤشر الجدول من ضغط الصوت الأعلى.
+            جرّب: طلمبة الغلاية (9 × 8 = 72) مقابل مكيف مكتب (2 × 3 = 6) لترى كيف
+            يحمي المؤشر الجدول من ضغط الصوت الأعلى.
           </p>
         </div>
       </div>

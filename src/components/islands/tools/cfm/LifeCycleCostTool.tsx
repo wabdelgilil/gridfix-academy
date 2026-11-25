@@ -5,8 +5,18 @@ const HORIZON = 12;
 
 export default function LifeCycleCostTool() {
   const [discount, setDiscount] = useState(8);
-  const [a, setA] = useState<LCCOption>({ initial: 250000, annual: 12000, life: 6, escalate: 4 });
-  const [b, setB] = useState<LCCOption>({ initial: 180000, annual: 22000, life: 4, escalate: 5 });
+  const [a, setA] = useState<LCCOption>({
+    initial: 250000,
+    annual: 12000,
+    life: 6,
+    escalate: 4,
+  });
+  const [b, setB] = useState<LCCOption>({
+    initial: 180000,
+    annual: 22000,
+    life: 4,
+    escalate: 5,
+  });
 
   const setOpt = (group: 'a' | 'b', key: keyof LCCOption, value: number) => {
     const target = group === 'a' ? a : b;
@@ -20,10 +30,14 @@ export default function LifeCycleCostTool() {
 
   const renderInputs = (label: string, opt: LCCOption, group: 'a' | 'b') => (
     <div className="rounded-xl border border-slate-200 p-4 dark:border-slate-700/80 dark:bg-slate-800/40">
-      <p className="mb-3 text-sm font-bold text-ink-900 dark:text-slate-100">{label}</p>
+      <p className="mb-3 text-sm font-bold text-ink-900 dark:text-slate-100">
+        {label}
+      </p>
       <div className="grid grid-cols-2 gap-3 text-sm">
         <label>
-          <span className="text-xs text-ink-500 dark:text-slate-400">الاستثمار الأولي</span>
+          <span className="text-xs text-ink-500 dark:text-slate-400">
+            الاستثمار الأولي
+          </span>
           <input
             type="number"
             value={opt.initial}
@@ -32,7 +46,9 @@ export default function LifeCycleCostTool() {
           />
         </label>
         <label>
-          <span className="text-xs text-ink-500 dark:text-slate-400">تكلفة تشغيل سنوية</span>
+          <span className="text-xs text-ink-500 dark:text-slate-400">
+            تكلفة تشغيل سنوية
+          </span>
           <input
             type="number"
             value={opt.annual}
@@ -41,7 +57,9 @@ export default function LifeCycleCostTool() {
           />
         </label>
         <label>
-          <span className="text-xs text-ink-500 dark:text-slate-400">عمر الأصل (سنوات)</span>
+          <span className="text-xs text-ink-500 dark:text-slate-400">
+            عمر الأصل (سنوات)
+          </span>
           <input
             type="number"
             value={opt.life}
@@ -50,7 +68,9 @@ export default function LifeCycleCostTool() {
           />
         </label>
         <label>
-          <span className="text-xs text-ink-500 dark:text-slate-400">تصعيد تشغيلي %</span>
+          <span className="text-xs text-ink-500 dark:text-slate-400">
+            تصعيد تشغيلي %
+          </span>
           <input
             type="number"
             value={opt.escalate}
@@ -75,7 +95,10 @@ export default function LifeCycleCostTool() {
 
       <div className="px-5 pb-4">
         <label className="text-sm font-semibold text-ink-900 dark:text-slate-100">
-          معدل الخصم % <span className="font-normal text-ink-400 dark:text-slate-400">(تكلفة رأس المال)</span>
+          معدل الخصم %{' '}
+          <span className="font-normal text-ink-400 dark:text-slate-400">
+            (تكلفة رأس المال)
+          </span>
         </label>
         <input
           type="range"
@@ -86,13 +109,27 @@ export default function LifeCycleCostTool() {
           onChange={(e) => setDiscount(Number(e.target.value))}
           className="mt-2 w-full accent-teal-600"
         />
-        <span className="chip mt-2 bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-brand-300" dir="ltr">{discount}%</span>
+        <span
+          className="chip mt-2 bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-brand-300"
+          dir="ltr"
+        >
+          {discount}%
+        </span>
       </div>
 
       <div className="mx-5 mb-5 rounded-xl bg-brand-50/80 p-4 text-sm text-brand-900 ring-2 ring-brand-500 dark:bg-brand-950/50 dark:text-brand-200 dark:ring-brand-400">
-        <p className="text-base font-bold" dir="ltr">أ: {Math.round(costA).toLocaleString('en-US')} | ب: {Math.round(costB).toLocaleString('en-US')}</p>
-        <p className="mt-1 font-semibold">الأقل LCC إجمالياً: {better} — على أفق {HORIZON} سنة بشمل إعادة الشراء كل {a.life} سنة و{b.life} سنة.</p>
-        <p className="mt-2 text-xs opacity-80">الاستثمار الأرخص أولاً قد يكون أغلى على 10 سنوات — لذلك نحسب على امتداد الأفق الكامل.</p>
+        <p className="text-base font-bold" dir="ltr">
+          أ: {Math.round(costA).toLocaleString('en-US')} | ب:{' '}
+          {Math.round(costB).toLocaleString('en-US')}
+        </p>
+        <p className="mt-1 font-semibold">
+          الأقل LCC إجمالياً: {better} — على أفق {HORIZON} سنة بشمل إعادة الشراء
+          كل {a.life} سنة و{b.life} سنة.
+        </p>
+        <p className="mt-2 text-xs opacity-80">
+          الاستثمار الأرخص أولاً قد يكون أغلى على 10 سنوات — لذلك نحسب على امتداد
+          الأفق الكامل.
+        </p>
       </div>
     </div>
   );

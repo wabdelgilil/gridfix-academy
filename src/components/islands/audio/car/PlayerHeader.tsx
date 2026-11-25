@@ -31,7 +31,9 @@ export default function PlayerHeader({
         <span className="px-2.5 py-0.5 rounded-full font-black bg-brand-500/30 text-brand-300 border border-brand-500/40 text-xs shrink-0">
           الدرس {track.number}
         </span>
-        <span className={`font-bold truncate text-xs sm:text-sm ${isDay ? 'text-slate-900 font-black' : 'text-slate-200'}`}>
+        <span
+          className={`font-bold truncate text-xs sm:text-sm ${isDay ? 'text-slate-900 font-black' : 'text-slate-200'}`}
+        >
           {track.title}
         </span>
         {wakeLockActive && (
@@ -74,7 +76,9 @@ export default function PlayerHeader({
         {totalCues > 0 && activeCueIndex >= 0 && (
           <div
             className={`px-2.5 py-0.5 rounded-full font-mono text-[11px] font-bold border shrink-0 ${
-              isDay ? 'bg-slate-200 text-slate-800 border-slate-300' : 'bg-white/10 text-slate-300 border-white/15'
+              isDay
+                ? 'bg-slate-200 text-slate-800 border-slate-300'
+                : 'bg-white/10 text-slate-300 border-white/15'
             }`}
           >
             مشهد {activeCueIndex + 1} من {totalCues}

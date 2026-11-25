@@ -3,10 +3,26 @@ import { useState } from 'react';
 type Quadrant = 'strengths' | 'weaknesses' | 'opportunities' | 'threats';
 
 const quadrants: { id: Quadrant; label: string; tone: string }[] = [
-  { id: 'strengths', label: 'نقاط القوة الداخلية', tone: 'border-teal-300 bg-teal-50' },
-  { id: 'weaknesses', label: 'نقاط الضعف الداخلية', tone: 'border-rose-300 bg-rose-50' },
-  { id: 'opportunities', label: 'الفرص الخارجية', tone: 'border-emerald-300 bg-emerald-50' },
-  { id: 'threats', label: 'التهديدات الخارجية', tone: 'border-orange-300 bg-orange-50' },
+  {
+    id: 'strengths',
+    label: 'نقاط القوة الداخلية',
+    tone: 'border-teal-300 bg-teal-50',
+  },
+  {
+    id: 'weaknesses',
+    label: 'نقاط الضعف الداخلية',
+    tone: 'border-rose-300 bg-rose-50',
+  },
+  {
+    id: 'opportunities',
+    label: 'الفرص الخارجية',
+    tone: 'border-emerald-300 bg-emerald-50',
+  },
+  {
+    id: 'threats',
+    label: 'التهديدات الخارجية',
+    tone: 'border-orange-300 bg-orange-50',
+  },
 ];
 
 export default function StrategyBoard() {
@@ -20,10 +36,14 @@ export default function StrategyBoard() {
   const [horizon, setHorizon] = useState('');
   const [kpi, setKpi] = useState('');
 
-  const set = (id: Quadrant, v: string) => setValues((prev) => ({ ...prev, [id]: v }));
+  const set = (id: Quadrant, v: string) =>
+    setValues((prev) => ({ ...prev, [id]: v }));
 
-  const countItems = (s: string) => s.split('\n').filter((l) => l.trim()).length;
-  const filled = Object.values(values).filter((v) => v.trim().length > 0).length;
+  const countItems = (s: string) =>
+    s.split('\n').filter((l) => l.trim()).length;
+  const filled = Object.values(values).filter(
+    (v) => v.trim().length > 0
+  ).length;
   const ready = filled === 4 && goal.trim() && horizon.trim() && kpi.trim();
 
   return (
@@ -44,7 +64,9 @@ export default function StrategyBoard() {
                 placeholder="أضف بنوداً، كل سطر بند"
                 className="mt-2 w-full resize-y rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-ink-800"
               />
-              <span className="text-[11px] font-semibold text-ink-500">{countItems(values[q.id])} بند</span>
+              <span className="text-[11px] font-semibold text-ink-500">
+                {countItems(values[q.id])} بند
+              </span>
             </label>
           ))}
         </div>
@@ -84,17 +106,22 @@ export default function StrategyBoard() {
           <div className="rounded-xl bg-ink-900 p-4 text-sm leading-relaxed text-white">
             <p className="font-bold text-teal-300">بيانك الاستراتيجي:</p>
             <p className="mt-1">
-              تحقيقاً لهدف «{goal}» خلال {horizon}، نبنيه على قوتنا في {values.strengths.split('\n')[0] || 'التشغيل'}، ونعالج
-              ضعفنا المتعلق بـ {values.weaknesses.split('\n')[0] || 'الموارد'}، ونستثمر فرصة {values.opportunities.split('\n')[0] || 'التحسين'}،
-              مع التصدي لتهديد {values.threats.split('\n')[0] || 'الجهود'}. ويتحقق القياس بالمؤشر «{kpi}».
+              تحقيقاً لهدف «{goal}» خلال {horizon}، نبنيه على قوتنا في{' '}
+              {values.strengths.split('\n')[0] || 'التشغيل'}، ونعالج ضعفنا
+              المتعلق بـ {values.weaknesses.split('\n')[0] || 'الموارد'}،
+              ونستثمر فرصة {values.opportunities.split('\n')[0] || 'التحسين'}،
+              مع التصدي لتهديد {values.threats.split('\n')[0] || 'الجهود'}.
+              ويتحقق القياس بالمؤشر «{kpi}».
             </p>
             <p className="mt-2 text-xs text-teal-100">
-              هذه مسودة قابلة للصقل → راجع مع الإدارة العليا، وخصص في الخطة خطوة ربط ذات معيار وموارد ومسؤول (RACI).
+              هذه مسودة قابلة للصقل → راجع مع الإدارة العليا، وخصص في الخطة خطوة
+              ربط ذات معيار وموارد ومسؤول (RACI).
             </p>
           </div>
         ) : (
           <p className="rounded-xl bg-slate-100 p-3 text-center text-sm text-ink-400">
-            أكمل الأربعة مربعات والهدف والأفق والمؤشر لترى بياناً استراتيجياً أولياً للتطوير.
+            أكمل الأربعة مربعات والهدف والأفق والمؤشر لترى بياناً استراتيجياً
+            أولياً للتطوير.
           </p>
         )}
       </div>

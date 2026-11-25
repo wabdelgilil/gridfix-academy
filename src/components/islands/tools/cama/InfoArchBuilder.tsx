@@ -4,7 +4,14 @@ const CATEGORIES = [
   {
     id: 'rotating',
     label: 'مُدوار (مضخات، مراوح، محركات)',
-    fields: ['السرعة الدورانية (RPM)', 'الاهتزاز', 'درجة الحرارة', 'التدفق', 'الضغط', 'ساعات التشغيل'],
+    fields: [
+      'السرعة الدورانية (RPM)',
+      'الاهتزاز',
+      'درجة الحرارة',
+      'التدفق',
+      'الضغط',
+      'ساعات التشغيل',
+    ],
     standards: ['ISO 14224', 'ISO 20816'],
   },
   {
@@ -22,23 +29,55 @@ const CATEGORIES = [
   {
     id: 'hvac',
     label: 'تكييف وتبريد (HVAC)',
-    fields: ['درجة حرارة الهواء', 'الرطوبة', 'التدفق', 'ضغط الغاز', 'الطاقة الاستهلاكية'],
+    fields: [
+      'درجة حرارة الهواء',
+      'الرطوبة',
+      'التدفق',
+      'ضغط الغاز',
+      'الطاقة الاستهلاكية',
+    ],
     standards: ['ASHRAE 90.1', 'ISO 52120'],
   },
   {
     id: 'building',
     label: 'مباني ومنشآت',
-    fields: ['الحالة البصرية', 'الĝدرات الهيكلية', 'العزل الحراري', 'أنظمة السلامة', 'المساحة'],
+    fields: [
+      'الحالة البصرية',
+      'الĝدرات الهيكلية',
+      'العزل الحراري',
+      'أنظمة السلامة',
+      'المساحة',
+    ],
     standards: ['ASTM E2018', 'IFMA Standards'],
   },
 ];
 
 const DECISION_TYPES = [
-  { id: 'pm', label: 'الصيانة الوقائية', needs: ['التاريخ', 'الحالة', 'الجدول'] },
-  { id: 'predictive', label: 'الصيانة التنبؤية', needs: ['المجسات', 'الأنماط', 'التنبؤات'] },
-  { id: 'replacement', label: 'قرار الاستبدال', needs: ['LCC', 'الأداء', 'العمر'] },
-  { id: 'investment', label: 'قرار الاستثمار', needs: ['ROI', 'الأداء', 'المقارنة'] },
-  { id: 'safety', label: 'قرار السلامة', needs: ['المخاطر', 'الفحوصات', 'التوثيق'] },
+  {
+    id: 'pm',
+    label: 'الصيانة الوقائية',
+    needs: ['التاريخ', 'الحالة', 'الجدول'],
+  },
+  {
+    id: 'predictive',
+    label: 'الصيانة التنبؤية',
+    needs: ['المجسات', 'الأنماط', 'التنبؤات'],
+  },
+  {
+    id: 'replacement',
+    label: 'قرار الاستبدال',
+    needs: ['LCC', 'الأداء', 'العمر'],
+  },
+  {
+    id: 'investment',
+    label: 'قرار الاستثمار',
+    needs: ['ROI', 'الأداء', 'المقارنة'],
+  },
+  {
+    id: 'safety',
+    label: 'قرار السلامة',
+    needs: ['المخاطر', 'الفحوصات', 'التوثيق'],
+  },
 ];
 
 export default function InfoArchBuilder() {
@@ -51,9 +90,9 @@ export default function InfoArchBuilder() {
     );
   };
 
-  const activeDecisionNeeds = DECISION_TYPES
-    .filter((d) => selectedDecisions.includes(d.id))
-    .flatMap((d) => d.needs);
+  const activeDecisionNeeds = DECISION_TYPES.filter((d) =>
+    selectedDecisions.includes(d.id)
+  ).flatMap((d) => d.needs);
   const uniqueNeeds = [...new Set(activeDecisionNeeds)];
 
   return (
@@ -65,7 +104,9 @@ export default function InfoArchBuilder() {
       <div className="space-y-5 p-5">
         {/* Category Selection */}
         <div>
-          <p className="mb-2 text-sm font-bold text-ink-700">اختر فئة الأصول:</p>
+          <p className="mb-2 text-sm font-bold text-ink-700">
+            اختر فئة الأصول:
+          </p>
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map((cat) => (
               <button
@@ -86,7 +127,9 @@ export default function InfoArchBuilder() {
 
         {/* Decision Types */}
         <div>
-          <p className="mb-2 text-sm font-bold text-ink-700">قرارات الصيانة المطلوبة:</p>
+          <p className="mb-2 text-sm font-bold text-ink-700">
+            قرارات الصيانة المطلوبة:
+          </p>
           <div className="flex flex-wrap gap-2">
             {DECISION_TYPES.map((dec) => (
               <button
@@ -108,20 +151,30 @@ export default function InfoArchBuilder() {
         {/* Architecture Output */}
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl border border-slate-200 p-4">
-            <p className="mb-2 text-xs font-bold text-ink-800">البيانات المطلوبة لفئة "{selectedCategory.label}":</p>
+            <p className="mb-2 text-xs font-bold text-ink-800">
+              البيانات المطلوبة لفئة "{selectedCategory.label}":
+            </p>
             <ul className="space-y-1">
               {selectedCategory.fields.map((field) => (
-                <li key={field} className="flex items-center gap-2 text-xs text-ink-600">
+                <li
+                  key={field}
+                  className="flex items-center gap-2 text-xs text-ink-600"
+                >
                   <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-500" />
                   {field}
                 </li>
               ))}
             </ul>
             <div className="mt-3 rounded-lg bg-slate-50 px-3 py-2">
-              <p className="text-[10px] font-semibold text-ink-500">المعايير المرجعية:</p>
+              <p className="text-[10px] font-semibold text-ink-500">
+                المعايير المرجعية:
+              </p>
               <div className="mt-1 flex flex-wrap gap-1">
                 {selectedCategory.standards.map((std) => (
-                  <span key={std} className="rounded bg-brand-50 px-1.5 py-0.5 text-[10px] font-bold text-brand-700">
+                  <span
+                    key={std}
+                    className="rounded bg-brand-50 px-1.5 py-0.5 text-[10px] font-bold text-brand-700"
+                  >
                     {std}
                   </span>
                 ))}
@@ -130,17 +183,24 @@ export default function InfoArchBuilder() {
           </div>
 
           <div className="rounded-xl border border-slate-200 p-4">
-            <p className="mb-2 text-xs font-bold text-ink-800">متطلبات المعلومات للقرارات المحددة:</p>
+            <p className="mb-2 text-xs font-bold text-ink-800">
+              متطلبات المعلومات للقرارات المحددة:
+            </p>
             <div className="space-y-2">
               {uniqueNeeds.length > 0 ? (
                 uniqueNeeds.map((need) => (
-                  <div key={need} className="flex items-center gap-2 rounded-lg bg-teal-50 px-3 py-1.5 text-xs font-semibold text-teal-700">
+                  <div
+                    key={need}
+                    className="flex items-center gap-2 rounded-lg bg-teal-50 px-3 py-1.5 text-xs font-semibold text-teal-700"
+                  >
                     <span className="text-teal-500">✓</span>
                     {need}
                   </div>
                 ))
               ) : (
-                <p className="text-xs text-ink-400">اختر قراراً واحداً على الأقل</p>
+                <p className="text-xs text-ink-400">
+                  اختر قراراً واحداً على الأقل
+                </p>
               )}
             </div>
           </div>
@@ -149,9 +209,11 @@ export default function InfoArchBuilder() {
         {/* Summary */}
         <div className="rounded-xl bg-slate-50 px-4 py-3">
           <p className="text-xs text-ink-500">
-            بنية المعلومات المطلوبة: <strong>{selectedCategory.fields.length} حقل بيانات</strong> لفئة{' '}
-            <strong>{selectedCategory.label}</strong> تدعم <strong>{selectedDecisions.length} قرار(ات)</strong>{' '}
-            صيانة مع <strong>{uniqueNeeds.length} متطلب معلوماتي</strong>.
+            بنية المعلومات المطلوبة:{' '}
+            <strong>{selectedCategory.fields.length} حقل بيانات</strong> لفئة{' '}
+            <strong>{selectedCategory.label}</strong> تدعم{' '}
+            <strong>{selectedDecisions.length} قرار(ات)</strong> صيانة مع{' '}
+            <strong>{uniqueNeeds.length} متطلب معلوماتي</strong>.
           </p>
         </div>
       </div>

@@ -1,5 +1,9 @@
 import GenericExamRunner from '../common/GenericExamRunner';
-import { mockCamaQuestions, mockCamaVolumes, mockCamaVolumesEn } from '../../../../data/quiz/cama/mock-cama';
+import {
+  mockCamaQuestions,
+  mockCamaVolumes,
+  mockCamaVolumesEn,
+} from '../../../../data/quiz/cama/mock-cama';
 
 const sections = [1, 2, 3, 4, 5].map((id) => ({
   id,

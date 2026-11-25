@@ -34,13 +34,13 @@ export interface FlowchartStep {
 export interface AudioCue {
   id: string;
   atSeconds: number; // ثانية بداية هذا المشهد
-  badge: string;     // عنوان تصنيف الشريحة
+  badge: string; // عنوان تصنيف الشريحة
   badgeIcon: string; // رمز تعبيري دال
   type: AudioCueType;
-  title: string;     // العنوان الأبرز للمشهد
+  title: string; // العنوان الأبرز للمشهد
   keyTakeaway: string; // الفكرة الجوهرية بخط كبير وواضح
-  detail?: string;    // تفصيل تكميلي موجز
-  
+  detail?: string; // تفصيل تكميلي موجز
+
   // 1. عنصر المعادلة الرياضية
   formula?: {
     expression: string;
@@ -63,8 +63,18 @@ export interface AudioCue {
   // 4. شريط النسبة التوزيعية التوضيحي (Proportion Bar)
   visualBar?: {
     title: string;
-    left: { percent: number; label: string; desc: string; color: 'rose' | 'amber' };
-    right: { percent: number; label: string; desc: string; color: 'emerald' | 'teal' };
+    left: {
+      percent: number;
+      label: string;
+      desc: string;
+      color: 'rose' | 'amber';
+    };
+    right: {
+      percent: number;
+      label: string;
+      desc: string;
+      color: 'emerald' | 'teal';
+    };
   };
 
   // 5. إحصائية مميزة مفردة

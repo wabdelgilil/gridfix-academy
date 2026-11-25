@@ -17,14 +17,32 @@ const { course } = Astro.params;
 const courseMeta = getCourse(course);
 const isPlanned = !courseMeta || courseMeta.status !== 'live';
 
-const stations = isPlanned ? [] : curriculum.filter((s) => (s.courseId ?? 'cfm') === course).sort((a, b) => a.number - b.number);
-const totalMinutes = stations.reduce((acc, s) => acc + s.lessons.reduce((t, l) => t + l.minutes, 0), 0);
+const stations = isPlanned
+  ? []
+  : curriculum
+      .filter((s) => (s.courseId ?? 'cfm') === course)
+      .sort((a, b) => a.number - b.number);
+const totalMinutes = stations.reduce(
+  (acc, s) => acc + s.lessons.reduce((t, l) => t + l.minutes, 0),
+  0
+);
 const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
 ---
 
-<BaseLayout title={`خريطة منهج ${courseMeta?.code ?? ''} — أكاديمية GridFix`} titleEn={`${courseMeta?.code ?? ''} Curriculum Map | GridFix Academy`} description="الخريطة الكاملة لمسار المنصة: المحطات والدروس والأدوات ووزن كل ركن في الامتحان." descriptionEn="The complete platform path map: stations, lessons, tools, and the exam weight of every pillar." noindex={isPlanned}>
+<BaseLayout
+  title={`خريطة منهج ${courseMeta?.code ?? ''} — أكاديمية GridFix`}
+  titleEn={`${courseMeta?.code ?? ''} Curriculum Map | GridFix Academy`}
+  description="الخريطة الكاملة لمسار المنصة: المحطات والدروس والأدوات ووزن كل ركن في الامتحان."
+  descriptionEn="The complete platform path map: stations, lessons, tools, and the exam weight of every pillar."
+  noindex={isPlanned}
+>
   <div class="mx-auto max-w-4xl">
-    <Breadcrumb items={[{ label: courseMeta?.code ?? course, href: `/${course}/` }, { label: 'خريطة المنهج', labelEn: 'Curriculum map' }]} />
+    <Breadcrumb
+      items={[
+        { label: courseMeta?.code ?? course, href: `/${course}/` },
+        { label: 'خريطة المنهج', labelEn: 'Curriculum map' },
+      ]}
+    />
     <header class="mb-6 flex flex-wrap items-end justify-between gap-4 animate-fade-in">
       <div>
         <span class="chip bg-brand-100 text-brand-700">
@@ -37,18 +55,14 @@ const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
         </h1>
         <p class="mt-2 text-sm leading-relaxed text-ink-500">
           <LangText lang="ar">
-            {isPlanned ? (
-              'خريطة هذا الكورس ستظهر هنا فور إطلاقه.'
-            ) : (
-              `${stations.length} محطة • ${totalLessons} درساً • نحو ${Math.round(totalMinutes / 60)} ساعة تعلم. الأرقام على كل محطة تشير إلى وزن الركن التقريبي في الامتحان.`
-            )}
+            {isPlanned
+              ? 'خريطة هذا الكورس ستظهر هنا فور إطلاقه.'
+              : `${stations.length} محطة • ${totalLessons} درساً • نحو ${Math.round(totalMinutes / 60)} ساعة تعلم. الأرقام على كل محطة تشير إلى وزن الركن التقريبي في الامتحان.`}
           </LangText>
           <LangText lang="en">
-            {isPlanned ? (
-              'This course map will appear as soon as the course launches.'
-            ) : (
-              `${stations.length} stations • ${totalLessons} lessons • about ${Math.round(totalMinutes / 60)} hours of study. The number on each station shows its approximate exam weight.`
-            )}
+            {isPlanned
+              ? 'This course map will appear as soon as the course launches.'
+              : `${stations.length} stations • ${totalLessons} lessons • about ${Math.round(totalMinutes / 60)} hours of study. The number on each station shows its approximate exam weight.`}
           </LangText>
         </p>
       </div>
@@ -71,7 +85,10 @@ const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
           <LangText lang="ar">{courseMeta?.description}</LangText>
           <LangText lang="en">{courseMeta?.descriptionEn}</LangText>
         </p>
-        <a href="/" class="mt-4 inline-block font-semibold text-brand-700 hover:underline">
+        <a
+          href="/"
+          class="mt-4 inline-block font-semibold text-brand-700 hover:underline"
+        >
           <LangText lang="ar">← العودة لاختيار الكورس</LangText>
           <LangText lang="en">← Back to course selection</LangText>
         </a>
@@ -97,8 +114,8 @@ const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
                       <span class="text-brand-600">
                         <LangText lang="ar">محطة {s.number}</LangText>
                         <LangText lang="en">Station {s.number}</LangText>
-                      </span> —{' '}
-                      <LangText lang="ar">{s.title}</LangText>
+                      </span>{' '}
+                      — <LangText lang="ar">{s.title}</LangText>
                       <LangText lang="en">{s.titleEn}</LangText>
                     </h2>
                   </div>
@@ -110,9 +127,17 @@ const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
                         <LangText lang="en"> of the exam</LangText>
                       </span>
                     )}
-                    <span class={`chip ${live.length === total ? 'bg-brand-100 text-brand-700' : 'bg-amber-100 text-amber-800'}`}>
-                      <LangText lang="ar">{live.length === total ? '✅ مكتملة' : '⏳ قيد البناء'}</LangText>
-                      <LangText lang="en">{live.length === total ? '✅ Complete' : '⏳ In progress'}</LangText>
+                    <span
+                      class={`chip ${live.length === total ? 'bg-brand-100 text-brand-700' : 'bg-amber-100 text-amber-800'}`}
+                    >
+                      <LangText lang="ar">
+                        {live.length === total ? '✅ مكتملة' : '⏳ قيد البناء'}
+                      </LangText>
+                      <LangText lang="en">
+                        {live.length === total
+                          ? '✅ Complete'
+                          : '⏳ In progress'}
+                      </LangText>
                     </span>
                   </div>
                 </div>
@@ -130,13 +155,25 @@ const totalLessons = stations.reduce((a, s) => a + s.lessons.length, 0);
                           href={`/${course}/lessons/${l.id}/`}
                           class="rounded-lg bg-slate-50 px-2.5 py-1 text-xs font-semibold text-ink-600 transition hover:bg-brand-50 hover:text-brand-700"
                         >
-                          <LangText lang="ar">{l.number} {l.title} {l.toolName ? `🛠 ${l.toolName}` : ''}</LangText>
-                          <LangText lang="en">{l.number} {l.titleEn} {l.toolName ? `🛠 ${l.toolNameEn ?? l.toolName}` : ''}</LangText>
+                          <LangText lang="ar">
+                            {l.number} {l.title}{' '}
+                            {l.toolName ? `🛠 ${l.toolName}` : ''}
+                          </LangText>
+                          <LangText lang="en">
+                            {l.number} {l.titleEn}{' '}
+                            {l.toolName
+                              ? `🛠 ${l.toolNameEn ?? l.toolName}`
+                              : ''}
+                          </LangText>
                         </a>
                       ) : (
                         <span class="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-ink-400">
-                          <LangText lang="ar">{l.number} {l.title} • قريباً</LangText>
-                          <LangText lang="en">{l.number} {l.titleEn} • coming soon</LangText>
+                          <LangText lang="ar">
+                            {l.number} {l.title} • قريباً
+                          </LangText>
+                          <LangText lang="en">
+                            {l.number} {l.titleEn} • coming soon
+                          </LangText>
                         </span>
                       )}
                     </li>

@@ -32,4 +32,6 @@ for (const station of cmrpStations) {
 
 const outFile = path.join(outputDir, 'cmrp_video_manifest.json');
 fs.writeFileSync(outFile, JSON.stringify(manifest, null, 2), 'utf-8');
-console.log(`Successfully generated manifest with ${Object.keys(manifest).length} lessons: ${outFile}`);
+console.log(
+  `Successfully generated manifest with ${Object.keys(manifest).length} lessons: ${outFile}`
+);

@@ -63,7 +63,8 @@ export default function ShareLesson({
     url: currentUrl,
   });
 
-  const firstPoint = activePoints.length > 0 ? activePoints[0] : activeLessonTitle;
+  const firstPoint =
+    activePoints.length > 0 ? activePoints[0] : activeLessonTitle;
   const tweetText = buildTweetText(
     activeCourseTitle,
     lessonNumber,
@@ -73,7 +74,11 @@ export default function ShareLesson({
     lang
   );
 
-  const socialUrls = generateSocialShareUrls(fullShareText, tweetText, currentUrl);
+  const socialUrls = generateSocialShareUrls(
+    fullShareText,
+    tweetText,
+    currentUrl
+  );
 
   const handleCopy = useCallback(async (text: string, type: 'full' | 'url') => {
     const success = await copyTextToClipboard(text);

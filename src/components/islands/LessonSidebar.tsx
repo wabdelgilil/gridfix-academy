@@ -40,7 +40,9 @@ function StationNode({
     if (isActiveStation) setOpen(true);
   }, [isActiveStation]);
 
-  const doneCount = station.lessons.filter((l) => completed.includes(l.id)).length;
+  const doneCount = station.lessons.filter((l) =>
+    completed.includes(l.id)
+  ).length;
   const totalCount = station.lessons.length;
 
   return (
@@ -50,15 +52,25 @@ function StationNode({
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         className={`flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-start text-xs font-semibold transition ${
-          isActiveStation ? 'bg-brand-600 text-white shadow-sm' : 'text-ink-700 hover:bg-slate-50'
+          isActiveStation
+            ? 'bg-brand-600 text-white shadow-sm'
+            : 'text-ink-700 hover:bg-slate-50'
         }`}
       >
-        <span className={`text-[10px] leading-none transition-transform ${open ? 'rotate-90' : ''}`}>▸</span>
+        <span
+          className={`text-[10px] leading-none transition-transform ${open ? 'rotate-90' : ''}`}
+        >
+          ▸
+        </span>
         <span className="text-sm">{station.icon}</span>
         <span className="min-w-0 flex-1 truncate">
-          <span className="block">{lang === 'ar' ? station.title : station.titleEn}</span>
+          <span className="block">
+            {lang === 'ar' ? station.title : station.titleEn}
+          </span>
         </span>
-        <span className={`shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-bold ${isActiveStation ? 'bg-white/20' : 'bg-slate-100 text-ink-400'}`}>
+        <span
+          className={`shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-bold ${isActiveStation ? 'bg-white/20' : 'bg-slate-100 text-ink-400'}`}
+        >
           {doneCount}/{totalCount}
         </span>
       </button>
@@ -82,23 +94,37 @@ function StationNode({
                           : 'text-ink-600 hover:bg-slate-50 hover:text-ink-900'
                     }`}
                   >
-                    <span className={`text-[11px] font-bold ${isCurrent ? 'text-brand-700' : isDone ? 'text-brand-600' : 'text-ink-400'}`}>
+                    <span
+                      className={`text-[11px] font-bold ${isCurrent ? 'text-brand-700' : isDone ? 'text-brand-600' : 'text-ink-400'}`}
+                    >
                       {lesson.number}
                     </span>
                     <span className="min-w-0 flex-1 truncate">
-                      <span className={lang === 'en' ? 'block' : 'sr-only'}>{lesson.titleEn}</span>
-                      <span className={lang === 'ar' ? 'block' : 'sr-only'}>{lesson.title}</span>
+                      <span className={lang === 'en' ? 'block' : 'sr-only'}>
+                        {lesson.titleEn}
+                      </span>
+                      <span className={lang === 'ar' ? 'block' : 'sr-only'}>
+                        {lesson.title}
+                      </span>
                     </span>
-                    <span className={`shrink-0 text-xs ${isCurrent ? 'text-brand-700' : isDone ? 'text-brand-600' : 'text-slate-300'}`}>
+                    <span
+                      className={`shrink-0 text-xs ${isCurrent ? 'text-brand-700' : isDone ? 'text-brand-600' : 'text-slate-300'}`}
+                    >
                       {isDone ? '✓' : ''}
                     </span>
                   </a>
                 ) : (
                   <div className="flex items-center gap-2 rounded-md px-2.5 py-1.5 text-xs text-ink-400">
-                    <span className="text-[11px] font-bold">{lesson.number}</span>
+                    <span className="text-[11px] font-bold">
+                      {lesson.number}
+                    </span>
                     <span className="min-w-0 flex-1 truncate">
-                      <span className={lang === 'en' ? 'block' : 'sr-only'}>{lesson.titleEn}</span>
-                      <span className={lang === 'ar' ? 'block' : 'sr-only'}>{lesson.title}</span>
+                      <span className={lang === 'en' ? 'block' : 'sr-only'}>
+                        {lesson.titleEn}
+                      </span>
+                      <span className={lang === 'ar' ? 'block' : 'sr-only'}>
+                        {lesson.title}
+                      </span>
                     </span>
                     <span className="text-[10px]">🔒</span>
                   </div>
@@ -112,16 +138,27 @@ function StationNode({
   );
 }
 
-export default function LessonSidebar({ course, currentStationId, currentLessonId }: Props) {
+export default function LessonSidebar({
+  course,
+  currentStationId,
+  currentLessonId,
+}: Props) {
   const completed = useProgress(course);
   const lang = useLang();
   const stations = curriculum.filter((s) => (s.courseId ?? 'cfm') === course);
 
   return (
-    <nav aria-label={lang === 'ar' ? 'دروس الكورس' : 'Course lessons'} className="sticky top-24 h-fit max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+    <nav
+      aria-label={lang === 'ar' ? 'دروس الكورس' : 'Course lessons'}
+      className="sticky top-24 h-fit max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-3 shadow-sm"
+    >
       <p className="mb-2 px-2 font-semibold">
-        <span className={lang === 'ar' ? 'block' : 'sr-only'}>🗂 المحطات والدروس</span>
-        <span className={lang === 'en' ? 'block' : 'sr-only'}>🗂 Stations & Lessons</span>
+        <span className={lang === 'ar' ? 'block' : 'sr-only'}>
+          🗂 المحطات والدروس
+        </span>
+        <span className={lang === 'en' ? 'block' : 'sr-only'}>
+          🗂 Stations & Lessons
+        </span>
       </p>
       <div className="space-y-1">
         {stations.map((station) => (

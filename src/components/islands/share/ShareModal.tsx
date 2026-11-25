@@ -49,7 +49,10 @@ export default function ShareModal({
         <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700">
           <div className="flex items-center gap-2">
             <span className="text-xl">💡</span>
-            <h2 id={dialogId} className="text-base font-bold text-ink-900 dark:text-slate-100">
+            <h2
+              id={dialogId}
+              className="text-base font-bold text-ink-900 dark:text-slate-100"
+            >
               {translate(lang, 'share.title')}
             </h2>
           </div>
@@ -59,8 +62,18 @@ export default function ShareModal({
             className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-700 dark:hover:text-slate-200 cursor-pointer transition"
             aria-label={translate(lang, 'share.close')}
           >
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -78,7 +91,9 @@ export default function ShareModal({
             >
               <span>{copiedType === 'full' ? '✓' : '📋'}</span>
               <span>
-                {copiedType === 'full' ? translate(lang, 'share.copied') : translate(lang, 'share.copyText')}
+                {copiedType === 'full'
+                  ? translate(lang, 'share.copied')
+                  : translate(lang, 'share.copyText')}
               </span>
             </button>
           </div>
@@ -90,7 +105,9 @@ export default function ShareModal({
         {/* Social Platforms Grid */}
         <div className="mt-5">
           <span className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">
-            {lang === 'ar' ? 'مشاركة مباشرة عبر المنصات:' : 'Direct platform share:'}
+            {lang === 'ar'
+              ? 'مشاركة مباشرة عبر المنصات:'
+              : 'Direct platform share:'}
           </span>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             <a
@@ -144,7 +161,9 @@ export default function ShareModal({
           >
             <span>{copiedType === 'url' ? '✓' : '🔗'}</span>
             <span>
-              {copiedType === 'url' ? translate(lang, 'share.copied') : translate(lang, 'share.copyLink')}
+              {copiedType === 'url'
+                ? translate(lang, 'share.copied')
+                : translate(lang, 'share.copyLink')}
             </span>
           </button>
 

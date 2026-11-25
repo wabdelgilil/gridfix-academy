@@ -7,7 +7,11 @@ interface Item {
 }
 
 const items: Item[] = [
-  { id: 'opex', label: 'التشغيلية (Opex)', hint: 'مرافق، عقود، نظافة، تشغيل يومي' },
+  {
+    id: 'opex',
+    label: 'التشغيلية (Opex)',
+    hint: 'مرافق، عقود، نظافة، تشغيل يومي',
+  },
   { id: 'pm', label: 'الوقائية (PM)', hint: 'جداول صيانة مجدولة' },
   { id: 'capex', label: 'الإحلالات (CapEx)', hint: 'استبدال أصول رئيسية' },
   { id: 'reserve', label: 'الاحتياطي/الطوارئ', hint: 'انهيارات غير متوقعة' },
@@ -15,12 +19,18 @@ const items: Item[] = [
 
 export default function BudgetSimulator() {
   const [total, setTotal] = useState(1200000);
-  const [alloc, setAlloc] = useState({ opex: 45, pm: 25, capex: 20, reserve: 10 });
+  const [alloc, setAlloc] = useState({
+    opex: 45,
+    pm: 25,
+    capex: 20,
+    reserve: 10,
+  });
 
   const sum = Object.values(alloc).reduce((a, b) => a + b, 0);
   const over = sum > 100;
 
-  const setItem = (id: string, value: number) => setAlloc((prev) => ({ ...prev, [id]: value }));
+  const setItem = (id: string, value: number) =>
+    setAlloc((prev) => ({ ...prev, [id]: value }));
 
   return (
     <div className="card mt-6 overflow-hidden">
@@ -30,7 +40,9 @@ export default function BudgetSimulator() {
 
       <div className="space-y-4 p-5">
         <div>
-          <label className="block text-sm font-semibold text-ink-900">إجمالي الميزانية السنوية</label>
+          <label className="block text-sm font-semibold text-ink-900">
+            إجمالي الميزانية السنوية
+          </label>
           <input
             type="number"
             value={total}
@@ -49,7 +61,9 @@ export default function BudgetSimulator() {
                     <p className="font-semibold text-ink-900">{item.label}</p>
                     <p className="text-xs text-ink-400">{item.hint}</p>
                   </div>
-                  <span className="chip bg-brand-100 text-brand-800" dir="ltr">{value}%</span>
+                  <span className="chip bg-brand-100 text-brand-800" dir="ltr">
+                    {value}%
+                  </span>
                 </div>
                 <input
                   type="range"
@@ -68,12 +82,19 @@ export default function BudgetSimulator() {
           })}
         </div>
 
-        <div className={`rounded-xl p-4 text-sm font-semibold ${over ? 'bg-rose-50 text-rose-800' : 'bg-brand-50 text-brand-800'}`}>
+        <div
+          className={`rounded-xl p-4 text-sm font-semibold ${over ? 'bg-rose-50 text-rose-800' : 'bg-brand-50 text-brand-800'}`}
+        >
           {over ? (
             <p>⚠️ مجموع النسب تجاوز 100% ({sum}%) — راجع توزيعك.</p>
           ) : (
             <p>
-              ✅ التوزيع متوازن ({sum}%): نحتاط {Math.round((total * alloc.reserve) / 100).toLocaleString('en-US')} للطوارئ لوحده. الاحتياطي <strong>10-15%</strong> ممارسة سليمة للانقطاعات.
+              ✅ التوزيع متوازن ({sum}%): نحتاط{' '}
+              {Math.round((total * alloc.reserve) / 100).toLocaleString(
+                'en-US'
+              )}{' '}
+              للطوارئ لوحده. الاحتياطي <strong>10-15%</strong> ممارسة سليمة
+              للانقطاعات.
             </p>
           )}
         </div>

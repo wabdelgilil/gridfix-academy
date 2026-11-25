@@ -21,8 +21,20 @@ function leaseNpv(cash: Lease, discount: number): number {
   return npv;
 }
 
-const defaultA: Lease = { label: 'العقد الحالي A', rent: 18, area: 1200, term: 5, escalation: 5 };
-const defaultB: Lease = { label: 'العرض الجديد B', rent: 21, area: 1100, term: 8, escalation: 3 };
+const defaultA: Lease = {
+  label: 'العقد الحالي A',
+  rent: 18,
+  area: 1200,
+  term: 5,
+  escalation: 5,
+};
+const defaultB: Lease = {
+  label: 'العرض الجديد B',
+  rent: 21,
+  area: 1100,
+  term: 8,
+  escalation: 3,
+};
 
 export default function LeaseNPVCalculator() {
   const [discount, setDiscount] = useState(8);
@@ -75,7 +87,9 @@ export default function LeaseNPVCalculator() {
           <input
             type="number"
             value={lease.escalation}
-            onChange={(e) => setLease(group, 'escalation', Number(e.target.value))}
+            onChange={(e) =>
+              setLease(group, 'escalation', Number(e.target.value))
+            }
             className="mt-1 w-full rounded-lg border border-slate-200 px-2.5 py-1.5 outline-none focus:border-brand-500"
           />
         </label>
@@ -95,7 +109,12 @@ export default function LeaseNPVCalculator() {
       </div>
 
       <div className="px-5 pb-4">
-        <label className="text-sm font-semibold text-ink-900">معدل الخصم السنوي % <span className="font-normal text-ink-400">(معدل تكلفة رأس المال)</span></label>
+        <label className="text-sm font-semibold text-ink-900">
+          معدل الخصم السنوي %{' '}
+          <span className="font-normal text-ink-400">
+            (معدل تكلفة رأس المال)
+          </span>
+        </label>
         <input
           type="range"
           min="0"
@@ -105,15 +124,24 @@ export default function LeaseNPVCalculator() {
           onChange={(e) => setDiscount(Number(e.target.value))}
           className="mt-2 w-full accent-teal-600"
         />
-        <span className="chip mt-2 bg-brand-100 text-brand-700" dir="ltr">{discount}%</span>
+        <span className="chip mt-2 bg-brand-100 text-brand-700" dir="ltr">
+          {discount}%
+        </span>
       </div>
 
       <div className="mx-5 mb-5 rounded-xl p-4 ring-2 ring-brand-500 bg-brand-50 text-sm text-brand-800">
-        <p className="text-base font-bold" dir="ltr">أ: {Math.round(npvA).toLocaleString('en-US')} جنيه | ب: {Math.round(npvB).toLocaleString('en-US')} جنيه</p>
-        <p className="mt-1">
-          NPV الأقل = الأفضل مالياً (التكلفة الإجمالية المخصومة للقيمة الحالية). الأفضل الحالي: <strong>العقد {better}</strong>
+        <p className="text-base font-bold" dir="ltr">
+          أ: {Math.round(npvA).toLocaleString('en-US')} جنيه | ب:{' '}
+          {Math.round(npvB).toLocaleString('en-US')} جنيه
         </p>
-        <p className="mt-2 text-xs opacity-80">المقارنة بمعيار واحد: تكلفة الإيجار الكلية بعد خصم القيمة الزمنية. لا يغني عن دراسة الموقع والبنية والخدمات.</p>
+        <p className="mt-1">
+          NPV الأقل = الأفضل مالياً (التكلفة الإجمالية المخصومة للقيمة الحالية).
+          الأفضل الحالي: <strong>العقد {better}</strong>
+        </p>
+        <p className="mt-2 text-xs opacity-80">
+          المقارنة بمعيار واحد: تكلفة الإيجار الكلية بعد خصم القيمة الزمنية. لا
+          يغني عن دراسة الموقع والبنية والخدمات.
+        </p>
       </div>
     </div>
   );

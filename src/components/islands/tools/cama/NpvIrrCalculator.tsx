@@ -16,7 +16,10 @@ const DEFAULT_FLOWS: Flow[] = [
 ];
 
 function npv(flows: Flow[], rate: number): number {
-  return flows.reduce((acc, f) => acc + f.amount / Math.pow(1 + rate, f.year), 0);
+  return flows.reduce(
+    (acc, f) => acc + f.amount / Math.pow(1 + rate, f.year),
+    0
+  );
 }
 
 function irr(flows: Flow[]): number | null {
@@ -56,7 +59,8 @@ export default function NpvIrrCalculator() {
     setFlows((fs) => [...fs, { id: Date.now(), year: next, amount: 0 }]);
   };
 
-  const removeFlow = (id: number) => setFlows((fs) => fs.filter((f) => f.id !== id));
+  const removeFlow = (id: number) =>
+    setFlows((fs) => fs.filter((f) => f.id !== id));
 
   const result = useMemo(() => {
     const r = rate / 100;
@@ -65,7 +69,11 @@ export default function NpvIrrCalculator() {
     const paybackVal = payback(flows);
     const decision = npvVal > 0 ? 'قبول' : npvVal < 0 ? 'رفض' : 'محايد';
     const irrDecision =
-      irrVal !== null ? (irrVal > r ? 'IRR يتجاوز معدل الخصم' : 'IRR أدنى من معدل الخصم') : 'غير قابل للحساب';
+      irrVal !== null
+        ? irrVal > r
+          ? 'IRR يتجاوز معدل الخصم'
+          : 'IRR أدنى من معدل الخصم'
+        : 'غير قابل للحساب';
     return { npvVal, irrVal, paybackVal, decision, irrDecision };
   }, [flows, rate]);
 
@@ -83,14 +91,20 @@ export default function NpvIrrCalculator() {
       <div className="space-y-5 p-5">
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="rounded-xl bg-slate-50 p-3">
-            <p className="text-xs font-semibold text-ink-500">صافي القيمة الحالية (NPV)</p>
-            <p className={`mt-1 text-xl font-bold ${result.npvVal >= 0 ? 'text-emerald-700' : 'text-rose-700'}`}>
+            <p className="text-xs font-semibold text-ink-500">
+              صافي القيمة الحالية (NPV)
+            </p>
+            <p
+              className={`mt-1 text-xl font-bold ${result.npvVal >= 0 ? 'text-emerald-700' : 'text-rose-700'}`}
+            >
               {fmt(result.npvVal)}
             </p>
             <p className="text-xs text-ink-500">النتيجة: {result.decision}</p>
           </div>
           <div className="rounded-xl bg-slate-50 p-3">
-            <p className="text-xs font-semibold text-ink-500">معدل العائد الداخلي (IRR)</p>
+            <p className="text-xs font-semibold text-ink-500">
+              معدل العائد الداخلي (IRR)
+            </p>
             <p className="mt-1 text-xl font-bold text-ink-800">
               {result.irrVal !== null ? fmtPct(result.irrVal) : '—'}
             </p>
@@ -99,14 +113,18 @@ export default function NpvIrrCalculator() {
           <div className="rounded-xl bg-slate-50 p-3">
             <p className="text-xs font-semibold text-ink-500">فترة الاسترداد</p>
             <p className="mt-1 text-xl font-bold text-ink-800">
-              {result.paybackVal !== null ? `${result.paybackVal} سنة` : 'لا تُسترد'}
+              {result.paybackVal !== null
+                ? `${result.paybackVal} سنة`
+                : 'لا تُسترد'}
             </p>
             <p className="text-xs text-ink-500">دون خصم القيمة الزمنية</p>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          <label className="text-sm font-semibold text-ink-700">معدل الخصم: {rate}%</label>
+          <label className="text-sm font-semibold text-ink-700">
+            معدل الخصم: {rate}%
+          </label>
           <input
             type="range"
             min={0}
@@ -121,7 +139,9 @@ export default function NpvIrrCalculator() {
 
         <div>
           <div className="mb-2 flex items-center justify-between">
-            <p className="text-sm font-bold text-ink-700">التدفقات النقدية (السنة 0 = التكلفة الأولية)</p>
+            <p className="text-sm font-bold text-ink-700">
+              التدفقات النقدية (السنة 0 = التكلفة الأولية)
+            </p>
             <button
               type="button"
               onClick={addFlow}
@@ -132,8 +152,13 @@ export default function NpvIrrCalculator() {
           </div>
           <div className="space-y-2">
             {flows.map((f) => (
-              <div key={f.id} className="flex items-center gap-3 rounded-lg bg-slate-50 px-3 py-2">
-                <span className="w-20 shrink-0 text-xs font-bold text-ink-500">السنة {f.year}</span>
+              <div
+                key={f.id}
+                className="flex items-center gap-3 rounded-lg bg-slate-50 px-3 py-2"
+              >
+                <span className="w-20 shrink-0 text-xs font-bold text-ink-500">
+                  السنة {f.year}
+                </span>
                 <input
                   type="number"
                   value={f.amount}
@@ -155,12 +180,22 @@ export default function NpvIrrCalculator() {
         </div>
 
         <details className="rounded-xl border border-slate-200 bg-white p-3 text-sm">
-          <summary className="cursor-pointer font-semibold text-ink-700">كيف أقرأ النتائج؟</summary>
+          <summary className="cursor-pointer font-semibold text-ink-700">
+            كيف أقرأ النتائج؟
+          </summary>
           <div className="mt-2 space-y-1 text-xs leading-relaxed text-ink-600">
-            <p>• NPV موجب يعني أن العائد يفوق معدل الخصم المطلوب → يُقبل المشروع.</p>
+            <p>
+              • NPV موجب يعني أن العائد يفوق معدل الخصم المطلوب → يُقبل المشروع.
+            </p>
             <p>• NPV سالب يعني أن العائد لا يغطي تكلفة الفرصة → يُرفض.</p>
-            <p>• IRR هو معدل الخصم الذي يجعل NPV صفراً؛ اقبله إذا تجاوز معدل الخصم المعتمد.</p>
-            <p>• فترة الاسترداد مؤشر سريع يتجاهل القيمة الزمنية للنقود، فلا تعتمد عليه وحده.</p>
+            <p>
+              • IRR هو معدل الخصم الذي يجعل NPV صفراً؛ اقبله إذا تجاوز معدل الخصم
+              المعتمد.
+            </p>
+            <p>
+              • فترة الاسترداد مؤشر سريع يتجاهل القيمة الزمنية للنقود، فلا تعتمد
+              عليه وحده.
+            </p>
           </div>
         </details>
       </div>

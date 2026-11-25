@@ -18,8 +18,10 @@ const station = courseStations[currentStationIndex];
 const lessons = (station?.lessons ?? []).filter((l) => l.status === 'live');
 const currentIndex = lessons.findIndex((l) => l.id === lessonId);
 
-let livePrev: { id: string; number: string; title: string; titleEn: string } | undefined;
-let liveNext: { id: string; number: string; title: string; titleEn: string } | undefined;
+let livePrev:
+  { id: string; number: string; title: string; titleEn: string } | undefined;
+let liveNext:
+  { id: string; number: string; title: string; titleEn: string } | undefined;
 
 if (currentIndex > 0) {
   livePrev = lessons[currentIndex - 1];
@@ -33,7 +35,10 @@ if (currentIndex > 0) {
 
 if (currentIndex >= 0 && currentIndex < lessons.length - 1) {
   liveNext = lessons[currentIndex + 1];
-} else if (currentStationIndex >= 0 && currentStationIndex < courseStations.length - 1) {
+} else if (
+  currentStationIndex >= 0 &&
+  currentStationIndex < courseStations.length - 1
+) {
   const nextStation = courseStations[currentStationIndex + 1];
   const nextLessons = nextStation.lessons.filter((l) => l.status === 'live');
   if (nextLessons.length > 0) {
@@ -56,12 +61,21 @@ if (currentIndex >= 0 && currentIndex < lessons.length - 1) {
           <LangText lang="en">Previous</LangText>
         </div>
         <div>
-          <LangText lang="ar">{livePrev ? `${livePrev.number} ${livePrev.title}` : 'قريباً'}</LangText>
-          <LangText lang="en">{livePrev ? `${livePrev.number} ${livePrev.titleEn}` : 'Coming soon'}</LangText>
+          <LangText lang="ar">
+            {livePrev ? `${livePrev.number} ${livePrev.title}` : 'قريباً'}
+          </LangText>
+          <LangText lang="en">
+            {livePrev
+              ? `${livePrev.number} ${livePrev.titleEn}`
+              : 'Coming soon'}
+          </LangText>
         </div>
       </div>
     </a>
-    <a href={`/${course}/stations/${stationId}/`} class="flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-ink-800 hover:shadow-md">
+    <a
+      href={`/${course}/stations/${stationId}/`}
+      class="flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-ink-800 hover:shadow-md"
+    >
       <span>📋</span>
       <LangText lang="ar">إكمال المحطة</LangText>
       <LangText lang="en">Back to station</LangText>
@@ -77,8 +91,14 @@ if (currentIndex >= 0 && currentIndex < lessons.length - 1) {
           <LangText lang="en">Next</LangText>
         </div>
         <div>
-          <LangText lang="ar">{liveNext ? `${liveNext.number} ${liveNext.title}` : 'قريباً'}</LangText>
-          <LangText lang="en">{liveNext ? `${liveNext.number} ${liveNext.titleEn}` : 'Coming soon'}</LangText>
+          <LangText lang="ar">
+            {liveNext ? `${liveNext.number} ${liveNext.title}` : 'قريباً'}
+          </LangText>
+          <LangText lang="en">
+            {liveNext
+              ? `${liveNext.number} ${liveNext.titleEn}`
+              : 'Coming soon'}
+          </LangText>
         </div>
       </div>
       <span class="text-lg">←</span>

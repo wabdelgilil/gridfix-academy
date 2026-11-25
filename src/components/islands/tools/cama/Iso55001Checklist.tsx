@@ -129,7 +129,9 @@ export default function Iso55001Checklist() {
     return init;
   });
 
-  const [expandedClause, setExpandedClause] = useState<string | null>(clauses[0].id);
+  const [expandedClause, setExpandedClause] = useState<string | null>(
+    clauses[0].id
+  );
 
   function cycleStatus(key: string) {
     setStatuses((prev) => {
@@ -141,16 +143,30 @@ export default function Iso55001Checklist() {
   }
 
   const clauseScores = clauses.map((c) => {
-    const done = c.items.filter((_, i) => statuses[`${c.id}-${i}`] === 'done').length;
-    const partial = c.items.filter((_, i) => statuses[`${c.id}-${i}`] === 'partial').length;
+    const done = c.items.filter(
+      (_, i) => statuses[`${c.id}-${i}`] === 'done'
+    ).length;
+    const partial = c.items.filter(
+      (_, i) => statuses[`${c.id}-${i}`] === 'partial'
+    ).length;
     const total = c.items.length;
-    return { ...c, done, partial, total, pct: Math.round(((done + partial * 0.5) / total) * 100) };
+    return {
+      ...c,
+      done,
+      partial,
+      total,
+      pct: Math.round(((done + partial * 0.5) / total) * 100),
+    };
   });
 
   const totalItems = clauses.reduce((sum, c) => sum + c.items.length, 0);
   const totalDone = Object.values(statuses).filter((s) => s === 'done').length;
-  const totalPartial = Object.values(statuses).filter((s) => s === 'partial').length;
-  const overallPct = Math.round(((totalDone + totalPartial * 0.5) / totalItems) * 100);
+  const totalPartial = Object.values(statuses).filter(
+    (s) => s === 'partial'
+  ).length;
+  const overallPct = Math.round(
+    ((totalDone + totalPartial * 0.5) / totalItems) * 100
+  );
 
   const phases = ['plan', 'do', 'check', 'act'] as const;
 
@@ -166,24 +182,41 @@ export default function Iso55001Checklist() {
           const pl = phaseLabels[phase];
           return (
             <div key={phase}>
-              <div className={`mb-2 rounded-lg px-3 py-1.5 text-xs font-bold ${pl.color}`}>
+              <div
+                className={`mb-2 rounded-lg px-3 py-1.5 text-xs font-bold ${pl.color}`}
+              >
                 {pl.label}
               </div>
               {phaseClauses.map((c) => (
-                <div key={c.id} className="mb-2 rounded-xl border border-slate-200">
+                <div
+                  key={c.id}
+                  className="mb-2 rounded-xl border border-slate-200"
+                >
                   <button
                     type="button"
-                    onClick={() => setExpandedClause(expandedClause === c.id ? null : c.id)}
+                    onClick={() =>
+                      setExpandedClause(expandedClause === c.id ? null : c.id)
+                    }
                     className="flex w-full items-center justify-between p-3 text-right"
                   >
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-ink-400">{c.number}</span>
-                      <span className="text-sm font-bold text-ink-800">{c.title}</span>
-                      <span className="text-[11px] text-ink-400" dir="ltr">({c.titleEn})</span>
+                      <span className="text-xs font-bold text-ink-400">
+                        {c.number}
+                      </span>
+                      <span className="text-sm font-bold text-ink-800">
+                        {c.title}
+                      </span>
+                      <span className="text-[11px] text-ink-400" dir="ltr">
+                        ({c.titleEn})
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-ink-500">{c.done}/{c.total} مكتمل</span>
-                      <span className="text-ink-400 text-xs">{expandedClause === c.id ? '▲' : '▼'}</span>
+                      <span className="text-xs font-bold text-ink-500">
+                        {c.done}/{c.total} مكتمل
+                      </span>
+                      <span className="text-ink-400 text-xs">
+                        {expandedClause === c.id ? '▲' : '▼'}
+                      </span>
                     </div>
                   </button>
 
@@ -194,7 +227,10 @@ export default function Iso55001Checklist() {
                         const st = statuses[key];
                         const sl = statusLabels[st];
                         return (
-                          <div key={i} className="flex items-center gap-2 border-b border-slate-50 py-2.5 last:border-0">
+                          <div
+                            key={i}
+                            className="flex items-center gap-2 border-b border-slate-50 py-2.5 last:border-0"
+                          >
                             <button
                               type="button"
                               onClick={() => cycleStatus(key)}
@@ -216,7 +252,9 @@ export default function Iso55001Checklist() {
 
         <div className="rounded-xl bg-slate-50 p-4 ring-2 ring-slate-300">
           <p className="font-bold text-ink-800">
-            التقدم الإجمالي: <strong dir="ltr">{overallPct}%</strong> — {totalDone} مكتمل / {totalPartial} جزئي / {totalItems - totalDone - totalPartial} لم يتم
+            التقدم الإجمالي: <strong dir="ltr">{overallPct}%</strong> —{' '}
+            {totalDone} مكتمل / {totalPartial} جزئي /{' '}
+            {totalItems - totalDone - totalPartial} لم يتم
           </p>
           <div className="mt-2 h-3 w-full overflow-hidden rounded-full bg-slate-200">
             <div
@@ -225,7 +263,8 @@ export default function Iso55001Checklist() {
             />
           </div>
           <p className="mt-2 text-xs text-ink-500">
-            ابدأ بالبنود التي حصلت على "جزئياً" لأنها الأقرب للإنجاز، ثم انتقل لغير المكتملة.
+            ابدأ بالبنود التي حصلت على "جزئياً" لأنها الأقرب للإنجاز، ثم انتقل
+            لغير المكتملة.
           </p>
         </div>
       </div>
