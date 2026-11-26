@@ -9,7 +9,7 @@ descriptionEn: "Project definition, value delivery, life cycle, approaches, and 
 badge: "فهم"
 badgeEn: "Understanding"
 icon: "💡"
-examWeight: 8
+examWeight: 7
 domain: "Process"
 status: "live"
 ---
@@ -21,6 +21,20 @@ status: "live"
 - دورة الحياة والنُهج
 - أساسيات الحوكمة
 
+## ✅ ما الذي يفترضه هذا الدرس معرفةً سابقة؟
+
+- معرفة الفرق بين المشروع (Project) والعمليات (Operations) من المحطة 0
+- معرفة أن النتيجة (Outcome) تُقاس بعد التسليم، وأن ميثاق المشروع يحدد مؤشرها
+- التمييز بين المخرج (Output) والفائدة (Benefit) قبل استخدام مقاييس القيمة
+
+## Prerequisites assumed in English
+
+- Know the difference between a project and operations from station 0.
+- Know that an outcome is measured after delivery and that the charter names its indicator.
+- Distinguish output from benefit before using any value metric.
+
 ## 🧭 مكانها في ترتيب الفهم
 
-هذه المحطة جزء من مسار يبدأ بالمفاهيم، ثم الناس، ثم التخطيط والتنفيذ، ثم بيئة الأعمال، وينتهي بالمحاكي — لا حسب ترتيب فصول دليل PMBOK.
+هذه المحطة تحوّل التعريفات السابقة إلى معايير نجاح؛ لذلك لا معنى للحديث عن الحوكمة أو القيادة قبلها.
+
+This station turns earlier definitions into success criteria; governance and leadership are meaningless before that step.

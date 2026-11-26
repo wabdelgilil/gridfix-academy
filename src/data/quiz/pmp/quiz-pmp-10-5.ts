@@ -80,7 +80,8 @@ export const quizPmp105: QuizBank = {
         {
           text: 'RACI.',
           isCorrect: false,
-          explanation: 'أداة أدوار.',
+          explanation:
+            'RACI يحدد الأدوار لا الزمن؛ قياس طول انتقال الفكرة إلى التسليم يتم بـ Lead time.',
         },
       ],
     },

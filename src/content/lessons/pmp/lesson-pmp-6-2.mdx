@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp62 } from '../../../data/quiz/pmp/quiz-pmp-6-2';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - الفرص (Opportunities) لها استجابات مختلفة: استغلال وتعزيز ومشاركة وقبول.
 - الاستجابة تحتاج مالكاً ومحفزاً (Trigger) وتكلفة وموعد مراجعة، وإلا بقيت نية على الورق.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+استراتيجيات التهديدات أربع: التجنّب (Avoid) بإزالة السبب، التخفيف (Mitigate) بتقليل الاحتمال أو الأثر، النقل (Transfer) بمشاركة طرف ثالث، والقبول (Accept) مع مراقبة. للفرص استراتيجيات: استغلال وتعزيز ومشاركة وقبول.
+
+### القاعدة الحاكمة وترتيب القرار
+
+قارن تكلفة كل استجابة بالخسارة المتوقعة قبل اختيارها، واربط الاستجابة بمحفز (Trigger) ومالك. لا تنقل خطراً بتوقيع عقد فقط من دون تحديد من يتحمل الأثر فعلياً.
+
+سلسلة الفهم في هذا الدرس تبدأ من "تجنّب (Avoid) يزيل الخطر بتغيير الخطة، وتخفيف (Mitigate) يقلل الاحتمال أو الأثر."
+
+ثم تنتقل إلى "نقل (Transfer) يشارك الأثر مع طرف ثالث مثل التأمين أو عقد سعر ثابت، وقبول (Accept) يُبقي الخطر مع مراقبة."
+
+وتتحقق عملياً عبر "الفرص (Opportunities) لها استجابات مختلفة: استغلال وتعزيز ومشاركة وقبول.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تعريف استراتيجيات الاستجابة للمخاطر (Risk response strategies)؛ فهم استجابات التهديدات (Threat responses): التجنّب (Avoid) والتخفيف (Mitigate) والنقل (Transfer) والقبول (Accept)؛ فهم استجابات الفرص (Opportunity responses): الاستغلال (Exploit) والتعزيز (Enhance) والمشاركة (Share) والقبول (Accept)؛ التعرف على الخطر المتبقي (Residual risk).
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تعريف استراتيجيات الاستجابة للمخاطر (Risk response strategies)؟
+- هل تستطيع أن تشرح: فهم استجابات التهديدات (Threat responses): التجنّب (Avoid) والتخفيف (Mitigate) والنقل (Transfer) والقبول (Accept)؟
+- هل تستطيع أن تشرح: فهم استجابات الفرص (Opportunity responses): الاستغلال (Exploit) والتعزيز (Enhance) والمشاركة (Share) والقبول (Accept)؟
+- هل تستطيع أن تشرح: التعرف على الخطر المتبقي (Residual risk)؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+Threat strategies are avoid by removing the cause, mitigate by reducing probability or impact, transfer by sharing with a third party, and accept with monitoring. Opportunity strategies are exploit, enhance, share and accept.
+
+### Decision rule
+
+Compare each response cost with expected loss before choosing it and attach a trigger and owner. Do not assume a contract transfers risk unless the party bearing the impact is explicitly named.
+
+The reasoning chain in this lesson starts with تجنّب (Avoid) يزيل الخطر بتغيير الخطة، وتخفيف (Mitigate) يقلل الاحتمال أو الأثر.
+
+moves to نقل (Transfer) يشارك الأثر مع طرف ثالث مثل التأمين أو عقد سعر ثابت، وقبول (Accept) يُبقي الخطر مع مراقبة.
+
+and is verified through الفرص (Opportunities) لها استجابات مختلفة: استغلال وتعزيز ومشاركة وقبول.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Define Risk Response Strategies; Understand Threat responses (Avoid, Mitigate, Transfer, Accept); Understand Opportunity responses (Exploit, Enhance, Share, Accept); Recognize Residual Risk.
+
+### Learning objectives in English
+
+- Define Risk Response Strategies
+- Understand Threat responses (Avoid, Mitigate, Transfer, Accept)
+- Understand Opportunity responses (Exploit, Enhance, Share, Accept)
+- Recognize Residual Risk
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** لا تعالج كل المخاطر بنفس الطريقة؛ بعضها يُقبل عن قصد بعد تحليل التكلفة.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+خطر تغيّر الواجهة: احتمال 40% وأثر 25,000 دولار، EMV = 10,000 دولار. مراجعات أسبوعية تكلف 4,000 دولار وتخفض الاحتمال إلى 10%، EMV جديد = 2,500 دولار، تكلفة إجمالية 6,500 دولار. التخفيف أوفر من النقل بـ 9,000 دولار إن كان ثمن النقل 15,500 دولار.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: قارن تكلفة كل استجابة بالخسارة المتوقعة قبل اختيارها، واربط الاستجابة بمحفز (Trigger) ومالك. لا تنقل خطراً بتوقيع عقد فقط من دون تحديد من يتحمل الأثر فعلياً. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+An interface-change risk has 40 percent probability and 25,000 dollars impact, so EMV is 10,000. Weekly reviews cost 4,000 and cut probability to 10 percent, leaving EMV of 2,500 and total cost 6,500. Mitigation is cheaper than transfer by 9,000 if transfer costs 15,500.
+
+### Reading the numbers
+
+Apply the rule: Compare each response cost with expected loss before choosing it and attach a trigger and owner. Do not assume a contract transfers risk unless the party bearing the impact is explicitly named. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يُقبل خطر مرتفع بلا مراقبة ولا محفز، فيتحول إلى أزمة. أو تُطبَّق استراتيجية تخفيف على فرصة، فتُضيع فرصة تقليل الزمن بدل تعزيزها.
+
+**In English:** A high risk is accepted with no monitoring or trigger and becomes a crisis; or a mitigation is applied to an opportunity, wasting a chance to reduce duration instead of enhancing it.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — باني خطة مخاطر
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="risk" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **تخفيف (Mitigate):** تقليل الاحتمال أو الأثر
-- **نقل (Transfer):** مشاركة الأثر مع طرف آخر
-- **محفز (Trigger):** إشارة لتفعيل الاستجابة
+- **تخفيف (Project management concept)**: تقليل الاحتمال أو الأثر
+- **نقل (Project management practice)**: مشاركة الأثر مع طرف آخر
+- **محفز (Project management process)**: إشارة لتفعيل الاستجابة
+
+<GlossaryCard terms={['pmp-emv', 'pmp-risk-register', 'pmp-contingency-reserve']} />
 
 ## 📎 مصادر معتمدة
 

@@ -26,6 +26,9 @@ hasTool: true
 quizId: "quiz-pmp-8-4"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp84 } from '../../../data/quiz/pmp/quiz-pmp-8-4';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - القياس بعد التسليم يكشف فجوة التبني أو الحواجز التنظيمية التي منعت تحقق الفائدة.
 - تقرير القيمة يقارن المستهدف بالفعلي ويقترح إجراءات تصحيحية لمالك العمل.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+خطة إدارة الفوائد (Benefits management plan) هي أداة تُحدّث طوال المشروع، وليست قسماً في تقرير الإغلاق. يجب أن تحدد لكل فائدة: مالكاً (Benefit owner)، ومؤشراً، وخط أساس، وهدفاً، وتاريخ قياس، وضرر جانبي متوقع (Disbenefits). الضرر الجانبي (Disbenefit) أثر سلبي محتمل يظهر مع الفائدة ويجب إدارته صراحةً.
+
+### القاعدة الحاكمة وترتيب القرار
+
+املأ جدول الفوائد بستة أعمدة قبل بوابة التخطيط: الفائدة، المالك، المؤشر، خط الأساس، الهدف، تاريخ القياس. أضف عموداً سابعاً للضرر الجانبي وخطة تخفيفه. عند الفجوة بين الهدف والفعلي عقد مراجعة مع مالك العمل لتحديث إجراءات التبني بدل تعديل الهدف بهدوء.
+
+سلسلة الفهم في هذا الدرس تبدأ من "الفائدة (Benefit) هي تحسن قابل للقياس في أداء الأعمال، وتختلف عن المخرج المسلَّم."
+
+ثم تنتقل إلى "خطة تحقيق الفوائد تحدد الفائدة والمؤشر وخط الأساس والهدف والمالك وتاريخ القياس."
+
+وتتحقق عملياً عبر "القياس بعد التسليم يكشف فجوة التبني أو الحواجز التنظيمية التي منعت تحقق الفائدة.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تعريف الفائدة والمؤشر؛ ربط الفائدة بنتيجة الأعمال؛ قياس بعد التسليم؛ إدارة الفجوة في التحقق.
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تعريف الفائدة والمؤشر؟
+- هل تستطيع أن تشرح: ربط الفائدة بنتيجة الأعمال؟
+- هل تستطيع أن تشرح: قياس بعد التسليم؟
+- هل تستطيع أن تشرح: إدارة الفجوة في التحقق؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+A benefits management plan is updated throughout the project, not written only at closure. For every benefit it must name an owner, a metric, a baseline, a target, a measurement date and expected disbenefits. A disbenefit is a possible negative effect that appears alongside the benefit and must be managed explicitly.
+
+### Decision rule
+
+Fill a benefit table with six columns before the planning gate: benefit, owner, metric, baseline, target and measurement date; add a seventh for disbenefit and mitigation. When actual performance misses the target, hold a review with the business owner to update adoption actions rather than quietly lowering the target.
+
+The reasoning chain in this lesson starts with الفائدة (Benefit) هي تحسن قابل للقياس في أداء الأعمال، وتختلف عن المخرج المسلَّم.
+
+moves to خطة تحقيق الفوائد تحدد الفائدة والمؤشر وخط الأساس والهدف والمالك وتاريخ القياس.
+
+and is verified through القياس بعد التسليم يكشف فجوة التبني أو الحواجز التنظيمية التي منعت تحقق الفائدة.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Define benefit and metric; Link benefits to business outcomes; Measure post-handover; Manage realization gaps.
+
+### Learning objectives in English
+
+- Define benefit and metric
+- Link benefits to business outcomes
+- Measure post-handover
+- Manage realization gaps
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** الفائدة غير المقاسة لا يمكن الدفاع عنها أمام مجلس الإدارة.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+خطة فائدة: زمن المعالجة، خط أساس 10 أيام، هدف 4 أيام، المالك مدير العمليات، تاريخ القياس بعد 6 أشهر. القياس الفعلي 6 أيام، فجوة يومين (تحقق 5/6 = 83.3%). الضرر الجانبي: زمن انتظار إدارة الحجوزات ارتفع من 2 إلى 3 أيام؛ خطة التخفيف: إعادة توزيع 2 من الموظفين خلال شهر، بتكلفة 4,000 دولار مقابل استعادة 3,000 معاملة أسبوعياً.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: املأ جدول الفوائد بستة أعمدة قبل بوابة التخطيط: الفائدة، المالك، المؤشر، خط الأساس، الهدف، تاريخ القياس. أضف عموداً سابعاً للضرر الجانبي وخطة تخفيفه. عند الفجوة بين الهدف والفعلي عقد مراجعة مع مالك العمل لتحديث إجراءات التبني بدل تعديل الهدف بهدوء. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+A benefit plan targets processing time from a 10-day baseline to 4 days, owned by the operations manager and measured six months after handover. Actual time is 6 days, a two-day gap and 5 of 6 target improvement, or 83.3 percent. A disbenefit is that bookings wait time rose from 2 to 3 days; mitigation reassigns two staff within a month at 4,000 dollars to recover 3,000 weekly transactions.
+
+### Reading the numbers
+
+Apply the rule: Fill a benefit table with six columns before the planning gate: benefit, owner, metric, baseline, target and measurement date; add a seventh for disbenefit and mitigation. When actual performance misses the target, hold a review with the business owner to update adoption actions rather than quietly lowering the target. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** تُسجَّل فائدة بلا مالك أو تاريخ قياس، فلا أحد يراجعها بعد التسليم. ويُخفى الضرر الجانبي مثل ارتفاع زمن انتظار بعض الإدارات، فيظهر كتراجع مفاجئ في رضا العملاء بعد أشهر.
+
+**In English:** A benefit is recorded with no owner or measurement date, so nobody reviews it after handover. A disbenefit such as longer waiting time for some departments is hidden and appears months later as an unexpected drop in customer satisfaction.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — باني تقرير قيمة
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="value" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **تحقيق الفوائد:** التحقق من القيمة بعد التسليم
-- **مؤشر الفائدة:** مقياس التغيير المستهدف
-- **فجوة التبني:** الفرق بين الاستخدام المتوقع والفعلي
+- **تحقيق الفوائد (Benefits realization)**: التحقق من القيمة بعد التسليم
+- **مؤشر الفائدة (Benefit metric)**: مقياس التغيير المستهدف
+- **فجوة التبني (Adoption gap)**: الفرق بين الاستخدام المتوقع والفعلي
+
+<GlossaryCard terms={['pmp-benefits-plan', 'pmp-benefit-owner', 'pmp-disbenefit', 'pmp-value-benefits']} />
 
 ## 📎 مصادر معتمدة
 

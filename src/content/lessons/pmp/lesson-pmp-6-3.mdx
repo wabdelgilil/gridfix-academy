@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp63 } from '../../../data/quiz/pmp/quiz-pmp-6-3';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - تقرير المخاطر يلخّص أعلى المخاطر للراعي ولجنة التوجيه مع التوصيات.
 - الربط بين المخاطر وطلبات التغيير يمنع تحويل خطر محقق إلى زحف نطاق صامت.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+المخاطر المتبقية (Residual risks) هي ما يبقى بعد تطبيق الاستجابة المخططة، والمخاطر الثانوية (Secondary risks) هي مخاطر جديدة تسببها الاستجابة نفسها. سجل المخاطر (Risk register) سجل حي يُحدَّث فيه الاحتمال والأثر والمالك والحالة في كل مراجعة.
+
+### القاعدة الحاكمة وترتيب القرار
+
+بعد اختيار أي استجابة اسأل سؤالين: ما الذي بقي من الخطر الأصلي؟ وما الخطر الجديد الذي أنشأته الاستجابة؟ سجّل الإجابين في السجل مع مالك لكل منهما، وراجعهما عند كل بوابة مرحلة.
+
+سلسلة الفهم في هذا الدرس تبدأ من "السجل يضم معرفاً ووصفاً وسبباً وفئة واحتمالاً وأثراً ودرجة ومالكاً واستجابة وحالة."
+
+ثم تنتقل إلى "المراجعة الدورية تحدث الاحتمالات والدرجات وتضيف مخاطر جديدة وتغلق مخاطر انتهت."
+
+وتتحقق عملياً عبر "تقرير المخاطر يلخّص أعلى المخاطر للراعي ولجنة التوجيه مع التوصيات.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تعريف Risk Register (سجل المخاطر)؛ فهم Risk Owner (مالك المخاطرة)؛ فهم Residual Risk (المخاطرة المتبقية)؛ فهم Secondary Risk (المخاطرة الثانوية).
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تعريف Risk Register (سجل المخاطر)؟
+- هل تستطيع أن تشرح: فهم Risk Owner (مالك المخاطرة)؟
+- هل تستطيع أن تشرح: فهم Residual Risk (المخاطرة المتبقية)؟
+- هل تستطيع أن تشرح: فهم Secondary Risk (المخاطرة الثانوية)؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+Residual risks are what remains after the planned response is applied; secondary risks are new risks caused by the response itself. The risk register is a living record updated for probability, impact, owner and status at each review.
+
+### Decision rule
+
+After choosing any response ask two questions: what remains of the original risk and what new risk did the response create? Record both in the register with an owner for each and review them at every phase gate.
+
+The reasoning chain in this lesson starts with السجل يضم معرفاً ووصفاً وسبباً وفئة واحتمالاً وأثراً ودرجة ومالكاً واستجابة وحالة.
+
+moves to المراجعة الدورية تحدث الاحتمالات والدرجات وتضيف مخاطر جديدة وتغلق مخاطر انتهت.
+
+and is verified through تقرير المخاطر يلخّص أعلى المخاطر للراعي ولجنة التوجيه مع التوصيات.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Define Risk Register; Understand Risk Owner; Understand Residual Risk; Understand Secondary Risk.
+
+### Learning objectives in English
+
+- Define Risk Register
+- Understand Risk Owner
+- Understand Residual Risk
+- Understand Secondary Risk
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** السجل الذي لا يُحدَّث دورياً يتحول إلى أرشيف لا يساعد أحداً.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+خطر أصلي احتماله 0.5 وأثره 40,000 دولار (EMV = 20,000). بعد التخفيف أصبح 0.2 × 40,000 = 8,000 دولار مخاطر متبقية. الاستجابة نفسها أنشأت خطر تكامل احتماله 0.3 وأثره 10,000 دولار، أي مخاطر ثانوية EMV = 3,000 دولار. إجمالي ما بعد الاستجابة 11,000 دولار، أي انخفاض صافٍ 9,000 دولار.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: بعد اختيار أي استجابة اسأل سؤالين: ما الذي بقي من الخطر الأصلي؟ وما الخطر الجديد الذي أنشأته الاستجابة؟ سجّل الإجابين في السجل مع مالك لكل منهما، وراجعهما عند كل بوابة مرحلة. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+An original risk has 0.5 probability and 40,000 dollars impact, or EMV of 20,000. After mitigation, residual EMV is 0.2 × 40,000 or 8,000. The response creates an integration risk with 0.3 probability and 10,000 impact, so secondary EMV is 3,000. Total after response is 11,000, a net reduction of 9,000 dollars.
+
+### Reading the numbers
+
+Apply the rule: After choosing any response ask two questions: what remains of the original risk and what new risk did the response create? Record both in the register with an owner for each and review them at every phase gate. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يُعتبر الخطر مغلقاً بمجرد تفعيل الاستجابة، فيُنسى أثر متبقٍ مرتفع؛ أو يُستبدل مورد بتأمين دون ملاحظة أن الاستبدال نفسه أدى إلى مخاطر تكامل جديدة.
+
+**In English:** A risk is closed as soon as a response is triggered, leaving a high residual effect forgotten; or a supplier is replaced by insurance without noticing that the replacement created new integration risks.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — سجل مخاطر
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="risk" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **سجل المخاطر (Risk register):** سجل حي للمخاطر
-- **درجة المخاطر:** الاحتمال مضروباً في الأثر
-- **مراجعة المخاطر:** تحديث دوري للحالة
+- **سجل المخاطر (Project management concept)**: سجل حي للمخاطر
+- **درجة المخاطر (Risk score)**: الاحتمال مضروباً في الأثر
+- **مراجعة المخاطر (Risk review)**: تحديث دوري للحالة
+
+<GlossaryCard terms={['pmp-risk-register', 'pmp-residual-risk', 'pmp-secondary-risk']} />
 
 ## 📎 مصادر معتمدة
 

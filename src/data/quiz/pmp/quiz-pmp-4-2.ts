@@ -111,7 +111,8 @@ export const quizPmp42: QuizBank = {
         {
           text: 'إيقاف كل العمل.',
           isCorrect: false,
-          explanation: 'الإيقاف مبالغ فيه.',
+          explanation:
+            'إيقاف كل العمل مبالغة إذ النطاق لم يتغير؛ يبدأ التحليل من سبب تجاوز التكلفة وأثره قبل أي قرار.',
         },
       ],
     },

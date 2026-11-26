@@ -4,7 +4,7 @@ export const quizPmp94: QuizBank = {
   id: 'quiz-pmp-9-4',
   questions: [
     {
-      scenario: 'الفريق يراجع عملية repetitively ويطبق تحسينات صغيرة دورية.',
+      scenario: 'الفريق يراجع عملية بشكل متكرر ويطبق تحسينات صغيرة دورية.',
       question: 'أي إطار يصف ذلك؟',
       difficulty: 'سهل',
       options: [
@@ -16,17 +16,20 @@ export const quizPmp94: QuizBank = {
         {
           text: 'Critical path.',
           isCorrect: false,
-          explanation: 'أسلوب جدولة.',
+          explanation:
+            'Critical path يحدد أطول سلسلة أنشطة وتاريخ الإنجاز، لا دورات التحسين المتكررة؛ PDCA هو الإطار هنا.',
         },
         {
           text: 'EVM.',
           isCorrect: false,
-          explanation: 'أسلوب قياس أداء.',
+          explanation:
+            'EVM يقارن المخطط بالفعلي من تكلفة وجدول، ولا يصف تحسيناً دورياً؛ المطلوب دورة PDCA.',
         },
         {
           text: 'RACI.',
           isCorrect: false,
-          explanation: 'أداة أدوار.',
+          explanation:
+            'RACI يحدد الأدوار والمسؤوليات فقط، بينما التحسينات الصغيرة الدورية توصف بدورة PDCA.',
         },
       ],
     },
@@ -75,7 +78,8 @@ export const quizPmp94: QuizBank = {
         {
           text: 'يجب حذفها.',
           isCorrect: false,
-          explanation: 'الحذف يضيع الأصل.',
+          explanation:
+            'حذف الدروس يضيع المعرفة المكتسبة؛ المشكلة غياب آلية مراجعة وتحويلها إلى إجراءات قابلة للتطبيق.',
         },
         {
           text: 'يجب زيادة عدد الدروس.',

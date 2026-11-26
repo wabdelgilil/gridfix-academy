@@ -102,7 +102,8 @@ export const quizPmp63: QuizBank = {
         {
           text: 'مشكلة.',
           isCorrect: false,
-          explanation: 'لم يحدث بعد.',
+          explanation:
+            'المشكلة حدثت بالفعل، أما الخطر الثانوي فينشأ كأثر جانبي للاستجابة ولم يتحقق بعد.',
         },
         {
           text: 'احتياطي.',

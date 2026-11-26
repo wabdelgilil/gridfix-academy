@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp71 } from '../../../data/quiz/pmp/quiz-pmp-7-1';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - القرارات تُوثّق في سجل القرارات مع التاريخ والمبرر، حتى لا تُعاد مناقشتها لاحقاً.
 - تمكين الفريق يعني السماح له بحل المشكلات ضمن الحدود المتفق عليها وتصعيد ما يجاوزها.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+توجيه العمل هو تحويل الخطة إلى مخرجات مع إدارة المعلومات والاجتماعات والمخاطر اليومية. اجتماع ذو قيمة له هدف وجدول أعمال ومخرجات ومالك، وسجل القرارات يوثّق القرار وتاريخه ومبرره.
+
+### القاعدة الحاكمة وترتيب القرار
+
+حدد حدود التفويض في ميثاق الفريق: أي قرار يحلّه الفريق داخل الحد وأي قرار يصعَّد. لا تزيد عدد الاجتماعات قبل أن تسأل أي قرار أو مخرج فُقد بسبب غيابها.
+
+سلسلة الفهم في هذا الدرس تبدأ من "توجيه وإدارة العمل ينتجان المخرجات وسجلات العمل وطلبات التغيير وتحديثات الخطط."
+
+ثم تنتقل إلى "الاجتماعات ذات القيمة لها هدف وجدول أعمال ومخرجات ومالك، وإلا تحولت إلى وقت ضائع."
+
+وتتحقق عملياً عبر "القرارات تُوثّق في سجل القرارات مع التاريخ والمبرر، حتى لا تُعاد مناقشتها لاحقاً.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تعريف Direct and Manage Project Work (توجيه وإدارة العمل)؛ فهم Work Performance Data (بيانات أداء العمل)؛ فهم Deliverables (المخرجات)؛ التعرف على Approved Change Requests (طلبات تغيير معتمدة).
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تعريف Direct and Manage Project Work (توجيه وإدارة العمل)؟
+- هل تستطيع أن تشرح: فهم Work Performance Data (بيانات أداء العمل)؟
+- هل تستطيع أن تشرح: فهم Deliverables (المخرجات)؟
+- هل تستطيع أن تشرح: التعرف على Approved Change Requests (طلبات تغيير معتمدة)؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+Directing and managing work turns the plan into deliverables while handling information, meetings and daily risks. A valuable meeting has a purpose, agenda, outputs and owner, and a decision log records the decision, date and rationale.
+
+### Decision rule
+
+Set delegation boundaries in the team charter: which decisions the team resolves and which are escalated. Do not add meetings before asking which decision or output was lost because of their absence.
+
+The reasoning chain in this lesson starts with توجيه وإدارة العمل ينتجان المخرجات وسجلات العمل وطلبات التغيير وتحديثات الخطط.
+
+moves to الاجتماعات ذات القيمة لها هدف وجدول أعمال ومخرجات ومالك، وإلا تحولت إلى وقت ضائع.
+
+and is verified through القرارات تُوثّق في سجل القرارات مع التاريخ والمبرر، حتى لا تُعاد مناقشتها لاحقاً.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Define Direct and Manage Project Work; Understand Work Performance Data; Understand Deliverables; Recognize Approved Change Requests.
+
+### Learning objectives in English
+
+- Define Direct and Manage Project Work
+- Understand Work Performance Data
+- Understand Deliverables
+- Recognize Approved Change Requests
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** التنفيذ الجيد يقلل الاجتماعات ويزيد القرارات الموثقة.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+خمسة أعضاء، ثلاثة اجتماعات أسبوعية مدتها ساعة = 15 ساعة. بعد تحديد سقف تفويض وتحويل اثنين إلى stand-up بـ 15 دقيقة: 2 × 1.25 + 1 × 5 = 7.5 ساعة، أي وفر 7.5 ساعة أسبوعياً، وارتفع عدد القرارات الموثقة من 4 إلى 9.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: حدد حدود التفويض في ميثاق الفريق: أي قرار يحلّه الفريق داخل الحد وأي قرار يصعَّد. لا تزيد عدد الاجتماعات قبل أن تسأل أي قرار أو مخرج فُقد بسبب غيابها. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+Five members attend three one-hour meetings weekly, costing 15 hours. After setting delegation limits and converting two meetings to 15-minute stand-ups, the cost becomes 2 × 1.25 plus 5, or 7.5 hours, saving 7.5 hours a week while documented decisions rise from 4 to 9.
+
+### Reading the numbers
+
+Apply the rule: Set delegation boundaries in the team charter: which decisions the team resolves and which are escalated. Do not add meetings before asking which decision or output was lost because of their absence. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** ينتظر الفريق موافقة المدير على كل قرار تقني صغير، فيتعطل التنفيذ. والفشل المقابل هو عقد اجتماعات بلا جدول أعمال استهلكت ساعات دون إنتاج قرار موثق.
+
+**In English:** The team waits for the manager on every small technical decision and execution stalls. The opposite failure is scheduling meetings with no agenda that consume hours without a documented decision.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — لوحة تنفيذ
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="status" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **توجيه العمل:** تنفيذ الخطة وإنتاج المخرجات
-- **سجل القرارات:** توثيق القرار ومبرره
-- **تفويض (Delegation):** منح صلاحية ضمن حدود
+- **توجيه العمل (Directing work)**: تنفيذ الخطة وإنتاج المخرجات
+- **سجل القرارات (Decision log)**: توثيق القرار ومبرره
+- **تفويض (Project management process)**: منح صلاحية ضمن حدود
+
+<GlossaryCard terms={['pmp-team-charter', 'pmp-standup', 'pmp-governance']} />
 
 ## 📎 مصادر معتمدة
 

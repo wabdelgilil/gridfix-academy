@@ -21,7 +21,8 @@ export const quizPmp54: QuizBank = {
         {
           text: 'إرسال عيب للعميل.',
           isCorrect: false,
-          explanation: 'ليس ضماناً.',
+          explanation:
+            'إرسال عيب للعميل يناقض ضمان الجودة؛ QA يفحص العملية لمنع العيوب قبل وصولها للمنتج.',
         },
         {
           text: 'تغيير معايير الجودة.',
@@ -107,7 +108,8 @@ export const quizPmp54: QuizBank = {
         {
           text: 'في ميثاق المشروع فقط.',
           isCorrect: false,
-          explanation: 'الميثاق أسبق وأعم.',
+          explanation:
+            'الميثاق أسبق وأعم، فهو يحدد السلطة والغاية؛ أما معايير الجودة وطرق قياسها فتُدوَّن في خطة إدارة الجودة.',
         },
       ],
     },

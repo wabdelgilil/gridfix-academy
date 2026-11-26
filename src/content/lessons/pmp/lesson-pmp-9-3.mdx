@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp93 } from '../../../data/quiz/pmp/quiz-pmp-9-3';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - الرعاية التنفيذية (Executive sponsorship) والأبطال (Champions) من أقوى عوامل نجاح التغيير.
 - التغيير يُقاس بتبني السلوك الجديد، لا باكتمال التدريب فقط.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+التغيير المؤسسي (Organizational change) يؤثر على العمليات والأدوار والمهارات والثقافة. خريطة التغيير تحدد من يتأثر وجاهزيته والإجراء المطلوب، والرعاية التنفيذية (Executive sponsorship) والأبطال (Champions) من أقوى عوامل نجاح التبني.
+
+### القاعدة الحاكمة وترتيب القرار
+
+قِس التغيير بسلوك المستخدم لا بعدد من حضر التدريب. لكل مجموعة مقاومة، اسأل هل المشكلة نقص مهارة أم خوف على الدور أم غياب قيمة واضحة، ثم اختر تدريباً أو تواصلاً أو إشراكاً في القرار.
+
+سلسلة الفهم في هذا الدرس تبدأ من "تأثير التغيير يُقاس على العمليات والأدوار والمهارات والثقافة، لكل مجموعة اهتماماتها ومقاومتها."
+
+ثم تنتقل إلى "خريطة التغيير تحدد من يتأثر، وجاهزيته، والإجراء المطلوب: تدريب، تواصل، أو إشراك في القرار."
+
+وتتحقق عملياً عبر "الرعاية التنفيذية (Executive sponsorship) والأبطال (Champions) من أقوى عوامل نجاح التغيير.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تعريف "التغيير المؤسسي (Organizational change)"؛ "نموذج Kotter" لـ 8 خطوات؛ "المقاومة (Resistance)" و"التمكين (Empowerment)"؛ "التأثير (Impact)" على "أصحاب المصلحة (Stakeholders)".
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تعريف "التغيير المؤسسي (Organizational change)"؟
+- هل تستطيع أن تشرح: "نموذج Kotter" لـ 8 خطوات؟
+- هل تستطيع أن تشرح: "المقاومة (Resistance)" و"التمكين (Empowerment)"؟
+- هل تستطيع أن تشرح: "التأثير (Impact)" على "أصحاب المصلحة (Stakeholders)"؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+Organizational change affects processes, roles, skills and culture. A change map identifies who is affected, their readiness and the required action; executive sponsorship and champions are among the strongest adoption factors.
+
+### Decision rule
+
+Measure change by user behavior, not training attendance. For each resisting group, ask whether the issue is skill, fear over role or missing value, then choose training, communication or participation in the decision.
+
+The reasoning chain in this lesson starts with تأثير التغيير يُقاس على العمليات والأدوار والمهارات والثقافة، لكل مجموعة اهتماماتها ومقاومتها.
+
+moves to خريطة التغيير تحدد من يتأثر، وجاهزيته، والإجراء المطلوب: تدريب، تواصل، أو إشراك في القرار.
+
+and is verified through الرعاية التنفيذية (Executive sponsorship) والأبطال (Champions) من أقوى عوامل نجاح التغيير.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Define organizational change; Kotter's 8 steps; Resistance and empowerment; Impact on stakeholders.
+
+### Learning objectives in English
+
+- Define organizational change
+- Kotter's 8 steps
+- Resistance and empowerment
+- Impact on stakeholders
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** مقاومة التغيير غالباً معلومة عن مشكلة لم تُحل، لا عنصر تحكم يجب كسره.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+75 موظفاً، 60 حضروا التدريب (80%)، لكن 27 فقط استخدموا النظام الجديد بعد شهر (36%). بعد تعيين 4 أبطال تغيير وربط الحوافز بالاستخدام ارتفع الاستخدام إلى 54 (72%). الفجوة بين الحضور والتبني كانت 44 نقطة مئوية قبل التدخل.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: قِس التغيير بسلوك المستخدم لا بعدد من حضر التدريب. لكل مجموعة مقاومة، اسأل هل المشكلة نقص مهارة أم خوف على الدور أم غياب قيمة واضحة، ثم اختر تدريباً أو تواصلاً أو إشراكاً في القرار. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+Of 75 employees, 60 attended training, or 80 percent, but only 27 used the new system a month later, or 36 percent. After appointing four change champions and linking incentives to usage, adoption rose to 54 people or 72 percent. The gap between attendance and adoption had been 44 percentage points.
+
+### Reading the numbers
+
+Apply the rule: Measure change by user behavior, not training attendance. For each resisting group, ask whether the issue is skill, fear over role or missing value, then choose training, communication or participation in the decision. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** اكتمل التدريب بنسبة 100% لكن الإدارات عادت إلى جداول الإكسل لأن الحوافز والقيمة لم تتغير. أو عُوملت المقاومة كعائق يجب كسره، فزادت المقاومة بدل فهم سببها.
+
+**In English:** Training reached 100 percent but departments returned to spreadsheets because incentives and perceived value never changed; or resistance was treated as an obstacle to break, increasing it rather than understanding its cause.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — خريطة تغيير
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="changemap" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **تغيير مؤسسي:** تحول في الأفراد والعمليات
-- **جاهزية (Readiness):** استعداد الطرف للتبني
-- **بطل التغيير (Champion):** مؤثر داخلي يدعم التبني
+- **تغيير مؤسسي (Organizational change)**: تحول في الأفراد والعمليات
+- **جاهزية (Project management practice)**: استعداد الطرف للتبني
+- **بطل التغيير (Project management process)**: مؤثر داخلي يدعم التبني
+
+<GlossaryCard terms={['pmp-stakeholder-register', 'pmp-benefit-owner']} />
 
 ## 📎 مصادر معتمدة
 

@@ -53,7 +53,8 @@ export const quizPmp51: QuizBank = {
         {
           text: 'قائمة المشتريات.',
           isCorrect: false,
-          explanation: 'مرتبطة بالموردين.',
+          explanation:
+            'قائمة المشتريات تخص العقود والموردين؛ كشف تسجيل وقت أكبر من المتاح يتطلب تقويم الموارد.',
         },
       ],
     },

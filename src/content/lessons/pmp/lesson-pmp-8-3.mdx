@@ -26,6 +26,9 @@ hasTool: true
 quizId: "quiz-pmp-8-3"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp83 } from '../../../data/quiz/pmp/quiz-pmp-8-3';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - سجل الدروس يُصنّف ليسهل البحث عنه عند بدء مشروع مشابه.
 - تفعيل الدروس يحدث بإدراجها في بوابات الحوكمة وقوائم المراجعة، لا بتركها في أرشيف مهمل.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+الدرس المستفاد (Lesson learned) معرفة قابلة للنقل تصف الموقف والسبب والأثر والإجراء المقترح. سجل الدروس يُصنّف ليسهل البحث عنه، وتفعيله يكون بإدراجه في بوابة مرحلة أو قائمة تحقق، لا بتركه في أرشيف. السبرنت (Sprint) في بيئة رشيقة هو دورة عمل محددة بوقت، ومراجعتها والمراجعة بأثر رجعي هما موضعا جمع الدروس.
+
+### القاعدة الحاكمة وترتيب القرار
+
+اكتب الدرس بصيغة "إذا ظهر X فافعل Y"، واربطه بمعرف سبب جذري. راجع سجل الدروس في بداية كل مشروع مماثلوفي بوابة المرحلة قبل اعتماد الخطة.
+
+سلسلة الفهم في هذا الدرس تبدأ من "تُجمع الدروس بشكل مستمر عند كل مرحلة أو سبرنت، وتُلخَّص في جلسة ختامية قبل الإغلاق."
+
+ثم تنتقل إلى "الدرس الجيد يصف الموقف والسبب والأثر والإجراء المقترح، لا مجرد رأي عام."
+
+وتتحقق عملياً عبر "سجل الدروس يُصنّف ليسهل البحث عنه عند بدء مشروع مشابه.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: جمع الدروس أثناء التنفيذ؛ صياغة درس قابل للتطبيق؛ أرشفة المعرفة؛ تفعيل الدروس في الحوكمة.
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: جمع الدروس أثناء التنفيذ؟
+- هل تستطيع أن تشرح: صياغة درس قابل للتطبيق؟
+- هل تستطيع أن تشرح: أرشفة المعرفة؟
+- هل تستطيع أن تشرح: تفعيل الدروس في الحوكمة؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+A lesson learned is transferable knowledge describing the situation, cause, effect and proposed action. A lessons register is categorized for retrieval and activated by inserting it into a phase gate or checklist, not by leaving it archived. In agile settings, a sprint is a timeboxed work cycle whose review and retrospective are the natural points for collecting lessons.
+
+### Decision rule
+
+Write each lesson as if X appears, do Y, and link it to a root-cause ID. Review the register at the start of every similar project and at the phase gate before approving the plan.
+
+The reasoning chain in this lesson starts with تُجمع الدروس بشكل مستمر عند كل مرحلة أو سبرنت، وتُلخَّص في جلسة ختامية قبل الإغلاق.
+
+moves to الدرس الجيد يصف الموقف والسبب والأثر والإجراء المقترح، لا مجرد رأي عام.
+
+and is verified through سجل الدروس يُصنّف ليسهل البحث عنه عند بدء مشروع مشابه.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Capture lessons during delivery; Write actionable lessons; Archive knowledge; Embed lessons in governance.
+
+### Learning objectives in English
+
+- Capture lessons during delivery
+- Write actionable lessons
+- Archive knowledge
+- Embed lessons in governance
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** حوّل الدرس إلى قاعدة تحقق في المشروع التالي، وإلا سيبقى نصاً جميلاً بلا أثر.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+في ربع واحد: 6 دروس مسجّلة، 2 فقط ذات إجراء قابل للتطبيق (33.3%). بعد إعادة الصياغة أصبحت 5 من 6 (83.3%). إدراج درس تأخر العقود في بوابة التعاقد منع تكرارين في المشروع التالي، وفّر أسبوعين × 4,000 دولار = 8,000 دولار.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: اكتب الدرس بصيغة "إذا ظهر X فافعل Y"، واربطه بمعرف سبب جذري. راجع سجل الدروس في بداية كل مشروع مماثلوفي بوابة المرحلة قبل اعتماد الخطة. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+In one quarter, 6 lessons were logged but only 2 had actionable steps, or 33.3 percent. After rewriting, 5 of 6 were actionable, or 83.3 percent. Adding the contract-delay lesson to the contracting gate prevented two repeats in the next project, saving two weeks at 4,000 dollars each, or 8,000 dollars.
+
+### Reading the numbers
+
+Apply the rule: Write each lesson as if X appears, do Y, and link it to a root-cause ID. Review the register at the start of every similar project and at the phase gate before approving the plan. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يُكتب درس "التأخر بسبب المورد" بلا أمثلة، فيُكتشف لاحقاً أن السبب هو غياب تاريخ تسليم في العقد. والفشل الأكبر هو أرشفة الدرس من دون إدراجه في قائمة تحقق عقود مشروع جديد.
+
+**In English:** A lesson says the supplier caused delay with no examples; later analysis shows the real cause was a missing delivery date in the contract. The larger failure is archiving the lesson without adding it to the contract checklist of the next project.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — نموذج دروس مستفادة
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="plan" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **درس مستفاد (Lesson learned):** معرفة قابلة للنقل
-- **سجل الدروس:** أرشيف منظم للمعرفة
-- **بوابة حوكمة:** نقطة مراجعة رسمية
+- **درس مستفاد (Project management concept)**: معرفة قابلة للنقل
+- **سجل الدروس (Lessons register)**: أرشيف منظم للمعرفة
+- **بوابة حوكمة (Governance gate)**: نقطة مراجعة رسمية
+
+<GlossaryCard terms={['pmp-phase-gate', 'pmp-sprint']} />
 
 ## 📎 مصادر معتمدة
 

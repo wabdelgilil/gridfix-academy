@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp72 } from '../../../data/quiz/pmp/quiz-pmp-7-2';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - الشفافية لا تعني إغراق الراعي بالتفاصيل، بل إبراز الانحرافات المهمة مع توصية واضحة.
 - التقرير يُرسل بالقناة والوتيرة المحددتين في خطة التواصل.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+تقرير الحالة يجيب عن ثلاثة أسئلة: أين نحن مقابل الخطة، ما الذي سيحدث، وماذا نحتاج من الراعي؟ الانحراف (Variance) هو الفرق بين الفعلي والمخطط، والشفافية (Transparency) عرض الحقائق مع توصية لا إغراق بالتفاصيل.
+
+### القاعدة الحاكمة وترتيب القرار
+
+اكتب كل مؤشر مع رقم ومصدر وإجراء مطلوب. إن كان CPI أو SPI خارج العتبة فاذكر السبب المحتمل والقرار المطلوب موعده في التقرير نفسه.
+
+سلسلة الفهم في هذا الدرس تبدأ من "تقارير الحالة تعرض الأداء مقابل الخط الأساس باستخدام مؤشرات مثل CPI وSPI والمخاطر والقرارات المعلقة."
+
+ثم تنتقل إلى "البيانات تُجمع من تقارير العمل والمخرجات وسجلات التغيير والمخاطر، ثم تُحوَّل إلى معلومة قابلة للقرار."
+
+وتتحقق عملياً عبر "الشفافية لا تعني إغراق الراعي بالتفاصيل، بل إبراز الانحرافات المهمة مع توصية واضحة.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تعريف Monitor and Control Project Work (مراقبة والتحكم في العمل)؛ فهم Work Performance Information (معلومات أداء العمل)؛ التمييز بين Status (حالة), Progress (تقدم), Forecast (تنبؤ)؛ التعرف على أنواع التقارير (Reports).
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تعريف Monitor and Control Project Work (مراقبة والتحكم في العمل)؟
+- هل تستطيع أن تشرح: فهم Work Performance Information (معلومات أداء العمل)؟
+- هل تستطيع أن تشرح: التمييز بين Status (حالة), Progress (تقدم), Forecast (تنبؤ)؟
+- هل تستطيع أن تشرح: التعرف على أنواع التقارير (Reports)؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+A status report answers three questions: where we stand against the plan, what will happen next and what is needed from the sponsor. Variance is the difference between actual and planned; transparency means showing facts with a recommendation rather than flooding with detail.
+
+### Decision rule
+
+Write every indicator with a number, a source and a requested action. If CPI or SPI is outside threshold, state the likely cause and the decision date in the same report.
+
+The reasoning chain in this lesson starts with تقارير الحالة تعرض الأداء مقابل الخط الأساس باستخدام مؤشرات مثل CPI وSPI والمخاطر والقرارات المعلقة.
+
+moves to البيانات تُجمع من تقارير العمل والمخرجات وسجلات التغيير والمخاطر، ثم تُحوَّل إلى معلومة قابلة للقرار.
+
+and is verified through الشفافية لا تعني إغراق الراعي بالتفاصيل، بل إبراز الانحرافات المهمة مع توصية واضحة.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Define Monitor and Control Project Work; Understand Work Performance Information; Distinguish Status, Progress, Forecast; Recognize report types.
+
+### Learning objectives in English
+
+- Define Monitor and Control Project Work
+- Understand Work Performance Information
+- Distinguish Status, Progress, Forecast
+- Recognize report types
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** الصفات مثل "جيد" لا تكفي؛ اذكر الرقم والمصدر والإجراء.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+SPI = 0.82 يعني أن الفريق أنجز 82% من العمل المخطط زمنياً. مع BAC = 250,000 دولار وCPI = 0.95، يصبح EAC ≈ 263,158 دولار، أي VAC ≈ −13,158 دولار. التقرير الجديد يعرض الرقمين مع طلب موافقة على تسريع بتكلفة 7,000 دولار قبل بوابة الشهر القادم.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: اكتب كل مؤشر مع رقم ومصدر وإجراء مطلوب. إن كان CPI أو SPI خارج العتبة فاذكر السبب المحتمل والقرار المطلوب موعده في التقرير نفسه. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+SPI of 0.82 means the team completed 82 percent of the planned work in time terms. With BAC of 250,000 dollars and CPI of 0.95, EAC is about 263,158 and VAC about minus 13,158. The revised report shows both figures and requests approval for 7,000 dollars of acceleration before next month gate.
+
+### Reading the numbers
+
+Apply the rule: Write every indicator with a number, a source and a requested action. If CPI or SPI is outside threshold, state the likely cause and the decision date in the same report. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يقول التقرير "كل شيء على ما يرام" بينما SPI = 0.82، فيكتشف الراعي التأخير متأخراً. أو يُرسل جدول بـ 30 رقماً بلا توصية، فيُهمل التقرير كله.
+
+**In English:** A report says everything is fine while SPI is 0.82, so the sponsor discovers slippage late; or a table of 30 numbers arrives with no recommendation and the whole report is ignored.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — لوحة حالة المشروع
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="status" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **تقرير الحالة:** ملخص أداء للقرار
-- **انحراف (Variance):** الفرق بين الفعلي والخطة
-- **شفافية (Transparency):** عرض الحقائق بوضوح
+- **تقرير الحالة (Status report)**: ملخص أداء للقرار
+- **انحراف (Project management practice)**: الفرق بين الفعلي والخطة
+- **شفافية (Project management process)**: عرض الحقائق بوضوح
+
+<GlossaryCard terms={['pmp-spi', 'pmp-cpi', 'pmp-vac', 'pmp-governance']} />
 
 ## 📎 مصادر معتمدة
 

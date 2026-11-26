@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp21 } from '../../../data/quiz/pmp/quiz-pmp-2-1';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - التوجيه (Direction) يصنع الالتزام (Commitment) عبر المعنى والهدف، بينما التحكم (Control) يصنع الامتثال عبر القواعد والرقابة.
 - إشراك الفريق في التخطيط وتكرار الرسالة والاعتراف بالمساهمات من أثبت طرق بناء الالتزام.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+الرؤية المشتركة (Common vision) هي فهم جماعي لسبب وجود المشروع وشكل النجاح، والقيادة الخادمة (Servant leadership) هي إزالة العوائق عن الفريق وتوفير ما يحتاجه للعمل. الالتزام (Commitment) يولد من المعنى لا من الأمر.
+
+### القاعدة الحاكمة وترتيب القرار
+
+ابدأ بسؤال "لماذا" قبل "ماذا"، وشارك الفريق في صياغة معيار النجاح. إذا انخفض الالتزام فابحث عن عائق في البيئة أو غموض في الهدف قبل البحث عن تقصير فردي.
+
+سلسلة الفهم في هذا الدرس تبدأ من "الرؤية المشتركة (Common vision) هي فهم جماعي لسبب وجود المشروع وشكل النجاح، وتُبنى مع الفريق لا له."
+
+ثم تنتقل إلى "القيادة الخادمة (Servant leadership) تركز على احتياجات الفريق: توفير الموارد، إزالة العوائق، وتمكين أصحاب الخبرة."
+
+وتتحقق عملياً عبر "التوجيه (Direction) يصنع الالتزام (Commitment) عبر المعنى والهدف، بينما التحكم (Control) يصنع الامتثال عبر القواعد والرقابة.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تعريف الرؤية المشتركة؛ دور القائد (Servant leadership)؛ التوجيه (Direction) vs التحكم (Control)؛ بناء الالتزام (Commitment).
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تعريف الرؤية المشتركة؟
+- هل تستطيع أن تشرح: دور القائد (Servant leadership)؟
+- هل تستطيع أن تشرح: التوجيه (Direction) vs التحكم (Control)؟
+- هل تستطيع أن تشرح: بناء الالتزام (Commitment)؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+A common vision is a shared understanding of why the project exists and what success looks like. Servant leadership removes obstacles and supplies what the team needs; commitment grows from meaning rather than from instructions.
+
+### Decision rule
+
+Start with why before what, and let the team help write the success measure. When commitment drops, look for an environmental obstacle or an unclear goal before blaming an individual.
+
+The reasoning chain in this lesson starts with الرؤية المشتركة (Common vision) هي فهم جماعي لسبب وجود المشروع وشكل النجاح، وتُبنى مع الفريق لا له.
+
+moves to القيادة الخادمة (Servant leadership) تركز على احتياجات الفريق: توفير الموارد، إزالة العوائق، وتمكين أصحاب الخبرة.
+
+and is verified through التوجيه (Direction) يصنع الالتزام (Commitment) عبر المعنى والهدف، بينما التحكم (Control) يصنع الامتثال عبر القواعد والرقابة.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Define common vision; Servant leadership; Direction vs control; Building commitment.
+
+### Learning objectives in English
+
+- Define common vision
+- Servant leadership
+- Direction vs control
+- Building commitment
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** عندما يفهم الفريق "لماذا"، يتوقف السؤال عن "ماذا نفعل اليوم؟".
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+استبيان فريق قبل جلسة الرؤية: 6 من 10 يفهمون سبب المشروع، ومؤشر المقترحات المفيدة 2 أسبوعياً. بعد جلسة مشتركة وصياغة هدف واحد: 9 من 10 يفهمون السبب، و7 مقترحات أسبوعياً. الزيادة = 5 مقترحات، أي 250%، دون إضافة ميزانية.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: ابدأ بسؤال "لماذا" قبل "ماذا"، وشارك الفريق في صياغة معيار النجاح. إذا انخفض الالتزام فابحث عن عائق في البيئة أو غموض في الهدف قبل البحث عن تقصير فردي. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+Before a vision session, 6 of 10 team members understood the reason for the project and useful suggestions averaged 2 per week. After a shared session and one written objective, 9 of 10 understood the reason and suggestions rose to 7 per week, an increase of 5 or 250 percent with no extra budget.
+
+### Reading the numbers
+
+Apply the rule: Start with why before what, and let the team help write the success measure. When commitment drops, look for an environmental obstacle or an unclear goal before blaming an individual. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** ينفذ الفريق المهام آلياً دون معرفة المستفيد، فيقترح تحسينات شكلية لا تخدم المواطن. كما يُخلط بين التوجيه والضغط، فيُطلب الالتزام بالاجتماعات بدل خلق الالتزام بالهدف.
+
+**In English:** A team executes tasks mechanically without knowing the beneficiary and proposes cosmetic improvements. Direction is also confused with pressure, so compliance with meetings is demanded instead of commitment to the objective.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — لوحة التوجيه
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="vision" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **رؤية مشتركة (Common vision):** هدف مفهوم جماعياً
-- **قيادة خادمة (Servant leadership):** قيادة بخدمة الفريق
-- **التزام (Commitment):** إرادة داخلية للإنجاز
+- **رؤية مشتركة (Project management concept)**: هدف مفهوم جماعياً
+- **قيادة خادمة (Project management practice)**: قيادة بخدمة الفريق
+- **التزام (Project management process)**: إرادة داخلية للإنجاز
+
+<GlossaryCard terms={['pmp-servant-leadership', 'pmp-team-charter', 'pmp-value-benefits']} />
 
 ## 📎 مصادر معتمدة
 

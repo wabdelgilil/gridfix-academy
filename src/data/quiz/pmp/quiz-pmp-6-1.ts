@@ -7,6 +7,11 @@ export const quizPmp61: QuizBank = {
       scenario: 'فريق يجمع قائمة بالتهديدات والفرص المحتملة دون تقييم أولاً.',
       question: 'ما أول أداة مناسبة؟',
       difficulty: 'سهل',
+      caseSetId: 'case-pmp-6-1-risk-register',
+      sharedStem:
+        'مشروع توريد نظام يعمل في بيئة مضطربة، وفريقه يبني سجل مخاطر أولياً قبل تحديد الاستجابات.\n\nمقتطف من السجل:\n\n| الخطر | الاحتمال | الأثر | القيمة المتوقعة |\n| --- | --- | --- | --- |\n| تأخر المورد | 0.6 | 20 يوماً | 12 يوماً |\n| تقلب السعر | 0.5 | 40 ألف دولار | 20 ألف دولار |\n\nتُطرح الأسئلة الأربعة التالية على هذه الحالة نفسها: حدد الأداة المناسبة لكل مرحلة من التحديد والترتيب والتكميم والتحليل.',
+      sharedStemEn:
+        'A system procurement project in a volatile environment; the team is building an initial risk register before planning responses.\n\nRegister extract:\n\n| Risk | Probability | Impact | Expected value |\n| --- | --- | --- | --- |\n| Supplier delay | 0.6 | 20 days | 12 days |\n| Price fluctuation | 0.5 | $40k | $20k |\n\nThe following four questions use the same case: choose the right tool for identification, ranking, quantification, and analysis.',
       options: [
         {
           text: 'تحديد المخاطر (Identify risks) وتسجيلها في سجل المخاطر.',
@@ -26,7 +31,8 @@ export const quizPmp61: QuizBank = {
         {
           text: 'إخفاء القائمة.',
           isCorrect: false,
-          explanation: 'الشفافية أساسية.',
+          explanation:
+            'إخفاء القائمة يخالف الشفافية ويمنع التحليل؛ خطوة البداية تحديد المخاطر وتسجيلها في السجل.',
         },
       ],
     },
@@ -34,6 +40,11 @@ export const quizPmp61: QuizBank = {
       scenario: 'خطر احتماله مرتفع وأثره كبير على الجدول.',
       question: 'أي أداة ترتيب تناسب ذلك؟',
       difficulty: 'متوسط',
+      caseSetId: 'case-pmp-6-1-risk-register',
+      sharedStem:
+        'مشروع توريد نظام يعمل في بيئة مضطربة، وفريقه يبني سجل مخاطر أولياً قبل تحديد الاستجابات.\n\nمقتطف من السجل:\n\n| الخطر | الاحتمال | الأثر | القيمة المتوقعة |\n| --- | --- | --- | --- |\n| تأخر المورد | 0.6 | 20 يوماً | 12 يوماً |\n| تقلب السعر | 0.5 | 40 ألف دولار | 20 ألف دولار |\n\nتُطرح الأسئلة الأربعة التالية على هذه الحالة نفسها: حدد الأداة المناسبة لكل مرحلة من التحديد والترتيب والتكميم والتحليل.',
+      sharedStemEn:
+        'A system procurement project in a volatile environment; the team is building an initial risk register before planning responses.\n\nRegister extract:\n\n| Risk | Probability | Impact | Expected value |\n| --- | --- | --- | --- |\n| Supplier delay | 0.6 | 20 days | 12 days |\n| Price fluctuation | 0.5 | $40k | $20k |\n\nThe following four questions use the same case: choose the right tool for identification, ranking, quantification, and analysis.',
       options: [
         {
           text: 'مصفوفة الاحتمال والأثر (Probability-impact matrix).',
@@ -53,7 +64,8 @@ export const quizPmp61: QuizBank = {
         {
           text: 'قائمة تحقق جودة.',
           isCorrect: false,
-          explanation: 'تفحص المخرجات.',
+          explanation:
+            'قائمة تحقق الجودة تفحص مطابقة المخرجات للمعايير، لا ترتيب المخاطر؛ الترتيب يتم بمصفوفة الاحتمال والأثر.',
         },
       ],
     },
@@ -61,6 +73,11 @@ export const quizPmp61: QuizBank = {
       scenario: 'خطر مالي متوقع قيمته 40 ألف دولار بطريقة احتمالية.',
       question: 'ما المقصود بالقيمة المتوقعة (EMV)؟',
       difficulty: 'صعب',
+      caseSetId: 'case-pmp-6-1-risk-register',
+      sharedStem:
+        'مشروع توريد نظام يعمل في بيئة مضطربة، وفريقه يبني سجل مخاطر أولياً قبل تحديد الاستجابات.\n\nمقتطف من السجل:\n\n| الخطر | الاحتمال | الأثر | القيمة المتوقعة |\n| --- | --- | --- | --- |\n| تأخر المورد | 0.6 | 20 يوماً | 12 يوماً |\n| تقلب السعر | 0.5 | 40 ألف دولار | 20 ألف دولار |\n\nتُطرح الأسئلة الأربعة التالية على هذه الحالة نفسها: حدد الأداة المناسبة لكل مرحلة من التحديد والترتيب والتكميم والتحليل.',
+      sharedStemEn:
+        'A system procurement project in a volatile environment; the team is building an initial risk register before planning responses.\n\nRegister extract:\n\n| Risk | Probability | Impact | Expected value |\n| --- | --- | --- | --- |\n| Supplier delay | 0.6 | 20 days | 12 days |\n| Price fluctuation | 0.5 | $40k | $20k |\n\nThe following four questions use the same case: choose the right tool for identification, ranking, quantification, and analysis.',
       options: [
         {
           text: 'احتمال الحدوث مضروباً في الأثر المالي.',
@@ -88,6 +105,11 @@ export const quizPmp61: QuizBank = {
       scenario: 'مدير مشروع يريد فحص نقاط القوة والضعف والفرص والتهديدات.',
       question: 'أي تقنية مناسبة؟',
       difficulty: 'متوسط',
+      caseSetId: 'case-pmp-6-1-risk-register',
+      sharedStem:
+        'مشروع توريد نظام يعمل في بيئة مضطربة، وفريقه يبني سجل مخاطر أولياً قبل تحديد الاستجابات.\n\nمقتطف من السجل:\n\n| الخطر | الاحتمال | الأثر | القيمة المتوقعة |\n| --- | --- | --- | --- |\n| تأخر المورد | 0.6 | 20 يوماً | 12 يوماً |\n| تقلب السعر | 0.5 | 40 ألف دولار | 20 ألف دولار |\n\nتُطرح الأسئلة الأربعة التالية على هذه الحالة نفسها: حدد الأداة المناسبة لكل مرحلة من التحديد والترتيب والتكميم والتحليل.',
+      sharedStemEn:
+        'A system procurement project in a volatile environment; the team is building an initial risk register before planning responses.\n\nRegister extract:\n\n| Risk | Probability | Impact | Expected value |\n| --- | --- | --- | --- |\n| Supplier delay | 0.6 | 20 days | 12 days |\n| Price fluctuation | 0.5 | $40k | $20k |\n\nThe following four questions use the same case: choose the right tool for identification, ranking, quantification, and analysis.',
       options: [
         {
           text: 'تحليل SWOT.',
@@ -103,12 +125,14 @@ export const quizPmp61: QuizBank = {
         {
           text: 'EVM.',
           isCorrect: false,
-          explanation: 'يقيس أداء التكلفة والجدول.',
+          explanation:
+            'EVM يقيس الانحراف في التكلفة والجدول، لا نقاط القوة والضعف؛ تحليل SWOT هو الأداة المناسبة هنا.',
         },
         {
           text: 'RACI.',
           isCorrect: false,
-          explanation: 'يحدد الأدوار.',
+          explanation:
+            'RACI يحدد من المسؤول والمستشار والمُبلَّغ، لكنه لا يفحص نقاط القوة والضعف؛ تلك مهمة SWOT.',
         },
       ],
     },

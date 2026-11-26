@@ -42,6 +42,13 @@ export const audioLessons: Record<string, LessonAudioTrack> = {
 
   // كورس CMRP — المحطة 7: محاكي الامتحان الشامل
   'lesson-cmrp-7-1': { ar: 'cmrp/station-7/lesson-cmrp-7-1.mp3' },
+
+  // PMP audio is deliberately not registered here. The repository contains no
+  // recorded PMP MP3 assets, and this rebuild is bilingual: reusing CMRP paths
+  // would send Arabic and English learners to the wrong lesson. Real entries
+  // must only be added after `pmp/<station>/lesson-pmp-x-y.ar.mp3` and
+  // `...en.mp3` files are published; the explicit rationale lives in
+  // project_management/EXAM_COVERAGE_PMP.md under "Audio limitation".
 };
 
 /**

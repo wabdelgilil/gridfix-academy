@@ -49,12 +49,14 @@ export const quizPmp103: QuizBank = {
         {
           text: 'CPI.',
           isCorrect: false,
-          explanation: 'مؤشر تكلفة تنبؤي.',
+          explanation:
+            'CPI يقيس كفاءة التكلفة في نهج تنبؤي، لا زمن الانتقال؛ المطلوب Lead time أو Cycle time.',
         },
         {
           text: 'RACI.',
           isCorrect: false,
-          explanation: 'أداة أدوار.',
+          explanation:
+            'RACI يحدد من يفعل ماذا تجاه الميزة، لكنه لا يقيس الزمن من الطلب حتى التسليم؛ استخدم Lead time.',
         },
       ],
     },
@@ -71,17 +73,20 @@ export const quizPmp103: QuizBank = {
         {
           text: 'إضافة مهام أكثر للتطوير.',
           isCorrect: false,
-          explanation: 'يزيد التراكم.',
+          explanation:
+            'إضافة مهام للتطوير تزيد التراكم أمام الاختبار وتطيل زمن الانتقال؛ معالجة العنق وتعديل WIP أولاً.',
         },
         {
           text: 'تجاهل العنق.',
           isCorrect: false,
-          explanation: 'سيؤخر التسليم.',
+          explanation:
+            'تجاهل العنق يؤخر التسليم مهما زاد الإنتاج؛ تحسين التدفق عند محطة الاختبار هو القرار الأسرع.',
         },
         {
           text: 'إنهاء المشروع.',
           isCorrect: false,
-          explanation: 'مبالغة في رد الفعل.',
+          explanation:
+            'إنهاء المشروع مبالغة في رد فعل على تراكم مؤقت؛ العنق يُعالج بتعديل WIP وتوازن التدفق.',
         },
       ],
     },

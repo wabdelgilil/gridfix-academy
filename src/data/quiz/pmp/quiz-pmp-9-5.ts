@@ -98,12 +98,14 @@ export const quizPmp95: QuizBank = {
         {
           text: 'تقدير تكلفة الأنشطة.',
           isCorrect: false,
-          explanation: 'التقدير أداة أخرى.',
+          explanation:
+            'تقدير تكلفة الأنشطة أداة للتخطيط المالي، أما PESTLE فيفحص البيئة الخارجية وآثارها على المشروع.',
         },
         {
           text: 'تحديد أدوار الفريق.',
           isCorrect: false,
-          explanation: 'RACI أداة الأدوار.',
+          explanation:
+            'RACI يوزّع المسؤوليات داخل الفريق، لكن فهم البيئة السياسية والاقتصادية والتكنولوجية يتم بـ PESTLE.',
         },
         {
           text: 'إغلاق العقود.',

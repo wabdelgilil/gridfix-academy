@@ -27,6 +27,9 @@ sources:
   - "agile_practice_guide"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp104 } from '../../../data/quiz/pmp/quiz-pmp-10-4';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -49,6 +52,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - التوسّع (Scaling) مثل SAFe أو LeSS يضيف تنسيقاً بين فرق متعددة دون إلغاء استقلالها.
 - القرار الهجين يُوثَّق في خطة المشروع حتى لا يفسّر كل عضو النهج بطريقة مختلفة.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+النهج الهجين (Hybrid) يخصّص ما يحتاج استقراراً للتنبؤي — الميزانية والعقود والامتثال — وما يحتاج تعلّماً سريعاً للرشيق. التوسّع (Scaling) مثل SAFe أو LeSS ينسّق فرقاً متعددة من دون إلغاء استقلالها، و بوابة المرحلة تبقى نقطة قرار تنبؤية.
+
+### القاعدة الحاكمة وترتيب القرار
+
+ارسم حدود الهجين كتابةً: أي حزمة عمل تنبؤية وأي حزمة سبرنتات، ومن يملك قرار تغيير الحد. لا تسمح لفريق باستخدام قواعد الفريق الآخر دون سجل قرارات مشترك.
+
+سلسلة الفهم في هذا الدرس تبدأ من "الإطار التنبؤي يصلح للبوابات والميزانية والعقود والامتثال، خصوصاً في المشاريع الخاضعة للوائح."
+
+ثم تنتقل إلى "الممارسات الرشيقة تصلح للمتطلبات المتغيرة وتجارب المستخدم والتسليم المتكرر."
+
+وتتحقق عملياً عبر "التوسّع (Scaling) مثل SAFe أو LeSS يضيف تنسيقاً بين فرق متعددة دون إلغاء استقلالها.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: "Hybrid" (predictive + agile)؛ "Scaling" (SAFe, LeSS basics)؛ "متى (When)" to use hybrid؛ "التحديات (Challenges)" و"التكامل (Integration)".
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: "Hybrid" (predictive + agile)؟
+- هل تستطيع أن تشرح: "Scaling" (SAFe, LeSS basics)؟
+- هل تستطيع أن تشرح: "متى (When)" to use hybrid؟
+- هل تستطيع أن تشرح: "التحديات (Challenges)" و"التكامل (Integration)"؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+A hybrid approach assigns stable needs such as budget, contracts and compliance to predictive delivery, and fast-learning needs to agile delivery. Scaling frameworks such as SAFe or LeSS coordinate multiple teams without removing their autonomy, while a phase gate remains a predictive decision point.
+
+### Decision rule
+
+Write the hybrid boundary: which work packages are predictive, which use sprints, and who owns a change to the boundary. Do not let teams borrow each other rules without a shared decision log.
+
+The reasoning chain in this lesson starts with الإطار التنبؤي يصلح للبوابات والميزانية والعقود والامتثال، خصوصاً في المشاريع الخاضعة للوائح.
+
+moves to الممارسات الرشيقة تصلح للمتطلبات المتغيرة وتجارب المستخدم والتسليم المتكرر.
+
+and is verified through التوسّع (Scaling) مثل SAFe أو LeSS يضيف تنسيقاً بين فرق متعددة دون إلغاء استقلالها.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Hybrid approach; Scaling (SAFe, LeSS basics); When to use hybrid; Challenges and integration.
+
+### Learning objectives in English
+
+- Hybrid approach
+- Scaling (SAFe, LeSS basics)
+- When to use hybrid
+- Challenges and integration
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -57,11 +118,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** اسأل: أي أجزاء المشروع تحتاج استقراراً، وأيها تحتاج تعلّماً سريعاً؟
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+10 حزم عمل: 4 تنبؤية للامتثال و6 رشيقة للواجهة. بوابة ربع سنوية تمنح ميزانية 500,000 دولار. إذا احتاجت الواجهة 6 تغييرات بـ 3,000 دولار، كلها داخل السبرنتات بتكلفة 18,000 دولار؛ أما تحويلها إلى تغييرات تنبؤية فكان سيكلف 42,000 دولار، أي وفر 24,000 دولار.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: ارسم حدود الهجين كتابةً: أي حزمة عمل تنبؤية وأي حزمة سبرنتات، ومن يملك قرار تغيير الحد. لا تسمح لفريق باستخدام قواعد الفريق الآخر دون سجل قرارات مشترك. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+Ten work packages split into 4 predictive for compliance and 6 agile for the interface, with a quarterly gate releasing 500,000 dollars. Six interface changes at 3,000 dollars each stay inside sprints for 18,000 dollars; processing them as predictive changes would cost 42,000, saving 24,000 dollars.
+
+### Reading the numbers
+
+Apply the rule: Write the hybrid boundary: which work packages are predictive, which use sprints, and who owns a change to the boundary. Do not let teams borrow each other rules without a shared decision log. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** فريق البنية التحتية يستخدم CPM وفريق الواجهة يستخدم سبرنتات، لكن لا توجد بوابة مشتركة، فتتعطل الواجهة عند تأخر اعتماد البنية. أو يُفرض إيقاع واحد على الجميع فتُهدر مرونة الواجهة.
+
+**In English:** The infrastructure team uses CPM and the interface team uses sprints with no shared gate, so the interface stalls when approvals slip; or one cadence is imposed on everyone, wasting interface flexibility.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — مقارن النُهج
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="approach" client:load />
 
@@ -75,9 +166,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **هجين (Hybrid):** مزج تنبؤي ورشيق
-- **توسّع (Scaling):** تنسيق عدة فرق
-- **بوابة (Gate):** نقطة قرار تنبؤية
+- **هجين (Project management concept)**: مزج تنبؤي ورشيق
+- **توسّع (Project management practice)**: تنسيق عدة فرق
+- **بوابة (Project management process)**: نقطة قرار تنبؤية
+
+<GlossaryCard terms={['pmp-phase-gate', 'pmp-scrum', 'pmp-sprint', 'pmp-critical-path']} />
 
 ## 📎 مصادر معتمدة
 

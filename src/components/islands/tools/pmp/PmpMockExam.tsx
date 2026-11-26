@@ -28,9 +28,9 @@ export default function PmpMockExam() {
       sectionLabelEn="Domain"
       questions={questions}
       sections={sections}
-      countOptions={[20, 60, 120, mockPmpQuestions.length]}
+      countOptions={[mockPmpQuestions.length]}
       defaultCount={mockPmpQuestions.length}
-      secondsPerQuestion={73}
+      secondsPerQuestion={80}
       passThresholdPercent={70}
       storageCourseId="pmp"
     />

@@ -25,6 +25,9 @@ sources:
   - "pmi_eco_2026"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp04 } from '../../../data/quiz/pmp/quiz-pmp-0-4';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -47,6 +50,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - استراتيجية عملية: مرور أول سريع، ثم مراجعة الأسئلة المعلَّمة (Flagged)، ثم مراجعة نهائية للإجابات المترددة.
 - التدريب على المحاكي الزمني يقلل القلق ويبني قرار "المتابعة أو التخطي" بشكل تلقائي.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+الإيقاع (Pacing) هو توزيع 240 دقيقة على 180 سؤالاً، أي 80 ثانية للسؤال قبل حساب الاستراحات. السؤال المعلَّم (Flagged) هو سؤال مؤجل للمراجعة ضمن الجولة الثانية لا إجابة نهائية.
+
+### القاعدة الحاكمة وترتيب القرار
+
+لا تمنح أي سؤال أكثر من 90 ثانية في الجولة الأولى؛ ضع علامة وتابع. بعد إنهاء 180 سؤالاً راجع المعلَّمات، ثم راجع الإجابات المترددة فقط إن بقي وقت.
+
+سلسلة الفهم في هذا الدرس تبدأ من "الامتحان 180 سؤالاً، منها 170 محسوبة و10 أسئلة تجريبية لا تؤثر في النتيجة، والمدة 240 دقيقة تتضمن استراحتين اختياريتين 10 دقائق."
+
+ثم تنتقل إلى "متوسط الوقت المتاح للإجابة نحو 73–80 ثانية للسؤال بعد خصم الاستراحات، لذلك التقديم على الأسئلة الصعبة ضرورة لا ضعف."
+
+وتتحقق عملياً عبر "استراتيجية عملية: مرور أول سريع، ثم مراجعة الأسئلة المعلَّمة (Flagged)، ثم مراجعة نهائية للإجابات المترددة.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: معرفة 180 سؤال / 240 دقيقة؛ حساب 80 ثانية لكل سؤال؛ فهم 2 استراحات 10 دقائق؛ تخطيط 12 أسبوع دراسة.
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: معرفة 180 سؤال / 240 دقيقة؟
+- هل تستطيع أن تشرح: حساب 80 ثانية لكل سؤال؟
+- هل تستطيع أن تشرح: فهم 2 استراحات 10 دقائق؟
+- هل تستطيع أن تشرح: تخطيط 12 أسبوع دراسة؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+Pacing is the allocation of 240 minutes across 180 questions, about 80 seconds per question before breaks. A flagged question is deferred for a second pass, not finally answered.
+
+### Decision rule
+
+Never give one item more than 90 seconds in the first pass; flag it and move on. After finishing all 180 items, review flagged questions, then revisit only uncertain answers if time remains.
+
+The reasoning chain in this lesson starts with الامتحان 180 سؤالاً، منها 170 محسوبة و10 أسئلة تجريبية لا تؤثر في النتيجة، والمدة 240 دقيقة تتضمن استراحتين اختياريتين 10 دقائق.
+
+moves to متوسط الوقت المتاح للإجابة نحو 73–80 ثانية للسؤال بعد خصم الاستراحات، لذلك التقديم على الأسئلة الصعبة ضرورة لا ضعف.
+
+and is verified through استراتيجية عملية: مرور أول سريع، ثم مراجعة الأسئلة المعلَّمة (Flagged)، ثم مراجعة نهائية للإجابات المترددة.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Know 180 questions / 240 minutes; Calculate 80 seconds per question; Understand 2 breaks of 10 minutes; Plan 12 weeks of study.
+
+### Learning objectives in English
+
+- Know 180 questions / 240 minutes
+- Calculate 80 seconds per question
+- Understand 2 breaks of 10 minutes
+- Plan 12 weeks of study
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -55,11 +116,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** السؤال الصعب لا يستحق أكثر من متوسط الوقت؛ أعد تقييمه في نهاية الجولة الأولى.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+240 دقيقة − 20 دقيقة استراحتين = 220 دقيقة = 13,200 ثانية. 13,200 ÷ 180 = 73.3 ثانية فعلية للسؤال. إذا استغرق سؤال 180 ثانية فقد استهلك ما يعادل 2.5 سؤال، وسيُجبر على التخمين في نهاية الجولة.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: لا تمنح أي سؤال أكثر من 90 ثانية في الجولة الأولى؛ ضع علامة وتابع. بعد إنهاء 180 سؤالاً راجع المعلَّمات، ثم راجع الإجابات المترددة فقط إن بقي وقت. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+240 minutes minus a 20-minute break allowance leaves 220 minutes, or 13,200 seconds. Dividing by 180 gives about 73 seconds per answer. Spending 180 seconds on one item consumes the budget of 2.5 items and forces guessing later.
+
+### Reading the numbers
+
+Apply the rule: Never give one item more than 90 seconds in the first pass; flag it and move on. After finishing all 180 items, review flagged questions, then revisit only uncertain answers if time remains. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يضيع الدارس وقته في سؤال حسابي واحد، فيصل إلى نهاية الامتحان مع أسئلة سهلة بلا وقت للإجابة. كما أن تغيير الإجابات من دون سبب تحليلي يبدد ميزة المراجعة.
+
+**In English:** A candidate burns time on one calculation and reaches the end with easy questions unanswered. Changing answers without analysis also destroys the value of review time.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — حاسبة وقت الامتحان
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="pacing" client:load />
 
@@ -73,9 +164,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **سؤال معلَّم (Flagged):** سؤال مؤجل للمراجعة
-- **إيقاع (Pacing):** توزيع الوقت على الأسئلة
-- **محاكي (Mock exam):** تدريب كامل بظروف الامتحان
+- **سؤال معلَّم (Project management concept)**: سؤال مؤجل للمراجعة
+- **إيقاع (Project management practice)**: توزيع الوقت على الأسئلة
+- **محاكي (Project management process)**: تدريب كامل بظروف الامتحان
+
+<GlossaryCard terms={['pmp-mock-exam', 'pmp-exam-eco']} />
 
 ## 📎 مصادر معتمدة
 

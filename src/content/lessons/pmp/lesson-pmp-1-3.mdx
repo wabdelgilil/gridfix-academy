@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp13 } from '../../../data/quiz/pmp/quiz-pmp-1-3';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - مرحلة التنفيذ (Executing) تحوّل الخطة إلى مخرجات فعلية، مع إدارة الفريق والاتصالات والمشتريات.
 - مرحلة المراقبة والتحكم (Monitoring & Controlling) تقارن الأداء بالخطة وتصدر التوقعات وطلبات التغيير، ثم تأتي مرحلة الإغلاق.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+بوابة المرحلة (Phase gate) هي نقطة مراجعة رسمية يُقرَّر عندها الاستمرار أو التعديل أو الإيقاف بناءً على معايير معتمدة. التطوير التدريجي (Progressive elaboration) هو تحسين التفاصيل بمرور الوقت كلما توفرت معلومات أدق، دون تغيير الهدف المعتمد.
+
+### القاعدة الحاكمة وترتيب القرار
+
+قبل تجاوز بوابة المرحلة تحقق من ثلاثة أدلة: مخرجات المرحلة مكتملة، معايير القبول مُوقَّعة، والتوقعات المحدثة معروضة على الراعي. ولا تخلط بين التطوير التدريجي وزحف النطاق؛ الأول يوضّح تفصيلاً موجوداً، والثاني يضيف عملاً بلا اعتماد.
+
+سلسلة الفهم في هذا الدرس تبدأ من "مرحلة البدء (Initiating) تنتج ميثاق المشروع وتحديد أصحاب المصلحة، أي إجازة رسمية بوجود المشروع."
+
+ثم تنتقل إلى "مرحلة التخطيط (Planning) تبني الخطوط الأساسية للنطاق والجدول والتكلفة، وتخطط للجودة والمخاطر والموارد."
+
+وتتحقق عملياً عبر "مرحلة التنفيذ (Executing) تحوّل الخطة إلى مخرجات فعلية، مع إدارة الفريق والاتصالات والمشتريات.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تعريف دورة حياة المشروع؛ مراحل النهج التنبؤي (Predictive): البدء والتخطيط والتنفيذ والمراقبة والتحكم والإغلاق؛ "Phase gate (بوابة مرحلة)"؛ "Progressive elaboration".
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تعريف دورة حياة المشروع؟
+- هل تستطيع أن تشرح: مراحل النهج التنبؤي (Predictive): البدء والتخطيط والتنفيذ والمراقبة والتحكم والإغلاق؟
+- هل تستطيع أن تشرح: "Phase gate (بوابة مرحلة)"؟
+- هل تستطيع أن تشرح: "Progressive elaboration"؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+A phase gate is a formal review point where the decision to continue, adjust or stop is taken against approved criteria. Progressive elaboration is the refinement of detail over time as better information appears, without changing the approved objective.
+
+### Decision rule
+
+Before passing a phase gate verify three pieces of evidence: phase deliverables are complete, acceptance criteria are signed, and updated forecasts are shown to the sponsor. Do not confuse progressive elaboration with scope creep; the first clarifies existing detail, the second adds unapproved work.
+
+The reasoning chain in this lesson starts with مرحلة البدء (Initiating) تنتج ميثاق المشروع وتحديد أصحاب المصلحة، أي إجازة رسمية بوجود المشروع.
+
+moves to مرحلة التخطيط (Planning) تبني الخطوط الأساسية للنطاق والجدول والتكلفة، وتخطط للجودة والمخاطر والموارد.
+
+and is verified through مرحلة التنفيذ (Executing) تحوّل الخطة إلى مخرجات فعلية، مع إدارة الفريق والاتصالات والمشتريات.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Define project life cycle; Predictive phases; Phase gate; Progressive elaboration.
+
+### Learning objectives in English
+
+- Define project life cycle
+- Predictive phases
+- Phase gate
+- Progressive elaboration
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** المراحل ليست سلسلة صماء؛ التخطيط والتنفيذ والمراقبة تتداخل وتتكرر حتى الإغلاق.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+بوابة التصميم حددت 3 معايير: اعتماد المالك، اكتمال 100% من الرسومات، وموافقة السلامة. النتائج: الرسومات 92%، والاعتماد موجود، والسلامة معلقة. لأن معياراً واحداً لم يتحقق، تُرجَّأ البوابة. تكلفة التأخير يومين = 2 × 4,000 دولار = 8,000 دولار، أقل من تكلفة اكتشاف الخطأ لاحقاً (60,000 دولار).
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: قبل تجاوز بوابة المرحلة تحقق من ثلاثة أدلة: مخرجات المرحلة مكتملة، معايير القبول مُوقَّعة، والتوقعات المحدثة معروضة على الراعي. ولا تخلط بين التطوير التدريجي وزحف النطاق؛ الأول يوضّح تفصيلاً موجوداً، والثاني يضيف عملاً بلا اعتماد. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+A design gate has three criteria: owner approval, 100 percent complete drawings and safety sign-off. Drawings are at 92 percent, approval exists and safety is pending, so the gate is deferred. A two-day delay at 4,000 dollars a day costs 8,000 dollars, far less than discovering the defect later at 60,000 dollars.
+
+### Reading the numbers
+
+Apply the rule: Before passing a phase gate verify three pieces of evidence: phase deliverables are complete, acceptance criteria are signed, and updated forecasts are shown to the sponsor. Do not confuse progressive elaboration with scope creep; the first clarifies existing detail, the second adds unapproved work. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** بدأ المقاول التنفيذ قبل توقيع الميثاق، وعند تغيّر مالك المبنى لم يوجد مرجع للقرار فتوقف العمل أسبوعين. والفشل المقابل هو اعتبار كل تفصيل جديد تغييراً، فيُجمَّد التخطيط ويُفقد المشروع فرصة التعلم.
+
+**In English:** A contractor started work before the charter was signed; when the building owner changed there was no reference for the decision and work stopped for two weeks. The opposite failure is treating every new detail as a change, freezing planning and removing learning.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — خريطة دورة حياة
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="lifecycle" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **ميثاق المشروع (Project charter):** وثيقة تفويض المشروع
-- **خط أساس (Baseline):** خطة معتمدة للمقارنة
-- **إغلاق (Closing):** إنهاء رسمي للأعمال والالتزامات
+- **ميثاق المشروع (Project management concept)**: وثيقة تفويض المشروع
+- **خط أساس (Project management practice)**: خطة معتمدة للمقارنة
+- **إغلاق (Project management process)**: إنهاء رسمي للأعمال والالتزامات
+
+<GlossaryCard terms={['pmp-charter', 'pmp-phase-gate', 'pmp-progressive-elaboration', 'pmp-scope-baseline']} />
 
 ## 📎 مصادر معتمدة
 

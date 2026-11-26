@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp41 } from '../../../data/quiz/pmp/quiz-pmp-4-1';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - الوقت العائم (Float) هو مقدار التأخير المسموح به دون تأخير المشروع؛ الصفر يعني نشاطاً حرجاً.
 - ضغط الجدول عبر التنفيذ المتوازي (Fast tracking) أو التسريع بالإضافة (Crashing) يزيد المخاطر أو التكلفة ويجب تقييمه قبل استخدامه.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+المسار الحرج (Critical path) هو أطول سلسلة أنشطة في شبكة الجدول، ويحدد أقرب تاريخ إنجاز. الوقت العائم (Float) هو التأخير المسموح به من دون تأخير المشروع؛ العائم صفر يعني نشاطاً حرجاً. التسريع (Crashing) يضيف موارد بتكلفة، والتنفيذ المتوازي (Fast tracking) يتداخل الأنشطة بمخاطرة أعلى.
+
+### القاعدة الحاكمة وترتيب القرار
+
+راقب الأنشطة ذات العائم صفر أولاً. إن احتجت تقصير المدة فابدأ بالنشاط الحرج الأرخص للتسريع، وقارن تكلفة كل يوم مكتسب بالمخاطر الإضافية قبل اختيار التنفيذ المتوازي.
+
+سلسلة الفهم في هذا الدرس تبدأ من "تقدير المدة (Duration estimating) يعتمد على WBS والموارد والتاريخ السابق ويُسجَّل مع الافتراضات."
+
+ثم تنتقل إلى "طريقة المسار الحرج (CPM) تحسب أقدم بداية وأقدم نهاية لكل نشاط ثم تحدد الأنشطة التي لا تحتمل تأخيراً."
+
+وتتحقق عملياً عبر "الوقت العائم (Float) هو مقدار التأخير المسموح به دون تأخير المشروع؛ الصفر يعني نشاطاً حرجاً.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تقدير المدة (Duration estimation)؛ CPM (Critical Path Method)؛ التعويم (Float)؛ "Fast tracking" vs "Crashing".
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تقدير المدة (Duration estimation)؟
+- هل تستطيع أن تشرح: CPM (Critical Path Method)؟
+- هل تستطيع أن تشرح: التعويم (Float)؟
+- هل تستطيع أن تشرح: "Fast tracking" vs "Crashing"؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+The critical path is the longest chain of activities in the schedule network and sets the earliest finish date. Float is the delay allowed without delaying the project; zero float marks a critical activity. Crashing adds resources at a cost while fast tracking overlaps activities at higher risk.
+
+### Decision rule
+
+Monitor zero-float activities first. If the duration must shrink, crash the cheapest critical activity and compare the cost per day saved with the added risk before choosing fast tracking.
+
+The reasoning chain in this lesson starts with تقدير المدة (Duration estimating) يعتمد على WBS والموارد والتاريخ السابق ويُسجَّل مع الافتراضات.
+
+moves to طريقة المسار الحرج (CPM) تحسب أقدم بداية وأقدم نهاية لكل نشاط ثم تحدد الأنشطة التي لا تحتمل تأخيراً.
+
+and is verified through الوقت العائم (Float) هو مقدار التأخير المسموح به دون تأخير المشروع؛ الصفر يعني نشاطاً حرجاً.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Duration estimation; CPM; Float; Fast tracking vs crashing.
+
+### Learning objectives in English
+
+- Duration estimation
+- CPM
+- Float
+- Fast tracking vs crashing
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** راقب الأنشطة ذات العائم الصفر أولاً؛ بقية التأخيرات قد تُمتص ضمن هامش المرونة.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+مساران: A→B→C مدته 5+4+3 = 12 يوماً، وD→E مدته 4+3 = 7 أيام. المسار الحرج 12 يوماً والعائم على المسار الثاني 5 أيام. تأخر B يومين يرفع المشروع إلى 14 يوماً. تسريع B بيومين بكلفة 3,000 دولار/يوم يعيد المدة إلى 12 بكلفة 6,000 دولار، بينما تسريع D لا يغير النتيجة.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: راقب الأنشطة ذات العائم صفر أولاً. إن احتجت تقصير المدة فابدأ بالنشاط الحرج الأرخص للتسريع، وقارن تكلفة كل يوم مكتسب بالمخاطر الإضافية قبل اختيار التنفيذ المتوازي. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+Two paths run A-B-C for 5 plus 4 plus 3, or 12 days, and D-E for 4 plus 3, or 7 days. The critical path is 12 days and the second path has 5 days of float. A two-day delay on B moves the project to 14 days. Crashing B by two days at 3,000 dollars a day restores 12 days for 6,000 dollars, while crashing D changes nothing.
+
+### Reading the numbers
+
+Apply the rule: Monitor zero-float activities first. If the duration must shrink, crash the cheapest critical activity and compare the cost per day saved with the added risk before choosing fast tracking. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يُسرَّع نشاط غير حرج فلا يتغير تاريخ الإنهاء وتُهدر التكلفة. أو يُدخل التنفيذ المتوازي في أنشطة تعتمد على بعضها، فيُعاد العمل بعد اكتشاف التعارض.
+
+**In English:** A team crashes a noncritical activity, so the finish date does not move and the cost is wasted; or it overlaps dependent activities and reworks after discovering the conflict.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — حاسبة CPM
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="cpm" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **المسار الحرج (Critical path):** أطول سلسلة أنشطة
-- **العائم (Float):** هامش تأخير مسموح
-- **تسريع (Crashing):** زيادة موارد لتقليل المدة
+- **المسار الحرج (Project management concept)**: أطول سلسلة أنشطة
+- **العائم (Project management practice)**: هامش تأخير مسموح
+- **تسريع (Project management process)**: زيادة موارد لتقليل المدة
+
+<GlossaryCard terms={['pmp-critical-path', 'pmp-float']} />
 
 ## 📎 مصادر معتمدة
 

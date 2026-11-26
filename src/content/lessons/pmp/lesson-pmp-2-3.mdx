@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp23 } from '../../../data/quiz/pmp/quiz-pmp-2-3';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - النمط Collaborating مناسب للقضايا المهمة عندما تتوفر الوقت وعلاقة مستمرة؛ وCompeting مناسب للقرارات العاجلة والسلامة.
 - Avoiding ليس دائماً ضعفاً؛ قد يكون تأجيلاً مقصوداً لقضية تافهة أو لتهدئة قبل حوار أعمق.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+الصراع (Conflict) اختلاف في المصالح أو الرأي، وله أنماط خمسة في نموذج توماس-كيلمان: المنافسة (Competing) والتعاون (Collaborating) والتسوية (Compromising) والتجنّب (Avoiding) والإذعان (Accommodating).
+
+### القاعدة الحاكمة وترتيب القرار
+
+اختر النمط من سؤالين: هل القرار عاجل أو حرج للسلامة؟ فاستخدم Competing بعد استماع قصير. وهل توجد علاقة مستمرة ووقت كافٍ؟ فاستخدم Collaborating للحصول على حل يربح فيه الجميع.
+
+سلسلة الفهم في هذا الدرس تبدأ من "مصادر الصراع تشمل الموارد والأولويات وأساليب العمل والمعلومات والمتطلبات الغامضة."
+
+ثم تنتقل إلى "نموذج توماس-كيلمان (Thomas-Kilmann) يقدم خمسة أنماط: المنافسة (Competing) والتعاون (Collaborating) والتسوية (Compromising) والتجنّب (Avoiding) والإذعان (Accommodating)."
+
+وتتحقق عملياً عبر "النمط Collaborating مناسب للقضايا المهمة عندما تتوفر الوقت وعلاقة مستمرة؛ وCompeting مناسب للقرارات العاجلة والسلامة.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: فهم طبيعة الصراع (Conflict) في الفرق؛ التعرف على مصادر الصراع (Sources)؛ تطبيق نموذج توماس-كيلمان (Thomas-Kilmann) (Competing, Collaborating, Compromising, Avoiding, Accommodating)؛ اختيار استراتيجية مناسبة حسب السياق.
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: فهم طبيعة الصراع (Conflict) في الفرق؟
+- هل تستطيع أن تشرح: التعرف على مصادر الصراع (Sources)؟
+- هل تستطيع أن تشرح: تطبيق نموذج توماس-كيلمان (Thomas-Kilmann) (Competing, Collaborating, Compromising, Avoiding, Accommodating)؟
+- هل تستطيع أن تشرح: اختيار استراتيجية مناسبة حسب السياق؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+Conflict is a disagreement over interests or views. The Thomas-Kilmann model offers five modes: competing, collaborating, compromising, avoiding and accommodating.
+
+### Decision rule
+
+Choose the mode from two questions: is the decision urgent or safety critical? Use competing after brief listening. Is there an ongoing relationship and enough time? Use collaborating for a win-win result.
+
+The reasoning chain in this lesson starts with مصادر الصراع تشمل الموارد والأولويات وأساليب العمل والمعلومات والمتطلبات الغامضة.
+
+moves to نموذج توماس-كيلمان (Thomas-Kilmann) يقدم خمسة أنماط: المنافسة (Competing) والتعاون (Collaborating) والتسوية (Compromising) والتجنّب (Avoiding) والإذعان (Accommodating).
+
+and is verified through النمط Collaborating مناسب للقضايا المهمة عندما تتوفر الوقت وعلاقة مستمرة؛ وCompeting مناسب للقرارات العاجلة والسلامة.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Understand conflict nature in teams; Identify conflict sources; Apply Thomas-Kilmann styles; Choose strategy by context.
+
+### Learning objectives in English
+
+- Understand conflict nature in teams
+- Identify conflict sources
+- Apply Thomas-Kilmann styles
+- Choose strategy by context
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** اسأل عن خطورة القرار ووقته وخبرة الطرف الآخر قبل اختيار أسلوب الصراع.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+خلاف على حاجز حماية: تكلفة الحاجز 9,000 دولار، وتكلفة حادث محتمل 120,000 دولار مع احتمال 10%، أي خطر متوقع 12,000 دولار. لأن الخطر المتوقع أكبر من التكلفة، القرار الصحيح هو Competing وإضافة الحاجز فوراً.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: اختر النمط من سؤالين: هل القرار عاجل أو حرج للسلامة؟ فاستخدم Competing بعد استماع قصير. وهل توجد علاقة مستمرة ووقت كافٍ؟ فاستخدم Collaborating للحصول على حل يربح فيه الجميع. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+A dispute concerns a safety barrier costing 9,000 dollars. A possible accident costs 120,000 dollars with 10 percent probability, giving an expected risk of 12,000 dollars. Since expected loss exceeds the cost, the correct mode is competing and fitting the barrier immediately.
+
+### Reading the numbers
+
+Apply the rule: Choose the mode from two questions: is the decision urgent or safety critical? Use competing after brief listening. Is there an ongoing relationship and enough time? Use collaborating for a win-win result. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يستخدم مدير الأسلوب التعاوني في قرار سلامة عاجل، فيتأخر الحل؛ أو يستخدم التنافس في خلاف تافه، فيكسر الثقة. والتجنّب ليس ضعفاً حين يكون تأجيلاً مقصوداً لقضية صغيرة.
+
+**In English:** A manager uses collaboration for an urgent safety decision and delays the fix, or competes over a trivial dispute and damages trust. Avoiding is not weakness when it is a deliberate postponement of a minor issue.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — شجرة قرار الصراع
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="conflict" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **صراع (Conflict):** اختلاف في المصالح أو الآراء
-- **تعاون (Collaborating):** حل يربح فيه الجميع (Win-win)
-- **تنافس (Competing):** حركة حاسمة عند الاستعجال
+- **صراع (Project management concept)**: اختلاف في المصالح أو الآراء
+- **تعاون (Project management practice)**: حل يربح فيه الجميع (Win-win)
+- **تنافس (Project management process)**: حركة حاسمة عند الاستعجال
+
+<GlossaryCard terms={['pmp-conflict-collaborating', 'pmp-emv', 'pmp-team-charter']} />
 
 ## 📎 مصادر معتمدة
 

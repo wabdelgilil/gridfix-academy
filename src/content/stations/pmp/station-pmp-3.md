@@ -21,6 +21,20 @@ status: "live"
 - حماية النطاق من الزحف (Scope creep)
 - معايير القبول
 
+## ✅ ما الذي يفترضه هذا الدرس معرفةً سابقة؟
+
+- تحديد أصحاب المصلحة وتوقعاتهم من المحطة 2
+- فهم أن ميثاق المشروع يحدد الهدف، وأن بوابة المرحلة نقطة قرار معتمدة
+- ربط أي متطلب بمؤشر قيمة معلوم من المحطة 1
+
+## Prerequisites assumed in English
+
+- Identify stakeholders and their expectations from station 2.
+- Understand that the charter sets the objective and a phase gate is an approved decision point.
+- Link every requirement to a value indicator defined in station 1.
+
 ## 🧭 مكانها في ترتيب الفهم
 
-هذه المحطة جزء من مسار يبدأ بالمفاهيم، ثم الناس، ثم التخطيط والتنفيذ، ثم بيئة الأعمال، وينتهي بالمحاكي — لا حسب ترتيب فصول دليل PMBOK.
+المتطلبات هي أول ترجمة ملموسة للقيمة؛ منها يُبنى WBS ثم ينتقل العمل إلى الزمن والتكلفة.
+
+Requirements are the first concrete translation of value; the WBS grows from them before time and cost are added.

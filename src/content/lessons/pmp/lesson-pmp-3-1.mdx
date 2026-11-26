@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp31 } from '../../../data/quiz/pmp/quiz-pmp-3-1';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - هيكل تجزئة العمل (WBS) يفكك المخرجات إلى حزم عمل قابلة للتقدير والتتبع، ويتبع قاعدة 100%.
 - قاموس WBS يشرح كل عنصر لضمان أن الجميع يفهمه بالطريقة نفسها.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+المتطلب (Requirement) حاجة قابلة للقياس، وهيكل تجزئة العمل (WBS) تفكيك هرمي للمخرجات إلى حزم عمل. قاعدة 100% تعني أن WBS يحتوي على كل العمل المطلوب ولا شيء إضافياً.
+
+### القاعدة الحاكمة وترتيب القرار
+
+حوّل العبارات العامة إلى رقم وشرط: "سرعة البحث" تصبح "أقل من ثانيتين لـ 95% من الطلبات". ثم تحقق أن كل حزمة عمل مرتبطة بمتطلب واحد على الأقل في مصفوفة التتبع.
+
+سلسلة الفهم في هذا الدرس تبدأ من "تجميع المتطلبات (Collect requirements) يستخدم المقابلات وورش العمل والنماذج الأولية ومراجعة الوثائق."
+
+ثم تنتقل إلى "تُقسَّم المتطلبات إلى وظيفية وغير وظيفية، ويُصنَّف كل منها بمصدر وأولوية ومعايير قبول."
+
+وتتحقق عملياً عبر "هيكل تجزئة العمل (WBS) يفكك المخرجات إلى حزم عمل قابلة للتقدير والتتبع، ويتبع قاعدة 100%.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: جمع المتطلبات (Requirements elicitation)؛ تحليل المتطلبات (Analysis)؛ إنشاء WBS (Work Breakdown Structure)؛ "100% rule" for WBS.
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: جمع المتطلبات (Requirements elicitation)؟
+- هل تستطيع أن تشرح: تحليل المتطلبات (Analysis)؟
+- هل تستطيع أن تشرح: إنشاء WBS (Work Breakdown Structure)؟
+- هل تستطيع أن تشرح: "100% rule" for WBS؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+A requirement is a measurable need, and a Work Breakdown Structure is a hierarchical decomposition of deliverables into work packages. The 100 percent rule means the WBS contains all required work and nothing extra.
+
+### Decision rule
+
+Convert vague phrases into a number and a condition: fast search becomes under two seconds for 95 percent of requests. Then check that every work package links to at least one requirement in the traceability matrix.
+
+The reasoning chain in this lesson starts with تجميع المتطلبات (Collect requirements) يستخدم المقابلات وورش العمل والنماذج الأولية ومراجعة الوثائق.
+
+moves to تُقسَّم المتطلبات إلى وظيفية وغير وظيفية، ويُصنَّف كل منها بمصدر وأولوية ومعايير قبول.
+
+and is verified through هيكل تجزئة العمل (WBS) يفكك المخرجات إلى حزم عمل قابلة للتقدير والتتبع، ويتبع قاعدة 100%.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Elicit requirements; Analyze requirements; Create WBS; Apply 100% rule.
+
+### Learning objectives in English
+
+- Elicit requirements
+- Analyze requirements
+- Create WBS
+- Apply 100% rule
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** المتطلب غير القابل للقياس سيتحول إلى خلاف عند القبول.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+مشروع حجز: 24 متطلباً، 18 منها قابلة للقياس و6 تحتاج صياغة. بعد ورشة تحوّلت الستة إلى مقاييس، فارتفع التغطية من 18/24 = 75% إلى 100%. WBS من 4 مستويات و20 حزمة؛ كل حزمة مرتبطة بمعرف متطلب واحد على الأقل.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: حوّل العبارات العامة إلى رقم وشرط: "سرعة البحث" تصبح "أقل من ثانيتين لـ 95% من الطلبات". ثم تحقق أن كل حزمة عمل مرتبطة بمتطلب واحد على الأقل في مصفوفة التتبع. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+A booking project has 24 requirements, 18 measurable and 6 needing rewrite. After a workshop all six became metrics, raising coverage from 18 out of 24, or 75 percent, to 100 percent. The four-level WBS has 20 packages, each linked to at least one requirement ID.
+
+### Reading the numbers
+
+Apply the rule: Convert vague phrases into a number and a condition: fast search becomes under two seconds for 95 percent of requests. Then check that every work package links to at least one requirement in the traceability matrix. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يُكتشف متطلب مُغفَل عند الاختبار النهائي، فيتحول إلى تغيير مكلف؛ أو يُضاف عمل خارج النطاق إلى WBS بحجة التحسين، فتنكسر قاعدة 100%.
+
+**In English:** A missed requirement is discovered during final testing and becomes an expensive change; or extra work is added to the WBS as an improvement, breaking the 100 percent rule.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — باني WBS
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="wbs" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **متطلب (Requirement):** حاجة يجب تلبيتها
-- **هيكل تجزئة العمل (WBS):** تفكيك النطاق إلى حزم
-- **قاعدة 100%:** WBS يمثل كل العمل المطلوب
+- **متطلب (Project management concept)**: حاجة يجب تلبيتها
+- **هيكل تجزئة العمل (Project management practice)**: تفكيك النطاق إلى حزم
+- **قاعدة 100% (Hundred percent rule)**: WBS يمثل كل العمل المطلوب
+
+<GlossaryCard terms={['pmp-wbs', 'pmp-scope-baseline', 'pmp-benefit-owner']} />
 
 ## 📎 مصادر معتمدة
 

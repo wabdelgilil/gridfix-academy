@@ -9,7 +9,7 @@ descriptionEn: "Executing, reporting, change control, KPIs, and EVM."
 badge: "رقابة"
 badgeEn: "Control"
 icon: "🎛️"
-examWeight: 6
+examWeight: 5
 domain: "Process"
 status: "live"
 ---
@@ -21,6 +21,20 @@ status: "live"
 - التحكم بالتغيير
 - المؤشرات وإدارة القيمة المكتسبة (EVM) للرقابة
 
+## ✅ ما الذي يفترضه هذا الدرس معرفةً سابقة؟
+
+- قراءة CPI وSPI والتوقع من المحطة 4
+- استخدام سجل المخاطر من المحطة 6 عند تحليل أثر تغيير
+- معرفة مصفوفة الصلاحيات من المحطة 1 قبل اعتماد طلب التغيير
+
+## Prerequisites assumed in English
+
+- Read CPI, SPI and forecasts from station 4.
+- Use the risk register from station 6 when analyzing a change impact.
+- Know the authority matrix from station 1 before approving a change request.
+
 ## 🧭 مكانها في ترتيب الفهم
 
-هذه المحطة جزء من مسار يبدأ بالمفاهيم، ثم الناس، ثم التخطيط والتنفيذ، ثم بيئة الأعمال، وينتهي بالمحاكي — لا حسب ترتيب فصول دليل PMBOK.
+الرقابة تربط التنفيذ بالخطط الأصلية؛ ومنها يُقرر الإغلاق أو مواصلة العمل.
+
+Control connects execution to the original plans and determines whether to close or continue.

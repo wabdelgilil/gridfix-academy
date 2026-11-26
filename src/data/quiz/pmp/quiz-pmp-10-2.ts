@@ -53,7 +53,8 @@ export const quizPmp102: QuizBank = {
         {
           text: 'المحاسب.',
           isCorrect: false,
-          explanation: 'ليس دوراً مرتبطاً.',
+          explanation:
+            'المحاسب ليس دوراً في إزالة عوائق Scrum؛ ماستر السبرنت هو من يساعد الفريق على إزالة العائق المتكرر.',
         },
       ],
     },

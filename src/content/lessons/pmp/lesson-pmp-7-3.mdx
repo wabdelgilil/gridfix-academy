@@ -26,6 +26,9 @@ hasTool: true
 quizId: "quiz-pmp-7-3"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp73 } from '../../../data/quiz/pmp/quiz-pmp-7-3';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - القرار قد يكون بالموافقة أو الرفض أو التأجيل، ويُدوَّن مع مبرره في سجل التغييرات.
 - بعد الموافقة تُحدَّث الخطوط الأساسية ووثائق المشروع ذات الصلة، وإلا يصبح السجل والواقع مختلفين.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+التحكم بالتغيير (Change control) مسار مؤلف من تسجيل الطلب وتحليل الأثر على النطاق والجدول والتكلفة والجودة والمخاطر، ثم قرار بالموافقة أو الرفض أو التأجيل، وأخيراً تحديث الخطوط الأساسية. سجل التغييرات يحفظ القرار ومبرره.
+
+### القاعدة الحاكمة وترتيب القرار
+
+لا تُنفَّذ أي إضافة قبل قرار مكتوب حتى لو بدت طارئة؛ استخدم مسار الطلب العاجل المعلن مسبقاً. بعد الموافقة حدّث الخطة والخط الأساسي في نفس الدورة.
+
+سلسلة الفهم في هذا الدرس تبدأ من "زحف النطاق (Scope creep) هو نمو غير مضبوط، بينما التغيير المعتمد يمر عبر عملية التحكم بالتغيير."
+
+ثم تنتقل إلى "خطوات التحكم تشمل تسجيل الطلب وتحليل الأثر على النطاق والجدول والتكلفة والجودة والمخاطر، ثم عرضه على جهة القرار."
+
+وتتحقق عملياً عبر "القرار قد يكون بالموافقة أو الرفض أو التأجيل، ويُدوَّن مع مبرره في سجل التغييرات.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تمييز زحف النطاق عن التغيير المعتمد؛ تطبيق خطوات التحكم بالتغيير؛ تحليل أثر التغيير؛ تحديث الخطوط الأساسية بعد الاعتماد.
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تمييز زحف النطاق عن التغيير المعتمد؟
+- هل تستطيع أن تشرح: تطبيق خطوات التحكم بالتغيير؟
+- هل تستطيع أن تشرح: تحليل أثر التغيير؟
+- هل تستطيع أن تشرح: تحديث الخطوط الأساسية بعد الاعتماد؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+Change control is a path of logging the request, analyzing impact on scope, schedule, cost, quality and risk, deciding to approve, reject or defer, then updating baselines. A change log preserves the decision and its rationale.
+
+### Decision rule
+
+Never implement an addition before a written decision, even if it seems urgent; use the preannounced expedited path. After approval, update the plan and baseline in the same cycle.
+
+The reasoning chain in this lesson starts with زحف النطاق (Scope creep) هو نمو غير مضبوط، بينما التغيير المعتمد يمر عبر عملية التحكم بالتغيير.
+
+moves to خطوات التحكم تشمل تسجيل الطلب وتحليل الأثر على النطاق والجدول والتكلفة والجودة والمخاطر، ثم عرضه على جهة القرار.
+
+and is verified through القرار قد يكون بالموافقة أو الرفض أو التأجيل، ويُدوَّن مع مبرره في سجل التغييرات.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Distinguish creep from approved change; Apply change control steps; Analyze change impact; Update baselines after approval.
+
+### Learning objectives in English
+
+- Distinguish creep from approved change
+- Apply change control steps
+- Analyze change impact
+- Update baselines after approval
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** الطلب الطارئ يحتاج مساراً طارئاً معروفاً مسبقاً، لا فوضى بلا سجل.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+طلب تقرير إضافي: أسبوع واحد وتكلفة 12,000 دولار. الميزانية المتبقية 9,000 دولار، والعائم 3 أيام، ومخاطر تأخير الاعتماد 20% × 15,000 دولار = 3,000 دولار. الأثر الكامل 15,000 دولار و10 أيام تأخير محتمل؛ القرار التأجيل مع إبقاء الخط الأساسي دون تغيير.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: لا تُنفَّذ أي إضافة قبل قرار مكتوب حتى لو بدت طارئة؛ استخدم مسار الطلب العاجل المعلن مسبقاً. بعد الموافقة حدّث الخطة والخط الأساسي في نفس الدورة. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+An extra report needs one week and 12,000 dollars. Remaining budget is 9,000, float is three days, and approval delay risk is 20 percent × 15,000 or 3,000 dollars. Full impact is 15,000 dollars and up to 10 days of delay, so the decision is deferral with the baseline unchanged.
+
+### Reading the numbers
+
+Apply the rule: Never implement an addition before a written decision, even if it seems urgent; use the preannounced expedited path. After approval, update the plan and baseline in the same cycle. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يُنفَّذ طلب شفهي أثناء مراجعة التصميم، فيختلف السجل مع الواقع ويُكتشف التجاوز عند إغلاق المشروع. والخطأ الآخر هو تحليل الأثر على التكلفة فقط وإهمال الجدول والمخاطر.
+
+**In English:** A verbal request is implemented during design review, so the log diverges from reality and the overrun appears at closure. Another error is analyzing cost only while ignoring schedule and risk.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — سجل تغييرات
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="changelog" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **طلب تغيير (Change request):** طلب رسمي لتعديل خط أساس
-- **لجنة التحكم بالتغيير:** جهة اعتماد القرار
-- **سجل التغييرات:** سجل الطلبات والقرارات
+- **طلب تغيير (Project management concept)**: طلب رسمي لتعديل خط أساس
+- **لجنة التحكم بالتغيير (Change control board)**: جهة اعتماد القرار
+- **سجل التغييرات (Change log)**: سجل الطلبات والقرارات
+
+<GlossaryCard terms={['pmp-change-control', 'pmp-scope-baseline', 'pmp-cost-baseline']} />
 
 ## 📎 مصادر معتمدة
 

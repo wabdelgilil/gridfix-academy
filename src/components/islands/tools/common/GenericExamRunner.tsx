@@ -315,15 +315,22 @@ export default function GenericExamRunner({
 
           <div>
             <p className="mb-2 text-sm font-bold text-ink-700 dark:text-slate-200">
-              {isEn ? 'Review mistakes:' : 'مراجعة الأسئلة غير الموفقة:'}
+              {isEn
+                ? 'Review wrong and skipped questions:'
+                : 'مراجعة الأسئلة غير الموفقة والمتخطاة:'}
             </p>
             {items.map((q, i) =>
-              answers[i] >= 0 && !q.options[answers[i]]?.isCorrect ? (
+              !(answers[i] >= 0 && q.options[answers[i]]?.isCorrect) ? (
                 <details
                   key={i}
                   className="mb-2 rounded-lg border border-rose-200 bg-rose-50/70 p-3 text-sm dark:border-rose-900/40 dark:bg-rose-950/20"
                 >
                   <summary className="cursor-pointer font-semibold text-rose-800 dark:text-rose-300">
+                    {answers[i] < 0
+                      ? isEn
+                        ? 'Skipped — '
+                        : 'لم تُجب — '
+                      : null}
                     {isEn ? (q.questionEn ?? q.question) : q.question}
                   </summary>
                   <p className="mt-1.5 text-xs text-ink-600 dark:text-slate-400">

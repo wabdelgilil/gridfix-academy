@@ -7,6 +7,11 @@ export const quizPmp75: QuizBank = {
       scenario: 'CPI = 0.92 وSPI = 1.05 في تقرير أداء.',
       question: 'ما القراءة الصحيحة؟',
       difficulty: 'متوسط',
+      caseSetId: 'case-pmp-7-5-evm-trend',
+      sharedStem:
+        'مشروع تطوير منصة بدأ بخط أساس تكلفة وجدول معتمدين، ويصدر تقرير أداء كل أسبوع.\n\nسلسلة مؤشرات الأداء:\n\n| الأسبوع | CPI | SPI | EAC مقابل BAC |\n| --- | --- | --- | --- |\n| 1 | 1.02 | 1.01 | أقل من BAC |\n| 2 | 0.97 | 1.03 | قريب من BAC |\n| 3 | 0.92 | 1.05 | أعلى من BAC |\n\nتُطرح الأسئلة الأربعة التالية على هذا التقرير نفسه: اقرأ المؤشرات، فسر التوقع، اختر مقياس العمل المتبقي، ثم قرر الإجراء التصحيحي.',
+      sharedStemEn:
+        'A platform project tracks an approved cost and schedule baseline with a weekly performance report.\n\nPerformance series:\n\n| Week | CPI | SPI | EAC vs BAC |\n| --- | --- | --- | --- |\n| 1 | 1.02 | 1.01 | below BAC |\n| 2 | 0.97 | 1.03 | near BAC |\n| 3 | 0.92 | 1.05 | above BAC |\n\nThe following four questions use this same report: read the indexes, interpret the forecast, pick the remaining-work metric, and decide the corrective action.',
       options: [
         {
           text: 'تجاوز تكلفة بسيط مع تقدم زمني جيد.',
@@ -16,7 +21,8 @@ export const quizPmp75: QuizBank = {
         {
           text: 'وفور في التكلفة وتأخر في الجدول.',
           isCorrect: false,
-          explanation: 'العكس هو الصحيح.',
+          explanation:
+            'CPI = 0.92 يعني تجاوز تكلفة، وSPI = 1.05 يعني تقدماً زمنياً؛ قراءة الوفور والتأخر معكوسة تماماً.',
         },
         {
           text: 'المشروع متوقف تماماً.',
@@ -34,6 +40,11 @@ export const quizPmp75: QuizBank = {
       scenario: 'EAC يشير إلى تجاوز متوقع كبير في نهاية المشروع.',
       question: 'ما الذي يجب فعله أولاً؟',
       difficulty: 'صعب',
+      caseSetId: 'case-pmp-7-5-evm-trend',
+      sharedStem:
+        'مشروع تطوير منصة بدأ بخط أساس تكلفة وجدول معتمدين، ويصدر تقرير أداء كل أسبوع.\n\nسلسلة مؤشرات الأداء:\n\n| الأسبوع | CPI | SPI | EAC مقابل BAC |\n| --- | --- | --- | --- |\n| 1 | 1.02 | 1.01 | أقل من BAC |\n| 2 | 0.97 | 1.03 | قريب من BAC |\n| 3 | 0.92 | 1.05 | أعلى من BAC |\n\nتُطرح الأسئلة الأربعة التالية على هذا التقرير نفسه: اقرأ المؤشرات، فسر التوقع، اختر مقياس العمل المتبقي، ثم قرر الإجراء التصحيحي.',
+      sharedStemEn:
+        'A platform project tracks an approved cost and schedule baseline with a weekly performance report.\n\nPerformance series:\n\n| Week | CPI | SPI | EAC vs BAC |\n| --- | --- | --- | --- |\n| 1 | 1.02 | 1.01 | below BAC |\n| 2 | 0.97 | 1.03 | near BAC |\n| 3 | 0.92 | 1.05 | above BAC |\n\nThe following four questions use this same report: read the indexes, interpret the forecast, pick the remaining-work metric, and decide the corrective action.',
       options: [
         {
           text: 'تحليل أسباب الانحراف والتوقع قبل اقتراح إجراء تصحيحي.',
@@ -53,7 +64,8 @@ export const quizPmp75: QuizBank = {
         {
           text: 'إيقاف المشروع.',
           isCorrect: false,
-          explanation: 'الإيقاف قرار جذري.',
+          explanation:
+            'إنهاء المشروع قرار جذري لا يبرره إنذار EAC؛ تحليل سبب التجاوز يسبق اقتراح الميزانية أو التصحيح.',
         },
       ],
     },
@@ -61,6 +73,11 @@ export const quizPmp75: QuizBank = {
       scenario: 'مدير مشروع يحتاج معرفة التكلفة المتوقعة للعمل المتبقي.',
       question: 'أي مؤشر يستخدم؟',
       difficulty: 'سهل',
+      caseSetId: 'case-pmp-7-5-evm-trend',
+      sharedStem:
+        'مشروع تطوير منصة بدأ بخط أساس تكلفة وجدول معتمدين، ويصدر تقرير أداء كل أسبوع.\n\nسلسلة مؤشرات الأداء:\n\n| الأسبوع | CPI | SPI | EAC مقابل BAC |\n| --- | --- | --- | --- |\n| 1 | 1.02 | 1.01 | أقل من BAC |\n| 2 | 0.97 | 1.03 | قريب من BAC |\n| 3 | 0.92 | 1.05 | أعلى من BAC |\n\nتُطرح الأسئلة الأربعة التالية على هذا التقرير نفسه: اقرأ المؤشرات، فسر التوقع، اختر مقياس العمل المتبقي، ثم قرر الإجراء التصحيحي.',
+      sharedStemEn:
+        'A platform project tracks an approved cost and schedule baseline with a weekly performance report.\n\nPerformance series:\n\n| Week | CPI | SPI | EAC vs BAC |\n| --- | --- | --- | --- |\n| 1 | 1.02 | 1.01 | below BAC |\n| 2 | 0.97 | 1.03 | near BAC |\n| 3 | 0.92 | 1.05 | above BAC |\n\nThe following four questions use this same report: read the indexes, interpret the forecast, pick the remaining-work metric, and decide the corrective action.',
       options: [
         {
           text: 'ETC (Estimate to Complete).',
@@ -75,7 +92,8 @@ export const quizPmp75: QuizBank = {
         {
           text: 'PV.',
           isCorrect: false,
-          explanation: 'القيمة المخططة.',
+          explanation:
+            'PV هي القيمة المخططة للعمل، أما تكلفة إنهاء العمل المتبقي فتُقدَّر بـ ETC.',
         },
         {
           text: 'AC.',
@@ -88,6 +106,11 @@ export const quizPmp75: QuizBank = {
       scenario: 'فريق يقترح إجراءً تصحيحياً سيؤثر على المخاطر.',
       question: 'ما الذي يلزم قبل التنفيذ؟',
       difficulty: 'متوسط',
+      caseSetId: 'case-pmp-7-5-evm-trend',
+      sharedStem:
+        'مشروع تطوير منصة بدأ بخط أساس تكلفة وجدول معتمدين، ويصدر تقرير أداء كل أسبوع.\n\nسلسلة مؤشرات الأداء:\n\n| الأسبوع | CPI | SPI | EAC مقابل BAC |\n| --- | --- | --- | --- |\n| 1 | 1.02 | 1.01 | أقل من BAC |\n| 2 | 0.97 | 1.03 | قريب من BAC |\n| 3 | 0.92 | 1.05 | أعلى من BAC |\n\nتُطرح الأسئلة الأربعة التالية على هذا التقرير نفسه: اقرأ المؤشرات، فسر التوقع، اختر مقياس العمل المتبقي، ثم قرر الإجراء التصحيحي.',
+      sharedStemEn:
+        'A platform project tracks an approved cost and schedule baseline with a weekly performance report.\n\nPerformance series:\n\n| Week | CPI | SPI | EAC vs BAC |\n| --- | --- | --- | --- |\n| 1 | 1.02 | 1.01 | below BAC |\n| 2 | 0.97 | 1.03 | near BAC |\n| 3 | 0.92 | 1.05 | above BAC |\n\nThe following four questions use this same report: read the indexes, interpret the forecast, pick the remaining-work metric, and decide the corrective action.',
       options: [
         {
           text: 'تقييم الأثر المتكامل ومواءمة أصحاب المصلحة.',
@@ -102,7 +125,8 @@ export const quizPmp75: QuizBank = {
         {
           text: 'إخفاء أثره.',
           isCorrect: false,
-          explanation: 'الشفافية جزء من الحوكمة.',
+          explanation:
+            'إخفاء أثر الإجراء التصحيحي يمنع مواءمة أصحاب المصلحة؛ تقييم الأثر المتكامل وإظهاره هو التصرف الصحيح.',
         },
         {
           text: 'تعديل TCPI فقط.',

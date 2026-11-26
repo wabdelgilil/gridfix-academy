@@ -26,7 +26,8 @@ export const quizPmp04: QuizBank = {
         {
           text: '150 سؤالاً في 240 دقيقة.',
           isCorrect: false,
-          explanation: 'عدد الأسئلة 180.',
+          explanation:
+            'الامتحان الرسمي 180 سؤالاً في 240 دقيقة؛ 150 سؤالاً تقل العدد وتغيّر حساب الإيقاع الزمني.',
         },
       ],
     },

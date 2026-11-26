@@ -21,6 +21,20 @@ status: "live"
 - الدروس المستفادة
 - قياس الفوائد بعد التسليم
 
+## ✅ ما الذي يفترضه هذا الدرس معرفةً سابقة؟
+
+- فهم معايير القبول من المحطة 3 والقبول الرسمي من المحطة 7
+- معرفة مالك الفائدة ومؤشر القيمة من المحطة 1
+- الاطلاع على السبرنت (Sprint) كدورة قصيرة يمكن فيها جمع الدروس
+
+## Prerequisites assumed in English
+
+- Understand acceptance criteria from station 3 and formal acceptance from station 7.
+- Know the benefit owner and value metric from station 1.
+- Recognize a sprint as a short cycle in which lessons can be collected.
+
 ## 🧭 مكانها في ترتيب الفهم
 
-هذه المحطة جزء من مسار يبدأ بالمفاهيم، ثم الناس، ثم التخطيط والتنفيذ، ثم بيئة الأعمال، وينتهي بالمحاكي — لا حسب ترتيب فصول دليل PMBOK.
+الإغلاق يُتوج عملاً رُوقب؛ لكن قياس الفائدة يبدأ بعده، ولهذا تأتي محطة بيئة الأعمال بعده.
+
+Closure concludes monitored work, but benefit measurement starts afterwards, which is why the business environment station follows.

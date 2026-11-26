@@ -26,6 +26,9 @@ sources:
   - "agile_practice_guide"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp14 } from '../../../data/quiz/pmp/quiz-pmp-1-4';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - النهج الهجين (Hybrid) يجمع إطاراً تنبؤياً للبوابات والميزانية مع ممارسات رشيقة داخل التنفيذ، مثل بناء عتاد ثابت وبرمجيات متكررة.
 - ECO 2026 يوزّع الأسئلة بنحو 40% تنبؤي و60% رشيق/هجين، وغالباً يسأل عن "الأنسب للسياق" لا الأفضل مطلقاً.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+النهج التنبؤي (Predictive) يخطط مسبقاً ويتحكم بالخطوط الأساسية، والنهج الرشيق (Agile) يتكيّف عبر حلقات قصيرة، والهجين (Hybrid) يجمع بوابات ثابتة بتنفيذ متكرر. سكرم (Scrum) إطار رشيق بأدوار وأحداث محددة، والسبرنت (Sprint) دورة عمل محددة بوقت تُخطَّط وتُنجَز فيها الأعمال. لا يوجد نهج أفضل مطلقاً؛ هناك أنسب لدرجة عدم اليقين.
+
+### القاعدة الحاكمة وترتيب القرار
+
+إن كانت المتطلبات مستقرة والامتثال صارماً فاختر تنبؤياً. إن كانت تتغير أسبوعياً بعد ملاحظة المستخدم فاختر رشيقاً بسبرنتات (Sprints). إن احتجت ميزانية ثابتة وواجهة متغيرة فاختر هجيناً واكتب حدود كل جزء في الخطة.
+
+سلسلة الفهم في هذا الدرس تبدأ من "النهج التنبؤي (Predictive) يصلح عندما تكون المتطلبات مستقرة والعمل قابل للتخطيط مسبقاً، ويُدار عبر خطوط أساسية واضحة."
+
+ثم تنتقل إلى "النهج الرشيق (Agile) يصلح عندما تتغير المتطلبات بكثافة ويحتاج الفريق إلى ملاحظات متكررة من العميل."
+
+وتتحقق عملياً عبر "النهج الهجين (Hybrid) يجمع إطاراً تنبؤياً للبوابات والميزانية مع ممارسات رشيقة داخل التنفيذ، مثل بناء عتاد ثابت وبرمجيات متكررة.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تعريف النهج التنبؤي (Predictive) والرشيق (Agile) والهجين (Hybrid)؛ متى تستخدم كل نهج؛ "Approach mix" 40/60؛ "Tailoring (تكييف)".
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تعريف النهج التنبؤي (Predictive) والرشيق (Agile) والهجين (Hybrid)؟
+- هل تستطيع أن تشرح: متى تستخدم كل نهج؟
+- هل تستطيع أن تشرح: "Approach mix" 40/60؟
+- هل تستطيع أن تشرح: "Tailoring (تكييف)"؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+A predictive approach plans ahead and controls baselines; an agile approach adapts through short cycles; a hybrid approach combines fixed gates with iterative delivery. Scrum is an agile framework with defined roles and events, and a sprint is a timeboxed cycle in which work is planned and completed. No approach is universally best; suitability depends on uncertainty.
+
+### Decision rule
+
+Stable requirements and strict compliance call for predictive delivery; weekly user-driven change calls for agile sprints; a fixed budget with a changing interface calls for hybrid, with the boundary of each part written into the plan.
+
+The reasoning chain in this lesson starts with النهج التنبؤي (Predictive) يصلح عندما تكون المتطلبات مستقرة والعمل قابل للتخطيط مسبقاً، ويُدار عبر خطوط أساسية واضحة.
+
+moves to النهج الرشيق (Agile) يصلح عندما تتغير المتطلبات بكثافة ويحتاج الفريق إلى ملاحظات متكررة من العميل.
+
+and is verified through النهج الهجين (Hybrid) يجمع إطاراً تنبؤياً للبوابات والميزانية مع ممارسات رشيقة داخل التنفيذ، مثل بناء عتاد ثابت وبرمجيات متكررة.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Define predictive, agile, hybrid; When to use each; Approach mix 40/60; Tailoring.
+
+### Learning objectives in English
+
+- Define predictive, agile, hybrid
+- When to use each
+- Approach mix 40/60
+- Tailoring
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** ابحث في السيناريو عن كلمات مثل "متطلبات مستقرة" أو "تغيّر متكرر" قبل اختيار النهج.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+مشروع مستشفى: البنية التحتية ثابتة (عدم يقين 20%)، والشاشات تتغير أسبوعياً (عدم يقين 80%). بتقسيم 10 حزم عمل: 4 حزم تنبؤية للامتثال و6 حزم رشيقة للواجهة. إذا استخدمنا تنبؤياً كاملاً مع 6 تغييرات أسبوعية بتكلفة 3,000 دولار لكل تغيير، بلغت التكلفة 18,000 دولار؛ الهجين خفّضها إلى 6,000 دولار.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: إن كانت المتطلبات مستقرة والامتثال صارماً فاختر تنبؤياً. إن كانت تتغير أسبوعياً بعد ملاحظة المستخدم فاختر رشيقاً بسبرنتات (Sprints). إن احتجت ميزانية ثابتة وواجهة متغيرة فاختر هجيناً واكتب حدود كل جزء في الخطة. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+A hospital project has fixed infrastructure with 20 percent uncertainty and screens that change weekly with 80 percent uncertainty. Of ten work packages, four stay predictive for compliance and six use agile delivery. Full predictive delivery with six weekly changes at 3,000 dollars each would cost 18,000 dollars; the hybrid design reduced it to 6,000.
+
+### Reading the numbers
+
+Apply the rule: Stable requirements and strict compliance call for predictive delivery; weekly user-driven change calls for agile sprints; a fixed budget with a changing interface calls for hybrid, with the boundary of each part written into the plan. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يختار الفريق سكرم لأنه مألوف رغم أن المتطلبات التنظيمية لا تسمح بتغيير التصميم، فيُعاد العمل بعد كل تدقيق. والخطأ المعاكس هو فرض بوابات تنبؤية على واجهة تحتاج تجربة المستخدم كل أسبوع.
+
+**In English:** A team chooses familiar Scrum although regulations forbid design changes, so work is redone after every audit. The opposite error is imposing predictive gates on an interface that needs weekly user experiments.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — مقارن النُهج
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="approach" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **تنبؤي (Predictive):** تخطيط مسبق شامل
-- **رشيق (Agile):** تكيّف متكرر مع تغيير
-- **هجين (Hybrid):** مزج الاثنين حسب السياق
+- **تنبؤي (Project management concept)**: تخطيط مسبق شامل
+- **رشيق (Project management practice)**: تكيّف متكرر مع تغيير
+- **هجين (Project management process)**: مزج الاثنين حسب السياق
+
+<GlossaryCard terms={['pmp-scrum', 'pmp-sprint', 'pmp-phase-gate', 'pmp-exam-eco']} />
 
 ## 📎 مصادر معتمدة
 

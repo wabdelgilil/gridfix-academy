@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp25 } from '../../../data/quiz/pmp/quiz-pmp-2-5';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - الوعود غير الواقعية تُترجم لاحقاً إلى طلبات تغيير أو خسارة ثقة، حتى لو كان الفريق حسن النية.
 - إدارة التوقعات نشاط مستمر: كل تغيير في النطاق أو الجدول يجب أن ينعكس في رسالة محدثة للطرف المعني.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+سجل أصحاب المصلحة (Stakeholder register) يوثّق المعلومات والاهتمامات والتوقعات واستراتيجية الإشراك. التوقع (Expectation) غير المعلن أخطر من المعلن لأنه لا يمكن قياسه أو تصحيحه مبكراً.
+
+### القاعدة الحاكمة وترتيب القرار
+
+اكتب كل توقع بصيغة قابلة للتحقق: ماذا سيُسلَّم، بماذا يُقاس، ومتى. كل تغيير في النطاق أو الجدول يجب أن يقابله تحديث للرسالة الموجّهة للطرف المعني خلال دورة تواصل واحدة.
+
+سلسلة الفهم في هذا الدرس تبدأ من "سجل أصحاب المصلحة (Stakeholder register) يوثّق المعلومات والاهتمامات والتوقعات والاستراتيجية المناسبة لكل طرف."
+
+ثم تنتقل إلى "التوقعات غير المعلنة أخطر من المعلنة؛ لذلك تحتاج جلسات استماع وتوضيح مبكراً."
+
+وتتحقق عملياً عبر "الوعود غير الواقعية تُترجم لاحقاً إلى طلبات تغيير أو خسارة ثقة، حتى لو كان الفريق حسن النية.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تحديد توقعات أصحاب المصلحة (Stakeholders)؛ تفاوض التوقعات المتعارضة؛ توثيق في سجل أصحاب المصلحة (Stakeholders)؛ متابعة التغييرات.
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تحديد توقعات أصحاب المصلحة (Stakeholders)؟
+- هل تستطيع أن تشرح: تفاوض التوقعات المتعارضة؟
+- هل تستطيع أن تشرح: توثيق في سجل أصحاب المصلحة (Stakeholders)؟
+- هل تستطيع أن تشرح: متابعة التغييرات؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+A stakeholder register records information, interests, expectations and engagement strategy. An unstated expectation is more dangerous than a stated one because it cannot be measured or corrected early.
+
+### Decision rule
+
+Write every expectation in verifiable form: what will be delivered, how it is measured and when. Each scope or schedule change must be matched by an updated message to the affected party within one communication cycle.
+
+The reasoning chain in this lesson starts with سجل أصحاب المصلحة (Stakeholder register) يوثّق المعلومات والاهتمامات والتوقعات والاستراتيجية المناسبة لكل طرف.
+
+moves to التوقعات غير المعلنة أخطر من المعلنة؛ لذلك تحتاج جلسات استماع وتوضيح مبكراً.
+
+and is verified through الوعود غير الواقعية تُترجم لاحقاً إلى طلبات تغيير أو خسارة ثقة، حتى لو كان الفريق حسن النية.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Identify stakeholder expectations; Negotiate conflicting expectations; Document in stakeholder register; Track changes.
+
+### Learning objectives in English
+
+- Identify stakeholder expectations
+- Negotiate conflicting expectations
+- Document in stakeholder register
+- Track changes
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** اكتب التوقعات بصيغة قابلة للتحقق: ماذا سيُسلَّم؟ بماذا يُقاس؟ ومتى؟
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+ثلاثة توقعات: لوحة كاملة (غير مكتوب)، زمن استجابة 4 ساعات (مكتوب)، وتدريب 20 موظفاً (مكتوب). بعد الجلسة صيغ الأول إلى "لوحة بـ 6 مؤشرات". نسبة التوقعات القابلة للقياس ارتفعت من 2/3 = 66.7% إلى 3/3 = 100%.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: اكتب كل توقع بصيغة قابلة للتحقق: ماذا سيُسلَّم، بماذا يُقاس، ومتى. كل تغيير في النطاق أو الجدول يجب أن يقابله تحديث للرسالة الموجّهة للطرف المعني خلال دورة تواصل واحدة. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+Three expectations exist: a full dashboard that was never written down, a 4-hour response time and training for 20 employees. After a session the first becomes a dashboard with six indicators. Measurable expectations rise from 2 out of 3, or 66.7 percent, to 3 out of 3.
+
+### Reading the numbers
+
+Apply the rule: Write every expectation in verifiable form: what will be delivered, how it is measured and when. Each scope or schedule change must be matched by an updated message to the affected party within one communication cycle. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** وعد مدير المشروع بلوحة تحكم كاملة بينما الخط الأساس يتضمن لوحة أساسية، فاعتبر الراعي التسليم ناقصاً. والفشل الأعمق هو انتظار إشارة السخط بدل سؤال صريح في جلسة استماع.
+
+**In English:** A manager promised a full dashboard while the baseline contained only a basic one, so the sponsor considered delivery incomplete. The deeper failure is waiting for a social signal of dissatisfaction instead of asking directly in a listening session.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — سجل أصحاب المصلحة (Stakeholders)
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="stakeholder" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **سجل أصحاب المصلحة:** سجل المعلومات والتوقعات
-- **توقع (Expectation):** ما يتوقعه الطرف من المشروع
-- **استراتيجية الإشراك:** طريقة التعامل مع كل طرف
+- **سجل أصحاب المصلحة (Stakeholder register)**: سجل المعلومات والتوقعات
+- **توقع (Project management practice)**: ما يتوقعه الطرف من المشروع
+- **استراتيجية الإشراك (Engagement strategy)**: طريقة التعامل مع كل طرف
+
+<GlossaryCard terms={['pmp-stakeholder-register', 'pmp-scope-baseline']} />
 
 ## 📎 مصادر معتمدة
 

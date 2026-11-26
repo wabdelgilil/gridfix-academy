@@ -9,8 +9,8 @@ descriptionEn: "Agile principles, Scrum, Kanban, hybrid, and metrics."
 badge: "رشيق"
 badgeEn: "Agile"
 icon: "⚡"
-examWeight: 0
-domain: "Agile / Hybrid"
+examWeight: 2
+domain: "Process"
 status: "live"
 ---
 
@@ -21,6 +21,20 @@ status: "live"
 - النهج الهجين (Hybrid) والتوسّع
 - مقاييس التدفق
 
+## ✅ ما الذي يفترضه هذا الدرس معرفةً سابقة؟
+
+- تعريفات الرشاقة وسكرم (Scrum) وكانبان (Kanban) والسبرنت واجتماع الوقوف اليومي (Stand-up) من المحطة 0
+- فهم بوابة المرحلة من المحطة 1 عند تصميم نهج هجين
+- قراءة مقاييس التدفق ومعايير الإنجاز من المحطتين 7 و3
+
+## Prerequisites assumed in English
+
+- Definitions of agile, Scrum, Kanban, sprint and stand-up from station 0.
+- Understand phase gates from station 1 when designing a hybrid approach.
+- Read flow metrics and Definition of Done from stations 7 and 3.
+
 ## 🧭 مكانها في ترتيب الفهم
 
-هذه المحطة جزء من مسار يبدأ بالمفاهيم، ثم الناس، ثم التخطيط والتنفيذ، ثم بيئة الأعمال، وينتهي بالمحاكي — لا حسب ترتيب فصول دليل PMBOK.
+هذه المحطة تجمع كل ما سبق في إيقاع قصير؛ وبعدها يأتي اختبار القدرة تحت ضغط الوقت.
+
+This station gathers earlier material into a short cadence, after which performance under time pressure is tested.

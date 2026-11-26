@@ -55,6 +55,7 @@ GridFix Academy is a specialized, open-access, Arabic-first digital learning pla
 - **FR-09 (Lesson Pedagogy):** Each of the 55 PMP lessons must follow Concept Explanation → Real-World Scenario → Interactive Island Tool → Scenario Quiz, with at least four fully explained Arabic scenario questions.
 - **FR-10 (Contemporary Topics):** PMP content must cover generative AI, sustainability/ESG, benefits realization, and case-based scenario questions.
 - **FR-11 (Mock Exam):** The course must provide a 180-question PMP simulator with domain breakdown, pacing guidance, and diagnostic reporting through the shared exam runner.
+- **FR-12 (Readiness Contract):** FR-08…FR-11 are pinned by `tests/pmp-coverage.test.mjs` (ECO weights in curriculum and station files, all 26 task mappings, 80-second pacing, worked bilingual lessons, 880 unique substantial explanations, generative-AI coverage and case sets). Residual limitations — no PMP audio assets, limited case/graphic formats, no independent psychometric validation — are recorded in `project_management/EXAM_COVERAGE_PMP.md` and must not be described as exam readiness guarantees.
 
 ---
 

@@ -27,6 +27,9 @@ sources:
   - "agile_practice_guide"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp102 } from '../../../data/quiz/pmp/quiz-pmp-10-2';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -49,6 +52,64 @@ Scrum إطار خفيف يصنع الإيقاع عبر أدوار واضحة و�
 - القطع: قائمة المنتج، قائمة السبرنت، وزيادة القيمة (Increment)، ومعايير الإنجاز (Definition of Done).
 - الالتزام بالوقت (Timebox) يحمي الإيقاع؛ تمديد الأحداث بدون سبب يخفي مشاكل التخطيط.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+سكرم (Scrum) إطار رشيق بثلاثة أدوار: مالك المنتج (Product Owner) يرتب القيمة، والميسّر (Scrum Master) يزيل العوائق، والفريق ينفّذ ويلتزم بالهدف. أحداثه: السبرنت، التخطيط، الاجتماع اليومي (Stand-up)، المراجعة، والمراجعة بأثر رجعي. قطعه: قائمة المنتج وقائمة السبرنت والزيادة ومعايير الإنجاز (Definition of Done).
+
+### القاعدة الحاكمة وترتيب القرار
+
+احمِ الوقت المحدد لكل حدث: 15 دقيقة للاجتماع اليومي، وساعتان لاجتماع أسبوعين. انقل نقاشات التصميم إلى جلسة منفصلة بدل تمديد الحدث، ولا تدع عنصراً يدخل السبرنت من دون معيار إنجاز مكتوب.
+
+سلسلة الفهم في هذا الدرس تبدأ من "الأدوار: Product Owner يرتب القيمة، Scrum Master ييسّر العملية، والفريق ينفّذ ويلتزم بالهدف."
+
+ثم تنتقل إلى "الأحداث: السبرنت، التخطيط، الاجتماع اليومي، المراجعة، والمراجعة بأثر رجعي."
+
+وتتحقق عملياً عبر "القطع: قائمة المنتج، قائمة السبرنت، وزيادة القيمة (Increment)، ومعايير الإنجاز (Definition of Done).". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: "أدوار Scrum" (Product Owner, Scrum Master, Developers)؛ "أحداث Scrum" (Sprint, Planning, Daily, Review, Retro)؛ "قطع Scrum" (Product Backlog, Sprint Backlog, Increment)؛ "الوقت (Timebox)" و"الشفافية (Transparency)".
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: "أدوار Scrum" (Product Owner, Scrum Master, Developers)؟
+- هل تستطيع أن تشرح: "أحداث Scrum" (Sprint, Planning, Daily, Review, Retro)؟
+- هل تستطيع أن تشرح: "قطع Scrum" (Product Backlog, Sprint Backlog, Increment)؟
+- هل تستطيع أن تشرح: "الوقت (Timebox)" و"الشفافية (Transparency)"؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+Scrum is an agile framework with three roles: the Product Owner ranks value, the Scrum Master removes impediments and the team delivers against the goal. Events are the sprint, planning, daily stand-up, review and retrospective; artifacts are the product backlog, sprint backlog, increment and Definition of Done.
+
+### Decision rule
+
+Protect each timebox: 15 minutes for a daily stand-up and two hours for a two-week sprint planning. Move design debates to a separate session instead of extending the event, and admit no item without a written Definition of Done.
+
+The reasoning chain in this lesson starts with الأدوار: Product Owner يرتب القيمة، Scrum Master ييسّر العملية، والفريق ينفّذ ويلتزم بالهدف.
+
+moves to الأحداث: السبرنت، التخطيط، الاجتماع اليومي، المراجعة، والمراجعة بأثر رجعي.
+
+and is verified through القطع: قائمة المنتج، قائمة السبرنت، وزيادة القيمة (Increment)، ومعايير الإنجاز (Definition of Done).. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Scrum roles; Scrum events; Scrum artifacts; Timeboxing and transparency.
+
+### Learning objectives in English
+
+- Scrum roles
+- Scrum events
+- Scrum artifacts
+- Timeboxing and transparency
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -57,11 +118,41 @@ Scrum إطار خفيف يصنع الإيقاع عبر أدوار واضحة و�
 
 > 💡 **نصيحة الامتحان:** الحدث الذي لا ينتهي في وقته يحتاج تحسين المحتوى لا تمديد الوقت.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+سبرنت أسبوعين، 5 أعضاء. وقفة 45 دقيقة يومياً = 3.75 ساعة/أسبوع للفريق. تقنينها إلى 15 دقيقة = 1.25 ساعة، وفر 2.5 ساعة أسبوعياً = 5 ساعات لكل سبرنت. نقل نقاش التصميم إلى جلسة 90 دقيقة مرة واحدة لا يلغي الوفر لأنها تُحصب ضمن تخطيط السبرنت.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: احمِ الوقت المحدد لكل حدث: 15 دقيقة للاجتماع اليومي، وساعتان لاجتماع أسبوعين. انقل نقاشات التصميم إلى جلسة منفصلة بدل تمديد الحدث، ولا تدع عنصراً يدخل السبرنت من دون معيار إنجاز مكتوب. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+In a two-week sprint with five people, a 45-minute daily stand-up consumes 3.75 hours a week. Timeboxing it to 15 minutes saves 2.5 hours a week, or 5 hours per sprint. Moving design debate to one 90-minute session does not erase the saving because it is counted inside sprint planning.
+
+### Reading the numbers
+
+Apply the rule: Protect each timebox: 15 minutes for a daily stand-up and two hours for a two-week sprint planning. Move design debates to a separate session instead of extending the event, and admit no item without a written Definition of Done. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** تُمدَّد الوقفة اليومية إلى 45 دقيقة لمناقشة تصميم، فيفقد الحضور هدفه. أو يُعلن عنصر مكتملاً رغم عدم اجتيازه معايير الاختبار، فتتراكم الديون التقنية.
+
+**In English:** A stand-up stretches to 45 minutes for design debate and loses its purpose; or an item is declared done without passing test criteria, accumulating technical debt.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — لوحة Scrum
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="scrum" client:load />
 
@@ -75,9 +166,11 @@ Scrum إطار خفيف يصنع الإيقاع عبر أدوار واضحة و�
 
 ## 📚 قاموس المصطلحات
 
-- **Scrum:** إطار رشيق بأحداث محددة
-- **مالك المنتج:** ترتيب القيمة
-- **تعريف الإنجاز:** معيار اكتمال العمل
+- **Scrum (Scrum framework)**: إطار رشيق بأحداث محددة
+- **مالك المنتج (Product owner)**: ترتيب القيمة
+- **تعريف الإنجاز (Definition of Done)**: معيار اكتمال العمل
+
+<GlossaryCard terms={['pmp-scrum', 'pmp-sprint', 'pmp-standup']} />
 
 ## 📎 مصادر معتمدة
 

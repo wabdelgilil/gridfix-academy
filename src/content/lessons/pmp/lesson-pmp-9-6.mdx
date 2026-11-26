@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp96 } from '../../../data/quiz/pmp/quiz-pmp-9-6';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,74 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - الاستدامة (Sustainability) تُترجم إلى معايير بيئية واجتماعية وحوكمية (ESG) تُدمج في أهداف المشروع ومقاييسه.
 - القيمة طويلة الأجل تُقاس بأثر المشروع على أصحاب المصلحة والبيئة، لا بالعائد المالي وحده.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+الذكاء الاصطناعي التوليدي (Generative AI / GenAI) ينتج مسودات ونماذج وتوقعات من البيانات، لكنه لا يملك صلاحية القرار. الحوكمة المسؤولة تتطلب أربعة عناصر: سجل مصدر البيانات (Data provenance) يوضح من أين جاءت البيانات وكيف جُمعت، وعتبات تدخل بشري (Human-in-the-loop) تحدد متى يوقّع الإنسان قبل اعتماد المخرج، وتدقيق تحيز (Bias audit) يقيس إنصاف النتائج، وقراراً صريحاً في سجل المخاطر والحوكمة.
+
+### القاعدة الحاكمة وترتيب القرار
+
+طبّق قاعدة الثلاث عتبات: نتائج منخفضة الأثر تُستخدم بعد مراجعة عينة، ونتائج متوسطة الأثر تحتاج توقيع مالك، وقرارات عالية الأثر مثل اختيار المورد أو السلامة تحتاج موافقة بشرية قبل التنفيذ. لا تُدخل بيانات عملاء في أداة توليديّة قبل التحقق من الخصوصية والسماح التعاقدي، وأعد تدقيق التحيز عند كل تغيير في مصدر البيانات.
+
+سلسلة الفهم في هذا الدرس تبدأ من "الذكاء الاصطناعي (AI) يساعد في التنبؤ بالتأخير وأتمتة التقارير وكشف الأنماط، لكنه لا يحل محل حكم الإنسان."
+
+ثم تنتقل إلى "الاستخدام المسؤول يتطلب جودة البيانات واختبار التحيز والشفافية وخصوصية البيانات والإشراف البشري."
+
+وتتحقق عملياً عبر "الاستدامة (Sustainability) تُترجم إلى معايير بيئية واجتماعية وحوكمية (ESG) تُدمج في أهداف المشروع ومقاييسه.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: دور الذكاء الاصطناعي (Artificial Intelligence - AI) في إدارة المشاريع؛ الاستدامة (Sustainability) والمعايير البيئية والاجتماعية والحوكمية (ESG)؛ الأخلاقيات (Ethics) والتحيز (Bias)؛ القيمة (Value) والأثر (Impact).
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: دور الذكاء الاصطناعي (Artificial Intelligence - AI) في إدارة المشاريع؟
+- هل تستطيع أن تشرح: الاستدامة (Sustainability) والمعايير البيئية والاجتماعية والحوكمية (ESG)؟
+- هل تستطيع أن تشرح: الأخلاقيات (Ethics) والتحيز (Bias)؟
+- هل تستطيع أن تشرح: القيمة (Value) والأثر (Impact)؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+
+### توسيعة خاصة بهذا الموضوع
+
+مقاييس الاستدامة (ESG) تُدمج في قرار الشراء ودورة الحياة: انبعاثات الكربون لكل وحدة، نسبة المواد المعاد تدويرها، ساعات التدريب المحلية، وعدد الإصابات المهنية. تُقارن هذه الأرقام قبل الترسية وبعد التشغيل، ويُسجَّل أي تدهور كخطر بمالك واستجابة في سجل المخاطر.
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+Generative AI (GenAI) produces drafts, models and forecasts from data but holds no decision authority. Responsible governance needs four elements: data provenance recording where data came from and how it was collected, human-in-the-loop thresholds defining when a person must approve before use, a bias audit measuring fairness of results, and an explicit decision recorded in the risk and governance logs.
+
+### Decision rule
+
+Apply three thresholds: low-impact output is used after sampling, medium-impact output needs an owner sign-off, and high-impact decisions such as supplier selection or safety need human approval before execution. Never upload customer data to a generative tool before checking privacy and contractual permission, and repeat the bias audit whenever the data source changes.
+
+The reasoning chain in this lesson starts with الذكاء الاصطناعي (AI) يساعد في التنبؤ بالتأخير وأتمتة التقارير وكشف الأنماط، لكنه لا يحل محل حكم الإنسان.
+
+moves to الاستخدام المسؤول يتطلب جودة البيانات واختبار التحيز والشفافية وخصوصية البيانات والإشراف البشري.
+
+and is verified through الاستدامة (Sustainability) تُترجم إلى معايير بيئية واجتماعية وحوكمية (ESG) تُدمج في أهداف المشروع ومقاييسه.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Role of AI in project management; Sustainability and ESG; Ethics and bias; Value and impact.
+
+### Learning objectives in English
+
+- Role of AI in project management
+- Sustainability and ESG
+- Ethics and bias
+- Value and impact
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+
+### Topic-specific extension
+
+ESG metrics are embedded in sourcing and lifecycle decisions: carbon emissions per unit, recycled material share, local training hours and recordable injuries. These are compared before award and after operation, and any deterioration is logged as a risk with an owner and response.
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +127,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** أداة الذكاء الاصطناعي (AI) تُسرّع القرار، لكن المساءلة النهائية تبقى مع الإنسان.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+أداة GenAI رتّبت 30 عرضاً فاستبعدت 12 مورداً صغيراً (40%). تدقيق التحيز أظهر أن 9 من الـ 12 استُبعدوا بسبب متغير تاريخي غير مسموح، أي 75% من الاستبعاد غير مبرر. بعد إزالة المتغير وإعادة التدقيق ارتفع قبول الموردين الصغار إلى 21 من 30 (70%). العتبة المتوسطة تطلب توقيع مالك المشروع على 6 قرارات، واستُكملت خلال يومين.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: طبّق قاعدة الثلاث عتبات: نتائج منخفضة الأثر تُستخدم بعد مراجعة عينة، ونتائج متوسطة الأثر تحتاج توقيع مالك، وقرارات عالية الأثر مثل اختيار المورد أو السلامة تحتاج موافقة بشرية قبل التنفيذ. لا تُدخل بيانات عملاء في أداة توليديّة قبل التحقق من الخصوصية والسماح التعاقدي، وأعد تدقيق التحيز عند كل تغيير في مصدر البيانات. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+A GenAI tool ranked 30 bids and excluded 12 small suppliers, or 40 percent. A bias audit found that 9 of those 12 exclusions relied on a disallowed historical variable, meaning 75 percent of exclusions were unjustified. Removing the variable raised small-supplier acceptance to 21 of 30, or 70 percent. The medium threshold required the project manager to sign six decisions, completed in two days.
+
+### Reading the numbers
+
+Apply the rule: Apply three thresholds: low-impact output is used after sampling, medium-impact output needs an owner sign-off, and high-impact decisions such as supplier selection or safety need human approval before execution. Never upload customer data to a generative tool before checking privacy and contractual permission, and repeat the bias audit whenever the data source changes. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** استخدم الفريق نموذج تنبؤ مبنياً على بيانات تاريخية متحيزة ضد الموردين الصغار، فاستبعدهم دون مراجعة. والفشل الأكبر هو اعتبار مخرج الأداة "موضوعياً" لأنه رقم، بينما لا أحد يعرف مصدر البيانات ولا من وافق عليه.
+
+**In English:** A team used a forecast model trained on historical data biased against small suppliers and excluded them without review. The larger failure is treating a tool output as objective because it is numeric, while nobody knows the data provenance or who approved it.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — تحليل العوامل الخارجية (PESTLE) وجاهزية الذكاء الاصطناعي (AI readiness)
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="ai" client:load />
 
@@ -74,9 +175,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **الذكاء الاصطناعي (AI):** أتمتة وتحليل بمساعدة الآلة
-- **التحيز (Bias):** انحراف منهجي في البيانات أو النموذج
-- **استدامة (Sustainability):** أثر طويل الأجل على البيئة والمجتمع
+- **الذكاء الاصطناعي (Project management concept)**: أتمتة وتحليل بمساعدة الآلة
+- **التحيز (Project management practice)**: انحراف منهجي في البيانات أو النموذج
+- **استدامة (Project management process)**: أثر طويل الأجل على البيئة والمجتمع
+
+<GlossaryCard terms={['pmp-generative-ai', 'pmp-data-provenance', 'pmp-human-in-the-loop', 'pmp-bias-audit', 'pmp-esg']} />
 
 ## 📎 مصادر معتمدة
 

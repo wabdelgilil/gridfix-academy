@@ -27,6 +27,9 @@ sources:
   - "agile_practice_guide"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp103 } from '../../../data/quiz/pmp/quiz-pmp-10-3';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -49,6 +52,64 @@ Kanban يدير التدفق المرئي: قلّل ما بدأته قبل أن 
 - السحب (Pull) يعني سحب العمل عندما تتوفر سعة، لا دفعه بأقصى طاقة متاحة.
 - زمن الدورة (Cycle time) وزمن الانتظار من أهم مقاييس التحسين في Kanban.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+كانبان (Kanban) نظام تدفق مرئي بأعمدة تمثل حالات العمل وحدود عمل جاري (WIP limits). السحب (Pull) يعني بدء عمل جديد فقط عند توفر سعة، وزمن الدورة (Cycle time) يقيس المدة من البدء إلى الإنهاء.
+
+### القاعدة الحاكمة وترتيب القرار
+
+عند تجاوز حد WIP أوقف البدء حتى يُنجز العمل المعلّق وابحث عن الاختناق في العمود الأكثر ازدحاماً. قِس زمن الدورة قبل وبعد تخفيض الحد بدل قياس عدد المهام التي بدأت.
+
+سلسلة الفهم في هذا الدرس تبدأ من "اللوحة تُقسَّم إلى أعمدة تمثل حالات العمل، ولكل عمود حد عمل جاري (WIP limit)."
+
+ثم تنتقل إلى "تجاوز حد WIP يسبب تعدد المهام وإطالة زمن الدورة ويخفي الاختناقات."
+
+وتتحقق عملياً عبر "السحب (Pull) يعني سحب العمل عندما تتوفر سعة، لا دفعه بأقصى طاقة متاحة.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: "Kanban" و"التدفق (Flow)"؛ "WIP limits" (Work In Progress)؛ "Lead time" vs "Cycle time"؛ "التحسين (Improvement)" و"الشفافية (Transparency)".
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: "Kanban" و"التدفق (Flow)"؟
+- هل تستطيع أن تشرح: "WIP limits" (Work In Progress)؟
+- هل تستطيع أن تشرح: "Lead time" vs "Cycle time"؟
+- هل تستطيع أن تشرح: "التحسين (Improvement)" و"الشفافية (Transparency)"؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+Kanban is a visual flow system with columns for work states and work-in-progress limits. Pull means starting new work only when capacity exists, and cycle time measures the duration from start to finish.
+
+### Decision rule
+
+When WIP limit is exceeded, stop starting and find the bottleneck in the busiest column. Measure cycle time before and after lowering the limit rather than counting how many tasks were started.
+
+The reasoning chain in this lesson starts with اللوحة تُقسَّم إلى أعمدة تمثل حالات العمل، ولكل عمود حد عمل جاري (WIP limit).
+
+moves to تجاوز حد WIP يسبب تعدد المهام وإطالة زمن الدورة ويخفي الاختناقات.
+
+and is verified through السحب (Pull) يعني سحب العمل عندما تتوفر سعة، لا دفعه بأقصى طاقة متاحة.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Kanban and flow; WIP limits; Lead time vs cycle time; Improvement and transparency.
+
+### Learning objectives in English
+
+- Kanban and flow
+- WIP limits
+- Lead time vs cycle time
+- Improvement and transparency
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -57,11 +118,41 @@ Kanban يدير التدفق المرئي: قلّل ما بدأته قبل أن 
 
 > 💡 **نصيحة الامتحان:** السرعة ليست في بدء المزيد من العمل، بل في إنهاء العمل بسرعة أكبر.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+لوحة بـ 12 مهمة في عمود التنفيذ وحد WIP = 3، زمن الدورة 12 يوماً. بعد تطبيق الحد انخفاض WIP بنسبة 75%، وزمن الدورة إلى 6 أيام. بمعدل 20 مهمة أسبوعياً، تقليل 6 أيام انتظار يوفر 120 يوماً من زمن الانتظار التراكمي أسبوعياً.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: عند تجاوز حد WIP أوقف البدء حتى يُنجز العمل المعلّق وابحث عن الاختناق في العمود الأكثر ازدحاماً. قِس زمن الدورة قبل وبعد تخفيض الحد بدل قياس عدد المهام التي بدأت. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+A board has 12 items in progress against a WIP limit of 3 and a 12-day cycle time. Enforcing the limit cuts WIP by 75 percent and cycle time to 6 days. At 20 items a week, removing six days of wait saves 120 cumulative days of waiting weekly.
+
+### Reading the numbers
+
+Apply the rule: When WIP limit is exceeded, stop starting and find the bottleneck in the busiest column. Measure cycle time before and after lowering the limit rather than counting how many tasks were started. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** تُضاف مهام جديدة يومياً بينما 12 مهمة قيد التنفيذ وحد WIP ثلاث، فيطول زمن الدورة ويخفي الاختناق. أو يُستخدم عدد المهام المنجزة كمؤشر وحيد، فيُكافأ تعدد المهام.
+
+**In English:** New tasks start daily while 12 are in progress against a WIP limit of three, extending cycle time and hiding the bottleneck; or completed task count is the only metric, rewarding multitasking.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — لوحة Kanban
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="kanban" client:load />
 
@@ -75,9 +166,11 @@ Kanban يدير التدفق المرئي: قلّل ما بدأته قبل أن 
 
 ## 📚 قاموس المصطلحات
 
-- **Kanban:** نظام تدفق مرئي
-- **حد العمل الجاري:** سقف المهام في العمود
-- **زمن الدورة:** الوقت من البدء للإنهاء
+- **Kanban (Kanban board)**: نظام تدفق مرئي
+- **حد العمل الجاري (WIP limit)**: سقف المهام في العمود
+- **زمن الدورة (Cycle time)**: الوقت من البدء للإنهاء
+
+<GlossaryCard terms={['pmp-kanban', 'pmp-sprint']} />
 
 ## 📎 مصادر معتمدة
 

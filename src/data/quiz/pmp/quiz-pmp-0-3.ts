@@ -48,7 +48,8 @@ export const quizPmp03: QuizBank = {
         {
           text: '20 مهمة.',
           isCorrect: false,
-          explanation: 'العدد ليس 20.',
+          explanation:
+            'ECO يوليو 2026 يشمل 26 مهمة؛ الرقم 20 يخص قائمة فرعية وليس إجمالي مهام المحتوى، لذا لا يطابق السؤال.',
         },
         {
           text: '49 مهمة.',

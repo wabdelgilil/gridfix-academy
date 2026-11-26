@@ -26,6 +26,9 @@ hasTool: true
 quizId: "quiz-pmp-7-5"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp75 } from '../../../data/quiz/pmp/quiz-pmp-7-5';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - تسريع الجدول عبر Fast Tracking يوفر وقتاً لكنه يرفع المخاطر، وCrashing يرفع التكلفة.
 - بعد أي إجراء تصحيحي يُعاد قياس المؤشرات للتأكد من أن الإجراء أحدث أثراً حقيقياً.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+إدارة القيمة المكتسبة للرقابة تحوّل المؤشرات إلى إجراء مبكر. انحراف التكلفة والجدول يخبران بالوضع، والتوقع EAC يخبر بالمستقبل، وإعادة القياس بعد الإجراء تخبر بما إذا كان الإجراء ناجحاً.
+
+### القاعدة الحاكمة وترتيب القرار
+
+إذا تحسن SPI وبقي CPI دون 1 فافتح إجراءً منفصلاً للتكلفة. ولا تُعلن السيطرة على المشروع إلا بعد إعادة قياس المؤشرين معاً في دورة لاحقة.
+
+سلسلة الفهم في هذا الدرس تبدأ من "CV وSV يخبرانك بالانحراف، وCPI وSPI يخبرانك بكفاءة استخدام الموارد والوقت."
+
+ثم تنتقل إلى "EAC وETC وTCPI تحوّل الانحراف الحالي إلى توقع مالي يساعد الراعي على القرار."
+
+وتتحقق عملياً عبر "تسريع الجدول عبر Fast Tracking يوفر وقتاً لكنه يرفع المخاطر، وCrashing يرفع التكلفة.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: حساب CV و SV و CPI و SPI؛ حساب EAC و ETC و TCPI؛ تفسير الانحرافات؛ اختيار الإجراء التصحيحي.
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: حساب CV و SV و CPI و SPI؟
+- هل تستطيع أن تشرح: حساب EAC و ETC و TCPI؟
+- هل تستطيع أن تشرح: تفسير الانحرافات؟
+- هل تستطيع أن تشرح: اختيار الإجراء التصحيحي؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+Earned value control converts indicators into early action. Cost and schedule variances describe the present, EAC describes the likely future, and re-measurement after action shows whether the action worked.
+
+### Decision rule
+
+If SPI improves while CPI stays below 1, open a separate cost action. Declare control only after re-measuring both indicators in a later cycle.
+
+The reasoning chain in this lesson starts with CV وSV يخبرانك بالانحراف، وCPI وSPI يخبرانك بكفاءة استخدام الموارد والوقت.
+
+moves to EAC وETC وTCPI تحوّل الانحراف الحالي إلى توقع مالي يساعد الراعي على القرار.
+
+and is verified through تسريع الجدول عبر Fast Tracking يوفر وقتاً لكنه يرفع المخاطر، وCrashing يرفع التكلفة.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Compute CV, SV, CPI, SPI; Compute EAC, ETC, TCPI; Interpret variances; Select corrective action.
+
+### Learning objectives in English
+
+- Compute CV, SV, CPI, SPI
+- Compute EAC, ETC, TCPI
+- Interpret variances
+- Select corrective action
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** تحسن مؤشر لا يعني تحسن المشروع كله؛ اقرأ الصورة الكاملة.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+القراءة الأولى: SPI = 0.85 وCPI = 0.88 مع BAC = 200,000 وAC = 100,000. بعد إعادة الترتيب: SPI = 0.97 وCPI = 0.90. EAC انتقل من 227,273 إلى 222,222 دولار، أي تحسن 5,051 دولار فقط، ما زال يعني VAC = −22,222 دولار. لذلك يلزم إجراء تكلفة منفصل.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: إذا تحسن SPI وبقي CPI دون 1 فافتح إجراءً منفصلاً للتكلفة. ولا تُعلن السيطرة على المشروع إلا بعد إعادة قياس المؤشرين معاً في دورة لاحقة. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+First reading: SPI 0.85 and CPI 0.88 with BAC 200,000 and AC 100,000. After reordering, SPI becomes 0.97 and CPI 0.90. EAC moves from 227,273 to 222,222, an improvement of only 5,051 dollars, still leaving VAC of minus 22,222. A separate cost action is therefore required.
+
+### Reading the numbers
+
+Apply the rule: If SPI improves while CPI stays below 1, open a separate cost action. Declare control only after re-measuring both indicators in a later cycle. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يُحتفل بارتفاع SPI إلى 0.97 ويُهمل CPI = 0.90، فيُفاجأ الراعي بتجاوز الميزانية عند الإغلاق. والفشل الآخر هو تكرار الإجراء نفسه دون قياس أثره.
+
+**In English:** SPI rising to 0.97 is celebrated while CPI stays at 0.90, so the sponsor faces an overrun at closure. Another failure is repeating the same action without measuring its effect.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — حاسبة القيمة المكتسبة (EVM)
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="evm" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **إجراء تصحيحي (Corrective action):** تعديل لمعالجة الانحراف
-- **توقع (EAC):** التكلفة النهائية المتوقعة
-- **إعادة القياس:** التحقق من أثر الإجراء
+- **إجراء تصحيحي (Project management concept)**: تعديل لمعالجة الانحراف
+- **توقع (Project management practice)**: التكلفة النهائية المتوقعة
+- **إعادة القياس (Re-measurement)**: التحقق من أثر الإجراء
+
+<GlossaryCard terms={['pmp-evm', 'pmp-cpi', 'pmp-spi', 'pmp-forecast-eac', 'pmp-vac']} />
 
 ## 📎 مصادر معتمدة
 

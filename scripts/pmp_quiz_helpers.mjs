@@ -11,3 +11,7 @@ export const q = (scenario, question, difficulty, options) => ({
     explanation,
   })),
 });
+
+// Attach one shared case stem to every question of a bank that forms a case set.
+export const withCase = (questions, caseInfo) =>
+  questions.map((question) => ({ ...question, ...caseInfo }));

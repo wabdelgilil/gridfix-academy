@@ -1,5 +1,10 @@
 import { useMemo, useState } from 'react';
 import useLang from '../../../../lib/useLang';
+import {
+  pmpEcoTasks,
+  pmpEcoTasksByDomain,
+  type PmpEcoDomain,
+} from '../../../../data/pmpEcoTasks';
 
 export type PmpToolKind =
   | 'eligibility'
@@ -311,111 +316,90 @@ function EligibilityTool({ isEn }: { isEn: boolean }) {
   );
 }
 
-const ecoData = [
-  {
-    id: 1,
-    name: 'People',
-    nameAr: 'الأفراد',
-    weight: 33,
-    tasks: 8,
-    themesEn: [
-      'Lead the team',
-      'Build a high-performing team',
-      'Manage conflict',
-      'Stakeholder engagement',
-    ],
-    themesAr: [
-      'قيادة الفريق',
-      'بناء فريق عالي الأداء',
-      'إدارة الصراع',
-      'إشراك أصحاب المصلحة',
-    ],
-  },
-  {
-    id: 2,
-    name: 'Process',
-    nameAr: 'العمليات',
-    weight: 41,
-    tasks: 10,
-    themesEn: [
-      'Manage scope, schedule, cost',
-      'Quality and risk',
-      'Delivery and change control',
-      'Close the project',
-    ],
-    themesAr: [
-      'إدارة النطاق والجدول والتكلفة',
-      'الجودة والمخاطر',
-      'التسليم والتحكم بالتغيير',
-      'إغلاق المشروع',
-    ],
-  },
-  {
-    id: 3,
-    name: 'Business Environment',
-    nameAr: 'بيئة الأعمال',
-    weight: 26,
-    tasks: 8,
-    themesEn: [
-      'Governance and compliance',
-      'Organizational change',
-      'Benefits realization',
-      'AI and sustainability',
-    ],
-    themesAr: [
-      'الحوكمة والامتثال',
-      'التغيير المؤسسي',
-      'تحقيق الفوائد',
-      'الذكاء الاصطناعي والاستدامة',
-    ],
-  },
+const ecoDomains: { domain: PmpEcoDomain; nameAr: string; weight: number }[] = [
+  { domain: 'People', nameAr: 'الأفراد', weight: 33 },
+  { domain: 'Process', nameAr: 'العمليات', weight: 41 },
+  { domain: 'Business Environment', nameAr: 'بيئة الأعمال', weight: 26 },
 ];
 
 function EcoExplorer({ isEn }: { isEn: boolean }) {
-  const [active, setActive] = useState(1);
-  const d = ecoData.find((x) => x.id === active)!;
+  const [active, setActive] = useState<PmpEcoDomain>('People');
   return (
     <Panel
       title={isEn ? 'ECO 2026 explorer' : 'مستكشف ECO 2026'}
       hint={
         isEn
-          ? '26 tasks across three domains.'
-          : '26 مهمة موزعة على ثلاثة مجالات.'
+          ? `All ${pmpEcoTasks.length} July 2026 ECO tasks, mapped to lessons and quizzes.`
+          : `جميع مهام ECO ليوليو 2026 وعددها ${pmpEcoTasks.length}، مرتبطة بالدروس والكويزات.`
       }
     >
       <div className="grid gap-2 sm:grid-cols-3">
-        {ecoData.map((x) => (
-          <button
-            key={x.id}
-            type="button"
-            onClick={() => setActive(x.id)}
-            className={`rounded-xl border p-3 text-right text-sm transition ${active === x.id ? 'border-brand-500 bg-brand-50 text-brand-900 dark:bg-brand-950/40 dark:text-brand-100' : 'border-slate-200 text-ink-600 dark:border-slate-700 dark:text-slate-300'}`}
-          >
-            <p className="font-bold">{isEn ? x.name : x.nameAr}</p>
-            <p className="mt-1 text-xs" dir="ltr">
-              {x.weight}% · {x.tasks} tasks
-            </p>
-          </button>
-        ))}
+        {ecoDomains.map((d) => {
+          const tasks = pmpEcoTasksByDomain[d.domain];
+          return (
+            <button
+              key={d.domain}
+              type="button"
+              onClick={() => setActive(d.domain)}
+              className={`rounded-xl border p-3 text-right text-sm transition ${active === d.domain ? 'border-brand-500 bg-brand-50 text-brand-900 dark:bg-brand-950/40 dark:text-brand-100' : 'border-slate-200 text-ink-600 dark:border-slate-700 dark:text-slate-300'}`}
+            >
+              <p className="font-bold">{isEn ? d.domain : d.nameAr}</p>
+              <p className="mt-1 text-xs" dir="ltr">
+                {d.weight}% · {tasks.length} tasks
+              </p>
+            </button>
+          );
+        })}
       </div>
-      <div className="rounded-xl border border-slate-200 p-4 dark:border-slate-700">
-        <p
-          className="text-sm font-bold text-ink-900 dark:text-slate-100"
-          dir="ltr"
-        >
-          {isEn ? d.name : d.nameAr} — {d.weight}%
-        </p>
-        <Progress value={d.weight} />
-        <ul className="mt-3 space-y-1.5 text-sm text-ink-600 dark:text-slate-300">
-          {(isEn ? d.themesEn : d.themesAr).map((t) => (
-            <li key={t}>• {t}</li>
-          ))}
-        </ul>
+      <div className="space-y-3">
+        {ecoDomains.map((d) => {
+          const tasks = pmpEcoTasksByDomain[d.domain];
+          return (
+            <section
+              key={d.domain}
+              className={`rounded-xl border p-4 transition dark:border-slate-700 ${active === d.domain ? 'border-brand-500 bg-brand-50/40 dark:bg-brand-950/30' : 'border-slate-200'}`}
+            >
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <p className="text-sm font-bold text-ink-900 dark:text-slate-100">
+                  {isEn ? d.domain : d.nameAr}
+                </p>
+                <p className="text-xs text-ink-500" dir="ltr">
+                  {d.weight}% · {tasks.length} tasks
+                </p>
+              </div>
+              <Progress value={d.weight} />
+              <ul className="mt-3 space-y-2 text-sm text-ink-600 dark:text-slate-300">
+                {tasks.map((task) => (
+                  <li
+                    key={task.id}
+                    className="rounded-lg border border-slate-200 p-2 dark:border-slate-700"
+                  >
+                    <p className="flex flex-wrap items-center gap-2">
+                      <span
+                        className="rounded bg-slate-100 px-1.5 py-0.5 text-[11px] font-bold text-brand-700 dark:bg-slate-700 dark:text-brand-200"
+                        dir="ltr"
+                      >
+                        {task.id}
+                      </span>
+                      <span>{isEn ? task.titleEn : task.titleAr}</span>
+                    </p>
+                    <p className="mt-1 text-[11px] text-ink-400" dir="ltr">
+                      {isEn ? 'Lessons' : 'الدروس'}:{' '}
+                      {task.lessonIds.join(' · ')} ·{' '}
+                      {isEn ? 'Quizzes' : 'الكويزات'}:{' '}
+                      {task.quizIds.join(' · ')}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          );
+        })}
       </div>
       <Result>
         {isEn
-          ? 'Exam mix: ~40% predictive and ~60% agile/hybrid, woven through every domain.'
-          : 'مزيج الامتحان: نحو 40% تنبؤي و60% رشيق/هجين، متداخل في كل المجالات.'}
+          ? 'Exam mix: ~40% predictive and ~60% agile/hybrid, woven through every one of the 26 ECO tasks.'
+          : 'مزيج الامتحان: نحو 40% تنبؤي و60% رشيق/هجين، متداخل في كل مهام ECO الـ26.'}
       </Result>
     </Panel>
   );
@@ -1293,18 +1277,51 @@ function WbsTool({ isEn }: { isEn: boolean }) {
   const [rows, setRows] = useState<WbsRow[]>([
     { task: 'Discovery', level: 1, hours: 40 },
     { task: 'Interviews', level: 2, hours: 16 },
+    { task: 'Workshop', level: 2, hours: 24 },
     { task: 'Build', level: 1, hours: 120 },
+    { task: 'Deployment', level: 2, hours: 30 },
   ]);
   const update = (i: number, patch: Partial<WbsRow>) =>
     setRows((p) => p.map((r, j) => (j === i ? { ...r, ...patch } : r)));
+
+  // A row's parent is the nearest earlier row at a lower level.
+  const parentIndex = rows.map((row, i) => {
+    for (let j = i - 1; j >= 0; j -= 1) {
+      if (rows[j].level < row.level) return j;
+    }
+    return -1;
+  });
+  const hasChildren = rows.map((_, i) => parentIndex.includes(i));
+  const childTotals = rows.map((_, i) =>
+    rows.reduce(
+      (sum, child, j) => sum + (parentIndex[j] === i ? child.hours : 0),
+      0
+    )
+  );
+  const violations = rows
+    .map((row, i) => ({ i, row }))
+    .filter(({ i, row }) => hasChildren[i] && childTotals[i] !== row.hours);
   const total = rows.reduce((s, r) => s + r.hours, 0);
+  // Only leaves belong in a rolled-up estimate: counting a parent and its
+  // children together double counts the same work.
+  const leafTotal = rows.reduce(
+    (s, r, i) => (hasChildren[i] ? s : s + r.hours),
+    0
+  );
+  const doubleCounted = total !== leafTotal;
+  const ok = violations.length === 0 && !doubleCounted;
+
   return (
     <Panel
-      title={isEn ? 'WBS builder' : 'باني هيكل تجزئة العمل (WBS)'}
+      title={
+        isEn
+          ? 'WBS builder (100% rule)'
+          : 'باني هيكل تجزئة العمل (WBS) — قاعدة 100%'
+      }
       hint={
         isEn
-          ? 'Break deliverables down until they are estimable.'
-          : 'قسّم المخرجات حتى تصبح قابلة للتقدير.'
+          ? 'Child hours must equal the parent, and parents must never be added to their children.'
+          : 'مجموع ساعات الأبناء يجب أن يساوي الأب، ولا يُضاف الأب إلى أبنائه مرتين.'
       }
     >
       {rows.map((r, i) => (
@@ -1330,6 +1347,17 @@ function WbsTool({ isEn }: { isEn: boolean }) {
             onChange={(n) => update(i, { hours: n })}
             min={0}
           />
+          {hasChildren[i] && (
+            <p
+              className={`col-span-full text-[11px] font-semibold ${childTotals[i] === r.hours ? 'text-emerald-600' : 'text-rose-600'}`}
+              dir="ltr"
+            >
+              Σ children {childTotals[i]} / parent {r.hours} h
+              {childTotals[i] === r.hours
+                ? ' · 100% ✓'
+                : ' · 100% rule violated ✗'}
+            </p>
+          )}
         </div>
       ))}
       <button
@@ -1339,9 +1367,14 @@ function WbsTool({ isEn }: { isEn: boolean }) {
       >
         {isEn ? '+ Add work package' : '+ أضف حزمة عمل'}
       </button>
-      <Result>
-        Σ {isEn ? 'Estimated effort' : 'الجهد المقدر'}:{' '}
-        <span dir="ltr">{num(total)} h</span>
+      <Result tone={ok ? 'good' : 'bad'}>
+        {ok
+          ? isEn
+            ? `✅ 100% rule holds. Leaf estimate: ${num(leafTotal)} h; no parent hours double counted.`
+            : `✅ قاعدة 100% محققة. تقدير الأوراق: ${num(leafTotal)} ساعة؛ لا تكرار لساعات الآباء.`
+          : isEn
+            ? `⚠️ ${violations.length} parent(s) do not balance (${violations.map(({ i, row }) => `${row.task || i + 1}: ${childTotals[i]}/${row.hours} h`).join('; ')})${doubleCounted ? ` · Double counting: ${num(total - leafTotal)} h of parent effort is inside the ${num(total)} h total.` : ''}`
+            : `⚠️ ${violations.length} أب(اء) غير متوازنين (${violations.map(({ i, row }) => `${row.task || i + 1}: ${childTotals[i]}/${row.hours} ساعة`).join('؛ ')})${doubleCounted ? ` · احتساب مزدوج: ${num(total - leafTotal)} ساعة من عمل الآباء داخل إجمالي ${num(total)} ساعة.` : ''}`}
       </Result>
     </Panel>
   );
@@ -1583,8 +1616,11 @@ function EvmTool({ isEn }: { isEn: boolean }) {
   const cpi = ac ? ev / ac : 0;
   const spi = pv ? ev / pv : 0;
   const eac = cpi ? bac / cpi : 0;
+  const vac = bac - eac;
   const etc = Math.max(0, eac - ac);
   const tcpi = bac - ac ? (bac - ev) / (bac - ac) : 0;
+  const formulas =
+    'CV=EV−AC · SV=EV−PV · CPI=EV/AC · SPI=EV/PV · EAC=BAC/CPI · VAC=BAC−EAC';
   return (
     <Panel
       title={isEn ? 'EVM calculator' : 'حاسبة القيمة المكتسبة (EVM)'}
@@ -1620,6 +1656,12 @@ function EvmTool({ isEn }: { isEn: boolean }) {
           min={0}
         />
       </div>
+      <p
+        className="rounded-xl bg-slate-50 p-3 text-xs font-semibold text-ink-600 dark:bg-slate-800 dark:text-slate-300"
+        dir="ltr"
+      >
+        {formulas}
+      </p>
       <div className="grid gap-2 sm:grid-cols-3">
         {[
           ['CV', cv, cv >= 0],
@@ -1627,6 +1669,7 @@ function EvmTool({ isEn }: { isEn: boolean }) {
           ['CPI', cpi, cpi >= 1],
           ['SPI', spi, spi >= 1],
           ['EAC', eac, eac <= bac],
+          ['VAC', vac, vac >= 0],
           ['ETC', etc, true],
           ['TCPI', tcpi, tcpi <= 1],
         ].map(([label, value, ok]) => (
@@ -1648,8 +1691,8 @@ function EvmTool({ isEn }: { isEn: boolean }) {
       </div>
       <Result tone={cpi < 1 || spi < 1 ? 'warn' : 'good'}>
         {isEn
-          ? `CPI ${cpi.toFixed(2)} ${cpi < 1 ? '(over budget)' : '(under budget)'} · SPI ${spi.toFixed(2)} ${spi < 1 ? '(behind schedule)' : '(ahead)'}`
-          : `مؤشر CPI ${cpi.toFixed(2)} ${cpi < 1 ? '(تجاوز تكلفة)' : '(داخل الميزانية)'} · مؤشر SPI ${spi.toFixed(2)} ${spi < 1 ? '(تأخر جدول)' : '(متقدم)'}`}
+          ? `CPI ${cpi.toFixed(2)} ${cpi < 1 ? '(over budget)' : '(under budget)'} · SPI ${spi.toFixed(2)} ${spi < 1 ? '(behind schedule)' : '(ahead)'} · VAC ${num(vac)}`
+          : `مؤشر CPI ${cpi.toFixed(2)} ${cpi < 1 ? '(تجاوز تكلفة)' : '(داخل الميزانية)'} · مؤشر SPI ${spi.toFixed(2)} ${spi < 1 ? '(تأخر جدول)' : '(متقدم)'} · VAC ${num(vac)}`}
       </Result>
     </Panel>
   );
@@ -1945,26 +1988,64 @@ function ChecklistTool({
   );
 }
 
+type RiskKind = 'threat' | 'opportunity';
+
 interface RiskRow {
   risk: string;
+  kind: RiskKind;
   prob: number;
   impact: number;
   response: string;
+  owner: string;
+  trigger: string;
+  status: string;
 }
+
+const riskResponses: Record<RiskKind, string[]> = {
+  threat: ['Avoid', 'Mitigate', 'Transfer', 'Accept'],
+  opportunity: ['Exploit', 'Enhance', 'Share', 'Accept'],
+};
+
 function RiskTool({ isEn }: { isEn: boolean }) {
   const [rows, setRows] = useState<RiskRow[]>([
-    { risk: 'Vendor delay', prob: 4, impact: 4, response: 'Mitigate' },
-    { risk: 'Scope creep', prob: 3, impact: 5, response: 'Avoid' },
+    {
+      risk: 'Vendor delay',
+      kind: 'threat',
+      prob: 4,
+      impact: 4,
+      response: 'Mitigate',
+      owner: 'Procurement lead',
+      trigger: 'No shipping confirmation 10 days before the need date',
+      status: 'Open',
+    },
+    {
+      risk: 'Early vendor discount',
+      kind: 'opportunity',
+      prob: 3,
+      impact: 3,
+      response: 'Exploit',
+      owner: 'Buyer',
+      trigger: 'Quote below the cost baseline',
+      status: 'Open',
+    },
   ]);
   const update = (i: number, patch: Partial<RiskRow>) =>
     setRows((p) => p.map((r, j) => (j === i ? { ...r, ...patch } : r)));
+  const unowned = rows.filter((r) => !r.owner.trim()).length;
+  const top = [...rows].sort(
+    (a, b) => b.prob * b.impact - a.prob * a.impact
+  )[0];
   return (
     <Panel
-      title={isEn ? 'Risk register builder' : 'باني سجل المخاطر'}
+      title={
+        isEn
+          ? 'Risk & opportunity register'
+          : 'باني سجل المخاطر والفرص (Risk register)'
+      }
       hint={
         isEn
-          ? 'Score = probability × impact (1–25).'
-          : 'الدرجة = الاحتمال × الأثر (1–25).'
+          ? 'Score = probability × impact (1–25). Threats and opportunities need different responses.'
+          : 'الدرجة = الاحتمال × الأثر (1–25). للتهديدات والفرص استجابات مختلفة.'
       }
     >
       {rows.map((r, i) => (
@@ -1973,20 +2054,38 @@ function RiskTool({ isEn }: { isEn: boolean }) {
           className="grid gap-2 rounded-xl border border-slate-200 p-3 sm:grid-cols-4 dark:border-slate-700"
         >
           <TextField
-            label={isEn ? 'Risk' : 'الخطر'}
+            label={isEn ? 'Risk / opportunity' : 'الخطر / الفرصة'}
             value={r.risk}
             onChange={(s) => update(i, { risk: s })}
           />
+          <label className="block">
+            <span className="mb-1 block text-xs font-semibold text-ink-600 dark:text-slate-300">
+              {isEn ? 'Type' : 'النوع'}
+            </span>
+            <select
+              value={r.kind}
+              onChange={(e) => {
+                const kind = e.target.value as RiskKind;
+                update(i, { kind, response: riskResponses[kind][0] });
+              }}
+              className="w-full rounded-xl border border-slate-200 bg-white px-2 py-2 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+            >
+              <option value="threat">{isEn ? 'Threat' : 'تهديد'}</option>
+              <option value="opportunity">
+                {isEn ? 'Opportunity' : 'فرصة'}
+              </option>
+            </select>
+          </label>
           <NumberField
             label={isEn ? 'Probability' : 'الاحتمال'}
             value={r.prob}
-            onChange={(n) => update(i, { prob: Math.min(5, n) })}
+            onChange={(n) => update(i, { prob: Math.max(1, Math.min(5, n)) })}
             min={1}
           />
           <NumberField
             label={isEn ? 'Impact' : 'الأثر'}
             value={r.impact}
-            onChange={(n) => update(i, { impact: Math.min(5, n) })}
+            onChange={(n) => update(i, { impact: Math.max(1, Math.min(5, n)) })}
             min={1}
           />
           <label className="block">
@@ -1998,14 +2097,43 @@ function RiskTool({ isEn }: { isEn: boolean }) {
               onChange={(e) => update(i, { response: e.target.value })}
               className="w-full rounded-xl border border-slate-200 bg-white px-2 py-2 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
             >
-              <option value="Avoid">Avoid</option>
-              <option value="Mitigate">Mitigate</option>
-              <option value="Transfer">Transfer</option>
-              <option value="Accept">Accept</option>
+              {riskResponses[r.kind].map((response) => (
+                <option key={response} value={response}>
+                  {response}
+                </option>
+              ))}
+            </select>
+          </label>
+          <TextField
+            label={isEn ? 'Owner' : 'المالك'}
+            value={r.owner}
+            onChange={(s) => update(i, { owner: s })}
+            placeholder={isEn ? 'Named person' : 'شخص محدد'}
+          />
+          <TextField
+            label={isEn ? 'Trigger / warning signal' : 'المحفز / إشارة الإنذار'}
+            value={r.trigger}
+            onChange={(s) => update(i, { trigger: s })}
+            placeholder={isEn ? 'What to watch for' : 'ما الذي يجب مراقبته'}
+          />
+          <label className="block">
+            <span className="mb-1 block text-xs font-semibold text-ink-600 dark:text-slate-300">
+              {isEn ? 'Status' : 'الحالة'}
+            </span>
+            <select
+              value={r.status}
+              onChange={(e) => update(i, { status: e.target.value })}
+              className="w-full rounded-xl border border-slate-200 bg-white px-2 py-2 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+            >
+              <option value="Open">{isEn ? 'Open' : 'مفتوح'}</option>
+              <option value="Actioned">
+                {isEn ? 'Actioned' : 'قيد التنفيذ'}
+              </option>
+              <option value="Closed">{isEn ? 'Closed' : 'مغلق'}</option>
             </select>
           </label>
           <p className="col-span-full text-xs text-ink-500" dir="ltr">
-            Score {r.prob * r.impact} / 25
+            Score {r.prob * r.impact} / 25 · {r.kind} · {r.response}
           </p>
         </div>
       ))}
@@ -2014,17 +2142,30 @@ function RiskTool({ isEn }: { isEn: boolean }) {
         onClick={() =>
           setRows((p) => [
             ...p,
-            { risk: '', prob: 3, impact: 3, response: 'Mitigate' },
+            {
+              risk: '',
+              kind: 'threat',
+              prob: 3,
+              impact: 3,
+              response: 'Mitigate',
+              owner: '',
+              trigger: '',
+              status: 'Open',
+            },
           ])
         }
         className="btn-outline text-sm"
       >
-        {isEn ? '+ Add risk' : '+ أضف خطراً'}
+        {isEn ? '+ Add risk or opportunity' : '+ أضف خطراً أو فرصة'}
       </button>
-      <Result>
-        {isEn
-          ? `Top risk: ${[...rows].sort((a, b) => b.prob * b.impact - a.prob * a.impact)[0]?.risk || '—'}`
-          : `أعلى خطر: ${[...rows].sort((a, b) => b.prob * b.impact - a.prob * a.impact)[0]?.risk || '—'}`}
+      <Result tone={unowned ? 'warn' : 'good'}>
+        {unowned
+          ? isEn
+            ? `${unowned} entry(ies) have no owner — assign one before the next review. Top: ${top?.risk || '—'}`
+            : `${unowned} سجل بلا مالك — عيّن مالكاً قبل المراجعة القادمة. الأعلى: ${top?.risk || '—'}`
+          : isEn
+            ? `All entries have an owner. Top score: ${top?.risk || '—'} (${top ? top.prob * top.impact : 0}/25).`
+            : `كل السجلات لها مالك. أعلى درجة: ${top?.risk || '—'} (${top ? top.prob * top.impact : 0}/25).`}
       </Result>
     </Panel>
   );
@@ -2552,38 +2693,76 @@ function AiTool({ isEn }: { isEn: boolean }) {
     false,
     false,
     false,
+    false,
   ]);
+  const [risk, setRisk] = useState(55);
+  const [threshold, setThreshold] = useState(60);
   const items = isEn
     ? [
-        'Data quality reviewed',
-        'Human oversight assigned',
-        'Bias test performed',
-        'Privacy impact assessed',
-        'ESG metrics defined',
-        'Decision explainability documented',
+        'Data provenance: sources, model and prompt logged',
+        'Training and evaluation data quality reviewed',
+        'Bias review by a diverse human panel',
+        'Human-in-the-loop (HITL) owner and threshold agreed',
+        'Generative output labelled and linked to its input',
+        'Privacy, intellectual property and ESG impact assessed',
+        'Drift monitoring and escalation path defined',
       ]
     : [
-        'مراجعة جودة البيانات',
-        'تعيين إشراف بشري',
-        'اختبار التحيز',
-        'تقييم أثر الخصوصية',
-        'تحديد مقاييس ESG',
-        'توثيق قابلية تفسير القرار',
+        'سلسلة المصدر (Data provenance): المصادر والنموذج والموجه موثقة',
+        'مراجعة جودة بيانات التدريب والتقييم',
+        'مراجعة التحيز (Bias review) بواسطة فريق بشري متنوع',
+        'اتفاق على مالك وحد المراجعة البشرية (Human-in-the-loop)',
+        'وسم المخرج التوليدي وربطه بمدخلاته',
+        'تقييم أثر الخصوصية والملكية الفكرية والاستدامة (ESG)',
+        'تعريف مراقبة الانحراف ومسار التصعيد',
       ];
   const done = checked.filter(Boolean).length;
+  const coreControls = checked[0] && checked[1] && checked[2] && checked[3];
+  const humanSignoff = risk >= threshold || !checked[3];
+  const clamp = (n: number) => Math.max(1, Math.min(100, n));
   return (
     <Panel
       title={
         isEn
-          ? 'AI readiness & sustainability'
-          : 'جاهزية الذكاء الاصطناعي والاستدامة'
+          ? 'Generative AI (GenAI) governance'
+          : 'حوكمة الذكاء الاصطناعي التوليدي (GenAI)'
       }
       hint={
         isEn
-          ? 'AI accelerates decisions; governance keeps them accountable.'
-          : 'الذكاء الاصطناعي يسرّع القرار، والحوكمة تحافظ على مساءلته.'
+          ? 'Generative AI (GenAI) can draft estimates and code, but every generative output needs provenance, bias review and a human-in-the-loop decision.'
+          : 'الذكاء الاصطناعي التوليدي (GenAI) يمكنه صياغة التقديرات والكود، لكن كل مخرج generative يحتاج سلسلة مصدر ومراجعة تحيز وقراراً بشرياً (human-in-the-loop).'
       }
     >
+      <div className="grid gap-2 text-xs sm:grid-cols-3">
+        <div className="rounded-xl bg-slate-50 p-3 dark:bg-slate-800">
+          <p className="font-bold">
+            {isEn ? 'Provenance' : 'سلسلة المصدر (Provenance)'}
+          </p>
+          <p className="mt-1 text-ink-500">
+            {isEn
+              ? 'Record data origin, model version and prompt so results are traceable.'
+              : 'سجّل مصدر البيانات وإصدار النموذج والموجه لتكون النتائج قابلة للتتبع.'}
+          </p>
+        </div>
+        <div className="rounded-xl bg-slate-50 p-3 dark:bg-slate-800">
+          <p className="font-bold">{isEn ? 'Bias review' : 'مراجعة التحيز'}</p>
+          <p className="mt-1 text-ink-500">
+            {isEn
+              ? 'Test outputs across groups before they influence estimates or people decisions.'
+              : 'اختبر المخرجات عبر الفئات قبل أن تؤثر على التقديرات أو قرارات الأفراد.'}
+          </p>
+        </div>
+        <div className="rounded-xl bg-slate-50 p-3 dark:bg-slate-800">
+          <p className="font-bold">
+            {isEn ? 'Human-in-the-loop' : 'المراجعة البشرية'}
+          </p>
+          <p className="mt-1 text-ink-500">
+            {isEn
+              ? 'A named person signs off whenever risk meets the threshold.'
+              : 'يوقّع شخص محدد عند بلوغ درجة الخطورة للحد المحدد.'}
+          </p>
+        </div>
+      </div>
       <div className="space-y-2">
         {items.map((it, i) => (
           <CheckRow
@@ -2597,10 +2776,32 @@ function AiTool({ isEn }: { isEn: boolean }) {
         ))}
       </div>
       <Progress value={done} max={items.length} />
-      <Result tone={done >= 5 ? 'good' : 'warn'}>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <NumberField
+          label={
+            isEn
+              ? 'Use-case risk score (1–100)'
+              : 'درجة خطورة حالة الاستخدام (1–100)'
+          }
+          value={risk}
+          onChange={(n) => setRisk(clamp(n))}
+          min={1}
+        />
+        <NumberField
+          label={
+            isEn
+              ? 'Human-in-the-loop review threshold (1–100)'
+              : 'حد المراجعة البشرية (1–100)'
+          }
+          value={threshold}
+          onChange={(n) => setThreshold(clamp(n))}
+          min={1}
+        />
+      </div>
+      <Result tone={coreControls ? 'good' : 'warn'}>
         {isEn
-          ? `Readiness score ${done}/6 — ${done >= 5 ? 'ready for a controlled pilot' : 'close the gaps before piloting'}.`
-          : `درجة الجاهزية ${done}/6 — ${done >= 5 ? 'جاهز لتجربة مضبوطة' : 'أغلق الفجوات قبل التجربة'}.`}
+          ? `${done}/7 governance controls evidenced · risk ${risk} vs threshold ${threshold} → ${humanSignoff ? 'human sign-off REQUIRED' : 'accelerated path allowed by policy'}. ${coreControls ? 'Provenance, bias review and HITL threshold are in place.' : 'Close the provenance, bias-review and HITL gaps before a controlled pilot.'}`
+          : `${done}/7 من ضوابط الحوكمة موثقة · الخطورة ${risk} مقابل الحد ${threshold} ← ${humanSignoff ? 'التوقيع البشري إلزامي' : 'مسار مختصر مسموح به حسب السياسة'}. ${coreControls ? 'سلسلة المصدر ومراجعة التحيز وحد المراجعة البشرية مكتملة.' : 'أغلق فجوات سلسلة المصدر ومراجعة التحيز والمراجعة البشرية قبل التجربة المضبوطة.'}`}
       </Result>
     </Panel>
   );
@@ -2708,6 +2909,7 @@ function KanbanTool({ isEn }: { isEn: boolean }) {
     Review: 2,
     Done: 20,
   });
+  const overloaded = kanbanCols.filter((c) => cards[c] > wip[c]);
   return (
     <Panel
       title={
@@ -2723,7 +2925,7 @@ function KanbanTool({ isEn }: { isEn: boolean }) {
         {kanbanCols.map((c) => (
           <div
             key={c}
-            className="rounded-xl border border-slate-200 p-3 dark:border-slate-700"
+            className={`rounded-xl border p-3 dark:border-slate-700 ${cards[c] > wip[c] ? 'border-rose-400 bg-rose-50/60 dark:bg-rose-950/30' : 'border-slate-200'}`}
           >
             <p
               className="text-xs font-bold text-ink-900 dark:text-slate-100"
@@ -2770,16 +2972,14 @@ function KanbanTool({ isEn }: { isEn: boolean }) {
           </div>
         ))}
       </div>
-      <Result
-        tone={
-          cards['In progress'] > wip['In progress'] || cards.Review > wip.Review
-            ? 'bad'
-            : 'good'
-        }
-      >
-        {isEn
-          ? 'Stop starting new work until overloaded columns are back under their WIP limit.'
-          : 'توقف عن بدء عمل جديد حتى تعود الأعمدة المحمّلة إلى حد العمل الجاري.'}
+      <Result tone={overloaded.length ? 'bad' : 'good'}>
+        {overloaded.length
+          ? isEn
+            ? `⛔ WIP overloaded in ${overloaded.join(', ')} (${overloaded.map((c) => `${cards[c]}>${wip[c]}`).join(' · ')}) — stop starting new work and finish or pull those cards forward.`
+            : `⛔ تجاوز حد العمل الجاري في ${overloaded.join('، ')} (${overloaded.map((c) => `${cards[c]}>${wip[c]}`).join(' · ')}) — توقف عن بدء عمل جديد وأنهِ البطاقات الحالية أو اسحبها للأمام.`
+          : isEn
+            ? '✅ No column is over its WIP limit — keep pulling work smoothly; do not add pressure to start more.'
+            : '✅ لا يوجد عمود تجاوز حد العمل الجاري — استمر في سحب العمل بسلاسة دون ضغط لبدء المزيد.'}
       </Result>
     </Panel>
   );
@@ -3068,5 +3268,22 @@ export default function PmpTool({ kind }: Props) {
       return <DiagnosticTool isEn={isEn} />;
     case 'exam':
       return <ExamTool isEn={isEn} />;
+    default:
+      return (
+        <Panel
+          title={isEn ? 'Tool unavailable' : 'الأداة غير متاحة'}
+          hint={
+            isEn
+              ? `Unknown tool: ${String(kind)}`
+              : `أداة غير معروفة: ${String(kind)}`
+          }
+        >
+          <Result tone="warn">
+            {isEn
+              ? 'This tool kind is not registered. Choose a tool from the lesson page.'
+              : 'هذا النوع من الأدوات غير مسجّل. اختر أداة من صفحة الدرس.'}
+          </Result>
+        </Panel>
+      );
   }
 }

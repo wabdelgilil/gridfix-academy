@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp55 } from '../../../data/quiz/pmp/quiz-pmp-5-5';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - توجيه العمل وتنفيذ الخطة ينتجان مخرجات وتقارير أداء وتغييرات وخططاً محدثة.
 - مراجعة الدروس المستفادة ونقل المعرفة جزء من التكامل عبر دورة حياة المشروع.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+خطة إدارة المشروع تجمع الخطوط الأساسية والخطط الفرعية في مرجع معتمد واحد. التكامل (Integration) مسؤولية مدير المشروع: مواءمة القرارات وتسوية التعارضات بين النطاق والجدول والتكلفة والجودة مع توثيق المبرر.
+
+### القاعدة الحاكمة وترتيب القرار
+
+عند تضارب مطالب أصحاب المصلحة، اعرض أثر كل خيار على القيمة والمخاطر والخط الأساسي، ثم اطلب اعتماد الراعي للقرار الذي يمس الميثاق وسجّله في سجل القرارات.
+
+سلسلة الفهم في هذا الدرس تبدأ من "خطة إدارة المشروع تجمع الخطوط الأساسية والخطوط الفرعية في مرجع واحد معتمد."
+
+ثم تنتقل إلى "مدير المشروع مسؤول عن التكامل: مواءمة القرارات وتسوية التعارضات بين أصحاب المصلحة."
+
+وتتحقق عملياً عبر "توجيه العمل وتنفيذ الخطة ينتجان مخرجات وتقارير أداء وتغييرات وخططاً محدثة.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تعريف إدارة تكامل المشروع (Project integration management)؛ فهم ميثاق المشروع (Project charter)؛ فهم خطة إدارة المشروع (Project management plan)؛ التمييز بين بيانات أداء العمل ومعلوماته وتقاريره (Work performance data/information/reports).
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تعريف إدارة تكامل المشروع (Project integration management)؟
+- هل تستطيع أن تشرح: فهم ميثاق المشروع (Project charter)؟
+- هل تستطيع أن تشرح: فهم خطة إدارة المشروع (Project management plan)؟
+- هل تستطيع أن تشرح: التمييز بين بيانات أداء العمل ومعلوماته وتقاريره (Work performance data/information/reports)؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+The project management plan gathers baselines and subsidiary plans into one approved reference. Integration is the project manager duty to align decisions and reconcile conflicts among scope, schedule, cost and quality while documenting the rationale.
+
+### Decision rule
+
+When stakeholder demands conflict, show each option effect on value, risk and baseline, then obtain sponsor approval for any decision affecting the charter and record it in the decision log.
+
+The reasoning chain in this lesson starts with خطة إدارة المشروع تجمع الخطوط الأساسية والخطوط الفرعية في مرجع واحد معتمد.
+
+moves to مدير المشروع مسؤول عن التكامل: مواءمة القرارات وتسوية التعارضات بين أصحاب المصلحة.
+
+and is verified through توجيه العمل وتنفيذ الخطة ينتجان مخرجات وتقارير أداء وتغييرات وخططاً محدثة.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Define Project Integration Management; Understand Project Charter; Understand Project Management Plan; Distinguish Work Performance Data/Information/Reports.
+
+### Learning objectives in English
+
+- Define Project Integration Management
+- Understand Project Charter
+- Understand Project Management Plan
+- Distinguish Work Performance Data/Information/Reports
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** التكامل ليس حلاً وسطاً تلقائياً؛ هو قرار موثق يوازن الأهداف.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+ثلاثة خيارات لإطلاق مبكر: تسويق يوفر أسبوعين بقيمة 40,000 دولار، مالية توفر 25,000 دولار بتأخير أسبوع، وجودة تطلب أسبوع اختبار بتكلفة 15,000 دولار لكنها تخفض مخاطرة 60,000 دولار. الخيار المعتمد: أسبوع اختبار إضافي، صافي القيمة 45,000 دولار، مع تحديث خط الأساس.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: عند تضارب مطالب أصحاب المصلحة، اعرض أثر كل خيار على القيمة والمخاطر والخط الأساسي، ثم اطلب اعتماد الراعي للقرار الذي يمس الميثاق وسجّله في سجل القرارات. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+Three launch options: marketing gains two weeks worth 40,000 dollars, finance saves 25,000 by delaying a week, and quality asks for one test week costing 15,000 while reducing risk worth 60,000. The approved option is the extra test week for a net value of 45,000 dollars, with the baseline updated accordingly.
+
+### Reading the numbers
+
+Apply the rule: When stakeholder demands conflict, show each option effect on value, risk and baseline, then obtain sponsor approval for any decision affecting the charter and record it in the decision log. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يُعتمد حل وسط تلقائياً بين التسويق والمالية والجودة دون تحليل أثر، فيُسجَّل قرار بلا مبرر ويعود الخلاف في المراجعة التالية. والفشل الآخر هو وجود خطط فرعية متعارضة بلا مرجع تكاملي.
+
+**In English:** An automatic compromise between marketing, finance and quality is approved with no impact analysis, so an undocumented decision reopens at the next review. Another failure is conflicting subsidiary plans with no integrated reference.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — باني خطة المشروع
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="plan" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **خطة إدارة المشروع:** المرجع التكاملي المعتمد
-- **التكامل (Integration):** مواءمة القرارات والخطط
-- **تسوية التعارض:** اتخاذ قرار بين خيارات متضاربة
+- **خطة إدارة المشروع (Project management plan)**: المرجع التكاملي المعتمد
+- **التكامل (Project management practice)**: مواءمة القرارات والخطط
+- **تسوية التعارض (Conflict resolution)**: اتخاذ قرار بين خيارات متضاربة
+
+<GlossaryCard terms={['pmp-charter', 'pmp-scope-baseline', 'pmp-governance']} />
 
 ## 📎 مصادر معتمدة
 

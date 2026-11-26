@@ -9,7 +9,7 @@ descriptionEn: "Resources, contracts, cost of quality, assurance, and integratio
 badge: "تنفيذ"
 badgeEn: "Execution"
 icon: "🧰"
-examWeight: 8
+examWeight: 7
 domain: "Process"
 status: "live"
 ---
@@ -21,6 +21,20 @@ status: "live"
 - تكلفة الجودة وضمانها
 - خطة المشروع المتكاملة
 
+## ✅ ما الذي يفترضه هذا الدرس معرفةً سابقة؟
+
+- قراءة المسار الحرج والعائم من المحطة 4 قبل تعديل الموارد
+- فهم خط الأساس للتكلفة واحتياطي الطوارئ قبل تقييم العروض
+- ربط معايير الجودة بمعايير القبول المكتوبة في المحطة 3
+
+## Prerequisites assumed in English
+
+- Read the critical path and float from station 4 before changing resources.
+- Understand the cost baseline and contingency reserve before evaluating bids.
+- Link quality criteria to the written acceptance criteria from station 3.
+
 ## 🧭 مكانها في ترتيب الفهم
 
-هذه المحطة جزء من مسار يبدأ بالمفاهيم، ثم الناس، ثم التخطيط والتنفيذ، ثم بيئة الأعمال، وينتهي بالمحاكي — لا حسب ترتيب فصول دليل PMBOK.
+الموارد والعقود والجودة هي شروط تحويل الخطة إلى التنفيذ؛ لذلك تأتي بعد الجدول والتكلفة.
+
+Resources, contracts and quality are conditions for turning the plan into execution, so they follow schedule and cost.

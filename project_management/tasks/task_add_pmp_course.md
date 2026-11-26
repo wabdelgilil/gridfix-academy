@@ -2,7 +2,7 @@
 # PMP Course Addition Plan — Aligned to July 2026 ECO + PMBOK 8
 
 > **For agentic workers:** Steps use checkbox (`- [ ]`) syntax for tracking.
-> **Status:** COMPLETE — delivered live on 2026-11-26; all acceptance gates passed; changes left uncommitted.
+> **Status:** COMPLETE — delivered live on 2026-11-26; exam-readiness rebuild completed after an independent audit; all acceptance gates passed and changes pushed to `origin/master`. Residual limitations are documented in [EXAM_COVERAGE_PMP.md](../EXAM_COVERAGE_PMP.md).
 
 **Goal:** إضافة كورس PMP as a first-class course in GridFix Academy, driven by the **July 2026 PMP Examination Content Outline (ECO)** and **PMBOK Guide, 8th Edition**, with the same multi-course architecture used by CFM/CMRP/CAMA (content collections, curriculum registry, glossary, sources, quizzes, mock exam, audio/video hooks).
 
@@ -373,12 +373,13 @@ Full course is "done" when:
 
 ## 8. Sign-Off Gate
 
-This plan is complete. **Production code was implemented and verified; changes remain uncommitted.**
+This plan is complete. **Production code was implemented, audited, rebuilt where the audit found shortcuts, verified, committed and pushed.**
 
 Delivered scope:
-- 12 live stations and 55 live lessons with bilingual Arabic-first terminology.
-- 220 lesson quiz questions (4 per lesson) with full explanations.
-- 180-question mock exam: 59 People / 74 Process / 47 Business Environment.
-- July 2026 ECO weights (33/41/26), 26 tasks, 180 questions / 240 minutes, and ~40/60 predictive-agile-hybrid mix.
-- Generative AI, sustainability/ESG, benefits realization, and case-based scenarios.
-- Final gates: `npm run verify` PASS (0 errors) and `npm run build` PASS (192 pages).
+- 12 live stations and 55 live lessons with bilingual Arabic-first terminology; each lesson 1,110–1,540 words with a worked numeric example and teaching island.
+- 220 lesson quiz questions (4 per lesson); all 880 explanations are unique and at least 20 characters, with correct-option feedback and one hinted retry.
+- 180-question mock exam: 59 People / 74 Process / 47 Business Environment at 80 seconds per question, with skipped questions included in review.
+- July 2026 ECO weights (33/41/26) in both curriculum and station files, 26 tasks explicitly mapped in `src/data/pmpEcoTasks.ts`, and a ~40/60 predictive-agile-hybrid teaching balance.
+- Generative-AI governance, sustainability/ESG metrics, a benefit-management plan artifact, and two shared multi-question case sets with data-table stems.
+- Final gates: `npm run verify` PASS (319 files, 0 errors, 0 warnings, 0 hints, 36 tests) and `npm run build` PASS (192 pages).
+- Honest limitations: no PMP audio assets exist, case-set/graphic coverage is not exhaustive, and no independent psychometric study has validated exam readiness.

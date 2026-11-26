@@ -27,6 +27,9 @@ sources:
   - "agile_practice_guide"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp101 } from '../../../data/quiz/pmp/quiz-pmp-10-1';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -49,6 +52,64 @@ Agile ليست اجتماعات أكثر، بل عقلية تقدّم الأفر
 - الإطار الرشيق يقلل تكلفة التأخير في التعلم عبر حلقات قصيرة من التخطيط والتنفيذ والمراجعة.
 - ECO 2026 يختبر Agile كعقلية وتطبيقاً، لا كقائمة مصطلحات.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+ميثاق الرشاقة (Agile manifesto) يقابل أفراداً وتفاعلاً على عمليات وأدوات، ومخرجات عاملة على وثائق شاملة، وتعاوناً مع العميل على تفاوض العقود، واستجابة للتغيير على اتباع خطة. المبادئ الاثنا عشر تترجم هذه القيم إلى تسليم مبكر وتحسين منتظم.
+
+### القاعدة الحاكمة وترتيب القرار
+
+قِس الرشاقة بزمن التعلم: كم أسبوعاً يمر قبل أن ترى ملاحظة العميل في ترتيب الأولويات؟ إن كانت الإجابة أكثر من دورة واحدة، فالطقوس موجودة والعقلية غائبة.
+
+سلسلة الفهم في هذا الدرس تبدأ من "قيم الميثاق الرشيق الأربع: أفراد وتفاعل، مخرجات عاملة، تعاون مع العميل، واستجابة للتغيير."
+
+ثم تنتقل إلى "المبادئ الاثنا عشر تؤكد على التسليم المبكر والمتكرر وتقليل الهدر وتمكين الفرق وتحسين العملية بانتظام."
+
+وتتحقق عملياً عبر "الإطار الرشيق يقلل تكلفة التأخير في التعلم عبر حلقات قصيرة من التخطيط والتنفيذ والمراجعة.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: "البيان (Manifesto)" (Agile Manifesto)؛ "القيم (Values)" (4 values)؛ "المبادئ (Principles)" (12 principles)؛ "العقلية (Mindset)" (Agile mindset).
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: "البيان (Manifesto)" (Agile Manifesto)؟
+- هل تستطيع أن تشرح: "القيم (Values)" (4 values)؟
+- هل تستطيع أن تشرح: "المبادئ (Principles)" (12 principles)؟
+- هل تستطيع أن تشرح: "العقلية (Mindset)" (Agile mindset)؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+The Agile manifesto values individuals and interactions over processes and tools, working software over comprehensive documentation, customer collaboration over contract negotiation and responding to change over following a plan. Its twelve principles turn these values into early delivery and regular improvement.
+
+### Decision rule
+
+Measure agility by learning time: how many weeks pass before client feedback changes the priority order? If the answer exceeds one cycle, ceremonies exist but the mindset does not.
+
+The reasoning chain in this lesson starts with قيم الميثاق الرشيق الأربع: أفراد وتفاعل، مخرجات عاملة، تعاون مع العميل، واستجابة للتغيير.
+
+moves to المبادئ الاثنا عشر تؤكد على التسليم المبكر والمتكرر وتقليل الهدر وتمكين الفرق وتحسين العملية بانتظام.
+
+and is verified through الإطار الرشيق يقلل تكلفة التأخير في التعلم عبر حلقات قصيرة من التخطيط والتنفيذ والمراجعة.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Agile Manifesto; 4 values; 12 principles; Agile mindset.
+
+### Learning objectives in English
+
+- Agile Manifesto
+- 4 values
+- 12 principles
+- Agile mindset
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -57,11 +118,41 @@ Agile ليست اجتماعات أكثر، بل عقلية تقدّم الأفر
 
 > 💡 **نصيحة الامتحان:** إن لم يتغير ترتيب العمل بعد ملاحظة العميل، فالرشاقة شكلية فقط.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+دورتان أسبوعيتان، تأخرت ملاحظة العميل 6 أسابيع في النهج التنبؤي = 3 دورات ضائعة. بعد المراجعة أصبحت الملاحظة تُدرج في سبرنت واحد، أي تقليل 4 أسابيع. بتكلفة تأخير 2,500 دولار/أسبوع، الوفر 10,000 دولار.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: قِس الرشاقة بزمن التعلم: كم أسبوعاً يمر قبل أن ترى ملاحظة العميل في ترتيب الأولويات؟ إن كانت الإجابة أكثر من دورة واحدة، فالطقوس موجودة والعقلية غائبة. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+With two-week cycles, client feedback arrived after six weeks under a predictive approach, three lost cycles. After review it entered one sprint, cutting four weeks of delay at 2,500 dollars a week and saving 10,000 dollars.
+
+### Reading the numbers
+
+Apply the rule: Measure agility by learning time: how many weeks pass before client feedback changes the priority order? If the answer exceeds one cycle, ceremonies exist but the mindset does not. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يُطبَّق stand-up يومي وسبرنتات محددة، لكن الترتيب لا يتغير بعد ملاحظات العميل حتى نهاية المشروع. أو يُستبدل التوثيق بالكامل بلا سجل قرارات، فتُفقد المعرفة.
+
+**In English:** Daily stand-ups and timeboxed sprints are in place, but priorities never change after client feedback until the end; or documentation is abandoned entirely, losing the decision record.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — لوحة Agile
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="agile" client:load />
 
@@ -75,9 +166,11 @@ Agile ليست اجتماعات أكثر، بل عقلية تقدّم الأفر
 
 ## 📚 قاموس المصطلحات
 
-- **Agile:** عقلية تكيّف وتسليم متكرر
-- **ميثاق Agile:** أربع قيم واثنا عشر مبدأً
-- **الهدر (Waste):** أي عمل لا يضيف قيمة
+- **Agile (Agile mindset)**: عقلية تكيّف وتسليم متكرر
+- **ميثاق Agile (Agile Manifesto)**: أربع قيم واثنا عشر مبدأً
+- **الهدر (Project management process)**: أي عمل لا يضيف قيمة
+
+<GlossaryCard terms={['pmp-sprint', 'pmp-standup', 'pmp-scrum']} />
 
 ## 📎 مصادر معتمدة
 

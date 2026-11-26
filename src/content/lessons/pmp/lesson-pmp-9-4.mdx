@@ -26,6 +26,9 @@ sources:
   - "pmbok_8"
 ---
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { quizPmp94 } from '../../../data/quiz/pmp/quiz-pmp-9-4';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -48,6 +51,64 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 - البيانات تُستخدم لتأكيد التحسين، لا الانطباع الشخصي.
 - التحسين يُدمج في معايير العمل وإلا يعود الفريق إلى الطريقة القديمة بعد ضغط الإنتاج.
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+دورة PDCA أربع خطوات: تخطيط (Plan) وتنفيذ (Do) وتحقق (Check) وتكيّف (Act). التحسين المستمر (Continuous improvement) يعتمد على مشاركة الفريق في تحسينات صغيرة وقياسها، ثم توحيد المعيار حتى لا يعود الفريق إلى الطريقة القديمة.
+
+### القاعدة الحاكمة وترتيب القرار
+
+جرّب التحسين على عينة صغيرة ومدة قصيرة، وقارن البيانات قبل وبعد. إن أثبت الأثر فحدّث إجراء التشغيل ودوّن المالك، وإلا عدّل الفرضية وابدأ دورة جديدة.
+
+سلسلة الفهم في هذا الدرس تبدأ من "دورة PDCA: Plan وDo وCheck وAct، وتُطبَّق على العملية لا على نتيجة نهائية فقط."
+
+ثم تنتقل إلى "التحسين التدريجي (Kaizen) يعتمد على مشاركة الفريق في اقتراح تحسينات صغيرة متكررة."
+
+وتتحقق عملياً عبر "البيانات تُستخدم لتأكيد التحسين، لا الانطباع الشخصي.". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: تعريف "التحسين المستمر (Continuous improvement)"؛ "دورة PDCA" (Plan-Do-Check-Act)؛ "الدروس المستفادة (Lessons learned)"؛ "Kaizen" و"الابتكار (Innovation)".
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: تعريف "التحسين المستمر (Continuous improvement)"؟
+- هل تستطيع أن تشرح: "دورة PDCA" (Plan-Do-Check-Act)؟
+- هل تستطيع أن تشرح: "الدروس المستفادة (Lessons learned)"؟
+- هل تستطيع أن تشرح: "Kaizen" و"الابتكار (Innovation)"؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+The PDCA cycle has four steps: plan, do, check and act. Continuous improvement relies on team-suggested small changes, measurement of their effect, and standardization so the team does not revert to the old method.
+
+### Decision rule
+
+Trial the improvement on a small sample for a short period and compare data before and after. If the effect is proven, update the procedure and name an owner; otherwise revise the hypothesis and start a new cycle.
+
+The reasoning chain in this lesson starts with دورة PDCA: Plan وDo وCheck وAct، وتُطبَّق على العملية لا على نتيجة نهائية فقط.
+
+moves to التحسين التدريجي (Kaizen) يعتمد على مشاركة الفريق في اقتراح تحسينات صغيرة متكررة.
+
+and is verified through البيانات تُستخدم لتأكيد التحسين، لا الانطباع الشخصي.. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: Define continuous improvement; PDCA cycle; Lessons learned; Kaizen and innovation.
+
+### Learning objectives in English
+
+- Define continuous improvement
+- PDCA cycle
+- Lessons learned
+- Kaizen and innovation
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -56,11 +117,41 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 > 💡 **نصيحة الامتحان:** التحسين الذي لا يُقاس ولا يُوثَّق سيزول مع أول ضغط عمل.
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+زمن الرد قبل التجربة 10 ساعات. بعد أسبوع بتوزيع الطلبات حسب النوع أصبح 8 ساعات، أي تحسن 20%. لتجنب النسبة المضللة قورنت 4 أسابيع: 10.2 و10.0 قبل، و8.0 و7.9 بعد، بمتوسط 10.1 مقابل 7.95، تحسن 21.3%. ثُبِّت الإجراء في دليل التشغيل.
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: جرّب التحسين على عينة صغيرة ومدة قصيرة، وقارن البيانات قبل وبعد. إن أثبت الأثر فحدّث إجراء التشغيل ودوّن المالك، وإلا عدّل الفرضية وابدأ دورة جديدة. ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+Response time was 10 hours before a one-week trial of routing requests by type and fell to 8 hours, a 20 percent gain. To avoid a misleading one-off, four weeks were compared: 10.2 and 10.0 before versus 8.0 and 7.9 after, averaging 10.1 against 7.95, a 21.3 percent improvement. The action was standardized in the procedure.
+
+### Reading the numbers
+
+Apply the rule: Trial the improvement on a small sample for a short period and compare data before and after. If the effect is proven, update the procedure and name an owner; otherwise revise the hypothesis and start a new cycle. Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** يُعتمد تحسين بالانطباع من غير قياس، فيزول مع أول ضغط إنتاج. أو تُقاس النتيجة مرة واحدة فقط، فتُنسَب تحسينات أخرى للإجراء الجديد.
+
+**In English:** An improvement is adopted on impression without measurement and disappears under the first production pressure; or the result is measured once and unrelated improvements are credited to the new action.
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — خريطة PDCA
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="pdca" client:load />
 
@@ -74,9 +165,11 @@ import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
 
 ## 📚 قاموس المصطلحات
 
-- **PDCA:** دورة تخطيط وتنفيذ وتحقق وتكيّف
-- **تحسين مستمر:** تطوير متكرر للعملية
-- **توحيد المعيار:** اعتماد التحسين رسمياً
+- **PDCA (Plan Do Check Act)**: دورة تخطيط وتنفيذ وتحقق وتكيّف
+- **تحسين مستمر (Continuous improvement)**: تطوير متكرر للعملية
+- **توحيد المعيار (Standardization)**: اعتماد التحسين رسمياً
+
+<GlossaryCard terms={['pmp-phase-gate']} />
 
 ## 📎 مصادر معتمدة
 

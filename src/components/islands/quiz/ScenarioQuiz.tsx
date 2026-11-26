@@ -23,6 +23,7 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
         : 'cfm';
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
+  const [retried, setRetried] = useState(false);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const lang = useLang();
@@ -36,6 +37,11 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
     pick(o.explanation, o.explanationEn);
 
   const q = questions[current];
+  const correctOption = q.options.find((o) => o.isCorrect);
+  // A wrong first answer earns one hint and one retry; only the first try scores.
+  const canRetry =
+    selected !== null && !retried && !q.options[selected].isCorrect;
+  const reviewHref = `/${course}/lessons/lesson-${quizId.slice('quiz-'.length)}/`;
   const progress = Math.round(
     ((current + (selected !== null ? 1 : 0)) / questions.length) * 100
   );
@@ -44,10 +50,16 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
     (idx: number) => {
       if (selected !== null) return;
       setSelected(idx);
-      if (q.options[idx].isCorrect) setScore((s) => s + 1);
+      if (!retried && q.options[idx].isCorrect) setScore((s) => s + 1);
     },
-    [selected, q]
+    [selected, retried, q]
   );
+
+  const retry = useCallback(() => {
+    if (!canRetry) return;
+    setRetried(true);
+    setSelected(null);
+  }, [canRetry]);
 
   const next = useCallback(() => {
     if (current + 1 >= questions.length) {
@@ -61,6 +73,7 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
     } else {
       setCurrent((c) => c + 1);
       setSelected(null);
+      setRetried(false);
     }
   }, [current, questions.length, score, course, quizId]);
 
@@ -85,6 +98,9 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
           e.preventDefault();
           choose(optionIndex);
         }
+      } else if (e.key.toUpperCase() === 'R' && canRetry) {
+        e.preventDefault();
+        retry();
       } else if (e.key === 'Enter') {
         e.preventDefault();
         next();
@@ -93,11 +109,12 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [finished, selected, q.options.length, choose, next]);
+  }, [finished, selected, q.options.length, choose, next, canRetry, retry]);
 
   const reset = () => {
     setCurrent(0);
     setSelected(null);
+    setRetried(false);
     setScore(0);
     setFinished(false);
   };
@@ -193,6 +210,14 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
           >
             {isEn ? '🔄 Try again' : '🔄 إعادة المحاولة'}
           </button>
+          <p className="mt-4 text-sm">
+            <a
+              href={reviewHref}
+              className="font-semibold text-brand-600 underline dark:text-brand-400"
+            >
+              {isEn ? '← Back to lesson review' : '← العودة إلى مراجعة الدرس'}
+            </a>
+          </p>
         </div>
       </div>
     );
@@ -226,6 +251,19 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
       </div>
 
       <div className="p-6">
+        {q.sharedStem && (
+          <div className="mb-4 rounded-xl border border-brand-200 bg-brand-50/60 p-4 dark:border-brand-800/60 dark:bg-brand-950/30">
+            <p className="mb-1 text-xs font-bold text-brand-700 dark:text-brand-300">
+              {isEn ? 'Shared case' : 'حالة مشتركة'}
+            </p>
+            <p
+              className="whitespace-pre-line text-sm leading-relaxed text-ink-700 dark:text-slate-200"
+              dir={isEn ? 'ltr' : 'rtl'}
+            >
+              {pick(q.sharedStem, q.sharedStemEn)}
+            </p>
+          </div>
+        )}
         <p
           className="text-base font-medium leading-relaxed text-ink-900 dark:text-slate-100"
           dir={isEn ? 'ltr' : 'rtl'}
@@ -302,6 +340,38 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
           </div>
         )}
 
+        {selected !== null &&
+          correctOption &&
+          !q.options[selected].isCorrect && (
+            <div className="mt-3 rounded-xl border border-emerald-200/90 bg-emerald-50/70 p-4 text-sm leading-relaxed text-emerald-950 animate-fade-in dark:border-emerald-800/60 dark:bg-emerald-950/40 dark:text-emerald-200">
+              <p className="font-bold text-emerald-800 dark:text-emerald-300">
+                {isEn ? '✓ Correct answer — ' : '✓ الإجابة الصحيحة — '}
+                {optionText(correctOption)}
+              </p>
+              <p className="mt-1">{optionExplanation(correctOption)}</p>
+            </div>
+          )}
+
+        {canRetry && (
+          <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50/70 p-4 text-sm leading-relaxed text-amber-950 dark:border-amber-800/60 dark:bg-amber-950/30 dark:text-amber-200">
+            <p>
+              <span className="font-bold">
+                {isEn ? '💡 Hint — ' : '💡 تلميح — '}
+              </span>
+              {isEn
+                ? 'Compare the option you picked with the scenario requirement: which choice actually resolves the stated problem? You have one retry.'
+                : 'قارن الخيار الذي اخترته بما يطلبه السيناريو: أي خيار يعالج المشكلة المذكورة فعلاً؟ لديك محاولة واحدة لإعادة التفكير.'}
+            </p>
+            <button
+              type="button"
+              onClick={retry}
+              className="mt-3 rounded-lg border border-amber-400 px-3 py-1.5 text-xs font-bold text-amber-900 transition hover:bg-amber-100 dark:text-amber-200 dark:hover:bg-amber-900/40"
+            >
+              {isEn ? 'Retry once (R)' : 'إعادة المحاولة مرة واحدة (R)'}
+            </button>
+          </div>
+        )}
+
         {selected !== null && (
           <div className="mt-6 flex items-center justify-between gap-4">
             <button
@@ -317,6 +387,12 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
                   ? 'Next question ←'
                   : 'السؤال التالي ←'}
             </button>
+            <a
+              href={reviewHref}
+              className="text-xs font-semibold text-brand-600 underline dark:text-brand-400"
+            >
+              {isEn ? 'Lesson review ←' : 'مراجعة الدرس ←'}
+            </a>
             <span className="text-xs text-ink-400 dark:text-slate-400 hidden sm:inline">
               {isEn ? 'Press Enter ↵ for next' : 'اضغط Enter ↵ للتالي'}
             </span>

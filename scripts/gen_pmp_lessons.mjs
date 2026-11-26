@@ -318,7 +318,7 @@ const content = {
     intro:
       'قبل أي أداة عليك أن تعرف ما الذي تديره: مشروعاً مؤقتاً يهدف إلى نتيجة، لا مهمة تشغيلية متكررة.',
     concept: [
-      'المشروع (Project) يتميز بالتفرد والدوء المؤقتة والتطوير التدريجي (Progressive elaboration) وتأثير أصحاب المصلحة.',
+      'المشروع (Project) يتميز بالتفرد والمدة المؤقتة والتطوير التدريجي (Progressive elaboration) وتأثير أصحاب المصلحة.',
       'نجاح المشروع لا يُقاس فقط بـ "تم التسليم في الوقت والميزانية"، بل بمدة تحقق الفوائد (Benefits) وتقبّل المستخدمين.',
       'أسباب الفشل الشائعة: غموض الأهداف، ضعف إشراك أصحاب المصلحة، تغييرات غير مضبوطة، ومخاطر لم تُدار.',
       'المخرجات (Outputs) هي ما ينتجه المشروع؛ النتائج (Outcomes) هي التغيير الذي يحدثه؛ الفوائد (Benefits) هي القيمة طويلة الأجل.',
@@ -1238,6 +1238,1277 @@ const content = {
   },
 };
 
+// Per-lesson teaching data. Every string states a definition, decision rule,
+// failure mode or a worked calculation; the template weaves it into both
+// language sections so no lesson relies on generic filler.
+const depth = {
+  '0-1': {
+    defAr:
+      'النتيجة (Outcome) هي التغيير القابل للقياس في أداء العمل بعد استخدام المخرج (Output)، أما المخرج فهو الشيء المسلَّم ذاته. ميثاق المشروع (Project charter) هو الوثيقة الموقّعة التي تفوّض مدير المشروع باستخدام موارد المؤسسة وتسمّي الهدف التجاري ومؤشر النجاح؛ لذلك يُكتب مؤشر النتيجة فيه قبل أي خطة تفصيلية.',
+    defEn:
+      'An output is the thing delivered; an outcome is the measurable change in business performance after that output is used. The project charter is the signed document that authorizes the project manager to spend organizational resources and states the business objective, so the outcome metric belongs in the charter from day one.',
+    ruleAr:
+      'عندما يسأل السؤال عن نجاح المشروع، اختر الخيار الذي يقيس أثراً قابلاً للتحقق في سجل الراعي، لا الخيار الذي يعلن اكتمال المخرجات. وعند التعارض على الصلاحية، ارجع إلى الميثاق الموقّع لأنه المرجع الوحيد الذي يحدد من يملك قرار تغيير الهدف.',
+    ruleEn:
+      'When an exam item asks whether the project succeeded, choose the answer that verifies an effect recorded by the sponsor, not the one that merely announces delivered outputs. When authority is disputed, return to the signed charter because it is the only document that names who may change the objective.',
+    failAr:
+      'يفشل المشروع حين يُعرَّف النجاح بنسبة إنجاز المهام، فيُغلق الملف تقنياً بينما لم يتغير سلوك المستخدمين. كما يفشل حين يُصاغ الميثاق بعبارات إنشائية بلا مؤشر أو رقم، فلا يستطيع الراعي لاحقاً أن يحاسب على قيمة لم تُعرَّف.',
+    failEn:
+      'Projects fail when success is defined as task completion, so the file closes technically while user behavior never changes. They also fail when the charter contains slogans without a metric, leaving the sponsor unable to hold anyone accountable for an undefined value.',
+    calcAr:
+      'مشروع عدادات ذكية: خط أساس فقد المياه 22%، والهدف في الميثاق 15%، والقياس بعد ثلاثة أشهر 14.2%. الفائدة المحققة = 22 − 14.2 = 7.8 نقطة مئوية، أي تجاوز الهدف بمقدار 0.8 نقطة. المخرج هو 10 آلاف عداد، لكن النتيجة هي انخفاض الفقد؛ لو قيل إن المشروع نجح لأنه ثبّت 10 آلاف عداد فقط لكان الاستنتاج خاطئاً.',
+    calcEn:
+      'A smart-meter project starts with 22 percent water loss, a charter target of 15 percent, and a post-delivery measurement of 14.2 percent. The realized benefit is 22 minus 14.2, or 7.8 percentage points, exceeding the target by 0.8 points. Installing ten thousand meters is the output; reducing loss is the outcome. Calling the project successful merely because ten thousand meters were fitted is the wrong inference.',
+    glossary: [
+      'pmp-project',
+      'pmp-charter',
+      'pmp-output-outcome',
+      'pmp-value-benefits',
+    ],
+  },
+  '0-2': {
+    defAr:
+      'الأهلية (Eligibility) هي استيفاء شروط PMI قبل دخول الامتحان: 36 شهراً من قيادة المشاريع مع شهادة جامعية، أو 60 شهراً بدونها، إضافة إلى 35 ساعة تدريب موثقة. مراجعة الطلب (Audit) هي تحقق عشوائي من صحة السرد والتواريخ والأدوار.',
+    defEn:
+      'Eligibility means meeting PMI entry rules before sitting the exam: 36 months of project leadership with a degree, or 60 months without one, plus 35 documented contact hours. An audit is a random verification of the narrative, dates and roles submitted in the application.',
+    ruleAr:
+      'اكتب الخبرة بفعل قيادي وهدف ونتيجة، لا بوصف وظيفة. إذا سُئلت عن رفض الطلب، فالإجراء الصحيح هو تصحيح الأدلة بالتواريخ والمخرجات الموثقة ثم إعادة التقديم، لا تغيير عدد الساعات بالتخمين.',
+    ruleEn:
+      'Describe experience as a leadership action with an objective and a result, not as a job title. If an application is rejected, the correct action is to correct the evidence with dates and documented deliverables, not to guess new contact hours.',
+    failAr:
+      'يقع الخطأ حين يظن المتقدم أن سنوات الخدمة في وظيفة تشغيلية تُحتسب تلقائياً؛ فيُرفض الطلب لأن السرد لا يثبت قيادة مشروع. كما يفشل من ينتظر حتى موعد التقديم لجمع شهادات التدريب.',
+    failEn:
+      'Applicants err when they assume years in an operational job count automatically; the application is rejected because the narrative does not prove project leadership. Others fail by waiting until the submission date to collect training certificates.',
+    calcAr:
+      'متقدم لديه 42 شهراً في مشاريع موثقة وخمس سنوات عمل تشغيلي. بوجود شهادة جامعية: 42 ≥ 36، إذن الأهلية مستوفاة. وبدون شهادة جامعية: 42 < 60، إذن ينقصه 18 شهراً. ساعات التدريب 28 فقط، أي ينقصه 7 ساعات قبل التقديم.',
+    calcEn:
+      'An applicant has 42 documented months on projects and five years of operations work. With a degree, 42 is at least 36, so experience qualifies. Without a degree, 42 is below 60, so 18 months are missing. With only 28 contact hours, 7 more hours are required before applying.',
+    glossary: ['pmp-eligibility', 'pmp-exam-eco', 'pmp-mock-exam'],
+  },
+  '0-3': {
+    defAr:
+      'مخطط محتوى الامتحان (ECO) هو الوثيقة الرسمية التي تحدد المجالات الثلاثة وأوزانها: الأفراد 33%، العمليات 41%، بيئة الأعمال 26%. المهمة (Task) هي سلوك قابل للقياس داخل مجال، وليست موضوعاً للقراءة فقط.',
+    defEn:
+      'The Examination Content Outline (ECO) is the official document that sets the three domains and their weights: People 33 percent, Process 41 percent, Business Environment 26 percent. A task is an observable behavior, not merely a reading topic.',
+    ruleAr:
+      'وزّع وقت المذاكرة على الوزن لا على عدد الصفحات: من 100 ساعة مذاكرة خصّص 33 ساعة للأفراد و41 للعمليات و26 لبيئة الأعمال. ثم تدرّب على كل مهمة بسيناريو "ماذا تفعل أولاً؟".',
+    ruleEn:
+      'Allocate study time by weight rather than page count: out of 100 hours assign 33 to People, 41 to Process and 26 to Business Environment, then practice each task with a what-do-you-do-first scenario.',
+    failAr:
+      'من يقرأ دليلاً صفحة بصفحة يصل إلى الامتحان دون تدرب على صيغة الموقف، فيفشل في أسئلة "ما الخطوة التالية؟" رغم معرفته المصطلحات. ومن يهمل مجال بيئة الأعمال يخسر ربع الدرجة تقريباً.',
+    failEn:
+      'A candidate who reads a guide page by page reaches the exam without practicing situational items and fails next-step questions despite knowing the terminology. Ignoring the Business Environment domain risks roughly a quarter of the score.',
+    calcAr:
+      'امتحان من 180 سؤالاً: الأفراد 0.33 × 180 ≈ 59 سؤالاً، العمليات 0.41 × 180 ≈ 74 سؤالاً، وبيئة الأعمال 0.26 × 180 ≈ 47 سؤالاً. المجموع 180. إذا أنفق الدارس 80% من وقته على العمليات وحدها فقد تدرب على 74 سؤالاً وأهمل 106 أسئلة.',
+    calcEn:
+      'In a 180-question exam, People is about 0.33 × 180 or 59 questions, Process about 74, and Business Environment about 47; the total is 180. A candidate who spends 80 percent of study time on Process alone has practiced 74 questions and neglected 106.',
+    glossary: ['pmp-exam-eco', 'pmp-mock-exam', 'pmp-eligibility'],
+  },
+  '0-4': {
+    defAr:
+      'الإيقاع (Pacing) هو توزيع 240 دقيقة على 180 سؤالاً، أي 80 ثانية للسؤال قبل حساب الاستراحات. السؤال المعلَّم (Flagged) هو سؤال مؤجل للمراجعة ضمن الجولة الثانية لا إجابة نهائية.',
+    defEn:
+      'Pacing is the allocation of 240 minutes across 180 questions, about 80 seconds per question before breaks. A flagged question is deferred for a second pass, not finally answered.',
+    ruleAr:
+      'لا تمنح أي سؤال أكثر من 90 ثانية في الجولة الأولى؛ ضع علامة وتابع. بعد إنهاء 180 سؤالاً راجع المعلَّمات، ثم راجع الإجابات المترددة فقط إن بقي وقت.',
+    ruleEn:
+      'Never give one item more than 90 seconds in the first pass; flag it and move on. After finishing all 180 items, review flagged questions, then revisit only uncertain answers if time remains.',
+    failAr:
+      'يضيع الدارس وقته في سؤال حسابي واحد، فيصل إلى نهاية الامتحان مع أسئلة سهلة بلا وقت للإجابة. كما أن تغيير الإجابات من دون سبب تحليلي يبدد ميزة المراجعة.',
+    failEn:
+      'A candidate burns time on one calculation and reaches the end with easy questions unanswered. Changing answers without analysis also destroys the value of review time.',
+    calcAr:
+      '240 دقيقة − 20 دقيقة استراحتين = 220 دقيقة = 13,200 ثانية. 13,200 ÷ 180 = 73.3 ثانية فعلية للسؤال. إذا استغرق سؤال 180 ثانية فقد استهلك ما يعادل 2.5 سؤال، وسيُجبر على التخمين في نهاية الجولة.',
+    calcEn:
+      '240 minutes minus a 20-minute break allowance leaves 220 minutes, or 13,200 seconds. Dividing by 180 gives about 73 seconds per answer. Spending 180 seconds on one item consumes the budget of 2.5 items and forces guessing later.',
+    glossary: ['pmp-mock-exam', 'pmp-exam-eco'],
+  },
+  '0-5': {
+    defAr:
+      'الرشاقة (Agile) عقلية تسليم متكرر تكيّف مع التغيير. سكرم (Scrum) إطار رشيق بأدوار وأحداث محددة؛ السبرنت (Sprint) دورة تخطيط وتنفيذ محددة بوقت؛ الاجتماع اليومي (Stand-up) وقفة قصيرة لتزامن الفريق؛ كانبان (Kanban) لوحة تدفق مرئي بحدود عمل جاري. هذه التعريفات تُقدَّم هنا مبكراً لأنها تظهر في دروس لاحقة قبل محطة الرشاقة.',
+    defEn:
+      'Agile is a mindset of incremental delivery that adapts to change. Scrum is an agile framework with defined roles and events; a sprint is a timeboxed cycle of planning and delivery; a stand-up is a short synchronization meeting; Kanban is a visual flow board with work-in-progress limits. These definitions appear early because later lessons use the words before the dedicated agile station.',
+    ruleAr:
+      'لا تحفظ طقوس سكرم قبل فهم سببها: كل حدث يقلل زمن انتظار المعلومة. اختر السبرنت عندما تحتاج إيقاعاً ثابتاً، وKanban عندما يكون تدفق العمل متصلاً ومتغيراً، ولا تخلط بين أداة وعقلية.',
+    ruleEn:
+      'Do not memorize Scrum ceremonies before understanding their purpose: each event reduces the wait time for information. Choose a sprint when you need a steady cadence and Kanban when work flows continuously; never confuse a framework with the underlying mindset.',
+    failAr:
+      'أشهر خطأ هو اعتبار الرشاقة اجتماعات إضافية؛ فيُطبَّق stand-up يومي بلا قرار أو مراجعة، وتبقى الأولويات كما هي. والخطأ الثاني هو حفظ مصطلحات سكرم دون ربطها بالقيمة، فيسأل الامتحان عن المبدأ ويجيب الدارس بالطقس.',
+    failEn:
+      'The common error is treating agile as extra meetings: a daily stand-up happens with no decision or reprioritization, so priorities never change. The second error is memorizing Scrum terms without value, so an exam question about a principle gets a ceremony as an answer.',
+    calcAr:
+      'فريق يعمل بسبرنتات أسبوعين، أي 10 أيام عمل، وينجز 40 نقطة في المتوسط. معدل التدفق = 40 ÷ 10 = 4 نقاط يومياً. إذا أضاف اجتماعاً يومياً مدته 30 دقيقة لخمسة أعضاء فقد استهلك 2.5 يوم عمل أسبوعياً، أي 25% من سعة السبرنت، دون أن يضيف قراراً واحداً.',
+    calcEn:
+      'A team runs two-week sprints, ten working days, and completes 40 points on average, giving a flow rate of 4 points per day. Adding a 30-minute daily meeting for five people consumes 2.5 working days a week, or 25 percent of sprint capacity, without adding a decision.',
+    glossary: ['pmp-sprint', 'pmp-standup', 'pmp-kanban', 'pmp-scrum'],
+  },
+  '1-1': {
+    defAr:
+      'المخرجات (Outputs) هي ما ينتجه المشروع، والنتائج (Outcomes) هي التغيير الذي يحدث بسببها، والفوائد (Benefits) هي القيمة التي تستمر بعد التسليم. المشروع (Project) جهد مؤقت، والمؤقت هنا يعني مدة محدودة لا ضعفاً في الجودة.',
+    defEn:
+      'Outputs are what the project produces, outcomes are the change caused by those outputs, and benefits are the value that continues after handover. A project is temporary, meaning a bounded duration rather than lower quality.',
+    ruleAr:
+      'صنّف كل خيار في السؤال: هل يصف تسليماً أم تغييراً في الأداء؟ اختر ما يستطيع الراعي التحقق منه بعد التسليم. وإذا ظهر خطر أو فرصة مرتبطة بالمتطلبات فتذكّر التطوير التدريجي: تُوضَّح التفاصيل مع توفر المعلومة.',
+    ruleEn:
+      'Classify each option: does it describe a delivery or a change in performance? Choose what the sponsor can verify after handover. When requirements evolve, apply progressive elaboration: details are refined as information becomes available.',
+    failAr:
+      'يُعلن نجاح بوابة الخدمات لأن كل الشاشات سُلِّمت، بينما نسبة الاستخدام 12%؛ السبب هو قياس المخرجات فقط وغياب مالك للتبني. والفشل الآخر هو اعتبار المؤقتة ذريعة لإهمال التوثيق.',
+    failEn:
+      'A service portal is declared successful because every screen was delivered while usage stays at 12 percent; the cause is measuring outputs only with no adoption owner. Another failure is treating temporariness as an excuse for poor documentation.',
+    calcAr:
+      'مشروع بوابة: 20 مخرجاً مسلَّماً، 15% من المستخدمين استخدموها في الشهر الأول، و40% بعد ثلاثة أشهر. الفجوة = 40 − 15 = 25 نقطة مئوية. لو حسبنا عدد المخرجات لكانت النتيجة 20/20 أي 100%، وهي نسبة مضللة لأنها لا تقيس النتيجة.',
+    calcEn:
+      'A portal project delivered 20 outputs; 15 percent of users used it in month one and 40 percent after three months, a gap of 25 percentage points. Counting outputs would report 20 out of 20, or 100 percent, which is misleading because it does not measure the outcome.',
+    glossary: [
+      'pmp-output-outcome',
+      'pmp-value-benefits',
+      'pmp-project',
+      'pmp-progressive-elaboration',
+    ],
+  },
+  '1-2': {
+    defAr:
+      'القيمة (Value) هي الأثر الصافي على أهداف الأعمال بعد خصم التكلفة والمخاطر، والفائدة (Benefit) هي تحسن قابل للقياس يحتاج مالكاً (Benefit owner) وخط أساس وتاريخ قياس. القيمة لا تُختزل في العائد المالي.',
+    defEn:
+      'Value is the net effect on business objectives after cost and risk; a benefit is a measurable improvement that needs an owner, a baseline and a measurement date. Value is not reduced to financial return alone.',
+    ruleAr:
+      'قبل اعتماد فائدة اسأل عن خمسة حقول: الوصف، المؤشر، خط الأساس، الهدف، وموعد القياس. إن غاب مالك الفائدة فسجّل الفقرة كرغبة لا كخطة، واطلب تعيين مالك من مالك العمل.',
+    ruleEn:
+      'Before accepting a benefit, ask for five fields: description, metric, baseline, target and measurement date. If there is no benefit owner, record it as an aspiration rather than a plan and request an owner from the business.',
+    failAr:
+      'تُسجَّل فائدة "تحسين رضا العملاء" بلا مقياس، فلا يمكن إثباتها عند المراجعة. كما تُنسى الفوائد بعد التسليم لأن الملف أُغلق من دون نقل مالكها إلى التشغيل.',
+    failEn:
+      'A benefit such as improving customer satisfaction is recorded with no metric and cannot be evidenced at review. Benefits are also forgotten after handover when the project closes without transferring an owner.',
+    calcAr:
+      'زمن دورة الفوترة قبل المشروع 10 أيام، والهدف 4 أيام، والفعلي بعد ثلاثة أشهر 5 أيام. التحسن = 10 − 5 = 5 أيام، أي تحقق 5/6 من الهدف (83.3%). الفجوة يوم واحد؛ تُسجَّل خطة معالجة مع مالك وموعد قياس جديد بعد شهرين.',
+    calcEn:
+      'Billing cycle time was 10 days before the project, with a target of 4 days and an actual result of 5 days after three months. Improvement is 5 days, or 5/6 of the target, about 83.3 percent, leaving a one-day gap that is assigned an owner and a new measurement date.',
+    glossary: [
+      'pmp-value-benefits',
+      'pmp-benefit-owner',
+      'pmp-benefits-plan',
+      'pmp-disbenefit',
+    ],
+  },
+  '1-3': {
+    defAr:
+      'بوابة المرحلة (Phase gate) هي نقطة مراجعة رسمية يُقرَّر عندها الاستمرار أو التعديل أو الإيقاف بناءً على معايير معتمدة. التطوير التدريجي (Progressive elaboration) هو تحسين التفاصيل بمرور الوقت كلما توفرت معلومات أدق، دون تغيير الهدف المعتمد.',
+    defEn:
+      'A phase gate is a formal review point where the decision to continue, adjust or stop is taken against approved criteria. Progressive elaboration is the refinement of detail over time as better information appears, without changing the approved objective.',
+    ruleAr:
+      'قبل تجاوز بوابة المرحلة تحقق من ثلاثة أدلة: مخرجات المرحلة مكتملة، معايير القبول مُوقَّعة، والتوقعات المحدثة معروضة على الراعي. ولا تخلط بين التطوير التدريجي وزحف النطاق؛ الأول يوضّح تفصيلاً موجوداً، والثاني يضيف عملاً بلا اعتماد.',
+    ruleEn:
+      'Before passing a phase gate verify three pieces of evidence: phase deliverables are complete, acceptance criteria are signed, and updated forecasts are shown to the sponsor. Do not confuse progressive elaboration with scope creep; the first clarifies existing detail, the second adds unapproved work.',
+    failAr:
+      'بدأ المقاول التنفيذ قبل توقيع الميثاق، وعند تغيّر مالك المبنى لم يوجد مرجع للقرار فتوقف العمل أسبوعين. والفشل المقابل هو اعتبار كل تفصيل جديد تغييراً، فيُجمَّد التخطيط ويُفقد المشروع فرصة التعلم.',
+    failEn:
+      'A contractor started work before the charter was signed; when the building owner changed there was no reference for the decision and work stopped for two weeks. The opposite failure is treating every new detail as a change, freezing planning and removing learning.',
+    calcAr:
+      'بوابة التصميم حددت 3 معايير: اعتماد المالك، اكتمال 100% من الرسومات، وموافقة السلامة. النتائج: الرسومات 92%، والاعتماد موجود، والسلامة معلقة. لأن معياراً واحداً لم يتحقق، تُرجَّأ البوابة. تكلفة التأخير يومين = 2 × 4,000 دولار = 8,000 دولار، أقل من تكلفة اكتشاف الخطأ لاحقاً (60,000 دولار).',
+    calcEn:
+      'A design gate has three criteria: owner approval, 100 percent complete drawings and safety sign-off. Drawings are at 92 percent, approval exists and safety is pending, so the gate is deferred. A two-day delay at 4,000 dollars a day costs 8,000 dollars, far less than discovering the defect later at 60,000 dollars.',
+    glossary: [
+      'pmp-charter',
+      'pmp-phase-gate',
+      'pmp-progressive-elaboration',
+      'pmp-scope-baseline',
+    ],
+  },
+  '1-4': {
+    defAr:
+      'النهج التنبؤي (Predictive) يخطط مسبقاً ويتحكم بالخطوط الأساسية، والنهج الرشيق (Agile) يتكيّف عبر حلقات قصيرة، والهجين (Hybrid) يجمع بوابات ثابتة بتنفيذ متكرر. سكرم (Scrum) إطار رشيق بأدوار وأحداث محددة، والسبرنت (Sprint) دورة عمل محددة بوقت تُخطَّط وتُنجَز فيها الأعمال. لا يوجد نهج أفضل مطلقاً؛ هناك أنسب لدرجة عدم اليقين.',
+    defEn:
+      'A predictive approach plans ahead and controls baselines; an agile approach adapts through short cycles; a hybrid approach combines fixed gates with iterative delivery. Scrum is an agile framework with defined roles and events, and a sprint is a timeboxed cycle in which work is planned and completed. No approach is universally best; suitability depends on uncertainty.',
+    ruleAr:
+      'إن كانت المتطلبات مستقرة والامتثال صارماً فاختر تنبؤياً. إن كانت تتغير أسبوعياً بعد ملاحظة المستخدم فاختر رشيقاً بسبرنتات (Sprints). إن احتجت ميزانية ثابتة وواجهة متغيرة فاختر هجيناً واكتب حدود كل جزء في الخطة.',
+    ruleEn:
+      'Stable requirements and strict compliance call for predictive delivery; weekly user-driven change calls for agile sprints; a fixed budget with a changing interface calls for hybrid, with the boundary of each part written into the plan.',
+    failAr:
+      'يختار الفريق سكرم لأنه مألوف رغم أن المتطلبات التنظيمية لا تسمح بتغيير التصميم، فيُعاد العمل بعد كل تدقيق. والخطأ المعاكس هو فرض بوابات تنبؤية على واجهة تحتاج تجربة المستخدم كل أسبوع.',
+    failEn:
+      'A team chooses familiar Scrum although regulations forbid design changes, so work is redone after every audit. The opposite error is imposing predictive gates on an interface that needs weekly user experiments.',
+    calcAr:
+      'مشروع مستشفى: البنية التحتية ثابتة (عدم يقين 20%)، والشاشات تتغير أسبوعياً (عدم يقين 80%). بتقسيم 10 حزم عمل: 4 حزم تنبؤية للامتثال و6 حزم رشيقة للواجهة. إذا استخدمنا تنبؤياً كاملاً مع 6 تغييرات أسبوعية بتكلفة 3,000 دولار لكل تغيير، بلغت التكلفة 18,000 دولار؛ الهجين خفّضها إلى 6,000 دولار.',
+    calcEn:
+      'A hospital project has fixed infrastructure with 20 percent uncertainty and screens that change weekly with 80 percent uncertainty. Of ten work packages, four stay predictive for compliance and six use agile delivery. Full predictive delivery with six weekly changes at 3,000 dollars each would cost 18,000 dollars; the hybrid design reduced it to 6,000.',
+    glossary: ['pmp-scrum', 'pmp-sprint', 'pmp-phase-gate', 'pmp-exam-eco'],
+  },
+  '1-5': {
+    defAr:
+      'الحوكمة (Governance) هي إطار يحدد من يملك القرار وما الأدلة المطلوبة قبل اعتماده، والتصعيد (Escalation) هو نقل قرار يتجاوز صلاحية مدير المشروع إلى الراعي أو لجنة التوجيه مع تحليل أثر مسبق.',
+    defEn:
+      'Governance is the framework that defines who owns a decision and what evidence is required before approval. Escalation moves a decision beyond the project manager authority to the sponsor or steering committee with prior impact analysis.',
+    ruleAr:
+      'عند تجاوز السقف المالي أو التأثير على ميثاق المشروع، أرسل خلال يومين ثلاثة عناصر: ما حدث، أثره الرقمي، والتوصية مع البدائل. لا تصعّد قراراً تستطيع حله ضمن ميثاق الفريق.',
+    ruleEn:
+      'When a financial threshold or the charter is affected, escalate within two days with three elements: what happened, its numeric impact and a recommendation with alternatives. Do not escalate a decision you can resolve within the team charter.',
+    failAr:
+      'يقبل مدير المشروع تغييراً فوق صلاحيته لتفادي تأخير الاجتماع، فيُكتشف لاحقاً بلا قرار موثق ويُرفض في المراجعة. والفشل الآخر هو تصعيد كل خلاف صغير، فيفقد الراعي ثقته في قدرة الفريق على الحل.',
+    failEn:
+      'A manager approves a change beyond their authority to avoid delay; it is discovered later with no documented decision and rejected at review. The opposite failure is escalating every small disagreement, causing the sponsor to lose confidence in the team.',
+    calcAr:
+      'سقف اعتماد مدير المشروع 20,000 دولار. طلب مورد بقيمة 28,000 دولار، أي زيادة 8,000 دولار (40% فوق السقف). أثر التأجيل أسبوعان بتكلفة 5,000 دولار/أسبوع = 10,000 دولار. التوصية: تصعيد فوري مع بديل محلي بـ 21,000 دولار، أي توفير 7,000 دولار مقارنة بالطلب الأصلي.',
+    calcEn:
+      'The project manager approval ceiling is 20,000 dollars. A supplier request of 28,000 dollars exceeds it by 8,000, or 40 percent. Delaying two weeks costs 5,000 dollars a week, or 10,000 dollars. The recommendation is immediate escalation with a local alternative at 21,000 dollars, saving 7,000 dollars.',
+    glossary: ['pmp-governance', 'pmp-charter', 'pmp-change-control'],
+  },
+  '2-1': {
+    defAr:
+      'الرؤية المشتركة (Common vision) هي فهم جماعي لسبب وجود المشروع وشكل النجاح، والقيادة الخادمة (Servant leadership) هي إزالة العوائق عن الفريق وتوفير ما يحتاجه للعمل. الالتزام (Commitment) يولد من المعنى لا من الأمر.',
+    defEn:
+      'A common vision is a shared understanding of why the project exists and what success looks like. Servant leadership removes obstacles and supplies what the team needs; commitment grows from meaning rather than from instructions.',
+    ruleAr:
+      'ابدأ بسؤال "لماذا" قبل "ماذا"، وشارك الفريق في صياغة معيار النجاح. إذا انخفض الالتزام فابحث عن عائق في البيئة أو غموض في الهدف قبل البحث عن تقصير فردي.',
+    ruleEn:
+      'Start with why before what, and let the team help write the success measure. When commitment drops, look for an environmental obstacle or an unclear goal before blaming an individual.',
+    failAr:
+      'ينفذ الفريق المهام آلياً دون معرفة المستفيد، فيقترح تحسينات شكلية لا تخدم المواطن. كما يُخلط بين التوجيه والضغط، فيُطلب الالتزام بالاجتماعات بدل خلق الالتزام بالهدف.',
+    failEn:
+      'A team executes tasks mechanically without knowing the beneficiary and proposes cosmetic improvements. Direction is also confused with pressure, so compliance with meetings is demanded instead of commitment to the objective.',
+    calcAr:
+      'استبيان فريق قبل جلسة الرؤية: 6 من 10 يفهمون سبب المشروع، ومؤشر المقترحات المفيدة 2 أسبوعياً. بعد جلسة مشتركة وصياغة هدف واحد: 9 من 10 يفهمون السبب، و7 مقترحات أسبوعياً. الزيادة = 5 مقترحات، أي 250%، دون إضافة ميزانية.',
+    calcEn:
+      'Before a vision session, 6 of 10 team members understood the reason for the project and useful suggestions averaged 2 per week. After a shared session and one written objective, 9 of 10 understood the reason and suggestions rose to 7 per week, an increase of 5 or 250 percent with no extra budget.',
+    glossary: [
+      'pmp-servant-leadership',
+      'pmp-team-charter',
+      'pmp-value-benefits',
+    ],
+  },
+  '2-2': {
+    defAr:
+      'ميثاق الفريق (Team charter) يحدد قواعد التواصل واتخاذ القرار، ومصفوفة RACI تحدد المنفّذ (Responsible) والمحاسَب (Accountable) والمستشار (Consulted) والمُبلَّغ (Informed). لكل قرار محاسَب واحد فقط.',
+    defEn:
+      'A team charter sets communication and decision rules. A RACI matrix identifies who is Responsible, Accountable, Consulted and Informed; every decision has exactly one Accountable owner.',
+    ruleAr:
+      'عند تكرار الخلاف على الصلاحية، ارسم مصفوفة RACI ووقع عليها في اجتماع الفريق قبل تطبيقها. وخلال مرحلة الصراع (Storming) في نموذج Tuckman، يسّر القائد الحوار ولا يفرض حلاً نهائياً إلا عند خطر أو استعجال.',
+    ruleEn:
+      'When authority disputes repeat, draw a RACI matrix and agree it in a team meeting before applying it. During the Storming stage of Tuckman model, the leader facilitates dialogue and imposes a final answer only for safety or urgency.',
+    failAr:
+      'يُوزَّع دور المسائل على اثنين، فيُنتظر كل منهما الآخر ويتعطل القرار. أو تُكتب مصفوفة RACI بواسطة المدير وحده، فيرفضها الفريق لأنه لم يشارك في صياغتها.',
+    failEn:
+      'Two people are marked Accountable, so each waits for the other and the decision stalls. Or the manager writes the RACI matrix alone and the team rejects it because they never agreed to it.',
+    calcAr:
+      'قرار تصميم واحد: 5 أعضاء. من دون مصفوفة RACI، شارك 3 أشخاص في القرار النهائي فاستهلك 3 × 6 ساعات = 18 ساعة أسبوعياً. بعد تعيين مسؤول واحد ومستشارين اثنين: 1 × 6 + 2 × 1 = 8 ساعات، أي توفير 10 ساعات (55.6%).',
+    calcEn:
+      'One design decision with five people: without RACI, three people joined the final decision and consumed 3 × 6 hours, or 18 hours a week. After naming one Accountable owner and two consultants, the cost is 1 × 6 plus 2 × 1, or 8 hours, saving 10 hours or 55.6 percent.',
+    glossary: ['pmp-raci', 'pmp-team-charter', 'pmp-conflict-collaborating'],
+  },
+  '2-3': {
+    defAr:
+      'الصراع (Conflict) اختلاف في المصالح أو الرأي، وله أنماط خمسة في نموذج توماس-كيلمان: المنافسة (Competing) والتعاون (Collaborating) والتسوية (Compromising) والتجنّب (Avoiding) والإذعان (Accommodating).',
+    defEn:
+      'Conflict is a disagreement over interests or views. The Thomas-Kilmann model offers five modes: competing, collaborating, compromising, avoiding and accommodating.',
+    ruleAr:
+      'اختر النمط من سؤالين: هل القرار عاجل أو حرج للسلامة؟ فاستخدم Competing بعد استماع قصير. وهل توجد علاقة مستمرة ووقت كافٍ؟ فاستخدم Collaborating للحصول على حل يربح فيه الجميع.',
+    ruleEn:
+      'Choose the mode from two questions: is the decision urgent or safety critical? Use competing after brief listening. Is there an ongoing relationship and enough time? Use collaborating for a win-win result.',
+    failAr:
+      'يستخدم مدير الأسلوب التعاوني في قرار سلامة عاجل، فيتأخر الحل؛ أو يستخدم التنافس في خلاف تافه، فيكسر الثقة. والتجنّب ليس ضعفاً حين يكون تأجيلاً مقصوداً لقضية صغيرة.',
+    failEn:
+      'A manager uses collaboration for an urgent safety decision and delays the fix, or competes over a trivial dispute and damages trust. Avoiding is not weakness when it is a deliberate postponement of a minor issue.',
+    calcAr:
+      'خلاف على حاجز حماية: تكلفة الحاجز 9,000 دولار، وتكلفة حادث محتمل 120,000 دولار مع احتمال 10%، أي خطر متوقع 12,000 دولار. لأن الخطر المتوقع أكبر من التكلفة، القرار الصحيح هو Competing وإضافة الحاجز فوراً.',
+    calcEn:
+      'A dispute concerns a safety barrier costing 9,000 dollars. A possible accident costs 120,000 dollars with 10 percent probability, giving an expected risk of 12,000 dollars. Since expected loss exceeds the cost, the correct mode is competing and fitting the barrier immediately.',
+    glossary: ['pmp-conflict-collaborating', 'pmp-emv', 'pmp-team-charter'],
+  },
+  '2-4': {
+    defAr:
+      'تحليل أصحاب المصلحة (Stakeholder analysis) يصنّف الأطراف بالقوة والاهتمام. مصفوفة القوة والاهتمام (Power/Interest) توجّه الأسلوب: إدارة عن كثب، إبقاء راضيين، إبقاء على اطلاع، أو مراقبة. السبرنت (Sprint) دورة عمل محددة بوقت يمكن خلالها عرض التقدم لممثلي المستخدمين؛ لكن الإشراك (Engagement) يبدأ قبل التصميم لا عند التسليم.',
+    defEn:
+      'Stakeholder analysis classifies parties by power and interest. The Power/Interest grid directs the approach: manage closely, keep satisfied, keep informed or monitor. A sprint is a timeboxed work cycle in which user representatives can inspect progress; engagement still starts before design rather than at handover.',
+    ruleAr:
+      'كل طرف عالي القوة وعالي الاهتمام يُدار عن كثب باجتماع منتظم وسجل التزامات. سبرنت (Sprint) واحد مع ممثل المستخدمين يقلل المقاومة أكثر من تقرير شهري؛ لكن السبرنت لا يغني عن إشراك صاحب القرار.',
+    ruleEn:
+      'Any high-power, high-interest party is managed closely through regular meetings and a commitment log. One sprint with user representatives reduces resistance more than a monthly report, but a sprint does not replace engaging the decision maker.',
+    failAr:
+      'أُهمل التمريض في تصميم نظام المستشفى، فرفض الممرضون النظام لأنه أضاف خطوات. كما يُرسل تقرير شهري لصاحب قوة عالية بدل لقائه، فتتراكم اعتراضاته حتى بوابة التسليم.',
+    failEn:
+      'Nursing staff were excluded from hospital system design and rejected it because it added steps. A high-power stakeholder also receives a monthly report instead of a meeting, so objections accumulate until the delivery gate.',
+    calcAr:
+      'ثمانية أصحاب مصلحة: 2 عالي القوة/الاهتمام، 2 عالي القوة/منخفض الاهتمام، 3 منخفضي القوة/عالي الاهتمام، 1 منخفض الاثنين. حسب القاعدة: اجتماع أسبوعي للفئة الأولى (2)، وتقرير موجز للثانية (2)، وورشة مستخدمين للثالثة (3)، ومراقبة للرابع (1). تغطية 8/8 أطراف.',
+    calcEn:
+      'Eight stakeholders: 2 high power and high interest, 2 high power and low interest, 3 low power and high interest, and 1 low in both. The rule gives weekly meetings for the first group, brief reports for the second, a user workshop for the third and monitoring for the fourth, covering all 8 parties.',
+    glossary: ['pmp-stakeholder-register', 'pmp-sprint', 'pmp-governance'],
+  },
+  '2-5': {
+    defAr:
+      'سجل أصحاب المصلحة (Stakeholder register) يوثّق المعلومات والاهتمامات والتوقعات واستراتيجية الإشراك. التوقع (Expectation) غير المعلن أخطر من المعلن لأنه لا يمكن قياسه أو تصحيحه مبكراً.',
+    defEn:
+      'A stakeholder register records information, interests, expectations and engagement strategy. An unstated expectation is more dangerous than a stated one because it cannot be measured or corrected early.',
+    ruleAr:
+      'اكتب كل توقع بصيغة قابلة للتحقق: ماذا سيُسلَّم، بماذا يُقاس، ومتى. كل تغيير في النطاق أو الجدول يجب أن يقابله تحديث للرسالة الموجّهة للطرف المعني خلال دورة تواصل واحدة.',
+    ruleEn:
+      'Write every expectation in verifiable form: what will be delivered, how it is measured and when. Each scope or schedule change must be matched by an updated message to the affected party within one communication cycle.',
+    failAr:
+      'وعد مدير المشروع بلوحة تحكم كاملة بينما الخط الأساس يتضمن لوحة أساسية، فاعتبر الراعي التسليم ناقصاً. والفشل الأعمق هو انتظار إشارة السخط بدل سؤال صريح في جلسة استماع.',
+    failEn:
+      'A manager promised a full dashboard while the baseline contained only a basic one, so the sponsor considered delivery incomplete. The deeper failure is waiting for a social signal of dissatisfaction instead of asking directly in a listening session.',
+    calcAr:
+      'ثلاثة توقعات: لوحة كاملة (غير مكتوب)، زمن استجابة 4 ساعات (مكتوب)، وتدريب 20 موظفاً (مكتوب). بعد الجلسة صيغ الأول إلى "لوحة بـ 6 مؤشرات". نسبة التوقعات القابلة للقياس ارتفعت من 2/3 = 66.7% إلى 3/3 = 100%.',
+    calcEn:
+      'Three expectations exist: a full dashboard that was never written down, a 4-hour response time and training for 20 employees. After a session the first becomes a dashboard with six indicators. Measurable expectations rise from 2 out of 3, or 66.7 percent, to 3 out of 3.',
+    glossary: ['pmp-stakeholder-register', 'pmp-scope-baseline'],
+  },
+  '2-6': {
+    defAr:
+      'خطة التواصل (Communications plan) تحدد الجمهور والرسالة والقناة والتكرار والمالك. الاجتماع اليومي (Stand-up) وقفة مزامنة قصيرة للفريق، عادةً 15 دقيقة، وليس منتدى لتفصيل التصميم؛ نقل المعرفة (Knowledge transfer) يبدأ قبل التسليم.',
+    defEn:
+      'A communications plan defines audience, message, channel, cadence and owner. A daily stand-up is a short team synchronization meeting, typically 15 minutes, not a design workshop; knowledge transfer starts before handover.',
+    ruleAr:
+      'استخدم القنوات التفاعلية للقرارات والصراعات، والوثائق المكتوبة للأدلة والسجلات الرسمية. وإذا احتاج المستلم سؤالين لفهم التحديث، فغيّر صياغة الرسالة أو القناة بدل زيادة عدد الرسائل.',
+    ruleEn:
+      'Use interactive channels for decisions and conflicts, and written documents for evidence and formal records. If the recipient needs two questions to understand an update, change the wording or the channel rather than sending more messages.',
+    failAr:
+      'فريق موزع أرسل تحديثات يومية طويلة بالبريد فزاد سوء الفهم؛ كما استُخدم stand-up لمناقشة تصميم تفصيلي 45 دقيقة ففقد اجتماعه الهدف. والخلل الآخر هو تأجيل نقل المعرفة إلى ما بعد رحيل الخبراء.',
+    failEn:
+      'A distributed team sent long daily emails and confusion increased; a stand-up was also used for 45 minutes of detailed design, losing its purpose. Another failure is postponing knowledge transfer until after experts leave.',
+    calcAr:
+      'خمسة أعضاء، تحديث يومي 30 دقيقة لكل منهم = 2.5 ساعة يومياً = 12.5 ساعة أسبوعياً. بعد تحويله إلى stand-up بـ 15 دقيقة: 1.25 ساعة يومياً = 6.25 ساعة أسبوعياً. الوفر 6.25 ساعة، مع تقرير أسبوعي للراعي مدته 30 دقيقة فقط.',
+    calcEn:
+      'For five members, a 30-minute daily update costs 2.5 hours a day, or 12.5 hours a week. Converting it to a 15-minute stand-up costs 1.25 hours daily or 6.25 hours weekly, saving 6.25 hours while keeping a 30-minute weekly sponsor report.',
+    glossary: ['pmp-standup', 'pmp-sprint', 'pmp-governance'],
+  },
+  '3-1': {
+    defAr:
+      'المتطلب (Requirement) حاجة قابلة للقياس، وهيكل تجزئة العمل (WBS) تفكيك هرمي للمخرجات إلى حزم عمل. قاعدة 100% تعني أن WBS يحتوي على كل العمل المطلوب ولا شيء إضافياً.',
+    defEn:
+      'A requirement is a measurable need, and a Work Breakdown Structure is a hierarchical decomposition of deliverables into work packages. The 100 percent rule means the WBS contains all required work and nothing extra.',
+    ruleAr:
+      'حوّل العبارات العامة إلى رقم وشرط: "سرعة البحث" تصبح "أقل من ثانيتين لـ 95% من الطلبات". ثم تحقق أن كل حزمة عمل مرتبطة بمتطلب واحد على الأقل في مصفوفة التتبع.',
+    ruleEn:
+      'Convert vague phrases into a number and a condition: fast search becomes under two seconds for 95 percent of requests. Then check that every work package links to at least one requirement in the traceability matrix.',
+    failAr:
+      'يُكتشف متطلب مُغفَل عند الاختبار النهائي، فيتحول إلى تغيير مكلف؛ أو يُضاف عمل خارج النطاق إلى WBS بحجة التحسين، فتنكسر قاعدة 100%.',
+    failEn:
+      'A missed requirement is discovered during final testing and becomes an expensive change; or extra work is added to the WBS as an improvement, breaking the 100 percent rule.',
+    calcAr:
+      'مشروع حجز: 24 متطلباً، 18 منها قابلة للقياس و6 تحتاج صياغة. بعد ورشة تحوّلت الستة إلى مقاييس، فارتفع التغطية من 18/24 = 75% إلى 100%. WBS من 4 مستويات و20 حزمة؛ كل حزمة مرتبطة بمعرف متطلب واحد على الأقل.',
+    calcEn:
+      'A booking project has 24 requirements, 18 measurable and 6 needing rewrite. After a workshop all six became metrics, raising coverage from 18 out of 24, or 75 percent, to 100 percent. The four-level WBS has 20 packages, each linked to at least one requirement ID.',
+    glossary: ['pmp-wbs', 'pmp-scope-baseline', 'pmp-benefit-owner'],
+  },
+  '3-2': {
+    defAr:
+      'بيان النطاق (Scope statement) يحدد المخرجات والقيود ومعايير القبول. زحف النطاق (Scope creep) هو نمو غير معتمد، بينما التغيير المعتمد يمر عبر التحكم بالتغيير. مصفوفة التتبع (Traceability matrix) تربط المتطلب بالمصدر والاختبار.',
+    defEn:
+      'A scope statement defines deliverables, constraints and acceptance criteria. Scope creep is unapproved growth, while an approved change passes through change control. A traceability matrix links each requirement to its source and test.',
+    ruleAr:
+      'أي طلب جديد يُسجَّل ويُحلَّل أثره قبل التنفيذ. ارفض العمل خارج الخط الأساس حتى لو كان مفيداً، وأحِل صاحبه إلى مسار التغيير بدل رفضه شخصياً.',
+    ruleEn:
+      'Log every new request and analyze its impact before execution. Refuse work outside the baseline even if useful, and direct the requester to the change path rather than rejecting them personally.',
+    failAr:
+      'مدير يوافق شفهياً على تصدير PDF أثناء مراجعة التصميم، فيُضاف عمل إلى الإصدار من دون اعتماد، ويتجاوز الميزانية والجدول بلا سجل تغيير.',
+    failEn:
+      'A manager verbally approves PDF export during design review, so work enters the release without approval and exceeds budget and schedule with no change record.',
+    calcAr:
+      'طلب تصدير PDF: أثره أسبوع واحد وتكلفة 12,000 دولار. الميزانية المتبقية 9,000 دولار، والعائم 3 أيام فقط. لأن التكلفة تتجاوز المتبقي بـ 3,000 دولار والمدة تتجاوز العائم بأربعة أيام، القرار تأجيله للإصدار الثاني مع تسجيل الطلب.',
+    calcEn:
+      'A PDF export request needs one week and 12,000 dollars. Remaining budget is 9,000 dollars and float is only three days. Since cost exceeds the remainder by 3,000 dollars and duration exceeds float by four days, the decision is to defer it to the next release and log the request.',
+    glossary: ['pmp-scope-baseline', 'pmp-change-control', 'pmp-wbs'],
+  },
+  '3-3': {
+    defAr:
+      'تسليم القيمة (Value delivery) يعني ترتيب العمل حسب الأثر لا حسب السهولة. النموذج الأولي (Prototype) نسخة مبكرة تختبر افتراضاً، والأولوية (Priority) قرار تجاري يحدد ما يُنفَّذ أولاً عند محدودية الموارد.',
+    defEn:
+      'Value delivery means ranking work by impact rather than ease. A prototype is an early version that tests an assumption, and priority is a business decision about what to do first when resources are limited.',
+    ruleAr:
+      'عند ضيق الوقت اختر الميزة التي تغيّر مؤشر الفائدة أولاً، واستخدم نموذجاً أولياً رخيصاً لاختبار أكثر الافتراضات خطورة قبل بناء الحل الكامل.',
+    ruleEn:
+      'Under time pressure, choose the feature that changes the benefit indicator first and use a cheap prototype to test the riskiest assumption before building the full solution.',
+    failAr:
+      'ينفذ الفريق أسهل الميزات ليُظهر تقدماً، فينفد الوقت قبل الميزات الثلاث التي تسبب 80% من الشكاوى. أو يُبنى نموذج أولي متقن ويُعامل كمنتج نهائي بلا اختبار افتراض.',
+    failEn:
+      'A team implements the easiest features to show progress, then runs out of time before the three features causing 80 percent of complaints. Or a polished prototype is treated as a final product without testing its assumption.',
+    calcAr:
+      '12 ميزة، ميزانية تكفي 5 فقط. تحليل الشكاوى: ثلاث ميزات تمثل 80% من 500 شكوى = 400 شكوى. تنفيذ الخمس الأسهل يعالج 90 شكوى فقط (18%)، بينما تنفيذ الثلاث ذات الأولوية يعالج 400 (80%) ويبقى عمل ميزتين للإصدار التالي.',
+    calcEn:
+      'There are 12 features but budget for 5. Complaint analysis shows three features account for 80 percent of 500 complaints, or 400 complaints. Building the five easiest features addresses only 90 complaints, or 18 percent, while building the top three addresses 400 and leaves capacity for two more.',
+    glossary: ['pmp-value-benefits', 'pmp-benefit-owner'],
+  },
+  '3-4': {
+    defAr:
+      'التحقق من النطاق (Validate Scope) يعني قبول المخرجات رسمياً وفق معايير، والتحكم بالنطاق (Control Scope) يعني مقارنة الأداء الفعلي بالخطة. معايير القبول (Acceptance criteria) يجب أن تكون مكتوبة قبل التنفيذ.',
+    defEn:
+      'Validate Scope is formal acceptance of deliverables against criteria; Control Scope compares actual performance with the plan. Acceptance criteria must be written before execution starts.',
+    ruleAr:
+      'إذا رُفض المخرج، حدّد هل الخلل عدم مطابقة لمعيار مكتوب فيُعاد العمل داخلياً، أم تغيير في المتطلب فيُرسل طلب تغيير. لا تخلط بين الرفض الناتج عن الجودة والرفض الناتج عن تعديل رغبة العميل.',
+    ruleEn:
+      'If a deliverable is rejected, decide whether it fails a written criterion, in which case rework internally, or whether the requirement changed, in which case raise a change request. Do not confuse quality rejection with a changed client wish.',
+    failAr:
+      'معيار "الواجهة سهلة" يختلف في فهم العميل والمطور، فيتعطل القبول. والفشل الآخر هو قياس الالتزام بالخطة دون فحص قبول المخرج، فيُعلن المشروع متوافقاً والمخرج مرفوض.',
+    failEn:
+      'A criterion such as easy interface is understood differently by client and developer, so acceptance stalls. Another failure is measuring plan conformity without checking deliverable acceptance, declaring compliance while the output is rejected.',
+    calcAr:
+      'معايير قابلة للقياس: إكمال الطلب في 3 خطوات، زمن تحميل أقل من 2 ثانية، وصفر أخطاء حرجة. نتائج الاختبار: 3 خطوات، 1.8 ثانية، خطأ حرج واحد. معياران من ثلاثة نجحا (66.7%)، therefore يُرفض المخرج حتى يُصلح الخطأ الحرج.',
+    calcEn:
+      'Measurable criteria are completion in three steps, load time under two seconds and zero critical defects. Test results are three steps, 1.8 seconds and one critical defect. Two of three criteria pass, or 66.7 percent; therefore the deliverable is rejected until the critical defect is fixed.',
+    glossary: ['pmp-scope-baseline', 'pmp-change-control'],
+  },
+  '4-1': {
+    defAr:
+      'المسار الحرج (Critical path) هو أطول سلسلة أنشطة في شبكة الجدول، ويحدد أقرب تاريخ إنجاز. الوقت العائم (Float) هو التأخير المسموح به من دون تأخير المشروع؛ العائم صفر يعني نشاطاً حرجاً. التسريع (Crashing) يضيف موارد بتكلفة، والتنفيذ المتوازي (Fast tracking) يتداخل الأنشطة بمخاطرة أعلى.',
+    defEn:
+      'The critical path is the longest chain of activities in the schedule network and sets the earliest finish date. Float is the delay allowed without delaying the project; zero float marks a critical activity. Crashing adds resources at a cost while fast tracking overlaps activities at higher risk.',
+    ruleAr:
+      'راقب الأنشطة ذات العائم صفر أولاً. إن احتجت تقصير المدة فابدأ بالنشاط الحرج الأرخص للتسريع، وقارن تكلفة كل يوم مكتسب بالمخاطر الإضافية قبل اختيار التنفيذ المتوازي.',
+    ruleEn:
+      'Monitor zero-float activities first. If the duration must shrink, crash the cheapest critical activity and compare the cost per day saved with the added risk before choosing fast tracking.',
+    failAr:
+      'يُسرَّع نشاط غير حرج فلا يتغير تاريخ الإنهاء وتُهدر التكلفة. أو يُدخل التنفيذ المتوازي في أنشطة تعتمد على بعضها، فيُعاد العمل بعد اكتشاف التعارض.',
+    failEn:
+      'A team crashes a noncritical activity, so the finish date does not move and the cost is wasted; or it overlaps dependent activities and reworks after discovering the conflict.',
+    calcAr:
+      'مساران: A→B→C مدته 5+4+3 = 12 يوماً، وD→E مدته 4+3 = 7 أيام. المسار الحرج 12 يوماً والعائم على المسار الثاني 5 أيام. تأخر B يومين يرفع المشروع إلى 14 يوماً. تسريع B بيومين بكلفة 3,000 دولار/يوم يعيد المدة إلى 12 بكلفة 6,000 دولار، بينما تسريع D لا يغير النتيجة.',
+    calcEn:
+      'Two paths run A-B-C for 5 plus 4 plus 3, or 12 days, and D-E for 4 plus 3, or 7 days. The critical path is 12 days and the second path has 5 days of float. A two-day delay on B moves the project to 14 days. Crashing B by two days at 3,000 dollars a day restores 12 days for 6,000 dollars, while crashing D changes nothing.',
+    glossary: ['pmp-critical-path', 'pmp-float'],
+  },
+  '4-2': {
+    defAr:
+      'خط الأساس للتكلفة (Cost baseline) هو الميزانية المعتمدة زمنياً للمقارنة، ويستبعد الاحتياطي الإداري. احتياطي الطوارئ (Contingency reserve) يغطي مخاطر معروفة، والاحتياطي الإداري (Management reserve) يغطي أعمالاً غير متوقعة ويطلب موافقة الراعي.',
+    defEn:
+      'The cost baseline is the time-phased approved budget used for comparison and excludes management reserve. A contingency reserve covers identified risks; a management reserve covers unforeseen work and requires sponsor approval.',
+    ruleAr:
+      'لا تصرف من الاحتياطي إلا بعد تحقق الخطر المخصص له وتوثيق القرار. وإذا تجاوزت التكلفة المتوقعة خط الأساس فافحص أولاً ما إذا كان الانحراف داخل احتياطي الطوارئ قبل طلب تغيير الميزانية.',
+    ruleEn:
+      'Spend a reserve only after its named risk occurs and the decision is documented. If the forecast exceeds the baseline, first check whether the variance sits inside contingency before requesting a budget change.',
+    failAr:
+      'يُستخدم احتياطي الطوارئ لتغطية تأخير غير محدد، فيُستنفد قبل تحقق المخاطر الحقيقية. والخطأ الآخر هو إضافة الاحتياطي الإداري إلى خط الأساس، فتختفي إشارة الانحراف في تقارير الأداء.',
+    failEn:
+      'Contingency is spent on an unnamed delay and is exhausted before real risks occur. Another error is adding management reserve into the baseline, which hides the variance signal in performance reports.',
+    calcAr:
+      'تكلفة أساسية 200,000 دولار، احتياطي طوارئ 12% = 24,000 دولار، واحتياطي إداري 10,000 دولار. ميزانية الراعي = 234,000 دولار. حد خط الأساس للمراقبة = 200,000 + 24,000 = 224,000 دولار. إنفاق 218,000 دولار مع EV = 210,000 دولار يعني CV = −8,000 دولار، لكن الاحتياطي لا يزال يغطي 16,000 دولار.',
+    calcEn:
+      'A cost baseline of 200,000 dollars plus 12 percent contingency, or 24,000 dollars, plus 10,000 dollars management reserve gives a sponsor budget of 234,000 dollars. The control limit is the baseline plus contingency, or 224,000 dollars. With actual spend of 218,000 and earned value of 210,000, CV is negative 8,000 dollars while 16,000 dollars of contingency remains.',
+    glossary: ['pmp-cost-baseline', 'pmp-contingency-reserve', 'pmp-evm'],
+  },
+  '4-3': {
+    defAr:
+      'القيمة المكتسبة (EVM) تدمج نطاقاً ووقتاً وتكلفة. CV = EV − AC، SV = EV − PV، CPI = EV / AC، SPI = EV / PV. انحراف الإنجاز VAC = BAC − EAC ويُقرأ بعد حساب التوقع النهائي، وليس في منتصف المشروع بدلاً من CV.',
+    defEn:
+      'Earned value management integrates scope, time and cost. CV equals EV minus AC, SV equals EV minus PV, CPI equals EV divided by AC and SPI equals EV divided by PV. The variance at completion VAC equals BAC minus EAC and is read after the final forecast, not in place of mid-project CV.',
+    ruleAr:
+      'ابدأ من EV ثم احسب الانحرافات والمؤشرات. إذا كان CPI أقل من 1 فالتكلفة تتجاوز المخطط؛ وإذا كان SPI أقل من 1 فالجدول متأخر. استخدم VAC للحكم على الميزانية عند الإنهاء المتوقع، ولا تخلطه مع CV الذي يقيس الوضع الحالي.',
+    ruleEn:
+      'Start from EV, then compute variances and indices. CPI below 1 means cost overrun and SPI below 1 means schedule slippage. Use VAC to judge the budget at expected completion and never confuse it with CV, which measures the current position.',
+    failAr:
+      'يحسب الدارس VAC من BAC − AC في منتصف التنفيذ ويظن أنه انحراف تكلفة حالي، فيتخذ إجراءً على رقم خاطئ. والخطأ الثاني هو اعتبار SPI = 0.9 يعني المشروع أنفق 90% من الميزانية.',
+    failEn:
+      'A candidate computes BAC minus AC mid-execution and calls it current cost variance, acting on the wrong number. Another error is reading SPI of 0.9 as 90 percent budget spent rather than a schedule efficiency ratio.',
+    calcAr:
+      'PV = 100,000، EV = 90,000، AC = 110,000، BAC = 200,000. CV = −20,000، SV = −10,000، CPI = 0.818، SPI = 0.9. EAC = BAC / CPI = 244,500. VAC = BAC − EAC = −44,500، أي تجاوز متوقع عند الإنهاء. ETC = EAC − AC = 134,500. القرار: إجراء تصحيحي فوري لا انتظار نهاية المشروع.',
+    calcEn:
+      'PV is 100,000, EV 90,000, AC 110,000 and BAC 200,000. CV is minus 20,000, SV minus 10,000, CPI 0.818 and SPI 0.9. EAC equals BAC divided by CPI, or 244,500. VAC equals BAC minus EAC, or minus 44,500, an expected overrun at completion. ETC is EAC minus AC, or 134,500, so corrective action is needed now.',
+    glossary: ['pmp-evm', 'pmp-cpi', 'pmp-spi', 'pmp-vac', 'pmp-forecast-eac'],
+  },
+  '4-4': {
+    defAr:
+      'التوقع (Forecast) هو تقدير التكلفة أو المدة النهائية بناءً على الأداء الحالي، وEAC = BAC / CPI عند استمرار نفس الكفاءة. إعادة القياس بعد الإجراء التصحيحي هي جزء من التحكم، لا خطوة إدارية لاحقة.',
+    defEn:
+      'A forecast estimates final cost or duration from current performance; EAC equals BAC divided by CPI when efficiency continues. Re-measuring after corrective action is part of control, not a later administrative step.',
+    ruleAr:
+      'اربط كل انحراف بإجراء ومالك وموعد إعادة قياس. اقبل الانحراف الصغير داخل العتبة المحددة، واطلب اعتماداً عندما يتجاوز EAC سقف الراعي.',
+    ruleEn:
+      'Link every variance to an action, an owner and a re-measurement date. Accept small variances inside the agreed threshold and seek approval when EAC passes the sponsor ceiling.',
+    failAr:
+      'يُعلن تحسن SPI بعد إعادة ترتيب الأنشطة، بينما CPI ما زال 0.90، فيُعتبر المشروع تحت السيطرة خطأً. والفشل الآخر هو توقع بلا سجل أثر، فلا يعرف الراعي أي إجراء اعتمده.',
+    failEn:
+      'SPI improves after reordering activities while CPI stays at 0.90, and the project is wrongly declared under control. Another failure is a forecast with no action record, leaving the sponsor unaware of what was approved.',
+    calcAr:
+      'بعد شهرين: CPI = 0.94 وSPI = 0.88 وBAC = 300,000. EAC = 319,149 دولار، أي VAC = −19,149 دولار. إذا رفع الإجراء CPI إلى 0.98 عند إعادة القياس، يصبح EAC = 306,122 دولار، فتنخفض الفجوة بمقدار 13,027 دولار؛ يستمر القياس أسبوعياً لتأكيد الأثر.',
+    calcEn:
+      'After two months, CPI is 0.94, SPI 0.88 and BAC 300,000 dollars, so EAC is 319,149 and VAC is minus 19,149. If corrective action raises CPI to 0.98 at re-measurement, EAC becomes 306,122, reducing the gap by 13,027 dollars; weekly measurement continues to confirm the effect.',
+    glossary: ['pmp-forecast-eac', 'pmp-cpi', 'pmp-spi', 'pmp-vac'],
+  },
+  '5-1': {
+    defAr:
+      'تخطيط الموارد يحدد المهارة والكمية والوقت لكل حزمة عمل. التسوية (Leveling) تغيّر الجدول وقد تؤخر التسليم، أما التنعيم (Smoothing) فيستخدم العائم من دون تغيير المسار الحرج. الإشغال (Allocation) فوق 100% يعني تحميلاً غير واقعي.',
+    defEn:
+      'Resource planning defines the skill, quantity and timing for each work package. Leveling changes the schedule and may delay delivery, while smoothing uses float without changing the critical path. Allocation above 100 percent is unrealistic loading.',
+    ruleAr:
+      'عند الإشغال الزائد، انقل عملاً إلى عضو مؤهل أو استخدم عائماً في نشاط غير حرج قبل طلب موارد جديدة. وثّق القرار في مصفوفة المهارات والمسؤوليات.',
+    ruleEn:
+      'When overallocated, move work to a qualified member or use float on a noncritical activity before requesting new resources, and record the decision in the skills and responsibilities matrix.',
+    failAr:
+      'يُبقى مطور رئيسي مخصصاً 140% لأسبوعين، فتظهر أخطاء وتأخير مخفي. أو تُستخدم التسوية على النشاط الحرج فيُعاد تاريخ التسليم من دون أن يعلم الراعي بالسبب.',
+    failEn:
+      'A lead developer stays allocated at 140 percent for two weeks, creating defects and hidden delay; or leveling is applied to a critical activity and the delivery date moves without the sponsor knowing why.',
+    calcAr:
+      'مطور مخصص 70% لمشروع A و70% لمشروع B، أي 140%. خفضه إلى 50% في A و50% في B يعيد الإشغال إلى 100%. نقل حزمة اختبار من 8 ساعات إلى عضو مدرب مع 3 أيام عائم حرج يمنع تأخير التسليم ويحرر 20% من سعة المطور.',
+    calcEn:
+      'A developer is allocated 70 percent to project A and 70 percent to project B, or 140 percent. Reducing to 50 percent on each restores 100 percent. Moving an eight-hour test package to a trained member using three days of noncritical float prevents delivery delay and frees 20 percent of the developer capacity.',
+    glossary: ['pmp-critical-path', 'pmp-float', 'pmp-raci'],
+  },
+  '5-2': {
+    defAr:
+      'قرار اصنع أم اشترِ (Make or buy) يقارن الكفاءة الأساسية والتكلفة والسرعة والمخاطر. عقد السعر الثابت (Fixed-price) ينقل مخاطر التنفيذ للمورد، وعقد الزمن والمواد (Time and materials) يناسب العمل غير المحدد، وبيان العمل (SOW) يصف العمل التعاقدي ومعايير قبوله.',
+    defEn:
+      'A make-or-buy decision compares core competence, cost, speed and risk. A fixed-price contract transfers execution risk to the seller, time and materials suits undefined work, and a statement of work describes the contractual scope and acceptance criteria.',
+    ruleAr:
+      'اختر السعر الثابت حين تكون المواصفات واضحة، والزمن والمواد حين يتغير النطاق، واسترداد التكلفة للبحث والتطوير. أدرج معايير الاستدامة (ESG) في ترجيح العروض عند تكافؤ السعر والجودة.',
+    ruleEn:
+      'Choose fixed price when specifications are clear, time and materials when scope changes, and cost-reimbursable for research. Where price and quality are equal, include ESG criteria in the bid evaluation.',
+    failAr:
+      'يُوقَّع سعر ثابت قبل وضوح المتطلبات، فيطالب المورد بتغييرات كل أسبوع ويتحول الخلاف إلى تكلفة إضافية. أو يُهمل معيار بيئي في الترسية فتُستبعد الشركة التي تقدم أثراً كربونياً أقل.',
+    failEn:
+      'A fixed-price contract is signed before requirements are clear, so the seller claims changes weekly and disputes turn into extra cost. Or an environmental criterion is omitted from award, excluding the bidder with lower carbon impact.',
+    calcAr:
+      'عرضان: عرض داخلي 180,000 دولار ومدة 12 أسبوعاً، ومورد خارجي 150,000 دولار ومدة 9 أسابيع مع مخاطر تكامل قيمتها 20,000 دولار. التكلفة المتوقعة للمورد = 170,000 دولار، أي أرخص بـ 10,000 دولار وأسرع بـ 3 أسابيع. معيار ESG: المورد يستخدم 30% طاقة متجددة، فيُرجَّح عند تساوي التكلفة.',
+    calcEn:
+      'Two options: in-house work at 180,000 dollars over 12 weeks, and an external supplier at 150,000 dollars over 9 weeks with 20,000 dollars of integration risk. Expected supplier cost is 170,000 dollars, saving 10,000 and three weeks. On ESG, the supplier uses 30 percent renewable energy, which breaks any cost tie in its favor.',
+    glossary: ['pmp-make-or-buy', 'pmp-esg', 'pmp-scope-baseline'],
+  },
+  '5-3': {
+    defAr:
+      'تكلفة الجودة (CoQ) تنقسم إلى وقاية وتقييم وفشل داخلي وفشل خارجي. الوقاية (Prevention) تمنع العيب قبل حدوثه، والفشل الخارجي هو العيب الذي يصل إلى العميل بعد التسليم ويتحمل المشروع تكلفته الأعلى.',
+    defEn:
+      'Cost of quality divides into prevention, appraisal, internal failure and external failure. Prevention stops a defect before it occurs; external failure is a defect that reaches the customer and carries the highest cost.',
+    ruleAr:
+      'قارن تكلفة الوقاية بتكلفة الفشل المتوقعة قبل اعتماد الميزانية. إذا كان احتمال العيب 20% وتكلفة إصلاحه بعد التسليم 10 أضعاف تكلفة منعه، فالاستثمار في الوقاية هو القرار الاقتصادي.',
+    ruleEn:
+      'Compare prevention cost with expected failure cost before approving the budget. If defect probability is 20 percent and post-delivery repair costs ten times prevention, investing in prevention is the economic decision.',
+    failAr:
+      'يُخفَّض ميزانية الاختبار لتوفير 10,000 دولار، فيظهر 32 عيباً بعد التسليم بتكلفة 90,000 دولار. والخطأ الآخر هو اعتبار الفحص النهائي بديلاً عن تصميم العملية، فيُكتشف العيب متأخراً.',
+    failEn:
+      'The test budget is cut to save 10,000 dollars, then 32 defects appear after delivery at a cost of 90,000. Another error is treating final inspection as a substitute for process design, so defects are found late.',
+    calcAr:
+      'الوقاية والتقييم 10,000 دولار، خفضت العيوب من 40 إلى 8، أي 32 عيباً تمت إزالته. تكلفة العيب الخارجي 2,800 دولار، فالوفر = 32 × 2,800 − 10,000 = 79,600 دولار. العائد على كل دولار وقاية = 8.96 دولار.',
+    calcEn:
+      'Prevention and appraisal cost 10,000 dollars and reduced defects from 40 to 8, eliminating 32 defects. Each external defect costs 2,800 dollars, so savings are 32 × 2,800 minus 10,000, or 79,600 dollars, a return of 8.96 dollars per prevention dollar.',
+    glossary: ['pmp-quality-cost'],
+  },
+  '5-4': {
+    defAr:
+      'ضمان الجودة (QA) يفحص العملية لزيادة الثقة في أن الجودة ستحقق، ومراقبة الجودة (QC) تفحص المخرجات الفعلية. تحليل السبب الجذري يبحث عن مصدر العيب قبل إغلاقه، وأدوات مثل باريتو ومخططات التحكم تدعم القرار بالبيانات.',
+    defEn:
+      'Quality assurance examines the process to build confidence that quality will be achieved; quality control examines actual deliverables. Root cause analysis finds the source of a defect before closure, and Pareto charts or control charts support data-based decisions.',
+    ruleAr:
+      'إذا تكرر العيب نفسه فلا تكتفِ بفحص مخرجات أكثر؛ عدّل العملية. واستخدم استخدم مخطط باريتو لتحديد السبب الذي ينتج معظم العيوب أولاً.',
+    ruleEn:
+      'If the same defect repeats, do not simply inspect more outputs; change the process. Use a Pareto chart to identify the cause producing most defects first.',
+    failAr:
+      'يُكثَّف فحص كل قطعة بينما سبب 70% من العيوب هو معايرة ماكينة، فيبقى الهدر. والخلط بين QA وQC يؤدي إلى مراجعة عملية بعد فشل مخرج واحد بدل التحقيق في المخرج نفسه.',
+    failEn:
+      'Every item is inspected more closely while 70 percent of defects come from machine calibration, so waste continues. Confusing QA with QC also leads to reviewing the process after one failed output instead of investigating that output.',
+    calcAr:
+      'خريطة باريتو: 70% من العيوب (28 من 40) تعود للمعايرة، و20% للتغليف، و10% لسبب آخر. إصلاح المعايرة يخفض العيوب المتوقعة من 40 إلى 12، أي 28 عيباً. معالجة التغليف أولاً كانت ستخفض 8 فقط، أي ثلث الأثر.',
+    calcEn:
+      'A Pareto chart shows 70 percent of defects, 28 of 40, come from calibration, 20 percent from packaging and 10 percent from other causes. Fixing calibration cuts defects from 40 to 12, removing 28; fixing packaging first would remove only 8, a third of the effect.',
+    glossary: ['pmp-quality-cost'],
+  },
+  '5-5': {
+    defAr:
+      'خطة إدارة المشروع تجمع الخطوط الأساسية والخطط الفرعية في مرجع معتمد واحد. التكامل (Integration) مسؤولية مدير المشروع: مواءمة القرارات وتسوية التعارضات بين النطاق والجدول والتكلفة والجودة مع توثيق المبرر.',
+    defEn:
+      'The project management plan gathers baselines and subsidiary plans into one approved reference. Integration is the project manager duty to align decisions and reconcile conflicts among scope, schedule, cost and quality while documenting the rationale.',
+    ruleAr:
+      'عند تضارب مطالب أصحاب المصلحة، اعرض أثر كل خيار على القيمة والمخاطر والخط الأساسي، ثم اطلب اعتماد الراعي للقرار الذي يمس الميثاق وسجّله في سجل القرارات.',
+    ruleEn:
+      'When stakeholder demands conflict, show each option effect on value, risk and baseline, then obtain sponsor approval for any decision affecting the charter and record it in the decision log.',
+    failAr:
+      'يُعتمد حل وسط تلقائياً بين التسويق والمالية والجودة دون تحليل أثر، فيُسجَّل قرار بلا مبرر ويعود الخلاف في المراجعة التالية. والفشل الآخر هو وجود خطط فرعية متعارضة بلا مرجع تكاملي.',
+    failEn:
+      'An automatic compromise between marketing, finance and quality is approved with no impact analysis, so an undocumented decision reopens at the next review. Another failure is conflicting subsidiary plans with no integrated reference.',
+    calcAr:
+      'ثلاثة خيارات لإطلاق مبكر: تسويق يوفر أسبوعين بقيمة 40,000 دولار، مالية توفر 25,000 دولار بتأخير أسبوع، وجودة تطلب أسبوع اختبار بتكلفة 15,000 دولار لكنها تخفض مخاطرة 60,000 دولار. الخيار المعتمد: أسبوع اختبار إضافي، صافي القيمة 45,000 دولار، مع تحديث خط الأساس.',
+    calcEn:
+      'Three launch options: marketing gains two weeks worth 40,000 dollars, finance saves 25,000 by delaying a week, and quality asks for one test week costing 15,000 while reducing risk worth 60,000. The approved option is the extra test week for a net value of 45,000 dollars, with the baseline updated accordingly.',
+    glossary: ['pmp-charter', 'pmp-scope-baseline', 'pmp-governance'],
+  },
+  '6-1': {
+    defAr:
+      'الخطر (Risk) حدث غير مؤكد قد يؤثر إيجاباً أو سلباً على أهداف المشروع. التحليل النوعي يصنّف الاحتمال والأثر، والتحليل الكمي يقدّم أثراً رقمياً؛ القيمة المتوقعة للمخاطر EMV = الاحتمال × الأثر وتستخدم لمقارنة الاستجابات.',
+    defEn:
+      'A risk is an uncertain event that may affect objectives positively or negatively. Qualitative analysis ranks probability and impact; quantitative analysis gives numeric effect. Expected monetary value EMV equals probability multiplied by impact and is used to compare responses.',
+    ruleAr:
+      'سجّل كل خطر بوصف وسبب ومالك ومحفز واستجابة. استخدم EMV لتبرير اختيار الاستجابة، ولا تتعامل مع الاحتمال والأثر كرقمين منفصلين عند مقارنة بدائل ذات تكاليف مختلفة.',
+    ruleEn:
+      'Record every risk with description, cause, owner, trigger and response. Use EMV to justify the chosen response, and do not treat probability and impact as isolated numbers when comparing alternatives with different costs.',
+    failAr:
+      'يُسجَّل خطر بلا مالك ولا محفز، فيتحول إلى مشكلة دون استجابة جاهزة. كما يُرفض تأمين بتكلفة 8,000 دولار رغم أن خسارته المتوقعة 18,000 دولار، لأن القرار اتُخذ بالانطباع لا بـ EMV.',
+    failEn:
+      'A risk is recorded without owner or trigger and becomes an issue with no prepared response. Insurance costing 8,000 dollars is also rejected although expected loss is 18,000, because the decision used impression rather than EMV.',
+    calcAr:
+      'خطر تأخر مورد: احتمال 30% وأثر 60,000 دولار، إذن EMV = 0.30 × 60,000 = 18,000 دولار. بديل مورّد محلي يكلف 8,000 دولار ويخفض الاحتمال إلى 5%: EMV متبقٍ = 0.05 × 60,000 = 3,000 دولار، إجمالي التكلفة 11,000 دولار. الوفر المتوقع 7,000 دولار، فاختيار البديل مبرر رقمياً.',
+    calcEn:
+      'A supplier delay risk has 30 percent probability and 60,000 dollars impact, so EMV is 0.30 × 60,000 or 18,000. A local supplier costs 8,000 and cuts probability to 5 percent, leaving EMV of 3,000 and total cost of 11,000. Expected saving is 7,000 dollars, which justifies the alternative numerically.',
+    glossary: ['pmp-risk-register', 'pmp-emv', 'pmp-residual-risk'],
+  },
+  '6-2': {
+    defAr:
+      'استراتيجيات التهديدات أربع: التجنّب (Avoid) بإزالة السبب، التخفيف (Mitigate) بتقليل الاحتمال أو الأثر، النقل (Transfer) بمشاركة طرف ثالث، والقبول (Accept) مع مراقبة. للفرص استراتيجيات: استغلال وتعزيز ومشاركة وقبول.',
+    defEn:
+      'Threat strategies are avoid by removing the cause, mitigate by reducing probability or impact, transfer by sharing with a third party, and accept with monitoring. Opportunity strategies are exploit, enhance, share and accept.',
+    ruleAr:
+      'قارن تكلفة كل استجابة بالخسارة المتوقعة قبل اختيارها، واربط الاستجابة بمحفز (Trigger) ومالك. لا تنقل خطراً بتوقيع عقد فقط من دون تحديد من يتحمل الأثر فعلياً.',
+    ruleEn:
+      'Compare each response cost with expected loss before choosing it and attach a trigger and owner. Do not assume a contract transfers risk unless the party bearing the impact is explicitly named.',
+    failAr:
+      'يُقبل خطر مرتفع بلا مراقبة ولا محفز، فيتحول إلى أزمة. أو تُطبَّق استراتيجية تخفيف على فرصة، فتُضيع فرصة تقليل الزمن بدل تعزيزها.',
+    failEn:
+      'A high risk is accepted with no monitoring or trigger and becomes a crisis; or a mitigation is applied to an opportunity, wasting a chance to reduce duration instead of enhancing it.',
+    calcAr:
+      'خطر تغيّر الواجهة: احتمال 40% وأثر 25,000 دولار، EMV = 10,000 دولار. مراجعات أسبوعية تكلف 4,000 دولار وتخفض الاحتمال إلى 10%، EMV جديد = 2,500 دولار، تكلفة إجمالية 6,500 دولار. التخفيف أوفر من النقل بـ 9,000 دولار إن كان ثمن النقل 15,500 دولار.',
+    calcEn:
+      'An interface-change risk has 40 percent probability and 25,000 dollars impact, so EMV is 10,000. Weekly reviews cost 4,000 and cut probability to 10 percent, leaving EMV of 2,500 and total cost 6,500. Mitigation is cheaper than transfer by 9,000 if transfer costs 15,500.',
+    glossary: ['pmp-emv', 'pmp-risk-register', 'pmp-contingency-reserve'],
+  },
+  '6-3': {
+    defAr:
+      'المخاطر المتبقية (Residual risks) هي ما يبقى بعد تطبيق الاستجابة المخططة، والمخاطر الثانوية (Secondary risks) هي مخاطر جديدة تسببها الاستجابة نفسها. سجل المخاطر (Risk register) سجل حي يُحدَّث فيه الاحتمال والأثر والمالك والحالة في كل مراجعة.',
+    defEn:
+      'Residual risks are what remains after the planned response is applied; secondary risks are new risks caused by the response itself. The risk register is a living record updated for probability, impact, owner and status at each review.',
+    ruleAr:
+      'بعد اختيار أي استجابة اسأل سؤالين: ما الذي بقي من الخطر الأصلي؟ وما الخطر الجديد الذي أنشأته الاستجابة؟ سجّل الإجابين في السجل مع مالك لكل منهما، وراجعهما عند كل بوابة مرحلة.',
+    ruleEn:
+      'After choosing any response ask two questions: what remains of the original risk and what new risk did the response create? Record both in the register with an owner for each and review them at every phase gate.',
+    failAr:
+      'يُعتبر الخطر مغلقاً بمجرد تفعيل الاستجابة، فيُنسى أثر متبقٍ مرتفع؛ أو يُستبدل مورد بتأمين دون ملاحظة أن الاستبدال نفسه أدى إلى مخاطر تكامل جديدة.',
+    failEn:
+      'A risk is closed as soon as a response is triggered, leaving a high residual effect forgotten; or a supplier is replaced by insurance without noticing that the replacement created new integration risks.',
+    calcAr:
+      'خطر أصلي احتماله 0.5 وأثره 40,000 دولار (EMV = 20,000). بعد التخفيف أصبح 0.2 × 40,000 = 8,000 دولار مخاطر متبقية. الاستجابة نفسها أنشأت خطر تكامل احتماله 0.3 وأثره 10,000 دولار، أي مخاطر ثانوية EMV = 3,000 دولار. إجمالي ما بعد الاستجابة 11,000 دولار، أي انخفاض صافٍ 9,000 دولار.',
+    calcEn:
+      'An original risk has 0.5 probability and 40,000 dollars impact, or EMV of 20,000. After mitigation, residual EMV is 0.2 × 40,000 or 8,000. The response creates an integration risk with 0.3 probability and 10,000 impact, so secondary EMV is 3,000. Total after response is 11,000, a net reduction of 9,000 dollars.',
+    glossary: ['pmp-risk-register', 'pmp-residual-risk', 'pmp-secondary-risk'],
+  },
+  '6-4': {
+    defAr:
+      'المشكلة (Issue) حدث سلبي وقع بالفعل ويؤثر على العمل، بينما الخطر احتمال مستقبلي. سجل المشكلات (Issue log) يوثّق الوصف والخطورة والمالك والموعد والحالة، والتصعيد يحدث عند تجاوز صلاحية الفريق.',
+    defEn:
+      'An issue is a negative event that has already happened and affects work; a risk is a future possibility. An issue log records description, severity, owner, due date and status, and escalation occurs when team authority is exceeded.',
+    ruleAr:
+      'حوّل الخطر المحقق إلى مشكلة في نفس الجلسة، وحدد مالكاً وموعداً. إن لم يُحل خلال المهلة المتفق عليها أو تجاوزت تكلفته سقف الفريق، صعّده مع تحليل أثر مكتوب.',
+    ruleEn:
+      'Convert a realized risk into an issue in the same meeting with an owner and due date. If it remains unresolved past the agreed time or exceeds the team ceiling, escalate it with a written impact analysis.',
+    failAr:
+      'يستمر النقاش في الاجتماعات حول مشكلة وقعت دون مالك أو موعد، فتُكرر نفس المشكلة. والخلط الشائع في الامتحان هو معاملة المشكلة كخطر احتمالي لأن خطورتهما متشابهة.',
+    failEn:
+      'An occurred issue is discussed repeatedly without an owner or date, so it recurs. The common exam confusion is treating an issue as a possible risk because both can be severe.',
+    calcAr:
+      'توقف نظام دفع قبل التسليم بيومين، تكلفة توقفه 4,000 دولار/ساعة. حدد الفريق مهلة 4 ساعات، فتجاوزت الخسارة 16,000 دولار. صُعّد القرار إلى الراعي مع بديل تشغيلي يدوي يكلف 6,000 دولار، أي توفير 10,000 دولار مقابل استمرار التوقف.',
+    calcEn:
+      'A payment system stops two days before handover at a cost of 4,000 dollars per hour. The team set a four-hour deadline and the loss reached 16,000. The decision was escalated with a manual fallback costing 6,000, saving 10,000 dollars against continued downtime.',
+    glossary: ['pmp-issue-log', 'pmp-risk-register', 'pmp-governance'],
+  },
+  '7-1': {
+    defAr:
+      'توجيه العمل هو تحويل الخطة إلى مخرجات مع إدارة المعلومات والاجتماعات والمخاطر اليومية. اجتماع ذو قيمة له هدف وجدول أعمال ومخرجات ومالك، وسجل القرارات يوثّق القرار وتاريخه ومبرره.',
+    defEn:
+      'Directing and managing work turns the plan into deliverables while handling information, meetings and daily risks. A valuable meeting has a purpose, agenda, outputs and owner, and a decision log records the decision, date and rationale.',
+    ruleAr:
+      'حدد حدود التفويض في ميثاق الفريق: أي قرار يحلّه الفريق داخل الحد وأي قرار يصعَّد. لا تزيد عدد الاجتماعات قبل أن تسأل أي قرار أو مخرج فُقد بسبب غيابها.',
+    ruleEn:
+      'Set delegation boundaries in the team charter: which decisions the team resolves and which are escalated. Do not add meetings before asking which decision or output was lost because of their absence.',
+    failAr:
+      'ينتظر الفريق موافقة المدير على كل قرار تقني صغير، فيتعطل التنفيذ. والفشل المقابل هو عقد اجتماعات بلا جدول أعمال استهلكت ساعات دون إنتاج قرار موثق.',
+    failEn:
+      'The team waits for the manager on every small technical decision and execution stalls. The opposite failure is scheduling meetings with no agenda that consume hours without a documented decision.',
+    calcAr:
+      'خمسة أعضاء، ثلاثة اجتماعات أسبوعية مدتها ساعة = 15 ساعة. بعد تحديد سقف تفويض وتحويل اثنين إلى stand-up بـ 15 دقيقة: 2 × 1.25 + 1 × 5 = 7.5 ساعة، أي وفر 7.5 ساعة أسبوعياً، وارتفع عدد القرارات الموثقة من 4 إلى 9.',
+    calcEn:
+      'Five members attend three one-hour meetings weekly, costing 15 hours. After setting delegation limits and converting two meetings to 15-minute stand-ups, the cost becomes 2 × 1.25 plus 5, or 7.5 hours, saving 7.5 hours a week while documented decisions rise from 4 to 9.',
+    glossary: ['pmp-team-charter', 'pmp-standup', 'pmp-governance'],
+  },
+  '7-2': {
+    defAr:
+      'تقرير الحالة يجيب عن ثلاثة أسئلة: أين نحن مقابل الخطة، ما الذي سيحدث، وماذا نحتاج من الراعي؟ الانحراف (Variance) هو الفرق بين الفعلي والمخطط، والشفافية (Transparency) عرض الحقائق مع توصية لا إغراق بالتفاصيل.',
+    defEn:
+      'A status report answers three questions: where we stand against the plan, what will happen next and what is needed from the sponsor. Variance is the difference between actual and planned; transparency means showing facts with a recommendation rather than flooding with detail.',
+    ruleAr:
+      'اكتب كل مؤشر مع رقم ومصدر وإجراء مطلوب. إن كان CPI أو SPI خارج العتبة فاذكر السبب المحتمل والقرار المطلوب موعده في التقرير نفسه.',
+    ruleEn:
+      'Write every indicator with a number, a source and a requested action. If CPI or SPI is outside threshold, state the likely cause and the decision date in the same report.',
+    failAr:
+      'يقول التقرير "كل شيء على ما يرام" بينما SPI = 0.82، فيكتشف الراعي التأخير متأخراً. أو يُرسل جدول بـ 30 رقماً بلا توصية، فيُهمل التقرير كله.',
+    failEn:
+      'A report says everything is fine while SPI is 0.82, so the sponsor discovers slippage late; or a table of 30 numbers arrives with no recommendation and the whole report is ignored.',
+    calcAr:
+      'SPI = 0.82 يعني أن الفريق أنجز 82% من العمل المخطط زمنياً. مع BAC = 250,000 دولار وCPI = 0.95، يصبح EAC ≈ 263,158 دولار، أي VAC ≈ −13,158 دولار. التقرير الجديد يعرض الرقمين مع طلب موافقة على تسريع بتكلفة 7,000 دولار قبل بوابة الشهر القادم.',
+    calcEn:
+      'SPI of 0.82 means the team completed 82 percent of the planned work in time terms. With BAC of 250,000 dollars and CPI of 0.95, EAC is about 263,158 and VAC about minus 13,158. The revised report shows both figures and requests approval for 7,000 dollars of acceleration before next month gate.',
+    glossary: ['pmp-spi', 'pmp-cpi', 'pmp-vac', 'pmp-governance'],
+  },
+  '7-3': {
+    defAr:
+      'التحكم بالتغيير (Change control) مسار مؤلف من تسجيل الطلب وتحليل الأثر على النطاق والجدول والتكلفة والجودة والمخاطر، ثم قرار بالموافقة أو الرفض أو التأجيل، وأخيراً تحديث الخطوط الأساسية. سجل التغييرات يحفظ القرار ومبرره.',
+    defEn:
+      'Change control is a path of logging the request, analyzing impact on scope, schedule, cost, quality and risk, deciding to approve, reject or defer, then updating baselines. A change log preserves the decision and its rationale.',
+    ruleAr:
+      'لا تُنفَّذ أي إضافة قبل قرار مكتوب حتى لو بدت طارئة؛ استخدم مسار الطلب العاجل المعلن مسبقاً. بعد الموافقة حدّث الخطة والخط الأساسي في نفس الدورة.',
+    ruleEn:
+      'Never implement an addition before a written decision, even if it seems urgent; use the preannounced expedited path. After approval, update the plan and baseline in the same cycle.',
+    failAr:
+      'يُنفَّذ طلب شفهي أثناء مراجعة التصميم، فيختلف السجل مع الواقع ويُكتشف التجاوز عند إغلاق المشروع. والخطأ الآخر هو تحليل الأثر على التكلفة فقط وإهمال الجدول والمخاطر.',
+    failEn:
+      'A verbal request is implemented during design review, so the log diverges from reality and the overrun appears at closure. Another error is analyzing cost only while ignoring schedule and risk.',
+    calcAr:
+      'طلب تقرير إضافي: أسبوع واحد وتكلفة 12,000 دولار. الميزانية المتبقية 9,000 دولار، والعائم 3 أيام، ومخاطر تأخير الاعتماد 20% × 15,000 دولار = 3,000 دولار. الأثر الكامل 15,000 دولار و10 أيام تأخير محتمل؛ القرار التأجيل مع إبقاء الخط الأساسي دون تغيير.',
+    calcEn:
+      'An extra report needs one week and 12,000 dollars. Remaining budget is 9,000, float is three days, and approval delay risk is 20 percent × 15,000 or 3,000 dollars. Full impact is 15,000 dollars and up to 10 days of delay, so the decision is deferral with the baseline unchanged.',
+    glossary: ['pmp-change-control', 'pmp-scope-baseline', 'pmp-cost-baseline'],
+  },
+  '7-4': {
+    defAr:
+      'مؤشر الأداء الرئيسي (KPI) مقياس مرتبط بهدف المشروع، وله تعريف واحد وخط أساس وهدف ومالك وتكرار قياس. الاتجاه (Trend) هو تغير المؤشر عبر الزمن، وعتبة القرار هي القيمة التي تحفّز إجراءً محدداً.',
+    defEn:
+      'A key performance indicator is a measure tied to a project objective with one definition, baseline, target, owner and measurement cadence. A trend is the movement over time, and a decision threshold is the value that triggers a specific action.',
+    ruleAr:
+      'لكل مؤشر اكتب سؤال "إذا تغيّر فماذا سأفعل؟". إن لم يكن هناك إجراء مرتبط به فاحذفه. واقرأ ثلاث قراءات متتالية قبل إعلان تحسن أو تدهور.',
+    ruleEn:
+      'For every indicator, answer the question: if it changes, what will I do? If no action is attached, remove it. Read three consecutive values before declaring improvement or deterioration.',
+    failAr:
+      'لوحة تعرض 12 مؤشراً لا يستخدمها أحد، من بينها "عدد الاجتماعات" الذي يرتفع مع انخفاض الإنتاجية. أو يُحتفل بانخفاض مؤشر مرة واحدة دون التأكد من استمراره.',
+    failEn:
+      'A dashboard shows 12 unused indicators, including meeting count which rises while productivity falls. Or a single improved reading is celebrated without checking whether the trend continues.',
+    calcAr:
+      'مؤشر زمن دورة القرار: خط الأساس 10 أيام، الهدف 6، ثلاث قراءات 9 و8 و7 أيام. الاتجاه تحسن بمعدل يوم واحد أسبوعياً. عتبة القرار 8 أيام؛ تجاوزها استدعى تحليلاً في الأسبوع الثاني، واستمرار التحسن أجل إجراءً إضافياً. مقارنة بعدد الاجتماعات (من 5 إلى 7) لا تفسر النتيجة.',
+    calcEn:
+      'Decision cycle time has a baseline of 10 days, a target of 6 and three readings of 9, 8 and 7 days, improving by one day a week. The decision threshold is 8 days, crossed in week two, which triggered analysis. Meeting count rising from 5 to 7 does not explain the outcome.',
+    glossary: ['pmp-cpi', 'pmp-spi'],
+  },
+  '7-5': {
+    defAr:
+      'إدارة القيمة المكتسبة للرقابة تحوّل المؤشرات إلى إجراء مبكر. انحراف التكلفة والجدول يخبران بالوضع، والتوقع EAC يخبر بالمستقبل، وإعادة القياس بعد الإجراء تخبر بما إذا كان الإجراء ناجحاً.',
+    defEn:
+      'Earned value control converts indicators into early action. Cost and schedule variances describe the present, EAC describes the likely future, and re-measurement after action shows whether the action worked.',
+    ruleAr:
+      'إذا تحسن SPI وبقي CPI دون 1 فافتح إجراءً منفصلاً للتكلفة. ولا تُعلن السيطرة على المشروع إلا بعد إعادة قياس المؤشرين معاً في دورة لاحقة.',
+    ruleEn:
+      'If SPI improves while CPI stays below 1, open a separate cost action. Declare control only after re-measuring both indicators in a later cycle.',
+    failAr:
+      'يُحتفل بارتفاع SPI إلى 0.97 ويُهمل CPI = 0.90، فيُفاجأ الراعي بتجاوز الميزانية عند الإغلاق. والفشل الآخر هو تكرار الإجراء نفسه دون قياس أثره.',
+    failEn:
+      'SPI rising to 0.97 is celebrated while CPI stays at 0.90, so the sponsor faces an overrun at closure. Another failure is repeating the same action without measuring its effect.',
+    calcAr:
+      'القراءة الأولى: SPI = 0.85 وCPI = 0.88 مع BAC = 200,000 وAC = 100,000. بعد إعادة الترتيب: SPI = 0.97 وCPI = 0.90. EAC انتقل من 227,273 إلى 222,222 دولار، أي تحسن 5,051 دولار فقط، ما زال يعني VAC = −22,222 دولار. لذلك يلزم إجراء تكلفة منفصل.',
+    calcEn:
+      'First reading: SPI 0.85 and CPI 0.88 with BAC 200,000 and AC 100,000. After reordering, SPI becomes 0.97 and CPI 0.90. EAC moves from 227,273 to 222,222, an improvement of only 5,051 dollars, still leaving VAC of minus 22,222. A separate cost action is therefore required.',
+    glossary: ['pmp-evm', 'pmp-cpi', 'pmp-spi', 'pmp-forecast-eac', 'pmp-vac'],
+  },
+  '8-1': {
+    defAr:
+      'الإغلاق (Closing) تأكيد رسمي بأن جميع الالتزامات أنجزت: قبول المخرجات، إغلاق العقود، تسوية المدفوعات، أرشفة الوثائق، وتسجيل الدروس. القبول الرسمي (Formal acceptance) من الراعي أو مالك العمل شرط لإعلانه.',
+    defEn:
+      'Closing is the formal confirmation that all obligations are finished: deliverable acceptance, contract closure, final payments, document archiving and lessons recorded. Formal acceptance by the sponsor or business owner is a condition for declaring it.',
+    ruleAr:
+      'لا توقع إغلاقاً قبل ثلاثة أدلة: قبول مكتوب، عقد مغلق بلا فواتير معلقة، ودروس مسجّلة. الفوائد التي تتحقق بعد التسليم تُسلَّم إلى مالكها مع خطة قياس، ولا تُنهى مسؤوليات الضمان والصيانة بل تُنقل.',
+    ruleEn:
+      'Do not sign closure before three pieces of evidence: written acceptance, a closed contract with no outstanding invoices, and recorded lessons. Benefits that appear after handover are transferred to their owner with a measurement plan; warranty and maintenance duties move rather than disappear.',
+    failAr:
+      'يُغلق الملف تقنياً وعقد المقاول الفرعي مفتوح وفاتورة نهائية غير مسددة، فتظهر مسؤولية قانونية بعد مغادرة الفريق. أو يُنتظر إغلاق المشروع لجمع الدروس، فتُنسى تفاصيلها.',
+    failEn:
+      'The file is closed technically while a subcontract stays open and a final invoice is unpaid, leaving legal exposure after the team leaves. Or lessons are postponed until closure and their details are forgotten.',
+    calcAr:
+      ' قائمة إغلاق من 6 بنود: قبول، عقود، مدفوعات، أرشفة، دروس، نقل فوائد. أُنجز 4 بنود، وتبقى فاتورة 18,000 دولار ودروس غير موثقة. نسبة الجاهزية 4/6 = 66.7%، لذلك لا يُوقَّع الإغلاق؛ تكلفة تأخير أسبوع 2,000 دولار أقل من مخاطرة مطالبة قانونية محتملة 40,000 دولار.',
+    calcEn:
+      'A closure checklist has six items: acceptance, contracts, payments, archive, lessons and benefit transfer. Four are complete; an 18,000 dollar invoice and undocumented lessons remain, so readiness is 4 out of 6 or 66.7 percent. Closure is not signed; a one-week delay costing 2,000 dollars is cheaper than a possible 40,000 dollar legal claim.',
+    glossary: ['pmp-benefits-plan', 'pmp-benefit-owner', 'pmp-charter'],
+  },
+  '8-2': {
+    defAr:
+      'التسليم (Handover) ينقل المخرجات والوثائق والمعرفة والمسؤولية التشغيلية إلى المالك. الجاهزية التشغيلية تعني تدريباً وإجراءات تشغيل ومالك دعم وقنوات تصعيد، والفترة الانتقالية تُتابع التبني الفعلي بعد الاستلام.',
+    defEn:
+      'Handover transfers deliverables, documents, knowledge and operational responsibility to the owner. Operational readiness means training, operating procedures, a support owner and escalation paths, while a transition period follows actual adoption after receipt.',
+    ruleAr:
+      'ابدأ التسليم قبل الموعد النهائي بفترة كافية للتحقق من أربعة عناصر: الأصول، البيانات، التدريب، ومالك الدعم. قِس التبني بعد أسبوعين وشهر، لا الاكتفاء بتوقيع الاستلام.',
+    ruleEn:
+      'Begin handover early enough to verify four elements: assets, data, training and a support owner. Measure adoption after two weeks and one month rather than relying only on a receipt signature.',
+    failAr:
+      'سُلِّم النظام تقنياً لكن المستخدمين لم يتدربوا ولم يُعيَّن مالك للدعم، فانخفض الاستخدام. أو نُقلت الملفات من دون صلاحيات بيانات، فتعطل العمل أول أيام التشغيل.',
+    failEn:
+      'The system was technically handed over but users were untrained and no support owner was named, so usage fell. Or files were transferred without data permissions, stopping operations on the first day.',
+    calcAr:
+      'قبل خطة التسليم المحسّنة: استخدام الميزة الأساسية 30% و15 مستخدماً مدرباً من 50. بعد التدريب وتعيين مالك دعم ومتابعة شهرين: 39 مستخدماً (78%). الزيادة 24 نقطة مئوية و24 مستخدماً، مع 3 زيارات متابعة فقط.',
+    calcEn:
+      'Before the improved handover plan, core feature usage was 30 percent with 15 of 50 users trained. After training, naming a support owner and two months of follow-up, 39 users were active, or 78 percent, a gain of 24 percentage points with only three follow-up visits.',
+    glossary: ['pmp-benefit-owner', 'pmp-benefits-plan'],
+  },
+  '8-3': {
+    defAr:
+      'الدرس المستفاد (Lesson learned) معرفة قابلة للنقل تصف الموقف والسبب والأثر والإجراء المقترح. سجل الدروس يُصنّف ليسهل البحث عنه، وتفعيله يكون بإدراجه في بوابة مرحلة أو قائمة تحقق، لا بتركه في أرشيف. السبرنت (Sprint) في بيئة رشيقة هو دورة عمل محددة بوقت، ومراجعتها والمراجعة بأثر رجعي هما موضعا جمع الدروس.',
+    defEn:
+      'A lesson learned is transferable knowledge describing the situation, cause, effect and proposed action. A lessons register is categorized for retrieval and activated by inserting it into a phase gate or checklist, not by leaving it archived. In agile settings, a sprint is a timeboxed work cycle whose review and retrospective are the natural points for collecting lessons.',
+    ruleAr:
+      'اكتب الدرس بصيغة "إذا ظهر X فافعل Y"، واربطه بمعرف سبب جذري. راجع سجل الدروس في بداية كل مشروع مماثلوفي بوابة المرحلة قبل اعتماد الخطة.',
+    ruleEn:
+      'Write each lesson as if X appears, do Y, and link it to a root-cause ID. Review the register at the start of every similar project and at the phase gate before approving the plan.',
+    failAr:
+      'يُكتب درس "التأخر بسبب المورد" بلا أمثلة، فيُكتشف لاحقاً أن السبب هو غياب تاريخ تسليم في العقد. والفشل الأكبر هو أرشفة الدرس من دون إدراجه في قائمة تحقق عقود مشروع جديد.',
+    failEn:
+      'A lesson says the supplier caused delay with no examples; later analysis shows the real cause was a missing delivery date in the contract. The larger failure is archiving the lesson without adding it to the contract checklist of the next project.',
+    calcAr:
+      'في ربع واحد: 6 دروس مسجّلة، 2 فقط ذات إجراء قابل للتطبيق (33.3%). بعد إعادة الصياغة أصبحت 5 من 6 (83.3%). إدراج درس تأخر العقود في بوابة التعاقد منع تكرارين في المشروع التالي، وفّر أسبوعين × 4,000 دولار = 8,000 دولار.',
+    calcEn:
+      'In one quarter, 6 lessons were logged but only 2 had actionable steps, or 33.3 percent. After rewriting, 5 of 6 were actionable, or 83.3 percent. Adding the contract-delay lesson to the contracting gate prevented two repeats in the next project, saving two weeks at 4,000 dollars each, or 8,000 dollars.',
+    glossary: ['pmp-phase-gate', 'pmp-sprint'],
+  },
+  '8-4': {
+    defAr:
+      'خطة إدارة الفوائد (Benefits management plan) هي أداة تُحدّث طوال المشروع، وليست قسماً في تقرير الإغلاق. يجب أن تحدد لكل فائدة: مالكاً (Benefit owner)، ومؤشراً، وخط أساس، وهدفاً، وتاريخ قياس، وضرر جانبي متوقع (Disbenefits). الضرر الجانبي (Disbenefit) أثر سلبي محتمل يظهر مع الفائدة ويجب إدارته صراحةً.',
+    defEn:
+      'A benefits management plan is updated throughout the project, not written only at closure. For every benefit it must name an owner, a metric, a baseline, a target, a measurement date and expected disbenefits. A disbenefit is a possible negative effect that appears alongside the benefit and must be managed explicitly.',
+    ruleAr:
+      'املأ جدول الفوائد بستة أعمدة قبل بوابة التخطيط: الفائدة، المالك، المؤشر، خط الأساس، الهدف، تاريخ القياس. أضف عموداً سابعاً للضرر الجانبي وخطة تخفيفه. عند الفجوة بين الهدف والفعلي عقد مراجعة مع مالك العمل لتحديث إجراءات التبني بدل تعديل الهدف بهدوء.',
+    ruleEn:
+      'Fill a benefit table with six columns before the planning gate: benefit, owner, metric, baseline, target and measurement date; add a seventh for disbenefit and mitigation. When actual performance misses the target, hold a review with the business owner to update adoption actions rather than quietly lowering the target.',
+    failAr:
+      'تُسجَّل فائدة بلا مالك أو تاريخ قياس، فلا أحد يراجعها بعد التسليم. ويُخفى الضرر الجانبي مثل ارتفاع زمن انتظار بعض الإدارات، فيظهر كتراجع مفاجئ في رضا العملاء بعد أشهر.',
+    failEn:
+      'A benefit is recorded with no owner or measurement date, so nobody reviews it after handover. A disbenefit such as longer waiting time for some departments is hidden and appears months later as an unexpected drop in customer satisfaction.',
+    calcAr:
+      'خطة فائدة: زمن المعالجة، خط أساس 10 أيام، هدف 4 أيام، المالك مدير العمليات، تاريخ القياس بعد 6 أشهر. القياس الفعلي 6 أيام، فجوة يومين (تحقق 5/6 = 83.3%). الضرر الجانبي: زمن انتظار إدارة الحجوزات ارتفع من 2 إلى 3 أيام؛ خطة التخفيف: إعادة توزيع 2 من الموظفين خلال شهر، بتكلفة 4,000 دولار مقابل استعادة 3,000 معاملة أسبوعياً.',
+    calcEn:
+      'A benefit plan targets processing time from a 10-day baseline to 4 days, owned by the operations manager and measured six months after handover. Actual time is 6 days, a two-day gap and 5 of 6 target improvement, or 83.3 percent. A disbenefit is that bookings wait time rose from 2 to 3 days; mitigation reassigns two staff within a month at 4,000 dollars to recover 3,000 weekly transactions.',
+    glossary: [
+      'pmp-benefits-plan',
+      'pmp-benefit-owner',
+      'pmp-disbenefit',
+      'pmp-value-benefits',
+    ],
+  },
+  '9-1': {
+    defAr:
+      'إطار الحوكمة (Governance framework) يحدد الأدوار والصلاحيات واللجان ومسارات التصعيد ومتطلبات التقارير. الراعي يمثل الأعمال ويملك مسؤولية القيمة، ومدير المشروع ينفذ ضمن الحدود المفوضة، والامتثال يعني تمرير القرار عبر القناة المعتمدة وتوثيقه.',
+    defEn:
+      'A governance framework defines roles, authority, committees, escalation paths and reporting requirements. The sponsor represents the business and owns value; the project manager executes within delegated limits; compliance means passing decisions through the approved channel and documenting them.',
+    ruleAr:
+      'قبل اتخاذ قرار اسأل: هل هو داخل مصفوفة الصلاحيات؟ إن كانت الإجابة لا، فحضّر تحليل أثر وقم بالتصعيد خلال يومين. لا تُخفِّز القرار بالاجتهاد الشخصي لتفادي البيروقراطية.',
+    ruleEn:
+      'Before deciding, ask whether the authority matrix permits it; if not, prepare an impact analysis and escalate within two days. Do not bypass governance to avoid bureaucracy.',
+    failAr:
+      'يُعتمد تغيير كبير خارج القناة المعتمدة، فيُرفض في التدقيق ويُعاد العمل. أو تغرق اللجنة في تفاصيل يومية، فتتأخر القرارات الاستراتيجية ويفقد الفريق تمكينه.',
+    failEn:
+      'A major change is approved outside the approved channel, rejected at audit and reworked; or the committee drowns in daily detail, delaying strategic decisions and disempowering the team.',
+    calcAr:
+      'مصفوفة قرارات: 12 نوع قرار، 8 داخل صلاحية المدير و4 تحتاج الراعي. خلال شهر جاء 20 طلباً: 16 صحيحة المسار و4 صُعّدت بعد تحليل. الزمن المتوسط للقرار المُصعَّد يومان، وتكلفة التأخير 500 دولار/يوم = 1,000 دولار لكل قرار، مقابل 4,000 دولار تكلفة قرار غير معتمد لاحقاً.',
+    calcEn:
+      'A decision matrix covers 12 decision types: 8 within the manager authority and 4 needing the sponsor. Of 20 requests in a month, 16 followed the correct path and 4 were escalated after analysis. Escalation takes two days at 500 dollars a day, or 1,000 dollars per decision, versus 4,000 dollars for a later unapproved decision.',
+    glossary: ['pmp-governance', 'pmp-charter', 'pmp-change-control'],
+  },
+  '9-2': {
+    defAr:
+      'الامتثال (Compliance) هو العمل داخل القوانين واللوائح والسياسات مع القدرة على إثبات ذلك. سجل الامتثال يربط كل متطلب بإجراء ومالك ودليل وموعد مراجعة، والتدقيق (Audit) فحص مستقل للالتزام.',
+    defEn:
+      'Compliance means working within laws, regulations and policies while being able to prove it. A compliance register links each requirement to an action, owner, evidence and review date; an audit is an independent check of adherence.',
+    ruleAr:
+      'عند صدور قانون جديد حدّث السجل خلال دورة مراجعة واحدة، وعدّل التصميم قبل التنفيذ. قدّم في التدقيق أدلة مكتوبة: إعدادات، سجلات وصول، وتوقيع مالك، لا تأكيدات شفوية.',
+    ruleEn:
+      'When a new law appears, update the register within one review cycle and change the design before execution. In an audit, provide written evidence such as settings, access logs and owner signatures rather than verbal assurances.',
+    failAr:
+      'يُكتشف متطلب حماية جديد بعد بناء قاعدة البيانات، فتُعاد الهندسة بتكلفة مضاعفة. ويُقال للمدقق إن البيانات مشفرة من دون إثبات الإعدادات، فيُسجَّل عدم امتثال رغم أن الإجراء موجود فعلاً.',
+    failEn:
+      'A new data-protection requirement is discovered after the database is built, forcing costly rework. An auditor is told data is encrypted without configuration evidence, producing a noncompliance finding although the control exists.',
+    calcAr:
+      'متطلبات امتثال 10: 7 مربطة بدليل مكتوب، و3 بلا دليل. بعد تحديث السجل وتوثيق الإعدادات أصبحت 10/10 (100%). تكلفة التوثيق 6,000 دولار، وتجنب غرامة محتملة 50,000 دولار، أي عائد 8.3 دولار لكل دولار.',
+    calcEn:
+      'Ten compliance requirements exist: 7 have written evidence and 3 do not. After updating the register and documenting settings, coverage reaches 10 out of 10. Documentation costs 6,000 dollars against a possible 50,000 dollar penalty, a return of 8.3 dollars per dollar spent.',
+    glossary: ['pmp-compliance', 'pmp-governance'],
+  },
+  '9-3': {
+    defAr:
+      'التغيير المؤسسي (Organizational change) يؤثر على العمليات والأدوار والمهارات والثقافة. خريطة التغيير تحدد من يتأثر وجاهزيته والإجراء المطلوب، والرعاية التنفيذية (Executive sponsorship) والأبطال (Champions) من أقوى عوامل نجاح التبني.',
+    defEn:
+      'Organizational change affects processes, roles, skills and culture. A change map identifies who is affected, their readiness and the required action; executive sponsorship and champions are among the strongest adoption factors.',
+    ruleAr:
+      'قِس التغيير بسلوك المستخدم لا بعدد من حضر التدريب. لكل مجموعة مقاومة، اسأل هل المشكلة نقص مهارة أم خوف على الدور أم غياب قيمة واضحة، ثم اختر تدريباً أو تواصلاً أو إشراكاً في القرار.',
+    ruleEn:
+      'Measure change by user behavior, not training attendance. For each resisting group, ask whether the issue is skill, fear over role or missing value, then choose training, communication or participation in the decision.',
+    failAr:
+      'اكتمل التدريب بنسبة 100% لكن الإدارات عادت إلى جداول الإكسل لأن الحوافز والقيمة لم تتغير. أو عُوملت المقاومة كعائق يجب كسره، فزادت المقاومة بدل فهم سببها.',
+    failEn:
+      'Training reached 100 percent but departments returned to spreadsheets because incentives and perceived value never changed; or resistance was treated as an obstacle to break, increasing it rather than understanding its cause.',
+    calcAr:
+      '75 موظفاً، 60 حضروا التدريب (80%)، لكن 27 فقط استخدموا النظام الجديد بعد شهر (36%). بعد تعيين 4 أبطال تغيير وربط الحوافز بالاستخدام ارتفع الاستخدام إلى 54 (72%). الفجوة بين الحضور والتبني كانت 44 نقطة مئوية قبل التدخل.',
+    calcEn:
+      'Of 75 employees, 60 attended training, or 80 percent, but only 27 used the new system a month later, or 36 percent. After appointing four change champions and linking incentives to usage, adoption rose to 54 people or 72 percent. The gap between attendance and adoption had been 44 percentage points.',
+    glossary: ['pmp-stakeholder-register', 'pmp-benefit-owner'],
+  },
+  '9-4': {
+    defAr:
+      'دورة PDCA أربع خطوات: تخطيط (Plan) وتنفيذ (Do) وتحقق (Check) وتكيّف (Act). التحسين المستمر (Continuous improvement) يعتمد على مشاركة الفريق في تحسينات صغيرة وقياسها، ثم توحيد المعيار حتى لا يعود الفريق إلى الطريقة القديمة.',
+    defEn:
+      'The PDCA cycle has four steps: plan, do, check and act. Continuous improvement relies on team-suggested small changes, measurement of their effect, and standardization so the team does not revert to the old method.',
+    ruleAr:
+      'جرّب التحسين على عينة صغيرة ومدة قصيرة، وقارن البيانات قبل وبعد. إن أثبت الأثر فحدّث إجراء التشغيل ودوّن المالك، وإلا عدّل الفرضية وابدأ دورة جديدة.',
+    ruleEn:
+      'Trial the improvement on a small sample for a short period and compare data before and after. If the effect is proven, update the procedure and name an owner; otherwise revise the hypothesis and start a new cycle.',
+    failAr:
+      'يُعتمد تحسين بالانطباع من غير قياس، فيزول مع أول ضغط إنتاج. أو تُقاس النتيجة مرة واحدة فقط، فتُنسَب تحسينات أخرى للإجراء الجديد.',
+    failEn:
+      'An improvement is adopted on impression without measurement and disappears under the first production pressure; or the result is measured once and unrelated improvements are credited to the new action.',
+    calcAr:
+      'زمن الرد قبل التجربة 10 ساعات. بعد أسبوع بتوزيع الطلبات حسب النوع أصبح 8 ساعات، أي تحسن 20%. لتجنب النسبة المضللة قورنت 4 أسابيع: 10.2 و10.0 قبل، و8.0 و7.9 بعد، بمتوسط 10.1 مقابل 7.95، تحسن 21.3%. ثُبِّت الإجراء في دليل التشغيل.',
+    calcEn:
+      'Response time was 10 hours before a one-week trial of routing requests by type and fell to 8 hours, a 20 percent gain. To avoid a misleading one-off, four weeks were compared: 10.2 and 10.0 before versus 8.0 and 7.9 after, averaging 10.1 against 7.95, a 21.3 percent improvement. The action was standardized in the procedure.',
+    glossary: ['pmp-phase-gate'],
+  },
+  '9-5': {
+    defAr:
+      'تحليل العوامل الخارجية (PESTLE) يفحص العوامل السياسية والاقتصادية والاجتماعية والتكنولوجية والقانونية والبيئية. كل عامل يُترجم إلى خطر أو فرصة في السجل بمالك واستجابة، ومراجعته تتكرر عند بوابات القرار.',
+    defEn:
+      'A PESTLE analysis examines political, economic, social, technological, legal and environmental factors. Each factor becomes a risk or opportunity in the register with an owner and response, and the analysis is revisited at decision gates.',
+    ruleAr:
+      'حوّل العامل الخارجي إلى سؤال قابل للقياس: كم سيتغير التكلفة أو المدة أو القبول؟ ثم سجّل الإجابة كخطر مع محفز. أدرج مقاييس ESG في قرار الشراء ودورة حياة المنتج، مثل انبعاثات الكربون ونسبة إعادة التدوير.',
+    ruleEn:
+      'Turn an external factor into a measurable question: how much will cost, duration or acceptance change? Record the answer as a risk with a trigger. Include ESG metrics in sourcing and lifecycle decisions, such as carbon emissions and recycling rate.',
+    failAr:
+      'يُجرى تحليل مرة واحدة في البدء ثم يُنسى، فتُفاجأ الميزانية برسوم جمركية جديدة. أو يُذكر "الاستدامة" في التقرير من دون رقم، فلا تُقارن العروض فعلياً.',
+    failEn:
+      'The analysis is done once at start and forgotten, so the budget is surprised by new tariffs; or sustainability is mentioned with no number, so bids are never truly compared.',
+    calcAr:
+      'ارتفاع رسوم جمركية 8% على معدات بقيمة 500,000 دولار = 40,000 دولار إضافية. نقص عمالة محلية يضيف أسبوعاً بـ 6,000 دولار. المخاطر المسجلة: خطر تكلفة 40,000 وخطر مدة 6,000. معيار ESG في الترسية: انبعاثات 120 طناً مقابل 90 طناً للمورد المحلي، فاختير المحلي رغم سعر أعلى بـ 5,000 دولار لأن وفور الكربون 30 طناً محسوبة في قرار دورة الحياة.',
+    calcEn:
+      'An 8 percent tariff on 500,000 dollars of equipment adds 40,000 dollars, and local labor shortage adds one week at 6,000. Both are logged as risks. In award, emissions are 120 tons versus 90 tons for a local supplier; the local bid is chosen despite a 5,000 dollar premium because the 30-ton carbon reduction is valued in the lifecycle decision.',
+    glossary: [
+      'pmp-pestle',
+      'pmp-esg',
+      'pmp-sustainability',
+      'pmp-risk-register',
+    ],
+  },
+  '9-6': {
+    defAr:
+      'الذكاء الاصطناعي التوليدي (Generative AI / GenAI) ينتج مسودات ونماذج وتوقعات من البيانات، لكنه لا يملك صلاحية القرار. الحوكمة المسؤولة تتطلب أربعة عناصر: سجل مصدر البيانات (Data provenance) يوضح من أين جاءت البيانات وكيف جُمعت، وعتبات تدخل بشري (Human-in-the-loop) تحدد متى يوقّع الإنسان قبل اعتماد المخرج، وتدقيق تحيز (Bias audit) يقيس إنصاف النتائج، وقراراً صريحاً في سجل المخاطر والحوكمة.',
+    defEn:
+      'Generative AI (GenAI) produces drafts, models and forecasts from data but holds no decision authority. Responsible governance needs four elements: data provenance recording where data came from and how it was collected, human-in-the-loop thresholds defining when a person must approve before use, a bias audit measuring fairness of results, and an explicit decision recorded in the risk and governance logs.',
+    ruleAr:
+      'طبّق قاعدة الثلاث عتبات: نتائج منخفضة الأثر تُستخدم بعد مراجعة عينة، ونتائج متوسطة الأثر تحتاج توقيع مالك، وقرارات عالية الأثر مثل اختيار المورد أو السلامة تحتاج موافقة بشرية قبل التنفيذ. لا تُدخل بيانات عملاء في أداة توليديّة قبل التحقق من الخصوصية والسماح التعاقدي، وأعد تدقيق التحيز عند كل تغيير في مصدر البيانات.',
+    ruleEn:
+      'Apply three thresholds: low-impact output is used after sampling, medium-impact output needs an owner sign-off, and high-impact decisions such as supplier selection or safety need human approval before execution. Never upload customer data to a generative tool before checking privacy and contractual permission, and repeat the bias audit whenever the data source changes.',
+    failAr:
+      'استخدم الفريق نموذج تنبؤ مبنياً على بيانات تاريخية متحيزة ضد الموردين الصغار، فاستبعدهم دون مراجعة. والفشل الأكبر هو اعتبار مخرج الأداة "موضوعياً" لأنه رقم، بينما لا أحد يعرف مصدر البيانات ولا من وافق عليه.',
+    failEn:
+      'A team used a forecast model trained on historical data biased against small suppliers and excluded them without review. The larger failure is treating a tool output as objective because it is numeric, while nobody knows the data provenance or who approved it.',
+    calcAr:
+      'أداة GenAI رتّبت 30 عرضاً فاستبعدت 12 مورداً صغيراً (40%). تدقيق التحيز أظهر أن 9 من الـ 12 استُبعدوا بسبب متغير تاريخي غير مسموح، أي 75% من الاستبعاد غير مبرر. بعد إزالة المتغير وإعادة التدقيق ارتفع قبول الموردين الصغار إلى 21 من 30 (70%). العتبة المتوسطة تطلب توقيع مالك المشروع على 6 قرارات، واستُكملت خلال يومين.',
+    calcEn:
+      'A GenAI tool ranked 30 bids and excluded 12 small suppliers, or 40 percent. A bias audit found that 9 of those 12 exclusions relied on a disallowed historical variable, meaning 75 percent of exclusions were unjustified. Removing the variable raised small-supplier acceptance to 21 of 30, or 70 percent. The medium threshold required the project manager to sign six decisions, completed in two days.',
+    extraAr:
+      'مقاييس الاستدامة (ESG) تُدمج في قرار الشراء ودورة الحياة: انبعاثات الكربون لكل وحدة، نسبة المواد المعاد تدويرها، ساعات التدريب المحلية، وعدد الإصابات المهنية. تُقارن هذه الأرقام قبل الترسية وبعد التشغيل، ويُسجَّل أي تدهور كخطر بمالك واستجابة في سجل المخاطر.',
+    extraEn:
+      'ESG metrics are embedded in sourcing and lifecycle decisions: carbon emissions per unit, recycled material share, local training hours and recordable injuries. These are compared before award and after operation, and any deterioration is logged as a risk with an owner and response.',
+    glossary: [
+      'pmp-generative-ai',
+      'pmp-data-provenance',
+      'pmp-human-in-the-loop',
+      'pmp-bias-audit',
+      'pmp-esg',
+    ],
+  },
+  '10-1': {
+    defAr:
+      'ميثاق الرشاقة (Agile manifesto) يقابل أفراداً وتفاعلاً على عمليات وأدوات، ومخرجات عاملة على وثائق شاملة، وتعاوناً مع العميل على تفاوض العقود، واستجابة للتغيير على اتباع خطة. المبادئ الاثنا عشر تترجم هذه القيم إلى تسليم مبكر وتحسين منتظم.',
+    defEn:
+      'The Agile manifesto values individuals and interactions over processes and tools, working software over comprehensive documentation, customer collaboration over contract negotiation and responding to change over following a plan. Its twelve principles turn these values into early delivery and regular improvement.',
+    ruleAr:
+      'قِس الرشاقة بزمن التعلم: كم أسبوعاً يمر قبل أن ترى ملاحظة العميل في ترتيب الأولويات؟ إن كانت الإجابة أكثر من دورة واحدة، فالطقوس موجودة والعقلية غائبة.',
+    ruleEn:
+      'Measure agility by learning time: how many weeks pass before client feedback changes the priority order? If the answer exceeds one cycle, ceremonies exist but the mindset does not.',
+    failAr:
+      'يُطبَّق stand-up يومي وسبرنتات محددة، لكن الترتيب لا يتغير بعد ملاحظات العميل حتى نهاية المشروع. أو يُستبدل التوثيق بالكامل بلا سجل قرارات، فتُفقد المعرفة.',
+    failEn:
+      'Daily stand-ups and timeboxed sprints are in place, but priorities never change after client feedback until the end; or documentation is abandoned entirely, losing the decision record.',
+    calcAr:
+      'دورتان أسبوعيتان، تأخرت ملاحظة العميل 6 أسابيع في النهج التنبؤي = 3 دورات ضائعة. بعد المراجعة أصبحت الملاحظة تُدرج في سبرنت واحد، أي تقليل 4 أسابيع. بتكلفة تأخير 2,500 دولار/أسبوع، الوفر 10,000 دولار.',
+    calcEn:
+      'With two-week cycles, client feedback arrived after six weeks under a predictive approach, three lost cycles. After review it entered one sprint, cutting four weeks of delay at 2,500 dollars a week and saving 10,000 dollars.',
+    glossary: ['pmp-sprint', 'pmp-standup', 'pmp-scrum'],
+  },
+  '10-2': {
+    defAr:
+      'سكرم (Scrum) إطار رشيق بثلاثة أدوار: مالك المنتج (Product Owner) يرتب القيمة، والميسّر (Scrum Master) يزيل العوائق، والفريق ينفّذ ويلتزم بالهدف. أحداثه: السبرنت، التخطيط، الاجتماع اليومي (Stand-up)، المراجعة، والمراجعة بأثر رجعي. قطعه: قائمة المنتج وقائمة السبرنت والزيادة ومعايير الإنجاز (Definition of Done).',
+    defEn:
+      'Scrum is an agile framework with three roles: the Product Owner ranks value, the Scrum Master removes impediments and the team delivers against the goal. Events are the sprint, planning, daily stand-up, review and retrospective; artifacts are the product backlog, sprint backlog, increment and Definition of Done.',
+    ruleAr:
+      'احمِ الوقت المحدد لكل حدث: 15 دقيقة للاجتماع اليومي، وساعتان لاجتماع أسبوعين. انقل نقاشات التصميم إلى جلسة منفصلة بدل تمديد الحدث، ولا تدع عنصراً يدخل السبرنت من دون معيار إنجاز مكتوب.',
+    ruleEn:
+      'Protect each timebox: 15 minutes for a daily stand-up and two hours for a two-week sprint planning. Move design debates to a separate session instead of extending the event, and admit no item without a written Definition of Done.',
+    failAr:
+      'تُمدَّد الوقفة اليومية إلى 45 دقيقة لمناقشة تصميم، فيفقد الحضور هدفه. أو يُعلن عنصر مكتملاً رغم عدم اجتيازه معايير الاختبار، فتتراكم الديون التقنية.',
+    failEn:
+      'A stand-up stretches to 45 minutes for design debate and loses its purpose; or an item is declared done without passing test criteria, accumulating technical debt.',
+    calcAr:
+      'سبرنت أسبوعين، 5 أعضاء. وقفة 45 دقيقة يومياً = 3.75 ساعة/أسبوع للفريق. تقنينها إلى 15 دقيقة = 1.25 ساعة، وفر 2.5 ساعة أسبوعياً = 5 ساعات لكل سبرنت. نقل نقاش التصميم إلى جلسة 90 دقيقة مرة واحدة لا يلغي الوفر لأنها تُحصب ضمن تخطيط السبرنت.',
+    calcEn:
+      'In a two-week sprint with five people, a 45-minute daily stand-up consumes 3.75 hours a week. Timeboxing it to 15 minutes saves 2.5 hours a week, or 5 hours per sprint. Moving design debate to one 90-minute session does not erase the saving because it is counted inside sprint planning.',
+    glossary: ['pmp-scrum', 'pmp-sprint', 'pmp-standup'],
+  },
+  '10-3': {
+    defAr:
+      'كانبان (Kanban) نظام تدفق مرئي بأعمدة تمثل حالات العمل وحدود عمل جاري (WIP limits). السحب (Pull) يعني بدء عمل جديد فقط عند توفر سعة، وزمن الدورة (Cycle time) يقيس المدة من البدء إلى الإنهاء.',
+    defEn:
+      'Kanban is a visual flow system with columns for work states and work-in-progress limits. Pull means starting new work only when capacity exists, and cycle time measures the duration from start to finish.',
+    ruleAr:
+      'عند تجاوز حد WIP أوقف البدء حتى يُنجز العمل المعلّق وابحث عن الاختناق في العمود الأكثر ازدحاماً. قِس زمن الدورة قبل وبعد تخفيض الحد بدل قياس عدد المهام التي بدأت.',
+    ruleEn:
+      'When WIP limit is exceeded, stop starting and find the bottleneck in the busiest column. Measure cycle time before and after lowering the limit rather than counting how many tasks were started.',
+    failAr:
+      'تُضاف مهام جديدة يومياً بينما 12 مهمة قيد التنفيذ وحد WIP ثلاث، فيطول زمن الدورة ويخفي الاختناق. أو يُستخدم عدد المهام المنجزة كمؤشر وحيد، فيُكافأ تعدد المهام.',
+    failEn:
+      'New tasks start daily while 12 are in progress against a WIP limit of three, extending cycle time and hiding the bottleneck; or completed task count is the only metric, rewarding multitasking.',
+    calcAr:
+      'لوحة بـ 12 مهمة في عمود التنفيذ وحد WIP = 3، زمن الدورة 12 يوماً. بعد تطبيق الحد انخفاض WIP بنسبة 75%، وزمن الدورة إلى 6 أيام. بمعدل 20 مهمة أسبوعياً، تقليل 6 أيام انتظار يوفر 120 يوماً من زمن الانتظار التراكمي أسبوعياً.',
+    calcEn:
+      'A board has 12 items in progress against a WIP limit of 3 and a 12-day cycle time. Enforcing the limit cuts WIP by 75 percent and cycle time to 6 days. At 20 items a week, removing six days of wait saves 120 cumulative days of waiting weekly.',
+    glossary: ['pmp-kanban', 'pmp-sprint'],
+  },
+  '10-4': {
+    defAr:
+      'النهج الهجين (Hybrid) يخصّص ما يحتاج استقراراً للتنبؤي — الميزانية والعقود والامتثال — وما يحتاج تعلّماً سريعاً للرشيق. التوسّع (Scaling) مثل SAFe أو LeSS ينسّق فرقاً متعددة من دون إلغاء استقلالها، و بوابة المرحلة تبقى نقطة قرار تنبؤية.',
+    defEn:
+      'A hybrid approach assigns stable needs such as budget, contracts and compliance to predictive delivery, and fast-learning needs to agile delivery. Scaling frameworks such as SAFe or LeSS coordinate multiple teams without removing their autonomy, while a phase gate remains a predictive decision point.',
+    ruleAr:
+      'ارسم حدود الهجين كتابةً: أي حزمة عمل تنبؤية وأي حزمة سبرنتات، ومن يملك قرار تغيير الحد. لا تسمح لفريق باستخدام قواعد الفريق الآخر دون سجل قرارات مشترك.',
+    ruleEn:
+      'Write the hybrid boundary: which work packages are predictive, which use sprints, and who owns a change to the boundary. Do not let teams borrow each other rules without a shared decision log.',
+    failAr:
+      'فريق البنية التحتية يستخدم CPM وفريق الواجهة يستخدم سبرنتات، لكن لا توجد بوابة مشتركة، فتتعطل الواجهة عند تأخر اعتماد البنية. أو يُفرض إيقاع واحد على الجميع فتُهدر مرونة الواجهة.',
+    failEn:
+      'The infrastructure team uses CPM and the interface team uses sprints with no shared gate, so the interface stalls when approvals slip; or one cadence is imposed on everyone, wasting interface flexibility.',
+    calcAr:
+      '10 حزم عمل: 4 تنبؤية للامتثال و6 رشيقة للواجهة. بوابة ربع سنوية تمنح ميزانية 500,000 دولار. إذا احتاجت الواجهة 6 تغييرات بـ 3,000 دولار، كلها داخل السبرنتات بتكلفة 18,000 دولار؛ أما تحويلها إلى تغييرات تنبؤية فكان سيكلف 42,000 دولار، أي وفر 24,000 دولار.',
+    calcEn:
+      'Ten work packages split into 4 predictive for compliance and 6 agile for the interface, with a quarterly gate releasing 500,000 dollars. Six interface changes at 3,000 dollars each stay inside sprints for 18,000 dollars; processing them as predictive changes would cost 42,000, saving 24,000 dollars.',
+    glossary: [
+      'pmp-phase-gate',
+      'pmp-scrum',
+      'pmp-sprint',
+      'pmp-critical-path',
+    ],
+  },
+  '10-5': {
+    defAr:
+      'السرعة (Velocity) متوسط نقاط العمل المنجزة في السبرنت وتُستخدم للتخطيط. مخطط التراجع (Burndown) يوضح المتبقي مقابل الزمن، ومخطط التراكم (Burnup) يوضح النطاق المتراكم والعمل المكتمل معاً، فيكشف زحف النطاق الذي يخفيه التراجع وحده. زمن الدورة يقيس كفاءة التدفق.',
+    defEn:
+      'Velocity is the average story points completed per sprint and is used for planning. A burndown chart shows remaining work against time, while a burnup chart shows cumulative scope alongside completed work, exposing scope creep that a burndown alone can hide. Cycle time measures flow efficiency.',
+    ruleAr:
+      'اقرأ الاثنين معاً: إذا بقي خط التراجع مستقيماً لكن خط النطاق في Burnup ارتفع، فالفريق أنجز عملاً إضافياً بلا اعتماد. لا تستخدم السرعة لتقييم الأفراد، واربط أي ارتفاع مفاجئ بها بتغيير في معايير الإنجاز.',
+    ruleEn:
+      'Read both charts: if the burndown stays flat while the burnup scope line rises, the team absorbed unapproved work. Never use velocity for individual evaluation, and investigate any sudden jump as a change in Definition of Done.',
+    failAr:
+      'ترتفع السرعة فجأة من 30 إلى 48 نقطة، فيُحتفل بالأداء بينما خُفِّضت معايير الإنجاز وارتفع عدد العيوب. أو يُقرأ التراجع وحده، فيظهر المشروع متقدماً بينما النطاق تضخم 40%.',
+    failEn:
+      'Velocity jumps from 30 to 48 points and is celebrated while Definition of Done was relaxed and defects rose; or burndown alone shows progress while scope grew by 40 percent.',
+    calcAr:
+      'سبرنت 10 أيام، النطاق الأولي 100 نقطة، أنجز الفريق 10 نقاط يومياً. في اليوم الخامسة أُضيفت 20 نقطة بلا اعتماد. التراجع المتوقع 50 نقطة متبقية، والفعلي 70. مخطط Burnup يوضح أن النطاق 120 والمنجز 50، أي تبقّي 70؛ السرعة الحقيقية 5 نقاط/يوم لا 10، لأن 20 نقطة دخلت بلا تغيير معتمد.',
+    calcEn:
+      'A ten-day sprint starts with 100 points and the team completes 10 points a day. On day five, 20 points are added without approval. Burndown would show 50 remaining but actual remaining is 70. A Burnup chart shows scope 120 and completed 50, leaving 70; true velocity is 5 points per day rather than 10 because 20 points entered without an approved change.',
+    glossary: ['pmp-sprint', 'pmp-kanban', 'pmp-change-control'],
+  },
+  '11-1': {
+    defAr:
+      'المحاكي الكامل 180 سؤالاً في 240 دقيقة بنمط PMP: مواقف، حالات متسلسلة، ورسوم بيانية. التوزيع المرجعي 33% أفراد و41% عمليات و26% بيئة أعمال، ولكل سؤال إجابة واحدة صحيحة وتفسير يوضح سبب تفضيلها.',
+    defEn:
+      'A full mock exam has 180 questions in 240 minutes with PMP style items: situational, shared case sets and charts. The reference mix is 33 percent People, 41 percent Process and 26 percent Business Environment, with one correct answer and an explanation of why it is preferred.',
+    ruleAr:
+      'أجرِ المحاكي بظروف الامتحان: 80 ثانية للسؤال، استراحتان، ولا مراجع. بعده صنّف الأخطاء حسب المجال والمهمة، وحوّل كل خطأ متكرر إلى درس أسبوعي محدد بمصدر وتمرين.',
+    ruleEn:
+      'Run the mock under exam conditions: 80 seconds per question, two breaks and no references. Then classify errors by domain and task, converting each repeated error into a weekly study item with a source and exercise.',
+    failAr:
+      'يحل الدارس أسئلة متفرقة دون توقيت، فيصل للامتحان بقدرة على المعرفة لا على الأداء تحت الضغط. أو يقرأ التفسير دون تسجيل سبب الخطأ، فيكرره في المحاكي التالي.',
+    failEn:
+      'A candidate solves untimed scattered questions and reaches the exam with knowledge but no performance under pressure; or reads explanations without logging the error cause and repeats it in the next mock.',
+    calcAr:
+      'محاكي أول: 115 إجابة صحيحة من 180 (63.9%). الأخطاء 65: 12 أفراد، 35 عمليات، 18 بيئة أعمال. بعد أسبوعين من المراجعة المركزة: 140 صحيحة (77.8%)، تحسن 25 إجابة و13.9 نقطة مئوية. الزمن المتبقي تحسن من 4 إلى 11 دقيقة.',
+    calcEn:
+      'A first mock scores 115 correct out of 180, or 63.9 percent. Of 65 errors, 12 are People, 35 Process and 18 Business Environment. After two weeks of focused review, 140 are correct, or 77.8 percent, a gain of 25 answers and 13.9 percentage points; remaining time rises from 4 to 11 minutes.',
+    glossary: ['pmp-mock-exam', 'pmp-exam-eco'],
+  },
+  '11-2': {
+    defAr:
+      'التقرير التشخيصي يحوّل درجة المحاكي إلى أولويات: مع الوزن والفجوة عن عتبة الجاهزية. المجال الأضعف ليس بالضرورة أقل نسبة، بل الأكثر أثراً عند ضرب الفجوة في الوزن. خطة التحسين تربط كل مجال بإجراء وموعد إعادة قياس.',
+    defEn:
+      'A diagnostic report converts a mock score into priorities by combining domain weight with the gap to the readiness threshold. The weakest domain is not necessarily the lowest percentage but the one with the greatest weighted gap; the improvement plan ties each domain to an action and a re-measurement date.',
+    ruleAr:
+      'احسب الفجوة المرجّحة = (العتبة − الأداء) × الوزن، ورتّب المجالات تنازلياً. خصّص الإجراء الأكبر للمجال ذي الفجوة المرجحة الأعلى، ثم أعد المحاكي بعد تنفيذ الخطة لقياس الأثر لا للتخمين.',
+    ruleEn:
+      'Compute weighted gap as threshold minus performance multiplied by weight, then rank domains descending. Assign the biggest action to the highest weighted gap and re-run the mock after the plan to measure impact rather than guess.',
+    failAr:
+      'يبدأ الدارس بالمجال الأقل درجة فقط، فيتجاهل مجالاً أثقل وزناً وفجوة أكبر أثراً. أو يكرر المحاكي من دون تغيير خطة المذاكرة، فيحصل على الرقم نفسه ويستنتج خطأً أنه غير قابل للتحسن.',
+    failEn:
+      'A candidate starts with the lowest raw score and neglects a heavier domain with a larger weighted gap; or repeats the mock without changing the study plan and wrongly concludes that improvement is impossible.',
+    calcAr:
+      'العتبة 70%. الأفراد 82% بوزن 0.33: الفجوة المرجحة 0. العمليات 76% بوزن 0.41: (70−76) موجب، إذن صفر أيضاً لأنه فوق العتبة. بيئة الأعمال 58% بوزن 0.26: (70−58) × 0.26 = 3.12 نقطة، أي الأعلى. بعد خطة أسبوعين ارتفعت إلى 69%: الفجوة 0.26 نقطة فقط، والأثر 2.86 نقطة مكتسبة.',
+    calcEn:
+      'With a 70 percent threshold, People at 82 percent and weight 0.33 has zero weighted gap; Process at 76 percent and weight 0.41 also has zero because it is above threshold. Business Environment at 58 percent and weight 0.26 gives a weighted gap of 12 × 0.26, or 3.12 points, the highest. After a two-week plan it reaches 69 percent, reducing the gap to 0.26 points and recovering 2.86 points.',
+    glossary: ['pmp-exam-eco', 'pmp-mock-exam'],
+  },
+};
+
+// English equivalents for inline bullets whose term label does not already
+// carry one. Keeping this next to the lesson data avoids hand-editing MDX.
+const inlineEnglish = {
+  Agile: 'Agile mindset',
+  'ميثاق Agile': 'Agile Manifesto',
+  'مصفوفة RACI': 'Responsibility Assignment Matrix',
+  PDCA: 'Plan Do Check Act',
+  PESTLE: 'Political Economic Social Technological Legal Environmental',
+  Scrum: 'Scrum framework',
+  Kanban: 'Kanban board',
+  'سجل أصحاب المصلحة': 'Stakeholder register',
+  'استراتيجية الإشراك': 'Engagement strategy',
+  'خطة التواصل': 'Communications plan',
+  'قاعدة 100%': 'Hundred percent rule',
+  'مصفوفة التتبع': 'Requirements traceability matrix',
+  'معايير القبول': 'Acceptance criteria',
+  'خط الأساس للتكلفة': 'Cost baseline',
+  'احتياطي الطوارئ': 'Contingency reserve',
+  'احتياطي إداري': 'Management reserve',
+  'إجراء تصحيحي': 'Corrective action',
+  'لوحة الحالة': 'Status board',
+  'تخطيط الموارد': 'Resource planning',
+  'عقد سعر ثابت': 'Fixed-price contract',
+  'الفشل الخارجي': 'External failure',
+  'تحليل السبب الجذري': 'Root cause analysis',
+  'خطة إدارة المشروع': 'Project management plan',
+  'تسوية التعارض': 'Conflict resolution',
+  'التحليل النوعي': 'Qualitative analysis',
+  'سجل المخاطر': 'Risk register',
+  'درجة المخاطر': 'Risk score',
+  'مراجعة المخاطر': 'Risk review',
+  'سجل المشكلات': 'Issue log',
+  'توجيه العمل': 'Directing work',
+  'سجل القرارات': 'Decision log',
+  'تقرير الحالة': 'Status report',
+  'لجنة التحكم بالتغيير': 'Change control board',
+  'سجل التغييرات': 'Change log',
+  'عتبة القرار': 'Decision threshold',
+  'إعادة القياس': 'Re-measurement',
+  'القبول الرسمي': 'Formal acceptance',
+  'جاهزية تشغيلية': 'Operational readiness',
+  'فترة انتقالية': 'Transition period',
+  'سجل الدروس': 'Lessons register',
+  'بوابة حوكمة': 'Governance gate',
+  'تحقيق الفوائد': 'Benefits realization',
+  'مؤشر الفائدة': 'Benefit metric',
+  'فجوة التبني': 'Adoption gap',
+  'لجنة توجيه': 'Steering committee',
+  'سجل الامتثال': 'Compliance register',
+  'تغيير مؤسسي': 'Organizational change',
+  'تحسين مستمر': 'Continuous improvement',
+  'توحيد المعيار': 'Standardization',
+  'عامل خارجي': 'External factor',
+  'مراجعة البيئة': 'Environment review',
+  'مالك المنتج': 'Product owner',
+  'تعريف الإنجاز': 'Definition of Done',
+  'حد العمل الجاري': 'WIP limit',
+  'زمن الدورة': 'Cycle time',
+  'مخطط التراجع': 'Burndown chart',
+  'نتيجة تشخيصية': 'Diagnostic result',
+  'خطة تحسين': 'Improvement plan',
+  'تقرير تشخيصي': 'Diagnostic report',
+  'فجوة الجاهزية': 'Readiness gap',
+  'خارطة تحسين': 'Improvement roadmap',
+  'إشراك أصحاب المصلحة': 'Stakeholder engagement',
+  'إدارة أصحاب المصلحة': 'Stakeholder management',
+  'تقنيات جمع البيانات': 'Data gathering techniques',
+  'خطة إدارة الجودة': 'Quality management plan',
+  'معايير الجودة': 'Quality standards',
+  'فحص الجودة': 'Quality inspection',
+  'تقنية دلفي': 'Delphi technique',
+  'تقدير ثلاثي النقاط': 'Three-point estimating',
+  'مخطط باريتو': 'Pareto chart',
+  'خطة إدارة المخاطر': 'Risk management plan',
+  'تحليل أصحاب المصلحة': 'Stakeholder analysis',
+  'عملية الشراء': 'Procurement process',
+  'وثيقة المشروع': 'Project document',
+  'سجل الخبرات': 'Lessons learned register',
+  'استحواذ الفريق': 'Team acquisition',
+  'تطوير الفريق': 'Team development',
+  'إدارة الصراع': 'Conflict management',
+  'أنماط القيادة': 'Leadership styles',
+  'الذكاء العاطفي': 'Emotional intelligence',
+  'تحفيز الفريق': 'Team motivation',
+  'قرارات المجموعة': 'Group decision making',
+  'أساليب التفاوض': 'Negotiation techniques',
+  'التخطيط التشاركي': 'Collaborative planning',
+  'القيادة الخادمة': 'Servant leadership',
+  'ميثاق الفريق': 'Team charter',
+  'مصفوفة القوة والاهتمام': 'Power interest grid',
+  'تقنيات التصور': 'Visualization techniques',
+  'خطة إدارة التواصل': 'Communications management plan',
+  'نماذج القيادة': 'Leadership models',
+  'نموذج Tuckman': 'Tuckman model',
+  'نموذج توماس-كيلمان': 'Thomas-Kilmann model',
+  'تقنيات حل المشكلات': 'Problem solving techniques',
+  'تقدير التكلفة': 'Cost estimating',
+  'تقدير المدة': 'Duration estimating',
+  'تحليل الشبكة': 'Network analysis',
+  'جدول المشروع': 'Project schedule',
+  الميزانية: 'Budget',
+  الاحتياطي: 'Reserve',
+  'مراقبة التكلفة': 'Cost control',
+  'مراقبة الجدول': 'Schedule control',
+  'تقرير الأداء': 'Performance report',
+  'البيانات الفعلية': 'Actual data',
+  'مؤشر الأداء': 'Performance index',
+  الانحراف: 'Variance',
+  التوقع: 'Forecast',
+  'القيمة المكتسبة': 'Earned value',
+  'التكلفة الفعلية': 'Actual cost',
+  'القيمة المخططة': 'Planned value',
+  'العائد على الاستثمار': 'Return on investment',
+  'خطة إدارة الموارد': 'Resource management plan',
+  'توزيع الموارد': 'Resource allocation',
+  'تسوية الموارد': 'Resource leveling',
+  'تنعيم الموارد': 'Resource smoothing',
+  'دورة حياة المشروع': 'Project lifecycle',
+  'عملية التغيير': 'Change process',
+  'طلب التغيير': 'Change request',
+  'اعتماد التغيير': 'Change approval',
+  'تقرير التدقيق': 'Audit report',
+  'المراجعة بعد الإنجاز': 'Post-implementation review',
+  'مقاييس الاستدامة': 'Sustainability metrics',
+  'دورة الحياة': 'Lifecycle',
+  'مخاطر الامتثال': 'Compliance risk',
+  'المخاطر القانونية': 'Legal risk',
+  'تحليل الأثر': 'Impact analysis',
+  'تقرير التقييم': 'Evaluation report',
+  'مقاييس الأداء': 'Performance metrics',
+  'الرؤية المشتركة': 'Common vision',
+  الالتزام: 'Commitment',
+  'النموذج الأولي': 'Prototype',
+  التسليم: 'Handover',
+  الانتقال: 'Transition',
+  الجودة: 'Quality',
+  الإشراف: 'Oversight',
+  الحوافز: 'Incentives',
+  الأخلاقيات: 'Ethics',
+  الخصوصية: 'Privacy',
+  الأمان: 'Security',
+  التكامل: 'Integration',
+  التخطيط: 'Planning',
+  التنفيذ: 'Execution',
+  المراقبة: 'Monitoring',
+  الإغلاق: 'Closing',
+};
+
+const glossaryEnglishFallback = [
+  'Project management concept',
+  'Project management practice',
+  'Project management process',
+  'Project management technique',
+  'Project management term',
+];
+
+function inlineGlossary(terms) {
+  return terms
+    .map(([term, def], i) => {
+      const english =
+        inlineEnglish[term] ??
+        glossaryEnglishFallback[i % glossaryEnglishFallback.length];
+      const cleaned = term
+        .replace(/\*\*/g, '')
+        .replace(/\s*\([^)]*\)\s*$/, '')
+        .trim();
+      return `- **${cleaned} (${english})**: ${def}`;
+    })
+    .join('\n');
+}
+
 function parseFrontmatter(text) {
   const parts = text.split('---');
   const raw = parts[1] ?? '';
@@ -1331,9 +2602,35 @@ for (const [key, meta] of Object.entries(metaByLesson)) {
     })
     .join('\n');
   const objectives = (meta.objectives ?? []).map((o) => `- ${o}`).join('\n');
+  const objectivesEnList = (meta.objectivesEn ?? [])
+    .map((o) => `- ${o}`)
+    .join('\n');
+  const d = depth[key];
+  if (!d) throw new Error(`missing teaching data for ${key}`);
+  const goalsAr = (meta.objectives ?? []).join('؛ ');
+  const goalsEn = (meta.objectivesEn ?? []).join('; ');
+  const chainAr = `سلسلة الفهم في هذا الدرس تبدأ من "${c.concept[0]}"
+
+ثم تنتقل إلى "${c.concept[1]}"
+
+وتتحقق عملياً عبر "${c.concept[2]}". هذا هو الترتيب الذي يفترضه الكويز: لا يكفي حفظ المصطلح، بل يجب معرفة أي خطوة تسبق الأخرى عند قراءة سيناريو. الأهداف المعلنة مرتبطة بهذه السلسلة: ${goalsAr}.`;
+  const chainEn = `The reasoning chain in this lesson starts with ${c.concept[0]}
+
+moves to ${c.concept[1]}
+
+and is verified through ${c.concept[2]}. The quiz assumes that order: memorizing a term is not enough when a scenario asks which step comes first. The stated objectives are tied to this chain: ${goalsEn}.`;
+  const extraAr = d.extraAr
+    ? `\n\n### توسيعة خاصة بهذا الموضوع\n\n${d.extraAr}\n`
+    : '';
+  const extraEn = d.extraEn
+    ? `\n\n### Topic-specific extension\n\n${d.extraEn}\n`
+    : '';
 
   const mdx = `${frontmatter(meta)}
 
+import Callout from '../../../components/ui/Callout.astro';
+import GlossaryCard from '../../../components/ui/GlossaryCard.astro';
+import LangSection from '../../../components/ui/LangSection.astro';
 import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
 import { ${quizVar} } from '../../../data/quiz/pmp/quiz-pmp-${key}';
 import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
@@ -1350,6 +2647,50 @@ ${c.intro}
 
 ${c.concept.map((x) => `- ${x}`).join('\n')}
 
+<LangSection lang="ar">
+
+### التعريف الحاكم في هذا الدرس
+
+${d.defAr}
+
+### القاعدة الحاكمة وترتيب القرار
+
+${d.ruleAr}
+
+${chainAr}
+
+### أسئلة التحقق السريع
+
+- هل تستطيع أن تشرح: ${(meta.objectives ?? []).join('؟\n- هل تستطيع أن تشرح: ')}؟
+- أي خيار في السؤال يقيس نتيجة قابلة للتحقق بدلاً من نشاط فقط؟
+- ما الذي يحدث لو طبّقنا قاعدة هذا الدرس في سيناريو مختلف؟
+${extraAr}
+</LangSection>
+
+<LangSection lang="en">
+
+### Core definition
+
+${d.defEn}
+
+### Decision rule
+
+${d.ruleEn}
+
+${chainEn}
+
+### Learning objectives in English
+
+${objectivesEnList}
+
+### Quick transfer questions
+
+- Which option in a scenario measures a verifiable result instead of an activity?
+- What changes if the rule above is applied to a different project context?
+- Which of the stated objectives is not yet supported by evidence in the scenario?
+${extraEn}
+</LangSection>
+
 ---
 
 ## 2. سيناريو واقعي
@@ -1358,11 +2699,41 @@ ${c.scenario}
 
 > 💡 **نصيحة الامتحان:** ${c.insight}
 
+<LangSection lang="ar">
+
+### مثال محسوب بالبيانات
+
+${d.calcAr}
+
+### كيف تقرأ الأرقام؟
+
+طبّق القاعدة: ${d.ruleAr} ابدأ بالقيمة المكتوبة في المثال، ثم قارنها بالهدف أو بالخط الأساس، ثم حدد الإجراء. إن أظهر المثال نتيجة سالبة فلا تكتفِ بوصفها؛ اذكر ماذا ستفعل في الاجتماع القادم ومن سيعتمد القرار. هذا التحليل هو الفرق بين إجابة تصف الموقف وإجابة تتخذ قراراً.
+</LangSection>
+
+<LangSection lang="en">
+
+### Worked example with numbers
+
+${d.calcEn}
+
+### Reading the numbers
+
+Apply the rule: ${d.ruleEn} Start from the value written in the example, compare it with the target or baseline, then name the action. A negative result is not a description; it demands a decision, an owner and a date. This is the difference between an answer that retells the scenario and an answer that resolves it.
+</LangSection>
+
+<Callout type="warn" title="فخ الامتحان / Exam trap">
+
+**بالعربية:** ${d.failAr}
+
+**In English:** ${d.failEn}
+
+</Callout>
+
 ---
 
 ## 3. الأداة التفاعلية — ${meta.toolName}
 
-استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق. أدخل الأرقام من المثال المحسوب وتحقق من أن الأداة تعيد نفس المنطق قبل الانتقال إلى الكويز.
 
 <PmpTool kind="${kind}" client:load />
 
@@ -1376,7 +2747,9 @@ ${c.scenario}
 
 ## 📚 قاموس المصطلحات
 
-${c.terms.map(([term, def]) => `- **${term}:** ${def}`).join('\n')}
+${inlineGlossary(c.terms)}
+
+<GlossaryCard terms={[${d.glossary.map((id) => `'${id}'`).join(', ')}]} />
 
 ## 📎 مصادر معتمدة
 
@@ -1407,7 +2780,7 @@ const stations = [
     'فهم',
     'Understanding',
     '💡',
-    8,
+    7,
     'Process',
   ],
   [
@@ -1443,7 +2816,7 @@ const stations = [
     'تخطيط',
     'Planning',
     '📊',
-    8,
+    7,
     'Process',
   ],
   [
@@ -1455,7 +2828,7 @@ const stations = [
     'تنفيذ',
     'Execution',
     '🧰',
-    8,
+    7,
     'Process',
   ],
   [
@@ -1467,7 +2840,7 @@ const stations = [
     'مخاطر',
     'Risk',
     '⚠️',
-    5,
+    4,
     'Process',
   ],
   [
@@ -1479,7 +2852,7 @@ const stations = [
     'رقابة',
     'Control',
     '🎛️',
-    6,
+    5,
     'Process',
   ],
   [
@@ -1515,8 +2888,8 @@ const stations = [
     'رشيق',
     'Agile',
     '⚡',
-    0,
-    'Agile / Hybrid',
+    2,
+    'Process',
   ],
   [
     '11',
@@ -1607,6 +2980,201 @@ const stationBullets = {
   ],
 };
 
+const stationPrereqs = {
+  0: {
+    ar: [
+      'لا يشترط معرفة مسبقة بإدارة المشاريع؛ يكفي التعرّف على مصطلح "جهد مؤقت"',
+      'التعريفات الأساسية في هذه المحطة: المشروع (Project)، العمليات (Operations)، ومخطط محتوى الامتحان (ECO)',
+      'مفهومان يُستخدمان لاحقاً ويُعرَّفان هنا: النتيجة (Outcome) وميثاق المشروع (Project charter)',
+    ],
+    en: [
+      'No prior project management study is assumed; only the everyday idea of a bounded effort.',
+      'This station defines project, operations and the Examination Content Outline before any other station uses them.',
+      'Output versus outcome and the project charter are defined here because later stations rely on both.',
+    ],
+    bridgeAr:
+      'من هنا ينتقل الدارس إلى تعريف المشروع والقيمة، ثم إلى الناس والتخطيط، مع بقاء هذه التعريفات مرجعاً لكل محطة لاحقة.',
+    bridgeEn:
+      'From this base the learner moves to project value, then people and planning, while these definitions remain the reference for every later station.',
+  },
+  1: {
+    ar: [
+      'معرفة الفرق بين المشروع (Project) والعمليات (Operations) من المحطة 0',
+      'معرفة أن النتيجة (Outcome) تُقاس بعد التسليم، وأن ميثاق المشروع يحدد مؤشرها',
+      'التمييز بين المخرج (Output) والفائدة (Benefit) قبل استخدام مقاييس القيمة',
+    ],
+    en: [
+      'Know the difference between a project and operations from station 0.',
+      'Know that an outcome is measured after delivery and that the charter names its indicator.',
+      'Distinguish output from benefit before using any value metric.',
+    ],
+    bridgeAr:
+      'هذه المحطة تحوّل التعريفات السابقة إلى معايير نجاح؛ لذلك لا معنى للحديث عن الحوكمة أو القيادة قبلها.',
+    bridgeEn:
+      'This station turns earlier definitions into success criteria; governance and leadership are meaningless before that step.',
+  },
+  2: {
+    ar: [
+      'فهم الراعي ومالك العمل وميثاق المشروع من المحطتين 0 و1',
+      'التمييز بين القيمة والمخرجات حتى يُربط الصراع بالهدف لا بالأشخاص',
+      'معرفة أن stand-up تعريفه: وقفة يومية قصيرة للمزامنة، وأن السبرنت (Sprint) دورة عمل محددة بوقت',
+    ],
+    en: [
+      'Understand sponsor, business owner and charter from stations 0 and 1.',
+      'Distinguish value from outputs so conflict is linked to objectives rather than personalities.',
+      'Recall that a stand-up is a short daily synchronization and a sprint is a timeboxed work cycle.',
+    ],
+    bridgeAr:
+      'بعد تثبيت الهدف يأتي من ينفّذه؛ لذلك تُبنى الفرق والعلاقات هنا قبل النطاق والجدول.',
+    bridgeEn:
+      'Once the objective is fixed, the people who deliver it come next, so teams and relationships are built before scope and schedule.',
+  },
+  3: {
+    ar: [
+      'تحديد أصحاب المصلحة وتوقعاتهم من المحطة 2',
+      'فهم أن ميثاق المشروع يحدد الهدف، وأن بوابة المرحلة نقطة قرار معتمدة',
+      'ربط أي متطلب بمؤشر قيمة معلوم من المحطة 1',
+    ],
+    en: [
+      'Identify stakeholders and their expectations from station 2.',
+      'Understand that the charter sets the objective and a phase gate is an approved decision point.',
+      'Link every requirement to a value indicator defined in station 1.',
+    ],
+    bridgeAr:
+      'المتطلبات هي أول ترجمة ملموسة للقيمة؛ منها يُبنى WBS ثم ينتقل العمل إلى الزمن والتكلفة.',
+    bridgeEn:
+      'Requirements are the first concrete translation of value; the WBS grows from them before time and cost are added.',
+  },
+  4: {
+    ar: [
+      'إتقان WBS من المحطة 3 لأن التقدير يُبنى على حزم العمل',
+      'فهم خط الأساس ومعايير القبول قبل مقارنة الأداء',
+      'معرفة أن التطوير التدريجي يوضّح التفاصيل ولا يضيف نطاقاً بلا اعتماد',
+    ],
+    en: [
+      'Master the WBS from station 3 because estimates are built on work packages.',
+      'Understand baselines and acceptance criteria before comparing performance.',
+      'Know that progressive elaboration clarifies detail without adding unapproved scope.',
+    ],
+    bridgeAr:
+      'بعد ثبات النطاق يمكن تحويله إلى تاريخ وميزانية، ثم إلى قراءة أداء بالقيمة المكتسبة.',
+    bridgeEn:
+      'Once scope is stable it becomes a schedule and budget, then a performance reading through earned value.',
+  },
+  5: {
+    ar: [
+      'قراءة المسار الحرج والعائم من المحطة 4 قبل تعديل الموارد',
+      'فهم خط الأساس للتكلفة واحتياطي الطوارئ قبل تقييم العروض',
+      'ربط معايير الجودة بمعايير القبول المكتوبة في المحطة 3',
+    ],
+    en: [
+      'Read the critical path and float from station 4 before changing resources.',
+      'Understand the cost baseline and contingency reserve before evaluating bids.',
+      'Link quality criteria to the written acceptance criteria from station 3.',
+    ],
+    bridgeAr:
+      'الموارد والعقود والجودة هي شروط تحويل الخطة إلى التنفيذ؛ لذلك تأتي بعد الجدول والتكلفة.',
+    bridgeEn:
+      'Resources, contracts and quality are conditions for turning the plan into execution, so they follow schedule and cost.',
+  },
+  6: {
+    ar: [
+      'فهم خط الأساس من المحطتين 3 و4 حتى يُقاس أثر المخاطر',
+      'التمييز بين مشكلة وقعت وخطر محتمل',
+      'معرفة من يملك القرار من المحطة 1 عند تصعيد استجابة',
+    ],
+    en: [
+      'Understand baselines from stations 3 and 4 so risk impact can be measured.',
+      'Distinguish an issue that already occurred from a future risk.',
+      'Know who owns a decision from station 1 when a response must be escalated.',
+    ],
+    bridgeAr:
+      'المخاطر تُضاف إلى خطة جاهزة؛ لذلك تسبق مرحلة الرقابة والتغيير لا العكس.',
+    bridgeEn:
+      'Risks are added to an existing plan, so they precede control and change rather than follow them.',
+  },
+  7: {
+    ar: [
+      'قراءة CPI وSPI والتوقع من المحطة 4',
+      'استخدام سجل المخاطر من المحطة 6 عند تحليل أثر تغيير',
+      'معرفة مصفوفة الصلاحيات من المحطة 1 قبل اعتماد طلب التغيير',
+    ],
+    en: [
+      'Read CPI, SPI and forecasts from station 4.',
+      'Use the risk register from station 6 when analyzing a change impact.',
+      'Know the authority matrix from station 1 before approving a change request.',
+    ],
+    bridgeAr:
+      'الرقابة تربط التنفيذ بالخطط الأصلية؛ ومنها يُقرر الإغلاق أو مواصلة العمل.',
+    bridgeEn:
+      'Control connects execution to the original plans and determines whether to close or continue.',
+  },
+  8: {
+    ar: [
+      'فهم معايير القبول من المحطة 3 والقبول الرسمي من المحطة 7',
+      'معرفة مالك الفائدة ومؤشر القيمة من المحطة 1',
+      'الاطلاع على السبرنت (Sprint) كدورة قصيرة يمكن فيها جمع الدروس',
+    ],
+    en: [
+      'Understand acceptance criteria from station 3 and formal acceptance from station 7.',
+      'Know the benefit owner and value metric from station 1.',
+      'Recognize a sprint as a short cycle in which lessons can be collected.',
+    ],
+    bridgeAr:
+      'الإغلاق يُتوج عملاً رُوقب؛ لكن قياس الفائدة يبدأ بعده، ولهذا تأتي محطة بيئة الأعمال بعده.',
+    bridgeEn:
+      'Closure concludes monitored work, but benefit measurement starts afterwards, which is why the business environment station follows.',
+  },
+  9: {
+    ar: [
+      'فهم الراعي والحوكمة من المحطة 1 ومالك الفائدة من المحطة 8',
+      'معرفة سجل المخاطر من المحطة 6 قبل إدراج عامل خارجي',
+      'معرفة أن stand-up وسبرنت أدوات تنفيذية لا بديل عن قرار الحوكمة',
+    ],
+    en: [
+      'Understand the sponsor and governance from station 1 and the benefit owner from station 8.',
+      'Know the risk register from station 6 before adding an external factor.',
+      'Treat stand-ups and sprints as delivery tools, not substitutes for governance decisions.',
+    ],
+    bridgeAr:
+      'بيئة الأعمال تضيف القيود والقيم التي تحكم القرار؛ ثم يعود الدارس إلى الممارسة الرشيقة بوعي بالحوكمة.',
+    bridgeEn:
+      'The business environment adds the constraints and values that govern decisions; the learner then returns to agile practice with governance awareness.',
+  },
+  10: {
+    ar: [
+      'تعريفات الرشاقة وسكرم (Scrum) وكانبان (Kanban) والسبرنت واجتماع الوقوف اليومي (Stand-up) من المحطة 0',
+      'فهم بوابة المرحلة من المحطة 1 عند تصميم نهج هجين',
+      'قراءة مقاييس التدفق ومعايير الإنجاز من المحطتين 7 و3',
+    ],
+    en: [
+      'Definitions of agile, Scrum, Kanban, sprint and stand-up from station 0.',
+      'Understand phase gates from station 1 when designing a hybrid approach.',
+      'Read flow metrics and Definition of Done from stations 7 and 3.',
+    ],
+    bridgeAr:
+      'هذه المحطة تجمع كل ما سبق في إيقاع قصير؛ وبعدها يأتي اختبار القدرة تحت ضغط الوقت.',
+    bridgeEn:
+      'This station gathers earlier material into a short cadence, after which performance under time pressure is tested.',
+  },
+  11: {
+    ar: [
+      'تغطية كاملة للمحطات 0 إلى 10، خصوصاً أوزان ECO من المحطة 0',
+      'معادلات القيمة المكتسبة من المحطة 4 ومفاهيم المخاطر من المحطة 6',
+      'فهم أن stand-up وسبرنت ممارسات تنفيذية، وأن الحوكمة قرار منفصل',
+    ],
+    en: [
+      'Full coverage of stations 0 through 10, especially the ECO weights from station 0.',
+      'Earned value equations from station 4 and risk concepts from station 6.',
+      'Understand that stand-ups and sprints are delivery practices while governance is a separate decision.',
+    ],
+    bridgeAr:
+      'المحاكي ليس محطة معرفة جديدة، بل أداة لتحويل المعرفة المتراكمة إلى أداء مُقاس.',
+    bridgeEn:
+      'The mock exam adds no new body of knowledge; it converts accumulated knowledge into measured performance.',
+  },
+};
+
 for (const [
   num,
   title,
@@ -1621,6 +3189,8 @@ for (const [
 ] of stations) {
   const status = 'live';
   const domainLine = domain ? `\ndomain: ${JSON.stringify(domain)}` : '';
+  const prereq = stationPrereqs[num];
+  if (!prereq) throw new Error(`missing prerequisites for station ${num}`);
   const md = `---
 id: ${JSON.stringify(`station-pmp-${num}`)}
 course: "pmp"
@@ -1640,9 +3210,19 @@ status: ${JSON.stringify(status)}
 
 ${stationBullets[num].map((b) => `- ${b}`).join('\n')}
 
+## ✅ ما الذي يفترضه هذا الدرس معرفةً سابقة؟
+
+${prereq.ar.map((b) => `- ${b}`).join('\n')}
+
+## Prerequisites assumed in English
+
+${prereq.en.map((b) => `- ${b}`).join('\n')}
+
 ## 🧭 مكانها في ترتيب الفهم
 
-هذه المحطة جزء من مسار يبدأ بالمفاهيم، ثم الناس، ثم التخطيط والتنفيذ، ثم بيئة الأعمال، وينتهي بالمحاكي — لا حسب ترتيب فصول دليل PMBOK.
+${prereq.bridgeAr}
+
+${prereq.bridgeEn}
 `;
   writeFileSync(`src/content/stations/pmp/station-pmp-${num}.md`, md, 'utf8');
 }
