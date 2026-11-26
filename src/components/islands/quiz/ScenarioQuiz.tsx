@@ -13,6 +13,81 @@ interface Props {
   questions: QuizQuestion[];
 }
 
+type StemBlock =
+  { kind: 'text'; lines: string[] } | { kind: 'table'; rows: string[][] };
+
+// Shared case stems contain Markdown tables; render them as real tables so the
+// learner reads the data instead of raw pipe characters.
+function CaseStem({ text, isEn }: { text?: string; isEn: boolean }) {
+  if (!text) return null;
+  const blocks: StemBlock[] = [];
+  for (const line of text.split('\n')) {
+    const isRow = /^\s*\|.*\|\s*$/.test(line);
+    const cells = isRow
+      ? line
+          .split('|')
+          .slice(1, -1)
+          .map((cell) => cell.trim())
+      : [];
+    const isSeparator =
+      cells.length > 0 && cells.every((c) => /^:?-{3,}:?$/.test(c));
+    const last = blocks[blocks.length - 1];
+    if (isRow && !isSeparator) {
+      if (last?.kind === 'table') last.rows.push(cells);
+      else blocks.push({ kind: 'table', rows: [cells] });
+    } else if (last?.kind === 'text') {
+      last.lines.push(line);
+    } else {
+      blocks.push({ kind: 'text', lines: [line] });
+    }
+  }
+  return (
+    <div
+      className="space-y-2 text-sm leading-relaxed text-ink-700 dark:text-slate-200"
+      dir={isEn ? 'ltr' : 'rtl'}
+    >
+      {blocks.map((block, i) =>
+        block.kind === 'table' ? (
+          <div key={i} className="overflow-x-auto">
+            <table className="w-full border-collapse text-xs">
+              <thead>
+                <tr>
+                  {block.rows[0].map((cell, j) => (
+                    <th
+                      key={j}
+                      className="border border-brand-200 bg-brand-100/60 px-2 py-1 text-start font-bold dark:border-brand-800 dark:bg-brand-900/40"
+                    >
+                      {cell}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {block.rows.slice(1).map((row, r) => (
+                  <tr key={r}>
+                    {row.map((cell, c) => (
+                      <td
+                        key={c}
+                        className="border border-brand-200 px-2 py-1 text-start dark:border-brand-800"
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p key={i} className="whitespace-pre-line">
+            {block.lines.join('\n')}
+          </p>
+        )
+      )}
+    </div>
+  );
+}
+
 export default function ScenarioQuiz({ quizId, questions }: Props) {
   const course = quizId.startsWith('quiz-cmrp')
     ? 'cmrp'
@@ -256,12 +331,7 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
             <p className="mb-1 text-xs font-bold text-brand-700 dark:text-brand-300">
               {isEn ? 'Shared case' : 'حالة مشتركة'}
             </p>
-            <p
-              className="whitespace-pre-line text-sm leading-relaxed text-ink-700 dark:text-slate-200"
-              dir={isEn ? 'ltr' : 'rtl'}
-            >
-              {pick(q.sharedStem, q.sharedStemEn)}
-            </p>
+            <CaseStem text={pick(q.sharedStem, q.sharedStemEn)} isEn={isEn} />
           </div>
         )}
         <p

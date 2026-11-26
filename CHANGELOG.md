@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Quiz feedback now teaches: all 880 explanations are at least 20 characters and unique, the correct option's explanation is shown after an answer, one hinted retry is available, and skipped mock questions appear in review. Two shared multi-question case sets with data-table stems were added.
 - Generative-AI governance, ESG metrics and a benefit-management plan artifact are taught in content, quizzes and island tools; `tests/pmp-coverage.test.mjs` pins these contracts.
 - Honest residual limitations are documented in `project_management/EXAM_COVERAGE_PMP.md`: no PMP audio assets exist, case-set coverage is limited, and no independent psychometric or candidate study has validated readiness.
+- Shared case stems now render their Markdown data tables as real HTML tables in `ScenarioQuiz`, and a 13th coverage assertion pins the renderer.
 - Living documentation updates: SRS, ACTIVE_CONTEXT, MASTER_PLAN, and the PMP task plan completion record.
 
 ## [0.1.0] - 2026-10-19

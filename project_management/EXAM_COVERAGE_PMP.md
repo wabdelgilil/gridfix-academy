@@ -82,7 +82,7 @@ The rationale is also recorded as a comment in `audioManifest.ts` so the omissio
 - **Question quality is mechanically checked, not psychometrically validated.** The scoped test confirms 880 substantial, non-duplicated explanations and correct-option feedback, but there has been no external PMI-style review or candidate study.
 - **Case-set and chart coverage is limited.** At least two shared multi-question case sets with table/chart stems exist, but they do not represent every item format seen in the live exam.
 - **Bilingual audio is absent.** See the Audio limitation section above.
-- **Global gates passed after the rebuild.** `npm run format`, `npm run verify` (319 files, 0 errors, 0 warnings, 0 hints; 36 tests) and `npm run build` (192 pages) were run and passed by the coordinator; the 12 coverage assertions are part of the permanent test suite.
+- **Global gates passed after the rebuild.** `npm run format`, `npm run verify` (319 files, 0 errors, 0 warnings, 0 hints; 37 tests) and `npm run build` (192 pages) were run and passed by the coordinator; the 13 coverage assertions are part of the permanent test suite.
 - **ECO version risk.** The map follows the July 2026 ECO reference used by the rebuild. Any later PMI revision requires a fresh task-by-task audit.
 
 This document is a coverage map and an honesty statement. It does not replace the official PMI Examination Content Outline or certify readiness.

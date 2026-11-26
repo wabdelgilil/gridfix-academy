@@ -381,5 +381,5 @@ Delivered scope:
 - 180-question mock exam: 59 People / 74 Process / 47 Business Environment at 80 seconds per question, with skipped questions included in review.
 - July 2026 ECO weights (33/41/26) in both curriculum and station files, 26 tasks explicitly mapped in `src/data/pmpEcoTasks.ts`, and a ~40/60 predictive-agile-hybrid teaching balance.
 - Generative-AI governance, sustainability/ESG metrics, a benefit-management plan artifact, and two shared multi-question case sets with data-table stems.
-- Final gates: `npm run verify` PASS (319 files, 0 errors, 0 warnings, 0 hints, 36 tests) and `npm run build` PASS (192 pages).
+- Final gates: `npm run verify` PASS (319 files, 0 errors, 0 warnings, 0 hints, 37 tests) and `npm run build` PASS (192 pages).
 - Honest limitations: no PMP audio assets exist, case-set/graphic coverage is not exhaustive, and no independent psychometric study has validated exam readiness.

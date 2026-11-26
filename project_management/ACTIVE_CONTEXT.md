@@ -21,7 +21,7 @@
 3. **Deterministic Gate Status:**
    - `astro check`: PASS (319 files, 0 errors, 0 warnings, 0 hints)
    - `npm run qa:ar`: PASS (Zero machine-translated non-words)
-   - `npm run test`: PASS (36 tests pass, 0 fail — including 12 PMP coverage assertions)
+   - `npm run test`: PASS (37 tests pass, 0 fail — including 13 PMP coverage assertions)
    - `npm run format:check`: PASS (All files formatted cleanly)
    - `npm run build`: PASS (192 static pages generated)
 

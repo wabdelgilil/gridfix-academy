@@ -198,6 +198,13 @@ describe('PMP exam-readiness contract', () => {
     assert.match(read('src/data/quiz/types.ts'), /caseSetId/);
   });
 
+  test('shared case stems render Markdown tables instead of raw pipes', () => {
+    const text = read('src/components/islands/quiz/ScenarioQuiz.tsx');
+    assert.match(text, /split\('\|'\)/, 'must parse Markdown table rows');
+    assert.match(text, /<table/, 'must render a real table element');
+    assert.match(text, /<CaseStem/, 'must use the case-stem renderer');
+  });
+
   test('generative AI is taught in content, quizzes and the island tool', () => {
     const re = /توليدي|GenAI|generative/i;
     assert.match(read(`${lessonDir}/lesson-pmp-9-6.mdx`), re);
