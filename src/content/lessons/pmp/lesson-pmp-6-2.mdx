@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-6-2"
+course: "pmp"
+station: "station-pmp-6"
+number: "6.2"
+title: "الاستجابة للمخاطر"
+titleEn: "Risk Response Strategies"
+minutes: 25
+order: 2
+hasTool: true
+toolName: "باني خطة مخاطر"
+toolNameEn: "Risk Response Planner"
+quizId: "quiz-pmp-6-2"
+objectives:
+  - "تعريف استراتيجيات الاستجابة للمخاطر (Risk response strategies)"
+  - "فهم استجابات التهديدات (Threat responses): التجنّب (Avoid) والتخفيف (Mitigate) والنقل (Transfer) والقبول (Accept)"
+  - "فهم استجابات الفرص (Opportunity responses): الاستغلال (Exploit) والتعزيز (Enhance) والمشاركة (Share) والقبول (Accept)"
+  - "التعرف على الخطر المتبقي (Residual risk)"
+objectivesEn:
+  - "Define Risk Response Strategies"
+  - "Understand Threat responses (Avoid, Mitigate, Transfer, Accept)"
+  - "Understand Opportunity responses (Exploit, Enhance, Share, Accept)"
+  - "Recognize Residual Risk"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp62 } from '../../../data/quiz/pmp/quiz-pmp-6-2';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف استراتيجيات الاستجابة للمخاطر (Risk response strategies)
+- فهم استجابات التهديدات (Threat responses): التجنّب (Avoid) والتخفيف (Mitigate) والنقل (Transfer) والقبول (Accept)
+- فهم استجابات الفرص (Opportunity responses): الاستغلال (Exploit) والتعزيز (Enhance) والمشاركة (Share) والقبول (Accept)
+- التعرف على الخطر المتبقي (Residual risk)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+لكل خطر استجابة مناسبة؛ الاختيار يعتمد على طبيعة الخطر وتكلفة كل خيار.
+
+- تجنّب (Avoid) يزيل الخطر بتغيير الخطة، وتخفيف (Mitigate) يقلل الاحتمال أو الأثر.
+- نقل (Transfer) يشارك الأثر مع طرف ثالث مثل التأمين أو عقد سعر ثابت، وقبول (Accept) يُبقي الخطر مع مراقبة.
+- الفرص (Opportunities) لها استجابات مختلفة: استغلال وتعزيز ومشاركة وقبول.
+- الاستجابة تحتاج مالكاً ومحفزاً (Trigger) وتكلفة وموعد مراجعة، وإلا بقيت نية على الورق.
+
+---
+
+## 2. سيناريو واقعي
+
+خطر تغيّر متطلبات الواجهة في مشروع تطبيق كان يمكن تخفيفه بمراجعات أسبوعية مع العميل. الفريق اختار التعزيز (Enhance) لفرصة تقليل زمن التطوير بإعادة استخدام مكوّن جاهز، ووثّق كلا القرارين في سجل المخاطر.
+
+> 💡 **نصيحة الامتحان:** لا تعالج كل المخاطر بنفس الطريقة؛ بعضها يُقبل عن قصد بعد تحليل التكلفة.
+
+---
+
+## 3. الأداة التفاعلية — باني خطة مخاطر
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="risk" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-6-2" questions={quizPmp62.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **تخفيف (Mitigate):** تقليل الاحتمال أو الأثر
+- **نقل (Transfer):** مشاركة الأثر مع طرف آخر
+- **محفز (Trigger):** إشارة لتفعيل الاستجابة
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

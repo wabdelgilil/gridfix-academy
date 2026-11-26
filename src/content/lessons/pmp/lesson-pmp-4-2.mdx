@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-4-2"
+course: "pmp"
+station: "station-pmp-4"
+number: "4.2"
+title: "إدارة التكلفة والموازنة"
+titleEn: "Cost Management and Budgeting"
+minutes: 25
+order: 2
+hasTool: true
+toolName: "محاكي ميزانية"
+toolNameEn: "Budget Simulator"
+quizId: "quiz-pmp-4-2"
+objectives:
+  - "تخطيط التكلفة (Cost management plan)"
+  - "تقدير التكلفة (Cost estimation)"
+  - "تحديد الميزانية (Budget determination)"
+  - "خط الأساس للتكلفة (Cost baseline)"
+objectivesEn:
+  - "Cost management plan"
+  - "Cost estimation"
+  - "Budget determination"
+  - "Cost baseline"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp42 } from '../../../data/quiz/pmp/quiz-pmp-4-2';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تخطيط التكلفة (Cost management plan)
+- تقدير التكلفة (Cost estimation)
+- تحديد الميزانية (Budget determination)
+- خط الأساس للتكلفة (Cost baseline)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+الميزانية تحوّل تقديرات العمل إلى خط أساس مالي يمكن مقارنة الأداء به لاحقاً.
+
+- تقدير التكلفة يشمل العمالة والمواد والمعدات والموردين والاحتياطيات والضريبة حسب السياق.
+- خط الأساس للتكلفة (Cost baseline) يستبعد الاحتياطي الإداري ويشمل احتياطي الطوارئ المعتمد للمخاطر المحددة.
+- احتياطي الطوارئ (Contingency reserve) يغطي مخاطر معروفة، والاحتياطي الإداري يغطي أعمالاً غير متوقعة ولا يُصرف بقرار من مدير المشروع وحده.
+- قاعدة التكلفة ملتزمة بالتعاقد والحوكمة: لا صرف خارج الاعتماد المحدد.
+
+---
+
+## 2. سيناريو واقعي
+
+مشروع تطوير تطبيق حدد تكلفة أساسية 200 ألف دولار واحتياطي طوارئ 12% لمخاطر تكامل واجهة الدفع. عندما تحقق خطر فعلي، صُرف الاحتياطي بقرار موثق، بينما بقي الاحتياطي الإداري تحت سلطة الراعي.
+
+> 💡 **نصيحة الامتحان:** الاحتياطي ليس هامشاً للإنفاق الحر؛ هو مخصص مقابل مخاطر مُعرَّفة.
+
+---
+
+## 3. الأداة التفاعلية — محاكي ميزانية
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="budget" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-4-2" questions={quizPmp42.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **خط الأساس للتكلفة:** الميزانية المعتمدة للمقارنة
+- **احتياطي الطوارئ:** للمخاطر المعروفة
+- **احتياطي إداري:** للأعمال غير المتوقعة
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

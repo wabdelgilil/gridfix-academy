@@ -1,0 +1,82 @@
+---
+id: "lesson-pmp-0-2"
+course: "pmp"
+station: "station-pmp-0"
+number: "0.2"
+title: "شهادة PMP متطلبات التسجيل"
+titleEn: "PMP Credential Requirements and Registration"
+minutes: 25
+order: 2
+hasTool: true
+toolName: "حاسبة الأهلية"
+toolNameEn: "Eligibility Calculator"
+quizId: "quiz-pmp-0-2"
+objectives:
+  - "معرفة متطلبات 35 ساعة اتصال"
+  - "معرفة خبرة 36 أو 60 شهرا"
+  - "فهم نافذة 10 سنوات"
+  - "فهم عملية التسجيل والامتحان"
+objectivesEn:
+  - "Know the 35 contact hours requirement"
+  - "Know 36 or 60 months experience"
+  - "Understand the 10-year window"
+  - "Understand registration and exam process"
+sources:
+  - "pmi_eco_2026"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp02 } from '../../../data/quiz/pmp/quiz-pmp-0-2';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- معرفة متطلبات 35 ساعة اتصال
+- معرفة خبرة 36 أو 60 شهرا
+- فهم نافذة 10 سنوات
+- فهم عملية التسجيل والامتحان
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+الأهلية ليست شرطاً شكلياً؛ هي بوابة دخول تحدد ما إذا كانت خبرتك العملية كافية لتقديم طلب PMP.
+
+- إذا كانت لديك شهادة جامعية فأعلى فأنت تحتاج 36 شهراً من خبرة قيادة المشاريع، وبدونها تحتاج 60 شهراً، وفق متطلبات PMI الحالية.
+- ساعات التدريب (Contact Hours) 35 ساعة على الأقل في إدارة المشاريع، وتُوثَّق بشهادات مزود معتمد.
+- خبرة المشاريع تعني العمل في بيئة المشروع: تحديد أهداف، تخطيط، تنفيذ، مراقبة، وإغلاق — لا مجرد الحضور في اجتماعات.
+- بعد استيفاء المتطلبات تُقدَّم الطلب عبر موقع PMI وتخضع لمراجعة عشوائية قد تطلب أدلة إضافية.
+
+---
+
+## 2. سيناريو واقعي
+
+مهندس خبير بخمس سنوات في الصيانة لكنه لم يوثّق أدواره في مشاريع التحسين. عندما تقدّم بطلب PMP رُفض لأن سرده يصف مهام تشغيلية لا قيادة مشروع. بعد إعادة صياغة الأدلة بمسميات المشاريع وأهدافها ونتائجها، قُبل الطلب.
+
+> 💡 **نصيحة الامتحان:** احتفظ بأدلة الأهلية قبل التقديم: وصف الدور، تواريخ المشاريع، وشهادات التدريب.
+
+---
+
+## 3. الأداة التفاعلية — حاسبة الأهلية
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="eligibility" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-0-2" questions={quizPmp02.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **أهلية (Eligibility):** استيفاء شروط PMI للتقديم
+- **ساعات التواصل (Contact Hours):** 35 ساعة تدريب موثقة
+- **مراجعة الطلب (Audit):** تحقق عشوائي من الأدلة
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.

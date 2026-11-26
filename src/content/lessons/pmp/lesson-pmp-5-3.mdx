@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-5-3"
+course: "pmp"
+station: "station-pmp-5"
+number: "5.3"
+title: "إدارة الجودة (CoQ)"
+titleEn: "Quality Management (Cost of Quality)"
+minutes: 25
+order: 3
+hasTool: true
+toolName: "حاسبة تكلفة الجودة"
+toolNameEn: "Quality Cost Calculator"
+quizId: "quiz-pmp-5-3"
+objectives:
+  - "تعريف خطة إدارة الجودة (Quality management plan)"
+  - "فهم تكلفة الجودة (Cost of Quality - CoQ)"
+  - "التمييز بين الوقاية (Prevention) والتقييم (Appraisal)"
+  - "التعرف على تكاليف الفشل (Failure costs)"
+objectivesEn:
+  - "Define Quality Management Plan"
+  - "Understand Cost of Quality (CoQ)"
+  - "Distinguish Prevention vs Appraisal"
+  - "Recognize Failure Costs"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp53 } from '../../../data/quiz/pmp/quiz-pmp-5-3';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف خطة إدارة الجودة (Quality management plan)
+- فهم تكلفة الجودة (Cost of Quality - CoQ)
+- التمييز بين الوقاية (Prevention) والتقييم (Appraisal)
+- التعرف على تكاليف الفشل (Failure costs)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+الجودة ليست فحصاً نهائياً؛ هي قرار تصميمي يقلل تكاليف الفشل قبل ظهورها.
+
+- إدارة الجودة تهدف إلى منع العيوب وتحسين العمليات، لا اكتشافها فقط.
+- تكلفة الجودة (CoQ) تنقسم إلى وقاية وتقييم وفشل داخلي وفشل خارجي.
+- الاستثمار في الوقاية والتقييم عادةً أرخص من تكلفة الفشل الخارجي بعد تسليم العميل.
+- معايير الجودة تُشتق من متطلبات العميل واللوائح، وتُترجم إلى مقاييس قابلة للقياس.
+
+---
+
+## 2. سيناريو واقعي
+
+شركة برمجيات رفعت ميزانية اختبارات التصميم 10 آلاف دولار، فخفضت عيوب الإنتاج من 40 إلى 8، ووفّرت 90 ألف دولار من دعم ما بعد التسليم. هذا مثال عملي على أن الوقاية أرخص من الفشل الخارجي.
+
+> 💡 **نصيحة الامتحان:** في أسئلة PMP، الخيار الذي يمنع العيب أفضل من الخيار الذي يكتشفه متأخراً.
+
+---
+
+## 3. الأداة التفاعلية — حاسبة تكلفة الجودة
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="quality" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-5-3" questions={quizPmp53.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **تكلفة الجودة (CoQ):** تكلفة الوقاية والتقييم والفشل
+- **الوقاية (Prevention):** منع العيب قبل حدوثه
+- **الفشل الخارجي:** العيب الذي يصل للعميل
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

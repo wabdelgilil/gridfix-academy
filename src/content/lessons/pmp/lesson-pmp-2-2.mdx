@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-2-2"
+course: "pmp"
+station: "station-pmp-2"
+number: "2.2"
+title: "بناء الفريق وإدارته"
+titleEn: "Building and Managing the Team"
+minutes: 30
+order: 2
+hasTool: true
+toolName: "مصفوفة RACI"
+toolNameEn: "RACI Matrix"
+quizId: "quiz-pmp-2-2"
+objectives:
+  - "تشكيل الفريق (Team charter)"
+  - "مصفوفة RACI"
+  - "تطوير الفريق (Tuckman)"
+  - "إدارة الأداء"
+objectivesEn:
+  - "Team charter"
+  - "RACI matrix"
+  - "Team development (Tuckman)"
+  - "Performance management"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp22 } from '../../../data/quiz/pmp/quiz-pmp-2-2';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تشكيل الفريق (Team charter)
+- مصفوفة RACI
+- تطوير الفريق (Tuckman)
+- إدارة الأداء
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+الفريق لا يُبنى بالتعيين وحده؛ يحتاج ميثاقاً وأدواراً ومراحل نمو تُدار بوعي.
+
+- ميثاق الفريق (Team charter) يحدد قواعد التواصل والاجتماعات واتخاذ القرار والسلوك المقبول، ويُتفق عليه مبكراً.
+- مصفوفة RACI توضح من ينفّذ (Responsible)، ومن يُسأل (Accountable)، ومن يُستشار (Consulted)، ومن يُبلَّغ (Informed).
+- نموذج تطور الفريق (Tuckman) يصف مراحل التكوين (Forming) والصراع (Storming) والتكامل (Norming) والأداء (Performing)، ويجب على القائد تيسير الصراع في مرحلة الصراع (Storming).
+- إدارة الأداء تعني تغذية راجعة منتظمة وتدريباً وتقديراً، لا انتظار التقييم السنوي.
+
+---
+
+## 2. سيناريو واقعي
+
+فريق مشروع متعدد التخصصات بدأ بخلافات حادة حول من يملك قرار التصميم. بعد كتابة ميثاق فريق ومصفوفة RACI بمالك واحد لكل قرار، تحول الخلاف من "من يقرر؟" إلى "أي تصميم يحقق المتطلب؟".
+
+> 💡 **نصيحة الامتحان:** الأداة لا تحل الصراع وحدها؛ الاتفاق عليها جماعياً هو ما يمنحها الشرعية.
+
+---
+
+## 3. الأداة التفاعلية — مصفوفة RACI
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="raci" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-2-2" questions={quizPmp22.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **ميثاق الفريق (Team charter):** قواعد عمل متفق عليها
+- **مصفوفة RACI:** توزيع الأدوار والمسؤوليات
+- **مراحل تطور الفريق (Tuckman):** مراحل تطور الفريق
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

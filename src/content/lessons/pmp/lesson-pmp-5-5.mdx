@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-5-5"
+course: "pmp"
+station: "station-pmp-5"
+number: "5.5"
+title: "التكامل بين التخطيط والتسليم (Integrated plan and delivery)"
+titleEn: "Integration (Plan & Delivery)"
+minutes: 30
+order: 5
+hasTool: true
+toolName: "باني خطة المشروع"
+toolNameEn: "Project Plan Builder"
+quizId: "quiz-pmp-5-5"
+objectives:
+  - "تعريف إدارة تكامل المشروع (Project integration management)"
+  - "فهم ميثاق المشروع (Project charter)"
+  - "فهم خطة إدارة المشروع (Project management plan)"
+  - "التمييز بين بيانات أداء العمل ومعلوماته وتقاريره (Work performance data/information/reports)"
+objectivesEn:
+  - "Define Project Integration Management"
+  - "Understand Project Charter"
+  - "Understand Project Management Plan"
+  - "Distinguish Work Performance Data/Information/Reports"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp55 } from '../../../data/quiz/pmp/quiz-pmp-5-5';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف إدارة تكامل المشروع (Project integration management)
+- فهم ميثاق المشروع (Project charter)
+- فهم خطة إدارة المشروع (Project management plan)
+- التمييز بين بيانات أداء العمل ومعلوماته وتقاريره (Work performance data/information/reports)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+التكامل هو أن تعمل الخطط معاً؛ أي تضارب بين النطاق والجدول والميزانية قرار مدير المشروع.
+
+- خطة إدارة المشروع تجمع الخطوط الأساسية والخطوط الفرعية في مرجع واحد معتمد.
+- مدير المشروع مسؤول عن التكامل: مواءمة القرارات وتسوية التعارضات بين أصحاب المصلحة.
+- توجيه العمل وتنفيذ الخطة ينتجان مخرجات وتقارير أداء وتغييرات وخططاً محدثة.
+- مراجعة الدروس المستفادة ونقل المعرفة جزء من التكامل عبر دورة حياة المشروع.
+
+---
+
+## 2. سيناريو واقعي
+
+أرادت التسويق إطلاقاً مبكراً، وأرادت المالية تأخيراً لتقليل التكلفة، وطلبت الجودة أسبوع اختبار إضافي. مدير المشروع عرض الخيارات بأثرها على القيمة والمخاطر، واعتمد الراعي حلاً وسطاً مع تسجيل القرار.
+
+> 💡 **نصيحة الامتحان:** التكامل ليس حلاً وسطاً تلقائياً؛ هو قرار موثق يوازن الأهداف.
+
+---
+
+## 3. الأداة التفاعلية — باني خطة المشروع
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="plan" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-5-5" questions={quizPmp55.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **خطة إدارة المشروع:** المرجع التكاملي المعتمد
+- **التكامل (Integration):** مواءمة القرارات والخطط
+- **تسوية التعارض:** اتخاذ قرار بين خيارات متضاربة
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

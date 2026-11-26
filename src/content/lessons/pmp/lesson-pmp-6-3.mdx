@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-6-3"
+course: "pmp"
+station: "station-pmp-6"
+number: "6.3"
+title: "سجل المخاطر"
+titleEn: "Risk Register"
+minutes: 25
+order: 3
+hasTool: true
+toolName: "سجل مخاطر"
+toolNameEn: "Risk Register Tool"
+quizId: "quiz-pmp-6-3"
+objectives:
+  - "تعريف Risk Register (سجل المخاطر)"
+  - "فهم Risk Owner (مالك المخاطرة)"
+  - "فهم Residual Risk (المخاطرة المتبقية)"
+  - "فهم Secondary Risk (المخاطرة الثانوية)"
+objectivesEn:
+  - "Define Risk Register"
+  - "Understand Risk Owner"
+  - "Understand Residual Risk"
+  - "Understand Secondary Risk"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp63 } from '../../../data/quiz/pmp/quiz-pmp-6-3';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف Risk Register (سجل المخاطر)
+- فهم Risk Owner (مالك المخاطرة)
+- فهم Residual Risk (المخاطرة المتبقية)
+- فهم Secondary Risk (المخاطرة الثانوية)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+سجل المخاطر هو الذاكرة الحية للمشروع: من يراقب ماذا، ومتى تُفعل الاستجابة، وما النتيجة؟
+
+- السجل يضم معرفاً ووصفاً وسبباً وفئة واحتمالاً وأثراً ودرجة ومالكاً واستجابة وحالة.
+- المراجعة الدورية تحدث الاحتمالات والدرجات وتضيف مخاطر جديدة وتغلق مخاطر انتهت.
+- تقرير المخاطر يلخّص أعلى المخاطر للراعي ولجنة التوجيه مع التوصيات.
+- الربط بين المخاطر وطلبات التغيير يمنع تحويل خطر محقق إلى زحف نطاق صامت.
+
+---
+
+## 2. سيناريو واقعي
+
+في مراجعة نصف شهرية ارتفع احتمال خطر "تأخر اعتماد البيانات" من 3 إلى 5 بعد تغيير تنظيمي. حدّث مدير المشروع الدرجة، ففعّل محفزاً كان محدداً مسبقاً وطلب موافقة على تسريع مراجعة الحماية.
+
+> 💡 **نصيحة الامتحان:** السجل الذي لا يُحدَّث دورياً يتحول إلى أرشيف لا يساعد أحداً.
+
+---
+
+## 3. الأداة التفاعلية — سجل مخاطر
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="risk" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-6-3" questions={quizPmp63.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **سجل المخاطر (Risk register):** سجل حي للمخاطر
+- **درجة المخاطر:** الاحتمال مضروباً في الأثر
+- **مراجعة المخاطر:** تحديث دوري للحالة
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

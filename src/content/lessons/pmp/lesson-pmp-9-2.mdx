@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-9-2"
+course: "pmp"
+station: "station-pmp-9"
+number: "9.2"
+title: "الامتثال (Compliance)"
+titleEn: "Compliance"
+minutes: 25
+order: 2
+hasTool: true
+toolName: "قائمة امتثال"
+toolNameEn: "Compliance Checklist"
+quizId: "quiz-pmp-9-2"
+objectives:
+  - "تعريف الامتثال (Compliance)"
+  - "\"السياسات (Policies)\" و\"اللوائح (Regulations)\""
+  - "\"الأخلاقيات (Ethics)\" و\"النزاهة (Integrity)\""
+  - "\"التدقيق (Audit)\" و\"التصعيد (Escalation)\""
+objectivesEn:
+  - "Define compliance"
+  - "Policies and regulations"
+  - "Ethics and integrity"
+  - "Audit and escalation"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp92 } from '../../../data/quiz/pmp/quiz-pmp-9-2';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف الامتثال (Compliance)
+- "السياسات (Policies)" و"اللوائح (Regulations)"
+- "الأخلاقيات (Ethics)" و"النزاهة (Integrity)"
+- "التدقيق (Audit)" و"التصعيد (Escalation)"
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+الامتثال يعني أن المشروع يعمل داخل القوانين واللوائح والسياسات، ويستطيع إثبات ذلك بالأدلة.
+
+- تحديد المتطلبات التنظيمية يبدأ مبكراً ويُحدَّث عند تغيير القوانين أو نطاق العمل.
+- سجل الامتثال يربط كل متطلب بإجراء ومالك ودليل وموعد مراجعة.
+- عدم الامتثال قد يوقف المشروع أو يفرض غرامات، لذلك يُعامل كخطر مرتفع الأولوية.
+- الأدلة الموثقة أهم من التأكيدات الشفوية عند التدقيق.
+
+---
+
+## 2. سيناريو واقعي
+
+مشروع معالجة بيانات عملاء أضاف متطلب حماية جديداً بعد تحديث قانوني. الفريق حدّث سجل الامتثال وعدّل تصميم التخزين، ورفع تقريراً يثبت أن البيانات مشفرة وأن الوصول مقيد بمالك محدد.
+
+> 💡 **نصيحة الامتحان:** إذا لم يكن هناك دليل مكتوب، فالامتثال غير قابل للإثبات.
+
+---
+
+## 3. الأداة التفاعلية — قائمة امتثال
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="compliance" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-9-2" questions={quizPmp92.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **امتثال (Compliance):** الالتزام بالقواعد واللوائح
+- **سجل الامتثال:** ربط المتطلب بالدليل
+- **تدقيق (Audit):** فحص مستقل للالتزام
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

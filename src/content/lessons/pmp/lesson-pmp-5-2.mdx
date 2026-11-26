@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-5-2"
+course: "pmp"
+station: "station-pmp-5"
+number: "5.2"
+title: "المشتريات والعقود"
+titleEn: "Procurement & Contracts"
+minutes: 30
+order: 2
+hasTool: true
+toolName: "مصفوفة اصنع أم اشترِ (Make or buy)"
+toolNameEn: "Make-vs-Buy Matrix"
+quizId: "quiz-pmp-5-2"
+objectives:
+  - "تعريف خطة إدارة المشتريات (Procurement management plan)"
+  - "التمييز بين أنواع العقود (Contract types)"
+  - "فهم قرار اصنع أم اشترِ (Make or buy)"
+  - "التعرف على إجراءات المشتريات (Procurement)"
+objectivesEn:
+  - "Define Procurement Management Plan"
+  - "Distinguish contract types"
+  - "Understand Make vs Buy"
+  - "Recognize procurement procedures"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp52 } from '../../../data/quiz/pmp/quiz-pmp-5-2';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف خطة إدارة المشتريات (Procurement management plan)
+- التمييز بين أنواع العقود (Contract types)
+- فهم قرار اصنع أم اشترِ (Make or buy)
+- التعرف على إجراءات المشتريات (Procurement)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+المشتريات تنقل جزءاً من العمل إلى طرف خارجي، لكنها لا تنقل المسؤولية عن النتيجة.
+
+- قرار اصنع أم اشترِ (Make or buy) يقارن الكفاءة الأساسية والتكلفة والسرعة والمخاطر والسرية.
+- أنواع العقود: عقد السعر الثابت (Fixed-price) للمخاطر المنقولة للمورد، وعقد الزمن والمواد (Time and materials) للعمل غير المحدد، وعقد استرداد التكلفة (Cost-reimbursable) للبحث والتطوير.
+- بيان العمل (SOW) و معايير القبول جزء من العقد، ويجب أن يكونا قابلين للقياس.
+- إدارة المورد تشمل اختيار البائع، مراقبة الأداء، وقبول المخرجات، وإغلاق العقد.
+
+---
+
+## 2. سيناريو واقعي
+
+مشروع بناء اختار عقد سعر ثابت لتوريد وحدات مولّدة لأن المواصفات واضحة، واستخدم عقد الزمن والمواد (T&M) لأعمال التكامل التي قد تتغير. عندما تأخر المورد، طُبقت جزائية التأخير المنصوص عليها دون نقاش عاطفي.
+
+> 💡 **نصيحة الامتحان:** نوع العقد يحدد من يتحمل المخاطرة؛ اختره قبل التوقيع لا بعد الخلاف.
+
+---
+
+## 3. الأداة التفاعلية — مصفوفة اصنع أم اشترِ (Make or buy)
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="makebuy" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-5-2" questions={quizPmp52.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **اصنع/اشترِ (Make/buy):** قرار المصادر الداخلية أو الخارجية
+- **عقد سعر ثابت:** المخاطرة على المورد
+- **بيان العمل (SOW):** وصف العمل التعاقدي
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

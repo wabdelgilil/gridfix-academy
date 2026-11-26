@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-2-3"
+course: "pmp"
+station: "station-pmp-2"
+number: "2.3"
+title: "إدارة الصراع"
+titleEn: "Managing Conflict"
+minutes: 25
+order: 3
+hasTool: true
+toolName: "شجرة قرار الصراع"
+toolNameEn: "Conflict Decision Tree"
+quizId: "quiz-pmp-2-3"
+objectives:
+  - "فهم طبيعة الصراع (Conflict) في الفرق"
+  - "التعرف على مصادر الصراع (Sources)"
+  - "تطبيق نموذج توماس-كيلمان (Thomas-Kilmann) (Competing, Collaborating, Compromising, Avoiding, Accommodating)"
+  - "اختيار استراتيجية مناسبة حسب السياق"
+objectivesEn:
+  - "Understand conflict nature in teams"
+  - "Identify conflict sources"
+  - "Apply Thomas-Kilmann styles"
+  - "Choose strategy by context"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp23 } from '../../../data/quiz/pmp/quiz-pmp-2-3';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- فهم طبيعة الصراع (Conflict) في الفرق
+- التعرف على مصادر الصراع (Sources)
+- تطبيق نموذج توماس-كيلمان (Thomas-Kilmann) (Competing, Collaborating, Compromising, Avoiding, Accommodating)
+- اختيار استراتيجية مناسبة حسب السياق
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+الصراع في الفريق ليس دائماً شراً؛ الصراع المُدار يحسّن القرار، والمُهمَل يوقف المشروع.
+
+- مصادر الصراع تشمل الموارد والأولويات وأساليب العمل والمعلومات والمتطلبات الغامضة.
+- نموذج توماس-كيلمان (Thomas-Kilmann) يقدم خمسة أنماط: المنافسة (Competing) والتعاون (Collaborating) والتسوية (Compromising) والتجنّب (Avoiding) والإذعان (Accommodating).
+- النمط Collaborating مناسب للقضايا المهمة عندما تتوفر الوقت وعلاقة مستمرة؛ وCompeting مناسب للقرارات العاجلة والسلامة.
+- Avoiding ليس دائماً ضعفاً؛ قد يكون تأجيلاً مقصوداً لقضية تافهة أو لتهدئة قبل حوار أعمق.
+
+---
+
+## 2. سيناريو واقعي
+
+في مشروع حساس للسلامة، اختلف مهندس الأمن مع مهندس التكلفة حول إضافة حاجز حماية. القرار كان عاجلاً وخطيراً، فاستخدم مدير المشروع أسلوب المنافسة (Competing) بعد استماع قصير، ثم وثّق السبب وعقد جلسة تعاونية لاحقة لتحسين التصميم.
+
+> 💡 **نصيحة الامتحان:** اسأل عن خطورة القرار ووقته وخبرة الطرف الآخر قبل اختيار أسلوب الصراع.
+
+---
+
+## 3. الأداة التفاعلية — شجرة قرار الصراع
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="conflict" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-2-3" questions={quizPmp23.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **صراع (Conflict):** اختلاف في المصالح أو الآراء
+- **تعاون (Collaborating):** حل يربح فيه الجميع (Win-win)
+- **تنافس (Competing):** حركة حاسمة عند الاستعجال
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

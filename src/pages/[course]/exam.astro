@@ -5,6 +5,7 @@ import LangText from '../../components/ui/LangText.astro';
 import MockExam from '../../components/islands/tools/cfm/MockExam.tsx';
 import CmrpMockExam from '../../components/islands/tools/cmrp/CmrpMockExam.tsx';
 import CamaMockExam from '../../components/islands/tools/cama/CamaMockExam.tsx';
+import PmpMockExam from '../../components/islands/tools/pmp/PmpMockExam.tsx';
 import { getCourse, courses } from '../../data/courses';
 
 export async function getStaticPaths() {
@@ -18,6 +19,7 @@ interface Props {
 const { course } = Astro.params;
 const courseMeta = getCourse(course);
 const isPlanned = !courseMeta || courseMeta.status !== 'live';
+const examReady = true;
 ---
 
 <BaseLayout
@@ -46,7 +48,23 @@ const isPlanned = !courseMeta || courseMeta.status !== 'live';
         </LangText>
       </h1>
       <p class="mt-2 text-sm leading-relaxed text-ink-500">
-        {course === 'cmrp' ? (
+        {course === 'pmp' ? (
+          <>
+            <LangText lang="ar">
+              180 سؤالاً وفق ECO يوليو 2026 وPMBOK 8: الأفراد 33%، العمليات 41%،
+              وبيئة الأعمال 26%. مزيج من الأسئلة التنبؤية نحو 40%
+              والرشيقة/الهجينة نحو 60%، مع مؤقت 240 دقيقة واستراحتين 10 دقائق
+              وتقرير تشخيصي حسب المجالات الثلاثة. اجمع 70% فأكثر لتعتبر جاهزاً.
+            </LangText>
+            <LangText lang="en">
+              180 questions aligned with the July 2026 ECO and PMBOK 8: People
+              33%, Process 41%, and Business Environment 26%. The mix is about
+              40% predictive and 60% agile/hybrid, with a 240-minute timer, two
+              10-minute breaks, and a diagnostic report by domain. Score 70% or
+              more to be considered ready.
+            </LangText>
+          </>
+        ) : course === 'cmrp' ? (
           <>
             <LangText lang="ar">
               أسئلة مواقف حقيقية من ركائز SMRP الخمس مع مؤقت يحاكي إيقاع
@@ -94,7 +112,7 @@ const isPlanned = !courseMeta || courseMeta.status !== 'live';
       </p>
     </header>
 
-    {isPlanned ? (
+    {isPlanned || !examReady ? (
       <div class="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center">
         <span class="text-4xl">🚧</span>
         <h2 class="mt-4 text-lg font-bold text-ink-900">
@@ -113,6 +131,8 @@ const isPlanned = !courseMeta || courseMeta.status !== 'live';
           <LangText lang="en">← Back to course selection</LangText>
         </a>
       </div>
+    ) : course === 'pmp' ? (
+      <PmpMockExam client:load />
     ) : course === 'cmrp' ? (
       <CmrpMockExam client:load />
     ) : course === 'cama' ? (

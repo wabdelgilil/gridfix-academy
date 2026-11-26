@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-0-1"
+course: "pmp"
+station: "station-pmp-0"
+number: "0.1"
+title: "ما هي إدارة المشاريع"
+titleEn: "What Is Project Management"
+minutes: 20
+order: 1
+hasTool: true
+toolName: "خريطة دورة حياة"
+toolNameEn: "Project Lifecycle Map"
+quizId: "quiz-pmp-0-1"
+objectives:
+  - "تعريف المشروع (Project) وخصائصه"
+  - "التمييز بين المشروع والعمليات (Operations)"
+  - "فهم \"القيمة (Value)\" في سياق إدارة المشاريع"
+  - "التعرف على \"البرنامج (Program)\" و\"المحفظة (Portfolio)\""
+objectivesEn:
+  - "Define a project and its characteristics"
+  - "Distinguish a project from operations"
+  - "Understand value in project management"
+  - "Recognize programs and portfolios"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp01 } from '../../../data/quiz/pmp/quiz-pmp-0-1';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف المشروع (Project) وخصائصه
+- التمييز بين المشروع والعمليات (Operations)
+- فهم "القيمة (Value)" في سياق إدارة المشاريع
+- التعرف على "البرنامج (Program)" و"المحفظة (Portfolio)"
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+إدارة المشاريع ليست مجرد جدول وميزانية؛ هي طريقة لتحويل فكرة إلى قيمة قابلة للقياس ضمن منظومة الأعمال.
+
+- المشروع (Project) جهد مؤقت ينتج مخرجاً فريداً؛ له بداية ونهاية، وقيود على النطاق والوقت والتكلفة والجودة.
+- العمليات (Operations) مستمرة ومتكررة، بينما البرنامج (Program) مجموعة مشاريع مرتبطة، والمحفظة (Portfolio) مجموعة أعمال تُدار معاً لتحقيق أهداف استراتيجية.
+- دورة حياة المشروع (Project Life Cycle) تمر بالبدء والتخطيط والتنفيذ والمراقبة والتحكم والإغلاق، مهما كان النهج المستخدم.
+- القيمة (Value) ليست تسليم المخرج فقط، بل الأثر (Impact) الذي يحدثه المخرج في الأداء أو تجربة العميل.
+
+---
+
+## 2. سيناريو واقعي
+
+شركة مرافق تقرر تركيب عدادات ذكية. يرى مهندس الصيانة المشروع منتهياً عند تركيب العدادات، لكن المدير المالي ينتظر خفضاً في فقد المياه بنسبة 15%. الفريق الذي يفهم الفرق بين المخرج (Output) والنتيجة (Outcome) يضع مؤشر فقد المياه في ميثاق المشروع منذ اليوم الأول.
+
+> 💡 **نصيحة الامتحان:** في امتحان PMP، إذا ظهر خيار بين "تسليم المخرج" و"تحقيق النتيجة" فاختر ما يقيس القيمة التجارية (Business value).
+
+---
+
+## 3. الأداة التفاعلية — خريطة دورة حياة
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="lifecycle" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-0-1" questions={quizPmp01.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **مشروع (Project):** جهد مؤقت لإنتاج مخرج فريد
+- **عمليات (Operations):** عمل مستمر ومتكرر
+- **قيمة (Value):** الأثر الناتج عن المخرج
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

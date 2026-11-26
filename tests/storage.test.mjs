@@ -18,6 +18,7 @@ describe('Storage & Progress Engine (TDD Suite)', () => {
       assert.equal(storageKeyFor('cfm'), 'cfm-course-progress@v1');
       assert.equal(storageKeyFor('cmrp'), 'cmrp-course-progress@v1');
       assert.equal(storageKeyFor('cama'), 'cama-course-progress@v1');
+      assert.equal(storageKeyFor('pmp'), 'pmp-course-progress@v1');
     });
   });
 

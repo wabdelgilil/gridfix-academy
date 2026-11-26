@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-9-1"
+course: "pmp"
+station: "station-pmp-9"
+number: "9.1"
+title: "الحوكمة (Governance)"
+titleEn: "Governance"
+minutes: 30
+order: 1
+hasTool: true
+toolName: "قائمة امتثال حوكمة"
+toolNameEn: "Governance Compliance Checklist"
+quizId: "quiz-pmp-9-1"
+objectives:
+  - "تعريف الحوكمة (Governance) في المشاريع"
+  - "أدوار \"مجلس التوجيه (Steering Council)\" و\"مدير المشروع (PM)\""
+  - "أطر الحوكمة (Governance frameworks) و\"ميثاق المشروع (Project charter)\""
+  - "\"حقوق اتخاذ القرار (Decision rights)\" و\"المساءلة (Accountability)\""
+objectivesEn:
+  - "Define project governance"
+  - "Steering council vs PM roles"
+  - "Governance frameworks and project charter"
+  - "Decision rights and accountability"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp91 } from '../../../data/quiz/pmp/quiz-pmp-9-1';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف الحوكمة (Governance) في المشاريع
+- أدوار "مجلس التوجيه (Steering Council)" و"مدير المشروع (PM)"
+- أطر الحوكمة (Governance frameworks) و"ميثاق المشروع (Project charter)"
+- "حقوق اتخاذ القرار (Decision rights)" و"المساءلة (Accountability)"
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+الحوكمة في بيئة الأعمال تحدد من يملك القرار وكيف يُساءل، قبل أن يبدأ المشروع في طلب التوجيه.
+
+- إطار الحوكمة يحدد الأدوار والصلاحيات واللجان والتصعيد ومتطلبات إعداد التقارير.
+- الراعي يمثل الأعمال ويحمل مسؤولية القيمة، والمدير ينفذ ضمن الحدود المفوضة.
+- الامتثال للحوكمة يعني تمرير القرارات عبر القنوات المعتمدة وتوثيقها.
+- الحوكمة الفعالة توازن بين الرقابة وتمكين الفريق من اتخاذ القرارات المناسبة.
+
+---
+
+## 2. سيناريو واقعي
+
+مشروع تحول رقمي أنشأ لجنة توجيه شهرية ومصفوفة قرارات تحدد ما يستطيع المدير اعتماده وما يحتاج إلى الراعي. عندما ظهر طلب تغيير كبير، عُرف مساره فوراً دون جدال حول "من يملك القرار؟".
+
+> 💡 **نصيحة الامتحان:** السؤال في امتحان BE ليس "ما القرار؟" بل "من يملك القرار؟".
+
+---
+
+## 3. الأداة التفاعلية — قائمة امتثال حوكمة
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="govcheck" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-9-1" questions={quizPmp91.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **حوكمة (Governance):** إطار القرار والمساءلة
+- **لجنة توجيه:** جهة القرار الاستراتيجي
+- **تفويض (Delegation):** حدود الصلاحية الممنوحة
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-2-1"
+course: "pmp"
+station: "station-pmp-2"
+number: "2.1"
+title: "الرؤية المشتركة والقيادة"
+titleEn: "Common Vision and Leadership"
+minutes: 30
+order: 1
+hasTool: true
+toolName: "لوحة التوجيه"
+toolNameEn: "Vision Leadership Board"
+quizId: "quiz-pmp-2-1"
+objectives:
+  - "تعريف الرؤية المشتركة"
+  - "دور القائد (Servant leadership)"
+  - "التوجيه (Direction) vs التحكم (Control)"
+  - "بناء الالتزام (Commitment)"
+objectivesEn:
+  - "Define common vision"
+  - "Servant leadership"
+  - "Direction vs control"
+  - "Building commitment"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp21 } from '../../../data/quiz/pmp/quiz-pmp-2-1';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف الرؤية المشتركة
+- دور القائد (Servant leadership)
+- التوجيه (Direction) vs التحكم (Control)
+- بناء الالتزام (Commitment)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+القيادة في PMP تعني خلق رؤية مشتركة يفهمها الفريق، ثم إزالة العقبات أمامه بدل إصدار الأوامر.
+
+- الرؤية المشتركة (Common vision) هي فهم جماعي لسبب وجود المشروع وشكل النجاح، وتُبنى مع الفريق لا له.
+- القيادة الخادمة (Servant leadership) تركز على احتياجات الفريق: توفير الموارد، إزالة العوائق، وتمكين أصحاب الخبرة.
+- التوجيه (Direction) يصنع الالتزام (Commitment) عبر المعنى والهدف، بينما التحكم (Control) يصنع الامتثال عبر القواعد والرقابة.
+- إشراك الفريق في التخطيط وتكرار الرسالة والاعتراف بالمساهمات من أثبت طرق بناء الالتزام.
+
+---
+
+## 2. سيناريو واقعي
+
+فريق تطوير دخل مشروع تحول رقمي دون فهم سببه، فنفّذ المهام آلياً. عقد مدير المشروع جلسة إلقاء الرؤية مع الراعي، وشارك الفريق في صياغة "ما الذي سيتحسن للمواطن؟"، فتحسنت مقترحات التحسين وارتفع الالتزام.
+
+> 💡 **نصيحة الامتحان:** عندما يفهم الفريق "لماذا"، يتوقف السؤال عن "ماذا نفعل اليوم؟".
+
+---
+
+## 3. الأداة التفاعلية — لوحة التوجيه
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="vision" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-2-1" questions={quizPmp21.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **رؤية مشتركة (Common vision):** هدف مفهوم جماعياً
+- **قيادة خادمة (Servant leadership):** قيادة بخدمة الفريق
+- **التزام (Commitment):** إرادة داخلية للإنجاز
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

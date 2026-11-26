@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Operational radar ([project_management/ACTIVE_CONTEXT.md](project_management/ACTIVE_CONTEXT.md)) and technical debt tracking ([project_management/TECH_DEBT_REGISTER.md](project_management/TECH_DEBT_REGISTER.md)).
 - Architectural Decision Record ([docs/adrs/ADR-001-engineering-governance-and-architecture.md](docs/adrs/ADR-001-engineering-governance-and-architecture.md)).
 - Code formatting and unified verification gate script (`npm run verify`).
+- Full Arabic PMP course aligned to the July 2026 ECO and PMBOK Guide, 8th Edition: 12 stations, 55 lessons, 220 explained scenario quiz questions, and a 180-question mock exam (59 People / 74 Process / 47 Business Environment).
+- PMP-specific island tools, glossary, references, exam route branch, OG image, storage-key support, and search indexing.
+- Coverage of generative AI, sustainability/ESG, benefits realization, and case-based PMP scenarios; all PMP terms use Arabic-first bilingual wording.
+- Living documentation updates: SRS, ACTIVE_CONTEXT, MASTER_PLAN, and the PMP task plan completion record.
 
 ## [0.1.0] - 2026-10-19
 

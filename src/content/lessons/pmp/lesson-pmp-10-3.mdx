@@ -1,0 +1,86 @@
+---
+id: "lesson-pmp-10-3"
+course: "pmp"
+station: "station-pmp-10"
+number: "10.3"
+title: "Kanban والتدفق (Flow)"
+titleEn: "Kanban & Flow"
+minutes: 25
+order: 3
+hasTool: true
+toolName: "لوحة Kanban"
+toolNameEn: "Kanban Board"
+quizId: "quiz-pmp-10-3"
+objectives:
+  - "\"Kanban\" و\"التدفق (Flow)\""
+  - "\"WIP limits\" (Work In Progress)"
+  - "\"Lead time\" vs \"Cycle time\""
+  - "\"التحسين (Improvement)\" و\"الشفافية (Transparency)\""
+objectivesEn:
+  - "Kanban and flow"
+  - "WIP limits"
+  - "Lead time vs cycle time"
+  - "Improvement and transparency"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+  - "agile_practice_guide"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp103 } from '../../../data/quiz/pmp/quiz-pmp-10-3';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- "Kanban" و"التدفق (Flow)"
+- "WIP limits" (Work In Progress)
+- "Lead time" vs "Cycle time"
+- "التحسين (Improvement)" و"الشفافية (Transparency)"
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+Kanban يدير التدفق المرئي: قلّل ما بدأته قبل أن تبدأ المزيد.
+
+- اللوحة تُقسَّم إلى أعمدة تمثل حالات العمل، ولكل عمود حد عمل جاري (WIP limit).
+- تجاوز حد WIP يسبب تعدد المهام وإطالة زمن الدورة ويخفي الاختناقات.
+- السحب (Pull) يعني سحب العمل عندما تتوفر سعة، لا دفعه بأقصى طاقة متاحة.
+- زمن الدورة (Cycle time) وزمن الانتظار من أهم مقاييس التحسين في Kanban.
+
+---
+
+## 2. سيناريو واقعي
+
+لوحة فريق كانت تحتوي على 12 مهمة "قيد التنفيذ" رغم حد WIP ثلاث. بعد تطبيق الحد، توقف الفريق عن بدء مهام جديدة حتى أُنجزت القائمة، فانخفض زمن الدورة من 12 إلى 6 أيام.
+
+> 💡 **نصيحة الامتحان:** السرعة ليست في بدء المزيد من العمل، بل في إنهاء العمل بسرعة أكبر.
+
+---
+
+## 3. الأداة التفاعلية — لوحة Kanban
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="kanban" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-10-3" questions={quizPmp103.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **Kanban:** نظام تدفق مرئي
+- **حد العمل الجاري:** سقف المهام في العمود
+- **زمن الدورة:** الوقت من البدء للإنهاء
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.
+- PMI, *Agile Practice Guide*.

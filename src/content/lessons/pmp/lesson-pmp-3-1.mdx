@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-3-1"
+course: "pmp"
+station: "station-pmp-3"
+number: "3.1"
+title: "جمع المتطلبات وWBS"
+titleEn: "Requirements Collection and WBS"
+minutes: 30
+order: 1
+hasTool: true
+toolName: "باني WBS"
+toolNameEn: "WBS Builder"
+quizId: "quiz-pmp-3-1"
+objectives:
+  - "جمع المتطلبات (Requirements elicitation)"
+  - "تحليل المتطلبات (Analysis)"
+  - "إنشاء WBS (Work Breakdown Structure)"
+  - "\"100% rule\" for WBS"
+objectivesEn:
+  - "Elicit requirements"
+  - "Analyze requirements"
+  - "Create WBS"
+  - "Apply 100% rule"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp31 } from '../../../data/quiz/pmp/quiz-pmp-3-1';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- جمع المتطلبات (Requirements elicitation)
+- تحليل المتطلبات (Analysis)
+- إنشاء WBS (Work Breakdown Structure)
+- "100% rule" for WBS
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+المتطلبات هي جسر بين حاجة العمل وما سينفذه الفريق؛ أي فجوة هنا تظهر لاحقاً كتغيير مكلف.
+
+- تجميع المتطلبات (Collect requirements) يستخدم المقابلات وورش العمل والنماذج الأولية ومراجعة الوثائق.
+- تُقسَّم المتطلبات إلى وظيفية وغير وظيفية، ويُصنَّف كل منها بمصدر وأولوية ومعايير قبول.
+- هيكل تجزئة العمل (WBS) يفكك المخرجات إلى حزم عمل قابلة للتقدير والتتبع، ويتبع قاعدة 100%.
+- قاموس WBS يشرح كل عنصر لضمان أن الجميع يفهمه بالطريقة نفسها.
+
+---
+
+## 2. سيناريو واقعي
+
+مشروع نظام حجز طلب من المستخدمين "سرعة في البحث". بعد تحليل المتطلبات تحوّلت العبارة إلى متطلب غير وظيقي قابل للقياس: "زمن البحث أقل من ثانيتين لـ 95% من الطلبات"، ثم انعكس في حزمة اختبار أداء داخل WBS.
+
+> 💡 **نصيحة الامتحان:** المتطلب غير القابل للقياس سيتحول إلى خلاف عند القبول.
+
+---
+
+## 3. الأداة التفاعلية — باني WBS
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="wbs" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-3-1" questions={quizPmp31.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **متطلب (Requirement):** حاجة يجب تلبيتها
+- **هيكل تجزئة العمل (WBS):** تفكيك النطاق إلى حزم
+- **قاعدة 100%:** WBS يمثل كل العمل المطلوب
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

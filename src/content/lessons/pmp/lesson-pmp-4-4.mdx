@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-4-4"
+course: "pmp"
+station: "station-pmp-4"
+number: "4.4"
+title: "التنبؤ والرقابة"
+titleEn: "Forecasting and Control"
+minutes: 25
+order: 4
+hasTool: true
+toolName: "لوحة حالة المشروع"
+toolNameEn: "Project Status Dashboard"
+quizId: "quiz-pmp-4-4"
+objectives:
+  - "التنبؤ (Forecasting) EAC/ETC"
+  - "رقابة التكلفة (Cost control)"
+  - "رقابة الجدول (Schedule control)"
+  - "\"Variance analysis\" & corrective actions"
+objectivesEn:
+  - "Forecasting EAC/ETC"
+  - "Cost control"
+  - "Schedule control"
+  - "Variance analysis & corrective actions"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp44 } from '../../../data/quiz/pmp/quiz-pmp-4-4';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- التنبؤ (Forecasting) EAC/ETC
+- رقابة التكلفة (Cost control)
+- رقابة الجدول (Schedule control)
+- "Variance analysis" & corrective actions
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+التنبؤ لا يغير الحقائق، لكنه يحول الانحراف اليومي إلى قرار استباقي قبل فوات الأوان.
+
+- التوقع (Forecast) يستخدم CPI وSPI وبيانات الأداء لتقدير EAC وETC والإعداد لتقرير الحالة.
+- عند انحراف بسيط قد يكفي تصحيح داخلي، وعند انحراف كبير يلزم تغيير معتمد في الخط الأساسي.
+- لوحة الحالة تعرض التقدم والمخاطر والقرارات المطلوبة، لا مجرد نسب مئوية.
+- التحكم الفعال يغلق الحلقة: قياس → تحليل → إجراء → قياس أثر الإجراء.
+
+---
+
+## 2. سيناريو واقعي
+
+بعد شهرين أظهرت اللوحة SPI = 0.88 وCPI = 0.94. بدل انتظار نهاية المشروع، عقد مدير المشروع جلسة تحليل، وجد سبب التأخر في تأخير الموافقات، وحصل على تفويض لتقليل زمن الاعتماد، فعاد SPI إلى 0.97.
+
+> 💡 **نصيحة الامتحان:** التوقع الجيد يأتي مبكراً بما يكفي لتغيير القرار، لا لتبرير النتيجة فقط.
+
+---
+
+## 3. الأداة التفاعلية — لوحة حالة المشروع
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="status" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-4-4" questions={quizPmp44.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **توقع (Forecast):** تقدير النتيجة النهائية
+- **إجراء تصحيحي:** تعديل لمعالجة الانحراف
+- **لوحة الحالة:** ملخص يدعم القرار
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

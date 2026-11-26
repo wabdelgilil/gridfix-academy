@@ -1,0 +1,84 @@
+---
+title: "إدارة القيمة المكتسبة (EVM) للرقابة"
+titleEn: "EVM for Control"
+minutes: 30
+order: 5
+toolName: "حاسبة القيمة المكتسبة (EVM)"
+toolNameEn: "EVM Calculator"
+objectives:
+  - "حساب CV و SV و CPI و SPI"
+  - "حساب EAC و ETC و TCPI"
+  - "تفسير الانحرافات"
+  - "اختيار الإجراء التصحيحي"
+objectivesEn:
+  - "Compute CV, SV, CPI, SPI"
+  - "Compute EAC, ETC, TCPI"
+  - "Interpret variances"
+  - "Select corrective action"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+id: "lesson-pmp-7-5"
+course: "pmp"
+station: "station-pmp-7"
+number: "7.5"
+hasTool: true
+quizId: "quiz-pmp-7-5"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp75 } from '../../../data/quiz/pmp/quiz-pmp-7-5';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- حساب CV و SV و CPI و SPI
+- حساب EAC و ETC و TCPI
+- تفسير الانحرافات
+- اختيار الإجراء التصحيحي
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+إدارة القيمة المكتسبة (EVM) للرقابة يعني تحويل المؤشرات إلى إجراء تصحيحي مبكر بدل انتظار نتيجة نهائية مفاجئة.
+
+- CV وSV يخبرانك بالانحراف، وCPI وSPI يخبرانك بكفاءة استخدام الموارد والوقت.
+- EAC وETC وTCPI تحوّل الانحراف الحالي إلى توقع مالي يساعد الراعي على القرار.
+- تسريع الجدول عبر Fast Tracking يوفر وقتاً لكنه يرفع المخاطر، وCrashing يرفع التكلفة.
+- بعد أي إجراء تصحيحي يُعاد قياس المؤشرات للتأكد من أن الإجراء أحدث أثراً حقيقياً.
+
+---
+
+## 2. سيناريو واقعي
+
+ارتفع SPI من 0.85 إلى 0.97 بعد إعادة ترتيب الأنشطة، لكن CPI بقي 0.90. المدير لم يعلن المشروع "تحت السيطرة"، بل فتح إجراءً منفصلاً لتكلفة الموردين واستمر في قياسه أسبوعياً.
+
+> 💡 **نصيحة الامتحان:** تحسن مؤشر لا يعني تحسن المشروع كله؛ اقرأ الصورة الكاملة.
+
+---
+
+## 3. الأداة التفاعلية — حاسبة القيمة المكتسبة (EVM)
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="evm" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-7-5" questions={quizPmp75.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **إجراء تصحيحي (Corrective action):** تعديل لمعالجة الانحراف
+- **توقع (EAC):** التكلفة النهائية المتوقعة
+- **إعادة القياس:** التحقق من أثر الإجراء
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

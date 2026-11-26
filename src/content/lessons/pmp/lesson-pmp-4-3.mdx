@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-4-3"
+course: "pmp"
+station: "station-pmp-4"
+number: "4.3"
+title: "إدارة القيمة المكتسبة (Earned Value Management - EVM)"
+titleEn: "Earned Value Management (EVM)"
+minutes: 35
+order: 3
+hasTool: true
+toolName: "حاسبة القيمة المكتسبة (EVM)"
+toolNameEn: "EVM Calculator"
+quizId: "quiz-pmp-4-3"
+objectives:
+  - "فهم إدارة القيمة المكتسبة (Earned Value Management - EVM)"
+  - "حساب مؤشر أداء التكلفة (CPI) ومؤشر أداء الجدول (SPI) وانحراف التكلفة (CV) وانحراف الجدول (SV)"
+  - "حساب التكلفة المتوقعة عند الإكمال (EAC) والتكلفة المتوقعة للباقي (ETC) وانحراف الإكمال (VAC) ومؤشر أداء الإكمال (TCPI)"
+  - "تفسير أداء المشروع (Performance)"
+objectivesEn:
+  - "Understand EVM"
+  - "Calculate CPI/SPI/CV/SV"
+  - "Calculate EAC/ETC/VAC/TCPI"
+  - "Interpret performance"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp43 } from '../../../data/quiz/pmp/quiz-pmp-4-3';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- فهم إدارة القيمة المكتسبة (Earned Value Management - EVM)
+- حساب مؤشر أداء التكلفة (CPI) ومؤشر أداء الجدول (SPI) وانحراف التكلفة (CV) وانحراف الجدول (SV)
+- حساب التكلفة المتوقعة عند الإكمال (EAC) والتكلفة المتوقعة للباقي (ETC) وانحراف الإكمال (VAC) ومؤشر أداء الإكمال (TCPI)
+- تفسير أداء المشروع (Performance)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+القيمة المكتسبة (EVM) تدمج النطاق والجدول والتكلفة في مؤشرات واحدة تخبرك أين تقف فعلاً.
+
+- PV ما خططت لإنفاقه، EV ما أنجزته فعلاً مقوّماً بالتكلفة المخططة، وAC ما أنفقته فعلاً.
+- CV = EV − AC وSV = EV − PV؛ القيمة السالبة تعني تجاوز تكلفة أو تأخر جدول.
+- CPI = EV / AC وSPI = EV / PV؛ القيمة الأقل من 1 تعني أداءً أقل من المخطط.
+- EAC = BAC / CPI إذا استمر الأداء الحالي، وETC = EAC − AC، وTCPI = (BAC − EV) / (BAC − AC).
+
+---
+
+## 2. سيناريو واقعي
+
+مشروع عند نقطة مراجعة: PV = 100 ألف، EV = 90 ألف، AC = 110 ألف. النتيجة CV = −20 وSV = −10، أي تجاوز تكلفة وتأخر. باستخدام CPI 0.82 توقّع الفريق EAC أعلى من الميزانية وطلب إجراءً تصحيحياً.
+
+> 💡 **نصيحة الامتحان:** احفظ المعادلات بفهم المعنى: EV هو "ما تم كسبه"، والباقي مقارنات عليه.
+
+---
+
+## 3. الأداة التفاعلية — حاسبة القيمة المكتسبة (EVM)
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="evm" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-4-3" questions={quizPmp43.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **القيمة المكتسبة (EVM):** دمج النطاق والوقت والتكلفة
+- **مؤشر أداء التكلفة (CPI):** كفاءة الإنفاق
+- **التوقع عند الإنجاز (EAC):** التكلفة النهائية المتوقعة
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

@@ -1,0 +1,86 @@
+---
+id: "lesson-pmp-10-4"
+course: "pmp"
+station: "station-pmp-10"
+number: "10.4"
+title: "Hybrid & Scaling"
+titleEn: "Hybrid & Scaling"
+minutes: 25
+order: 4
+hasTool: true
+toolName: "مقارن النُهج"
+toolNameEn: "Approach Comparator"
+quizId: "quiz-pmp-10-4"
+objectives:
+  - "\"Hybrid\" (predictive + agile)"
+  - "\"Scaling\" (SAFe, LeSS basics)"
+  - "\"متى (When)\" to use hybrid"
+  - "\"التحديات (Challenges)\" و\"التكامل (Integration)\""
+objectivesEn:
+  - "Hybrid approach"
+  - "Scaling (SAFe, LeSS basics)"
+  - "When to use hybrid"
+  - "Challenges and integration"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+  - "agile_practice_guide"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp104 } from '../../../data/quiz/pmp/quiz-pmp-10-4';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- "Hybrid" (predictive + agile)
+- "Scaling" (SAFe, LeSS basics)
+- "متى (When)" to use hybrid
+- "التحديات (Challenges)" و"التكامل (Integration)"
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+الهجين ليس خلطاً عشوائياً؛ هو تصميم مقصود لما الذي يبقى تنبؤياً وما الذي يتكيّف.
+
+- الإطار التنبؤي يصلح للبوابات والميزانية والعقود والامتثال، خصوصاً في المشاريع الخاضعة للوائح.
+- الممارسات الرشيقة تصلح للمتطلبات المتغيرة وتجارب المستخدم والتسليم المتكرر.
+- التوسّع (Scaling) مثل SAFe أو LeSS يضيف تنسيقاً بين فرق متعددة دون إلغاء استقلالها.
+- القرار الهجين يُوثَّق في خطة المشروع حتى لا يفسّر كل عضو النهج بطريقة مختلفة.
+
+---
+
+## 2. سيناريو واقعي
+
+مشروع بناء وتشغيل منصة حكومية اعتمد بوابات ميزانية تنبؤية ربع سنوية، وداخل كل بوابة سبرنتات رشيقة لتطوير الخدمات. فريق البنية التحتية استخدم CPM، وفريق الواجهة استخدم Scrum، مع لوحة واحدة للقرارات.
+
+> 💡 **نصيحة الامتحان:** اسأل: أي أجزاء المشروع تحتاج استقراراً، وأيها تحتاج تعلّماً سريعاً؟
+
+---
+
+## 3. الأداة التفاعلية — مقارن النُهج
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="approach" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-10-4" questions={quizPmp104.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **هجين (Hybrid):** مزج تنبؤي ورشيق
+- **توسّع (Scaling):** تنسيق عدة فرق
+- **بوابة (Gate):** نقطة قرار تنبؤية
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.
+- PMI, *Agile Practice Guide*.

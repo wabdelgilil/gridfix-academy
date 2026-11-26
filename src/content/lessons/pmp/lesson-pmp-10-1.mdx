@@ -1,0 +1,86 @@
+---
+id: "lesson-pmp-10-1"
+course: "pmp"
+station: "station-pmp-10"
+number: "10.1"
+title: "مبادئ Agile (Agile Principles)"
+titleEn: "Agile Principles"
+minutes: 25
+order: 1
+hasTool: true
+toolName: "لوحة Agile"
+toolNameEn: "Agile Board"
+quizId: "quiz-pmp-10-1"
+objectives:
+  - "\"البيان (Manifesto)\" (Agile Manifesto)"
+  - "\"القيم (Values)\" (4 values)"
+  - "\"المبادئ (Principles)\" (12 principles)"
+  - "\"العقلية (Mindset)\" (Agile mindset)"
+objectivesEn:
+  - "Agile Manifesto"
+  - "4 values"
+  - "12 principles"
+  - "Agile mindset"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+  - "agile_practice_guide"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp101 } from '../../../data/quiz/pmp/quiz-pmp-10-1';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- "البيان (Manifesto)" (Agile Manifesto)
+- "القيم (Values)" (4 values)
+- "المبادئ (Principles)" (12 principles)
+- "العقلية (Mindset)" (Agile mindset)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+Agile ليست اجتماعات أكثر، بل عقلية تقدّم الأفراد والتفاعل والاستجابة للتغيير.
+
+- قيم الميثاق الرشيق الأربع: أفراد وتفاعل، مخرجات عاملة، تعاون مع العميل، واستجابة للتغيير.
+- المبادئ الاثنا عشر تؤكد على التسليم المبكر والمتكرر وتقليل الهدر وتمكين الفرق وتحسين العملية بانتظام.
+- الإطار الرشيق يقلل تكلفة التأخير في التعلم عبر حلقات قصيرة من التخطيط والتنفيذ والمراجعة.
+- ECO 2026 يختبر Agile كعقلية وتطبيقاً، لا كقائمة مصطلحات.
+
+---
+
+## 2. سيناريو واقعي
+
+فريق احتفظ بكل طقوس Scrum لكنه استمر في تجاهل ملاحظات العميل حتى نهاية المشروع. بعد مراجعة مبادئ Agile غيّر الفريق ترتيب الأولويات كل أسبوعين وأظهر مخرجاً قابلاً للاستخدام في كل مراجعة.
+
+> 💡 **نصيحة الامتحان:** إن لم يتغير ترتيب العمل بعد ملاحظة العميل، فالرشاقة شكلية فقط.
+
+---
+
+## 3. الأداة التفاعلية — لوحة Agile
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="agile" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-10-1" questions={quizPmp101.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **Agile:** عقلية تكيّف وتسليم متكرر
+- **ميثاق Agile:** أربع قيم واثنا عشر مبدأً
+- **الهدر (Waste):** أي عمل لا يضيف قيمة
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.
+- PMI, *Agile Practice Guide*.

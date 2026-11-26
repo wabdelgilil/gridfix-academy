@@ -1,0 +1,86 @@
+---
+id: "lesson-pmp-10-2"
+course: "pmp"
+station: "station-pmp-10"
+number: "10.2"
+title: "Scrum: الأدوار والأحداث والقطع"
+titleEn: "Scrum: Roles, Events, Artifacts"
+minutes: 30
+order: 2
+hasTool: true
+toolName: "لوحة Scrum"
+toolNameEn: "Scrum Board"
+quizId: "quiz-pmp-10-2"
+objectives:
+  - "\"أدوار Scrum\" (Product Owner, Scrum Master, Developers)"
+  - "\"أحداث Scrum\" (Sprint, Planning, Daily, Review, Retro)"
+  - "\"قطع Scrum\" (Product Backlog, Sprint Backlog, Increment)"
+  - "\"الوقت (Timebox)\" و\"الشفافية (Transparency)\""
+objectivesEn:
+  - "Scrum roles"
+  - "Scrum events"
+  - "Scrum artifacts"
+  - "Timeboxing and transparency"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+  - "agile_practice_guide"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp102 } from '../../../data/quiz/pmp/quiz-pmp-10-2';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- "أدوار Scrum" (Product Owner, Scrum Master, Developers)
+- "أحداث Scrum" (Sprint, Planning, Daily, Review, Retro)
+- "قطع Scrum" (Product Backlog, Sprint Backlog, Increment)
+- "الوقت (Timebox)" و"الشفافية (Transparency)"
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+Scrum إطار خفيف يصنع الإيقاع عبر أدوار واضحة وأحداث محددة وقطع شفافة.
+
+- الأدوار: Product Owner يرتب القيمة، Scrum Master ييسّر العملية، والفريق ينفّذ ويلتزم بالهدف.
+- الأحداث: السبرنت، التخطيط، الاجتماع اليومي، المراجعة، والمراجعة بأثر رجعي.
+- القطع: قائمة المنتج، قائمة السبرنت، وزيادة القيمة (Increment)، ومعايير الإنجاز (Definition of Done).
+- الالتزام بالوقت (Timebox) يحمي الإيقاع؛ تمديد الأحداث بدون سبب يخفي مشاكل التخطيط.
+
+---
+
+## 2. سيناريو واقعي
+
+فريق Scrum زاد مدة الاجتماع اليومي إلى 45 دقيقة لأنه يناقش تصاميم التفاصيل. Scrum Master أعاد تقنينه إلى 15 دقيقة ونقل النقاشات التقنية إلى جلسة مخصصة، فتحسنت الحضور والقرارات.
+
+> 💡 **نصيحة الامتحان:** الحدث الذي لا ينتهي في وقته يحتاج تحسين المحتوى لا تمديد الوقت.
+
+---
+
+## 3. الأداة التفاعلية — لوحة Scrum
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="scrum" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-10-2" questions={quizPmp102.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **Scrum:** إطار رشيق بأحداث محددة
+- **مالك المنتج:** ترتيب القيمة
+- **تعريف الإنجاز:** معيار اكتمال العمل
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.
+- PMI, *Agile Practice Guide*.

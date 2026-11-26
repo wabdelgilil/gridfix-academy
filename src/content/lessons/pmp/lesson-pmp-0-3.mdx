@@ -1,0 +1,82 @@
+---
+id: "lesson-pmp-0-3"
+course: "pmp"
+station: "station-pmp-0"
+number: "0.3"
+title: "خريطة ECO 2026"
+titleEn: "The 2026 ECO Map"
+minutes: 20
+order: 3
+hasTool: true
+toolName: "مستكشف ECO"
+toolNameEn: "ECO Explorer"
+quizId: "quiz-pmp-0-3"
+objectives:
+  - "معرفة المجالات الثلاثة (Domains) وأوزانها"
+  - "معرفة المهام الـ 26 (Tasks)"
+  - "فهم مزيج النُهج (Approach mix) 40/60"
+  - "معرفة أنواع الأسئلة (case sets, graphic-based)"
+objectivesEn:
+  - "Know the 3 domains and weights"
+  - "Know the 26 tasks"
+  - "Understand the 40/60 approach mix"
+  - "Know question types (case sets, graphic-based)"
+sources:
+  - "pmi_eco_2026"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp03 } from '../../../data/quiz/pmp/quiz-pmp-0-3';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- معرفة المجالات الثلاثة (Domains) وأوزانها
+- معرفة المهام الـ 26 (Tasks)
+- فهم مزيج النُهج (Approach mix) 40/60
+- معرفة أنواع الأسئلة (case sets, graphic-based)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+خريطة ECO 2026 هي بوصلتك؛ فهي تحدد أين تتركز الأسئلة وما المهارات المطلوبة في كل مجال.
+
+- الأفراد (People) 33% ويشملون ثماني مهام مثل قيادة الفريق وبناء الفريق وإدارة الصراع وإشراك أصحاب المصلحة.
+- العمليات (Process) 41% ويشملون عشر مهام من النطاق والجدول والتكلفة والجودة والمخاطر والتسليم والإغلاق.
+- بيئة الأعمال (Business Environment) 26% وتشمل الحوكمة والامتثال والتغيير المؤسسي وتحقيق الفوائد والاستدامة والذكاء الاصطناعي.
+- ويبلغ مزيج الأسئلة نحو 40% تنبؤي و60% رشيق أو هجين، مع أسئلة مواقف ومجموعة حالات (Case sets) ورسوم بيانية.
+
+---
+
+## 2. سيناريو واقعي
+
+دارس يقرأ محتوى PMBOK صفحة بصفحة ثم يفاجأ بأن أسئلته غالباً تأتي بصيغة "ماذا تفعل أولاً؟" في مواقف متغيرة. بعد تحويل دراسته إلى مهام ECO أصبح يراجع كل مهمة بسيناريو عملي، فارتفع أداؤه في التدريب.
+
+> 💡 **نصيحة الامتحان:** لا تحفظ الـ ECO؛ استخدمه كقائمة تحقق: هل تستطيع تطبيق كل مهمة في موقف واقعي؟
+
+---
+
+## 3. الأداة التفاعلية — مستكشف ECO
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="eco" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-0-3" questions={quizPmp03.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **مخطط محتوى الامتحان (ECO):** المصدر الرسمي لأوزان الامتحان
+- **مجال (Domain):** مجموعة مهام متقاربة
+- **مهمة (Task):** سلوك قابل للقياس في الامتحان
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.

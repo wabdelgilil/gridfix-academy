@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-2-4"
+course: "pmp"
+station: "station-pmp-2"
+number: "2.4"
+title: "إشراك أصحاب المصلحة (Stakeholder engagement)"
+titleEn: "Stakeholder Engagement and Alignment"
+minutes: 30
+order: 4
+hasTool: true
+toolName: "مصفوفة أصحاب المصلحة (Stakeholders)"
+toolNameEn: "Stakeholder Matrix"
+quizId: "quiz-pmp-2-4"
+objectives:
+  - "تعريف أصحاب المصلحة (Stakeholders)"
+  - "تحليل مصفوفة القوة والاهتمام (Power/Interest)"
+  - "تحديد استراتيجية الإشراك (Engagement strategy)"
+  - "مواءمة توقعات أصحاب المصلحة (Expectation alignment)"
+objectivesEn:
+  - "Define stakeholders"
+  - "Analyze Power/Interest"
+  - "Develop engagement strategy"
+  - "Align expectations"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp24 } from '../../../data/quiz/pmp/quiz-pmp-2-4';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف أصحاب المصلحة (Stakeholders)
+- تحليل مصفوفة القوة والاهتمام (Power/Interest)
+- تحديد استراتيجية الإشراك (Engagement strategy)
+- مواءمة توقعات أصحاب المصلحة (Expectation alignment)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+أصحاب المصلحة ليسوا كلهم متشابهين؛ تحتاج إلى فهم قوتهم واهتمامهم قبل تحديد طريقة إشراكهم.
+
+- تحليل أصحاب المصلحة (Stakeholder analysis) يحدد القوة والمصلحة والتأثير والدعم المتوقع لكل طرف.
+- مصفوفة القوة والاهتمام (Power/Interest) تقسمهم إلى: إدارة عن كثب، إبقاء راضيين، إبقاء على اطلاع، ومراقبة.
+- الإشراك (Engagement) يبدأ مبكراً ويتكرر؛ انتظار الإغلاق لطلب الرأي يولّد المقاومة.
+- العلاقة مع أصحاب المصلحة أصل مشروعي يُدار عبر التواصل والثقة والالتزامات الواضحة.
+
+---
+
+## 2. سيناريو واقعي
+
+مشروع تحول في مستشفى أهمل إشراك التمريض في التصميم. في التجربة الأولى رفض الممرضون النظام لأنه يزيد خطوات تسجيل المريض. بعد إشراك ممثلين عنهم في سبرنتين، تعديل التدفق وارتفع القبول.
+
+> 💡 **نصيحة الامتحان:** أعلى قوة وأعلى اهتمام يعني إدارة عن كثب، لا إرسال تقرير شهري فقط.
+
+---
+
+## 3. الأداة التفاعلية — مصفوفة أصحاب المصلحة (Stakeholders)
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="stakeholder" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-2-4" questions={quizPmp24.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **صاحب مصلحة (Stakeholder):** متأثر أو مؤثر في المشروع
+- **مصفوفة القوة والاهتمام (Power/Interest):** أداة تحديد أسلوب الإشراك
+- **الإشراك (Engagement):** بناء العلاقة والتأثير
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

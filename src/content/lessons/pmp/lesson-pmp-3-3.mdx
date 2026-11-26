@@ -1,0 +1,86 @@
+---
+id: "lesson-pmp-3-3"
+course: "pmp"
+station: "station-pmp-3"
+number: "3.3"
+title: "تسليم القيمة (Value-based delivery)"
+titleEn: "Value-Based Delivery"
+minutes: 25
+order: 3
+hasTool: true
+toolName: "باني خريطة القيمة"
+toolNameEn: "Value Map Builder"
+quizId: "quiz-pmp-3-3"
+objectives:
+  - "فهم \"القيمة (Value)\" vs \"المخرجات (Outputs)\""
+  - "تسليم قيمة مبكر (Early value)"
+  - "قياس \"النتائج (Outcomes)\""
+  - "تحسين \"Value stream\""
+objectivesEn:
+  - "Understand value vs outputs"
+  - "Early value delivery"
+  - "Measure outcomes"
+  - "Optimize value stream"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+  - "agile_practice_guide"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp33 } from '../../../data/quiz/pmp/quiz-pmp-3-3';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- فهم "القيمة (Value)" vs "المخرجات (Outputs)"
+- تسليم قيمة مبكر (Early value)
+- قياس "النتائج (Outcomes)"
+- تحسين "Value stream"
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+التسليم القائم على القيمة يبدأ بسؤال: أي جزء من العمل يغيّر النتيجة فعلاً؟
+
+- القيمة تُترجم إلى ترتيب أولويات للعمل، بحيث يُنفَّذ الأعلى أثراً أولاً حتى مع ميزانية محدودة.
+- النماذج الأولية (Prototypes) والمحاولات الصغيرة تساعد على تقليل الهدر عندما تكون المتطلبات غير واضحة.
+- مبدأ "أقل عمل ممكن لتحقيق النتيجة" لا يعني تقليل الجودة، بل تركيز الجودة حيث تُحدث فرقاً.
+- مقاييس القيمة تُستخدم في مراجعات المراحل لإعادة توجيه العمل قبل استنفاد الميزانية.
+
+---
+
+## 2. سيناريو واقعي
+
+مشروع تحسين بوابة خدمات كانت ميزانيته تكفي لتطوير 12 ميزة. وبتحليل القيمة تبيّن أن ثلاث ميزات تغطي 80% من شكاوى المواطنين، فتم تقديمها أولاً واستخدام ملاحظات الاستخدام لتعديل الباقي.
+
+> 💡 **نصيحة الامتحان:** عند ضيق الوقت، اسأل عن الميزة التي تحقق الفائدة لا الميزة الأسهل تنفيذاً.
+
+---
+
+## 3. الأداة التفاعلية — باني خريطة القيمة
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="value" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-3-3" questions={quizPmp33.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **تسليم القيمة (Value delivery):** تركيز العمل على الأثر
+- **نموذج أولي (Prototype):** نسخة مبكرة للاختبار
+- **الأولوية (Priority):** ترتيب حسب الأثر
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.
+- PMI, *Agile Practice Guide*.

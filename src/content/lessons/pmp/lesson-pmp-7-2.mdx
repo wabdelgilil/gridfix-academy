@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-7-2"
+course: "pmp"
+station: "station-pmp-7"
+number: "7.2"
+title: "المتابعة والتقرير"
+titleEn: "Monitoring & Reporting"
+minutes: 25
+order: 2
+hasTool: true
+toolName: "لوحة حالة المشروع"
+toolNameEn: "Project Status Dashboard"
+quizId: "quiz-pmp-7-2"
+objectives:
+  - "تعريف Monitor and Control Project Work (مراقبة والتحكم في العمل)"
+  - "فهم Work Performance Information (معلومات أداء العمل)"
+  - "التمييز بين Status (حالة), Progress (تقدم), Forecast (تنبؤ)"
+  - "التعرف على أنواع التقارير (Reports)"
+objectivesEn:
+  - "Define Monitor and Control Project Work"
+  - "Understand Work Performance Information"
+  - "Distinguish Status, Progress, Forecast"
+  - "Recognize report types"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp72 } from '../../../data/quiz/pmp/quiz-pmp-7-2';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف Monitor and Control Project Work (مراقبة والتحكم في العمل)
+- فهم Work Performance Information (معلومات أداء العمل)
+- التمييز بين Status (حالة), Progress (تقدم), Forecast (تنبؤ)
+- التعرف على أنواع التقارير (Reports)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+التقرير الجيد يجيب عن ثلاثة أسئلة: أين نحن؟ ما الذي سيحدث؟ ماذا نحتاج منك؟
+
+- تقارير الحالة تعرض الأداء مقابل الخط الأساس باستخدام مؤشرات مثل CPI وSPI والمخاطر والقرارات المعلقة.
+- البيانات تُجمع من تقارير العمل والمخرجات وسجلات التغيير والمخاطر، ثم تُحوَّل إلى معلومة قابلة للقرار.
+- الشفافية لا تعني إغراق الراعي بالتفاصيل، بل إبراز الانحرافات المهمة مع توصية واضحة.
+- التقرير يُرسل بالقناة والوتيرة المحددتين في خطة التواصل.
+
+---
+
+## 2. سيناريو واقعي
+
+كان تقرير الراعي يقول "كل شيء على ما يرام" بينما SPI = 0.82. بعد إعادة تصميم التقرير إلى لوحة تعرض المؤشرات والانحراف والقرار المطلوب، أصبح الراعي يوافق على تسريع محدد بدل سؤال عام عن التأخير.
+
+> 💡 **نصيحة الامتحان:** الصفات مثل "جيد" لا تكفي؛ اذكر الرقم والمصدر والإجراء.
+
+---
+
+## 3. الأداة التفاعلية — لوحة حالة المشروع
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="status" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-7-2" questions={quizPmp72.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **تقرير الحالة:** ملخص أداء للقرار
+- **انحراف (Variance):** الفرق بين الفعلي والخطة
+- **شفافية (Transparency):** عرض الحقائق بوضوح
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

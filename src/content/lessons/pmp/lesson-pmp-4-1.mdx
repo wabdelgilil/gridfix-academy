@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-4-1"
+course: "pmp"
+station: "station-pmp-4"
+number: "4.1"
+title: "تقدير المدة والجدولة (CPM, float)"
+titleEn: "Duration Estimation and Scheduling (CPM, Float)"
+minutes: 30
+order: 1
+hasTool: true
+toolName: "حاسبة CPM"
+toolNameEn: "CPM Calculator"
+quizId: "quiz-pmp-4-1"
+objectives:
+  - "تقدير المدة (Duration estimation)"
+  - "CPM (Critical Path Method)"
+  - "التعويم (Float)"
+  - "\"Fast tracking\" vs \"Crashing\""
+objectivesEn:
+  - "Duration estimation"
+  - "CPM"
+  - "Float"
+  - "Fast tracking vs crashing"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp41 } from '../../../data/quiz/pmp/quiz-pmp-4-1';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تقدير المدة (Duration estimation)
+- CPM (Critical Path Method)
+- التعويم (Float)
+- "Fast tracking" vs "Crashing"
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+الجدول ليس قائمة تواريخ؛ هو شبكة علاقات تحدد أي عمل يتحكم في تاريخ التسليم.
+
+- تقدير المدة (Duration estimating) يعتمد على WBS والموارد والتاريخ السابق ويُسجَّل مع الافتراضات.
+- طريقة المسار الحرج (CPM) تحسب أقدم بداية وأقدم نهاية لكل نشاط ثم تحدد الأنشطة التي لا تحتمل تأخيراً.
+- الوقت العائم (Float) هو مقدار التأخير المسموح به دون تأخير المشروع؛ الصفر يعني نشاطاً حرجاً.
+- ضغط الجدول عبر التنفيذ المتوازي (Fast tracking) أو التسريع بالإضافة (Crashing) يزيد المخاطر أو التكلفة ويجب تقييمه قبل استخدامه.
+
+---
+
+## 2. سيناريو واقعي
+
+في مشروع تركيب خط إنتاج، كان نشاط "تسليم المعدات" حرجاً بثلاثة أيام عائم صفر. تأخر المورد يومين، فاستهلك معظم العائم. أدرك مدير المشروع أن أي تأخير إضافي سينقل تاريخ التشغيل، ففعّل خطة بديلة للمورد.
+
+> 💡 **نصيحة الامتحان:** راقب الأنشطة ذات العائم الصفر أولاً؛ بقية التأخيرات قد تُمتص ضمن هامش المرونة.
+
+---
+
+## 3. الأداة التفاعلية — حاسبة CPM
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="cpm" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-4-1" questions={quizPmp41.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **المسار الحرج (Critical path):** أطول سلسلة أنشطة
+- **العائم (Float):** هامش تأخير مسموح
+- **تسريع (Crashing):** زيادة موارد لتقليل المدة
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

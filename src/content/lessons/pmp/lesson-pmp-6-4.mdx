@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-6-4"
+course: "pmp"
+station: "station-pmp-6"
+number: "6.4"
+title: "إدارة المشاكل (Issues & impediments)"
+titleEn: "Issue Management"
+minutes: 25
+order: 4
+hasTool: true
+toolName: "سجل مشكلات"
+toolNameEn: "Issue Log"
+quizId: "quiz-pmp-6-4"
+objectives:
+  - "تعريف Issue (مشكلة) vs Risk (مخاطرة)"
+  - "فهم Issue Log (سجل المشاكل)"
+  - "فهم Impediment (عقبة)"
+  - "فهم Root Cause Analysis (تحليل السبب الجذري)"
+objectivesEn:
+  - "Define Issue vs Risk"
+  - "Understand Issue Log"
+  - "Understand Impediment"
+  - "Understand Root Cause Analysis"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp64 } from '../../../data/quiz/pmp/quiz-pmp-6-4';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف Issue (مشكلة) vs Risk (مخاطرة)
+- فهم Issue Log (سجل المشاكل)
+- فهم Impediment (عقبة)
+- فهم Root Cause Analysis (تحليل السبب الجذري)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+المشكلة هي خطر حدث بالفعل؛ تحتاج مالكاً وقراراً سريعاً بدل نقاش في الاجتماعات.
+
+- المشكلة (Issue) تقع الآن وتؤثر على العمل، بينما الخطر قد يقع مستقبلاً فقط.
+- سجل المشكلات (Issue log) يوثّق الوصف والخطورة والمالك والموعد والحالة والأثر.
+- إدارة المشكلات تشمل التحليل والتصعيد عند تجاوز صلاحية الفريق ومتابعة الإغلاق.
+- المشكلة المتكررة تُحلّل جذرياً وتُحوَّل إلى درس مستفاد أو تحسين عملية لمنع تكرارها.
+
+---
+
+## 2. سيناريو واقعي
+
+توقف نظام الدفع عن العمل قبل التسليم بيومين. سُجّلت المشكلة بخطورة عالية ومالك من الفريق التقني، واتفقت على تصعيدها إلى الراعي بعد أربع ساعات لم يحدث حل، مع خطة بديلة لتشغيل يدوي مؤقت.
+
+> 💡 **نصيحة الامتحان:** الفرق بين Risk و Issue في الامتحان هو زمن الحدوث، لا خطورته.
+
+---
+
+## 3. الأداة التفاعلية — سجل مشكلات
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="issues" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-6-4" questions={quizPmp64.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **مشكلة (Issue):** حدث سلبي وقع فعلاً
+- **سجل المشكلات:** سجل المعالجة والمالك
+- **تصعيد (Escalation):** نقل القرار لمستوى أعلى
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-11-1"
+course: "pmp"
+station: "station-pmp-11"
+number: "11.1"
+title: "محاكي الامتحان (Mock Exam Simulator)"
+titleEn: "Mock Exam Simulator"
+minutes: 240
+order: 1
+hasTool: true
+toolName: "محاكي الامتحان"
+toolNameEn: "Exam Simulator"
+quizId: "quiz-pmp-11-1"
+objectives:
+  - "\"بنية الامتحان (Exam structure)\" (180q/240min)"
+  - "\"الأوزان (Weights)\" (33/41/26)"
+  - "\"النهج (Approach mix)\" (40% predictive / 60% agile-hybrid)"
+  - "\"استراتيجية (Strategy)\" (pacing, breaks, review)"
+objectivesEn:
+  - "Exam structure (180q/240min)"
+  - "Weights (33/41/26)"
+  - "Approach mix (40/60)"
+  - "Strategy (pacing, breaks, review)"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp111 } from '../../../data/quiz/pmp/quiz-pmp-11-1';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- "بنية الامتحان (Exam structure)" (180q/240min)
+- "الأوزان (Weights)" (33/41/26)
+- "النهج (Approach mix)" (40% predictive / 60% agile-hybrid)
+- "استراتيجية (Strategy)" (pacing, breaks, review)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+المحاكي الكامل هو المكان الذي تتحول فيه المعرفة إلى أداء تحت الوقت والضغط.
+
+- المحاكي يعرض 180 سؤالاً في 240 دقيقة بنمط PMP: مواقف، حالات متسلسلة، ورسوم بيانية.
+- التوزيع المرجعي 33% أفراد و41% عمليات و26% بيئة أعمال، مع مزيج تنبؤي ورشيق وهجين.
+- لكل سؤال إجابة صحيحة واحدة وتفسير يوضح لماذا الخيارات الأخرى أقل ملاءمة.
+- بعد كل محاولة راجع مجالات الضعف وحولها إلى خطة دراسة أسبوعية مركزة.
+
+---
+
+## 2. سيناريو واقعي
+
+دارس أنهى محاكياً بـ 64%، وكان أضعف مجالاته بيئة الأعمال. خصص أسبوعين لمراجعة الحوكمة والامتثال والفوائد والاستدامة، ثم أعاد المحاكي فارتفع إلى 78%.
+
+> 💡 **نصيحة الامتحان:** المحاكي ليس اختبار نهائياً؛ هو أداة تشخيص قبل الامتحان الحقيقي.
+
+---
+
+## 3. الأداة التفاعلية — محاكي الامتحان
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="exam" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-11-1" questions={quizPmp111.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **محاكي (Mock exam):** تدريب كامل بظروف الامتحان
+- **نتيجة تشخيصية:** تحليل الأداء حسب المجال
+- **خطة تحسين:** خطوات مركزة لرفع الضعف
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

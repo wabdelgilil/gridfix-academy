@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-2-5"
+course: "pmp"
+station: "station-pmp-2"
+number: "2.5"
+title: "إدارة توقعات أصحاب المصلحة"
+titleEn: "Managing Stakeholder Expectations"
+minutes: 25
+order: 5
+hasTool: true
+toolName: "سجل أصحاب المصلحة (Stakeholders)"
+toolNameEn: "Stakeholder Register"
+quizId: "quiz-pmp-2-5"
+objectives:
+  - "تحديد توقعات أصحاب المصلحة (Stakeholders)"
+  - "تفاوض التوقعات المتعارضة"
+  - "توثيق في سجل أصحاب المصلحة (Stakeholders)"
+  - "متابعة التغييرات"
+objectivesEn:
+  - "Identify stakeholder expectations"
+  - "Negotiate conflicting expectations"
+  - "Document in stakeholder register"
+  - "Track changes"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp25 } from '../../../data/quiz/pmp/quiz-pmp-2-5';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تحديد توقعات أصحاب المصلحة (Stakeholders)
+- تفاوض التوقعات المتعارضة
+- توثيق في سجل أصحاب المصلحة (Stakeholders)
+- متابعة التغييرات
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+إدارة التوقعات تعني جعل ما يسمعه أصحاب المصلحة متطابقاً مع ما يستطيع المشروع تسليمه فعلياً.
+
+- سجل أصحاب المصلحة (Stakeholder register) يوثّق المعلومات والاهتمامات والتوقعات والاستراتيجية المناسبة لكل طرف.
+- التوقعات غير المعلنة أخطر من المعلنة؛ لذلك تحتاج جلسات استماع وتوضيح مبكراً.
+- الوعود غير الواقعية تُترجم لاحقاً إلى طلبات تغيير أو خسارة ثقة، حتى لو كان الفريق حسن النية.
+- إدارة التوقعات نشاط مستمر: كل تغيير في النطاق أو الجدول يجب أن ينعكس في رسالة محدثة للطرف المعني.
+
+---
+
+## 2. سيناريو واقعي
+
+وعد مدير المشروع الراعي بتسليم "لوحة تحكم كاملة" بينما الخط الأساس يتضمن لوحة أساسية فقط. عند التسليم اعتبر الراعي المشروع ناقصاً. الحل كان توضيح النطاق مبكراً وتسجيل المصطلحات في سجل أصحاب المصلحة.
+
+> 💡 **نصيحة الامتحان:** اكتب التوقعات بصيغة قابلة للتحقق: ماذا سيُسلَّم؟ بماذا يُقاس؟ ومتى؟
+
+---
+
+## 3. الأداة التفاعلية — سجل أصحاب المصلحة (Stakeholders)
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="stakeholder" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-2-5" questions={quizPmp25.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **سجل أصحاب المصلحة:** سجل المعلومات والتوقعات
+- **توقع (Expectation):** ما يتوقعه الطرف من المشروع
+- **استراتيجية الإشراك:** طريقة التعامل مع كل طرف
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

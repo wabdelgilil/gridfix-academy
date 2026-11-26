@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-7-1"
+course: "pmp"
+station: "station-pmp-7"
+number: "7.1"
+title: "تنفيذ العمل (Direct & manage)"
+titleEn: "Directing & Managing Project Work"
+minutes: 30
+order: 1
+hasTool: true
+toolName: "لوحة تنفيذ"
+toolNameEn: "Execution Board"
+quizId: "quiz-pmp-7-1"
+objectives:
+  - "تعريف Direct and Manage Project Work (توجيه وإدارة العمل)"
+  - "فهم Work Performance Data (بيانات أداء العمل)"
+  - "فهم Deliverables (المخرجات)"
+  - "التعرف على Approved Change Requests (طلبات تغيير معتمدة)"
+objectivesEn:
+  - "Define Direct and Manage Project Work"
+  - "Understand Work Performance Data"
+  - "Understand Deliverables"
+  - "Recognize Approved Change Requests"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp71 } from '../../../data/quiz/pmp/quiz-pmp-7-1';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف Direct and Manage Project Work (توجيه وإدارة العمل)
+- فهم Work Performance Data (بيانات أداء العمل)
+- فهم Deliverables (المخرجات)
+- التعرف على Approved Change Requests (طلبات تغيير معتمدة)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+التنفيذ هو تحويل الخطة إلى عمل، مع إدارة المعلومات والاجتماعات والمخاطر اليومية.
+
+- توجيه وإدارة العمل ينتجان المخرجات وسجلات العمل وطلبات التغيير وتحديثات الخطط.
+- الاجتماعات ذات القيمة لها هدف وجدول أعمال ومخرجات ومالك، وإلا تحولت إلى وقت ضائع.
+- القرارات تُوثّق في سجل القرارات مع التاريخ والمبرر، حتى لا تُعاد مناقشتها لاحقاً.
+- تمكين الفريق يعني السماح له بحل المشكلات ضمن الحدود المتفق عليها وتصعيد ما يجاوزها.
+
+---
+
+## 2. سيناريو واقعي
+
+فريق تطوير كان ينتظر موافقة مدير المشروع على كل قرار تقني صغير. بعد تحديد حدود تفويض واضحة في ميثاق الفريق، أصبح الفريق يحل معظم المشكلات في الاجتماع اليومي (Stand-up) ويصعّد فقط ما يؤثر على النطاق أو الميزانية.
+
+> 💡 **نصيحة الامتحان:** التنفيذ الجيد يقلل الاجتماعات ويزيد القرارات الموثقة.
+
+---
+
+## 3. الأداة التفاعلية — لوحة تنفيذ
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="status" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-7-1" questions={quizPmp71.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **توجيه العمل:** تنفيذ الخطة وإنتاج المخرجات
+- **سجل القرارات:** توثيق القرار ومبرره
+- **تفويض (Delegation):** منح صلاحية ضمن حدود
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-5-4"
+course: "pmp"
+station: "station-pmp-5"
+number: "5.4"
+title: "ضمان/مراقبة الجودة (QA/QC)"
+titleEn: "Quality Assurance & Control"
+minutes: 25
+order: 4
+hasTool: true
+toolName: "قائمة تحقق جودة"
+toolNameEn: "Quality Checklist"
+quizId: "quiz-pmp-5-4"
+objectives:
+  - "تعريف ضمان الجودة (Quality Assurance - QA)"
+  - "تعريف مراقبة الجودة (Quality Control - QC)"
+  - "التمييز بين التدقيق (Audit) والفحص (Inspection)"
+  - "فهم الإجراء التصحيحي (Corrective action)"
+objectivesEn:
+  - "Define Quality Assurance (QA)"
+  - "Define Quality Control (QC)"
+  - "Distinguish Audit vs Inspection"
+  - "Understand Corrective Action"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp54 } from '../../../data/quiz/pmp/quiz-pmp-5-4';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف ضمان الجودة (Quality Assurance - QA)
+- تعريف مراقبة الجودة (Quality Control - QC)
+- التمييز بين التدقيق (Audit) والفحص (Inspection)
+- فهم الإجراء التصحيحي (Corrective action)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+ضمان الجودة يفحص العملية، ومراقبة الجودة تفحص المخرج؛ الخلط بينهما يضيع الجهد.
+
+- ضمان الجودة (QA) يركز على العمليات والمعايير والتدقيق لزيادة الثقة في أن الجودة ستتحقق.
+- مراقبة الجودة (QC) تفحص المخرجات الفعلية عبر اختبارات وفحص وقياسات.
+- قائمة التحقق (Checklist) وأدوات مثل باريتو ومخططات التحكم (Control charts) تدعم اتخاذ القرار بالبيانات.
+- العيوب تُسجَّل وتُحلّل أسبابها الجذرية قبل إغلاقها، لا تُعالج بالتغطية السريعة.
+
+---
+
+## 2. سيناريو واقعي
+
+في مشروع تصنيع، أظهرت خريطة باريتو أن 70% من العيوب تعود لسبب واحد في معايرة ماكينة. بدل فحص كل قطعة، عدّل الفريق إجراء المعايرة واختفت غالبية العيوب — تحسين عملية بدلاً من تكثيف فحص النتائج.
+
+> 💡 **نصيحة الامتحان:** تسأل QA: "هل العملية سليمة؟"، QC تسأل "هل المخرج مطابق؟".
+
+---
+
+## 3. الأداة التفاعلية — قائمة تحقق جودة
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="qualitycheck" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-5-4" questions={quizPmp54.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **ضمان الجودة (QA):** الثقة في العملية
+- **مراقبة الجودة (QC):** فحص المخرج
+- **تحليل السبب الجذري:** إيجاد المصدر الحقيقي للعيب
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

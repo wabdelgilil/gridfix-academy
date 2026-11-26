@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-9-4"
+course: "pmp"
+station: "station-pmp-9"
+number: "9.4"
+title: "التحسين المستمر (Continuous improvement)"
+titleEn: "Continuous Improvement"
+minutes: 25
+order: 4
+hasTool: true
+toolName: "خريطة PDCA"
+toolNameEn: "PDCA Explorer"
+quizId: "quiz-pmp-9-4"
+objectives:
+  - "تعريف \"التحسين المستمر (Continuous improvement)\""
+  - "\"دورة PDCA\" (Plan-Do-Check-Act)"
+  - "\"الدروس المستفادة (Lessons learned)\""
+  - "\"Kaizen\" و\"الابتكار (Innovation)\""
+objectivesEn:
+  - "Define continuous improvement"
+  - "PDCA cycle"
+  - "Lessons learned"
+  - "Kaizen and innovation"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp94 } from '../../../data/quiz/pmp/quiz-pmp-9-4';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف "التحسين المستمر (Continuous improvement)"
+- "دورة PDCA" (Plan-Do-Check-Act)
+- "الدروس المستفادة (Lessons learned)"
+- "Kaizen" و"الابتكار (Innovation)"
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+التحسين المستمر يجعل يوم المشروع أفضل من أمسه عبر حلقات قصيرة من التجربة والقياس والتكيّف.
+
+- دورة PDCA: Plan وDo وCheck وAct، وتُطبَّق على العملية لا على نتيجة نهائية فقط.
+- التحسين التدريجي (Kaizen) يعتمد على مشاركة الفريق في اقتراح تحسينات صغيرة متكررة.
+- البيانات تُستخدم لتأكيد التحسين، لا الانطباع الشخصي.
+- التحسين يُدمج في معايير العمل وإلا يعود الفريق إلى الطريقة القديمة بعد ضغط الإنتاج.
+
+---
+
+## 2. سيناريو واقعي
+
+فريق دعم لاحظ تكرار تأخير في الرد على الطلبات. جرّب أسبوعاً بتوزيع الطلبات حسب النوع، فتحسن الزمن 20%، فاعتمد الإجراء الجديد في دليل التشغيل واستمر في قياسه أسبوعياً.
+
+> 💡 **نصيحة الامتحان:** التحسين الذي لا يُقاس ولا يُوثَّق سيزول مع أول ضغط عمل.
+
+---
+
+## 3. الأداة التفاعلية — خريطة PDCA
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="pdca" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-9-4" questions={quizPmp94.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **PDCA:** دورة تخطيط وتنفيذ وتحقق وتكيّف
+- **تحسين مستمر:** تطوير متكرر للعملية
+- **توحيد المعيار:** اعتماد التحسين رسمياً
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

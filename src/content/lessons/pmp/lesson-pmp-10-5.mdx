@@ -1,0 +1,86 @@
+---
+id: "lesson-pmp-10-5"
+course: "pmp"
+station: "station-pmp-10"
+number: "10.5"
+title: "مقاييس رشيقة (Agile metrics): السرعة (Velocity) والاحتراق (Burndown)"
+titleEn: "Agile Metrics"
+minutes: 25
+order: 5
+hasTool: true
+toolName: "لوحة مقاييس Agile"
+toolNameEn: "Agile Metrics Dashboard"
+quizId: "quiz-pmp-10-5"
+objectives:
+  - "\"Velocity\" (سرعة الفريق)"
+  - "\"Burndown\" / \"Burnup\""
+  - "\"Lead/Cycle time\""
+  - "\"Throughput\" و\"التحسين (Improvement)\""
+objectivesEn:
+  - "Velocity"
+  - "Burndown / burnup"
+  - "Lead/cycle time"
+  - "Throughput and improvement"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+  - "agile_practice_guide"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp105 } from '../../../data/quiz/pmp/quiz-pmp-10-5';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- "Velocity" (سرعة الفريق)
+- "Burndown" / "Burnup"
+- "Lead/Cycle time"
+- "Throughput" و"التحسين (Improvement)"
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+مقاييس Agile تُستخدم لتحسين التدفق، لا لمقارنة الفرق أو الضغط على الأفراد.
+
+- السرعة (Velocity) متوسط نقاط العمل المنجزة في السبرنت، وتُستخدم للتخطيط لا للتقييم الفردي.
+- مخطط التراجع (Burndown) يوضح المتبقي من العمل مقابل الزمن ويكشف انحراف الإيقاع.
+- زمن الدورة وزمن الانتظار يقيسان كفاءة التدفق ويُحسنان عبر تقليل WIP.
+- مؤشرات مثل توزيع العيوب تساعد على فهم أين تتراكم المشكلات.
+
+---
+
+## 2. سيناريو واقعي
+
+مدير لاحظ أن السرعة ارتفعت فجأة، لكن عدد العيوب ارتفع أكثر. تبيّن أن الفريق خفّض تعريف الإنجاز. بعد إعادة المعيار إلى أصله عادت السرعة إلى مستواها الحقيقي وتحسنت الجودة.
+
+> 💡 **نصيحة الامتحان:** إذا تحسّن المؤشر بينما تدهورت النتيجة، فالمؤشر نفسه يحتاج مراجعة.
+
+---
+
+## 3. الأداة التفاعلية — لوحة مقاييس Agile
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="metrics" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-10-5" questions={quizPmp105.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **السرعة (Velocity):** متوسط العمل المنجز
+- **مخطط التراجع:** المتبقي مقابل الزمن
+- **زمن الدورة:** مدة إنجاز العنصر
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.
+- PMI, *Agile Practice Guide*.

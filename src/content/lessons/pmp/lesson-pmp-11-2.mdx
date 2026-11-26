@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-11-2"
+course: "pmp"
+station: "station-pmp-11"
+number: "11.2"
+title: "تقرير تشخيصي + خطة تحسين (Diagnostic Report)"
+titleEn: "Diagnostic Report & Improvement Plan"
+minutes: 30
+order: 2
+hasTool: true
+toolName: "تقرير تشخيصي"
+toolNameEn: "Diagnostic Report"
+quizId: "quiz-pmp-11-2"
+objectives:
+  - "\"تشخيص (Diagnostic)\" بعد mock exam"
+  - "\"تحليل (Analysis)\" by domain"
+  - "\"خطة تحسين (Improvement plan)\""
+  - "\"المتابعة (Follow-up)\" و\"القياس (Measurement)\""
+objectivesEn:
+  - "Diagnostic after mock exam"
+  - "Analysis by domain"
+  - "Improvement plan"
+  - "Follow-up and measurement"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp112 } from '../../../data/quiz/pmp/quiz-pmp-11-2';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- "تشخيص (Diagnostic)" بعد mock exam
+- "تحليل (Analysis)" by domain
+- "خطة تحسين (Improvement plan)"
+- "المتابعة (Follow-up)" و"القياس (Measurement)"
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+التقرير التشخيصي يحوّل نتيجة المحاكي من رقم إلى خارطة طريق واضحة للأسابيع القادمة.
+
+- التقرير يقارن أداءك بوزن كل مجال: الأفراد 33% والعمليات 41% وبيئة الأعمال 26%.
+- المجال الأضعف لا يُحدد بأقل نسبة فقط، بل بأثر الوزن والفجوة عن عتبة الجاهزية 70%.
+- لكل مجال ضعيف تختار إجراءً محدداً: إعادة دروس، كويزات إضافية، أو تمارين حسابية.
+- إعادة التقييم بعد كل تعديل تغلق الحلقة وتثبت أثر الخطة.
+
+---
+
+## 2. سيناريو واقعي
+
+تقرير دارس أظهر 82% في الأفراد و76% في العمليات و58% في بيئة الأعمال. رغم أن العمليات أقل من الأفراد، كانت الفجوة الأكبر في بيئة الأعمال، فبدأ بها، ثم خصص أسبوعاً لممارسة EVM وCPM.
+
+> 💡 **نصيحة الامتحان:** الوزن والفجوة معاً يحددان أولوية التحسين، لا الترتيب الأبجدي للمجالات.
+
+---
+
+## 3. الأداة التفاعلية — تقرير تشخيصي
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="diagnostic" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-11-2" questions={quizPmp112.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **تقرير تشخيصي:** تحليل نتيجة المحاكي
+- **فجوة الجاهزية:** الفرق بين الأداء والعتبة
+- **خارطة تحسين:** خطة أسبوعية مركزة
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-3-4"
+course: "pmp"
+station: "station-pmp-3"
+number: "3.4"
+title: "التحقق والتحكم في النطاق"
+titleEn: "Scope Validation and Control"
+minutes: 25
+order: 4
+hasTool: true
+toolName: "قائمة تحقق نطاق"
+toolNameEn: "Scope Checklist"
+quizId: "quiz-pmp-3-4"
+objectives:
+  - "التحقق من النطاق (Validate scope)"
+  - "قبول المخرجات (Accept deliverables)"
+  - "التحكم في النطاق (Control scope)"
+  - "إدارة \"variance\" النطاق"
+objectivesEn:
+  - "Validate scope"
+  - "Accept deliverables"
+  - "Control scope"
+  - "Manage scope variance"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp34 } from '../../../data/quiz/pmp/quiz-pmp-3-4';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- التحقق من النطاق (Validate scope)
+- قبول المخرجات (Accept deliverables)
+- التحكم في النطاق (Control scope)
+- إدارة "variance" النطاق
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+التحقق من النطاق يسأل: هل المخرج مقبول؟ والتحكم يسأل: هل بقينا داخل الحد المعتمد؟
+
+- التحقق (Validate) يركز على قبول المخرجات من العميل أو مالك العمل وفق معايير واضحة.
+- التحكم (Control) يركز على مقارنة الأداء الفعلي بخطة النطاق واكتشاف الانحرافات.
+- معايير القبول (Acceptance criteria) يجب أن تكون مكتوبة وقابلة للقياس قبل بدء العمل.
+- المخرج المرفوض يُعاد العمل عليه عبر طلب تغيير أو تصحيح داخلي حسب نوع الخلل.
+
+---
+
+## 2. سيناريو واقعي
+
+فريق سجّل معيار قبول غامضاً: "الواجهة سهلة". في التسليم اختلف العميل والمطور حول المعنى. بعد صياغة المعيار إلى "إكمال الطلب في ثلاث خطوات أو أقل" أصبح القبول موضوعياً.
+
+> 💡 **نصيحة الامتحان:** إذا لم تستطع قياس القبول، فأنت لم تكتب معيار قبول بعد.
+
+---
+
+## 3. الأداة التفاعلية — قائمة تحقق نطاق
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="scope" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-3-4" questions={quizPmp34.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **التحقق (Validate Scope):** قبول رسمي للمخرجات
+- **التحكم (Control Scope):** مراقبة الانحراف عن الخطة
+- **معايير القبول:** شروط موضوعية للقبول
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

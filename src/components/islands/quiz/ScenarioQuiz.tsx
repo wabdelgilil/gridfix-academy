@@ -18,7 +18,9 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
     ? 'cmrp'
     : quizId.startsWith('quiz-cama')
       ? 'cama'
-      : 'cfm';
+      : quizId.startsWith('quiz-pmp')
+        ? 'pmp'
+        : 'cfm';
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
@@ -163,8 +165,12 @@ export default function ScenarioQuiz({ quizId, questions }: Props) {
           </p>
           <p className="mt-2 text-sm text-ink-400 dark:text-slate-400">
             {isEn
-              ? 'The CFM exam favors scenario-based application, not memorization.'
-              : 'نمط أسئلة CFM يعتمد السيناريو والتطبيق، لا الحفظ.'}
+              ? course === 'pmp'
+                ? 'The PMP exam favors scenario-based judgment in predictive, agile, and hybrid settings.'
+                : 'The CFM exam favors scenario-based application, not memorization.'
+              : course === 'pmp'
+                ? 'أسئلة PMP تقيس الحكم في المواقف التنبؤية والرشيقة والهجينة، لا الحفظ.'
+                : 'نمط أسئلة CFM يعتمد السيناريو والتطبيق، لا الحفظ.'}
           </p>
 
           <div className="mt-6 mx-auto max-w-xs">

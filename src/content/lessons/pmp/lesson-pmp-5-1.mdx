@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-5-1"
+course: "pmp"
+station: "station-pmp-5"
+number: "5.1"
+title: "تخطيط الموارد والفريق"
+titleEn: "Resource & Team Planning"
+minutes: 25
+order: 1
+hasTool: true
+toolName: "مصفوفة موارد"
+toolNameEn: "Resource Matrix"
+quizId: "quiz-pmp-5-1"
+objectives:
+  - "تعريف خطة إدارة الموارد (Resource management plan)"
+  - "التمييز بين تسوية الموارد (Resource leveling) وتنعيم الموارد (Resource smoothing)"
+  - "فهم تقويم الموارد (Resource calendar)"
+  - "التعرف على أدوار الفريق (Team roles)"
+objectivesEn:
+  - "Define Resource Management Plan"
+  - "Distinguish Resource Leveling vs Resource Smoothing"
+  - "Understand Resource Calendar"
+  - "Recognize team roles"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp51 } from '../../../data/quiz/pmp/quiz-pmp-5-1';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف خطة إدارة الموارد (Resource management plan)
+- التمييز بين تسوية الموارد (Resource leveling) وتنعيم الموارد (Resource smoothing)
+- فهم تقويم الموارد (Resource calendar)
+- التعرف على أدوار الفريق (Team roles)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+الموارد قد تكون موجودة على الورق لكنها غير متاحة في الوقت المطلوب؛ هنا تظهر الحاجة إلى تخطيط وتسوية.
+
+- خطة الموارد تحدد من يحتاج ماذا، وبأي مهارة، ولأي مدة، ومن أين يأتي (داخلياً أو خارجياً).
+- تسوية الموارد (Resource leveling) تعديل الجدول لتجنب الإشغال الزائد، وقد تغيّر تاريخ التسليم.
+- تسوية الموارد (Resource smoothing) تعدّل ضمن العائم المتاح دون تغيير المسار الحرج إن أمكن.
+- مصفوفة المهارات والمسؤوليات تربط المعرفة والمهارات والقدرات (KSA) بحزم العمل.
+
+---
+
+## 2. سيناريو واقعي
+
+مطور رئيسي كان مخصصاً 140% في أسبوعين متتاليين بين مشروعين. مدير المشروع نقل حزمة اختبار إلى عضو مدرب، واستخدم عائماً من ثلاثة أيام في نشاط غير حرج، فأزال الإشغال الزائد دون تأخير التسليم.
+
+> 💡 **نصيحة الامتحان:** الإشغال فوق 100% ليس بطولة؛ هو مصدر أخطاء وتأخير مخفي.
+
+---
+
+## 3. الأداة التفاعلية — مصفوفة موارد
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="resources" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-5-1" questions={quizPmp51.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **تخطيط الموارد:** تحديد الاحتياجات والمصادر
+- **تسوية (Leveling):** تعديل الجدول لتجنب التحميل الزائد
+- **إشغال (Allocation):** نسبة وقت المورد للمهمة
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

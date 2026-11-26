@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-6-1"
+course: "pmp"
+station: "station-pmp-6"
+number: "6.1"
+title: "تحديد وتحليل المخاطر"
+titleEn: "Risk Identification & Analysis"
+minutes: 30
+order: 1
+hasTool: true
+toolName: "مصفوفة مخاطر"
+toolNameEn: "Risk Matrix"
+quizId: "quiz-pmp-6-1"
+objectives:
+  - "تعريف خطة إدارة المخاطر (Risk management plan)"
+  - "فهم تحديد المخاطر (Risk identification)"
+  - "التمييز بين التحليل النوعي (Qualitative analysis) والتحليل الكمي (Quantitative analysis)"
+  - "فهم القيمة النقدية المتوقعة (Expected monetary value - EMV)"
+objectivesEn:
+  - "Define Risk Management Plan"
+  - "Understand Risk Identification"
+  - "Distinguish Qualitative vs Quantitative Analysis"
+  - "Understand Expected Monetary Value (EMV)"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp61 } from '../../../data/quiz/pmp/quiz-pmp-6-1';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف خطة إدارة المخاطر (Risk management plan)
+- فهم تحديد المخاطر (Risk identification)
+- التمييز بين التحليل النوعي (Qualitative analysis) والتحليل الكمي (Quantitative analysis)
+- فهم القيمة النقدية المتوقعة (Expected monetary value - EMV)
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+المخاطر أحداث قد تحدث؛ تحديدها مبكراً يمنحك خيارات قبل أن تتحول إلى مشكلات.
+
+- الخطر (Risk) حدث غير مؤكد قد يؤثر إيجاباً أو سلباً على أهداف المشروع.
+- تحديد المخاطر يستخدم المقابلات ومراجعة الوثائق وتحليل SWOT وقوائم الفحص وخبرة الماضي.
+- التحليل النوعي يقيّم الاحتمال والأثر ويصنّف الأولويات، والتحليل الكمي يقدّم أثراً رقمياً على الجدول والتكلفة.
+- سجل المخاطر (Risk register) يسجّل الوصف والسبب والاحتمال والأثر والاستجابة والمالك والحالة.
+
+---
+
+## 2. سيناريو واقعي
+
+مشروع يعتمد على مورد وحيد اكتشف في ورشة مخاطر أن احتمال تأخره مرتفع. سُجّل الخطر بمالك وأُعدّ بديل محلي، فعند حدوث التأخير فعلاً استُخدم البديل خلال يومين بدل توقف أسبوع.
+
+> 💡 **نصيحة الامتحان:** الخطر الذي لا يملك مالكاً واستجابة هو مجرد ملاحظة في اجتماع.
+
+---
+
+## 3. الأداة التفاعلية — مصفوفة مخاطر
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="riskmatrix" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-6-1" questions={quizPmp61.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **خطر (Risk):** حدث غير مؤكد ذو أثر
+- **التحليل النوعي:** تصنيف بالاحتمال والأثر
+- **سجل المخاطر:** سجل الاستجابات والمالكين
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.

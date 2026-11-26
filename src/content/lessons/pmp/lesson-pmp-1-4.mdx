@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-1-4"
+course: "pmp"
+station: "station-pmp-1"
+number: "1.4"
+title: "النُهج تنبؤي رشيق هجين"
+titleEn: "Approaches Predictive Agile Hybrid"
+minutes: 25
+order: 4
+hasTool: true
+toolName: "مقارن النُهج"
+toolNameEn: "Approach Comparator"
+quizId: "quiz-pmp-1-4"
+objectives:
+  - "تعريف النهج التنبؤي (Predictive) والرشيق (Agile) والهجين (Hybrid)"
+  - "متى تستخدم كل نهج"
+  - "\"Approach mix\" 40/60"
+  - "\"Tailoring (تكييف)\""
+objectivesEn:
+  - "Define predictive, agile, hybrid"
+  - "When to use each"
+  - "Approach mix 40/60"
+  - "Tailoring"
+sources:
+  - "pmi_eco_2026"
+  - "agile_practice_guide"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp14 } from '../../../data/quiz/pmp/quiz-pmp-1-4';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف النهج التنبؤي (Predictive) والرشيق (Agile) والهجين (Hybrid)
+- متى تستخدم كل نهج
+- "Approach mix" 40/60
+- "Tailoring (تكييف)"
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+اختيار النهج ليس مسألة ذوق؛ هو نتيجة لدرجة عدم اليقين واستقرار المتطلبات وطبيعة العمل.
+
+- النهج التنبؤي (Predictive) يصلح عندما تكون المتطلبات مستقرة والعمل قابل للتخطيط مسبقاً، ويُدار عبر خطوط أساسية واضحة.
+- النهج الرشيق (Agile) يصلح عندما تتغير المتطلبات بكثافة ويحتاج الفريق إلى ملاحظات متكررة من العميل.
+- النهج الهجين (Hybrid) يجمع إطاراً تنبؤياً للبوابات والميزانية مع ممارسات رشيقة داخل التنفيذ، مثل بناء عتاد ثابت وبرمجيات متكررة.
+- ECO 2026 يوزّع الأسئلة بنحو 40% تنبؤي و60% رشيق/هجين، وغالباً يسأل عن "الأنسب للسياق" لا الأفضل مطلقاً.
+
+---
+
+## 2. سيناريو واقعي
+
+مستشفى يبني نظام حجز مواعيد: البنية التحتية والامتثال الطبي ثابتان، لكن شاشات المستخدم تتغير أسبوعياً بعد تجارب الممرضات. الفريق اعتمد هجيناً: بوابات تنبؤية للميزانية والأمان، وسبرنتات رشيقة للواجهة.
+
+> 💡 **نصيحة الامتحان:** ابحث في السيناريو عن كلمات مثل "متطلبات مستقرة" أو "تغيّر متكرر" قبل اختيار النهج.
+
+---
+
+## 3. الأداة التفاعلية — مقارن النُهج
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="approach" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-1-4" questions={quizPmp14.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **تنبؤي (Predictive):** تخطيط مسبق شامل
+- **رشيق (Agile):** تكيّف متكرر مع تغيير
+- **هجين (Hybrid):** مزج الاثنين حسب السياق
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *Agile Practice Guide*.

@@ -32,7 +32,9 @@ const courseImage =
       ? '/og-cfm.png'
       : course === 'cama'
         ? '/og-cama.png'
-        : undefined;
+        : course === 'pmp'
+          ? '/og-pmp.png'
+          : undefined;
 
 // Audio detection & next lesson resolution for seamless continuous listening
 const courseStations = curriculum

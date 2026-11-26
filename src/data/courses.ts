@@ -54,6 +54,20 @@ export const courses: Course[] = [
     credential: 'CAMA',
     status: 'live',
   },
+  {
+    id: 'pmp',
+    code: 'PMP',
+    title: 'محترف إدارة المشاريع',
+    titleEn: 'Project Management Professional',
+    tagline: 'شهادة PMP من PMI',
+    description:
+      'مسار عملي عربي لشهادة PMP وفق ECO 2026: قيادة الفرق، تسليم القيمة، وإدارة بيئة الأعمال — بنهج تنبؤي ورشيق وهجين.',
+    descriptionEn:
+      'A practical Arabic path to the PMP credential aligned to the July 2026 ECO: leading teams, value delivery, and business environment across predictive, agile, and hybrid approaches.',
+    icon: '📋',
+    credential: 'PMP',
+    status: 'live',
+  },
 ];
 
 export function getCourse(id: string): Course | undefined {

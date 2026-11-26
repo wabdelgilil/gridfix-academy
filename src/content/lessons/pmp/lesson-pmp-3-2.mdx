@@ -1,0 +1,84 @@
+---
+id: "lesson-pmp-3-2"
+course: "pmp"
+station: "station-pmp-3"
+number: "3.2"
+title: "تعريف النطاق وإدارته"
+titleEn: "Scope Definition and Management"
+minutes: 25
+order: 2
+hasTool: true
+toolName: "مصفوفة النطاق (Scope)"
+toolNameEn: "Scope Matrix"
+quizId: "quiz-pmp-3-2"
+objectives:
+  - "تعريف النطاق (Scope statement)"
+  - "إدارة النطاق (Scope management plan)"
+  - "منع \"scope creep\""
+  - "تحليل تأثير التغييرات"
+objectivesEn:
+  - "Define scope statement"
+  - "Scope management plan"
+  - "Prevent scope creep"
+  - "Analyze change impact"
+sources:
+  - "pmi_eco_2026"
+  - "pmbok_8"
+---
+
+import ScenarioQuiz from '../../../components/islands/quiz/ScenarioQuiz.tsx';
+import { quizPmp32 } from '../../../data/quiz/pmp/quiz-pmp-3-2';
+import PmpTool from '../../../components/islands/tools/pmp/PmpTool.tsx';
+
+## 🎯 أهداف التعلم
+
+- تعريف النطاق (Scope statement)
+- إدارة النطاق (Scope management plan)
+- منع "scope creep"
+- تحليل تأثير التغييرات
+
+---
+
+## 1. المفهوم — ترتيب الفهم
+
+بيان النطاق هو الحد الذي اتفق عليه الأطراف؛ خارجه يصبح أي عمل طلباً للتغيير.
+
+- بيان النطاق (Scope statement) يحدد المخرجات والقيود والافتراضات ومعايير القبول.
+- زحف النطاق (Scope creep) هو نمو غير مضبوط للنطاق دون تحكم بالتغيير أو موافقة.
+- إدارة النطاق تعني حماية الخط الأساسي مع بقاء قناة مرنة للأفكار الجديدة عبر سجل التغييرات.
+- مصفوفة تتبع المتطلبات (Requirements traceability matrix) تربط كل متطلب بالمصدر والتصميم والاختبار.
+
+---
+
+## 2. سيناريو واقعي
+
+خلال مراجعة تصميم، طلب أحد المدراء إضافة "تصدير إلى PDF" لأنه يستخدمه شخصياً. الفريق سجّل الطلب، أظهر أثره أسبوعاً وتكلفة، وقررت لجنة التغيير تأجيله للإصدار الثاني، فبقي الخط الأساسي محمياً.
+
+> 💡 **نصيحة الامتحان:** ليس كل طلب جيداً يجب تنفيذه الآن؛ التوقيت قرار تجاري.
+
+---
+
+## 3. الأداة التفاعلية — مصفوفة النطاق (Scope)
+
+استخدم الأداة أدناه لتطبيق المفاهيم على مدخلاتك الخاصة، ثم قارن النتيجة بالسيناريو السابق.
+
+<PmpTool kind="scope" client:load />
+
+---
+
+## 4. كويز سيناريو
+
+<ScenarioQuiz quizId="quiz-pmp-3-2" questions={quizPmp32.questions} client:load />
+
+---
+
+## 📚 قاموس المصطلحات
+
+- **بيان النطاق (Scope statement):** الحد المعتمد للعمل
+- **زحف النطاق (Scope creep):** نمو غير معتمد
+- **مصفوفة التتبع:** ربط المتطلب بالتنفيذ والاختبار
+
+## 📎 مصادر معتمدة
+
+- PMI, *PMP Examination Content Outline (ECO) — July 2026*.
+- PMI, *PMBOK Guide — 8th Edition*.
